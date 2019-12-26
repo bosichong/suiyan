@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jqPaginator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Javascript -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/jqPaginator-2.0.2/dist/jq-paginator.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+
+        .demo {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .customBootstrap .pagination>li>a {
+            margin-right: 5px;
+            border-radius: 2px;
+            background: #fff;
+            color: #333;
+            border-color: #ccc;
+            padding: 6px 15px;
+        }
+
+        .customBootstrap .pagination>li>a:hover,
+        .customBootstrap .pagination>li>a:focus {
+            color: #fff;
+            background: #fb9400;
+            border-color: #fb9400;
+        }
+
+        .customBootstrap .pagination>.active>a,
+        .customBootstrap .pagination>.active>a:hover,
+        .customBootstrap .pagination>.active>a:focus {
+            color: #fff;
+            background: #fb9400;
+            border-color: #fb9400;
+        }
+
+        .customBootstrap .pagination>.disabled>a,
+        .customBootstrap .pagination>.disabled>a:hover,
+        .customBootstrap .pagination>.disabled>a:focus {
+            color: #999;
+            background: #fff;
+            border-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .pagination2 {
+            height: 30px;
+            margin: 10px 0;
+        }
+
+        .pagination2 a {
+            text-decoration: none;
+            border: solid 1px #c0d3e6;
+            color: #333;
+            border-left-width: 0;
+            height: 24px !important;
+        }
+
+        .pagination2 a {
+            height: 24px !important;
+            display: block;
+            float: left;
+            padding: 0 10px;
+            text-align: center;
+            line-height: 24px;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .pagination2 .active {
+            background-color: #6babdd;
+            color: #fff;
+            padding: 0 10px;
+            border: solid 1px #5c95c1;
+        }
+
+        .pagination2 .prev {
+            border: solid 1px #c0d3e6;
+        }
+
+        .pagination2 .next {
+            border-left-width: 0;
+            border-right-width: 1px;
+        }
+
+        .pagination2 .active.prev,
+        .pagination2 .active.next {
+            color: #dcdcdc;
+            border-color: #efefef;
+            background: #fff;
+        }
+
+        .pagination2 a:hover {
+            background-color: #cde4f8;
+        }
+
+        .pagination2 .active:hover {
+            background-color: #6babdd;
+        }
+
+        .pagination2 a.disabled {
+            display: none;
+        }
+
+        .pagination4 .page a,
+        .pagination4 .page a:hover {
+            width: 100px;
+            text-align: center;
+            border: 1px solid #ddd;
+            color: #999;
+            background-color: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <p>当前第 <span id="demo1-text"></span> 页</p>
+        <ul id="demo1" class="pagination"></ul>
+    </div>
+    <div class="demo customBootstrap">
+        <p>当前第 <span id="demo2-text"></span> 页</p>
+        <ul id="demo2" class="pagination"></ul>
+    </div>
+    <div class="demo">
+        <p>当前第 <span id="demo3-text"></span> 页</p>
+        <div id="demo3" class="pagination2"></div>
+    </div>
+    <div class="demo">
+        <p>当前第 <span id="demo4-text"></span> 页</p>
+        <ul id="demo4" class="pagination pagination4"></ul>
+    </div>
+    <div class="demo">
+        <ul id="pagination-demo-top" class="pagination pagination-demo"></ul>
+        <p>当前第 <span id="pagination-demo-text"></span> 页</p>
+        <ul id="pagination-demo-bottom" class="pagination pagination-demo"></ul>
+    </div>
+
+    <script type="text/javascript">
+
+
+
+        $("#demo2").jqPaginator({
+            totalPages: 100,
+            visiblePages: 10,
+            currentPage: 1,
+            first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+            prev: '<li class="prev"><a href="javascript:void(0);">上一页<\/a><\/li>',
+            next: '<li class="next"><a href="javascript:void(0);">下一页<\/a><\/li>',
+            last: '<li class="last"><a href="javascript:void(0);">末页<\/a><\/li>',
+            page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+            onPageChange: function (n) {
+                $("#demo2-text").html(n)
+            }
+        })
+
+        $("#demo3").jqPaginator({
+            totalPages: 100,
+            visiblePages: 10,
+            currentPage: 1,
+            prev: '<a class="prev" href="javascript:void(0);">&lt;<\/a>',
+            next: '<a class="next" href="javascript:void(0);">&gt;<\/a>',
+            page: '<a href="javascript:void(0);">{{page}}<\/a>',
+            onPageChange: function (n) {
+                $("#demo3-text").html(n)
+            }
+        })
+
+        $("#demo4").jqPaginator({
+            totalPages: 100,
+            visiblePages: 1,
+            currentPage: 1,
+            prev: '<li class="prev"><a href="javascript:void(0);">Previous<\/a><\/li>',
+            next: '<li class="next"><a href="javascript:void(0);">Next<\/a><\/li>',
+            page: '<li class="page"><a href="javascript:void(0);"> {{page}} / {{totalPages}} <\/a><\/li>',
+            onPageChange: function (n) {
+                $("#demo4-text").html(n)
+            }
+        })
+
+        $(".pagination-demo").jqPaginator({
+            totalPages: 100,
+            visiblePages: 10,
+            currentPage: 1,
+            first: '<li class="first"><a href="javascript:void(0);">First<\/a><\/li>',
+            prev: '<li class="prev"><a href="javascript:void(0);">Previous<\/a><\/li>',
+            next: '<li class="next"><a href="javascript:void(0);">Next<\/a><\/li>',
+            last: '<li class="last"><a href="javascript:void(0);">Last<\/a><\/li>',
+            page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+            onPageChange: function (n) {
+                $("#pagination-demo-text").html(n)
+            }
+        })
+        
+
+
+        
+    </script>
+</body>
+
+</html>

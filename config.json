@@ -1,0 +1,51 @@
+{
+    "blog_name": "SuiYan",
+    "blog_author": "J.sky",
+    "blog_description": "You see see you , This one day day di.",
+    "meta_description": " 碎言静态Blog，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。",
+    "blog_sns": [
+        {
+            "ico": "github",
+            "url": "https://github.com/bosichong"
+        },
+        {
+            "ico": "weibo",
+            "url": "https://github.com/bosichong"
+        },
+        {
+            "ico": "weixin",
+            "url": "https://github.com/bosichong"
+        },
+        {
+            "ico": "qq",
+            "url": "https://github.com/bosichong"
+        },
+        {
+            "ico": "twitter",
+            "url": "https://github.com/bosichong"
+        }
+    ],
+    "nav": [
+        {
+            "ico": "home",
+            "text": "Blog Home",
+            "url": "index.html"
+        },
+        {
+            "ico": "tags",
+            "text": "Blog Tag",
+            "url": "tags.html"
+        },
+        {
+            "ico": "archive",
+            "text": "Blog Archive",
+            "url": "archives.html"
+        },
+        {
+            "ico": "user",
+            "text": "About Me",
+            "url": "index.html"
+        }
+    ],
+    "blog_list":5
+}

@@ -1,0 +1,35 @@
+.project
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# node
+node_modules
+*.log
+
+# vim
+*.swp
+
+# webstorm
+.idea
+
+# vscode
+.vscode
+jsconfig.json
+
+# macos
+.DS_Store
+
+# coverage
+coverage
+
+# elint
+/.commitlintrc.js
+/.eslintrc.js
+/.huskyrc.js
+/.stylelintrc.js
+
+# nightwatch
+test/e2e/screenshots
