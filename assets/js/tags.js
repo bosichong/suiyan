@@ -9,7 +9,7 @@ $(document).ready(function () {
             $tags.append('<button class="tag-bt btn btn-info btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><span class="tagval">'+element.tag+'</span> <span class="badge badge-light">'+element.data.length+'</span></button>');
         }
 
-
+        
         //tag按钮点击事件，点击后加载相关数据
         $('.tag-bt').click(function (e) { 
             $('.card').attr('class', 'card visible');

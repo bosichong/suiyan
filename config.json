@@ -32,14 +32,14 @@
             "url": "index.html"
         },
         {
-            "ico": "tags",
-            "text": "Blog Tag",
-            "url": "tags.html"
-        },
-        {
             "ico": "archive",
             "text": "Blog Archive",
             "url": "archives.html"
+        },
+        {
+            "ico": "tags",
+            "text": "Blog Tag",
+            "url": "tags.html"
         },
         {
             "ico": "user",

@@ -1,11 +1,14 @@
 var suiyan = {} //命名一个自己用的空间
 
+
+
+
 //首页搜索结果
-suiyan.getsearch = function(data,k){
+suiyan.getsearch = function (data, k) {
     var arr = [];
-    data.forEach(function(item,i){
+    data.forEach(function (item, i) {
         var key = item.title;
-        if (k !== '' && key.indexOf(k) > -1){
+        if (k !== '' && key.indexOf(k) > -1) {
             arr.push(item)
         }
     });
@@ -52,30 +55,30 @@ suiyan.formatData = function (data) {
 //根据TAG重新分组数据
 suiyan.format_tags_data = function (data) {
     var arr = []
-    data.forEach(function (item,i){
+    data.forEach(function (item, i) {
         var t = item.tag;
         // console.log(t);
-        if(i === 0){
+        if (i === 0) {
             //第一次循环 创建一个TAG
             var tmpObj = {};
             tmpObj.tag = t;
             tmpObj.data = [];
             tmpObj.data.push(item);
             arr.push(tmpObj);
-        }else{
+        } else {
             //如果不是第一次，就和上一次的比较TAG，如果相同，添加
             isok = true;
             for (let index = 0; index < arr.length; index++) {
                 const element = arr[index];
-                if (element['tag'] === t){
+                if (element['tag'] === t) {
                     element['data'].push(item);
                     isok = false;
                     break;
                 }
-                
+
             }
 
-            if (isok){
+            if (isok) {
                 var tmpObj = {};
                 tmpObj.tag = t;
                 tmpObj.data = [];
@@ -94,24 +97,24 @@ suiyan.format_tags_data = function (data) {
 
         }
 
-        
+
     });
     console.log(arr);
-    
+
     return arr;
 }
 
 
 
 //返回当前TAG相关的JSON数据
-suiyan.get_tag_json = function (data,key){
+suiyan.get_tag_json = function (data, key) {
     var s = {};
-    data.forEach(function (item ,i) {
-        if (item.tag == key){
+    data.forEach(function (item, i) {
+        if (item.tag == key) {
             s = item;
         }
-       
-        
+
+
     });
     return s;
 }

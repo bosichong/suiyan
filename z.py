@@ -153,7 +153,7 @@ def create_test(con):
     dir = "suiyantest"
     for i in range(con):
         #随机生成一些文章数据填充，用来测试
-        title = random.choice(("a","b","c","d","e","f","g","0","1","2","3",))
+        title = random.choice(("打法撒发射点发斯蒂芬","斯蒂芬阿斯蒂芬斯蒂芬","斯蒂芬阿斯蒂芬","斯蒂芬阿斯蒂芬","斯蒂芬斯蒂芬阿斯蒂芬3",))
         tag = random.choice(("Java","JavaScript","Python","C++","程序员",))
         pagename = str(random.randint(99999,99999999))
         create_blog(title=title,tag=tag,dir=dir,author='',pagename=pagename)
