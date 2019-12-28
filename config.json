@@ -3,6 +3,7 @@
     "blog_author": "J.sky",
     "blog_description": "You see see you , This one day day di.",
     "meta_description": " 碎言静态Blog，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。",
+    "profile_image":"assets/images/touxiang.jpg",
     "blog_sns": [
         {
             "ico": "github",
@@ -48,5 +49,6 @@
         }
     ],
     "blog_list":5,
-    "blogcss":"main"
+    "blogcss":"theme-dark-1",
+    "highlight":"atom-one-dark"
 }

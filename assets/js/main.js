@@ -24,6 +24,9 @@ $(document).ready(function () {
     $.getJSON("config.json", function (data, textStatus, jqXHR) {
         // alert(data.blog_name);
         //站点信息填充
+        $('#blogcss').attr("href", "/assets/css/"+data.blogcss+".css");
+        $('#highlight').attr("href", "/assets/plugins/highlight/styles/"+data.highlight+".css");
+
         suiyan.config = data;
         $("title").text(data.blog_name + data.meta_description);
         $("meta[name='description']").attr("content", data.meta_description);
@@ -31,7 +34,8 @@ $(document).ready(function () {
         //blog基本信息
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
-        $('#blogcss').attr("href", "/assets/css/"+data.blogcss+".css");
+        $('.profile-image').attr("src", data.profile_image);
+        
 
         
 
@@ -55,6 +59,7 @@ $(document).ready(function () {
 
         })(data.nav, $(".blog-nav"));
 
+        
 
     });
 

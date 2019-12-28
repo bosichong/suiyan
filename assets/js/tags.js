@@ -11,8 +11,15 @@ $(document).ready(function () {
 
         
         //tag按钮点击事件，点击后加载相关数据
+
+        // $(".tag-bt").toggle(function(){
+        //     $(this).siblings("btn").hiden();
+        // },function(){
+        //     $(this).siblings("btn").show();
+        // });
         $('.tag-bt').click(function (e) { 
-            $('.card').attr('class', 'card visible');
+            $(this).siblings(".btn").fadeToggle(500);
+            $('.tagcad').fadeToggle(500);
             var val = $(this).find('.tagval').text();
             // alert(val);
             // var arr = null;
@@ -28,6 +35,8 @@ $(document).ready(function () {
                 
             }
             $tagul.html(lihtml);
+
+            
             
         });
 
