@@ -31,6 +31,9 @@ $(document).ready(function () {
         //blog基本信息
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
+        $('#blogcss').attr("href", "/assets/css/"+data.blogcss+".css");
+
+        
 
         //循环添加SNS
         (function (data, ul) {
@@ -80,10 +83,7 @@ $(document).ready(function () {
 
     });
 
-
-
-
-
+    
 
 
 });

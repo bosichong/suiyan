@@ -47,5 +47,6 @@
             "url": "index.html"
         }
     ],
-    "blog_list":5
+    "blog_list":5,
+    "blogcss":"main"
 }

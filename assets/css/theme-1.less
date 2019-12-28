@@ -1,20 +1,15 @@
 //一些尺寸
 @leftwith : 320px;
 //各种色值
-@left_textcolor :#C7894F; //左侧导航所有文字颜色
-@left_background :#1c1c1c; //左侧背景色 右侧A连接。
+@left_textcolor :rgba(255, 255, 255, 0.7); //左侧导航所有文字颜色
+@left_background :#5BC3D5; //左侧背景色 右侧A连接。
 
 // 右侧
-@right_textcolor: #9B9C9D; //右侧文字颜色
+@right_textcolor: #495057; //右侧文字颜色
 @right_meta:#8f8f8f;
-@right_background:#262626;
-@bloglist_index_background:#1E2128;//首页blog列表背景色
+@right_background:#ffffff;
 
 
-body{
-    background: @right_background;
-    color: @right_textcolor;
-}
 
 
 //左侧导航
@@ -108,23 +103,16 @@ body{
     margin-left: @leftwith;
     background:@right_background;
     color: @right_textcolor;
-    
-
-    .b_data{background: #1E2128;}
 
     //日志详情页
     .blog-p {
         #rt {
             padding-right: 25px;
             padding-left: 25px;
-
-            .table{
-                color: @right_textcolor;
-            }
         }
         .row{
             a{
-                color: @left_textcolor;
+                color: @left_background;
             }
         }
 
@@ -138,19 +126,6 @@ body{
 
     //tags archive 页面
     .blog-list {
-
-
-
-        .card{
-            background:@right_background;
-            border: none;
-        }
-
-        .data-list{
-            .table{
-                color: @right_textcolor;
-            }
-        }
 
 
         .btn {
@@ -175,11 +150,6 @@ body{
 
         .list-group-item {
             margin-bottom: 5px;
-            background:@bloglist_index_background;
-            color: @right_textcolor;
-            a{
-                color: @right_textcolor;
-            }
         }
 
         .bd-example {
@@ -188,7 +158,6 @@ body{
                 margin: 0.5rem;
                 .badge{
                     color:@right_textcolor;
-                    background:@bloglist_index_background;
                 }
             }
         }
@@ -228,9 +197,7 @@ body{
     }
 
     .footer{
-
         .card{
-            background:@right_background;
             border: none;
         }
         a{
