@@ -17,15 +17,58 @@
     <link rel="stylesheet" href="assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- <link rel=”stylesheet/less” type="text/less" href="assets/css/main.less">
     <script src="assets/plugins/less.min.js"></script> -->
-    <link id="blogcss" rel="stylesheet" href="assets/css/main.css">
+    <link id="blogcss" rel="stylesheet" type="text/css" href="assets/css/theme-dark-1.css">
 
 </head>
 
 <body>
 
     <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">BlogName</a></h1>
 
-        
+        <nav id="blog-nav" class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+            </button>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/touxiang.jpg" width="160px" height="160px">
+
+                    <div class="blog-description mb-3">blog_description</div>
+                    <!--//sns-->
+                    <ul class="social-list list-inline py-3 mx-auto">
+
+
+                    </ul>
+                    <!--//social-list-->
+                    <hr>
+                </div>
+                <!--//profile-section-->
+                <ul class="blog-nav navbar-nav flex-column text-left">
+                </ul>
+
+                <form class="sform">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="skey" placeholder="JavaScript">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="button" class="search btn btn-primary" data-toggle="modal"
+                                data-target=".bd-example-modal-lg">Search</button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+            </div>
+
+        </nav>
+
     </header>
 
     <div class="main-wrapper">
@@ -40,15 +83,15 @@
             <!-- 每篇文章底部的代码-->
             <div class="row">
                 <div class="col pr">
-                  
+
                 </div>
                 <div class="col ne">
-                  
+
                 </div>
-              </div>
+            </div>
 
 
-            
+
         </section>
 
 
@@ -73,14 +116,14 @@
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- highlight.js Markdown代码美化 -->
-    <link rel="stylesheet" href="assets/plugins/highlight/styles/atom-one-dark.css">
+    <link id="highlight" rel="stylesheet" href="assets/plugins/highlight/styles/atom-one-dark.css">
     <script src="assets/plugins/highlight/highlight.pack.js"></script>
 
 
     <!-- 站点自定义JS -->
     <script src="assets/js/util.js"></script>
-	<script src="assets/js/content.js"></script>
-	<script src="assets/js/main.js"></script>
+    <script src="assets/js/content.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
 

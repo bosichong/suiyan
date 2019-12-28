@@ -48,7 +48,5 @@
             "url": "index.html"
         }
     ],
-    "blog_list":5,
-    "blogcss":"theme-dark-1",
-    "highlight":"atom-one-dark"
+    "blog_list":5
 }
