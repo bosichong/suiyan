@@ -8,13 +8,13 @@ $(document).ready(function () {
 
 
     // 左侧导航导航
-    $(".header").load("/assets/templates/side.html", function (response, status, request) {
+    $(".header").load("assets/templates/side.html", function (response, status, request) {
         if (status == "success")
             console.log("左侧导航加载成功！");
     });
 
     // footer.html
-    $(".footer").load("/assets/templates/footer.html", function (response, status, request) {
+    $(".footer").load("assets/templates/footer.html", function (response, status, request) {
         if (status == "success")
             console.log("底部导航加载成功！");
 
@@ -24,8 +24,8 @@ $(document).ready(function () {
     $.getJSON("config.json", function (data, textStatus, jqXHR) {
         // alert(data.blog_name);
         //站点信息填充
-        $('#blogcss').attr("href", "/assets/css/"+data.blogcss+".css");
-        $('#highlight').attr("href", "/assets/plugins/highlight/styles/"+data.highlight+".css");
+        $('#blogcss').attr("href", "assets/css/"+data.blogcss+".css");
+        $('#highlight').attr("href", "assets/plugins/highlight/styles/"+data.highlight+".css");
 
         suiyan.config = data;
         $("title").text(data.blog_name + data.meta_description);
