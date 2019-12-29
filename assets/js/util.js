@@ -26,16 +26,18 @@ suiyan.geturl = function (url) {
 suiyan.formatData = function (data) {
     var arr = [];
     data.forEach(function (item, i) {
-        var tmpDate = new Date(item.time);
+        var tmpDate = new Date(item.time.split('-').join('/'));//兼容safari 出现 invalid
         var month = tmpDate.getMonth() + 1;
         var year = tmpDate.getFullYear();
-        var tmpMonth = tmpDate.getMonth() + 1;
         if (i === 0) {
             var tmpObj = {};
             tmpObj.date = year + '年' + month + '月';
+            console.log(year);
+            
             tmpObj.data = [];
             tmpObj.data.push(item);
             arr.push(tmpObj);
+            
         } else {
             if (arr[arr.length - 1]['date'] === (year + '年' + month + '月')) {
                 arr[arr.length - 1]['data'].push(item);
