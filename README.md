@@ -10,6 +10,7 @@
 
 ### 软件架构
 前端使用了`jQuery，bootstrap4,font-awesome-4.07,marked.js,highlight.js,jqPaginator,less,等技术框架。`
+本地构建博客索引使用了`Python`的相关技术。
 
 
 ### 安装教程

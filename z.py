@@ -104,12 +104,14 @@ def create_blog(title, author, tag, dir, pagename):
 
     if pagename == '':
         pagename = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    if pagename == '':
+    if tag == '':
+        tag = "未分类"
+    if author == '':
         # 从配置文件里加载站长为作者
         with open(os.path.join(os.path.dirname(__file__), CONFIGJSON), mode='r', encoding='utf-8') as f:
             data = json.load(f)
             author = data['blog_author']
-    print(author,tag,pagename)
+    # print(author,tag,pagename)
     # 组装最后生成的文章保存目录
     # blogpath = os.path.join(ARTICLES_DIR, dir)
     # 最后需要生成的文件
@@ -178,6 +180,9 @@ def main():
     elif args.newblog:
         create_blog(title=args.newblog,author=args.author,tag=args.tag,dir=args.dir,pagename=args.pagename,)
         print("新文章.md创建完毕！")
+        jsonstr = create_blog_data_Json(ARTICLES_DIR, BASE_DIR)
+        write_data_json(jsonstr)
+        print("blog_data.json索引文件更新完毕！")
     elif args.suiyantest:
         create_test(args.suiyantest)
         print("测试文件创建完毕！")
