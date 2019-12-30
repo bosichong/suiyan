@@ -8,23 +8,23 @@
     "blog_sns": [
         {
             "ico": "github",
-            "url": "https://github.com/bosichong"
+            "url": "https://github.com/bosichong/suiyan"
+        },
+        {
+            "ico": "git",
+            "url": "https://gitee.com/J_Sky/suiyan"
         },
         {
             "ico": "weibo",
-            "url": "https://github.com/bosichong"
-        },
-        {
-            "ico": "weixin",
-            "url": "https://github.com/bosichong"
+            "url": "https://weibo.com/qq285911"
         },
         {
             "ico": "qq",
-            "url": "https://github.com/bosichong"
+            "url": "https://user.qzone.qq.com/285911/"
         },
         {
-            "ico": "twitter",
-            "url": "https://github.com/bosichong"
+            "ico": "book",
+            "url": "https://www.zhihu.com/people/J_sky/activities"
         }
     ],
     "nav": [

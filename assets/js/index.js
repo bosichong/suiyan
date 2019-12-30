@@ -34,6 +34,7 @@ $(document).ready(function () {
                         //判断AJAX加载完毕加载代码美化CSS
                         $('pre code').each(function (i, block) {
                             hljs.highlightBlock(block);
+                            $("img").addClass("img-fluid");
                         });
                     })
         

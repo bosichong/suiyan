@@ -1,5 +1,7 @@
 # 碎言静态博客
 
+<a href='https://gitee.com/J_Sky/suiyan/stargazers'><img src='https://gitee.com/J_Sky/suiyan/badge/star.svg?theme=dark' alt='star'></img></a>
+
 ### 介绍
 碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
 演示： [碎言博客](http://j_sky.gitee.io/suiyan)
