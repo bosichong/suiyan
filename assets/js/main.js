@@ -24,6 +24,7 @@ $(document).ready(function () {
         $("title").text(data.blog_name + data.meta_description);
         $("meta[name='description']").attr("content", data.meta_description);
         $("meta[name='author']").attr("content", data.blog_author);
+        $("meta[name='keywords']").attr("content", data.blog_keywords);
         //blog基本信息
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
