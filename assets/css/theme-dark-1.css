@@ -125,6 +125,7 @@ body {
 }
 .main-wrapper .footer a {
   box-shadow: none;
+  color: #C7894F;
 }
 @media (max-width: 991.98px) {
   .header {
