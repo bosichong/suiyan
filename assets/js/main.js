@@ -9,7 +9,7 @@ $(document).ready(function () {
     // footer.html
     $(".footer").load("assets/templates/footer.html", function (response, status, request) {
         if (status == "success")
-            console.log("底部导航加载成功！");
+            console.warn("如果你能看到这里说明你已经很牛逼撩！欢迎进群讨论学习Q群:217840699");
 
     });
 

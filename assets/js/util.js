@@ -32,7 +32,7 @@ suiyan.formatData = function (data) {
         if (i === 0) {
             var tmpObj = {};
             tmpObj.date = year + '年' + month + '月';
-            console.log(year);
+            // console.log(year);
             
             tmpObj.data = [];
             tmpObj.data.push(item);
