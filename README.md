@@ -39,6 +39,8 @@
 
 `config.json`里存放着一些站点的资料，上传前建议先修改成自己的资料。
 
+[`config`配置详解点击查看](http://j_sky.gitee.io/suiyan/p.html?p=suiyan_doc/20191231133518)
+
 ### 运行站点
 
 推荐使用`Live Server`这个vscode得插件，非常方便。
