@@ -46,7 +46,7 @@
         {
             "ico": "user",
             "text": "About Me",
-            "url": "index.html"
+            "url": "p.html?p=aboutme"
         }
     ],
     "blog_list":5
