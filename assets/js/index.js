@@ -3,6 +3,10 @@ $(document).ready(function () {
     $.getJSON("blog_data.json", function (blogdata, textStatus, jqXHR) {
         suiyan.blog_data = blogdata;
 
+    //加载blog配置数据
+    $.getJSON("config.json", function (data, textStatus, jqXHR) {
+        suiyan.config = data;
+        });
 
         // 翻页及首页调用数据
         $("#suiyanpage").jqPaginator({
