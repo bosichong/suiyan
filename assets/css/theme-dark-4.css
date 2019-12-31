@@ -125,6 +125,7 @@ body {
 }
 .main-wrapper .footer a {
   box-shadow: none;
+  color: #ececec;
 }
 @media (max-width: 991.98px) {
   .header {
@@ -144,4 +145,7 @@ body {
   .main-wrapper {
     margin-left: 0;
   }
+}
+.hide {
+  display: none;
 }

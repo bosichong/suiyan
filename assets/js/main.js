@@ -29,14 +29,14 @@ $(document).ready(function () {
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
         $('.profile-image').attr("src", data.profile_image);
-        
+
 
         
 
         //循环添加SNS
         (function (data, ul) {
             for (let i = 0; i < data.length; i++) {
-                var lihtml = $('<li><a href="' + data[i].url + '" target="blank_blank"><i class="fa fa-' + data[i].ico + ' fa-lg"></li></a></i>');
+                var lihtml = $('<li><a class="hide" href="' + data[i].url + '" target="blank_blank"><i class="fa fa-' + data[i].ico + ' fa-lg"></li></a></i>');
                 ul.append(lihtml);
 
             }
@@ -46,14 +46,20 @@ $(document).ready(function () {
         //循环添加导航
         (function (data, ul) {
             for (let i = 0; i < data.length; i++) {
-                var lihtml = $('<li class="nav-item "><a class="nav-link" href="' + data[i].url + '"><i class="fa fa-' + data[i].ico + ' fa-lg"></i> ' + data[i].text + '</a></li>');
+                var lihtml = $('<li class="nav-item hide"><a class="nav-link" href="' + data[i].url + '"><i class="fa fa-' + data[i].ico + ' fa-lg"></i> ' + data[i].text + '</a></li>');
                 ul.append(lihtml);
 
             }
 
         })(data.nav, $(".blog-nav"));
 
-        
+        //隐藏元素的动画
+        var scon = 100
+        $('.hide').each(function (index, element) {
+            $(this).fadeIn(scon);
+            scon+=100;
+            
+        });
 
     });
 
