@@ -27,15 +27,27 @@
     python z.py -n 此处写文章标题
 
 
-这个时候就会在`articles`目录下创建一篇文章。
+这个时候就会在`articles`目录下创建一篇文章。[更多终端操作](http://j_sky.gitee.io/suiyan/p.html?p=suiyan_doc/20191230155649)
 
 ### 创建索引
 
+博客的文章排序及搜索以来此索引`blog_data.json`，每次创建文章的时候回自动更新索引，但是如果你修改了头部的一些索引信息，则需要运行命令来更新索引。
+
     python z.py -i
+
+### 修改博客及站长资料
+
+`config.json`里存放着一些站点的资料，上传前建议先修改成自己的资料。
 
 ### 运行站点
 
 推荐使用`Live Server`这个vscode得插件，非常方便。
+
+### 修改站点样式
+
+碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。
+
+具体修改方法请点击查看： [细说修改碎言博客站点的样式](http://j_sky.gitee.io/suiyan/p.html?p=suiyan_doc/20191230201529)
 
 ### 部署
 
