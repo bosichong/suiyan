@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="碎言前端JS文件合并" default="concat">
+<project name="碎言前端JS文件合并" default="concatenate">
 
 
    <property name="src.dir" value="./assets/js/src"/>
@@ -9,12 +9,22 @@
       <mkdir dir="${build.dir}"/>
    </target>
 
-   <target name="concat">
+
+    <property name="core.files" value="util.js, main.js" /> 
+    <target name="concatenate"> 
+      <concat destfile="${build.dir}/app.js"> 
+         <filelist dir="${src.dir}" files="${core.files}" /> 
+         <fileset dir="${src.dir}" includes="*.js" excludes="${core.files}" /> 
+      </concat> 
+      <echo>合并文件成功</echo>
+   </target>
+
+   <!-- <target name="concat">
       <concat destfile="${build.dir}/app.js">
          <fileset dir="${src.dir}" includes="*.js" />
       </concat>
       <echo>合并文件成功</echo>
-   </target>
+   </target> -->
 
    <target name="info">
       <echo>Ant test</echo>
