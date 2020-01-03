@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="碎言前端JS文件合并" default="init">
+
+
+   <property name="src.dir" value="./assets/js/src"/>
+   <property name="build.dir" value="./assets/js/build"/>
+
+   <target name="init">
+      <mkdir dir="${build.dir}"/>
+   </target>
+
+   <target name="concat">
+      <concat destfile="${build.dir}/app.js">
+         <fileset dir="${src.dir}" includes="*.js" />
+      </concat>
+      <echo>合并文件成功</echo>
+   </target>
+
+   <target name="info">
+      <echo>Ant test</echo>
+   </target>
+
+</project>
