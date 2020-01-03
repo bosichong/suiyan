@@ -1,22 +1,55 @@
 <?xml version="1.0"?>
-<project name="碎言前端JS文件合并" default="concatenate">
+<project name="碎言前端JS文件合并" default="version">
+
+   <loadproperties srcfile="build.properties"/>
+   <!-- <property name="src.dir" value="./assets/js/src"/>
+   <property name="build.dir" value="./assets/js/build"/> -->
 
 
-   <property name="src.dir" value="./assets/js/src"/>
-   <property name="build.dir" value="./assets/js/build"/>
-
-   <target name="init">
-      <mkdir dir="${build.dir}"/>
+   <target name="version" depends="del">
+   <echo>Version is ${version}</echo>
    </target>
 
+   <target name="del" depends="index">
+      <delete>
+         <filelist dir="${src.dir}" files="app.js" /> 
+      </delete>
+      <echo>删除app.js文件</echo>
+   </target>
 
-    <property name="core.files" value="util.js, main.js" /> 
-    <target name="concatenate"> 
-      <concat destfile="${build.dir}/app.js"> 
-         <filelist dir="${src.dir}" files="${core.files}" /> 
-         <fileset dir="${src.dir}" includes="*.js" excludes="${core.files}" /> 
+   <target name="index" depends="archives">
+      <concat destfile="${build.dir}/index.js" fixlastline="yes"> 
+         <filelist dir="${src.dir}" files="${index}" /> 
       </concat> 
-      <echo>合并文件成功</echo>
+      <echo>合并index.js文件</echo>
+   </target>
+
+   <target name="archives" depends="tags">
+      <concat destfile="${build.dir}/archive.js" fixlastline="yes"> 
+         <filelist dir="${src.dir}" files="${archive}" /> 
+      </concat> 
+      <echo>合并archive.js文件</echo>
+   </target>
+
+   <target name="tags" depends="p">
+      <concat destfile="${build.dir}/tags.js" fixlastline="yes"> 
+         <filelist dir="${src.dir}" files="${tags}" /> 
+      </concat> 
+      <echo>合并tags.js文件</echo>
+   </target>
+
+   <target name="p" depends="app">
+      <concat destfile="${build.dir}/p.js" fixlastline="yes"> 
+         <filelist dir="${src.dir}" files="${p}" /> 
+      </concat> 
+      <echo>合并p.js文件</echo>
+   </target>   
+
+    <target name="app"> 
+      <concat destfile="${src.dir}/app.js" fixlastline="yes"> 
+         <filelist dir="${src.dir}" files="${app}" /> 
+      </concat> 
+      <echo>合并main.js文件</echo>
    </target>
 
    <!-- <target name="concat">
