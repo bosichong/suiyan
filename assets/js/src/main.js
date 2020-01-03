@@ -13,6 +13,15 @@ $(document).ready(function () {
 
     });
 
+    // footer.html
+    $(".header").load("assets/templates/side.html", function (response, status, request) {
+        if (status == "success")
+            console.warn("如果你能看到这里说明你已经很牛逼撩！欢迎进群讨论学习Q群:217840699");
+
+    });
+
+
+
     //加载blog配置数据,并填充数据到页面
     $.getJSON("config.json", function (data, textStatus, jqXHR) {
         // alert(data.blog_name);
@@ -31,7 +40,7 @@ $(document).ready(function () {
         $('.profile-image').attr("src", data.profile_image);
 
 
-        
+
 
         //循环添加SNS
         (function (data, ul) {
@@ -57,8 +66,8 @@ $(document).ready(function () {
         var scon = 100
         $('.hide').each(function (index, element) {
             $(this).fadeIn(scon);
-            scon+=100;
-            
+            scon += 100;
+
         });
 
     });
@@ -88,7 +97,7 @@ $(document).ready(function () {
 
     });
 
-    
-    
+
+
 
 });
