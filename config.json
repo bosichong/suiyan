@@ -31,7 +31,7 @@
         {
             "ico": "home",
             "text": "Blog Home",
-            "url": "index.html"
+            "url": "/"
         },
         {
             "ico": "archive",

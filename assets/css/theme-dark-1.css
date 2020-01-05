@@ -58,6 +58,9 @@ body {
   padding-right: 25px;
   padding-left: 25px;
 }
+.main-wrapper .blog-p #rt a {
+  color: #C7894F;
+}
 .main-wrapper .blog-p #rt .table {
   color: #9B9C9D;
 }
@@ -80,6 +83,9 @@ body {
   border: none;
   color: #C7894F;
 }
+.main-wrapper .blog-list .btn:focus {
+  box-shadow: none;
+}
 .main-wrapper .blog-list .spage .prev,
 .main-wrapper .blog-list .spage .next,
 .main-wrapper .blog-list .spage .page {
@@ -93,7 +99,7 @@ body {
   color: #9B9C9D;
 }
 .main-wrapper .blog-list .list-group-item a {
-  color: #9B9C9D;
+  color: #C7894F;
 }
 .main-wrapper .blog-list .bd-example .tag-bt {
   margin: 0.5rem;
