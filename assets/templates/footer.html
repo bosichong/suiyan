@@ -15,9 +15,28 @@
   
 
 
-<a class="btn btn-outline-dark" href="#" role="button" style="position:fixed;right:5px;bottom:3px">
-    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-</a>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="assets/plugins/jQuery.toTop/jquery.toTop.min.js"></script>
+<script>
+    jQuery(function($){
+        // Plugin activation (basic - with all default values)
+        // $('.to-top').toTop();
+
+        // Plugin activation with options
+        $('.to-top').toTop({
+            //options with default values
+            autohide: true,  //boolean 'true' or 'false'
+            offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+            speed: 500,      //numeric value (as mili-seconds) for duration
+            position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+            right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+            bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+        });
+    });
+</script>
+
+
 
 <!-- 搜索模态对话框。 -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
