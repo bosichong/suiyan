@@ -64,6 +64,9 @@ $(document).ready(function () {
             hljs.highlightBlock(block);
         });
         $("img").addClass("img-fluid");
+        //修改博客文章页的title
+        let str = $(".title").text();
+        $("title").text(str);
 
         
 

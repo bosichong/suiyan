@@ -1,4 +1,4 @@
-/* BuildTime:January4,202004:08:48 */
+/* BuildTime:January7,202008:46:42 */
 var suiyan = {} //命名一个自己用的空间
 
 
@@ -374,6 +374,9 @@ $(document).ready(function () {
             hljs.highlightBlock(block);
         });
         $("img").addClass("img-fluid");
+        //修改博客文章页的title
+        let str = $(".title").text();
+        $("title").text(str);
 
         
 
