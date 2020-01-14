@@ -24,11 +24,13 @@ $(document).ready(function () {
         // $('#highlight').attr("href", "assets/plugins/highlight/styles/"+data.highlight+".css");
 
         suiyan.config = data;
-        $("title").text(data.blog_name + data.meta_description);
-        $("meta[name='description']").attr("content", data.meta_description);
-        $("meta[name='author']").attr("content", data.blog_author);
-        $("meta[name='keywords']").attr("content", data.blog_keywords);
+        var metaheml = '<meta name="keywords" content="' + data.meta_keywords + '">\
+        <meta name="description" content="' + data.meta_description + '">\
+        <meta name="author" content="' + data.blog_author + '">';
+        $("meta[name='viewport']").after(metaheml);
+
         //blog基本信息
+        $("title").text(data.blog_name + data.meta_description);
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
         $('.profile-image').attr("src", data.profile_image);
