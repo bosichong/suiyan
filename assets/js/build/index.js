@@ -1,4 +1,4 @@
-/* BuildTime:January14,202011:36:41 */
+/* BuildTime:January15,202010:50:49 */
 var suiyan = {} //命名一个自己用的空间
 
 
@@ -222,7 +222,7 @@ $(document).ready(function () {
     // footer.html
     $(".footer").load("assets/templates/footer.html", function (response, status, request) {
         if (status == "success")
-            console.warn("如果你能看到这里说明你已经很牛逼撩！欢迎进群讨论学习Q群:217840699");
+            console.error("如果你能看到这里说明你已经很牛逼撩！欢迎进群讨论学习Q群:217840699");
 
     });
 
@@ -237,13 +237,13 @@ $(document).ready(function () {
         // $('#highlight').attr("href", "assets/plugins/highlight/styles/"+data.highlight+".css");
 
         suiyan.config = data;
-        var metaheml = '<meta name="keywords" content="' + data.meta_keywords + '">\
+        var metaheml = '<title>'+data.blog_name + data.meta_description+'</title>\
+        <meta name="keywords" content="' + data.meta_keywords + '">\
         <meta name="description" content="' + data.meta_description + '">\
         <meta name="author" content="' + data.blog_author + '">';
         $("meta[name='viewport']").after(metaheml);
 
         //blog基本信息
-        $("title").text(data.blog_name + data.meta_description);
         $(".blog-name a").text(data.blog_name); //bolg名称
         $(".blog-description").text(data.blog_description);
         $('.profile-image').attr("src", data.profile_image);
