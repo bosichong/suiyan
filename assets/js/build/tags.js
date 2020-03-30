@@ -1,4 +1,4 @@
-/* BuildTime:January15,202010:50:49 */
+/* BuildTime:March30,202007:31:38 */
 var suiyan = {} //命名一个自己用的空间
 
 
@@ -9,7 +9,10 @@ suiyan.getsearch = function (data, k) {
     var arr = [];
     data.forEach(function (item, i) {
         var key = item.title;
-        if (k !== '' && key.indexOf(k) > -1) {
+        var regex = new RegExp(k, 'i');//创建RegExp对象。
+        console.log(regex);
+        var result = regex.test(key);
+        if (k !== '' && result) {
             arr.push(item)
         }
     });
@@ -237,7 +240,7 @@ $(document).ready(function () {
         // $('#highlight').attr("href", "assets/plugins/highlight/styles/"+data.highlight+".css");
 
         suiyan.config = data;
-        var metaheml = '<title>'+data.blog_name + data.meta_description+'</title>\
+        var metaheml = '<title>' + data.blog_name + data.meta_description + '</title>\
         <meta name="keywords" content="' + data.meta_keywords + '">\
         <meta name="description" content="' + data.meta_description + '">\
         <meta name="author" content="' + data.blog_author + '">';
@@ -303,6 +306,10 @@ $(document).ready(function () {
             $('.search-list').html(shtmlstr);
 
         });
+
+
+
+
 
     });
 
