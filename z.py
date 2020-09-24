@@ -526,7 +526,7 @@ def create_archives_html():
     for l in data:
         lihtmlstr=''
         for j in l["data"]:
-            lihtmlstr += '<li class="list-group-item"><a href="/blog/'+j["url"]+'.html" target="_blank">'+j["title"]+'</a> <span title="发布日期">'+j["time"]+'</span></li>'
+            lihtmlstr += '<li class="list-group-item"><a href="blog/'+j["url"]+'.html" target="_blank">'+j["title"]+'</a> <span title="发布日期">'+j["time"]+'</span></li>'
         ulhtmstr = '<ul class="car-monthlisting list-group" style="display: block;">'+lihtmlstr+'</ul>'
         lihtml += '<li class="nav-item "><span class="car-yearmonth meta" style="cursor:pointer;"><i class="fa fa-list-ul" aria-hidden="true">\
         </i> '+l["date"]+' <span class="meta" title="文章数量">(共'+str(len(l["data"]))+'篇文章)</span></span>'+ulhtmstr+'</li>'
@@ -572,7 +572,7 @@ def create_tags_html():
         <span class="tagval">'+item["tag"]+'</span> <span class="badge badge-light">'+str(len(item["data"]))+'</span></button>'
         tmpcad = ''
         for i in item["data"]:
-            tmpcad+='<li class="list-group-item"><a target="_blank" href="/blog/'+i["url"]+'.html">'+i["title"]+'</a> \
+            tmpcad+='<li class="list-group-item"><a target="_blank" href="blog/'+i["url"]+'.html">'+i["title"]+'</a> \
             <span class="meta" title="发布日期">'+i["time"]+'</span></li>'
         
         cads += '<div class="collapse" id="cad'+str(k)+'">\
