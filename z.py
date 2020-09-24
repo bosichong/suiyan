@@ -96,11 +96,12 @@ def create_blog_data_Json(adir, bdir):
                     datahtml = getmd(furl)  # 取回当前.md文件的HTML头部信息
                     f_data = getjson(datahtml)  # 获取.md的文章信息HTML转化成数组
                     f_data["url"] = url
+                    # print(f_data)
                     data_json.append(f_data)  # 添加到需要返回的数据数组中
-
+    
     data_json.sort(key = lambda x:x["time"],reverse = True)#对数组进行降序排序
     data_json_str = json.dumps(data_json, ensure_ascii=False)  # 转化为json字符串
-
+    # print(data_json_str)
     return data_json_str
 
 def write_data_json(json_str = create_blog_data_Json(ARTICLES_DIR, BASE_DIR)):

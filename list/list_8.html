@@ -1233,773 +1233,435 @@ def blog_info(request):
  </ul>
  <div class="blog-article">
   <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（8）构建Blog首页
+   听说存储数据Python与SQLite3更配哦！
   </h1>
   <span class="author">
    J.sky
   </span>
   <span class="time">
-   2017-12-07 11:30:56
+   2017-11-16 17:34:15
   </span>
   <span class="tag">
-   Django
+   数据库
   </span>
  </div>
  <p>
  </p>
  <p>
-  07节我们基本上完成了Blog数据模型的后端构建，06节我们结合模板简单渲染了一个博客文章页，这样的话，你只需要在blog的模板中添加一些标签就可以扩展详情页的展示内容了。
+  曾经以为数据库自己一定需要大的，好的，功能多的，处理数据快的，迸发牛的，现在想想就象上小学时时常想：以后考大学是北大还是清华呢？后来才发现自己真特么多虑了。
+如果你只是个人或是小型的应用，我这里隆重的推荐给你SQLite这个迷你型的数据库。
  </p>
  <h2>
-  Blog首页的构建
+  SQLite
  </h2>
  <p>
-  Blog首页我们这里定义一些展示内容：导航，搜索框，博客最新文章（10篇左右），博客分类及标签展示，站长简介等。这并不是完整的构建清单，你也可以根据自己的需要添加更多的更酷的功能。
+  SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite 是在世界上最广泛部署的 SQL 数据库引擎。SQLite 源代码不受版权限制。
+是不是很兴奋？没有其它数据库的安装配置繁琐步骤，没有占用你吃紧的内存，最重要的是功能一样大而全而且免费不要钱。
  </p>
  <h2>
-  Blog导航
+  SQLite安装
  </h2>
  <p>
-  关于站点的导航，我这里有两种建议：
+  几乎所有版本的 Linux 操作系统都附带 SQLite，所以win党们请自行在官网上下载安装即可。
  </p>
- <ol>
-  <li>
-   直接在html中手动添加修改，可能有的同学说不方便，其实导航这东西固定后基本上很少修改，如果html熟练可以考虑这个方法。
-  </li>
-  <li>
-   在数据库添加一个导航表，表字段包括：
-   <code>
-    id,name,url
-   </code>
-   再添加一个排序的字段，这样你可以调用数据库读取数据后在模板中渲染出来，这种适合经常修改导航的同学。
-  </li>
- </ol>
+ <pre><code>➜  ~ sqlite3 
+SQLite version 3.8.10.2 2015-05-20 18:17:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite&gt;
+</code></pre>
+ <p>
+  通过终端输入sqlite3即可验证数据库是否安装成功！
+ </p>
  <h2>
-  博客首页最新文章
+  python中使用sqlite3
  </h2>
  <p>
-  blog首页最新文章，这个和文章详情页有些相似，只不过首页渲染的是多篇文章页只是渲染一篇文章而已。
-好吧，我们回忆一下
-  <code>
-   Django
-  </code>
-  实现步骤，先建立数据模型（已经搞定），再编写视图代码及设置路由，最后在模板里渲染。
-其实，一个简单的Blog只需要二个视图方法：bloglist,blog 分别代表blog列表和文章详情页。
-models中的代码之前编写过了，如果功能有扩展需要可以自己修改models。
+  通过Python结合sqlite3实现一个简单的个人备忘录，简单了解一下在Python中是如何操作数据库的。
+在Python中操作sqlite很简单，引入sqlite3模块，就可以开始进行数据库的编程之旅了。
  </p>
+ <h2>
+  创建数据库
+ </h2>
+ <pre><code>import sqlite3#引入模块
+import os
+from datetime import *
+print(os.path.join(os.path.dirname(__file__), 'memorandum.db'))
+conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'memorandum.db'))#在当目录下创建数据库
+print('备忘录数据库创建成功！')
+</code></pre>
+ <h2>
+  创建表及字段
+ </h2>
  <p>
-  list视图代码编写:
+  cursor()将创建一个cursor对象，将在Python数据库编程中用到。
+cursor.execute()将处理操作与数据库相关的几乎所有命令。
  </p>
- <pre><code>def bloglist(request):
-    #blog列表页
-    #返回所有日志列表，以创建时间排序。
-    articles = Article.objects.all().order_by('-create_time')
-
-    #把调用的数据传递给模板
-    return render(request, 'list.html', {'articles':articles,})
+ <pre><code>c = conn.cursor()#创建一个cursor对象
+# 创建表
+c.execute('''create table tab(
+    id integer not null primary key autoincrement,
+    title char(50),
+    content text not null,
+    c_date text);''')
+print('数据表创建成功！')
+conn.commit()#提交事务
+conn.close()#关闭连接
 </code></pre>
  <p>
-  我们先创建一个
-  <code>
-   list.html
-  </code>
-  模板,把
-  <code>
-   blog.html
-  </code>
-  中的代码复制过去，我在此基础上修改即可。
-运行服务器后，我们访问
-  <code>
-   http://127.0.0.1:8000/blog/blog/1
-  </code>
-  我们看blog页面上只显示了一篇文章，如果我们循环输出视图传过来的博客数据即可打印所有文章在当前页面。
-  <code>
-   list.html
-  </code>
-  中我们只小小的修改一下代码，添加一个循环进去即可。
+  通过以上代码就可以在数据库中创建一个表了，如果你不太习惯在代码中创建表，你可以使用DBeaver,操作简单方便人性化，是编写数据库命令，查看数据库表结构，备份数据之良品。
+有了数据表，我们就可以对表进行增删改查了。
+sqlite中的sql语句和大部分数据库操作语名是相同的，如果你有过其它数据库操作的基础，那么使用sqlite就会非常简单了
  </p>
+ <h2>
+  插入数据
+ </h2>
+ <pre><code>title = '测试标题'
+content = '插入数据测试。'
+format = "%Y-%m-%d %H:%M:%S"
+now = datetime.now().strftime(format)#创建当前时间字符串
+sql = "insert into tab (id,title, content, c_date) values (NULL,'{0}','{1}','{2}')".format(title,content,now)
+print(sql)
+c.execute(sql)
+conn.commit()
+conn.close()#关闭连接
+</code></pre>
+ <h2>
+  批量插入数据
+ </h2>
  <p>
-  <code>
-   list.html
-  </code>
-  代码：
+  python往sqlite3插入数据的sql语句支持'?'占位符，这样我们很方便的可以批量插入数据。
  </p>
- <pre><code>{% for article in articles %}
-    &lt;article class="blog-main"&gt;
-        &lt;h3 class="am-article-title"&gt;
-        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
-        &lt;/h3&gt;
-        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
-
-        &lt;div class="am-g blog-content"&gt;
-        {{ article.content }}
-        &lt;/div&gt;
-    &lt;/article&gt;
-
-    &lt;hr class="am-article-divider blog-hr"&gt;
-    {% endfor %}
+ <pre><code># 准备10000条数据插入
+for i in range(10000):
+    format = "%Y-%m-%d %H:%M:%S"
+    now = datetime.now().strftime(format)#创建当前时间字符串
+    c.execute('insert into tab (id,title, content, c_date) values(?,?,?,?)',(None,str(i),str(i),now))
+conn.commit()#提交事务
+conn.close()
+</code></pre>
+ <h2>
+  删除数据
+ </h2>
+ <pre><code>sql = "delete from tab where id = 2"#拼装sql语句
+c.execute(sql)#执行删除
+conn.commit()
+conn.close()
 </code></pre>
  <p>
-  <code>
-   urls.py
-  </code>
-  中添加一个路由：
+  执行上边的代码，发现id为2的数据已经被删除。
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_11.png"/>
  </p>
- <pre><code>url(r'^list$', v.list, name='list'),
+ <h2>
+  更新数据
+ </h2>
+ <pre><code>sql = "update tab set title='Boy' where id = 20004"
+c.execute(sql)
+conn.commit()
+conn.close()
+</code></pre>
+ <h2>
+  查询数据
+ </h2>
+ <pre><code>sql = "select * from tab"
+l = c.execute(sql)
+for s in l :
+    print(s)
+conn.close
 </code></pre>
  <p>
-  最后测试之前，如果你还没有添加数据，建议添加10篇博客文章及博客类目
-然后我们访问：
+  运行代码后可以看到终端输出：
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_12.png"/>
+ </p>
+ <p>
+  其它查询只是sql语句的不同，这里暂时不再测试了，有兴趣的可以查阅sql编程相关资料。
+综合来说，
   <code>
-   http://127.0.0.1:8000/blog/list
+   python
   </code>
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_42.png"/>
- </p>
- <p>
-  看，博客首页的文章渲染出来了，但是我还想显示文章作者和所属于类目怎么办？
-我们只需要编辑修改
+  与
   <code>
-   &lt;article&gt;
+   sqlite3
   </code>
-  中的代码即可，修改如下：
- </p>
- <pre><code> {% for article in articles %}
-    &lt;article class="blog-main"&gt;
-        &lt;h3 class="am-article-title"&gt;
-        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
-        &lt;/h3&gt;
-        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
-        &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
-        &lt;div class="am-g blog-content"&gt;
-        {{ article.article_synopsis }}
-        &lt;/div&gt;
-    &lt;/article&gt;
-
-    &lt;hr class="am-article-divider blog-hr"&gt;
-{% endfor %}
-</code></pre>
- <p>
-  <code>
-   {{ article.user.nick_name }}
-  </code>
-  是通过一对多关联进行搜索，返回user，然后再显示昵称。
- </p>
- <p>
-  刷新页面查看，我们看到作者及分类都显示出来了，而且我们把详细内容更换成了日志简介显示。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_43.png"/>
- </p>
- <p>
-  至此首页上的文章列表显示出来了，你也可以通过此方法继续更新详情页上的内容展示，还可以更新右侧的分类展示及个人简介。
-分类及个人简介的代码这里我就不贴了，如果自己实在写不出，就下载源码看看。
+  联合使用真是很方便，是数据采集入库处理查询必备哇。
  </p>
  <h2>
   本文源码下载：
  </h2>
  <ul>
   <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   <a href="https://github.com/bosichong/17python.com/tree/master/sqlite3">
     github
    </a>
   </li>
   <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/sqlite3">
     开源中国码云镜像gitee
    </a>
   </li>
  </ul>
  <div class="blog-article">
   <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。
+   如何快速的复习学习过的Python
   </h1>
   <span class="author">
    J.sky
   </span>
   <span class="time">
-   2017-12-02 12:57:39
+   2017-11-07 16:19:22
   </span>
   <span class="tag">
-   Django
+   Python基础
   </span>
  </div>
  <p>
  </p>
  <p>
-  到目前为止，我们基本上初步的了解了
+  最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的
   <code>
-   Django
+   python
   </code>
-  使用，我们搭建了一个简单的blog雏形，接下来我们将在这个基础之上进行blog数据模型的完善，使之更接近我们自己的需求。
+  呢？
  </p>
  <h2>
-  扩展用户user表
+  语法/变量/表达式
  </h2>
  <p>
-  <code>
-   Django
-  </code>
-  自带了一个user表，可以满足一些简单的用户资料数据，我们看下表的结构：
+  也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。
  </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_36.png"/>
- </p>
- <p>
-  这个表结构很简约，有些我们需要的并没有，所以我们只有通过扩展它来进行添加字段，官方及网上介绍了几种扩展user表的方法，这里我只介绍一种本人认为比较实际的。
- </p>
- <p>
-  首先在
-  <code>
-   model.py
-  </code>
-  中引入
-  <code>
-   django
-  </code>
-  的
-  <code>
-   AbstractUser
-  </code>
-  ：
- </p>
- <pre><code>from django.contrib.auth.models import AbstractUser
-</code></pre>
- <p>
-  然后编写代码扩展user:
- </p>
- <pre><code>class UserProfile(AbstractUser):
-    """继承django系统自带的user创建用户表，
-    1.配置文件中要添加 AUTH_USER_MODEL = "blog.UserProfile"
-    2.引入from django.contrib.auth.models import AbstractUser
-    3.admin.py 中注册用户表 admin.site.register(UserProfile)
-    4. 如果之前先生成了数据库表，之后修改的user要重新生成表，最好先清空数据库。
-    """
-    nick_name = models.CharField(max_length=24, verbose_name='用户昵称', default='')
-    gender = models.CharField(max_length=10, choices=(('1','男'),('0','女')), default='1', verbose_name='用户性别')
-    birday = models.DateField(verbose_name='用户生日',null=True, blank = True)
-    mobile = models.CharField(max_length=11, null=True, blank=True,verbose_name='电话号码')
-    address = models.CharField(max_length=200, verbose_name="用户地址", default='')
-    detail = models.CharField(max_length=200, verbose_name="个人简介", default='')
-
-    class Meta(AbstractUser.Meta):
-        verbose_name=u'用户表'
-        verbose_name_plural = verbose_name
-    def __unicode__(self):
-        return self.username
-</code></pre>
- <p>
-  修改
-  <code>
-   Article
-  </code>
-  中的一处用户引用：
- </p>
- <pre><code>user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='文章作者', null=True, blank=True)
-</code></pre>
- <p>
-  这里为了能调用
-  <code>
-   settings.AUTH_USER_MODEL
-  </code>
-  变量，我们必须在文件中引用配置文件
-  <code>
-   from blog01 import settings
-  </code>
- </p>
- <p>
-  修改admin.py中的代码：
- </p>
- <pre><code>class UserProfileAdmin(admin.ModelAdmin):
-    """用来显示用户相关"""
-    #用来显示用户字段
-    list_display = ('username','nick_name','email','gender','mobile','address')
-    #过滤器设置
-    list_filter = ('username','nick_name','email')
-    #搜索
-    search_fields = ('username','nick_name','email')
-
-admin.site.register(UserProfile,UserProfileAdmin)
-</code></pre>
- <p>
-  经过以上配置，我们的用户表扩展基本上准备好了，然后我们终端下运行命令修改生成数据库：
- </p>
- <pre><code>python3 manage.py makemigrations
-python3 manage.py migrate
-</code></pre>
- <p>
-  这个时候会报错，这里的报错，笔者也是研究了一阵子，一直没有找到很好的解决方法，目前解决的方法只有一种：
-删除当前的数据库，重新生成一个新的数据库，这种方法显然不是很好，但目前只能这样解决。
-所以对于学习的项目来说问题不大，如果你准备生新设计一个blog的时候，记得一定要先扩展用户表，这样的话就不需要重新生成所有表了。
-切记：先扩展用户表 先扩展用户表 先扩展用户表 ！
- </p>
- <p>
-  由于用数据库是生新生成的，所以我们的管理员也就不存在了，就当复习一下，我们重新创建一个管理员：
- </p>
- <pre><code>python3 manage.py createsuperuser
-</code></pre>
- <p>
-  设置相关的选项，运行服务器：
-  <code>
-   python3 manage.py runserver
-  </code>
-  ,
-http://127.0.0.1:8000/admin/
-管理员又可以在后台登陆了，我们登陆一下看看后台有什么变化？
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_37.png"/>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_37.png"/>
- </p>
- <p>
-  可以看到，我们多了一个用户表，编辑用户，可以看到多了一些用户的选项，到此为止我们的用户表扩展完毕。
-总结扩展：继承
-  <code>
-   django
-  </code>
-  系统自带的user创建用户表，
- </p>
- <ol>
-  <li>
-   配置文件中要添加
-   <code>
-    AUTH_USER_MODEL = "blog.UserProfile"
-   </code>
-  </li>
-  <li>
-   引入
-   <code>
-    from django.contrib.auth.models import AbstractUser
-   </code>
-  </li>
-  <li>
-   <code>
-    admin.py
-   </code>
-   中注册用户表
-   <code>
-    admin.site.register(UserProfile)
-   </code>
-  </li>
-  <li>
-   如果之前先生成了数据库，之后需要扩展user表则要重新生成数据库。
-其中第4步，笔者并不满意，但目前没有找到解决的方法，希望有大侠提供一下不用删除重建数据库的方法。
-  </li>
- </ol>
  <h2>
-  完善其它数据表
+  九九乘法表
  </h2>
  <p>
-  目前我们的数据表中有
+  快速复习
   <code>
-   UserProfile,Category,Article
+   for
   </code>
-  。这个实现性的blog我打算再加入一个表
+  及
   <code>
-   Siteinfo
+   print format
   </code>
-  ，用来记录站点中的一些相关信息，
-还会再添加一个
-  <code>
-   SiteImages
-  </code>
-  相册的表，后继我们再继续研究上传图片的相关设置。
+  等函数的用法。
  </p>
+ <pre><code>for i in range(1,10):
+    for j in range(1,i+1):
+        print("{}X{}={}".format(i,j,i*j), end=' ')
+    print()
+</code></pre>
+ <h2>
+  一摞
+  <code>
+   Python
+  </code>
+  风格的纸牌
+ </h2>
  <p>
-  关于的表的扩展也没什么好说的我直接贴表的代码，通过
+  在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
+Python3 扑克牌
   <code>
-   verbose_name
+   collections.namedtuple
   </code>
-  就能看明白这个字段的含意了。
+  这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色
  </p>
- <pre><code>class Category(models.Model):
-    title = models.CharField(max_length=20, verbose_name = '分类名称', default = '')
-    daitail = models.CharField(max_length=100, verbose_name='分类介绍', default='')
-    icon = models.CharField(max_length=100, verbose_name='分类图标', default='')
-    sort_id = models.IntegerField(verbose_name='分类排序', default=99)
+ <pre><code>import collections
+from random import choice
+Card = collections.namedtuple('Card',['rank','suit'])
+#创建一副扑克牌的类
+class Cards:
+    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
+    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
 
-    class Meta:
-        verbose_name = u'博客分类'
-        verbose_name_plural = verbose_name
+    def __init__(self):
+        '''创建一副扑克牌'''
+        self._cards = [Card(rank,suit) for suit in self.suits
+                                       for rank in self.ranks] + ['King','Queen']
+    def __len__(self):
+        return len(self._cards)
+    def __getitem__(self,position):
+        return self._cards[position]
 
-    def __str__(self):
-        return self.title
-
-class Article(models.Model):
-    title = models.CharField(max_length=50, verbose_name = '文章标题', default = '')#创建标题
-    article_synopsis = models.TextField(verbose_name=u'日志简介', default='')
-    content = models.TextField(verbose_name = '博客正文', default = '')
-    category = models.ForeignKey(Category, verbose_name = '所属分类', default = '')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='文章作者', null=True, blank=True)
-    #文章创建时间，这里的auto_now_add=True表示自动在数据库里创建时间。
-    create_time = models.DateTimeField(verbose_name='文章创建时间', auto_now_add=True,)
-    update_time= models.DateTimeField(verbose_name=u'更新时间',  auto_now=True)
-
-    class Meta:
-        verbose_name = u'博客文章'
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.title
-
-class Siteinfo(models.Model):
-    site_name = models.CharField(max_length=20, verbose_name=u'站点名称', default='')
-    site_detail = models.CharField(max_length=100, verbose_name=u'站点介绍', default='')
-    site_user = models.ForeignKey(UserProfile, verbose_name='管理员', null=True, blank=True)
-    site_footer = models.TextField(verbose_name='站点底部代码', default='')
-
-    class Meta:
-        verbose_name = u'网站信息'
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.site_name
+deck = Cards()#创建一副扑克牌
+print(len(deck))#打印有多少张
+#打印所有纸牌
+for i in range(len(deck)):
+    print(deck[i])
+print(choice(deck))#随机抽取一张纸牌
 </code></pre>
  <p>
-  每个人对于自己的博客功能需求都不一样的，所以你可以根据自己的需要进行删减，修改完代码后终端运行全集进行更新：
+  我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子
  </p>
- <pre><code>python3 manage.py makemigrations
-python3 manage.py migrate
+ <h2>
+  简单的复利计算
+ </h2>
+ <pre><code>p = 10000 #初始金额
+rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
+days = 100
+
+day = 1
+while day &lt;= days :
+    p = p * (1+rate)#复利，余额宝是每天的利滚利
+    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
+    day += 1
 </code></pre>
  <p>
-  上边的命令是不是已经很熟悉了？你会发现
-  <code>
-   Django
-  </code>
-  更新数据表真是很方便。
-更新后，如果终端没有错误提示就表示数据表更新完成了，为了在admin后台显示信息更完整，我们还需要更新一下
-  <code>
-   admin.py
-  </code>
-  这个文件，
-设置自己需要显示的内容，这里我就不贴代码了，具体参考git上的源文件好了。
- </p>
- <p>
-  然后启动服务器，我们看下后台数据是不是显示出来了，也可以在数据库管理软件中查看一下数据表结构。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_39.png"/>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_40.png"/>
- </p>
- <p>
-  后台中我们看到了网站信息，这里记录了站点名称及一些站点内容，当然字段你可以继续丰富起来，好了，我们添加一个站点信息，方便以后调用。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_41.png"/>
- </p>
- <p>
-  站点底部代码这个文本字段其实就是以后用来放置一些需要经常修改的代码，有时候我们调用第三方代码比如统计、搜索蜘蛛等代码时候需要经常修改，
-这时只需要在网站后台修改这些代码即可，就没有必要去修改源文件了。保存后，你的站点id就是1因为只有一个网站。
- </p>
- <p>
-  然后再添加一些博客文章备用，尽量多添加些，最好10篇以上，稍后我们会做翻页处理。
+  通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！
  </p>
  <h2>
   本文源码下载：
  </h2>
  <ul>
   <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   <a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">
     github
    </a>
   </li>
   <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">
     开源中国码云镜像gitee
    </a>
   </li>
  </ul>
  <div class="blog-article">
   <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI
+   python中导入不同目录中的自定义模块/class/函数/方法
   </h1>
   <span class="author">
    J.sky
   </span>
   <span class="time">
-   2017-11-29 10:34:28
+   2017-10-27 10:37:17
   </span>
   <span class="tag">
-   Django
+   Python基础
   </span>
  </div>
  <p>
  </p>
  <p>
-  我们有了
+  前几天在封装
   <code>
-   Django admin
+   PY_RPG
   </code>
-  后台管理数据，我先通过后台添加一些数据，稍后我们将使用这些数据进行前端展示的测试。
+  框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。
  </p>
  <h2>
-  前端的简单展示
+  包和模块导入的需求
  </h2>
  <p>
-  还记得'http://127.0.0.1:8000/blog/home'这个页上渲染的内容不？我在03节的时候简单的了解一下Django模块的渲染。
-这里我们尝试把这个页面渲染成blog的首页。
-我们修改视图
+  假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。
+ </p>
+ <pre><code>M_TEST = 888
+def print_text():
+    print('这a.py下的一个打印文字函数')
+</code></pre>
+ <p>
+  现在我们引入测试
+ </p>
+ <pre><code>import a.a
+a.print_text()
+</code></pre>
+ <p>
+  ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
+如果是在同一目录，我们直接
   <code>
-   myblog.views.py.home()
+   import a
   </code>
-  方法中的代码如下：
+  就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到
+  <code>
+   sys.path.append()
+  </code>
  </p>
- <pre><code>articles = Article.objects.all()#获取所有文章数据
-return render(request, 'home.html', {'articles':articles,})
+ <pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
 </code></pre>
  <p>
-  修改模板'home.html'中的代码：
+  打印后，我们会发现很多目录，
+  <code>
+   python
+  </code>
+  加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
+那么我们如何把自己的文件加到上边的目录里？有几种方法：
  </p>
- <pre><code>{% for art in articles %} 
-    {{ art.id }}.{{ art.title }} -- {{ art.category }}&lt;br&gt;
-    {{ art.content }}&lt;br&gt;
-    ------------------------------------------------------&lt;br&gt;
-{% endfor %}
-</code></pre>
+ <ul>
+  <li>
+   通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。
+  </li>
+  <li>
+   复制文件到上边的目录中，有些不方便，不推荐
+  </li>
+  <li>
+   <code>
+    sys.path.append()
+   </code>
+   把目录加进索引，方便python搜索，推荐
+  </li>
+ </ul>
  <p>
-  此时我们刷新一下页面查看：
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171127_28.png"/>
- </p>
- <p>
-  这是一个丑陋的页面，我们不可能把这种页面做为自己的博客页面来发布的，那么我们需要美化一下我们的博客。
+  那么我们来试试吧
  </p>
  <h2>
-  选择前端框架
+  如何优雅的获得目录地址？
  </h2>
  <p>
-  如果把一个博客的那成分为三步：后台配置，前端美化，生产部署。
-那么到目前为止，我们后端的配置及管理已经有了一个初步的框架了，当然数据库中的表及字段并不是完美的，后继我们还会根据自己的需要进行丰富。
-现在我们把目录移动到网站的前端展示来，我们看看如果把我们的博客做的更漂亮些，风格更统一些。
-前端的展示是访问博客的用户看的，用户会通过这些页面查看到博客内容，好的博客页面设计定会给人留下更多的印象。
-所以把博客页面设计成风格统一又不失自己的个性就成了我们的一个新任务。
- </p>
- <p>
-  现在前端框架可以选择的实在是太多了，这里我就不做比较了，这次我选择用
+  如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
+这时我想到了
   <code>
-   Amaze UI
+   Django
   </code>
-  ，一个国产的前端框架，
-优点是文档比较全，兼容PC与无线端，使用起来方便简单，具体介绍请移步官方慢慢查看吧。
+  配置文件中有一段代码
  </p>
+ <pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+</code></pre>
+ <p>
+  我们理解一下这段代码，
+  <code>
+   __file__
+  </code>
+  表示当前.py文件，
+  <code>
+   os.path.abspath(__file__)
+  </code>
+  表示当前.py文件的绝对地址，
+  <code>
+   dirname
+  </code>
+  获得上一层目录地址，
+那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试
+ </p>
+ <pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
+/Users/mac/PycharmProjects/PythonStudy/b
+/Users/mac/PycharmProjects/PythonStudy
+</code></pre>
+ <p>
+  可以看到根目录地址已经得到了，然后通过
+  <code>
+   os.path.join()
+  </code>
+  就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。
+ </p>
+ <pre><code>import os 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
+T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
+print(T_DIR)
+sys.path.append(T_DIR)
+import a
+print(a.M_TEST)
+a.print_text()
+</code></pre>
  <h2>
-  引入Amaze UI
- </h2>
- <p>
-  关于妹子（Amaze UI）这里不过多的介绍，如果想具体的了解可以稳步到官方网站，她的文档做的还是比较详细的。
-这里我们直接引入一个blog页面范例，通过这个例子我们直接套用Amaze UI框架，
-  <a href="http://amazeui.org/examples/blog.html">
-   http://amazeui.org/examples/blog.html
-  </a>
-  打开这个页面后，我们分发现一个使用
-  <code>
-   Amaze UI
-  </code>
-  框架做好的
-  <code>
-   blog
-  </code>
-  页面，我们将以这个页为基础创建自己的页面了。
-查看网页源码，复制所有代码备用，一会全部粘贴到自己的模板页中。
- </p>
- <p>
-  新建一个模板页，
-  <code>
-   myblog.templates.blog.html
-  </code>
-  ,粘贴刚刚复制的所有代码。
-我们观察一下html代码，其中有三处需要我们更换一下地址，然后才能正常引用
-  <code>
-   Amaze UI
-  </code>
-  框架，
- </p>
- <pre><code>&lt;link rel="stylesheet" href="/css/amazeui.min.css"/&gt;
-&lt;script src="/js/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="/js/amazeui.min.js"&gt;&lt;/script&gt;
-</code></pre>
- <p>
-  由于需要引入前端框架，虽然我们可以使用官方提供的CDN加速地址，但原则上推荐引用站点本地资源，这里就引发一个新的问题：网站静态资源地址。
- </p>
- <h2>
-  静态资源目录
- </h2>
- <p>
-  在项目的根目录下创建
-  <code>
-   static
-  </code>
-  这个目录，此目录与myblog目录同级，用来存放网站中所有静态文件。
-修改配置文件
-  <code>
-   blog01.settings.py
-  </code>
-  :
- </p>
- <pre><code>STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-os.path.join(BASE_DIR, "static"),
-</code></pre>
- <p>
-  ]
- </p>
- <p>
-  应该默认就有这么一段设置代码，这段代码就是用来设置静态目录的，如果没有请添加上。
-那么我们测试一下，随便在这个目录中创建一个文本或是复制来一张图片试试，这里我在static目录中创建了一个
-  <code>
-   test.txt
-  </code>
-  的文本。
-启动Django的服务器，地址栏里输入：http://127.0.0.1:8000/static/test.txt
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171128_34.png"/>
- </p>
- <p>
-  如果设置没有问题，上边文本就可以正常显示了。
- </p>
- <h2>
-  修改前端框架引入文件目录
- </h2>
- <p>
-  <a href="http://amazeui.org/getting-started#xia-zai-wen-jian">
-   下载Amaze UI
-  </a>
-  ,将包复制到静态文件的目录中解压，
-更换模板中引文件的地址，修改后的代码如下：
- </p>
- <pre><code>&lt;link rel="stylesheet" href="/static/AmazeUI-2.7.2/assets/css/amazeui.min.css"/&gt;
-&lt;script src="/static/AmazeUI-2.7.2/assets/js/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="/static/AmazeUI-2.7.2/assets/js/amazeui.min.js"&gt;&lt;/script&gt;
-</code></pre>
- <p>
-  其中框架中没有jq的文件，我们需要自己下载一个文件到静态目录中，下载地址：
-  <code>
-   http://libs.baidu.com/jquery/1.11.1/jquery.min.js
-  </code>
- </p>
- <p>
-  到目前为止，前端框架在模板中的使用就配置好了，然后只需要编写视图、路由中的代码就可以继续测试了。
- </p>
- <h2>
-  编写路由及视图代码
- </h2>
- <p>
-  编写视图文件
-  <code>
-   views.py
-  </code>
-  ,添加一个视图函数：
-  <code>
-   blog()
-  </code>
-  ,代码如下：
- </p>
- <pre><code>def blog(request,id):
-    '''博客文章页面'''
-    #首先通过文章的ID获得文章的所有数据,其中id为页面传递过来的参数。
-    article = Article.objects.get(pk=id)#博文数据
-    #传递数据到模板。
-    return render(request, 'blog.html', {'article':article,})
-</code></pre>
- <p>
-  这里的id参数很重要，是数据获得的入口，每个文章都会有一个Django自动生成的文章id，并且不重复，我们通过路由来获取这个id值。
- </p>
- <p>
-  编写urls.py路由代码:
- </p>
- <pre><code>url(r'^blog/(?P&lt;id&gt;\w+)$', v.blog,),
-</code></pre>
- <p>
-  这里我们只添加了一段代码，这段代码的含义如下：
-  <code>
-   ^blog/
-  </code>
-  表示以
-  <code>
-   blog/
-  </code>
-  为开头，
-  <code>
-   (?P&lt;id&gt;\w+)
-  </code>
-  $中，$表示结尾，()中的代码表示为一个参数，
-  <code>
-   \w+
-  </code>
-  ,表示一个整数。
-如果你对正则有些了解，看懂这段简短的代码是没有压力的。
- </p>
- <p>
-  修改模板
-  <code>
-   blog.html
-  </code>
-  代码：
- </p>
- <pre><code>&lt;article class="blog-main"&gt;
-  &lt;h3 class="am-article-title"&gt;
-    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
-  &lt;/h3&gt;
-  &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
-
-  &lt;div class="am-g blog-content"&gt;
-  {{ article.content }}
-  &lt;/div&gt;
-&lt;/article&gt;
-</code></pre>
- <p>
-  我们主要是修改
-  <code>
-   &lt;article&gt;
-  </code>
-  标签的代码，删除多余的
-  <code>
-   &lt;article&gt;
-  </code>
-  标签，只保留一个即可。
-好了，至此博客文章页面的代码编写完成，我们测试一下，启动服务器：
-  <code>
-   python3 manage.py runserver
-  </code>
-  地址栏里输入：
-  <code>
-   http://127.0.0.1:8000/blog/blog/1
-  </code>
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171129_35.png"/>
- </p>
- <p>
-  如果一切顺利，你会看到页面会渲染出来你自己添加的博客数据。至此我们的前端框架
-  <code>
-   Amaze UI
-  </code>
-  整合完毕。
-结尾再啰嗦几句，
-  <code>
-   Amaze UI
-  </code>
-  框架自带的前端模块还是很丰富的，可以满足一个博客前后端的所有需求了，这里不打算再对
-  <code>
-   Amaze UI
-  </code>
-  进行更细致的讲解了。
-因为我觉得官方的文档写的真的挺好，如果有更多的需要可以查阅官方文档进行学习。
- </p>
- <h2>
-  本文源码下载：
+  本文源码下载： a b 两个目录下为相关源文件
  </h2>
  <ul>
   <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   <a href="https://github.com/bosichong/17python.com/">
     github
    </a>
   </li>
   <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   <a href="https://gitee.com/J_Sky/17python.com/">
     开源中国码云镜像gitee
    </a>
   </li>
@@ -2012,7 +1674,7 @@ os.path.join(BASE_DIR, "static"),
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    8 / 17
+    8 / 16
    </button>
    <a href="/list/list_9.html">
     <button class="next btn btn-primary" type="button">
