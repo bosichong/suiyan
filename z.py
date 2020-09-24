@@ -405,8 +405,8 @@ def create_index_html():
             #组装每一页的博文HTML代码
             bdata += markdown(loadcode(os.path.join(ARTICLES_DIR ,blogdata[p]["url"]+'.md')))
         #组装分页代码
-        prevurl = '/list/list_'+str(i-1)+'.html'
-        nexturl = '/list/list_'+str(i+1)+'.html'
+        prevurl = 'list/list_'+str(i-1)+'.html'
+        nexturl = 'list/list_'+str(i+1)+'.html'
         if i == 0 :
             prevurl = '#'
         if i == ps-1 :
