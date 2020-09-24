@@ -4,7 +4,7 @@
     "blog_description": "You see see you , This one day day di.",
     "meta_description": " Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。",
     "meta_keywords":"Python,Django,JavaScript,程序员,人生苦短,我用Python",
-    "profile_image":"assets/images/touxiang.jpg",
+    "profile_image":"../assets/images/touxiang.jpg",
     "blog_sns": [
         {
             "ico": "github",
@@ -31,22 +31,22 @@
         {
             "ico": "home",
             "text": "Blog Home",
-            "url": "index.html"
+            "url": "../index.html"
         },
         {
             "ico": "archive",
             "text": "Blog Archive",
-            "url": "archives.html"
+            "url": "../archives.html"
         },
         {
             "ico": "tags",
             "text": "Blog Tag",
-            "url": "tags.html"
+            "url": "../tags.html"
         },
         {
             "ico": "user",
             "text": "About Me",
-            "url": "blog/aboutme.html"
+            "url": "../blog/aboutme.html"
         }
     ],
     "blog_list":8,

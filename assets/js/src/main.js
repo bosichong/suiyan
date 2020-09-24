@@ -12,7 +12,7 @@ $(document).ready(function () {
         scon += 100;
 
     });
-    $.getJSON("blog_data.json", function (blogdata, textStatus, jqXHR) {
+    $.getJSON("../blog_data.json", function (blogdata, textStatus, jqXHR) {
         suiyan.blog_data = blogdata;
 
         // 搜索按钮

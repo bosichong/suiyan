@@ -363,9 +363,9 @@ def create_index_html():
     indexhtmlpath = os.path.join(BASE_DIR,'index.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="assets/js/build/index.js"></script>\
+  <script src="../assets/js/build/index.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
-  <script src="assets/plugins/highlight/highlight.pack.js"></script>\
+  <script src="../assets/plugins/highlight/highlight.pack.js"></script>\
   <script >hljs.initHighlightingOnLoad();</script>'
 
     indexhtml  = str(create_main_html(jshtml))
@@ -405,8 +405,8 @@ def create_index_html():
             #组装每一页的博文HTML代码
             bdata += markdown(loadcode(os.path.join(ARTICLES_DIR ,blogdata[p]["url"]+'.md')))
         #组装分页代码
-        prevurl = 'list/list_'+str(i-1)+'.html'
-        nexturl = 'list/list_'+str(i+1)+'.html'
+        prevurl = '../list/list_'+str(i-1)+'.html'
+        nexturl = '../list/list_'+str(i+1)+'.html'
         if i == 0 :
             prevurl = '#'
         if i == ps-1 :
@@ -515,7 +515,7 @@ def create_archives_html():
     archivestmlpath = os.path.join(BASE_DIR,'archives1.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="assets/js/build/archive.js"></script>'
+  <script src="../assets/js/build/archive.js"></script>'
 
     archiveshtml  = str(create_main_html(jshtml))
     archivesbfs = BeautifulSoup(archiveshtml, 'html.parser')
@@ -555,7 +555,7 @@ def create_tags_html():
     tagshtmlpath = os.path.join(BASE_DIR,'tags2.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="assets/js/build/tags.js"></script>'
+  <script src="../assets/js/build/tags.js"></script>'
 
     tagshtml  = str(create_main_html(jshtml))
     tagsbfs = BeautifulSoup(tagshtml, 'html.parser')
@@ -601,9 +601,9 @@ def create_allblog():
     os.mkdir(BLOGPAGES)#创建博文列表目录
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="assets/js/build/p.js"></script>\
+  <script src="../assets/js/build/p.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
-  <script src="assets/plugins/highlight/highlight.pack.js"></script>\
+  <script src="../assets/plugins/highlight/highlight.pack.js"></script>\
   <script >hljs.initHighlightingOnLoad();</script>'
 
     mainhtml  = str(create_main_html(jshtml))
