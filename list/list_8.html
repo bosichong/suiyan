@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="data-list list-group">
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-14 10:35:05
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  使用
+  <code>
+   Django
+  </code>
+  编写个人博客是一件很轻松的事，
+  <code>
+   Django
+  </code>
+  给我们提供了很多功能模块，让我们大大减少了代码的编写，让我们把更多的精力集中到程序的逻辑开发上，让我们有更多的时间去陪家人、陪孩子、和打游戏。
+发自心的感谢:感谢
+  <code>
+   Django
+  </code>
+  ，感谢开源界的程序员及一切。
+ </p>
+ <h2>
+  引入
+  <code>
+   Markdown
+  </code>
+ </h2>
+ <p>
+  博客有了，不过文章内容页上只显示的是字符，并没有任何美化的效果，比如插入图片、加入一些样式等，解决这个问题做为一个程序员首先就会想到
+  <code>
+   Markdown
+  </code>
+  ，
+  <code>
+   python3
+  </code>
+  中有
+  <code>
+   Markdown
+  </code>
+  模块，我们先来安装一下：
+ </p>
+ <pre><code>pip3 install markdown
+</code></pre>
+ <h2>
+  使用
+  <code>
+   Markdown
+  </code>
+ </h2>
+ <pre><code>➜  ~ python3
+Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; from markdown import markdown
+&gt;&gt;&gt; s = '###这里是标题'
+&gt;&gt;&gt; m = markdown(s)
+&gt;&gt;&gt; m
+'&lt;h3&gt;这里是标题&lt;/h3&gt;'
+</code></pre>
+ <p>
+  额，又是这么简单，接下来就是引入到
+  <code>
+   Django
+  </code>
+  中使用了。
+插播一条广告：如果你对
+  <code>
+   Markdown
+  </code>
+  语法不了解，请看下边的博文。
+  <a href="http://www.17python.com/blog/5">
+   Markdown 语法学习总结
+  </a>
+ </p>
+ <h2>
+  <code>
+   Django
+  </code>
+  模板中输出
+  <code>
+   html
+  </code>
+ </h2>
+ <p>
+  启动服务器，我们添加一篇带有
+  <code>
+   markdown
+  </code>
+  语法的文章:
+ </p>
+ <pre><code>#Markdown文章测试哦
+##Markdown文章测试哦Markdown文章测试哦
+
+1. Markdown文章测试哦
+2. Markdown文章测试哦
+3. Markdown文章测试哦
+
+
+&lt;h1&gt;html测试哦&lt;/h1&gt;
+&lt;br/&gt;
+&lt;h3&gt;html测试哦html测试哦html测试哦&lt;/h3&gt;
+</code></pre>
+ <p>
+  打开这个篇博文的页面，我们会看到如下效果：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_51.png"/>
+ </p>
+ <p>
+  发现
+  <code>
+   Markdown
+  </code>
+  语法只是原样输出，并没有解析，还有就是
+  <code>
+   html
+  </code>
+  代码被转义了，没有在网页中显示出样式，好了，发现两个问题，我们逐一解决。
+ </p>
+ <h2>
+  关闭
+  <code>
+   Django
+  </code>
+  模板中的
+  <code>
+   html
+  </code>
+  转义
+ </h2>
+ <p>
+  关闭
+  <code>
+   Django
+  </code>
+  模板中的
+  <code>
+   html
+  </code>
+  转义有两种方法：
+ </p>
+ <pre><code>&lt;p&gt;这行不会被转义&lt;/p&gt;: {{ data }}
+&lt;p&gt;这行会被自动转义&lt;/p&gt;: {{ data|safe }}
+</code></pre>
+ <p>
+  这种是比较短小的
+  <code>
+   html
+  </code>
+  情况下使用的过滤器
+  <code>
+   safe
+  </code>
+  来关闭
+  <code>
+   html
+  </code>
+  转义，如果是大段的
+  <code>
+   html
+  </code>
+  代码比如博文，我们使用下边的方法：
+ </p>
+ <pre><code>   {% autoescape off %}
+    {{ article.content }}
+   {% endautoescape %}
+</code></pre>
+ <p>
+  其中
+  <code>
+   article.content
+  </code>
+  输出的
+  <code>
+   html
+  </code>
+  代码就不会被转义了，网页上就会显示出具体的样式。我们试下。
+ </p>
+ <p>
+  打开
+  <code>
+   bolg.html
+  </code>
+  ,修改模板内容渲染：
+ </p>
+ <pre><code>{% autoescape off %}
+    {{ article.content }}
+{% endautoescape %}
+</code></pre>
+ <p>
+  保存后，我们刷新一下页面看看，
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_52.png"/>
+ </p>
+ <p>
+  <code>
+   html
+  </code>
+  代码已经被正常输出了，网页上显示了还的标题样式，但我们发现
+  <code>
+   markdown
+  </code>
+  的语法还没有被解析成
+  <code>
+   html
+  </code>
+  代码。
+ </p>
+ <h2>
+  使用
+  <code>
+   Django
+  </code>
+  自定义过滤器+
+  <code>
+   Markdown
+  </code>
+  模块解析
+  <code>
+   Markdown
+  </code>
+  代码
+ </h2>
+ <p>
+  创建自定义过滤器文件
+  <code>
+   myblog.templatetags.mytags.py
+  </code>
+  ,并在相同目录中添加
+  <code>
+   __init__.py
+  </code>
+  空文件即可。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_56.png"/>
+ </p>
+ <p>
+  先编写
+  <code>
+   mytags.py
+  </code>
+  过滤器代码：
+ </p>
+ <pre><code>#coding=utf-8
+#导入基本配置文件
+from django import template
+#导入markdown模块
+from markdown import markdown
+#引入过滤器
+register = template.Library()
+
+#自定义过滤器编写
+
+@register.filter
+def toMarkdown(str):
+    ####markdown解析器
+    return markdown(str)
+</code></pre>
+ <p>
+  然后我们在模板中引用一下这个过滤器，
+ </p>
+ <p>
+  编辑修改
+  <code>
+   blog.html
+  </code>
+  的代码，在头部添加：
+ </p>
+ <pre><code>{% load mytags %}
+</code></pre>
+ <p>
+  表示加载自定义的过滤器，修改渲染文章内容处的代码，添加过滤器，过滤器的用法很简单，具体看代码：
+ </p>
+ <pre><code>{% autoescape off %}
+    {{ article.content|toMarkdown }}
+{% endautoescape %}
+</code></pre>
+ <p>
+  保存后，我们刷新文章页查看一下:
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_58.png"/>
+ </p>
+ <p>
+  到此，
+  <code>
+   markdown
+  </code>
+  已经在我们的博客中完美引用了，当然做为一个程序员我们经常和代码打交道，博客中少不了要贴代码，所以代码美化也是少不了的。
+这里我推荐一个代码美化的js：
+  <code>
+   highlight.js
+  </code>
+  去他的官方网站上下载一个喜欢的js和css样式，然后加到
+  <code>
+   blog.html
+  </code>
+  中，大体上如下：
+ </p>
+ <pre><code>&lt;link rel="stylesheet" href="/static/highlight/styles/atom-one-light.css"&gt;
+&lt;script src="/static/highlight/highlight.pack.js"&gt;&lt;/script&gt;
+&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
+</code></pre>
+ <p>
+  具体文件请按目录保存，这样你的博客中的代码就有了自己的样式，而不是很单一的颜色了。
+ </p>
+ <p>
+  好了，这节结束，感觉很简单的东西，怎么写了么这长。。。。。。有问题请在下边留言给俺
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-13 09:54:56
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  一不留神已经开始写滴12节了，但感觉还是有很多细节的知识点没有写到，这节说说数据分页在
+  <code>
+   Django
+  </code>
+  的实现吧。
+ </p>
+ <h2>
+  数据分页
+ </h2>
+ <p>
+  说道数据分页这个功能，在编程的日常中是经常遇到的，WEB的日常更不用说了，所以理解并熟练的掌握分页的技术可以说是很重要的了。
+关于数据分页的理论这里不再做细节的讨论，我们重点来了解利用
+  <code>
+   Django
+  </code>
+  中的模块的实现方法。
+ </p>
+ <h2>
+  数据分页终端下的测试
+ </h2>
+ <p>
+  <code>
+   django.core.paginator
+  </code>
+  是Django提供的一个数据分页模块，当你的分页数据量不大的时候（比如几万的数据量）可以使用这个模块。
+因为这个模块需要先返回所有需要分页的数据，然后根据一定的逻辑进行分页，这就是所谓的逻辑分页吧，所以小数量分页可以直接考虑用
+  <code>
+   django.core.paginator
+  </code>
+  。
+而且这个分页模块可以拿出来单独使用，就象
+  <code>
+   Django ORM
+  </code>
+  一样，可以脱离WEB环境使用，我们创建一个简单的数据来测试一下这个分布模块。
+ </p>
+ <p>
+  我觉得代码是最好的教程：
+ </p>
+ <pre><code>➜  ~ python3 
+Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; from django.core.paginator import Paginator
+&gt;&gt;&gt; objs = [k for k in range(1000)]
+&gt;&gt;&gt; p = Paginator(objs, 10)
+&gt;&gt;&gt; p.count
+1000
+&gt;&gt;&gt; p.num_pages
+100
+&gt;&gt;&gt; p.page_range
+range(1, 101)
+&gt;&gt;&gt; page1 = p.page(1)
+&gt;&gt;&gt; page1
+&lt;Page 1 of 100&gt;
+&gt;&gt;&gt; page1.object_list
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; page2 = p.page(100)
+&gt;&gt;&gt; page2.object_list
+[990, 991, 992, 993, 994, 995, 996, 997, 998, 999]
+&gt;&gt;&gt; page2.has_next()
+False
+&gt;&gt;&gt; page2.has_previous()
+True
+&gt;&gt;&gt; page1.has_previous()
+False
+&gt;&gt;&gt;
+</code></pre>
+ <p>
+  通过上边的代码，我们可以看到
+  <code>
+   Paginator
+  </code>
+  对数据分页的封装是很好的，使用起来也容易理解。
+接下来，我们把
+  <code>
+   django.core.paginator
+  </code>
+  引入到视图中来使用。
+ </p>
+ <p>
+  views.py中的代码：
+ </p>
+ <pre><code>############################
+#翻页视图中代码
+############################
+paginator = Paginator(articles, 3)#创建Paginator
+page = request.GET.get('p')#获取当前页码
+try:
+    contacts = paginator.page(page)#取得当前页码所包含的数据
+except PageNotAnInteger:
+    contacts = paginator.page(1)#若不是整数，跳转到第一页。
+except EmptyPage:
+    contacts = paginator.page(paginator.num_pages)#若超过了最后一页
+#############################
+</code></pre>
+ <p>
+  把上边的代码加到
+  <code>
+   return
+  </code>
+  之前即可，这里要说明一下，之前我们模板调用的数据是
+  <code>
+   articles
+  </code>
+  ，现在我们需要分页提供的需要显示的数据，
+这里模板中需要引用一组当前页码上需要显示的数据，这里就要使用我们传递的
+  <code>
+   contacts
+  </code>
+  ，这里大家应该明白，这是当前页码需要显示的数据。
+  <strong>
+   然后把模板里的
+   <code>
+    articles
+   </code>
+   换成
+   <code>
+    contacts
+   </code>
+   ，然后把模板里的
+   <code>
+    articles
+   </code>
+   换成contacts
+   <code>
+    ，然后把模板里的
+   </code>
+   articles
+   <code>
+    换成
+   </code>
+   contacts`
+  </strong>
+  重要的事情要说三次。
+ </p>
+ <p>
+  list.html中的代码：
+ </p>
+ <pre><code>&lt;!-- 翻页  --&gt;
+&lt;div class="am-pagination am-pagination-centered"&gt;
+    {% if contacts.has_previous %}
+        &lt;li class=""&gt;&lt;a href="?p={{ contacts.previous_page_number }}"&gt;&amp;laquo; 上一页&lt;/a&gt;&lt;/li&gt;
+    {% endif %}
+    {% for p in contacts.paginator.page_range %}   
+        &lt;li class="{% if p == page_number %}am-active{% endif %}"&gt;&lt;a href="?p={{ p }}"&gt;{{ p }}&lt;/a&gt;&lt;/li&gt;
+    {% endfor %}
+    {% if contacts.has_next %}
+        &lt;li class=""&gt;&lt;a href="?p={{ contacts.next_page_number }}"&gt;下一页 &amp;raquo;&lt;/a&gt;&lt;/li&gt;
+    {% endif %}
+&lt;/div&gt;
+</code></pre>
+ <p>
+  这里有几个变量可能是头一次看到，都是一些翻页数据变量，这组模板代码中大量的应用了
+  <code>
+   {% if XXX %}{% endif %}
+  </code>
+  标签，
+还有这个翻页组件是Amaze UI提供的，笔者感觉还是不错的。
+接下来就是运行服务器，预览一下效果，动手点点那些数字，看看连接是否对的上？
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171213_48.png"/>
+ </p>
+ <h2>
+  数据翻页结束了？
+ </h2>
+ <p>
+  看了代码，大家是不是觉得太简单了？好吧这里我留个坑，有兴趣的可以自己试试，当前的数据翻页只是所有数据的翻页展示，
+如果切换到某个类目下，数据太多，也需要翻页，或是搜索结果很多也需要翻页，大家想想看，根据当前提供一些代码如何扩展实现呢？
+ </p>
+ <p>
+  如果有问题欢迎各位可以留言给作者提问。
+ </p>
+ <p>
+  <code>
+   django
+  </code>
+  官方 翻页帮助文档
+https://docs.djangoproject.com/en/1.11/topics/pagination/
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-11 10:59:44
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  上节我们通过博客的模板继承及上下文沉浸器大大简化了模板的代码量，这节我们继续实现分类页及搜索结果页的展示。
+ </p>
+ <h2>
+  缩短网址
+ </h2>
+ <p>
+  之后我们访问博客地址是
+  <code>
+   http://127.0.0.1:8000/blog/home
+  </code>
+  ，如果我们想直接访问地址也就是域名后直接打开博客首页怎么办？
+ </p>
+ <p>
+  首先修改'blog01.urls.py'中的代码：
+ </p>
+ <pre><code>url(r'^', include('myblog.urls',namespace='')),#修改为直接为域名根目录，缩短网址。
+</code></pre>
+ <p>
+  去掉
+  <code>
+   r'^blog'
+  </code>
+  中的
+  <code>
+   blog
+  </code>
+  ,
+ </p>
+ <p>
+  再修改'myblog.urls.py'中的代码：
+注释掉
+  <code>
+   # url(r'^list$', v.list, name='list'),
+  </code>
+  修改为
+  <code>
+   url(r'^$', v.list, name=''),#项目首页
+  </code>
+ </p>
+ <p>
+  运行服务器，直接访问：
+  <code>
+   http://127.0.0.1:8000
+  </code>
+  ，这时直接打开的是博客列表页展示的首页。
+ </p>
+ <h2>
+  Django实现博客分类页展示
+ </h2>
+ <p>
+  首页展示的是所有文章页，我想点击分类显示为分类下边的相关文章，这个如何实现？
+首先我们看下点击分类后，url的格式
+  <code>
+   http://127.0.0.1:8000/?c=2
+  </code>
+  这个分类页的连接中包括一个典型的get参数，
+我们可以在视图中获得这个参数2,然后再搜索所有分类
+  <code>
+   id=2
+  </code>
+  的文章，然后返回给模板即可展示出来结果了。
+ </p>
+ <p>
+  编写视图文件的代码
+ </p>
+ <pre><code>c = request.GET.get('c', '')
+if c:
+    #搜索分类ID为c的所有文章，如果分类id为空，这里就返回所有文章。
+    articles = articles.filter(category=c,).order_by('-create_time')
+</code></pre>
+ <p>
+  这里的变量c，通过
+  <code>
+   request.GET.get('c', '')
+  </code>
+  获取页面上的C的
+  <code>
+   key
+  </code>
+  ，
+  <code>
+   request.GET['c']
+  </code>
+  也可以访问，但不安全。
+然后通过
+  <code>
+   Django
+  </code>
+  中提供数据过滤
+  <code>
+   .filter
+  </code>
+  搜索出相关的文章，然后排序后返回给模板，模板那边的代码都不用修改即可正常显示。
+好了，我们访问
+  <code>
+   http://127.0.0.1:8000/?c=2
+  </code>
+  所有分类
+  <code>
+   id=2
+  </code>
+  文章就搜索出来了。
+ </p>
+ <h2>
+  搜索结果页面
+ </h2>
+ <p>
+  在当前的页面上边有个搜索框，这是一个搜索的入口，我们希望用户通过这个搜索框进行一些模糊搜索，比如根据关键字搜索标题或正文中是否包含关键字，然后返回搜索结果展示。
+说到搜索，其实首先想到的是应该对这个搜索关键字做一些限制，比如长度，还有就是安全sql注入等。
+我们的搜索结果url地址
+  <code>
+   http://127.0.0.1:8000/?s=Python
+  </code>
+  ，应该是这个相似。
+这里我们采用django提供的一个表单框架来实现当前的搜索功能，接下来开始编写代码。
+ </p>
+ <p>
+  创建myblog.forms.py:
+ </p>
+ <pre><code>#coding=utf-8
+from django import forms
+
+class Searchform(forms.Form):
+    #搜索表单定义
+    s = forms.CharField(max_length=20)
+</code></pre>
+ <p>
+  就这点代码，定义了一个表单。
+ </p>
+ <p>
+  在视图
+  <code>
+   myblog.views.py
+  </code>
+  中使用,先引用
+ </p>
+ <pre><code>from .forms import Searchform
+</code></pre>
+ <p>
+  然后编写代码
+ </p>
+ <pre><code>s = ''#搜索关键字
+#以下判断表单是否验证成功，如果验证成功返回一个字符串s
+if request.method == 'GET':
+    form = Searchform(request.GET)
+    if form.is_valid():
+        s = request.GET.get('s')
+if s :
+    articles = articles.filter(Q(title__contains=s)|Q(content__contains=s)).order_by('-create_time')
+</code></pre>
+ <p>
+  这里有个Q函数记得引用一下
+  <code>
+   from django.db.models import Q#模糊查询多个字段使用
+  </code>
+  ,这个Q函数是关键字查询中经常使用到的，详细了解请百度。
+ </p>
+ <p>
+  然后模板里修改一下模板
+  <code>
+   base.html
+  </code>
+  中搜索框的代码：
+ </p>
+ <pre><code>&lt;form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right"  action="{% url '' %}"&gt;
+  &lt;div class="am-form-group"&gt;
+    &lt;input type="text" class="am-form-field am-input-sm" placeholder="搜索文章" name="s"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="am-btn am-btn-default am-btn-sm"&gt;搜索&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+ <p>
+  <code>
+   {% url '' %}
+  </code>
+  这是模板中的标签，Django中提供了很多模板标签，如果需要详细了解可以查看官方的文档。
+ </p>
+ <p>
+  好了，我们刷新首页，然后在搜索框里输入:10 就会搜索标题有含有10的文章了，
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171211_46.png"/>
+ </p>
+ <p>
+  到此我们的分类页及搜索结果页面的功能就实现了。
+如果在修改中发现了错误，可以复制留言中的错误回复，站长看到会帮助解答的。另外可以查看源文件核对，看看自己哪里改的不对，也能发现错误。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-09 10:38:16
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  09节我们通过
+  <code>
+   Django
+  </code>
+  模板的继承对blog的两个模板页进行了改造，大大减少了模板中重复的代码，编码中复用及重构才是王道哈。
+ </p>
+ <h2>
+  <code>
+   Django
+  </code>
+  的上下文Context
+ </h2>
+ <p>
+  现在的blog中主要有两个模板文件，对应二个视图的函数，我们也了解到如果模板需要数据，需要从视图函数中通过
+  <code>
+   return render()
+  </code>
+  来传递。
+但我们发现一个问题，就是两个模板需要一些很多相同的数据，比如两个模板中右侧都blog分类和站长资料展示，如果我们按常规操作，
+每个视图函数中都需要获取一下这二个数据，然后返回，这样做显然不合适，如果有成百上千个模板页的话我们就要写千百段代码，如果需要修改，我们就要修改千百段代码。
+这显然是一个坑，不过
+  <code>
+   Django
+  </code>
+  提供了一个上下文Context功能，很好的解决了这个问题。
+ </p>
+ <h2>
+  创建
+  <code>
+   Django
+  </code>
+  上下文Context
+ </h2>
+ <p>
+  <code>
+   Context
+  </code>
+  实际上就是一个文件中带有一个字典返回值的函数，这样看来创建上下文Context，需要创建一个文件和一个函数，
+然后还需要在配置文件中添加到配置项。
+ </p>
+ <p>
+  创建
+  <code>
+   myblog.blog_context.py
+  </code>
+  编写代码如下：
+ </p>
+ <pre><code>#coding=utf-8
+from django.conf import settings as original_settings#必须引入
+from myblog.models import UserProfile, Category, Siteinfo#导入一些必须的model
+def blog_info(request):
+    #站长及博客上下文数据管理
+    userinfo = UserProfile.objects.get(pk=1)#站长资料
+    siteinfo = Siteinfo.objects.get(pk=1)#blog相关资料
+    categorts = Category.objects.all().order_by('sort_id')#根据排序获取所有分类
+    #把获取的数据通过字典返回
+    return {'userinfo':userinfo, 'siteinfo':siteinfo, 'categorts':categorts}
+</code></pre>
+ <p>
+  在
+  <code>
+   settings.py.TEMPLATES.OPTIONS.context_processors
+  </code>
+  下添加我们刚刚创建文件的地址:
+ </p>
+ <pre><code>TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                #上下文Context
+                'myblog.blog_context.blog_info'
+            ],
+        },
+    },
+]
+</code></pre>
+ <p>
+  好吧，你是不是要说，就这么简单？好吧，我们把获取的数据添加到模板中测试，如果你没有分类及站长资料数据，请先自己更新一些，
+我们修改
+  <code>
+   base.html
+  </code>
+  中的站长的关于我：
+ </p>
+ <pre><code>  &lt;section class="am-panel am-panel-default"&gt;
+    &lt;div class="am-panel-hd"&gt;关于我&lt;/div&gt;
+    &lt;div class="am-panel-bd"&gt;
+      &lt;p&gt;{{ userinfo.detail }}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+</code></pre>
+ <p>
+  然后我查看
+  <code>
+   http://127.0.0.1:8000/blog/list
+  </code>
+  和
+  <code>
+   http://127.0.0.1:8000/blog/blog/1
+  </code>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171209_44.png"/>
+ </p>
+ <p>
+  怎么样？是不是有种打了很久的游戏才通关的爽，上下文用起来真的是很方便，我在改改分类：
+ </p>
+ <pre><code>  &lt;section class="am-panel am-panel-default"&gt;
+    &lt;div class="am-panel-hd"&gt;关于我&lt;/div&gt;
+    &lt;div class="am-panel-bd"&gt;
+      &lt;p&gt;{{ userinfo.detail }}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class="am-panel am-panel-default"&gt;
+    &lt;div class="am-panel-hd"&gt;文章目录&lt;/div&gt;
+    &lt;ul class="am-list blog-list"&gt;
+      {% for categort in categorts %}
+      &lt;li&gt;&lt;a href="#"&gt;{{ categort.title }}&lt;/a&gt;&lt;/li&gt;
+      {% endfor %}
+    &lt;/ul&gt;
+  &lt;/section&gt;
+</code></pre>
+ <p>
+  然后刷新页面查看一下效果：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171209_45.png"/>
+ </p>
+ <p>
+  至此我们网站上的通用处，我们都可以使用Django模板继承和上下文来解决，大大减少了代码量，并且使程序的逻辑更为清楚！
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（9）Django模板的继承
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-08 10:23:47
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  从上一节开始，我们将一直持续和前端的渲染打交道了，当前我们的blog有两个前端的模板页，后继会因为功能的扩展出现更多的模板页，
+我们发现模板页中大部分代码都是相同的，我们只修改其中的一部分代码，那么我们能不能通过某些方法来重用这些代码，这样方便以后的代码修改。
+答案是有的，
+  <code>
+   Django
+  </code>
+  提供了一个模板继承的功能，它可以让你引用或包含一些模板上共用的代码。
+ </p>
+ <h2>
+  <code>
+   Django
+  </code>
+  模板中的代码引用
+ </h2>
+ <p>
+  blog的页面中有很多重复的代码，比如导航，站点底部，一些广告代码，侧边的分类标签等信息，这些需要重复使用的代码我们不要到处复制，
+这样以后如果修改的话就会有很多麻烦，我们应该建立相应的模板页，然后通过继承来使用，这样会大大减少我们的代码编写工作量。
+ </p>
+ <p>
+  我们创建
+  <code>
+   myblog.templates.base.html
+  </code>
+  复制
+  <code>
+   list.html
+  </code>
+  中所有的代码粘贴过去。
+关于模板中定义使用的代码主要有1种：
+ </p>
+ <pre><code>{% block site_title %}blog{% endblock site_title %}
+</code></pre>
+ <p>
+  <code>
+   block
+  </code>
+  定义，引用后可以在继承页上修改
+  <code>
+   site_title
+  </code>
+  的标题。
+ </p>
+ <pre><code>{% block article %} 文章列表内容 {% endblock article %}
+</code></pre>
+ <p>
+  比如上边我又定义了一下文章列表内容的引用模块
+  <code>
+   block
+  </code>
+  ，我们看下
+  <code>
+   list.html
+  </code>
+  中是如何引用这些
+  <code>
+   block
+  </code>
+ </p>
+ <p>
+  <code>
+   list.html
+  </code>
+  的代码基本上可以变的很简单了，首先最上边要加入引用需要继承的父类模板页，然后添加需要修改的引用代码：
+ </p>
+ <pre><code>{% extends 'base.html' %}
+{% block site_title %}MyDjangoBlog~~~~~{% endblock site_title %}
+{% block article %} 
+{% for article in articles %}
+&lt;article class="blog-main"&gt;
+    &lt;h3 class="am-article-title"&gt;
+    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+    &lt;/h3&gt;
+    &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+    &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
+    &lt;div class="am-g blog-content"&gt;
+    {{ article.content }}
+    &lt;/div&gt;
+&lt;/article&gt;
+&lt;hr class="am-article-divider blog-hr"&gt;
+{% endfor %}
+{% endblock article %}
+</code></pre>
+ <p>
+  不会吧？
+  <code>
+   list.html
+  </code>
+  就变成这么点代码了？我们运行一下服务器,然后访问
+  <code>
+   http://127.0.0.1:8000/blog/list
+  </code>
+  和之前一样没毛病！真是强大的模板继承功能，其实我非常喜欢这个功能！
+ </p>
+ <p>
+  照猫画虎，把
+  <code>
+   blog.html
+  </code>
+  也修改了！
+ </p>
+ <pre><code>{% extends 'base.html' %}
+{% block site_title %}{{ article.title }}{% endblock site_title %}
+{% block article %} 
+&lt;article class="blog-main"&gt;
+    &lt;h3 class="am-article-title"&gt;
+    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+    &lt;/h3&gt;
+    &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+    &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
+    &lt;div class="am-g blog-content"&gt;
+    {{ article.content }}
+    &lt;/div&gt;
+&lt;/article&gt;
+{% endblock article %}
+</code></pre>
+ <p>
+  我们访问
+  <code>
+   http://127.0.0.1:8000/blog/blog/1
+  </code>
+  结果也是很明显的，让我们继续感叹一下
+  <code>
+   block
+  </code>
+  继承功能的强大吧
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（8）构建Blog首页
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-07 11:30:56
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  07节我们基本上完成了Blog数据模型的后端构建，06节我们结合模板简单渲染了一个博客文章页，这样的话，你只需要在blog的模板中添加一些标签就可以扩展详情页的展示内容了。
+ </p>
+ <h2>
+  Blog首页的构建
+ </h2>
+ <p>
+  Blog首页我们这里定义一些展示内容：导航，搜索框，博客最新文章（10篇左右），博客分类及标签展示，站长简介等。这并不是完整的构建清单，你也可以根据自己的需要添加更多的更酷的功能。
+ </p>
+ <h2>
+  Blog导航
+ </h2>
+ <p>
+  关于站点的导航，我这里有两种建议：
+ </p>
+ <ol>
+  <li>
+   直接在html中手动添加修改，可能有的同学说不方便，其实导航这东西固定后基本上很少修改，如果html熟练可以考虑这个方法。
+  </li>
+  <li>
+   在数据库添加一个导航表，表字段包括：
+   <code>
+    id,name,url
+   </code>
+   再添加一个排序的字段，这样你可以调用数据库读取数据后在模板中渲染出来，这种适合经常修改导航的同学。
+  </li>
+ </ol>
+ <h2>
+  博客首页最新文章
+ </h2>
+ <p>
+  blog首页最新文章，这个和文章详情页有些相似，只不过首页渲染的是多篇文章页只是渲染一篇文章而已。
+好吧，我们回忆一下
+  <code>
+   Django
+  </code>
+  实现步骤，先建立数据模型（已经搞定），再编写视图代码及设置路由，最后在模板里渲染。
+其实，一个简单的Blog只需要二个视图方法：bloglist,blog 分别代表blog列表和文章详情页。
+models中的代码之前编写过了，如果功能有扩展需要可以自己修改models。
+ </p>
+ <p>
+  list视图代码编写:
+ </p>
+ <pre><code>def bloglist(request):
+    #blog列表页
+    #返回所有日志列表，以创建时间排序。
+    articles = Article.objects.all().order_by('-create_time')
+
+    #把调用的数据传递给模板
+    return render(request, 'list.html', {'articles':articles,})
+</code></pre>
+ <p>
+  我们先创建一个
+  <code>
+   list.html
+  </code>
+  模板,把
+  <code>
+   blog.html
+  </code>
+  中的代码复制过去，我在此基础上修改即可。
+运行服务器后，我们访问
+  <code>
+   http://127.0.0.1:8000/blog/blog/1
+  </code>
+  我们看blog页面上只显示了一篇文章，如果我们循环输出视图传过来的博客数据即可打印所有文章在当前页面。
+  <code>
+   list.html
+  </code>
+  中我们只小小的修改一下代码，添加一个循环进去即可。
+ </p>
+ <p>
+  <code>
+   list.html
+  </code>
+  代码：
+ </p>
+ <pre><code>{% for article in articles %}
+    &lt;article class="blog-main"&gt;
+        &lt;h3 class="am-article-title"&gt;
+        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+        &lt;/h3&gt;
+        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+
+        &lt;div class="am-g blog-content"&gt;
+        {{ article.content }}
+        &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;hr class="am-article-divider blog-hr"&gt;
+    {% endfor %}
+</code></pre>
+ <p>
+  <code>
+   urls.py
+  </code>
+  中添加一个路由：
+ </p>
+ <pre><code>url(r'^list$', v.list, name='list'),
+</code></pre>
+ <p>
+  最后测试之前，如果你还没有添加数据，建议添加10篇博客文章及博客类目
+然后我们访问：
+  <code>
+   http://127.0.0.1:8000/blog/list
+  </code>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_42.png"/>
+ </p>
+ <p>
+  看，博客首页的文章渲染出来了，但是我还想显示文章作者和所属于类目怎么办？
+我们只需要编辑修改
+  <code>
+   &lt;article&gt;
+  </code>
+  中的代码即可，修改如下：
+ </p>
+ <pre><code> {% for article in articles %}
+    &lt;article class="blog-main"&gt;
+        &lt;h3 class="am-article-title"&gt;
+        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+        &lt;/h3&gt;
+        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+        &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
+        &lt;div class="am-g blog-content"&gt;
+        {{ article.article_synopsis }}
+        &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;hr class="am-article-divider blog-hr"&gt;
+{% endfor %}
+</code></pre>
+ <p>
+  <code>
+   {{ article.user.nick_name }}
+  </code>
+  是通过一对多关联进行搜索，返回user，然后再显示昵称。
+ </p>
+ <p>
+  刷新页面查看，我们看到作者及分类都显示出来了，而且我们把详细内容更换成了日志简介显示。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_43.png"/>
+ </p>
+ <p>
+  至此首页上的文章列表显示出来了，你也可以通过此方法继续更新详情页上的内容展示，还可以更新右侧的分类展示及个人简介。
+分类及个人简介的代码这里我就不贴了，如果自己实在写不出，就下载源码看看。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-02 12:57:39
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  到目前为止，我们基本上初步的了解了
+  <code>
+   Django
+  </code>
+  使用，我们搭建了一个简单的blog雏形，接下来我们将在这个基础之上进行blog数据模型的完善，使之更接近我们自己的需求。
+ </p>
+ <h2>
+  扩展用户user表
+ </h2>
+ <p>
+  <code>
+   Django
+  </code>
+  自带了一个user表，可以满足一些简单的用户资料数据，我们看下表的结构：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_36.png"/>
+ </p>
+ <p>
+  这个表结构很简约，有些我们需要的并没有，所以我们只有通过扩展它来进行添加字段，官方及网上介绍了几种扩展user表的方法，这里我只介绍一种本人认为比较实际的。
+ </p>
+ <p>
+  首先在
+  <code>
+   model.py
+  </code>
+  中引入
+  <code>
+   django
+  </code>
+  的
+  <code>
+   AbstractUser
+  </code>
+  ：
+ </p>
+ <pre><code>from django.contrib.auth.models import AbstractUser
+</code></pre>
+ <p>
+  然后编写代码扩展user:
+ </p>
+ <pre><code>class UserProfile(AbstractUser):
+    """继承django系统自带的user创建用户表，
+    1.配置文件中要添加 AUTH_USER_MODEL = "blog.UserProfile"
+    2.引入from django.contrib.auth.models import AbstractUser
+    3.admin.py 中注册用户表 admin.site.register(UserProfile)
+    4. 如果之前先生成了数据库表，之后修改的user要重新生成表，最好先清空数据库。
+    """
+    nick_name = models.CharField(max_length=24, verbose_name='用户昵称', default='')
+    gender = models.CharField(max_length=10, choices=(('1','男'),('0','女')), default='1', verbose_name='用户性别')
+    birday = models.DateField(verbose_name='用户生日',null=True, blank = True)
+    mobile = models.CharField(max_length=11, null=True, blank=True,verbose_name='电话号码')
+    address = models.CharField(max_length=200, verbose_name="用户地址", default='')
+    detail = models.CharField(max_length=200, verbose_name="个人简介", default='')
+
+    class Meta(AbstractUser.Meta):
+        verbose_name=u'用户表'
+        verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return self.username
+</code></pre>
+ <p>
+  修改
+  <code>
+   Article
+  </code>
+  中的一处用户引用：
+ </p>
+ <pre><code>user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='文章作者', null=True, blank=True)
+</code></pre>
+ <p>
+  这里为了能调用
+  <code>
+   settings.AUTH_USER_MODEL
+  </code>
+  变量，我们必须在文件中引用配置文件
+  <code>
+   from blog01 import settings
+  </code>
+ </p>
+ <p>
+  修改admin.py中的代码：
+ </p>
+ <pre><code>class UserProfileAdmin(admin.ModelAdmin):
+    """用来显示用户相关"""
+    #用来显示用户字段
+    list_display = ('username','nick_name','email','gender','mobile','address')
+    #过滤器设置
+    list_filter = ('username','nick_name','email')
+    #搜索
+    search_fields = ('username','nick_name','email')
+
+admin.site.register(UserProfile,UserProfileAdmin)
+</code></pre>
+ <p>
+  经过以上配置，我们的用户表扩展基本上准备好了，然后我们终端下运行命令修改生成数据库：
+ </p>
+ <pre><code>python3 manage.py makemigrations
+python3 manage.py migrate
+</code></pre>
+ <p>
+  这个时候会报错，这里的报错，笔者也是研究了一阵子，一直没有找到很好的解决方法，目前解决的方法只有一种：
+删除当前的数据库，重新生成一个新的数据库，这种方法显然不是很好，但目前只能这样解决。
+所以对于学习的项目来说问题不大，如果你准备生新设计一个blog的时候，记得一定要先扩展用户表，这样的话就不需要重新生成所有表了。
+切记：先扩展用户表 先扩展用户表 先扩展用户表 ！
+ </p>
+ <p>
+  由于用数据库是生新生成的，所以我们的管理员也就不存在了，就当复习一下，我们重新创建一个管理员：
+ </p>
+ <pre><code>python3 manage.py createsuperuser
+</code></pre>
+ <p>
+  设置相关的选项，运行服务器：
+  <code>
+   python3 manage.py runserver
+  </code>
+  ,
+http://127.0.0.1:8000/admin/
+管理员又可以在后台登陆了，我们登陆一下看看后台有什么变化？
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_37.png"/>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171201_37.png"/>
+ </p>
+ <p>
+  可以看到，我们多了一个用户表，编辑用户，可以看到多了一些用户的选项，到此为止我们的用户表扩展完毕。
+总结扩展：继承
+  <code>
+   django
+  </code>
+  系统自带的user创建用户表，
+ </p>
+ <ol>
+  <li>
+   配置文件中要添加
+   <code>
+    AUTH_USER_MODEL = "blog.UserProfile"
+   </code>
+  </li>
+  <li>
+   引入
+   <code>
+    from django.contrib.auth.models import AbstractUser
+   </code>
+  </li>
+  <li>
+   <code>
+    admin.py
+   </code>
+   中注册用户表
+   <code>
+    admin.site.register(UserProfile)
+   </code>
+  </li>
+  <li>
+   如果之前先生成了数据库，之后需要扩展user表则要重新生成数据库。
+其中第4步，笔者并不满意，但目前没有找到解决的方法，希望有大侠提供一下不用删除重建数据库的方法。
+  </li>
+ </ol>
+ <h2>
+  完善其它数据表
+ </h2>
+ <p>
+  目前我们的数据表中有
+  <code>
+   UserProfile,Category,Article
+  </code>
+  。这个实现性的blog我打算再加入一个表
+  <code>
+   Siteinfo
+  </code>
+  ，用来记录站点中的一些相关信息，
+还会再添加一个
+  <code>
+   SiteImages
+  </code>
+  相册的表，后继我们再继续研究上传图片的相关设置。
+ </p>
+ <p>
+  关于的表的扩展也没什么好说的我直接贴表的代码，通过
+  <code>
+   verbose_name
+  </code>
+  就能看明白这个字段的含意了。
+ </p>
+ <pre><code>class Category(models.Model):
+    title = models.CharField(max_length=20, verbose_name = '分类名称', default = '')
+    daitail = models.CharField(max_length=100, verbose_name='分类介绍', default='')
+    icon = models.CharField(max_length=100, verbose_name='分类图标', default='')
+    sort_id = models.IntegerField(verbose_name='分类排序', default=99)
+
+    class Meta:
+        verbose_name = u'博客分类'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.title
+
+class Article(models.Model):
+    title = models.CharField(max_length=50, verbose_name = '文章标题', default = '')#创建标题
+    article_synopsis = models.TextField(verbose_name=u'日志简介', default='')
+    content = models.TextField(verbose_name = '博客正文', default = '')
+    category = models.ForeignKey(Category, verbose_name = '所属分类', default = '')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='文章作者', null=True, blank=True)
+    #文章创建时间，这里的auto_now_add=True表示自动在数据库里创建时间。
+    create_time = models.DateTimeField(verbose_name='文章创建时间', auto_now_add=True,)
+    update_time= models.DateTimeField(verbose_name=u'更新时间',  auto_now=True)
+
+    class Meta:
+        verbose_name = u'博客文章'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.title
+
+class Siteinfo(models.Model):
+    site_name = models.CharField(max_length=20, verbose_name=u'站点名称', default='')
+    site_detail = models.CharField(max_length=100, verbose_name=u'站点介绍', default='')
+    site_user = models.ForeignKey(UserProfile, verbose_name='管理员', null=True, blank=True)
+    site_footer = models.TextField(verbose_name='站点底部代码', default='')
+
+    class Meta:
+        verbose_name = u'网站信息'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.site_name
+</code></pre>
+ <p>
+  每个人对于自己的博客功能需求都不一样的，所以你可以根据自己的需要进行删减，修改完代码后终端运行全集进行更新：
+ </p>
+ <pre><code>python3 manage.py makemigrations
+python3 manage.py migrate
+</code></pre>
+ <p>
+  上边的命令是不是已经很熟悉了？你会发现
+  <code>
+   Django
+  </code>
+  更新数据表真是很方便。
+更新后，如果终端没有错误提示就表示数据表更新完成了，为了在admin后台显示信息更完整，我们还需要更新一下
+  <code>
+   admin.py
+  </code>
+  这个文件，
+设置自己需要显示的内容，这里我就不贴代码了，具体参考git上的源文件好了。
+ </p>
+ <p>
+  然后启动服务器，我们看下后台数据是不是显示出来了，也可以在数据库管理软件中查看一下数据表结构。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_39.png"/>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_40.png"/>
+ </p>
+ <p>
+  后台中我们看到了网站信息，这里记录了站点名称及一些站点内容，当然字段你可以继续丰富起来，好了，我们添加一个站点信息，方便以后调用。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171202_41.png"/>
+ </p>
+ <p>
+  站点底部代码这个文本字段其实就是以后用来放置一些需要经常修改的代码，有时候我们调用第三方代码比如统计、搜索蜘蛛等代码时候需要经常修改，
+这时只需要在网站后台修改这些代码即可，就没有必要去修改源文件了。保存后，你的站点id就是1因为只有一个网站。
+ </p>
+ <p>
+  然后再添加一些博客文章备用，尽量多添加些，最好10篇以上，稍后我们会做翻页处理。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-11-29 10:34:28
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  我们有了
+  <code>
+   Django admin
+  </code>
+  后台管理数据，我先通过后台添加一些数据，稍后我们将使用这些数据进行前端展示的测试。
+ </p>
+ <h2>
+  前端的简单展示
+ </h2>
+ <p>
+  还记得'http://127.0.0.1:8000/blog/home'这个页上渲染的内容不？我在03节的时候简单的了解一下Django模块的渲染。
+这里我们尝试把这个页面渲染成blog的首页。
+我们修改视图
+  <code>
+   myblog.views.py.home()
+  </code>
+  方法中的代码如下：
+ </p>
+ <pre><code>articles = Article.objects.all()#获取所有文章数据
+return render(request, 'home.html', {'articles':articles,})
+</code></pre>
+ <p>
+  修改模板'home.html'中的代码：
+ </p>
+ <pre><code>{% for art in articles %} 
+    {{ art.id }}.{{ art.title }} -- {{ art.category }}&lt;br&gt;
+    {{ art.content }}&lt;br&gt;
+    ------------------------------------------------------&lt;br&gt;
+{% endfor %}
+</code></pre>
+ <p>
+  此时我们刷新一下页面查看：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171127_28.png"/>
+ </p>
+ <p>
+  这是一个丑陋的页面，我们不可能把这种页面做为自己的博客页面来发布的，那么我们需要美化一下我们的博客。
+ </p>
+ <h2>
+  选择前端框架
+ </h2>
+ <p>
+  如果把一个博客的那成分为三步：后台配置，前端美化，生产部署。
+那么到目前为止，我们后端的配置及管理已经有了一个初步的框架了，当然数据库中的表及字段并不是完美的，后继我们还会根据自己的需要进行丰富。
+现在我们把目录移动到网站的前端展示来，我们看看如果把我们的博客做的更漂亮些，风格更统一些。
+前端的展示是访问博客的用户看的，用户会通过这些页面查看到博客内容，好的博客页面设计定会给人留下更多的印象。
+所以把博客页面设计成风格统一又不失自己的个性就成了我们的一个新任务。
+ </p>
+ <p>
+  现在前端框架可以选择的实在是太多了，这里我就不做比较了，这次我选择用
+  <code>
+   Amaze UI
+  </code>
+  ，一个国产的前端框架，
+优点是文档比较全，兼容PC与无线端，使用起来方便简单，具体介绍请移步官方慢慢查看吧。
+ </p>
+ <h2>
+  引入Amaze UI
+ </h2>
+ <p>
+  关于妹子（Amaze UI）这里不过多的介绍，如果想具体的了解可以稳步到官方网站，她的文档做的还是比较详细的。
+这里我们直接引入一个blog页面范例，通过这个例子我们直接套用Amaze UI框架，
+  <a href="http://amazeui.org/examples/blog.html">
+   http://amazeui.org/examples/blog.html
+  </a>
+  打开这个页面后，我们分发现一个使用
+  <code>
+   Amaze UI
+  </code>
+  框架做好的
+  <code>
+   blog
+  </code>
+  页面，我们将以这个页为基础创建自己的页面了。
+查看网页源码，复制所有代码备用，一会全部粘贴到自己的模板页中。
+ </p>
+ <p>
+  新建一个模板页，
+  <code>
+   myblog.templates.blog.html
+  </code>
+  ,粘贴刚刚复制的所有代码。
+我们观察一下html代码，其中有三处需要我们更换一下地址，然后才能正常引用
+  <code>
+   Amaze UI
+  </code>
+  框架，
+ </p>
+ <pre><code>&lt;link rel="stylesheet" href="/css/amazeui.min.css"/&gt;
+&lt;script src="/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/js/amazeui.min.js"&gt;&lt;/script&gt;
+</code></pre>
+ <p>
+  由于需要引入前端框架，虽然我们可以使用官方提供的CDN加速地址，但原则上推荐引用站点本地资源，这里就引发一个新的问题：网站静态资源地址。
+ </p>
+ <h2>
+  静态资源目录
+ </h2>
+ <p>
+  在项目的根目录下创建
+  <code>
+   static
+  </code>
+  这个目录，此目录与myblog目录同级，用来存放网站中所有静态文件。
+修改配置文件
+  <code>
+   blog01.settings.py
+  </code>
+  :
+ </p>
+ <pre><code>STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, "static"),
+</code></pre>
+ <p>
+  ]
+ </p>
+ <p>
+  应该默认就有这么一段设置代码，这段代码就是用来设置静态目录的，如果没有请添加上。
+那么我们测试一下，随便在这个目录中创建一个文本或是复制来一张图片试试，这里我在static目录中创建了一个
+  <code>
+   test.txt
+  </code>
+  的文本。
+启动Django的服务器，地址栏里输入：http://127.0.0.1:8000/static/test.txt
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171128_34.png"/>
+ </p>
+ <p>
+  如果设置没有问题，上边文本就可以正常显示了。
+ </p>
+ <h2>
+  修改前端框架引入文件目录
+ </h2>
+ <p>
+  <a href="http://amazeui.org/getting-started#xia-zai-wen-jian">
+   下载Amaze UI
+  </a>
+  ,将包复制到静态文件的目录中解压，
+更换模板中引文件的地址，修改后的代码如下：
+ </p>
+ <pre><code>&lt;link rel="stylesheet" href="/static/AmazeUI-2.7.2/assets/css/amazeui.min.css"/&gt;
+&lt;script src="/static/AmazeUI-2.7.2/assets/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/static/AmazeUI-2.7.2/assets/js/amazeui.min.js"&gt;&lt;/script&gt;
+</code></pre>
+ <p>
+  其中框架中没有jq的文件，我们需要自己下载一个文件到静态目录中，下载地址：
+  <code>
+   http://libs.baidu.com/jquery/1.11.1/jquery.min.js
+  </code>
+ </p>
+ <p>
+  到目前为止，前端框架在模板中的使用就配置好了，然后只需要编写视图、路由中的代码就可以继续测试了。
+ </p>
+ <h2>
+  编写路由及视图代码
+ </h2>
+ <p>
+  编写视图文件
+  <code>
+   views.py
+  </code>
+  ,添加一个视图函数：
+  <code>
+   blog()
+  </code>
+  ,代码如下：
+ </p>
+ <pre><code>def blog(request,id):
+    '''博客文章页面'''
+    #首先通过文章的ID获得文章的所有数据,其中id为页面传递过来的参数。
+    article = Article.objects.get(pk=id)#博文数据
+    #传递数据到模板。
+    return render(request, 'blog.html', {'article':article,})
+</code></pre>
+ <p>
+  这里的id参数很重要，是数据获得的入口，每个文章都会有一个Django自动生成的文章id，并且不重复，我们通过路由来获取这个id值。
+ </p>
+ <p>
+  编写urls.py路由代码:
+ </p>
+ <pre><code>url(r'^blog/(?P&lt;id&gt;\w+)$', v.blog,),
+</code></pre>
+ <p>
+  这里我们只添加了一段代码，这段代码的含义如下：
+  <code>
+   ^blog/
+  </code>
+  表示以
+  <code>
+   blog/
+  </code>
+  为开头，
+  <code>
+   (?P&lt;id&gt;\w+)
+  </code>
+  $中，$表示结尾，()中的代码表示为一个参数，
+  <code>
+   \w+
+  </code>
+  ,表示一个整数。
+如果你对正则有些了解，看懂这段简短的代码是没有压力的。
+ </p>
+ <p>
+  修改模板
+  <code>
+   blog.html
+  </code>
+  代码：
+ </p>
+ <pre><code>&lt;article class="blog-main"&gt;
+  &lt;h3 class="am-article-title"&gt;
+    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+  &lt;/h3&gt;
+  &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+
+  &lt;div class="am-g blog-content"&gt;
+  {{ article.content }}
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+ <p>
+  我们主要是修改
+  <code>
+   &lt;article&gt;
+  </code>
+  标签的代码，删除多余的
+  <code>
+   &lt;article&gt;
+  </code>
+  标签，只保留一个即可。
+好了，至此博客文章页面的代码编写完成，我们测试一下，启动服务器：
+  <code>
+   python3 manage.py runserver
+  </code>
+  地址栏里输入：
+  <code>
+   http://127.0.0.1:8000/blog/blog/1
+  </code>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171129_35.png"/>
+ </p>
+ <p>
+  如果一切顺利，你会看到页面会渲染出来你自己添加的博客数据。至此我们的前端框架
+  <code>
+   Amaze UI
+  </code>
+  整合完毕。
+结尾再啰嗦几句，
+  <code>
+   Amaze UI
+  </code>
+  框架自带的前端模块还是很丰富的，可以满足一个博客前后端的所有需求了，这里不打算再对
+  <code>
+   Amaze UI
+  </code>
+  进行更细致的讲解了。
+因为我觉得官方的文档写的真的挺好，如果有更多的需要可以查阅官方文档进行学习。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="spage">
+  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+   <a href="/list/list_7.html">
+    <button class="prev btn btn-primary" type="button">
+     Previous
+    </button>
+   </a>
+   <button class="page btn btn-primary" type="button">
+    8 / 17
+   </button>
+   <a href="/list/list_9.html">
+    <button class="next btn btn-primary" type="button">
+     Next
+    </button>
+   </a>
+  </div>
+ </div>
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/index.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

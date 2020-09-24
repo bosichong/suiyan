@@ -80,7 +80,7 @@
   color: #495057;
 }
 .main-wrapper .blog-list a {
-  color: #5BC3D5;
+  color: rgba(255, 255, 255, 0.7);
 }
 .main-wrapper .blog-list .item .more-link {
   color: #5BC3D5;

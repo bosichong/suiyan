@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-11-29 10:34:28
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ 我们有了
+ <code>
+  Django admin
+ </code>
+ 后台管理数据，我先通过后台添加一些数据，稍后我们将使用这些数据进行前端展示的测试。
+</p>
+<h2>
+ 前端的简单展示
+</h2>
+<p>
+ 还记得'http://127.0.0.1:8000/blog/home'这个页上渲染的内容不？我在03节的时候简单的了解一下Django模块的渲染。
+这里我们尝试把这个页面渲染成blog的首页。
+我们修改视图
+ <code>
+  myblog.views.py.home()
+ </code>
+ 方法中的代码如下：
+</p>
+<pre><code>articles = Article.objects.all()#获取所有文章数据
+return render(request, 'home.html', {'articles':articles,})
+</code></pre>
+<p>
+ 修改模板'home.html'中的代码：
+</p>
+<pre><code>{% for art in articles %} 
+    {{ art.id }}.{{ art.title }} -- {{ art.category }}&lt;br&gt;
+    {{ art.content }}&lt;br&gt;
+    ------------------------------------------------------&lt;br&gt;
+{% endfor %}
+</code></pre>
+<p>
+ 此时我们刷新一下页面查看：
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171127_28.png"/>
+</p>
+<p>
+ 这是一个丑陋的页面，我们不可能把这种页面做为自己的博客页面来发布的，那么我们需要美化一下我们的博客。
+</p>
+<h2>
+ 选择前端框架
+</h2>
+<p>
+ 如果把一个博客的那成分为三步：后台配置，前端美化，生产部署。
+那么到目前为止，我们后端的配置及管理已经有了一个初步的框架了，当然数据库中的表及字段并不是完美的，后继我们还会根据自己的需要进行丰富。
+现在我们把目录移动到网站的前端展示来，我们看看如果把我们的博客做的更漂亮些，风格更统一些。
+前端的展示是访问博客的用户看的，用户会通过这些页面查看到博客内容，好的博客页面设计定会给人留下更多的印象。
+所以把博客页面设计成风格统一又不失自己的个性就成了我们的一个新任务。
+</p>
+<p>
+ 现在前端框架可以选择的实在是太多了，这里我就不做比较了，这次我选择用
+ <code>
+  Amaze UI
+ </code>
+ ，一个国产的前端框架，
+优点是文档比较全，兼容PC与无线端，使用起来方便简单，具体介绍请移步官方慢慢查看吧。
+</p>
+<h2>
+ 引入Amaze UI
+</h2>
+<p>
+ 关于妹子（Amaze UI）这里不过多的介绍，如果想具体的了解可以稳步到官方网站，她的文档做的还是比较详细的。
+这里我们直接引入一个blog页面范例，通过这个例子我们直接套用Amaze UI框架，
+ <a href="http://amazeui.org/examples/blog.html">
+  http://amazeui.org/examples/blog.html
+ </a>
+ 打开这个页面后，我们分发现一个使用
+ <code>
+  Amaze UI
+ </code>
+ 框架做好的
+ <code>
+  blog
+ </code>
+ 页面，我们将以这个页为基础创建自己的页面了。
+查看网页源码，复制所有代码备用，一会全部粘贴到自己的模板页中。
+</p>
+<p>
+ 新建一个模板页，
+ <code>
+  myblog.templates.blog.html
+ </code>
+ ,粘贴刚刚复制的所有代码。
+我们观察一下html代码，其中有三处需要我们更换一下地址，然后才能正常引用
+ <code>
+  Amaze UI
+ </code>
+ 框架，
+</p>
+<pre><code>&lt;link rel="stylesheet" href="/css/amazeui.min.css"/&gt;
+&lt;script src="/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/js/amazeui.min.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>
+ 由于需要引入前端框架，虽然我们可以使用官方提供的CDN加速地址，但原则上推荐引用站点本地资源，这里就引发一个新的问题：网站静态资源地址。
+</p>
+<h2>
+ 静态资源目录
+</h2>
+<p>
+ 在项目的根目录下创建
+ <code>
+  static
+ </code>
+ 这个目录，此目录与myblog目录同级，用来存放网站中所有静态文件。
+修改配置文件
+ <code>
+  blog01.settings.py
+ </code>
+ :
+</p>
+<pre><code>STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, "static"),
+</code></pre>
+<p>
+ ]
+</p>
+<p>
+ 应该默认就有这么一段设置代码，这段代码就是用来设置静态目录的，如果没有请添加上。
+那么我们测试一下，随便在这个目录中创建一个文本或是复制来一张图片试试，这里我在static目录中创建了一个
+ <code>
+  test.txt
+ </code>
+ 的文本。
+启动Django的服务器，地址栏里输入：http://127.0.0.1:8000/static/test.txt
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171128_34.png"/>
+</p>
+<p>
+ 如果设置没有问题，上边文本就可以正常显示了。
+</p>
+<h2>
+ 修改前端框架引入文件目录
+</h2>
+<p>
+ <a href="http://amazeui.org/getting-started#xia-zai-wen-jian">
+  下载Amaze UI
+ </a>
+ ,将包复制到静态文件的目录中解压，
+更换模板中引文件的地址，修改后的代码如下：
+</p>
+<pre><code>&lt;link rel="stylesheet" href="/static/AmazeUI-2.7.2/assets/css/amazeui.min.css"/&gt;
+&lt;script src="/static/AmazeUI-2.7.2/assets/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/static/AmazeUI-2.7.2/assets/js/amazeui.min.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>
+ 其中框架中没有jq的文件，我们需要自己下载一个文件到静态目录中，下载地址：
+ <code>
+  http://libs.baidu.com/jquery/1.11.1/jquery.min.js
+ </code>
+</p>
+<p>
+ 到目前为止，前端框架在模板中的使用就配置好了，然后只需要编写视图、路由中的代码就可以继续测试了。
+</p>
+<h2>
+ 编写路由及视图代码
+</h2>
+<p>
+ 编写视图文件
+ <code>
+  views.py
+ </code>
+ ,添加一个视图函数：
+ <code>
+  blog()
+ </code>
+ ,代码如下：
+</p>
+<pre><code>def blog(request,id):
+    '''博客文章页面'''
+    #首先通过文章的ID获得文章的所有数据,其中id为页面传递过来的参数。
+    article = Article.objects.get(pk=id)#博文数据
+    #传递数据到模板。
+    return render(request, 'blog.html', {'article':article,})
+</code></pre>
+<p>
+ 这里的id参数很重要，是数据获得的入口，每个文章都会有一个Django自动生成的文章id，并且不重复，我们通过路由来获取这个id值。
+</p>
+<p>
+ 编写urls.py路由代码:
+</p>
+<pre><code>url(r'^blog/(?P&lt;id&gt;\w+)$', v.blog,),
+</code></pre>
+<p>
+ 这里我们只添加了一段代码，这段代码的含义如下：
+ <code>
+  ^blog/
+ </code>
+ 表示以
+ <code>
+  blog/
+ </code>
+ 为开头，
+ <code>
+  (?P&lt;id&gt;\w+)
+ </code>
+ $中，$表示结尾，()中的代码表示为一个参数，
+ <code>
+  \w+
+ </code>
+ ,表示一个整数。
+如果你对正则有些了解，看懂这段简短的代码是没有压力的。
+</p>
+<p>
+ 修改模板
+ <code>
+  blog.html
+ </code>
+ 代码：
+</p>
+<pre><code>&lt;article class="blog-main"&gt;
+  &lt;h3 class="am-article-title"&gt;
+    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+  &lt;/h3&gt;
+  &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+
+  &lt;div class="am-g blog-content"&gt;
+  {{ article.content }}
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+<p>
+ 我们主要是修改
+ <code>
+  &lt;article&gt;
+ </code>
+ 标签的代码，删除多余的
+ <code>
+  &lt;article&gt;
+ </code>
+ 标签，只保留一个即可。
+好了，至此博客文章页面的代码编写完成，我们测试一下，启动服务器：
+ <code>
+  python3 manage.py runserver
+ </code>
+ 地址栏里输入：
+ <code>
+  http://127.0.0.1:8000/blog/blog/1
+ </code>
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171129_35.png"/>
+</p>
+<p>
+ 如果一切顺利，你会看到页面会渲染出来你自己添加的博客数据。至此我们的前端框架
+ <code>
+  Amaze UI
+ </code>
+ 整合完毕。
+结尾再啰嗦几句，
+ <code>
+  Amaze UI
+ </code>
+ 框架自带的前端模块还是很丰富的，可以满足一个博客前后端的所有需求了，这里不打算再对
+ <code>
+  Amaze UI
+ </code>
+ 进行更细致的讲解了。
+因为我觉得官方的文档写的真的挺好，如果有更多的需要可以查阅官方文档进行学习。
+</p>
+<h2>
+ 本文源码下载：
+</h2>
+<ul>
+ <li>
+  <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   github
+  </a>
+ </li>
+ <li>
+  <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   开源中国码云镜像gitee
+  </a>
+ </li>
+</ul>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/58.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

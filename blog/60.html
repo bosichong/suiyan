@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（8）构建Blog首页
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-07 11:30:56
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ 07节我们基本上完成了Blog数据模型的后端构建，06节我们结合模板简单渲染了一个博客文章页，这样的话，你只需要在blog的模板中添加一些标签就可以扩展详情页的展示内容了。
+</p>
+<h2>
+ Blog首页的构建
+</h2>
+<p>
+ Blog首页我们这里定义一些展示内容：导航，搜索框，博客最新文章（10篇左右），博客分类及标签展示，站长简介等。这并不是完整的构建清单，你也可以根据自己的需要添加更多的更酷的功能。
+</p>
+<h2>
+ Blog导航
+</h2>
+<p>
+ 关于站点的导航，我这里有两种建议：
+</p>
+<ol>
+ <li>
+  直接在html中手动添加修改，可能有的同学说不方便，其实导航这东西固定后基本上很少修改，如果html熟练可以考虑这个方法。
+ </li>
+ <li>
+  在数据库添加一个导航表，表字段包括：
+  <code>
+   id,name,url
+  </code>
+  再添加一个排序的字段，这样你可以调用数据库读取数据后在模板中渲染出来，这种适合经常修改导航的同学。
+ </li>
+</ol>
+<h2>
+ 博客首页最新文章
+</h2>
+<p>
+ blog首页最新文章，这个和文章详情页有些相似，只不过首页渲染的是多篇文章页只是渲染一篇文章而已。
+好吧，我们回忆一下
+ <code>
+  Django
+ </code>
+ 实现步骤，先建立数据模型（已经搞定），再编写视图代码及设置路由，最后在模板里渲染。
+其实，一个简单的Blog只需要二个视图方法：bloglist,blog 分别代表blog列表和文章详情页。
+models中的代码之前编写过了，如果功能有扩展需要可以自己修改models。
+</p>
+<p>
+ list视图代码编写:
+</p>
+<pre><code>def bloglist(request):
+    #blog列表页
+    #返回所有日志列表，以创建时间排序。
+    articles = Article.objects.all().order_by('-create_time')
+
+    #把调用的数据传递给模板
+    return render(request, 'list.html', {'articles':articles,})
+</code></pre>
+<p>
+ 我们先创建一个
+ <code>
+  list.html
+ </code>
+ 模板,把
+ <code>
+  blog.html
+ </code>
+ 中的代码复制过去，我在此基础上修改即可。
+运行服务器后，我们访问
+ <code>
+  http://127.0.0.1:8000/blog/blog/1
+ </code>
+ 我们看blog页面上只显示了一篇文章，如果我们循环输出视图传过来的博客数据即可打印所有文章在当前页面。
+ <code>
+  list.html
+ </code>
+ 中我们只小小的修改一下代码，添加一个循环进去即可。
+</p>
+<p>
+ <code>
+  list.html
+ </code>
+ 代码：
+</p>
+<pre><code>{% for article in articles %}
+    &lt;article class="blog-main"&gt;
+        &lt;h3 class="am-article-title"&gt;
+        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+        &lt;/h3&gt;
+        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+
+        &lt;div class="am-g blog-content"&gt;
+        {{ article.content }}
+        &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;hr class="am-article-divider blog-hr"&gt;
+    {% endfor %}
+</code></pre>
+<p>
+ <code>
+  urls.py
+ </code>
+ 中添加一个路由：
+</p>
+<pre><code>url(r'^list$', v.list, name='list'),
+</code></pre>
+<p>
+ 最后测试之前，如果你还没有添加数据，建议添加10篇博客文章及博客类目
+然后我们访问：
+ <code>
+  http://127.0.0.1:8000/blog/list
+ </code>
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_42.png"/>
+</p>
+<p>
+ 看，博客首页的文章渲染出来了，但是我还想显示文章作者和所属于类目怎么办？
+我们只需要编辑修改
+ <code>
+  &lt;article&gt;
+ </code>
+ 中的代码即可，修改如下：
+</p>
+<pre><code> {% for article in articles %}
+    &lt;article class="blog-main"&gt;
+        &lt;h3 class="am-article-title"&gt;
+        &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
+        &lt;/h3&gt;
+        &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
+        &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
+        &lt;div class="am-g blog-content"&gt;
+        {{ article.article_synopsis }}
+        &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;hr class="am-article-divider blog-hr"&gt;
+{% endfor %}
+</code></pre>
+<p>
+ <code>
+  {{ article.user.nick_name }}
+ </code>
+ 是通过一对多关联进行搜索，返回user，然后再显示昵称。
+</p>
+<p>
+ 刷新页面查看，我们看到作者及分类都显示出来了，而且我们把详细内容更换成了日志简介显示。
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171207_43.png"/>
+</p>
+<p>
+ 至此首页上的文章列表显示出来了，你也可以通过此方法继续更新详情页上的内容展示，还可以更新右侧的分类展示及个人简介。
+分类及个人简介的代码这里我就不贴了，如果自己实在写不出，就下载源码看看。
+</p>
+<h2>
+ 本文源码下载：
+</h2>
+<ul>
+ <li>
+  <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   github
+  </a>
+ </li>
+ <li>
+  <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   开源中国码云镜像gitee
+  </a>
+ </li>
+</ul>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/60.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

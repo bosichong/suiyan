@@ -1,10 +1,10 @@
 {
-    "blog_name": "SuiYan",
+    "blog_name": "碎言博客",
     "blog_author": "J.sky",
     "blog_description": "You see see you , This one day day di.",
-    "meta_description": " 碎言静态Blog，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。",
-    "meta_keywords":"SuiYan,博客,blog,静态博客,安装,教程,搭建,部署",
-    "profile_image":"assets/images/touxiang.jpg",
+    "meta_description": " Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。",
+    "meta_keywords":"Python,Django,JavaScript,程序员,人生苦短,我用Python",
+    "profile_image":"/assets/images/touxiang.jpg",
     "blog_sns": [
         {
             "ico": "github",
@@ -31,23 +31,24 @@
         {
             "ico": "home",
             "text": "Blog Home",
-            "url": "index.html"
+            "url": "/index.html"
         },
         {
             "ico": "archive",
             "text": "Blog Archive",
-            "url": "archives.html"
+            "url": "/archives.html"
         },
         {
             "ico": "tags",
             "text": "Blog Tag",
-            "url": "tags.html"
+            "url": "/tags.html"
         },
         {
             "ico": "user",
             "text": "About Me",
-            "url": "p.html?p=aboutme"
+            "url": "/blog/aboutme.html"
         }
     ],
-    "blog_list":5
+    "blog_list":8,
+    "github":"https://github.com/Jsky2020/suiyan/blob/master/articles/"
 }

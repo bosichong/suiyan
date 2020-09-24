@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   Python面向对象编程（OOP）初探
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-29 15:27:35
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/09/44344855_33.jpeg"/>
+</p>
+<h2>
+ 面向对象编程
+</h2>
+<p>
+ 说起面向对象编程，除了那些晦涩抽象的定义，我脑海中印象比较深的就是那张王宝强的表情图：程序员？面向对象编程？哈哈哈没有对象你编毛程？
+</p>
+<h2>
+ 三大特征
+</h2>
+<p>
+ 学过java的同学应该非常的了解这三个特征：
+ <em>
+  封装、继承、多态
+ </em>
+ 在Python的世界中，一切都是对象，为什么要用面向对象模式来进行编程？因为这样更接近人类对自然的认识过程，更直观，如果对面向编程的理论不太了解，建议百度搜索相关知识了解一下。
+</p>
+<h2>
+ Python中的Class
+</h2>
+<p>
+ 在Python中定义一个Class是非常简单的，语方法如下：
+</p>
+<pre><code>Class classname(object):
+    pass
+</code></pre>
+<p>
+ 其中（object）是用来定义需要继承的父类，Python中，可以继承多个类，这个与java的单继承不同。
+</p>
+<pre><code class="python">def run():
+    print("我会跑！")
+
+class Animal(object):
+    k = 0#类属性
+    def __init__(self,name):#类构造器
+        self.name = name#实例的属性
+    #实例的方法
+    def say(self):
+        Animal.k += 1
+        print("{0}:我会呼吸！".format(self.name))
+        print("Animal.k={0}".format(Animal.k))
+
+a = Animal("aaaa")
+a.say()#执行实例的方法
+print("Animal.k:{0}".format(Animal.k))#打印类属性
+print(Animal.__init__)
+print(Animal.say)
+Animal.m = 1
+a.color = "red" #动态的添加属性
+a.run = run()#动态的添加属性
+print("我的颜色是=%s" % a.color)
+print("Animal.m=%s" % Animal.m)
+print("a.m=%s" % a.m)
+# print("Animal.a：%s" % Animal.a)  这里会抛出错误
+</code></pre>
+<p>
+ 上边的实例不难发现，在类中，包括
+ <code>
+  k
+ </code>
+ 类变量、
+ <code>
+  self.name
+ </code>
+ 实例变量、
+ <code>
+  say
+ </code>
+ 实例的方法，这些成员，都是类的的属性。
+Python中的实例对象可以动态的添加类变量及实例变量，只需要点一个
+ <code>
+  .
+ </code>
+ 这和Java不同（当然Java也可以通过反射aop切面方式动态为对象添加功能方法）。
+</p>
+<h2>
+ 构造器和self
+</h2>
+<p>
+ <code>
+  __init__(self)
+ </code>
+ 类中的这个特殊方法就是类的构造器，
+ <code>
+  self
+ </code>
+ 代表着这个类创建的对象。
+关于成员变量我们可以这样理解：对象和类说：
+ <code>
+  关于变量，你的就是我的，我的确只是我的。
+ </code>
+</p>
+<h2>
+ Python的继承
+</h2>
+<p>
+ Python中，类的继承很简单方便，看下下边的代码
+</p>
+<pre><code class="python">class Dog(Animal):
+    k = 999 #我们定义了一个与父类相同的类变量
+    def __init__(self,name):#同样定义了一个相同名称的实例变量
+        Animal.__init__(self,name)#注意这里没有:::::号
+
+    def say(self):
+        print(self.name+":我的叫声是：汪汪汪！")
+        print("Dog.k={0}".format(Dog.k)),
+
+dog = Dog("wangwang")
+dog.say()
+print("Animal.k:{0}".format(Animal.k))#打印父类属性
+print("Dog.k:{0}".format(Dog.k))#打印子类属性
+# dog.run #这个动态添加到父类创建的实例中的变量是无法继承过来的。 非得执行的话会报错。
+</code></pre>
+<p>
+ 通过上边的例子，我们可以看出，类继承后，实例的变量是可以继承的，通过调用父类的
+ <code>
+  __init__()
+ </code>
+ 方法来简化实例构造。
+但是父类的类属性是无法继承的，他们互相独立存在在内存中。
+ <code>
+  Dog
+ </code>
+ 类中的也有一个
+ <code>
+  say()
+ </code>
+ 的方法，象这样与父类拥有相同的方法名称而具有不相同的执行结果的行为叫做方法重写。
+</p>
+<h2>
+ 多态
+</h2>
+<p>
+ 我们在创建一个新类继承
+ <code>
+  Animal
+ </code>
+</p>
+<pre><code class="python">
+class Cat(Animal):
+    def __init__(self,name):
+        Animal.__init__(self,name)
+
+    def say(self):
+        print(self.name+":我的叫声是：喵喵喵")
+
+cat = Cat("Tom")
+cat.say()
+</code></pre>
+<p>
+ <code>
+  isinstance()
+ </code>
+ 函数，可以用来判断一个变量是否是某个类，我们测试一下
+</p>
+<pre><code>print(isinstance(cat,Cat))#True
+print(isinstance(cat,Animal))#True
+print(isinstance(a,Animal))#True
+print(isinstance(a,Cat))#False
+</code></pre>
+<p>
+ 很明显，动物的对象不能说成是猫，但猫的对象可以是猫类，说猫是动物类也没什么错误。也就是说，继承是从上到下。
+那多态是什么？我们还需要一个函数，然后来看看。
+</p>
+<pre><code class="python">def isay(animal):
+    animal.say()
+
+isay(a)#aaaa:我会呼吸！
+isay(dog)#wangwang:我的叫声是：汪汪汪！
+isay(cat)#Tom:我的叫声是：喵喵喵
+</code></pre>
+<p>
+ 通过
+ <code>
+  isay()
+ </code>
+ 方法的输出，我们多少对多态这个概念有那么一点了解了，回想当年学Java的多态的时候，和现在的情况大同小异乎？
+如果我们随便建一个类，包括
+ <code>
+  say()
+ </code>
+ 方法，然后用
+ <code>
+  isay()
+ </code>
+ 方法输出打印，会不会也是产生多态的效果呢？
+答案是：会的！在
+ <code>
+  Pyhong
+ </code>
+ 中，这就是动态语言的“鸭子类型”，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+然在
+ <code>
+  Java
+ </code>
+ 静态语言中，则会对父类进行检查，如果不是同一个父类，那么就会报错。
+</p>
+<p>
+ 好吧，有关Python类，对象相关先说到这里，希望大家国庆节快乐哦！
+</p>
+<h2>
+ 本文源码下载：
+</h2>
+<ul>
+ <li>
+  <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classtest.py">
+   github
+  </a>
+ </li>
+ <li>
+  <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classtest.py">
+   开源中国码云镜像gitee
+  </a>
+ </li>
+</ul>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/30.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

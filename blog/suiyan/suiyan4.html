@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   这是一个快速学习JavaScript的学习笔记4
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-12-24 13:53:19
+  </span>
+  <span class="tag">
+   jQuery
+  </span>
+ </div>
+ <h2>
+  jQuery 和 HTML DOM
+ </h2>
+ <p>
+  DOM 是 Document Object Model（文档对象模型）的缩写。
+ </p>
+ <p>
+  HTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法。
+换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。
+ </p>
+ <p>
+  jQuery 是一个 JavaScript 库。
+jQuery 极大地简化了 JavaScript 编程。
+ </p>
+ <div class="table-responsive">
+  <table class="table">
+   <thead class="">
+    <tr>
+     <th scope="col">
+      描述
+     </th>
+     <th scope="col">
+      JQuery
+     </th>
+     <th scope="col">
+      JavaScript
+     </th>
+     <td scope="col">
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      创建节点
+     </td>
+     <td>
+      $("&lt;div&gt;')
+     </td>
+     <td>
+      document.createElement("div“）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      选择元素
+     </td>
+     <td>
+      $(CSS选择器）
+     </td>
+     <td>
+      querySelector(CSS选择器）；
+      <br/>
+      document.querySelectorAll(CSS选择器）；
+      <br/>
+      getElementById();
+      <br/>
+      getElementsByTagName();
+      <br/>
+      getElementsByClassName();
+     </td>
+    </tr>
+    <tr>
+     <td>
+      更改元素CSS
+     </td>
+     <td>
+      修改单个CSS:$("p").css("backgroundColor", "red")
+      <br/>
+      修改多个CSS：
+      <br/>
+      $("p").css({
+      <br/>
+      "color":"white",
+      <br/>
+      "background-color":"#98bf21",
+      <br/>
+      "font-family":"Arial",
+      <br/>
+      "font-size":"20px",
+      <br/>
+      "padding":"5px"
+      <br/>
+      });
+     </td>
+     <td>
+      元素.style.backgroundColor="red"
+     </td>
+    </tr>
+    <tr>
+     <td>
+      更改元素属性
+     </td>
+     <td>
+      元素.prop("disabled",true);
+      <br/>
+      元素.attr("disabled",true);
+     </td>
+     <td>
+      元素.disabled=true;
+      <br/>
+      元素.setAttribute("disabled",true);
+     </td>
+    </tr>
+    <tr>
+     <td>
+      获取元素属性
+     </td>
+     <td>
+      元素.prop("disabled");
+      <br/>
+      元素.attr("disabled");
+     </td>
+     <td>
+      元素.getAttribute(”disabled")
+     </td>
+    </tr>
+    <tr>
+     <td>
+      标签里添加 HTML 标签或文本
+     </td>
+     <td>
+      元素.html("&lt;em&gt;target4&lt;/em&gt;")
+     </td>
+     <td>
+      元素.innerHTML="&lt;em&gt;target4&lt;/em&gt;"
+     </td>
+    </tr>
+    <tr>
+     <td>
+      标签里只改变文本而不增加标签
+     </td>
+     <td>
+      元素.text()
+     </td>
+     <td>
+      元素.innerText或者元素.textContent(不同浏览器不同方法）;
+      <br/>
+      元素.文本子元素.nodeValue
+     </td>
+    </tr>
+    <tr>
+     <td>
+      设置或返回表单字段的值
+     </td>
+     <td>
+      元素.val()
+     </td>
+     <td>
+      value
+     </td>
+    </tr>
+    <tr>
+     <td>
+      删除元素
+     </td>
+     <td>
+      元素自身.remove()
+     </td>
+     <td>
+      父元素.removeChild(子元素）；
+      <br/>
+      子元素.parentNode.removeChild(子元素）；
+     </td>
+    </tr>
+    <tr>
+     <td>
+      末尾增加元素
+     </td>
+     <td>
+      <p>
+       新元素.appendTo(父元素）
+      </p>
+      <p>
+       父元素.append(新元素）
+      </p>
+     </td>
+     <td>
+      父元素.appendChild(新元素）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      指定位置增加元素
+     </td>
+     <td>
+      父元素.insertBefore(插入元素,参照元素）
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      替换元素
+     </td>
+     <td>
+      父元素.replaceChild(插入元素,替换元素)
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      克隆元素
+     </td>
+     <td>
+      元素.clone();
+     </td>
+     <td>
+      元素.cloneNode(true):深克隆；
+      <br/>
+      元素.cloneNode(false):浅克隆；
+     </td>
+    </tr>
+    <tr>
+     <td>
+      父元素
+     </td>
+     <td>
+      元素.parent()
+     </td>
+     <td>
+      元素.parentNode
+     </td>
+    </tr>
+    <tr>
+     <td>
+      子元素
+     </td>
+     <td>
+      元素.children()
+      <br/>
+      元素.children("CSS选择器")
+     </td>
+     <td>
+      元素.childNodes（返回NodeList对象）
+      <br/>
+      元素.firstChild;
+      <br/>
+      元素.lastChild;
+     </td>
+    </tr>
+    <tr>
+     <td>
+      后代元素
+     </td>
+     <td>
+      元素.find("CSS选择器")
+      <br/>
+      示例:$('li.item-ii').find('li')，返回被选元素的后代元素，一路向下直到最后一个后代
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      兄弟元素
+     </td>
+     <td>
+      元素.next();
+      <br/>
+      元素.prev();
+     </td>
+     <td>
+      元素.nextSibling;
+      <br/>
+      元素.previousSibling;
+     </td>
+    </tr>
+    <tr>
+     <td>
+      伪类选择器选定子元素
+     </td>
+     <td>
+      $("button:nth-child(3)")
+      <br/>
+      选择属于其父元素的第3个子元素的每个&lt;button&gt; 元素。
+      <br/>
+      $(".target:odd")
+                选择奇数位置元素；
+      <br/>
+      $(".target:even") 选择偶数位置元素；
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      显示元素
+     </td>
+     <td>
+      元素.show()
+     </td>
+     <td>
+      元素.style.display=“block"
+     </td>
+    </tr>
+    <tr>
+     <td>
+      隐藏元素
+     </td>
+     <td>
+      元素.hide()
+     </td>
+     <td>
+      元素.style.display=“none"
+     </td>
+    </tr>
+    <tr>
+     <td>
+      页面资源全装载完成后触发
+     </td>
+     <td>
+      ${window}.on("load",function(){});
+     </td>
+     <td>
+      window.onload=function(){};
+     </td>
+    </tr>
+    <tr>
+     <td>
+      DOM加载完成后触发
+     </td>
+     <td>
+      ${document}.read(function(){});
+     </td>
+    </tr>
+    <tr>
+     <td>
+      对象定义
+     </td>
+     <td>
+      var $pin = $( "#main" );
+     </td>
+     <td>
+      var main=document.getElementById('main')
+     </td>
+    </tr>
+    <tr>
+     <td>
+      访问元素集合指定索引值
+     </td>
+     <td>
+      $('li').eq(2)  （第二个li元素）
+     </td>
+     <td>
+      nodeList[i]或nodeList.item(i)
+     </td>
+    </tr>
+    <tr>
+     <td>
+      集合中的第一个元素
+     </td>
+     <td>
+      .first()
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      集合中的最后一个元素
+     </td>
+     <td>
+      .last()
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      为数组每个匹配元素规定运行的函数
+     </td>
+     <td>
+      <p>
+       $(selector).each(function(index,value){})
+      </p>
+      <p>
+       $.each( object, function(index,value){})
+      </p>
+     </td>
+     <td>
+      for循环遍历执行
+     </td>
+    </tr>
+    <tr>
+     <td>
+      事件
+     </td>
+     <td>
+      元素.click（function(){...})
+     </td>
+     <td>
+      <p>
+       1、元素.onclick=function(){...}
+      </p>
+      <p>
+       2、元素.addClickListener('click',function(){...})
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      设置或返回元素的宽度（不包括内边距、边框或外边距）
+     </td>
+     <td>
+      width()
+     </td>
+     <td>
+      width
+     </td>
+    </tr>
+    <tr>
+     <td>
+      设置或返回元素的高度（不包括内边距、边框或外边距）
+     </td>
+     <td>
+      height()
+     </td>
+     <td>
+      height
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回元素的宽度（包括内边距）
+     </td>
+     <td>
+      innerWidth()
+     </td>
+     <td>
+      clientWidth
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回元素的高度（包括内边距）
+     </td>
+     <td>
+      innerHeight()
+     </td>
+     <td>
+      clientHeight
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回元素的宽度（包括内边距和边框）
+     </td>
+     <td>
+      outerWidth()
+     </td>
+     <td>
+      offsetWidth
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回元素的g高度（包括内边距和边框）
+     </td>
+     <td>
+      outerHeight()
+     </td>
+     <td>
+      offsetHeight
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回视口宽度/高度
+     </td>
+     <td>
+      $(window).width()/$(window).height()
+     </td>
+     <td>
+      内边距=0情况下的document.documentElement.clientWidth
+     </td>
+    </tr>
+    <tr>
+     <td>
+      返回文档宽度/高度
+     </td>
+     <td>
+      $(document).width()/$(document).height()
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      获取垂直滚动的距离
+     </td>
+     <td>
+      $(document).scrollTop()
+     </td>
+     <td>
+      document.documentElement.scrollTop
+     </td>
+    </tr>
+    <tr>
+     <td>
+      获取水平滚动的距离
+     </td>
+     <td>
+      $(document).scrollLeft()
+     </td>
+     <td>
+      document.documentElement.scrollLeft
+     </td>
+    </tr>
+    <tr>
+     <td>
+      被选元素相对于文档(document)的偏移坐标
+     </td>
+     <td>
+      <p>
+      </p>
+      <p>
+       offset().top,offset().left
+      </p>
+     </td>
+     <td>
+      offsetTop,offsetLeft(offsetParent是默认body时，或者是效果相当于body的定位元素时）
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <section class="blog-p text-center">
+  <div class="gitedit">
+   发现错误？想参与编辑？
+   <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/suiyan/suiyan4.md" target="_blank">
+    在 GitHub 上编辑此页！
+   </a>
+  </div>
+  <p class="qqqun">
+   如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+  </p>
+  <p class="qqqun">
+   Python/Javascript学习QQ群号：217840699
+  </p>
+ </section>
+ <div class="blog-article">
+ </div>
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

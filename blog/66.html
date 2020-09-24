@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（14）Django实现图片的上传和引用
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-14 14:18:15
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ 我们利用
+ <code>
+  Django
+ </code>
+ 搭建的博客虽然很简陋，但功能也算很全了（这里应该有一个偷笑的表情），很全吗？还不能在博客中上传及加入图片，
+这确实是一个很重要的功能，一个博客很多地方需要用到上传图片这个功能，比如博文中插入图片，头像，站点美化等，这节我们就用
+ <code>
+  Django
+ </code>
+ 实现一下图片上传。
+</p>
+<h2>
+ 安装Pillow
+</h2>
+<p>
+ 图片上传需要先安装Pillow模块支持
+ <code>
+  pip install Pillow
+ </code>
+</p>
+<h2>
+ Django搭建简易相册
+</h2>
+<p>
+ 如果博客中需要插入图片，当然还是存放在自己的域名下比较好，一来容易备份，也减少了网站中的外部链接，本次只是为博客搭建一个极其简单的小相册，
+如果各位大侠对功能上有更高级的需求，建议查阅相关资料扩展一下哈。
+</p>
+<h2>
+ 相册models编写
+</h2>
+<p>
+ 我们先来编写相册的数据模型，修改
+ <code>
+  myblog.models.py
+ </code>
+ ,添加如下代码：
+</p>
+<pre><code>class Blogimage(models.Model):
+    #博客相册
+    title = models.CharField(max_length=20, verbose_name='图片标题', default='')
+    path = models.ImageField(verbose_name='图片', upload_to='upload/%Y/%m', default='upload/default.jpg', max_length=100)
+
+    class Meta:
+        verbose_name = '网站相册'
+        verbose_name_plural = verbose_name
+
+    def __ser__(self):
+        return self.title
+</code></pre>
+<p>
+ 接下来修改配置
+ <code>
+  myblog.admin.py
+ </code>
+ 中的代码,这里的设置是用来在
+ <code>
+  admin
+ </code>
+ 后台显示图片：
+</p>
+<pre><code>class BlogimageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'image_url', 'image_data')
+    readonly_fields = ('image_url', 'image_data') #这里必须加上这行，表明为自定义的字段属性
+    # 通过两个函数返回自定义字段的数据
+    def image_url(self, obj):
+        #from django.utils.safestring import mark_safe
+        #mark_safe 是用来取消html转义。
+        return mark_safe('&lt;a href="%s"&gt;右键复制图片地址&lt;/a&gt;' % obj.path.url)
+    def image_data(self, obj):
+        return mark_safe('&lt;img src="%s" width="100px" /&gt;' % obj.path.url)
+
+    # 页面显示的字段名称
+    image_data.short_description = u'图片'
+    image_url.short_description = u'图片地址'
+
+admin.site.register(Blogimage,BlogimageAdmin)
+</code></pre>
+<p>
+ 然后再修改配置文件
+ <code>
+  settings.py
+ </code>
+ ,添加如下代码进行上传文件目录设置：
+</p>
+<pre><code>#设置上传文件目录
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+</code></pre>
+<p>
+ 最后再设置一个路由blog01.urls.py
+</p>
+<pre><code>#配置上传文件的访问处理函数
+# 引入from django.views.static import serve
+url(r'^media/(?P&lt;path&gt;.*)$',  serve, {"document_root":MEDIA_ROOT}, name='media'),
+</code></pre>
+<p>
+ 好了，我们在运行服务器前，在终端先更新创建数据表:
+</p>
+<pre><code>➜  blog01 git:(master) ✗ python3 manage.py makemigrations
+Migrations for 'myblog':
+myblog/migrations/0003_blogimage.py
+    - Create model Blogimage
+➜  blog01 git:(master) ✗ python3 manage.py migrate
+Operations to perform:
+Apply all migrations: admin, auth, contenttypes, myblog, sessions
+Running migrations:
+Applying myblog.0003_blogimage... OK
+</code></pre>
+<p>
+ 创建表后，运行服务器，登陆后台看下，发现有了网站相册这个后台管理，我们上传一张图片，然后编辑图片查看效果：
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_59.png"/>
+</p>
+<p>
+ 一个简单的相册就搭建成功了，右键复制图片地址，试一下是不是可以打开图片并预览，这样的话我就可以把图片插图到博文里了，
+当然你也可以继续扩展user表，添加头像功能，也可以扩展站点信息加入logo 个性图标等，就看你是如何设计的了。
+虽然我提供的方法很简单，但功能足够了，如果你想拥有更强大的后台，那就需要你自己去编写了，加油少年，我看好你！
+</p>
+<h2>
+ 本文源码下载：
+</h2>
+<ul>
+ <li>
+  <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   github
+  </a>
+ </li>
+ <li>
+  <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   开源中国码云镜像gitee
+  </a>
+ </li>
+</ul>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/66.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

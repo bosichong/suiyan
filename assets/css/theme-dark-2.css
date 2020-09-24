@@ -31,6 +31,9 @@ body {
   width: 28px;
   height: 28px;
 }
+.header #blog-nav #navigation .profile-section .social-list li a :hover {
+  color: red;
+}
 .header #blog-nav #navigation .profile-section .profile-image {
   width: 160px;
 }
@@ -39,6 +42,9 @@ body {
 }
 .header #blog-nav #navigation .blog-nav li a {
   color: #f1ede9;
+}
+.header #blog-nav #navigation .blog-nav li a :hover {
+  color: red;
 }
 .header #blog-nav #navigation .sform .search {
   background-color: #600;
@@ -65,6 +71,9 @@ body {
   color: #adadad;
 }
 .main-wrapper .blog-p .row a {
+  color: #f1ede9;
+}
+.main-wrapper .blog-p .qqqun {
   color: #f1ede9;
 }
 .main-wrapper .blog-p .btn {
@@ -109,7 +118,7 @@ body {
   background: #330f06;
 }
 .main-wrapper .blog-list a {
-  color: #600;
+  color: #f1ede9;
 }
 .main-wrapper .blog-list .item .more-link {
   color: #600;

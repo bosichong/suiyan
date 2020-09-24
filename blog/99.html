@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   Django学习笔记Django快速复习笔记
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-01-08 20:32:52
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ Django官方Tutorial学习笔记Django快速复习笔记
+</p>
+<p>
+ 最近打算继续深入学习Django，先把之前所学的复习一下，顺便做一个快速的总结，然后再继续深入学习。
+</p>
+<h2>
+ 安装与版本查询
+</h2>
+<pre><code>pip install Django
+</code></pre>
+<p>
+ 或者选择版本进行安装，当前最近版本为2.0
+</p>
+<pre><code>pip install Django==1.11.8
+</code></pre>
+<p>
+ 查看Django的版本
+</p>
+<pre><code>python -m django --version
+</code></pre>
+<h2>
+ 创建Django项目
+</h2>
+<p>
+ 首次创建
+</p>
+<pre><code>django-admin startproject mysite
+</code></pre>
+<p>
+ 创建子项目
+</p>
+<pre><code>python manage.py startapp polls
+</code></pre>
+<p>
+ 运行项目
+</p>
+<pre><code>python manage.py runserver
+</code></pre>
+<p>
+ 创建更改的文件
+</p>
+<pre><code>python manage.py makemigrations
+</code></pre>
+<p>
+ 构建或更改数据库
+</p>
+<pre><code>python manage.py migrate
+</code></pre>
+<p>
+ 数据模型更改
+</p>
+<pre><code>python manage.py makemigrations polls
+</code></pre>
+<p>
+ 查看数据模型更改
+</p>
+<pre><code>python manage.py sqlmigrate polls 0001
+</code></pre>
+<p>
+ 清空数据
+</p>
+<pre><code>python manage.py flush
+</code></pre>
+<p>
+ 终端调试命令
+</p>
+<p>
+ python manage.py shell
+</p>
+<h2>
+ Django admin 后台
+</h2>
+<p>
+ 创建管理员
+</p>
+<pre><code>python manage.py createsuperuser
+</code></pre>
+<h2>
+ Django 数据库SQL操作
+</h2>
+<p>
+ 在Django中使用原生Sql主要有以下几种方式:
+一：extra:结果集修改器，一种提供额外查询参数的机制
+二：raw:执行原始sql并返回模型实例
+三：直接执行自定义Sql
+(
+这种方式完全不依赖model,前两种还是要依赖于model
+)
+</p>
+<p>
+ 实例：
+使用extra:
+1:Book.objects.filter(publisher
+ <strong>
+  name='广东人员出版社').extra(where=['price&gt;50'])
+Book.objects.filter(publisher
+ </strong>
+ name='广东人员出版社',price__gt=50)
+</p>
+<p>
+ 2:Book.objects.extra(select={'count':'select count(*) from hello_Book'})
+</p>
+<p>
+ 使用raw:
+Book.objects.raw('select * from hello_Book')
+</p>
+<p>
+ 自定义sql:
+Book.objects.raw("insert into hello_author(name) values('测试')")
+rawQuerySet为惰性查询，只有在使用时生会真正执行
+</p>
+<p>
+ 执行自定义sql:
+from django.db import connection
+cursor=connection.cursor()
+</p>
+<h1>
+ 插入操作
+</h1>
+<p>
+ cursor.execute("insert into hello_author(name) values('郭敬明')")
+</p>
+<h1>
+ 更新操作
+</h1>
+<p>
+ cursor.execute('update hello_author set name='abc' where name='bcd'')
+</p>
+<h1>
+ 删除操作
+</h1>
+<p>
+ cursor.execute('delete from hello_author where name='abc'')
+</p>
+<h1>
+ 查询操作
+</h1>
+<p>
+ cursor.execute('select * from hello_author')
+raw=cursor.fetchone() #返回结果行游标直读向前，读取一条
+cursor.fetchall() #读取所有
+</p>
+<h2>
+ form 表单
+</h2>
+<p>
+ field 属性
+</p>
+<p>
+ {{ field.label }}   字段对应的label信息
+</p>
+<p>
+ {{ field.label_tag }}   自动生成字段的label标签，注意与{{ field.label }}的区别。
+</p>
+<p>
+ {{ field.id_for_label }}    自定义字段标签的id
+</p>
+<p>
+ {{ field.value }}   当前字段的值，比如一个Email字段的值someone@example.com
+</p>
+<p>
+ {{ field.html_name }}   指定字段生成的input标签中name属性的值
+</p>
+<p>
+ {{ field.help_text }}   字段的帮助信息
+</p>
+<p>
+ {{ field.errors }}  包含错误信息的元素
+</p>
+<p>
+ {{ field.is_hidden }}   用于判断当前字段是否为隐藏的字段，如果是，返回True
+</p>
+<p>
+ {{ field.field }}   返回字段的参数列表。例如{{ char_field.field.max_length }}
+</p>
+<p>
+ 未完待续
+</p>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/99.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

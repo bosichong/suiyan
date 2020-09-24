@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="data-list list-group">
+ <div class="blog-article">
+  <h1 class="title">
+   基于Django构建的小学生英文单词背写检测考试系统。
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-11-07 16:10:19
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <h1>
+  PyWordTest
+ </h1>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/3tai.jpg"/>
+ </p>
+ <h4>
+  介绍
+ </h4>
+ <p>
+  孩子的学习总是让父母担忧，英语学习也是让家长的头疼之事，做为程序员老爸不能整天忙于编程而忽视了孩子的教育，我们也要搞点事情。孩子英文单词到底背的怎么样了？别怕，用PyWordTest,创建题库，轻松搞定孩子的英语单词拼写情况。
+ </p>
+ <p>
+  <strong>
+   <em>
+    &gt; 本软件非英语单词学习软件，只是通过在线答题来检测孩子对单词拼写的掌握。
+   </em>
+  </strong>
+ </p>
+ <p>
+  软件通过在线考试，记录考试结果及每个单词的拼写对错情况，最后通过一些算法分析孩子对单词拼写熟练度。
+ </p>
+ <p>
+  通过易错单词了解孩子哪些单词没有掌握，通过自建题库加强孩子对生疏单词的反复练习，更多功能还在研发中。
+ </p>
+ <p>
+  程序截图：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/1.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/2.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/3.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/4.jpg"/>
+ </p>
+ <h4>
+  软件架构
+ </h4>
+ <p>
+  基于Django构建的小学生英文单词背写检测考试系统。
+ </p>
+ <p>
+  环境需求：
+python (3.6.1) 
+Django (2.2.7) 
+Pillow
+ </p>
+ <h4>
+  安装教程
+ </h4>
+ <p>
+  进入程序目录后，运行python3 manage.py runserver
+ </p>
+ <p>
+  后台管理地址http://127.0.0.1:8000/admin/
+ </p>
+ <p>
+  管理员登陆:
+ </p>
+ <p>
+  用户名：admin 密码：17python.com
+ </p>
+ <p>
+  前台地址http://127.0.0.1:8000/
+ </p>
+ <h4>
+  使用说明
+ </h4>
+ <p>
+  程序已经采集了近1000小学生常用单词，后台可以根据自己的需要进行添加题库进行测试。
+ </p>
+ <p>
+  建议新建一个帐号用来考试建题库使用。
+ </p>
+ <h4>
+  参与贡献
+ </h4>
+ <p>
+  非常欢迎有想法的程序员参与提交代码，程序还很不完善！希望大家多多参与！
+ </p>
+ <h2>
+  源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/WordTest">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/WordTest">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   PYBabyLog记录孩子成长过程的日记
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-09-29 00:15:30
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <h3>
+  前言
+ </h3>
+ <p>
+  岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
+ </p>
+ <p>
+  当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
+ </p>
+ <p>
+  做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
+ </p>
+ <p>
+  PYBabyLog的前身是
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+ </p>
+ <p>
+  是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
+ </p>
+ <h3>
+  PYBabyLog
+ </h3>
+ <p>
+  PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
+ </p>
+ <p>
+  采用Python+MySQL+argparse技术开发的全终端操作软件。
+ </p>
+ <p>
+  可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
+ </p>
+ <p>
+  本程序数据库和
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+  通用，可以用来展示数据。
+当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
+ </p>
+ <h3>
+  界面截图
+ </h3>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/09/Snip20190928_2.png"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/09/Snip20190928_3.png"/>
+ </p>
+ <h3>
+  安装方法
+ </h3>
+ <p>
+  1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
+  <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
+   数据库构建文件
+  </a>
+ </p>
+ <p>
+  2.修改
+  <code>
+   DbHelp.py
+  </code>
+  中的MySQL的连接配置项即可
+ </p>
+ <h3>
+  终端版操作命令简介
+ </h3>
+ <p>
+  <code>
+   整理中。。。。。
+x.py -h 就都出来了。
+  </code>
+ </p>
+ <h3>
+  写在结尾
+ </h3>
+ <p>
+  其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
+ </p>
+ <p>
+  若给各位大虾能提交些代码或是有好的建议，非常欢迎！
+ </p>
+ <h2>
+  程序源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PYBabyLog">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PYBabyLog">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   如何在Python程序中使用配置文件.ini(ConfigParser)
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-06-18 15:29:01
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  引言
+ </h2>
+ <p>
+  在
+  <code>
+   Python
+  </code>
+  程序的编写中，我们经常要为程序配置一个
+  <code>
+   配置文件
+  </code>
+  ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+那么如何为自己的
+  <code>
+   Python
+  </code>
+  应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
+ </p>
+ <p>
+  <strong>
+   本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
+  </strong>
+ </p>
+ <p>
+  相关链接：
+  <a href="http://www.17python.com/blog/14">
+   PythonINI配置文件读写的简单方法
+  </a>
+ </p>
+ <p>
+  本文重点讨论如何在程序中使用配置文件，
+  <code>
+   ConfigParser
+  </code>
+  类的具体使用，请参考上文。
+ </p>
+ <h2>
+  需求
+ </h2>
+ <p>
+  前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+具体需求如下：
+ </p>
+ <ol>
+  <li>
+   保存程序设置参数
+  </li>
+  <li>
+   功能使用配置文件的参数
+  </li>
+  <li>
+   组织以上功能封装成为一个类，方便以后功能的扩展。
+  </li>
+ </ol>
+ <h2>
+  分析
+ </h2>
+ <p>
+  先上一个配置文件的工作流程图
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/06/111.png"/>
+ </p>
+ <p>
+  通过流程图我们可以总结出配置文件类中需要的方法：
+ </p>
+ <ol>
+  <li>
+   创建(若ini文件不存在)及加载本地配置文件
+  </li>
+  <li>
+   程序加载配置项参数
+  </li>
+  <li>
+   修改参数的时候保存配置项到ini文件
+  </li>
+  <li>
+   整理配置项参数为程序功能所用。
+  </li>
+ </ol>
+ <h2>
+  构建APPconfig类
+ </h2>
+ <p>
+  首先导入必须的包：
+ </p>
+ <pre><code>import os
+from configparser import ConfigParser
+</code></pre>
+ <p>
+  然后确定ini配置文件的物理位置，这里可以引用
+  <code>
+   Django
+  </code>
+  配置文件加载的方法。
+ </p>
+ <pre><code>    #ini程序所在目录，也是当前程序的根目录
+   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+   #INI文件地址
+  INI_PATH = os.path.join(BASE_DIR, 'config.ini')
+</code></pre>
+ <h2>
+  创建INI文件
+ </h2>
+ <p>
+  若程序是首次启动，可以判断配置文件ini是否存在，
+  <strong>
+   若不存在可以创建一个带有默认数据参数的配置文件。
+  </strong>
+  为类添加一个方法
+  <code>
+   def create_ini(self)
+  </code>
+  ，此方法用来创建配置文件ini。
+当在类启动方法中创建了
+  <code>
+   ConfigParser
+  </code>
+  对象后，就可以利用这个对象来编辑修改配置文件了。
+ </p>
+ <h2>
+  加载及保存配置文件
+ </h2>
+ <p>
+  若文件存在，即可直接加载了。
+ </p>
+ <pre><code>    def readINI(self):
+        """ ini文件读取，返回一个INI配置对象
+         或是用来更新内存中的配置文件数据
+         """
+         self.c.read(self.INI_PATH, encoding='utf-8')
+</code></pre>
+ <p>
+  创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
+ </p>
+ <p>
+  有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
+ </p>
+ <pre><code>def saveINI(self):
+    '''保存或是更新ini文件'''
+    with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
+        self.c.write(ini)
+</code></pre>
+ <p>
+  这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
+ </p>
+ <h2>
+  修改并保存配置文件参数
+ </h2>
+ <p>
+  为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
+ </p>
+ <p>
+  范例：
+ </p>
+ <pre><code>def saveNumber(self,number):
+    '''保存口算题个数设置数据'''
+    self.c.set('config','number',number)
+    self.saveINI()
+</code></pre>
+ <h2>
+  读取参数
+ </h2>
+ <p>
+  当创建完
+  <code>
+   ConfigParser
+  </code>
+  对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
+  <a href="http://www.17python.com/blog/14">
+   PythonINI配置文件读写的简单方法
+  </a>
+  也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
+ </p>
+ <p>
+  有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   写在我的博客PV10万时：聊聊编程与画画
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-05-14 09:11:29
+  </span>
+  <span class="tag">
+   站长吐槽
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/Snip20190514_1.png"/>
+ </p>
+ <p>
+  转眼间我的
+  <code>
+   blog
+  </code>
+  PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此
+  <code>
+   blog
+  </code>
+  运行已有快二年了，没想到PV会达到10万。
+ </p>
+ <p>
+  回想学习
+  <code>
+   Python
+  </code>
+  大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。
+ </p>
+ <p>
+  贴几张近作，显吧一下吧
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg"/>
+ </p>
+ <p>
+  为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。
+ </p>
+ <p>
+  编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。
+  <strong>
+   有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣
+  </strong>
+  。
+ </p>
+ <p>
+  自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。
+ </p>
+ <p>
+  未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。
+ </p>
+ <p>
+  还有三年的时候
+  <code>
+   blog
+  </code>
+  PV达到百万（是不是有点飘了？），下半年继续更新
+  <code>
+   blog
+  </code>
+  ，继续学习
+  <code>
+   Python Django PYgame
+  </code>
+  等。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   Django学习笔记Django快速复习笔记
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-01-08 20:32:52
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  Django官方Tutorial学习笔记Django快速复习笔记
+ </p>
+ <p>
+  最近打算继续深入学习Django，先把之前所学的复习一下，顺便做一个快速的总结，然后再继续深入学习。
+ </p>
+ <h2>
+  安装与版本查询
+ </h2>
+ <pre><code>pip install Django
+</code></pre>
+ <p>
+  或者选择版本进行安装，当前最近版本为2.0
+ </p>
+ <pre><code>pip install Django==1.11.8
+</code></pre>
+ <p>
+  查看Django的版本
+ </p>
+ <pre><code>python -m django --version
+</code></pre>
+ <h2>
+  创建Django项目
+ </h2>
+ <p>
+  首次创建
+ </p>
+ <pre><code>django-admin startproject mysite
+</code></pre>
+ <p>
+  创建子项目
+ </p>
+ <pre><code>python manage.py startapp polls
+</code></pre>
+ <p>
+  运行项目
+ </p>
+ <pre><code>python manage.py runserver
+</code></pre>
+ <p>
+  创建更改的文件
+ </p>
+ <pre><code>python manage.py makemigrations
+</code></pre>
+ <p>
+  构建或更改数据库
+ </p>
+ <pre><code>python manage.py migrate
+</code></pre>
+ <p>
+  数据模型更改
+ </p>
+ <pre><code>python manage.py makemigrations polls
+</code></pre>
+ <p>
+  查看数据模型更改
+ </p>
+ <pre><code>python manage.py sqlmigrate polls 0001
+</code></pre>
+ <p>
+  清空数据
+ </p>
+ <pre><code>python manage.py flush
+</code></pre>
+ <p>
+  终端调试命令
+ </p>
+ <p>
+  python manage.py shell
+ </p>
+ <h2>
+  Django admin 后台
+ </h2>
+ <p>
+  创建管理员
+ </p>
+ <pre><code>python manage.py createsuperuser
+</code></pre>
+ <h2>
+  Django 数据库SQL操作
+ </h2>
+ <p>
+  在Django中使用原生Sql主要有以下几种方式:
+一：extra:结果集修改器，一种提供额外查询参数的机制
+二：raw:执行原始sql并返回模型实例
+三：直接执行自定义Sql
+(
+这种方式完全不依赖model,前两种还是要依赖于model
+)
+ </p>
+ <p>
+  实例：
+使用extra:
+1:Book.objects.filter(publisher
+  <strong>
+   name='广东人员出版社').extra(where=['price&gt;50'])
+Book.objects.filter(publisher
+  </strong>
+  name='广东人员出版社',price__gt=50)
+ </p>
+ <p>
+  2:Book.objects.extra(select={'count':'select count(*) from hello_Book'})
+ </p>
+ <p>
+  使用raw:
+Book.objects.raw('select * from hello_Book')
+ </p>
+ <p>
+  自定义sql:
+Book.objects.raw("insert into hello_author(name) values('测试')")
+rawQuerySet为惰性查询，只有在使用时生会真正执行
+ </p>
+ <p>
+  执行自定义sql:
+from django.db import connection
+cursor=connection.cursor()
+ </p>
+ <h1>
+  插入操作
+ </h1>
+ <p>
+  cursor.execute("insert into hello_author(name) values('郭敬明')")
+ </p>
+ <h1>
+  更新操作
+ </h1>
+ <p>
+  cursor.execute('update hello_author set name='abc' where name='bcd'')
+ </p>
+ <h1>
+  删除操作
+ </h1>
+ <p>
+  cursor.execute('delete from hello_author where name='abc'')
+ </p>
+ <h1>
+  查询操作
+ </h1>
+ <p>
+  cursor.execute('select * from hello_author')
+raw=cursor.fetchone() #返回结果行游标直读向前，读取一条
+cursor.fetchall() #读取所有
+ </p>
+ <h2>
+  form 表单
+ </h2>
+ <p>
+  field 属性
+ </p>
+ <p>
+  {{ field.label }}   字段对应的label信息
+ </p>
+ <p>
+  {{ field.label_tag }}   自动生成字段的label标签，注意与{{ field.label }}的区别。
+ </p>
+ <p>
+  {{ field.id_for_label }}    自定义字段标签的id
+ </p>
+ <p>
+  {{ field.value }}   当前字段的值，比如一个Email字段的值someone@example.com
+ </p>
+ <p>
+  {{ field.html_name }}   指定字段生成的input标签中name属性的值
+ </p>
+ <p>
+  {{ field.help_text }}   字段的帮助信息
+ </p>
+ <p>
+  {{ field.errors }}  包含错误信息的元素
+ </p>
+ <p>
+  {{ field.is_hidden }}   用于判断当前字段是否为隐藏的字段，如果是，返回True
+ </p>
+ <p>
+  {{ field.field }}   返回字段的参数列表。例如{{ char_field.field.max_length }}
+ </p>
+ <p>
+  未完待续
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   Django 数据翻页的优化
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-01-08 14:10:01
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  Django 数据翻页的优化
+ </h2>
+ <p>
+  之前利用Django搭建的博客，内容越写越多，导致翻页遗留下来的问题开始显现了，具体问题如下：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/01/Snip20190108_16.png"/>
+ </p>
+ <p>
+  我预想的效果是这样的
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/01/Snip20190108_17.png"/>
+ </p>
+ <h2>
+  Django翻页Paginator
+ </h2>
+ <p>
+  对于经常使用Django的朋友来说，翻页应该是家常便饭了，先导入相关包和模块
+ </p>
+ <pre><code>from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 翻页相关模块
+</code></pre>
+ <p>
+  关于
+  <code>
+   Paginator
+  </code>
+  具体使用请参考官方的文档介绍，其实很简单，复制过来就可以使用，这里不在重复阐述，我们这里要优化的是上边的结果。
+ </p>
+ <h2>
+  需求分析
+ </h2>
+ <p>
+  假设有几百条数据，分页也有几十页，通过
+  <code>
+   paginator.num_pages
+  </code>
+  这个属性可以返回一个list，包含了当前数据的所有分页列表书，类似下边的结果
+ </p>
+ <pre><code>[i for i in range(50)]
+</code></pre>
+ <p>
+  若是在视图中调用
+  <code>
+   paginator.num_pages
+  </code>
+  ，则会渲染出1-50所有的页码数字，这样来说，我们自己创建一个方法，改变页码显示的达到我们的预期需求即可。
+ </p>
+ <h2>
+  实现优化
+ </h2>
+ <p>
+  我们需要三个参数：当前页码(page)，显示页码的最大数(maxpage)，页码总数(num_pages)。
+ </p>
+ <p>
+  具体能出现的情况我都代码中注释了，当然这个优化并不是十分完美，希望大家多提意见！
+ </p>
+ <p>
+  我们来实现这个方法：
+ </p>
+ <pre><code>def pagesHelp(page,num_pages,maxpage):
+    '''
+    Paginator Django数据分页优化
+    使数据分页列表处显示规定的页数
+    :param page: 当前页码
+    :param num_pages: 总页数
+    :param maxpage: 列表处最多显示的页数
+    :return:
+    '''
+
+    if page is None:#首页时page=None
+        p=1
+    else:
+        p = int(page)
+    # print(num_pages,p,maxpage)
+    offset = num_pages-p
+    if num_pages &gt; maxpage and offset &lt;= maxpage and p&gt;= maxpage:
+        #假设100页 100-98=2,页尾处理
+        # 结果小于规定数但是当前页大于规定页数
+        # print("结果小于规定数但是当前页大于规定页数",[i + 1 for i in range(num_pages - maxpage, num_pages)])
+        return [i + 1 for i in range(num_pages - maxpage, num_pages)]
+
+    elif num_pages &gt; maxpage and offset &gt;= maxpage and p &lt;= maxpage:
+        #假设100页 100-2=98，页头
+        # 结果小于规定数但是当前页大于规定页数
+        # print("结果小于规定数但是当前页大于规定页数",[i + 1 for i in range(maxpage)])
+        return [i + 1 for i in range(maxpage)]
+
+    elif num_pages &lt;= maxpage:
+        #假设3页  3&lt;6，总页数很少，少于规定页数
+        # 当前页码数小于规定数
+        # print("当前页码数小于规定数",[i + 1 for i in range(num_pages)])
+        return [i + 1 for i in range(num_pages)]
+    else:
+        # 正常页数分配
+        # print("正常页数分配",[i + 1 for i in range(p - int(maxpage / 2), p + int(maxpage / 2))])
+        return [i + 1 for i in range(p - int(maxpage / 2), p + int(maxpage / 2))]
+</code></pre>
+ <p>
+  这样，我们设置一个变量，然后传递到模板那里，替换掉
+  <code>
+   {% for p in contacts.paginator.page_range %}
+  </code>
+  处中的
+  <code>
+   contacts.paginator.page_range
+  </code>
+  就可以以实现Django翻页的优化了。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   wxPython编程学习笔记(10)wx.FileDialog文件选择框
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-01-05 14:41:02
+  </span>
+  <span class="tag">
+   Python GUI
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/01/Snip20190105_13.png"/>
+ </p>
+ <h2>
+  wx.FileDialog文件选择框
+ </h2>
+ <p>
+  'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。
+ </p>
+ <h2>
+  创建
+ </h2>
+ <pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
+dlg.GetPath()#返回文件地址字符串
+</code></pre>
+ <p>
+  其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。
+ </p>
+ <p>
+  我做了一个测试，代码下边跑跑看吧，希望能帮助到你。
+ </p>
+ <pre><code>import wx
+import os
+import time
+
+class MyFrame(wx.Frame):
+    def __init__(self, *args, **kwds):
+
+        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
+        wx.Frame.__init__(self, *args, **kwds)
+        self.SetSize((400, 300))
+        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.button_1 = wx.Button(self, wx.ID_ANY, u"选择文件")
+        self.text_ctrl_2 = wx.TextCtrl(self, wx.ID_ANY, "")
+
+        self.__set_properties()
+        self.__do_layout()
+
+
+    def __set_properties(self):
+
+        self.SetTitle("frame")
+        self.button_1.Bind(wx.EVT_BUTTON,self.onButton_1)
+
+    def __do_layout(self):
+
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(self.text_ctrl_1, 1, wx.ALL, 0)
+        sizer_2.Add(self.button_1, 0, 0, 0)
+        sizer_1.Add(sizer_2, 0, wx.ALL | wx.EXPAND, 0)
+        sizer_3.Add(self.text_ctrl_2, 1, wx.ALL | wx.EXPAND, 0)
+        sizer_1.Add(sizer_3, 1, wx.ALL | wx.EXPAND, 0)
+        self.SetSizer(sizer_1)
+        self.Layout()
+
+    def onButton_1(self,e):
+        print("按钮事件")
+        dlg = wx.FileDialog(self, message="选择一个文件", defaultDir=os.getcwd(), style=wx.FD_OPEN)
+        ret = dlg.ShowModal()
+        if ret == wx.ID_OK:
+            print(dlg.GetPath())  # 文件地址
+            self.text_ctrl_1.SetValue(dlg.GetPath())
+
+            fp = os.path.join(dlg.GetPath())  # 组装文件地址
+            ###输出到弹出信息窗口的字符拼装。
+            retstr = str(self.get_FileSize(fp)) + "\n" + self.get_FileAccessTime(fp) + "\n" + self.get_FileCreateTime(
+                fp) + "\n" + self.get_FileModifyTime(fp)
+            self.text_ctrl_2.SetValue(retstr)
+
+        dlg.Destroy()
+
+
+    # 把时间戳转化为时间: 1479264792 to 2016-11-16 10:53:12
+    def TimeStampToTime(self, timestamp):
+        timeStruct = time.localtime(timestamp)
+        return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
+
+    # 获取文件的大小,结果保留两位小数，单位为MB
+    def get_FileSize(self, filePath):
+        fsize = os.path.getsize(filePath)
+        return fsize
+
+    # 获取文件的访问时间
+    def get_FileAccessTime(self, filePath):
+        t = os.path.getatime(filePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的创建时间
+    def get_FileCreateTime(self, ilePath):
+        t = os.path.getctime(ilePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的修改时间
+    def get_FileModifyTime(self, filePath):
+        t = os.path.getmtime(filePath)
+        return self.TimeStampToTime(t)
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(None, wx.ID_ANY, "")
+        self.SetTopWindow(self.frame)
+        self.frame.Show()
+        return True
+
+
+if __name__ == "__main__":
+    app = MyApp(0)
+    app.MainLoop()
+</code></pre>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   wxPython编程学习笔记(09)wx.Python Menu 菜单
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-01-03 18:08:40
+  </span>
+  <span class="tag">
+   Python GUI
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/01/Snip20190103_12.png"/>
+ </p>
+ <h2>
+  Menu 菜单
+ </h2>
+ <p>
+  菜单是程序经常用到的小部件，我们来看看如何创建。
+ </p>
+ <pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
+    self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+    self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+    self.fileMenu.Append(self.new)#添加菜单项
+</code></pre>
+ <p>
+  以上这几个操作就可以创建一个菜单及菜单项了
+ </p>
+ <h2>
+  wxPython 右键菜单
+ </h2>
+ <p>
+  创建方法，可以先创建一个菜单类
+  <code>
+   class MyPopupMenu(wx.Menu)
+  </code>
+  然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：
+  <code>
+   self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+  </code>
+  然后事件函数中生成这个菜单
+  <code>
+   self.PopupMenu(MyPopupMenu(self), e.GetPosition())
+  </code>
+  这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试
+ </p>
+ <pre><code>import wx
+
+class MyPopupMenu(wx.Menu):
+
+    def __init__(self, parent):
+        super(MyPopupMenu, self).__init__()
+
+        self.parent = parent
+
+        mmi = wx.MenuItem(self, wx.NewId(), 'Minimize')
+        self.Append(mmi)
+        self.Bind(wx.EVT_MENU, self.OnMinimize, mmi)
+
+        cmi = wx.MenuItem(self, wx.NewId(), 'Close')
+        self.Append(cmi)
+        self.Bind(wx.EVT_MENU, self.OnClose, cmi)
+
+
+    def OnMinimize(self, e):
+        self.parent.Iconize()
+
+    def OnClose(self, e):
+        self.parent.Close()
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+        self.menubar = wx.MenuBar()#创建一个程序菜单
+        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+        self.fileMenu.Append(self.new)#添加菜单项
+
+        self.editMenu = wx.Menu()
+        self.copyItem = wx.MenuItem(self.editMenu, 100, text="copy", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.copyItem)
+        self.cutItem = wx.MenuItem(self.editMenu, 101, text="cut", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.cutItem)
+        self.pasteItem = wx.MenuItem(self.editMenu, 102, text="paste", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.pasteItem)
+
+        self.fileMenu.Append(22, "Edit", self.editMenu)
+        self.fileMenu.AppendSeparator()
+        self.fileMenu.AppendSeparator()#分隔线
+        self.qmi = wx.MenuItem(self.fileMenu, 1, '&amp;Quit\tCtrl+Q')
+        self.fileMenu.Append(self.qmi)
+
+        self.Bind(wx.EVT_MENU, self.OnQuit, id=1)
+
+        self.menubar.Append(self.fileMenu, '&amp;File')
+        self.SetMenuBar(self.menubar)
+
+        self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+    def OnRightDown(self, e):
+        self.PopupMenu(MyPopupMenu(self), e.GetPosition())
+
+    def OnQuit(self, e):
+        self.Close()
+
+def main():
+    app = wx.App(False)
+    frm = HelloFrame(None, title='wx.MenuBar 菜单',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
+</code></pre>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="spage">
+  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+   <a href="/list/list_2.html">
+    <button class="prev btn btn-primary" type="button">
+     Previous
+    </button>
+   </a>
+   <button class="page btn btn-primary" type="button">
+    3 / 17
+   </button>
+   <a href="/list/list_4.html">
+    <button class="next btn btn-primary" type="button">
+     Next
+    </button>
+   </a>
+  </div>
+ </div>
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/index.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

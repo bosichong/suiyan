@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   碎言博客碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="/assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="/assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="/assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="/assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="/index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="/blog/aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+     <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+      <img alt="【采购季】上云仅¥223/3年" class="img-fluid" src="/assets/images/ad/320X100.jpg"/>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+<div class="container-fluid" id="rt">
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-11 10:59:44
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+</div>
+<p>
+ 上节我们通过博客的模板继承及上下文沉浸器大大简化了模板的代码量，这节我们继续实现分类页及搜索结果页的展示。
+</p>
+<h2>
+ 缩短网址
+</h2>
+<p>
+ 之后我们访问博客地址是
+ <code>
+  http://127.0.0.1:8000/blog/home
+ </code>
+ ，如果我们想直接访问地址也就是域名后直接打开博客首页怎么办？
+</p>
+<p>
+ 首先修改'blog01.urls.py'中的代码：
+</p>
+<pre><code>url(r'^', include('myblog.urls',namespace='')),#修改为直接为域名根目录，缩短网址。
+</code></pre>
+<p>
+ 去掉
+ <code>
+  r'^blog'
+ </code>
+ 中的
+ <code>
+  blog
+ </code>
+ ,
+</p>
+<p>
+ 再修改'myblog.urls.py'中的代码：
+注释掉
+ <code>
+  # url(r'^list$', v.list, name='list'),
+ </code>
+ 修改为
+ <code>
+  url(r'^$', v.list, name=''),#项目首页
+ </code>
+</p>
+<p>
+ 运行服务器，直接访问：
+ <code>
+  http://127.0.0.1:8000
+ </code>
+ ，这时直接打开的是博客列表页展示的首页。
+</p>
+<h2>
+ Django实现博客分类页展示
+</h2>
+<p>
+ 首页展示的是所有文章页，我想点击分类显示为分类下边的相关文章，这个如何实现？
+首先我们看下点击分类后，url的格式
+ <code>
+  http://127.0.0.1:8000/?c=2
+ </code>
+ 这个分类页的连接中包括一个典型的get参数，
+我们可以在视图中获得这个参数2,然后再搜索所有分类
+ <code>
+  id=2
+ </code>
+ 的文章，然后返回给模板即可展示出来结果了。
+</p>
+<p>
+ 编写视图文件的代码
+</p>
+<pre><code>c = request.GET.get('c', '')
+if c:
+    #搜索分类ID为c的所有文章，如果分类id为空，这里就返回所有文章。
+    articles = articles.filter(category=c,).order_by('-create_time')
+</code></pre>
+<p>
+ 这里的变量c，通过
+ <code>
+  request.GET.get('c', '')
+ </code>
+ 获取页面上的C的
+ <code>
+  key
+ </code>
+ ，
+ <code>
+  request.GET['c']
+ </code>
+ 也可以访问，但不安全。
+然后通过
+ <code>
+  Django
+ </code>
+ 中提供数据过滤
+ <code>
+  .filter
+ </code>
+ 搜索出相关的文章，然后排序后返回给模板，模板那边的代码都不用修改即可正常显示。
+好了，我们访问
+ <code>
+  http://127.0.0.1:8000/?c=2
+ </code>
+ 所有分类
+ <code>
+  id=2
+ </code>
+ 文章就搜索出来了。
+</p>
+<h2>
+ 搜索结果页面
+</h2>
+<p>
+ 在当前的页面上边有个搜索框，这是一个搜索的入口，我们希望用户通过这个搜索框进行一些模糊搜索，比如根据关键字搜索标题或正文中是否包含关键字，然后返回搜索结果展示。
+说到搜索，其实首先想到的是应该对这个搜索关键字做一些限制，比如长度，还有就是安全sql注入等。
+我们的搜索结果url地址
+ <code>
+  http://127.0.0.1:8000/?s=Python
+ </code>
+ ，应该是这个相似。
+这里我们采用django提供的一个表单框架来实现当前的搜索功能，接下来开始编写代码。
+</p>
+<p>
+ 创建myblog.forms.py:
+</p>
+<pre><code>#coding=utf-8
+from django import forms
+
+class Searchform(forms.Form):
+    #搜索表单定义
+    s = forms.CharField(max_length=20)
+</code></pre>
+<p>
+ 就这点代码，定义了一个表单。
+</p>
+<p>
+ 在视图
+ <code>
+  myblog.views.py
+ </code>
+ 中使用,先引用
+</p>
+<pre><code>from .forms import Searchform
+</code></pre>
+<p>
+ 然后编写代码
+</p>
+<pre><code>s = ''#搜索关键字
+#以下判断表单是否验证成功，如果验证成功返回一个字符串s
+if request.method == 'GET':
+    form = Searchform(request.GET)
+    if form.is_valid():
+        s = request.GET.get('s')
+if s :
+    articles = articles.filter(Q(title__contains=s)|Q(content__contains=s)).order_by('-create_time')
+</code></pre>
+<p>
+ 这里有个Q函数记得引用一下
+ <code>
+  from django.db.models import Q#模糊查询多个字段使用
+ </code>
+ ,这个Q函数是关键字查询中经常使用到的，详细了解请百度。
+</p>
+<p>
+ 然后模板里修改一下模板
+ <code>
+  base.html
+ </code>
+ 中搜索框的代码：
+</p>
+<pre><code>&lt;form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right"  action="{% url '' %}"&gt;
+  &lt;div class="am-form-group"&gt;
+    &lt;input type="text" class="am-form-field am-input-sm" placeholder="搜索文章" name="s"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="am-btn am-btn-default am-btn-sm"&gt;搜索&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>
+ <code>
+  {% url '' %}
+ </code>
+ 这是模板中的标签，Django中提供了很多模板标签，如果需要详细了解可以查看官方的文档。
+</p>
+<p>
+ 好了，我们刷新首页，然后在搜索框里输入:10 就会搜索标题有含有10的文章了，
+</p>
+<p>
+ <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171211_46.png"/>
+</p>
+<p>
+ 到此我们的分类页及搜索结果页面的功能就实现了。
+如果在修改中发现了错误，可以复制留言中的错误回复，站长看到会帮助解答的。另外可以查看源文件核对，看看自己哪里改的不对，也能发现错误。
+</p>
+<h2>
+ 本文源码下载：
+</h2>
+<ul>
+ <li>
+  <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+   github
+  </a>
+ </li>
+ <li>
+  <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+   开源中国码云镜像gitee
+  </a>
+ </li>
+</ul>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/master/articles/63.md" target="_blank">
+   在 GitHub 上编辑此页！
+  </a>
+ </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
+</div>
+   </section>
+   <script src="/assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | by J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="/assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="/assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="/assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>
