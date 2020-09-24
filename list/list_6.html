@@ -135,764 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-16 10:25:21
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/111.gif"/>
- </p>
- <h2>
-  Matrix的构思
- </h2>
- <p>
-  我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
-Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。
- </p>
- <h2>
-  Matrix代码编写调试过程
- </h2>
- <p>
-  刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
-当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。
- </p>
- <pre><code>c = random.randint(33, 127)
-chr(c)
-</code></pre>
- <p>
-  对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
- </p>
- <h2>
-  让Matrix动起来
- </h2>
- <p>
-  场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
-add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。
- </p>
- <h2>
-  Matrix代码缩写总结
- </h2>
- <p>
-  感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180116_2.png"/>
- </p>
- <p>
-  本文源码下载
- </p>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-13 16:00:40
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
-如果你感兴趣， Follow me, please.
- </p>
- <p>
-  无图无真相，先上图：
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180113_31.png"/>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180113_32.png"/>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180113_33.png"/>
- </p>
- <h2>
-  Tetromino游戏构思
- </h2>
- <p>
-  很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
- </p>
- <p>
-  Tetromino如果我们从逻辑上拆分，我这里能想到三点：
- </p>
- <ul>
-  <li>
-   一个长方形的场景
-  </li>
-  <li>
-   下落的方块
-  </li>
-  <li>
-   游戏中的逻辑
-  </li>
- </ul>
- <p>
-  当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
-游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？
- </p>
- <p>
-  <strong>
-   友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
-  </strong>
- </p>
- <h2>
-  Tetromino中的游戏板
- </h2>
- <p>
-  Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
-首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
-其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
-设置Tetromino类中的self.start = True，这样方便调试游戏。
- </p>
- <h2>
-  绘制board游戏板
- </h2>
- <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
-</code></pre>
- <p>
-  通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
-在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
-有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。
- </p>
- <h2>
-  下落的方块
- </h2>
- <p>
-  下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
-具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
-Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
-这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。
- </p>
- <h2>
-  游戏中的逻辑
- </h2>
- <p>
-  这个游戏的核心逻辑个人觉得就是：
-  <strong>
-   判断当前下落方块所处的位置是否合法
-  </strong>
-  ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
-我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
-一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
-就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
-伪代码：
- </p>
- <pre><code>    for a in range(w):
-        for b in range(h):
-            if (shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 2) or (
-                    shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 1):
-                return 0
-    return 1
-</code></pre>
- <p>
-  原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
-有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
-实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！
- </p>
- <h2>
-  本文源码下载
- </h2>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
-本例源文件：
-  <code>
-   PY_RPG.Tetromino.py
-  </code>
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   极速学习C++之基础篇
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-11 09:07:47
-  </span>
-  <span class="tag">
-   C/C++
-  </span>
- </div>
- <p>
- </p>
- <p>
-  极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
-假设你和笔者有相同的经历，曾经接触过php java js python，并且和每个语言有过一段还不算太短的"恋情"，那么我开始极速极速学习C++。
- </p>
- <h2>
-  万年不变的HelloWorld
- </h2>
- <p>
-  C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
-打开CLion,new一个C++ Project，输入以下代码：
- </p>
- <h1>
-  include "iostream"
- </h1>
- <pre><code>using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World!" &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
- <p>
-  好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。
- </p>
- <h2>
-  常量变量及运算
- </h2>
- <p>
-  常量定义的二种方法：
- </p>
- <pre><code>#define COOL 18
-const int COOLA = 19;
-cout &lt;&lt; "COOL : " &lt;&lt; COOL &lt;&lt; "  COOLA : " &lt;&lt; COOLA &lt;&lt; endl;
-</code></pre>
- <p>
-  这样就可以打印常量了。
- </p>
- <p>
-  定义变量和运算符也是如此简单上手：
- </p>
- <pre><code>int a,b,c;
-float d = 23.99;
-double e = 1.9876;
-char s[] = "hellp";
-string str = "world";
-a = 10,b=21,c=43;
-</code></pre>
- <p>
-  cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;
- </p>
- <p>
-  当然运算符远远不指这些，还有很多，具体可以查阅相关资料。
- </p>
- <h2>
-  条件与循环
- </h2>
- <p>
-  条件判断：
- </p>
- <pre><code>int a = 10;
-int b = 20;
-if(a &lt; b){
-    cout &lt;&lt; "a &lt; b" &lt;&lt;endl;
-}
-</code></pre>
- <p>
-  循环输出九九乘法口决：
- </p>
- <pre><code>for (int i = 1; i &lt; 10; ++i) {
-    for (int j = 1; j &lt;= i; ++j) {
-        cout &lt;&lt; j &lt;&lt; "*" &lt;&lt; i &lt;&lt; "=" &lt;&lt; i * j &lt;&lt; "   ";
-    }
-    cout &lt;&lt; endl;
-}
-</code></pre>
- <h2>
-  函数声明及使用
- </h2>
- <p>
-  要使用一个函数，需要先在源文件的顶部声明：
- </p>
- <pre><code>int add (int a,intb)
-</code></pre>
- <p>
-  然后再源文件中编写代码：
- </p>
- <pre><code>int add(int a, int b) {
-    return a + b;
-}
-</code></pre>
- <p>
-  然后就可以调用了：
- </p>
- <pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
-</code></pre>
- <h2>
-  C++中的指针
- </h2>
- <pre><code>int var = 9;
-int *ip = &amp;var;
-
-cout &lt;&lt; "ip " &lt;&lt; ip &lt;&lt; endl;
-cout &lt;&lt; "*ip " &lt;&lt; *ip &lt;&lt; endl;
-</code></pre>
- <p>
-  是不是理解了？一个输出内存的地址，一个输出地址中的值。
- </p>
- <h2>
-  结构体与枚举
- </h2>
- <p>
-  结构体与类很相似，结构体是C中的数据结构。
-枚举用起来很方便，有枚举常量和枚举变量，注意区分。
- </p>
- <pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-struct Books {
-    char title[20];
-    char author[50];
-    int book_id;
-//    结构体中的函数
-    void prt(){
-        printf("book_id:%d",book_id);
-    }
-};
-
-//定义枚举常量
-enum Direction{up,left,down,right};
-
-int main() {
-
-    Books book1;
-    book1 = {"booka","ba",1};
-    cout &lt;&lt; "book1.title:" &lt;&lt; book1.title &lt;&lt; endl;
-    printf("sdfsdfsdf %s \n",book1.author);
-    book1.prt();
-    cout &lt;&lt; endl
-//打印枚举
-    printf("up:%d down:%d",up,down);
-
-    return 0;
-}
-</code></pre>
- <p>
-  基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   妙用IPython学习Python--IPython快速上手
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-07 10:16:11
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在学习Python的时候，有时我们只是想了解一下模块或是函数，或是测试一些小小代码片段，或是在shell中结合Python一起使用，有没有简便的工具或方法呢？有的，你可以试试IPython.
- </p>
- <h2>
-  IPython的安装
- </h2>
- <pre><code>pip3 install ipython
-</code></pre>
- <p>
-  然后，在终端中输入
-  <code>
-   ipython
-  </code>
-  验证一下
- </p>
- <pre><code>➜  ~ ipython
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)
-Type 'copyright', 'credits' or 'license' for more information
-IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:
-</code></pre>
- <p>
-  如果出现以上提示，即是安装成功
- </p>
- <h2>
-  IPython的用处
- </h2>
- <p>
-  IPython的使用妙法很多，这里我只介绍一些超级常用的方法，如有不足，欢迎回复本博文进行补充。
- </p>
- <ul>
-  <li>
-   代码提示
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180107_19.png"/>
- </p>
- <ul>
-  <li>
-   问号？妙用
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180107_20.png"/>
- </p>
- <p>
-  这样可以直接查看到对象的一些属性介绍。
- </p>
- <ul>
-  <li>
-   直接使用shell命令
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180107_21.png"/>
- </p>
- <p>
-  这个是不是很方便有没有？
- </p>
- <p>
-  IPython确实是Python学习中的好帮手，在熟悉某些模块的时候，用IPythong先来探个明白是个不错的方法。
- </p>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.cnblogs.com/zzhzhao/p/5295476.html">
-    IPython使用学习笔记
-   </a>
-  </li>
-  <li>
-   <a href="https://www.zhihu.com/question/51467397?from=profile_question_card">
-    使用IPython有哪些好处？
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   “编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-05 09:41:22
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180105_16.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180105_17.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180105_18.png"/>
- </p>
- <h2>
-  GreedSnake贪食蛇设计思路
- </h2>
- <p>
-  游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
-这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180104_13.png"/>
- </p>
- <p>
-  除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：
- </p>
- <ul>
-  <li>
-   游戏的背景渲染
-  </li>
-  <li>
-   蛇的运动
-  </li>
-  <li>
-   食物的生成
-  </li>
-  <li>
-   游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？
-  </li>
- </ul>
- <p>
-  当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用
-  <code>
-   PY_RPG+pygame
-  </code>
-  来实现这个简单的小游戏吧。
- </p>
- <h2>
-  游戏背景渲染
- </h2>
- <p>
-  分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
-对于
-  <code>
-   GreedSnake
-  </code>
-  来说，我们需要有一组是浅色网格组成的背景，
-对于游戏背景，我单独创建了一个class
-  <code>
-   GameBackground
-  </code>
-  ,背景绘制的核心逻辑代码如下：
- </p>
- <pre><code>self.screen.fill((221, 221, 221))
-for i in range(0, 10):
-    for j in range(0,10):
-         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
-</code></pre>
- <p>
-  在场景中创建对象后，进行渲染，效果如下：
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180104_12.png"/>
- </p>
- <h2>
-  绘制蛇并让它动起来
- </h2>
- <p>
-  默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
-这样我们在游戏场景中创建一个list用来表示蛇的身体：
- </p>
- <pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
-for i in range(0,4):
-    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
-</code></pre>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180104_14.png"/>
- </p>
- <p>
-  蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:
- </p>
- <pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
-    for i in range(0, 5):
-        if i == 0:
-            color = RED
-        else:
-            color = BLACK
-        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
-</code></pre>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180104_15.png"/>
- </p>
- <p>
-  这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
-关于蛇的移动逻辑：
- </p>
- <ul>
-  <li>
-   蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在
-   <code>
-    GreedSnake.update()
-   </code>
-   中，我们通过判断来更新蛇的位置。
-  </li>
-  <li>
-   <code>
-    GreedSnake.handle_event()
-   </code>
-   中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向
-  </li>
- </ul>
- <p>
-  具体代码就不贴了，可以参考源文件代码。
- </p>
- <h2>
-  生成食物与吃掉食物。
- </h2>
- <p>
-  关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。
- </p>
- <h2>
-  游戏结束
- </h2>
- <p>
-  游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。
- </p>
- <h2>
-  游戏暂停
- </h2>
- <p>
-  在游戏场景类中加入了一个
-  <code>
-   pause
-  </code>
-  的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在
-  <code>
-   update
-  </code>
-  中控制整个游戏的更新，这样就可以达到控制游戏暂停了。
- </p>
- <h2>
-  总结
- </h2>
- <p>
-  教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。
- </p>
- <h2>
-  本文源码下载
- </h2>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：
-  <code>
-   PY_RPG.GreedSnake.py
-  </code>
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   2018 新年快乐！希望在coding中找到自己的快乐与希望
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-01 17:40:57
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  转眼间时光匆匆流过，稀里糊涂的又过去了一年，大约2017年6月时我开始了博客的搭建与设计，8月份上线运营维护，这期间又草草聊聊的写了71篇技术相关的博文。。。这一深一浅的一路走来，希望自己在编程的路上走得更坚实更努力一些！
- </p>
- <h2>
-  编程之路
- </h2>
- <p>
-  断断续续的自学编程有10年多了，其中有苦有乐，成绩自我评价也就是接近及格那种。期间接触过好多种编程语言，就像打游戏一样，要把所有的职业都玩一遍，每个职业都练了几个月最后都放弃了，其中拿捏时间比较长的有：
-  <code>
-   php js java
-  </code>
-  和现在正在深度学习的
-  <code>
-   Python
-  </code>
-  。其实一开始学习
-  <code>
-   Coding
-  </code>
-  的时候也是没有什么目标的，只是有一次在论坛做版主的时候被安排了一个任务，任务中需要用到
-  <code>
-   html+css
-  </code>
-  排版，然后自己就去百度搜索了一下相关知识，然后就一发不可收拾的迷上了编码。虽然最开始的时候学的是易语言，而且竟然学用了近二年之久，最后才因为某种原因不得不放弃它。之后就是各种语言职业的轮番试玩了。。。一直到14年左右，才开始稳定到java，16年弃坑
-  <code>
-   java
-  </code>
-  转而
-  <code>
-   Python
-  </code>
-  。
- </p>
- <h2>
-  2018的书单
- </h2>
- <p>
-  今年有一些目标和计划，除了努力工作之外，还是要继续学习
-  <code>
-   Python
-  </code>
-  ，然后继续学习一门新的编程语言，感觉这门语言非
-  <code>
-   C++
-  </code>
-  莫属了，天下武功（编码）少林正宗（C++）。
-然后计划读30本书，其中10本编程专业书籍，20本兴趣书籍。写50篇或更多的专业博文，用来记录自己的学习历程，巩固学习进度，加深学习印象。
- </p>
- <h2>
-  编程计划
- </h2>
- <p>
-  计划写一个学习
-  <code>
-   Python
-  </code>
-  编程的RPG游戏及开发一个
-  <code>
-   Django
-  </code>
-  开源blog。我会为此而努力。2018，新的一年，希望大家更加努力，早日实现自己的梦想。
-最后，我告诉你：
-  <strong>
-   相信我，多读书，不会错的。
-  </strong>
- </p>
- <div class="blog-article">
-  <h1 class="title">
    “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏
   </h1>
   <span class="author">
@@ -1185,6 +427,821 @@ app.run() #游戏开始
   </li>
   <li>
    <a href="https://gitee.com/J_Sky/My_pygame/">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-24 19:21:04
+  </span>
+  <span class="tag">
+   Python GUI
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171224_4.png"/>
+ </p>
+ <p>
+  python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。
+ </p>
+ <h2>
+  tkinter.filedialog的测试
+ </h2>
+ <p>
+  创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
+测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：
+ </p>
+ <pre><code>'askdirectory',
+'askopenfile',
+'askopenfilename',
+'askopenfilenames',
+'askopenfiles',
+'asksaveasfile',
+'asksaveasfilename'
+</code></pre>
+ <p>
+  以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。
+ </p>
+ <p>
+  好了，具体测试源码如下：
+ </p>
+ <p>
+  '''
+ </p>
+ <pre><code>import tkinter.filedialog as filedialog
+from tkinter import *
+import os
+
+def filedir():
+    print('按键已被点击')
+    v.set('')#清空文本框里内容
+    var.set((('')))
+    path = filedialog.askdirectory()
+    print(dir(filedialog))
+    if path :
+        v.set(path)
+    getdir(path)
+
+def getdir(p):
+    #把目录中遍历出来的文件目录显示到列表框中
+    fp = os.listdir(p)
+    var.set(fp)
+
+root = Tk()
+root.title('文件目录选择对话框测试')
+frame = Frame(root)
+frame.pack(fill=X,side=TOP)
+#加入一个文本框显示目录地址
+v = StringVar()#绑定文本框的变量
+ent = Entry(frame, width=50,textvariable = v).pack(fill=X,side=LEFT)
+#加入一个按键，点击后弹出文件目录选择对话框
+button = Button(frame, text='选择文件夹', command=filedir).pack(fill=X,side= LEFT)
+#加入一个列表框，显示目录中的文件列表
+listframe = Frame(root)
+listframe.pack(fill=X,side=LEFT)
+var = StringVar()#绑定listbox的列表值
+var.set((''))
+listbox = Listbox(listframe,width=60,listvariable = var).pack()
+root.mainloop()
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <ul>
+  <li>
+   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+    可爱的 Python：Python 中的 TK编程
+   </a>
+  </li>
+  <li>
+   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+    An Introduction To Tkinter
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python生成器yield应用实例——监控日志
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-22 09:19:40
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <code>
+   Python
+  </code>
+  生成器
+  <code>
+   yield
+  </code>
+  是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。
+ </p>
+ <h2>
+  需要分析
+ </h2>
+ <p>
+  假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：
+  <code>
+   2017-12-21 14:07:26.471691 99123
+  </code>
+  数据被写入日志。
+  <strong>
+   我们的目的是分析日志中的数字如果大于5000就要打印出来。
+  </strong>
+  这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。
+ </p>
+ <h2>
+  模拟日志写入
+ </h2>
+ <p>
+  <code>
+   server_log.py:
+  </code>
+ </p>
+ <pre><code>import random
+from datetime import *
+import os
+import time
+
+
+def server_log():
+    # 生成模拟的日志数据
+    server_int = random.randint(1,99999)#生成需要的随机数
+    server_date = datetime.now()#获取当前系统时间
+    return str(server_date) + ' ' + str(server_int)#拼装日志字符串
+
+
+while True:
+    #模拟系统写入日志
+    #打开日志文件并写入日志
+    with open(os.path.join(os.path.dirname(__file__),'server_log.log'),'at') as f :
+        s = server_log()
+        print(s)
+        f.write(s + '\n')
+    time.sleep(1)
+</code></pre>
+ <p>
+  上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。
+ </p>
+ <h2>
+  利用生成器yield解析日志
+ </h2>
+ <p>
+  生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂
+ </p>
+ <p>
+  <code>
+   tail.py
+  </code>
+  代码如下：
+ </p>
+ <pre><code>import time
+
+def tail(f):
+    f.seek(0,2)#移动到文件尾部。
+    while True:
+        line = f.readline()
+        if not line :
+            time.sleep(1)
+            continue
+        yield line
+
+def grep(lines):
+    for l in lines:
+        k = int(l.split()[2])
+        if k &gt;50000:
+            yield l
+
+serverlog = tail(open('server_log.log'))
+lines = grep(serverlog)
+
+for line in lines:
+    print(line)
+</code></pre>
+ <p>
+  我们运行两个文件看下效果：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif"/>
+ </p>
+ <p>
+  代码虽然简单，但值得细细品味，感受python的简约与强大吧。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/deftest">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   这是一个快速学习JavaScript的学习笔记1
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-21 10:54:19
+  </span>
+  <span class="tag">
+   JavaScript
+  </span>
+ </div>
+ <h2>
+  JavaScript的代码写在哪里？
+ </h2>
+ <p>
+  <code>
+   JavaScript
+  </code>
+  变量名区分大小写。
+ </p>
+ <p>
+  <code>
+   ;
+  </code>
+  用来分隔语句，如果语句是一行的情况下，可以省略（有些情况下是不行的）。
+ </p>
+ <p>
+  <code>
+   HTML
+  </code>
+  代码中嵌入
+  <code>
+   &lt;script&gt;  &lt;/script&gt;
+  </code>
+ </p>
+ <p>
+  外部引用：
+  <code>
+   &lt;script src="./js/main.js"&gt;&lt;/script&gt;
+  </code>
+  ，放在
+  <code>
+   &lt;head&gt;
+  </code>
+  或
+  <code>
+   &lt;body&gt;
+  </code>
+  标签内。
+ </p>
+ <h2>
+  <p id="m1">
+   语法结构
+  </p>
+ </h2>
+ <h3>
+  注释
+ </h3>
+ <p>
+  ```JavaScript
+// 单行注释
+ </p>
+ <p>
+  /
+  <em>
+  </em>
+  这是一段注释
+*/
+ </p>
+ <p>
+  /
+  <em>
+   这也是一段注释
+  </em>
+  /
+```
+ </p>
+ <h3>
+  数据类型
+ </h3>
+ <p>
+  包括数值，字符串，布尔和对象(object)，还有两个特殊类型如下：
+ </p>
+ <p>
+  ```JavaScript
+ </p>
+ <p>
+  null //空
+undefined //未定义变量
+ </p>
+ <p>
+  ```
+ </p>
+ <p>
+  JavaScript变量是无类型的，可以被赋予任何类型的值。
+ </p>
+ <h3>
+  数字
+ </h3>
+ <p>
+  ```
+11
+10090
+ </p>
+ <p>
+  0Xff//十六进制
+ </p>
+ <p>
+  3.14
+1.11e23
+ </p>
+ <p>
+  ```
+ </p>
+ <h3>
+  算术运算
+ </h3>
+ <p>
+  ```
+ </p>
+ <p>
+  1+2
+8-4
+2*5
+7/4
+9%2 //取余数
+ </p>
+ <p>
+  i++
+j--
+ </p>
+ <p>
+  ```
+ </p>
+ <h3>
+  文本字符串
+ </h3>
+ <p>
+  ```
+JavaScript是一种面向对象的语言\ //（\）可以换行
+// 也可以用 \n 换行。
+ </p>
+ <p>
+  var s = "hello world"+"你好 世界"
+s.length //字符串长度
+```
+ </p>
+ <p>
+  字符串可以用""或'',当在HTML中编写JavaScript的时候，可以使用其中的一种来确认引号的风格。用
+  <code>
+   \
+  </code>
+  来转义一些特殊字符。
+ </p>
+ <h3>
+  布尔值
+ </h3>
+ <p>
+  <code>
+   true flase
+  </code>
+ </p>
+ <h3>
+  <p id="m2">
+   声明变量、常量
+  </p>
+ </h3>
+ <p>
+  ```
+var a;
+var b ,c;
+var d=1,f=77,g='abc';
+var kk;//如果变量没有指定初始值，它的初始值就是undefined
+ </p>
+ <p>
+  var glo = 44; //全局变量不可删除
+glo1 = 22; //可以删除的全局变量。
+delete glo1;//删除
+ </p>
+ <p>
+  //见 test.html test.js
+const NB998 = 'nb998';
+document.querySelector('.aa').textContent = NB998;
+ </p>
+ <p>
+  ```
+ </p>
+ <h3>
+  eval()
+ </h3>
+ <p>
+  出于JavaScript安全，不建议使用
+  <code>
+   eval()
+  </code>
+ </p>
+ <p>
+  ```
+eval("4+8") // 12
+ </p>
+ <p>
+  ```
+ </p>
+ <h3>
+  三元运算符
+ </h3>
+ <p>
+  ?左边是布尔条件，右边是可选择的结果,用
+  <code>
+   :
+  </code>
+  分隔开。
+ </p>
+ <p>
+  ```
+var x = -8;
+alert(x &gt; 0 ? x : -x) //求x的绝对值 结果为8
+ </p>
+ <p>
+  ```
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   这是一个快速学习JavaScript的学习笔记0
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-12-20 10:53:19
+  </span>
+  <span class="tag">
+   JavaScript
+  </span>
+ </div>
+ <h2>
+  <span id="m1">
+   JavaScript 是脚本语言
+  </span>
+ </h2>
+ <p>
+  JavaScript 是一种轻量级的编程语言.
+JavaScript 是可插入 HTML 页面的编程代码。
+JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。
+JavaScript 很容易学习。
+ </p>
+ <h2>
+  <span id="m2">
+   JavaScript开发环境
+  </span>
+ </h2>
+ <p>
+  以前我在网上看到一些初级编程的教程，经常有人写到：新手敲代码要用记事本手打，这样学习印象深刻！
+用记事本敲代码真的能是人印象深刻？但是我想愉快的学习不可以吗？答案当然是True了。
+个人目前认为最好用的JavaScript IDE 就是：Visual Studio Code，简称VS code
+ </p>
+ <p>
+  <img alt="" src="assets/images/Snip20191207_2.png"/>
+ </p>
+ <h2>
+  <span id="m3">
+   推荐一些VS code的JS相关插件
+  </span>
+ </h2>
+ <p>
+  <img alt="" src="assets/images/Snip20191207_3.png"/>
+ </p>
+ <p>
+  插件的一些功能基本为：代码美化，HTML JavaScript代码片段及提示
+其中Live Server 是一个实时简易web服务器，用来预览HTML和JS很方便了，浏览器推荐Firefox'
+ </p>
+ <p>
+  <img alt="" src="assets/images/Snip20191207_4.png"/>
+ </p>
+ <p>
+  好了，有了这些好工具，我们可以开始愉快的学习JavaScript了！'
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   听说存储数据Python与SQLite3更配哦！
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-11-16 17:34:15
+  </span>
+  <span class="tag">
+   数据库
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  曾经以为数据库自己一定需要大的，好的，功能多的，处理数据快的，迸发牛的，现在想想就象上小学时时常想：以后考大学是北大还是清华呢？后来才发现自己真特么多虑了。
+如果你只是个人或是小型的应用，我这里隆重的推荐给你SQLite这个迷你型的数据库。
+ </p>
+ <h2>
+  SQLite
+ </h2>
+ <p>
+  SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite 是在世界上最广泛部署的 SQL 数据库引擎。SQLite 源代码不受版权限制。
+是不是很兴奋？没有其它数据库的安装配置繁琐步骤，没有占用你吃紧的内存，最重要的是功能一样大而全而且免费不要钱。
+ </p>
+ <h2>
+  SQLite安装
+ </h2>
+ <p>
+  几乎所有版本的 Linux 操作系统都附带 SQLite，所以win党们请自行在官网上下载安装即可。
+ </p>
+ <pre><code>➜  ~ sqlite3 
+SQLite version 3.8.10.2 2015-05-20 18:17:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite&gt;
+</code></pre>
+ <p>
+  通过终端输入sqlite3即可验证数据库是否安装成功！
+ </p>
+ <h2>
+  python中使用sqlite3
+ </h2>
+ <p>
+  通过Python结合sqlite3实现一个简单的个人备忘录，简单了解一下在Python中是如何操作数据库的。
+在Python中操作sqlite很简单，引入sqlite3模块，就可以开始进行数据库的编程之旅了。
+ </p>
+ <h2>
+  创建数据库
+ </h2>
+ <pre><code>import sqlite3#引入模块
+import os
+from datetime import *
+print(os.path.join(os.path.dirname(__file__), 'memorandum.db'))
+conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'memorandum.db'))#在当目录下创建数据库
+print('备忘录数据库创建成功！')
+</code></pre>
+ <h2>
+  创建表及字段
+ </h2>
+ <p>
+  cursor()将创建一个cursor对象，将在Python数据库编程中用到。
+cursor.execute()将处理操作与数据库相关的几乎所有命令。
+ </p>
+ <pre><code>c = conn.cursor()#创建一个cursor对象
+# 创建表
+c.execute('''create table tab(
+    id integer not null primary key autoincrement,
+    title char(50),
+    content text not null,
+    c_date text);''')
+print('数据表创建成功！')
+conn.commit()#提交事务
+conn.close()#关闭连接
+</code></pre>
+ <p>
+  通过以上代码就可以在数据库中创建一个表了，如果你不太习惯在代码中创建表，你可以使用DBeaver,操作简单方便人性化，是编写数据库命令，查看数据库表结构，备份数据之良品。
+有了数据表，我们就可以对表进行增删改查了。
+sqlite中的sql语句和大部分数据库操作语名是相同的，如果你有过其它数据库操作的基础，那么使用sqlite就会非常简单了
+ </p>
+ <h2>
+  插入数据
+ </h2>
+ <pre><code>title = '测试标题'
+content = '插入数据测试。'
+format = "%Y-%m-%d %H:%M:%S"
+now = datetime.now().strftime(format)#创建当前时间字符串
+sql = "insert into tab (id,title, content, c_date) values (NULL,'{0}','{1}','{2}')".format(title,content,now)
+print(sql)
+c.execute(sql)
+conn.commit()
+conn.close()#关闭连接
+</code></pre>
+ <h2>
+  批量插入数据
+ </h2>
+ <p>
+  python往sqlite3插入数据的sql语句支持'?'占位符，这样我们很方便的可以批量插入数据。
+ </p>
+ <pre><code># 准备10000条数据插入
+for i in range(10000):
+    format = "%Y-%m-%d %H:%M:%S"
+    now = datetime.now().strftime(format)#创建当前时间字符串
+    c.execute('insert into tab (id,title, content, c_date) values(?,?,?,?)',(None,str(i),str(i),now))
+conn.commit()#提交事务
+conn.close()
+</code></pre>
+ <h2>
+  删除数据
+ </h2>
+ <pre><code>sql = "delete from tab where id = 2"#拼装sql语句
+c.execute(sql)#执行删除
+conn.commit()
+conn.close()
+</code></pre>
+ <p>
+  执行上边的代码，发现id为2的数据已经被删除。
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_11.png"/>
+ </p>
+ <h2>
+  更新数据
+ </h2>
+ <pre><code>sql = "update tab set title='Boy' where id = 20004"
+c.execute(sql)
+conn.commit()
+conn.close()
+</code></pre>
+ <h2>
+  查询数据
+ </h2>
+ <pre><code>sql = "select * from tab"
+l = c.execute(sql)
+for s in l :
+    print(s)
+conn.close
+</code></pre>
+ <p>
+  运行代码后可以看到终端输出：
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_12.png"/>
+ </p>
+ <p>
+  其它查询只是sql语句的不同，这里暂时不再测试了，有兴趣的可以查阅sql编程相关资料。
+综合来说，
+  <code>
+   python
+  </code>
+  与
+  <code>
+   sqlite3
+  </code>
+  联合使用真是很方便，是数据采集入库处理查询必备哇。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/sqlite3">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/sqlite3">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   如何快速的复习学习过的Python
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-11-07 16:19:22
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的
+  <code>
+   python
+  </code>
+  呢？
+ </p>
+ <h2>
+  语法/变量/表达式
+ </h2>
+ <p>
+  也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。
+ </p>
+ <h2>
+  九九乘法表
+ </h2>
+ <p>
+  快速复习
+  <code>
+   for
+  </code>
+  及
+  <code>
+   print format
+  </code>
+  等函数的用法。
+ </p>
+ <pre><code>for i in range(1,10):
+    for j in range(1,i+1):
+        print("{}X{}={}".format(i,j,i*j), end=' ')
+    print()
+</code></pre>
+ <h2>
+  一摞
+  <code>
+   Python
+  </code>
+  风格的纸牌
+ </h2>
+ <p>
+  在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
+Python3 扑克牌
+  <code>
+   collections.namedtuple
+  </code>
+  这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色
+ </p>
+ <pre><code>import collections
+from random import choice
+Card = collections.namedtuple('Card',['rank','suit'])
+#创建一副扑克牌的类
+class Cards:
+    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
+    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
+
+    def __init__(self):
+        '''创建一副扑克牌'''
+        self._cards = [Card(rank,suit) for suit in self.suits
+                                       for rank in self.ranks] + ['King','Queen']
+    def __len__(self):
+        return len(self._cards)
+    def __getitem__(self,position):
+        return self._cards[position]
+
+deck = Cards()#创建一副扑克牌
+print(len(deck))#打印有多少张
+#打印所有纸牌
+for i in range(len(deck)):
+    print(deck[i])
+print(choice(deck))#随机抽取一张纸牌
+</code></pre>
+ <p>
+  我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子
+ </p>
+ <h2>
+  简单的复利计算
+ </h2>
+ <pre><code>p = 10000 #初始金额
+rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
+days = 100
+
+day = 1
+while day &lt;= days :
+    p = p * (1+rate)#复利，余额宝是每天的利滚利
+    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
+    day += 1
+</code></pre>
+ <p>
+  通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">
     开源中国码云镜像gitee
    </a>
   </li>
