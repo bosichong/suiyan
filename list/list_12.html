@@ -135,811 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   Python TK和Tkinter的GUI编程(3) 列表框 Listbox
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-23 13:40:35
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  listbox 列表框
- </h2>
- <p>
-  列表框的日常使用的场景：
- </p>
- <ul>
-  <li>
-   获取列表项中的内容lb.curselection()
-  </li>
-  <li>
-   selectmode=tk.EXTENDED 这个属性设置listbox可以选择多个选项
-  </li>
-  <li>
-   添加列表项 lb.insert(tk.END,v.get()) END代表最后一个位置，第二个参数是要添加的字符串值。
-  </li>
-  <li>
-   删除列表中选中的项 command = lambda lb=lb:lb.delete(tk.ANCHOR)
-  </li>
-  <li>
-   lb.bind() 用来绑定列表的事件，比如删除列表中选中的项。
-  </li>
- </ul>
- <h2>
-  源码
- </h2>
- <p>
-  <img alt="效果展示" src="![输入图片说明](/assets/images/media/upload/2017/09/QQ20170923-134123.png"/>
- </p>
- <pre><code class="python">import tkinter as tk
-root = tk.Tk()
-root.title("Listbox 测试。")
-# 存放list的容器
-list_frame = tk.Frame(root)
-list_frame.pack(fill=tk.X, side=tk.TOP)
-#存放按钮文本框的容器
-button_frame = tk.Frame(root)
-button_frame.pack(fill=tk.X, side=tk.TOP)
-# 获取当前listbox中item值，并在控制台打印值
-def print_item(event):
-    items = lb.curselection()
-    for k in items:
-        print(lb.get(k))
-var = tk.StringVar()#绑定listbox的列表值
-var.set(('aa','bb','cc','dd','ee'))
-lb = tk.Listbox(list_frame, listvariable = var, selectmode=tk.EXTENDED)#创建一个listbox
-lb.bind('<buttonrelease-1>',print_item)#绑定鼠标左键点击事件。
-lb.pack(fill=tk.X)
-# 添加listbox item的方法
-def additem():
-    lb.insert(tk.END,v.get())
-    v.set('')
-v = tk.StringVar()#绑定文本框的变量
-en = tk.Entry(button_frame, textvariable = v).pack()
-b1 = tk.Button(button_frame, text="添加", command=additem).pack(side=tk.LEFT)#添加一个item
-b2 = tk.Button(button_frame, text="删除", command= lambda lb=lb:lb.delete(tk.ANCHOR)).pack(side=tk.LEFT)#删除一个listbox中选中的item
-root.mainloop()
-</buttonrelease-1></code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-    可爱的 Python：Python 中的 TK编程
-   </a>
-  </li>
-  <li>
-   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-    An Introduction To Tkinter
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(2)菜单Menu
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-22 11:02:33
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Menu
- </h2>
- <p>
-  菜单的创建是很简单的，先创建一个顶层的菜单加入顶层窗口root中，然后分别创建二级菜单就可以了。
-几个比较重要的方法函数：
- </p>
- <ul>
-  <li>
-   tkinter.Menu(root) 创建顶层菜单，root是你的顶层窗口。
-  </li>
-  <li>
-   root.config(menu=menu) 然后加入顶层窗口
-  </li>
-  <li>
-   menu.add_cascade() 添加二级菜单，label设置二级菜单名称，menu设置二级菜单对象。
-  </li>
-  <li>
-   filemenu.add_command() 添加一个普通的菜单项，label设置显示字符串，command设置回调函数
-  </li>
-  <li>
-   关于右键菜单的实现，可以参考源码中的注释处。
-  </li>
- </ul>
- <p>
-  还有很多功能，建议参考一下文档了了解，以上几个功能一般简单应用可以应付了。
- </p>
- <h2>
-  参考源码
- </h2>
- <p>
-  <img alt="效果展示" src="![输入图片说明](/assets/images/media/upload/2017/09/Snip20170922_3.png"/>
- </p>
- <pre><code class="python">import tkinter #导入支持库
-def callback():
-    """一个简单的回调测试"""
-    print ("called the callback!")
-
-root = tkinter.Tk()#创建一个root窗口
-root.title('我只是一个测试的窗口')#设置窗口标题
-root.geometry('500x300+300+300')#设置窗口的大小及位置
-
-# 创建菜单
-menu = tkinter.Menu(root)#顶层菜单
-root.config(menu=menu)#加入窗口
-filemenu = tkinter.Menu(menu)#创建二级菜单File
-menu.add_cascade(label="File", menu=filemenu)#加入menu
-# 创建二级菜单下的功能键
-filemenu.add_command(label="New", command=callback)#按钮
-filemenu.add_command(label="Open...", command=callback)
-filemenu.add_checkbutton(label="checkbutton",)#选择框，选中后会画一个对号。
-filemenu.add_separator()#分隔线
-filemenu.add_radiobutton(label="radiobutton",)#一旦勾选，无法取消
-filemenu.add_separator()#分隔线
-filemenu.add_command(label="Exit", command=callback)
-
-helpmenu = tkinter.Menu(menu)
-menu.add_cascade(label="Help", menu=helpmenu)
-helpmenu.add_command(label="About...", command=callback)
-
-#####实现右键弹出菜单####
-def popup(event):
-    menu.post(event.x_root, event.y_root)
-root.bind("<button-2>", popup)
-root.mainloop() 
-</button-2></code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-    可爱的 Python：Python 中的 TK编程
-   </a>
-  </li>
-  <li>
-   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-    An Introduction To Tkinter
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-22 09:10:27
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <code>
-   Python
-  </code>
-  编程中有时我们需要一些可视化的操作，如果功能相对很简单，可以使用
-  <code>
-   Python
-  </code>
-  内置的GUI模块：
-  <code>
-   tkinter
-  </code>
-  这个模块所提供的功能及部件不是很多，如果你用过java，和Swing、AWT相比，tk的所提供的确实是要少很多了。但是如果只是简单的显示或是数据展示，基本上还是够用的。
- </p>
- <h2>
-  tk的组件不是很多，包括以下：
- </h2>
- <ul>
-  <li>
-   Button    按钮控件；在程序中显示按钮。
-  </li>
-  <li>
-   Canvas    画布控件；显示图形元素如线条或文本
-  </li>
-  <li>
-   Checkbutton   多选框控件；用于在程序中提供多项选择框
-  </li>
-  <li>
-   Entry 输入控件；用于显示简单的文本内容
-  </li>
-  <li>
-   Frame 框架控件；在屏幕上显示一个矩形区域，多用来作为容器
-  </li>
-  <li>
-   Label 标签控件；可以显示文本和位图
-  </li>
-  <li>
-   Listbox   列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户
-  </li>
-  <li>
-   Menubutton    菜单按钮控件，由于显示菜单项。
-  </li>
-  <li>
-   Menu  菜单控件；显示菜单栏,下拉菜单和弹出菜单
-  </li>
-  <li>
-   Message   消息控件；用来显示多行文本，与label比较类似
-  </li>
-  <li>
-   Radiobutton   单选按钮控件；显示一个单选的按钮状态
-  </li>
-  <li>
-   Scale 范围控件；显示一个数值刻度，为输出限定范围的数字区间
-  </li>
-  <li>
-   Scrollbar 滚动条控件，当内容超过可视化区域时使用，如列表框。.
-  </li>
-  <li>
-   Text  文本控件；用于显示多行文本
-  </li>
-  <li>
-   Toplevel  容器控件；用来提供一个单独的对话框，和Frame比较类似
-  </li>
-  <li>
-   Spinbox   输入控件；与Entry类似，但是可以指定输入范围值
-  </li>
-  <li>
-   PanedWindow   PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。
-  </li>
-  <li>
-   LabelFrame    labelframe 是一个简单的容器控件。常用与复杂的窗口布局。
-  </li>
-  <li>
-   tkMessageBox  用于显示你应用程序的消息框。
-  </li>
- </ul>
- <p>
-  之前在网上搜过，相关的教程不是很多，而且文档也写的算是很烂了，当然如果你英文不错，直接看源文件里的注释基本上就够用了，不过有的时候看py源文件还真是有点不太习惯，如果有示例或文档还好。最近搜集了一下相关的文档及教程，虽然不是很多，希望通过几篇简单的教程示例，帮助大家了解一下tk的用法，已来解决一些
-  <code>
-   python
-  </code>
-  编程中简单的GUI需求。
-当然这些内容并不完整，我会在日常的应用中随时进行补充，也欢迎各位在评论中补充。
- </p>
- <h2>
-  窗口
- </h2>
- <p>
-  root = tkinter.Tk() 这里创建一个root窗口，可以看成是一个APP的最顶层。
-顶层Tk对象一些方法，这里说一些实用的：
- </p>
- <ul>
-  <li>
-   title() 这个用来设置窗口的标题
-  </li>
-  <li>
-   geometry('500x300+300+300') 设置窗口的大小及位置，如果省去后边的+300+300位置，只控制窗口的大小。
-  </li>
- </ul>
- <h2>
-  Frame
- </h2>
- <p>
-  可以看成是一个可以装着众多部件的容器，他本身也可以容纳自己，嵌套自己。
- </p>
- <ul>
-  <li>
-   fill=NONE or X or Y or BOTH - fill widget if widget grows 填充设置选项，可以设置无，x，y 或是都二者皆填充.
-  </li>
-  <li>
-   side=TOP or BOTTOM or LEFT or RIGHT 这里一共有四个选项，可以控制容器位置
-  </li>
- </ul>
- <h2>
-  Label
- </h2>
- <p>
-  我觉得label中比较重要的就是内容字符串的修改，默认使用
-  <code>
-   text="str"
-  </code>
-  设置label的显示文字，但是如果程序中需要动态的修改，就需要另外一个属性方法了，
-  <code>
-   var = tkinter.StringVar()
-  </code>
-  会生成一个对象，用来存放label要显示的文字，然后可以通过函数动态的修改这个字符串，其使只需要在
-  <code>
-   label
-  </code>
-  创建的时候，为
-  <code>
-   textvariable=var
-  </code>
-  设置一个属性值，
-这样就可以在程序中通过修改var来进行修改
-  <code>
-   label
-  </code>
-  显示的字符了。
-其它比较常用的属性还用，
-  <code>
-   fg="#c00"
-  </code>
-  ，字体颜色，
-  <code>
-   bg="red"
-  </code>
-  ，背景颜色设置，当然还有很多属性，可以通过文档查看。
- </p>
- <h2>
-  Buttom
- </h2>
- <p>
-  按钮，可以说是程序中最常用的部件了，其属性和
-  <code>
-   labe
-  </code>
-  l部分有些相似，比如动态修改按钮上的文字也是使用
-  <code>
-   StringVar()
-  </code>
-  。
-按键程序员最关心的莫过于是按键的点击事件，Tk的按键点击事件通过
-  <code>
-   command=def
-  </code>
-  来进行设置，其中def为函数名称，如果设置关联了函数，点击按键就会运行相关的函数了。
- </p>
- <p>
-  <code>
-   mainloop()
-  </code>
-  个人理解为循环刷新渲染当前GUI窗口中的内容，如果没有这个函数，窗口是无法显示的。
- </p>
- <h2>
-  参考源码
- </h2>
- <p>
-  <img alt="效果展示" src="![输入图片说明](/assets/images/media/upload/2017/09/guia_xA7j7KG.png"/>
- </p>
- <pre><code class="python">import tkinter #导入支持库
-def def1():
-    """按钮1"""
-    var1.set('看，我变啦！')
-
-def def2():
-    '''按钮2'''
-    var2.set("百叶窗折射的光影")
-
-def def3():
-    '''按钮3'''
-    var3.set('因为中间空白的时光 如果还能分享 也是一种浪漫')
-
-root = tkinter.Tk()#创建一个root窗口
-root.title('我只是一个测试的窗口')#设置窗口标题
-bt = tkinter.Button(root, text="我是来占位的").pack(fill=tkinter.X, side=tkinter.TOP)
-# root.geometry('500x300+300+300')#设置窗口的大小及位置
-m_frame = tkinter.Frame(root)# 一个部件容器
-m_frame.pack(fill=tkinter.X, side=tkinter.TOP)
-# 创建一个快捷方式,用来生成小部件。
-LEFT, Label, Buttom = tkinter.LEFT, tkinter.Label, tkinter.Button
-label_line = tkinter.Frame(m_frame, relief=tkinter.RAISED, borderwidth=1)# 创建一个容器放入info_frame中
-label_line.pack(side=tkinter.TOP, padx=2, pady=2)
-var1 = tkinter.StringVar()
-var1.set('默认文字')
-var2 = tkinter.StringVar()
-var2.set('听见下雨的声音')
-var3 = tkinter.StringVar()
-var3.set("#眼角的泪这不是错觉")
-# fg="red" 文字颜色,颜色可以接受"cc0000" WEB颜色值等。
-l1 = Label(label_line, width=20, textvariable=var1, fg="#c00").pack(side=LEFT)
-l2 = Label(label_line, width=20, textvariable=var2, bg="#c00").pack(side=LEFT)
-# show='*' 可以使文本框内容显示为*****
-e3 = tkinter.Entry(label_line, textvariable=var3).pack(side=LEFT)
-
-buttom_line = tkinter.Frame(m_frame)
-buttom_line.pack(side=tkinter.BOTTOM, padx=2, pady=1)
-b1 = Buttom(buttom_line, text="点我试试1", width=18, command=def1).pack(side=LEFT)
-b2 = Buttom(buttom_line, width=18, textvariable=var2, command=def2).pack(side=LEFT)
-b3 = Buttom(buttom_line, text="点我试试3", width=18, command=def3).pack(side=LEFT)
-root.mainloop() 
-
-</code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-    可爱的 Python：Python 中的 TK编程
-   </a>
-  </li>
-  <li>
-   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-    An Introduction To Tkinter
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python random 随机数模块操作总结
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-20 13:28:23
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  random，是Python中用于生成随机数模块，我们来了解一下这修模中几个常用的函数，这些随机函数可以应付一些日常应用了。
- </p>
- <h2>
-  使用random
- </h2>
- <pre><code>import random
-</code></pre>
- <p>
-  random.random()用于生成一个0到1的随机符点数: 0 &lt;= n &lt; 1.0
- </p>
- <pre><code>print(random.random())
-</code></pre>
- <p>
-  random.uniform(a,b) 用于生成 a-b 之间的随机浮点数。
- </p>
- <pre><code>print(random.uniform(1,5))
-</code></pre>
- <p>
-  random.randint(10,20) 生成随机整数
- </p>
- <pre><code>print(random.randint(10,20))
-</code></pre>
- <p>
-  生成0-100之间的偶数。
- </p>
- <pre><code>print(random.randrange(0,100,2))
-</code></pre>
- <p>
-  choice()用来生成随机字符串，
- </p>
- <pre><code>print(random.choice(("a","b","c","d")))
-print(random.choice(['ee','ff','gg','hh']))
-</code></pre>
- <p>
-  shuffle() 类似洗牌，每次刷新都会不一样的。
- </p>
- <pre><code>p = ['a','b','c','d']
-random.shuffle(p)
-print(p)
-</code></pre>
- <p>
-  从一个列表中取出一个随机切片数据，原数据不变，结果刷新可见
- </p>
- <pre><code>l = [1,2,3,4,5,6,7,8,9]
-sl = random.sample(l,3)
-print(sl)
-print(l)
-</code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="http://python.usyiyi.cn/translate/python_352/library/random.html">
-    官方文档：random - 生成伪随机数字
-   </a>
-  </li>
-  <li>
-   <a href="http://www.cnblogs.com/yd1227/archive/2011/03/18/1988015.html">
-    Python中的random模块
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/random/randomtest.py">
-    github
-   </a>
-  </li>
-  <li>
-   [开源中国码云镜像gitee](https://gitee.com/J_Sky/17python.com/blob/master/random/randomtest.py
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python 对象引用与复制 (Python参考手册读书笔记)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-19 15:51:04
-  </span>
-  <span class="tag">
-   读书笔记
-  </span>
- </div>
- <p>
- </p>
- <p>
-  Python 对象引用与复制 (Python参考手册读书笔记)
-  <img alt="Python参考手册读书笔记" src="![输入图片说明](/assets/images/media/upload/2017/09/timg.jpeg"/>
- </p>
- <h2>
-  通过赋值创建一个副本
- </h2>
- <pre><code>a = [1,2,3,4,5]
-b = a
-print(b is a )
-b[2] = -99
-print(a)
-</code></pre>
- <p>
-  通过控制台打印，我们修改list b中的值，打印a发现值也跟着变化了，说明a与b的引用是同一个对象
- </p>
- <h2>
-  浅复制 通过结果可以发现一些不同
- </h2>
- <pre><code class="python">c = [11,22,]
-d = list(c)
-print(c is d)
-d.append(33)
-print(c)
-print(d)
-d[1] = 00
-print(c)
-print(d)
-</code></pre>
- <h2>
-  深复制
- </h2>
- <pre><code class="python">import copy
-e = [11,12,13]
-f = copy.deepcopy(e)
-print(e is f)
-f[1] = 78
-print(e)
-print(f)
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/copy/copytest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/copy/copytest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python 字符串格式化(%操作符)及format函数的使用
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-19 15:12:22
-  </span>
-  <span class="tag">
-   读书笔记
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <strong>
-   Python 字符串格式化（%操作符）及format函数的使用,Python参考手册，字符串格式化章读书笔记。
-  </strong>
-  <img alt="Python参考手册" src="![输入图片说明](/assets/images/media/upload/2017/09/timg.jpeg"/>
- </p>
- <p>
-  python的字符串操作是程序员编码中频繁使用的技巧，所以熟练掌握是可以影响到你的编码效率地。
-目前比较流行的字符串打印有两种方式（据笔者所知，当然如果还有其它方法，请不吝赐教）：
- </p>
- <ul>
-  <li>
-   一种是%符号操作，
-  </li>
-  <li>
-   一种是format函数高级字符串格式化，
-  </li>
- </ul>
- <p>
-  两种各有特点，据说format的性能更好。
- </p>
- <h2>
-  %操作符的使用
- </h2>
- <pre><code class="python">
-a = 'hello'
-b = 588
-c = 12.7896
-d = {'x':98, 'y':235.4444, 'z':'world',}
-print("a:%s" % a)
-# 10 和 2 是间隔的空格长度,小数点后的数字可以用来设置浮点数显示的精度，四舍五入，—号表示左对齐，+号是右对齐。
-print("%-10d %2.3f" % (b, c)) 
-print("%(x)-5d %(y).2f %(z).4s" % d)#打印字典中的值,.4s 表示要打印四个字符
-#vars() 函数，它将返回当前定义的所有变量的字典
-print ("%(a)s %(b)d %(c).2f %(d)s)" % vars())
-</code></pre>
- <h2>
-  format函数高级字符串格式化
- </h2>
- <pre><code class="python">print("{0} {1} {2}".format(a,b,c))
-print("{0},{b},{c}".format(a,b=b,c=c))
-print("{0[x]} {0[y]} {0[z]}".format(d))
-
-print("{0:&gt;10.4s} {1:d}".format(a,b))# &lt;&gt;^ 这几个符号用来设置排版间隔
-print("{0:10b}".format(b))#二进制整数
-print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/str/formatstr.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/str/formatstr.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   关于本站封面头部大图
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-18 14:19:35
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   看到喜欢的图片就会换上，不知道为什么会喜欢这些偏暖的色调，记得很久以前的有段时间，也曾偏爱冷色调调，可能偏暖色调更LOMO些。
-  </em>
- </p>
- <h2>
-  2017/09/18
- </h2>
- <p>
-  本图来自bing每日壁纸
- </p>
- <p>
-  戈尔代小镇是普罗旺斯地区最美丽的小镇之一，依山头而建，是众多被日光洗的发白的石头建筑与深深浅浅的绿色植物相拼而成的村庄。每年那里都会入选法国最美丽的小镇之一。从外到内小镇戈尔代给人的印象就是石头建筑，围墙，房子，教堂几乎都是石头堆砌而成，壮观而真实！
- </p>
- <p>
-  <img alt="戈尔代小镇是普罗旺斯地区最美丽的小镇之一" src="![输入图片说明](/assets/images/media/upload/2017/09/BingWallpaper-2017-09-17.jpg"/>
- </p>
- <h2>
-  2017/10/09
- </h2>
- <p>
-  windows10美丽的海边风景
- </p>
- <p>
-  先前的顶部大图太闪眼睛了。。。换个清爽些的。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/6fb13e4db9f043b276e06f340cbdff6d.jpg"/>
- </p>
- <h2>
-  2017/11/07
- </h2>
- <p>
-  windows10 秋天
- </p>
- <p>
-  这个秋天真的很无聊，是个多事之秋。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/bing-021.jpg"/>
- </p>
- <h2>
-  2017/11/25
- </h2>
- <p>
-  网上搜索来的图片
- </p>
- <p>
-  冬天来了，我们期待着下雪。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/timg.jpg"/>
- </p>
- <h2>
-  2017/11/25
- </h2>
- <p>
-  《星月夜》（The Starry Night）是荷兰后印象派画家文森特·梵·高于1889年在法国圣雷米的一家精神病院里创作的一幅油画，是梵高的代表作之一，现藏纽约现代艺术博物馆。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/11/1432084191361509.jpeg"/>
- </p>
- <div class="blog-article">
-  <h1 class="title">
    Python3 datetime模块的时间操作
   </h1>
   <span class="author">
@@ -1116,6 +311,936 @@ print(datetime.min)
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   python3函数学习笔记简单总结
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-09 09:27:49
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路
+  </em>
+ </p>
+ <h2>
+  函数的定义，Python 定义函数使用 def 关键字
+ </h2>
+ <pre><code class="python">def hello():
+    '''定义一个hello打印的函数'''
+    return 'hello world'
+
+## 使用函数
+
+print(hello())
+</code></pre>
+ <h2>
+  有参数并有返回值的函数
+ </h2>
+ <pre><code class="python">def add(x, y):
+    return x+y
+print(add(2,5))
+</code></pre>
+ <h2>
+  任意参数有返回值
+  <em>
+   为tuple
+  </em>
+  *为list
+ </h2>
+ <pre><code class="python">def rst_a(*k, **s):
+    rst = 0
+    for v in k :
+        rst += v
+    return rst,s
+print(rst_a(1,2,3,4,aa='aa',bb='bb'))
+</code></pre>
+ <h2>
+  有意思的lambda
+ </h2>
+ <pre><code>l = lambda x, y : x + y
+print(l(2,8))
+</code></pre>
+ <h2>
+  装饰器语法糖
+ </h2>
+ <p>
+  在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(
+  <em>
+   args,
+  </em>
+  *kwargs)可变参数。
+ </p>
+ <pre><code class="python">import time
+
+def t(func):
+    '''定义一个程序运行时间计算函数'''
+    def wrapper(*args, **kwargs):
+        start = time.time()#起始时间
+        func(*args, **kwargs)#要执行的函数
+        end = time.time()#结束时间
+        print('程序运行时间:{:.2f}ms'.format((end-start)*1000))
+    return wrapper
+
+def log(func):
+    '''一个打印函数运行日志的方法'''
+    def wrapper(*args, **kwargs):
+        print('函数开始运行')
+        func(*args, **kwargs)
+        print('函数运行结束')
+    return wrapper
+
+@log #打印日志
+@t  #统计程序运行时间
+def myfunc(x,y):
+    '''打印从x到y的数值'''
+    for i in range(x,y):
+        print(i)
+
+myfunc(3,6)
+
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <ul>
+  <li>
+   <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">
+    Python 函数
+   </a>
+  </li>
+  <li>
+   <a href="http://python.jobbole.com/82344/">
+    Python 装饰器
+   </a>
+  </li>
+  <li>
+   <a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">
+    理解Python中的装饰器
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   PythonINI配置文件读写的简单方法
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-06 10:19:07
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   .ini 文件是Initialization File的缩写，即初始化文件，是windows的系统配置文件所采用的存储格式，统管windows的各项配置，一般用户就用windows提供的各项图形化管理界面就可实现相同的配置了。但在某些情况，还是要直接编辑ini才方便，一般只有很熟悉windows才能去直接编辑。
+  </em>
+ </p>
+ <p>
+  我们来看下python3中如何读取和保存ini文件:
+ </p>
+ <h2>
+  引入模块
+ </h2>
+ <pre><code>import os
+from configparser import ConfigParser
+</code></pre>
+ <p>
+  os模块不解释，读取和保存文件及文件目录操作必须。ConfigParser 是操作ini文件的必须模块。
+ </p>
+ <h2>
+  返回一个ini文件对象
+ </h2>
+ <pre><code class="python">def readINI(file_path):
+    """ ini文件读取，返回一个INI配置对象 """
+    cfg = ConfigParser()
+    cfg.read(file_path, encoding='utf-8')
+    return cfg
+</code></pre>
+ <p>
+  我们读取一个ini文件的内容，创建一个ConfigParser对象来进行对其操作。
+ </p>
+ <pre><code class="python">def main():
+    ini_file=os.path.join(os.path.dirname(__file__),'config.ini')#拼装配置文件目录
+    c = readINI(ini_file)#读取加载ini文件配置
+    #创建section及选项
+    # c.add_section('cc')
+    # c.set('cc','a','aa')
+    # c.set('cc','b','bb')
+    # c.set('cc','c','cc')
+    for s in c.sections():#返回一个空间列表
+        print('[{0}]'.format(s))
+        for v in c.options(s):#打印列表下所有选项
+            print('{0}={1}'.format(v,c.get(s,v)))
+    #修改ini中的选项
+    c.set('cc','a','ccc')#修改最后一组参数就会修改ini文件中对应的选项值
+    #再次读取
+    c.get('cc','a')
+    #保存文件
+    # ini = open(ini_file, mode='w', encoding='utf-8')
+    # c.write(ini)
+    # ini.close
+    with open(ini_file, mode='w', encoding='utf-8') as ini:
+        c.write(ini)
+if __name__ == '__main__':
+    main()
+
+</code></pre>
+ <ul>
+  <li>
+   configparser 还有一些其它方法，可以参考：
+  </li>
+  <li>
+   <a href="http://python.usyiyi.cn/translate/python_352/library/configparser.html">
+    官方文档configparser
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/ini">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/ini">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python open()函数文件打开、读、写操作总结
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-05 13:36:55
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   在编程和计算机的使用中，与文件打交道是必不可少的，每天都要打开读取写入很多的文件，所以了解Python的文件打开、读、写操作是非常有必要的。
+  </em>
+ </p>
+ <h2>
+  为什么是with open()?
+ </h2>
+ <p>
+  一般的文件打开方法：
+ </p>
+ <pre><code class="python">f = open(os.path.join(os.path.dirname(__file__),'17python.txt'))
+s = f.readline();# 一次读取一行内容
+print(s)
+f.close() #关闭流，如果是写入文件，不关闭流，可能会造成写入失败或是内容丢失。
+</code></pre>
+ <p>
+  使用with open() as f :
+ </p>
+ <pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt')) as f :
+    s = f.readline()
+    print(s)
+</code></pre>
+ <p>
+  with open的好处是，不用再使用close()方法，避免因忘记close()方法产生的错误。
+ </p>
+ <p>
+  open方法中的常用参数,open函数有很多的参数，常用的是file，mode和encoding，name就不解释了，文件名字符串，encoding='utf-8'，用来指定打开或写入文件的编码。
+    open(name[,mode[,buffering]])
+其中mode 指定文件打开方式。
+ </p>
+ <p>
+  读写模式的类型有：
+ </p>
+ <ul>
+  <li>
+   rU 或 Ua 以读方式打开, 同时提供通用换行符支持 (PEP 278)
+  </li>
+  <li>
+   w     以写方式打开，
+  </li>
+  <li>
+   a     以追加模式打开 (从 EOF 开始, 必要时创建新文件)
+  </li>
+  <li>
+   r+     以读写模式打开
+  </li>
+  <li>
+   w+     以读写模式打开 (参见 w )
+  </li>
+  <li>
+   a+     以读写模式打开 (参见 a )
+  </li>
+  <li>
+   rb     以二进制读模式打开
+  </li>
+  <li>
+   wb     以二进制写模式打开 (参见 w )
+  </li>
+  <li>
+   ab     以二进制追加模式打开 (参见 a )
+  </li>
+  <li>
+   rb+    以二进制读写模式打开 (参见 r+ )
+  </li>
+  <li>
+   wb+    以二进制读写模式打开 (参见 w+ )
+  </li>
+  <li>
+   ab+    以二进制读写模式打开 (参见 a+ )
+  </li>
+ </ul>
+ <h2>
+  读取及写入文件
+ </h2>
+ <ul>
+  <li>
+   read()方法用来读取文件
+  </li>
+  <li>
+   write()方法用来写入文件
+  </li>
+ </ul>
+ <h2>
+  关于Python读取大文件内容丢失
+ </h2>
+ <p>
+  数据保存 一般保存没有什么大问题，主要是读取。 如果保存后是字符串,之前是list 或是 元组（Tuples）保存后就是字符串了，再读取就需要转换成对应的容器，这里用eval(s)函数方法，效果还是比较不错的。 还有就是大文本在读取的时候如果一次用python read()全部读取的时候会出现莫明的无反应及读取内容不全的情况 ，这里采用分段读取比较好些：
+ </p>
+ <pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt'), mode='r',encoding='utf-8') as f:
+    s = ''
+    while True:  
+        temp = f.read(100)#分段读取，可以解决读取大文件时无法读取的奇怪问题
+        if temp == '':  
+            break
+        s += temp
+    print(s)
+    f.close() 
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.jb51.net/article/58002.htm">
+    Python open()文件处理使用介绍
+   </a>
+  </li>
+  <li>
+   <a href="http://python.usyiyi.cn/documents/python_352/library/io.html">
+    官方文档 io - 使用流的核心工具
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python os.path模块中一些常用方法的整理总结
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-04 14:37:17
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法
+  </em>
+ </p>
+ <h2>
+  os.path 模块
+ </h2>
+ <p>
+  首先，导入一些必须的模块
+ </p>
+ <pre><code>import os
+import time
+</code></pre>
+ <h2>
+  路径操作的常用方法：
+ </h2>
+ <pre><code class="python">print(__file__) #当前文件的完整地址
+print(os.path.abspath('ospathtest.py'))#当前文件的完整地址
+print(os.path.dirname(__file__)) #当前目录所属地址
+print(os.path.isdir(os.path.dirname(__file__)))# 判断是否为路径
+print(os.path.isfile(os.path.dirname(__file__)))# 判断是否为文件
+</code></pre>
+ <h2>
+  组装及创建目录
+ </h2>
+ <pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
+os.mkdir(p) # 创建目录
+time.sleep(3)# 暂停3秒，这样就可以在左侧目录中看到新建的'aaa'目录了
+os.rmdir(p)
+print(p)# 组装目录
+print(os.path.split(__file__))# 分割路径与文件名
+</code></pre>
+ <h2>
+  os.path中的一些is get方法
+ </h2>
+ <pre><code class="python">path = __file__
+print(os.path.getatime(path))  #返回最后一次进入此path的时间。
+print(os.path.getmtime(path))  #返回在此path下最后一次修改的时间。
+print(os.path.getctime(path))  #返回path的大小
+print(os.path.getsize(path))  #返回文件大小，如果文件不存在就返回错误
+print(os.path.isabs(path))  #判断是否为绝对路径
+print(os.path.isfile(path))  #判断路径是否为文件
+print(os.path.isdir(path))  #判断路径是否为目录
+print(os.path.islink(path))  #判断路径是否为链接
+print(os.path.ismount(path))  #判断路径是否为挂载点（）
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <p>
+  <a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">
+   os.path — 路径操作
+  </a>
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python 采集数据三步曲之[Requests + re.py模块进行数据采集]
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-02 12:41:30
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。
+  </em>
+ </p>
+ <h2>
+  数据采集第一步，加载数据源。
+ </h2>
+ <p>
+  这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。
+ </p>
+ <pre><code class="python">import re, requests # 加载所需模块
+r = requests.get('http://hq.sinajs.cn/list=s_sh000001') #互联网上市公司股票价格
+r.encoding = 'gbk'# 设置编码 解决乱码问题
+print(r.text) #返回html代码（数据）
+</code></pre>
+ <p>
+  通过上边的代码运行之后我们会得到一组数据：
+ </p>
+ <pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
+</code></pre>
+ <p>
+  数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；
+ </p>
+ <p>
+  这样我们只要提示自己需要的
+  <code>
+   上证指数,3367.1194,6.3091,0.19,2824975,31372209
+  </code>
+  这段数据后，就可以把它转换成自己需要的对象，然后处理打印。
+ </p>
+ <h2>
+  数据采集第二步，解析数据，提取我们自己需要的。
+ </h2>
+ <pre><code class="python">s = r.text # 获取数据
+p = r'"(.+)"' #设置正则表达式
+r = re.search(p, s).group(1) #匹配并获取结果字符串
+print(r)
+ls = r.split(',')
+print(ls)
+</code></pre>
+ <h2>
+  数据采集第三步，处理最后的打印
+ </h2>
+ <pre><code class="python">print('''{}:{}
+当前价格:{}
+涨跌率:{}
+成交量（手）:{}
+成交额（万元）:{}'''.format(ls[0],ls[1],ls[2],ls[3],ls[4],ls[5])
+)
+
+#最后输出：
+#上证指数:3367.1194
+#当前价格:6.3091
+#涨跌率:0.19
+#成交量（手）:2824975
+#成交额（万元）:31372209
+</code></pre>
+ <p>
+  得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/re">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python 采集数据三步曲之[Requests开源协议的HTTP 库]
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-02 09:01:48
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <blockquote>
+  <p>
+   Requests 是以 PEP 20 的箴言为中心开发的
+  </p>
+ </blockquote>
+ <ul>
+  <li>
+   Beautiful is better than ugly.(美丽优于丑陋)
+  </li>
+  <li>
+   Explicit is better than implicit.(直白优于含蓄)
+  </li>
+  <li>
+   Simple is better than complex.(简单优于复杂)
+  </li>
+  <li>
+   Complex is better than complicated.(复杂优于繁琐)
+  </li>
+  <li>
+   Readability counts.(可读性很重要)
+  </li>
+  <li>
+   对于 Requests 所有的贡献都应牢记这些重要的准则。
+   <img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;"/>
+  </li>
+ </ul>
+ <h2>
+  Requests install
+ </h2>
+ <pre><code>pip3 install requests
+</code></pre>
+ <p>
+  下载安装
+ </p>
+ <pre><code>git clone git://github.com/kennethreitz/requests.git
+cd requests
+python setup.py install
+</code></pre>
+ <h2>
+  一分钟上手
+ </h2>
+ <pre><code class="python">import requests
+r = requests.get('http://www.baidu.com')
+print(r.status_code)# 返回状态码
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+ <p>
+  如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）
+ </p>
+ <h2>
+  带参数的请求
+ </h2>
+ <pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+ <blockquote>
+  <ul>
+   <li>
+    r.status_code #响应状态码
+   </li>
+   <li>
+    r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取
+   </li>
+   <li>
+    r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩
+   </li>
+   <li>
+    r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码
+   </li>
+   <li>
+    r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None
+   </li>
+   <li>
+    r.json() #Requests中内置的JSON解码器
+   </li>
+   <li>
+    r.raise_for_status() #失败请求(非200响应)抛出异常
+   </li>
+  </ul>
+ </blockquote>
+ <h2>
+  这只是一个简单的入门引导
+ </h2>
+ <p>
+  Requests 是一个简单强大的
+  <code>
+   HTTP
+  </code>
+  库，是我用过的最简单实用的
+  <code>
+   python
+  </code>
+  库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，
+  <code>
+   pythoner
+  </code>
+  居家旅游必备之良品。
+ </p>
+ <p>
+  一些Requests的参考
+ </p>
+ <ul>
+  <li>
+   <a href="http://cn.python-requests.org/zh_CN/latest/index.html">
+    Requests: 让 HTTP 服务人类 官方文档
+   </a>
+  </li>
+  <li>
+   <a href="http://blog.csdn.net/shanzhizi/article/details/50903748">
+    Python-第三方库requests详解
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/re">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python 采集数据三步曲之[正则表达式 re.py]
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-01 13:09:49
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器
+  </em>
+ </p>
+ <h2>
+  如何用
+  <code>
+   Python
+  </code>
+  开始一个简单的正则表达式？
+ </h2>
+ <p>
+  其实很简单，从
+ </p>
+ <pre><code>import re
+</code></pre>
+ <p>
+  引入
+  <code>
+   Python
+  </code>
+  的正则表达式支持模块开始。
+ </p>
+ <h2>
+  开始使用
+  <code>
+   re
+  </code>
+  模块
+ </h2>
+ <pre><code class="python">#codeing=utf-8
+import re
+p = re.compile(r'17python')#创建Pattern对象
+m = p.match('17python.com')
+if m :
+    print(m.group())
+# 输出结果为：17python
+</code></pre>
+ <p>
+  另一种方式：
+ </p>
+ <pre><code class="python">#使用re模块方法代替实例方法
+print(re.match('17python', '17python.com').group())
+# 输出结果为：17python
+</code></pre>
+ <h2>
+  re模块及正则实例常用方法演示
+ </h2>
+ <pre><code class="python">p = re.compile(r'17python')
+s1 = '17python.com'
+s2 = 'www.17python.com'
+s3 = '17python.com17python.com'
+s4 = 'abc.com'
+p4 = re.compile('abc')
+print(p.match(s1).group())
+print(p.search(s2).group())
+print(p.findall(s3))
+print(p4.sub('17python', s4))
+</code></pre>
+ <p>
+  以上只是
+  <code>
+   Python
+  </code>
+  re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考
+  <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+   <code>
+    Python
+   </code>
+   文档 re模块详解
+  </a>
+ </p>
+ <h2>
+  元字符 （参见 python 模块 re 文档）
+ </h2>
+ <ul>
+  <li>
+   .                    匹配任意字符（不包括换行符）
+  </li>
+  <li>
+   ^                    匹配开始位置，多行模式下匹配每一行的开始
+  </li>
+  <li>
+   $                    匹配结束位置，多行模式下匹配每一行的结束
+  </li>
+  <li>
+   *                    匹配前一个元字符0到多次
+  </li>
+  <li>
+   +                    匹配前一个元字符1到多次
+  </li>
+  <li>
+   ?                    匹配前一个元字符0到1次
+  </li>
+  <li>
+   {m,n}                匹配前一个元字符m到n次
+  </li>
+  <li>
+   \                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符
+  </li>
+  <li>
+   []                   字符集，一个字符的集合，可匹配其中任意一个字符
+  </li>
+  <li>
+   |                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b
+  </li>
+  <li>
+   (...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值
+  </li>
+  <li>
+   (?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I
+  </li>
+  <li>
+   (?:...)              分组的不捕获模式，计算索引时会跳过这个分组
+  </li>
+  <li>
+   (?P
+   <name>
+    ...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name
+   </name>
+  </li>
+  <li>
+   (?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则
+  </li>
+  <li>
+   (?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I
+  </li>
+  <li>
+   (?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则
+  </li>
+  <li>
+   (?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则
+  </li>
+  <li>
+   (?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则
+  </li>
+  <li>
+   (?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则
+  </li>
+  <li>
+   (?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则
+  </li>
+  <li>
+   \number              匹配和前面索引为number的分组捕获到的内容一样的字符串
+  </li>
+  <li>
+   \A                   匹配字符串开始位置，忽略多行模式
+  </li>
+  <li>
+   \Z                   匹配字符串结束位置，忽略多行模式
+  </li>
+  <li>
+   \b                   匹配位于单词开始或结束位置的空字符串
+  </li>
+  <li>
+   \B                   匹配不位于单词开始或结束位置的空字符串
+  </li>
+  <li>
+   \d                   匹配一个数字， 相当于 [0-9]
+  </li>
+  <li>
+   \D                   匹配非数字,相当于 [^0-9]
+  </li>
+  <li>
+   \s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]
+  </li>
+  <li>
+   \S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]
+  </li>
+  <li>
+   \w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]
+  </li>
+  <li>
+   \W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]
+  </li>
+ </ul>
+ <h2>
+  更详细的
+  <code>
+   Python
+  </code>
+  re正则表达式教程
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
+    Python正则表达式指南
+   </a>
+  </li>
+  <li>
+   <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
+    python正则表达式详解
+   </a>
+  </li>
+  <li>
+   <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+    Python文档 re模块详解
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/re">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_11.html">
@@ -1124,7 +1249,7 @@ print(datetime.min)
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    12 / 15
+    12 / 14
    </button>
    <a href="/list/list_13.html">
     <button class="next btn btn-primary" type="button">

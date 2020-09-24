@@ -135,1077 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-11 10:59:44
-  </span>
-  <span class="tag">
-   Django
-  </span>
- </div>
- <p>
- </p>
- <p>
-  上节我们通过博客的模板继承及上下文沉浸器大大简化了模板的代码量，这节我们继续实现分类页及搜索结果页的展示。
- </p>
- <h2>
-  缩短网址
- </h2>
- <p>
-  之后我们访问博客地址是
-  <code>
-   http://127.0.0.1:8000/blog/home
-  </code>
-  ，如果我们想直接访问地址也就是域名后直接打开博客首页怎么办？
- </p>
- <p>
-  首先修改'blog01.urls.py'中的代码：
- </p>
- <pre><code>url(r'^', include('myblog.urls',namespace='')),#修改为直接为域名根目录，缩短网址。
-</code></pre>
- <p>
-  去掉
-  <code>
-   r'^blog'
-  </code>
-  中的
-  <code>
-   blog
-  </code>
-  ,
- </p>
- <p>
-  再修改'myblog.urls.py'中的代码：
-注释掉
-  <code>
-   # url(r'^list$', v.list, name='list'),
-  </code>
-  修改为
-  <code>
-   url(r'^$', v.list, name=''),#项目首页
-  </code>
- </p>
- <p>
-  运行服务器，直接访问：
-  <code>
-   http://127.0.0.1:8000
-  </code>
-  ，这时直接打开的是博客列表页展示的首页。
- </p>
- <h2>
-  Django实现博客分类页展示
- </h2>
- <p>
-  首页展示的是所有文章页，我想点击分类显示为分类下边的相关文章，这个如何实现？
-首先我们看下点击分类后，url的格式
-  <code>
-   http://127.0.0.1:8000/?c=2
-  </code>
-  这个分类页的连接中包括一个典型的get参数，
-我们可以在视图中获得这个参数2,然后再搜索所有分类
-  <code>
-   id=2
-  </code>
-  的文章，然后返回给模板即可展示出来结果了。
- </p>
- <p>
-  编写视图文件的代码
- </p>
- <pre><code>c = request.GET.get('c', '')
-if c:
-    #搜索分类ID为c的所有文章，如果分类id为空，这里就返回所有文章。
-    articles = articles.filter(category=c,).order_by('-create_time')
-</code></pre>
- <p>
-  这里的变量c，通过
-  <code>
-   request.GET.get('c', '')
-  </code>
-  获取页面上的C的
-  <code>
-   key
-  </code>
-  ，
-  <code>
-   request.GET['c']
-  </code>
-  也可以访问，但不安全。
-然后通过
-  <code>
-   Django
-  </code>
-  中提供数据过滤
-  <code>
-   .filter
-  </code>
-  搜索出相关的文章，然后排序后返回给模板，模板那边的代码都不用修改即可正常显示。
-好了，我们访问
-  <code>
-   http://127.0.0.1:8000/?c=2
-  </code>
-  所有分类
-  <code>
-   id=2
-  </code>
-  文章就搜索出来了。
- </p>
- <h2>
-  搜索结果页面
- </h2>
- <p>
-  在当前的页面上边有个搜索框，这是一个搜索的入口，我们希望用户通过这个搜索框进行一些模糊搜索，比如根据关键字搜索标题或正文中是否包含关键字，然后返回搜索结果展示。
-说到搜索，其实首先想到的是应该对这个搜索关键字做一些限制，比如长度，还有就是安全sql注入等。
-我们的搜索结果url地址
-  <code>
-   http://127.0.0.1:8000/?s=Python
-  </code>
-  ，应该是这个相似。
-这里我们采用django提供的一个表单框架来实现当前的搜索功能，接下来开始编写代码。
- </p>
- <p>
-  创建myblog.forms.py:
- </p>
- <pre><code>#coding=utf-8
-from django import forms
-
-class Searchform(forms.Form):
-    #搜索表单定义
-    s = forms.CharField(max_length=20)
-</code></pre>
- <p>
-  就这点代码，定义了一个表单。
- </p>
- <p>
-  在视图
-  <code>
-   myblog.views.py
-  </code>
-  中使用,先引用
- </p>
- <pre><code>from .forms import Searchform
-</code></pre>
- <p>
-  然后编写代码
- </p>
- <pre><code>s = ''#搜索关键字
-#以下判断表单是否验证成功，如果验证成功返回一个字符串s
-if request.method == 'GET':
-    form = Searchform(request.GET)
-    if form.is_valid():
-        s = request.GET.get('s')
-if s :
-    articles = articles.filter(Q(title__contains=s)|Q(content__contains=s)).order_by('-create_time')
-</code></pre>
- <p>
-  这里有个Q函数记得引用一下
-  <code>
-   from django.db.models import Q#模糊查询多个字段使用
-  </code>
-  ,这个Q函数是关键字查询中经常使用到的，详细了解请百度。
- </p>
- <p>
-  然后模板里修改一下模板
-  <code>
-   base.html
-  </code>
-  中搜索框的代码：
- </p>
- <pre><code>&lt;form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right"  action="{% url '' %}"&gt;
-  &lt;div class="am-form-group"&gt;
-    &lt;input type="text" class="am-form-field am-input-sm" placeholder="搜索文章" name="s"&gt;
-  &lt;/div&gt;
-  &lt;button type="submit" class="am-btn am-btn-default am-btn-sm"&gt;搜索&lt;/button&gt;
-&lt;/form&gt;
-</code></pre>
- <p>
-  <code>
-   {% url '' %}
-  </code>
-  这是模板中的标签，Django中提供了很多模板标签，如果需要详细了解可以查看官方的文档。
- </p>
- <p>
-  好了，我们刷新首页，然后在搜索框里输入:10 就会搜索标题有含有10的文章了，
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171211_46.png"/>
- </p>
- <p>
-  到此我们的分类页及搜索结果页面的功能就实现了。
-如果在修改中发现了错误，可以复制留言中的错误回复，站长看到会帮助解答的。另外可以查看源文件核对，看看自己哪里改的不对，也能发现错误。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-09 10:38:16
-  </span>
-  <span class="tag">
-   Django
-  </span>
- </div>
- <p>
- </p>
- <p>
-  09节我们通过
-  <code>
-   Django
-  </code>
-  模板的继承对blog的两个模板页进行了改造，大大减少了模板中重复的代码，编码中复用及重构才是王道哈。
- </p>
- <h2>
-  <code>
-   Django
-  </code>
-  的上下文Context
- </h2>
- <p>
-  现在的blog中主要有两个模板文件，对应二个视图的函数，我们也了解到如果模板需要数据，需要从视图函数中通过
-  <code>
-   return render()
-  </code>
-  来传递。
-但我们发现一个问题，就是两个模板需要一些很多相同的数据，比如两个模板中右侧都blog分类和站长资料展示，如果我们按常规操作，
-每个视图函数中都需要获取一下这二个数据，然后返回，这样做显然不合适，如果有成百上千个模板页的话我们就要写千百段代码，如果需要修改，我们就要修改千百段代码。
-这显然是一个坑，不过
-  <code>
-   Django
-  </code>
-  提供了一个上下文Context功能，很好的解决了这个问题。
- </p>
- <h2>
-  创建
-  <code>
-   Django
-  </code>
-  上下文Context
- </h2>
- <p>
-  <code>
-   Context
-  </code>
-  实际上就是一个文件中带有一个字典返回值的函数，这样看来创建上下文Context，需要创建一个文件和一个函数，
-然后还需要在配置文件中添加到配置项。
- </p>
- <p>
-  创建
-  <code>
-   myblog.blog_context.py
-  </code>
-  编写代码如下：
- </p>
- <pre><code>#coding=utf-8
-from django.conf import settings as original_settings#必须引入
-from myblog.models import UserProfile, Category, Siteinfo#导入一些必须的model
-def blog_info(request):
-    #站长及博客上下文数据管理
-    userinfo = UserProfile.objects.get(pk=1)#站长资料
-    siteinfo = Siteinfo.objects.get(pk=1)#blog相关资料
-    categorts = Category.objects.all().order_by('sort_id')#根据排序获取所有分类
-    #把获取的数据通过字典返回
-    return {'userinfo':userinfo, 'siteinfo':siteinfo, 'categorts':categorts}
-</code></pre>
- <p>
-  在
-  <code>
-   settings.py.TEMPLATES.OPTIONS.context_processors
-  </code>
-  下添加我们刚刚创建文件的地址:
- </p>
- <pre><code>TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                #上下文Context
-                'myblog.blog_context.blog_info'
-            ],
-        },
-    },
-]
-</code></pre>
- <p>
-  好吧，你是不是要说，就这么简单？好吧，我们把获取的数据添加到模板中测试，如果你没有分类及站长资料数据，请先自己更新一些，
-我们修改
-  <code>
-   base.html
-  </code>
-  中的站长的关于我：
- </p>
- <pre><code>  &lt;section class="am-panel am-panel-default"&gt;
-    &lt;div class="am-panel-hd"&gt;关于我&lt;/div&gt;
-    &lt;div class="am-panel-bd"&gt;
-      &lt;p&gt;{{ userinfo.detail }}&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-</code></pre>
- <p>
-  然后我查看
-  <code>
-   http://127.0.0.1:8000/blog/list
-  </code>
-  和
-  <code>
-   http://127.0.0.1:8000/blog/blog/1
-  </code>
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171209_44.png"/>
- </p>
- <p>
-  怎么样？是不是有种打了很久的游戏才通关的爽，上下文用起来真的是很方便，我在改改分类：
- </p>
- <pre><code>  &lt;section class="am-panel am-panel-default"&gt;
-    &lt;div class="am-panel-hd"&gt;关于我&lt;/div&gt;
-    &lt;div class="am-panel-bd"&gt;
-      &lt;p&gt;{{ userinfo.detail }}&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section class="am-panel am-panel-default"&gt;
-    &lt;div class="am-panel-hd"&gt;文章目录&lt;/div&gt;
-    &lt;ul class="am-list blog-list"&gt;
-      {% for categort in categorts %}
-      &lt;li&gt;&lt;a href="#"&gt;{{ categort.title }}&lt;/a&gt;&lt;/li&gt;
-      {% endfor %}
-    &lt;/ul&gt;
-  &lt;/section&gt;
-</code></pre>
- <p>
-  然后刷新页面查看一下效果：
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171209_45.png"/>
- </p>
- <p>
-  至此我们网站上的通用处，我们都可以使用Django模板继承和上下文来解决，大大减少了代码量，并且使程序的逻辑更为清楚！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（9）Django模板的继承
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-08 10:23:47
-  </span>
-  <span class="tag">
-   Django
-  </span>
- </div>
- <p>
- </p>
- <p>
-  从上一节开始，我们将一直持续和前端的渲染打交道了，当前我们的blog有两个前端的模板页，后继会因为功能的扩展出现更多的模板页，
-我们发现模板页中大部分代码都是相同的，我们只修改其中的一部分代码，那么我们能不能通过某些方法来重用这些代码，这样方便以后的代码修改。
-答案是有的，
-  <code>
-   Django
-  </code>
-  提供了一个模板继承的功能，它可以让你引用或包含一些模板上共用的代码。
- </p>
- <h2>
-  <code>
-   Django
-  </code>
-  模板中的代码引用
- </h2>
- <p>
-  blog的页面中有很多重复的代码，比如导航，站点底部，一些广告代码，侧边的分类标签等信息，这些需要重复使用的代码我们不要到处复制，
-这样以后如果修改的话就会有很多麻烦，我们应该建立相应的模板页，然后通过继承来使用，这样会大大减少我们的代码编写工作量。
- </p>
- <p>
-  我们创建
-  <code>
-   myblog.templates.base.html
-  </code>
-  复制
-  <code>
-   list.html
-  </code>
-  中所有的代码粘贴过去。
-关于模板中定义使用的代码主要有1种：
- </p>
- <pre><code>{% block site_title %}blog{% endblock site_title %}
-</code></pre>
- <p>
-  <code>
-   block
-  </code>
-  定义，引用后可以在继承页上修改
-  <code>
-   site_title
-  </code>
-  的标题。
- </p>
- <pre><code>{% block article %} 文章列表内容 {% endblock article %}
-</code></pre>
- <p>
-  比如上边我又定义了一下文章列表内容的引用模块
-  <code>
-   block
-  </code>
-  ，我们看下
-  <code>
-   list.html
-  </code>
-  中是如何引用这些
-  <code>
-   block
-  </code>
- </p>
- <p>
-  <code>
-   list.html
-  </code>
-  的代码基本上可以变的很简单了，首先最上边要加入引用需要继承的父类模板页，然后添加需要修改的引用代码：
- </p>
- <pre><code>{% extends 'base.html' %}
-{% block site_title %}MyDjangoBlog~~~~~{% endblock site_title %}
-{% block article %} 
-{% for article in articles %}
-&lt;article class="blog-main"&gt;
-    &lt;h3 class="am-article-title"&gt;
-    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
-    &lt;/h3&gt;
-    &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
-    &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
-    &lt;div class="am-g blog-content"&gt;
-    {{ article.content }}
-    &lt;/div&gt;
-&lt;/article&gt;
-&lt;hr class="am-article-divider blog-hr"&gt;
-{% endfor %}
-{% endblock article %}
-</code></pre>
- <p>
-  不会吧？
-  <code>
-   list.html
-  </code>
-  就变成这么点代码了？我们运行一下服务器,然后访问
-  <code>
-   http://127.0.0.1:8000/blog/list
-  </code>
-  和之前一样没毛病！真是强大的模板继承功能，其实我非常喜欢这个功能！
- </p>
- <p>
-  照猫画虎，把
-  <code>
-   blog.html
-  </code>
-  也修改了！
- </p>
- <pre><code>{% extends 'base.html' %}
-{% block site_title %}{{ article.title }}{% endblock site_title %}
-{% block article %} 
-&lt;article class="blog-main"&gt;
-    &lt;h3 class="am-article-title"&gt;
-    &lt;a href="#"&gt;{{ article.title }}&lt;/a&gt;
-    &lt;/h3&gt;
-    &lt;h4 class="am-article-meta blog-meta"&gt;发布时间：2014/06/17&lt;/h4&gt;
-    &lt;p&gt;作者：{{ article.user.nick_name }} 分类：{{ article.category }}&lt;/p&gt;
-    &lt;div class="am-g blog-content"&gt;
-    {{ article.content }}
-    &lt;/div&gt;
-&lt;/article&gt;
-{% endblock article %}
-</code></pre>
- <p>
-  我们访问
-  <code>
-   http://127.0.0.1:8000/blog/blog/1
-  </code>
-  结果也是很明显的，让我们继续感叹一下
-  <code>
-   block
-  </code>
-  继承功能的强大吧
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   听说存储数据Python与SQLite3更配哦！
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-11-16 17:34:15
-  </span>
-  <span class="tag">
-   数据库
-  </span>
- </div>
- <p>
- </p>
- <p>
-  曾经以为数据库自己一定需要大的，好的，功能多的，处理数据快的，迸发牛的，现在想想就象上小学时时常想：以后考大学是北大还是清华呢？后来才发现自己真特么多虑了。
-如果你只是个人或是小型的应用，我这里隆重的推荐给你SQLite这个迷你型的数据库。
- </p>
- <h2>
-  SQLite
- </h2>
- <p>
-  SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite 是在世界上最广泛部署的 SQL 数据库引擎。SQLite 源代码不受版权限制。
-是不是很兴奋？没有其它数据库的安装配置繁琐步骤，没有占用你吃紧的内存，最重要的是功能一样大而全而且免费不要钱。
- </p>
- <h2>
-  SQLite安装
- </h2>
- <p>
-  几乎所有版本的 Linux 操作系统都附带 SQLite，所以win党们请自行在官网上下载安装即可。
- </p>
- <pre><code>➜  ~ sqlite3 
-SQLite version 3.8.10.2 2015-05-20 18:17:19
-Enter ".help" for usage hints.
-Connected to a transient in-memory database.
-Use ".open FILENAME" to reopen on a persistent database.
-sqlite&gt;
-</code></pre>
- <p>
-  通过终端输入sqlite3即可验证数据库是否安装成功！
- </p>
- <h2>
-  python中使用sqlite3
- </h2>
- <p>
-  通过Python结合sqlite3实现一个简单的个人备忘录，简单了解一下在Python中是如何操作数据库的。
-在Python中操作sqlite很简单，引入sqlite3模块，就可以开始进行数据库的编程之旅了。
- </p>
- <h2>
-  创建数据库
- </h2>
- <pre><code>import sqlite3#引入模块
-import os
-from datetime import *
-print(os.path.join(os.path.dirname(__file__), 'memorandum.db'))
-conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'memorandum.db'))#在当目录下创建数据库
-print('备忘录数据库创建成功！')
-</code></pre>
- <h2>
-  创建表及字段
- </h2>
- <p>
-  cursor()将创建一个cursor对象，将在Python数据库编程中用到。
-cursor.execute()将处理操作与数据库相关的几乎所有命令。
- </p>
- <pre><code>c = conn.cursor()#创建一个cursor对象
-# 创建表
-c.execute('''create table tab(
-    id integer not null primary key autoincrement,
-    title char(50),
-    content text not null,
-    c_date text);''')
-print('数据表创建成功！')
-conn.commit()#提交事务
-conn.close()#关闭连接
-</code></pre>
- <p>
-  通过以上代码就可以在数据库中创建一个表了，如果你不太习惯在代码中创建表，你可以使用DBeaver,操作简单方便人性化，是编写数据库命令，查看数据库表结构，备份数据之良品。
-有了数据表，我们就可以对表进行增删改查了。
-sqlite中的sql语句和大部分数据库操作语名是相同的，如果你有过其它数据库操作的基础，那么使用sqlite就会非常简单了
- </p>
- <h2>
-  插入数据
- </h2>
- <pre><code>title = '测试标题'
-content = '插入数据测试。'
-format = "%Y-%m-%d %H:%M:%S"
-now = datetime.now().strftime(format)#创建当前时间字符串
-sql = "insert into tab (id,title, content, c_date) values (NULL,'{0}','{1}','{2}')".format(title,content,now)
-print(sql)
-c.execute(sql)
-conn.commit()
-conn.close()#关闭连接
-</code></pre>
- <h2>
-  批量插入数据
- </h2>
- <p>
-  python往sqlite3插入数据的sql语句支持'?'占位符，这样我们很方便的可以批量插入数据。
- </p>
- <pre><code># 准备10000条数据插入
-for i in range(10000):
-    format = "%Y-%m-%d %H:%M:%S"
-    now = datetime.now().strftime(format)#创建当前时间字符串
-    c.execute('insert into tab (id,title, content, c_date) values(?,?,?,?)',(None,str(i),str(i),now))
-conn.commit()#提交事务
-conn.close()
-</code></pre>
- <h2>
-  删除数据
- </h2>
- <pre><code>sql = "delete from tab where id = 2"#拼装sql语句
-c.execute(sql)#执行删除
-conn.commit()
-conn.close()
-</code></pre>
- <p>
-  执行上边的代码，发现id为2的数据已经被删除。
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_11.png"/>
- </p>
- <h2>
-  更新数据
- </h2>
- <pre><code>sql = "update tab set title='Boy' where id = 20004"
-c.execute(sql)
-conn.commit()
-conn.close()
-</code></pre>
- <h2>
-  查询数据
- </h2>
- <pre><code>sql = "select * from tab"
-l = c.execute(sql)
-for s in l :
-    print(s)
-conn.close
-</code></pre>
- <p>
-  运行代码后可以看到终端输出：
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/Snip20171116_12.png"/>
- </p>
- <p>
-  其它查询只是sql语句的不同，这里暂时不再测试了，有兴趣的可以查阅sql编程相关资料。
-综合来说，
-  <code>
-   python
-  </code>
-  与
-  <code>
-   sqlite3
-  </code>
-  联合使用真是很方便，是数据采集入库处理查询必备哇。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/sqlite3">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/sqlite3">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   如何快速的复习学习过的Python
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-11-07 16:19:22
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的
-  <code>
-   python
-  </code>
-  呢？
- </p>
- <h2>
-  语法/变量/表达式
- </h2>
- <p>
-  也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。
- </p>
- <h2>
-  九九乘法表
- </h2>
- <p>
-  快速复习
-  <code>
-   for
-  </code>
-  及
-  <code>
-   print format
-  </code>
-  等函数的用法。
- </p>
- <pre><code>for i in range(1,10):
-    for j in range(1,i+1):
-        print("{}X{}={}".format(i,j,i*j), end=' ')
-    print()
-</code></pre>
- <h2>
-  一摞
-  <code>
-   Python
-  </code>
-  风格的纸牌
- </h2>
- <p>
-  在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
-Python3 扑克牌
-  <code>
-   collections.namedtuple
-  </code>
-  这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色
- </p>
- <pre><code>import collections
-from random import choice
-Card = collections.namedtuple('Card',['rank','suit'])
-#创建一副扑克牌的类
-class Cards:
-    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
-    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
-
-    def __init__(self):
-        '''创建一副扑克牌'''
-        self._cards = [Card(rank,suit) for suit in self.suits
-                                       for rank in self.ranks] + ['King','Queen']
-    def __len__(self):
-        return len(self._cards)
-    def __getitem__(self,position):
-        return self._cards[position]
-
-deck = Cards()#创建一副扑克牌
-print(len(deck))#打印有多少张
-#打印所有纸牌
-for i in range(len(deck)):
-    print(deck[i])
-print(choice(deck))#随机抽取一张纸牌
-</code></pre>
- <p>
-  我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子
- </p>
- <h2>
-  简单的复利计算
- </h2>
- <pre><code>p = 10000 #初始金额
-rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
-days = 100
-
-day = 1
-while day &lt;= days :
-    p = p * (1+rate)#复利，余额宝是每天的利滚利
-    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
-    day += 1
-</code></pre>
- <p>
-  通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   python中导入不同目录中的自定义模块/class/函数/方法
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-27 10:37:17
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  前几天在封装
-  <code>
-   PY_RPG
-  </code>
-  框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。
- </p>
- <h2>
-  包和模块导入的需求
- </h2>
- <p>
-  假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。
- </p>
- <pre><code>M_TEST = 888
-def print_text():
-    print('这a.py下的一个打印文字函数')
-</code></pre>
- <p>
-  现在我们引入测试
- </p>
- <pre><code>import a.a
-a.print_text()
-</code></pre>
- <p>
-  ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
-如果是在同一目录，我们直接
-  <code>
-   import a
-  </code>
-  就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到
-  <code>
-   sys.path.append()
-  </code>
- </p>
- <pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
-</code></pre>
- <p>
-  打印后，我们会发现很多目录，
-  <code>
-   python
-  </code>
-  加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
-那么我们如何把自己的文件加到上边的目录里？有几种方法：
- </p>
- <ul>
-  <li>
-   通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。
-  </li>
-  <li>
-   复制文件到上边的目录中，有些不方便，不推荐
-  </li>
-  <li>
-   <code>
-    sys.path.append()
-   </code>
-   把目录加进索引，方便python搜索，推荐
-  </li>
- </ul>
- <p>
-  那么我们来试试吧
- </p>
- <h2>
-  如何优雅的获得目录地址？
- </h2>
- <p>
-  如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
-这时我想到了
-  <code>
-   Django
-  </code>
-  配置文件中有一段代码
- </p>
- <pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-</code></pre>
- <p>
-  我们理解一下这段代码，
-  <code>
-   __file__
-  </code>
-  表示当前.py文件，
-  <code>
-   os.path.abspath(__file__)
-  </code>
-  表示当前.py文件的绝对地址，
-  <code>
-   dirname
-  </code>
-  获得上一层目录地址，
-那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试
- </p>
- <pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
-/Users/mac/PycharmProjects/PythonStudy/b
-/Users/mac/PycharmProjects/PythonStudy
-</code></pre>
- <p>
-  可以看到根目录地址已经得到了，然后通过
-  <code>
-   os.path.join()
-  </code>
-  就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。
- </p>
- <pre><code>import os 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
-print(os.path.abspath(__file__))
-print(os.path.dirname(os.path.abspath(__file__)))
-print(BASE_DIR)
-T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
-print(T_DIR)
-sys.path.append(T_DIR)
-import a
-print(a.M_TEST)
-a.print_text()
-</code></pre>
- <h2>
-  本文源码下载： a b 两个目录下为相关源文件
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   基于Python、Tk构建的可视化目录文件同步助手
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-26 15:04:15
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
- <p>
-  之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180109_24.png"/>
- </p>
- <h2>
-  功能需求
- </h2>
- <p>
-  之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
-之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
-并且能把比较后的结果复制到备份目录中进行备份。
- </p>
- <h2>
-  需求分析
- </h2>
- <p>
-  从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
-技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
- </p>
- <h2>
-  逻辑分析
- </h2>
- <p>
-  通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
-为此，我创建了一个目录比较类，专门负责比较目录与文件。
-此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
-其实本程序中，目录与文件的分析是重要部分：
- </p>
- <ul>
-  <li>
-   先判断根目录中不相同的目录与文件，然后分别记录。
-  </li>
-  <li>
-   如果有相同的目录，使用递归比较这二个相同的目录。
-  </li>
-  <li>
-   最后分别创建目录，复制文件到目标目录中。
-  </li>
- </ul>
- <h2>
-  Tk Button传参方法
- </h2>
- <p>
-  在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
- </p>
- <pre><code>command=lambda: def(参数1, 参数2)
-</code></pre>
- <p>
-  这样即可达到函数传参的实现。
- </p>
- <h2>
-  目录与文件的操作
- </h2>
- <p>
-  通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
- </p>
- <h2>
-  本文源码下载
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PyDirectoryComparison">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
    “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
   </h1>
   <span class="author">
@@ -1297,6 +226,1056 @@ y = math.sin(math.radians(angle)) * (radius）
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   “编学编玩”用Pygame写游戏（4）一个python问答游戏
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-22 09:50:35
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171022_7.png"/>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171022_8.png"/>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171022_9.png"/>
+ </p>
+ <p>
+  好开心，买的书终于到手了，极力推荐《Python游戏编程入门》！非常不错的一本书，另千万别买《Python和Pygame游戏开发指南》，好了，不要问什么，请叫我雷锋！
+ </p>
+ <h2>
+  游戏流程
+ </h2>
+ <p>
+  我觉得新手编写游戏的时候最大的难点是先把游戏构思的太细致了，以至于真正上手编程的时候完全不知道从哪里开始，平时构思设计游戏时，脑子里那闪耀的光芒，就觉得只要拿起键盘，一个旷世神作的游戏就要蛋生了！
+实际呢？两眼瞪着电脑，我特么从哪开始写呢？，所以你需要一个流程，你可以拿纸笔画，或是找个流程图画一下。可以参考下图：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171022_5.png"/>
+ </p>
+ <p>
+  有游戏流程后，先不要急于实现游戏的细节功能，先把流程走一下，先搭建游戏骨架
+  <code>
+   pygame.init()
+  </code>
+  ，嗯，这个你应该很熟了。
+然后我们通过面向对象的方法来进行这个小游戏的编写：
+ </p>
+ <pre><code>pyqa.game_Start()
+pyqa.show_qt()
+pyqa.game_Over()
+</code></pre>
+ <p>
+  这样在循环中你应该很明白游戏的流程，虽然他们都在循环中，但我们可以控制他们在游戏中渲染的逻辑，这样我们就可以考虑好游戏中类的属性了。
+这是一个问答游戏，需要有基本的题库数据，我们通过python的流读入数据，因为python可以很方便的读行，这样我们可以定义一些规律，把每一题的问题、选择项，答案都分别占一行。
+这样导入数据后可以返回一个list，方便操作。
+ </p>
+ <p>
+  好了，我们定义一下当前答题类
+  <code>
+   class Pyqa
+  </code>
+  的一些属性，首先他需要三个开关，分别代表游戏开始画面，答题画面，游戏结束画面，当然游戏一开始就是开始画面，我们可以设置他为
+  <code>
+   True
+  </code>
+  ，
+这样游戏一旦开始，即可直接进入游戏开始画面，当然我们还需要定义三个函数，分别渲染三个场景，通过
+  <code>
+   if self.gameStart
+  </code>
+  判断当前是否要渲染这段场景。
+好了，流程说到这里应该了解了吧？如果还是很头疼，建议先打代码试试，游戏内容可以不用填加，就试过场。
+ </p>
+ <h2>
+  游戏中的事件
+ </h2>
+ <p>
+  当我们运行游戏的时候，我们发现游戏只停止在游戏开始画面上，并没有继续进和到问答画面，因为我们没有加入游戏的控制，我们通过玩家来按键获取当前的游戏按键事件，
+  <code>
+   pygame
+  </code>
+  中的游戏事件轮询获取相应的事件来响应用户的操作。
+ </p>
+ <pre><code>while True:
+    for event in pygame.event.get():
+</code></pre>
+ <p>
+  当我们通过
+  <code>
+   event.key == K_RETURN:
+  </code>
+  在游戏开始画面处获得了回车键的事件，就可以把游戏中的
+  <code>
+   self.showQuestion
+  </code>
+  设置
+  <code>
+   True
+  </code>
+  ，然后开始游戏了，其它响应也是如此，
+比如获取游戏中的答案数字，也是通过相应的键值获取，具体可以查看代码了解。
+ </p>
+ <h2>
+  答题场景编写
+ </h2>
+ <p>
+  本游戏的核心就是回答问题，导入题库后，通过
+  <code>
+   def show_qt()
+  </code>
+  方法来渲染问题及选项。我在游戏中定义了一个函数
+  <code>
+   def print_text
+  </code>
+  是专门用来打印游戏中的文字的。
+当我们在游戏中选择答案按下数字键1-4的时候，我们会通过
+  <code>
+   pyqa.handle_input(int)
+  </code>
+  方法来处理当前游戏中的一些数据，比如回答是否正确，提示正确答案，记录回答正确数等，
+当我们再次按下回车键，
+  <code>
+   def next_question
+  </code>
+  方法会更新问题题库的索引指针，告诉
+  <code>
+   def show_qt()
+  </code>
+  我得渲染下一道题了！
+ </p>
+ <h2>
+  游戏结束
+ </h2>
+ <p>
+  当
+  <code>
+   def next_question
+  </code>
+  通过
+  <code>
+   self.current &gt;= len(self.data)
+  </code>
+  发现已经到达题库最后边了，游戏就要结束了，设置游戏开关相关参数为false，设置游戏结束标识
+  <code>
+   gameOver
+  </code>
+  为
+  <code>
+   true
+  </code>
+  进入游戏结束画面，展示游戏数据统计，最后当然还可以让你有重来的机会，具体实现请看代码吧，无非就是一些按键事件触发。
+ </p>
+ <h2>
+  写在最后
+ </h2>
+ <p>
+  无论是整个游戏还是中间的答题系统，我们发现在这个游戏中我们必须细致入微的进行设计判断每一步的操作，这就是游戏设计的精髓及乐趣，至少我们可以按着自己的需要来进行设计，当你把游戏设计成功，代码编写运行无错时，希望你能体会到这其中的乐趣！如果你有时间，可否帮忙丰富一下题？谢啦，记得提git提交给我哦，谢谢了。
+ </p>
+ <h2>
+  本文源码下载
+ </h2>
+ <p>
+  请git clone 下所有代码，以免造成游戏跑不起来的情况。
+ </p>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   “编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-20 16:00:52
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  上次的代码中，除了绘制基本图形与图片外，中间还插入了一个小小动画，就是头像在不停的移动，这个移动确实简单了些，游戏中的的角色肯定不是简单的移动几像素那么简单了。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/QQ20171020-145146-HD111.gif"/>
+ </p>
+ <h2>
+  屡屡顺序
+ </h2>
+ <p>
+  我觉得刚开始做游戏写代码的时候，总是弄不清游戏的顺序，你可以这样想象一下，比如是拍电影，大家都了解电影是一段一段拍，最后合成在一起然后电影可以播放了。
+游戏呢和这个差不多，也是一段一段做，只不过游戏需要一些条件判断，True了，我就播放第三段，这个属性值达到了我就播放第五段，游戏over了，我就播放结尾。
+好吧，那么我们规划一下现在这个小游戏（应该算不上是一个游戏）场景及角色。
+ </p>
+ <h2>
+  游戏内容
+ </h2>
+ <p>
+  建一个 640X480的黑色背景的游戏场景，场景中随机生成一些大小一样的小球，他们随机属性值，有一个绿色，有一组红色，如果绿色碰到红色他们就会反转滚动，这些小球如果碰到边界也会反转滚动。
+注意：这里碰撞的检测之后的动作，只是简单的，并不是真的物理运动哦，当然如果你很懂物理学，做一组力学物理运动应该也不是很难的。
+ </p>
+ <h2>
+  游戏场景
+ </h2>
+ <ul>
+  <li>
+   游戏场景的搭建和之前基本上差不多，这里不在介绍了，如果不了解可以翻看之前或是本节的代码参考。
+  </li>
+ </ul>
+ <h2>
+  游戏中的角色
+ </h2>
+ <p>
+  之前我们在场景中是直接绘制的图形，这次我们通过面向对象的方式来管理场景中的角色，pygame中提供了一个
+  <code>
+   Sprite
+  </code>
+  类，这个类专门为游戏中的角色精灵准备的。
+框架中还提供了一个
+  <code>
+   pygame.sprite.Group()
+  </code>
+  容器，他可以把sprite加进去，通过group来管理，group这个容器，通过查看源代码，他只能处理图片类型的sprite。
+如果创建的Rect对象是不行的，这种加到组里后，通过draw是无法绘制出来的，
+  <code>
+   group.draw()
+  </code>
+  这个方法中的画笔使用了
+  <code>
+   blit()
+  </code>
+  ，而不是
+  <code>
+   draw()
+  </code>
+ </p>
+ <h2>
+  游戏中的逻辑判断
+ </h2>
+ <p>
+  这个我们直接在游戏中的循环当中直接判断，我是这么把游戏分成各种对象的：
+ </p>
+ <ul>
+  <li>
+   游戏场景对象，他只负责绘制场景中的任何角色及精灵
+  </li>
+  <li>
+   游戏逻辑判断对象，他只负责判断游戏场景中的碰撞，时间检测，然后修改他们的属性。
+  </li>
+  <li>
+   精灵group，他们只负责创建，删除。
+  </li>
+ </ul>
+ <h2>
+  开始制作
+ </h2>
+ <p>
+  理论课结束，我们来实践一下，
+  <code>
+   main()
+  </code>
+  函数中创建一个游戏运行函数
+  <code>
+   rungame()
+  </code>
+  ，这个函数中运行着当前游戏的所有数据，及各种事件触发的检测。
+为什么需要
+  <code>
+   rungame()
+  </code>
+  ?你可以把他这个函数看成一个电影片段，当前你还可以有
+  <code>
+   gamestart() gameover()
+  </code>
+  函数，这样游戏运行到哪个部位时就让哪个函数运行即可。
+ </p>
+ <h2>
+  Sprite 精灵
+ </h2>
+ <p>
+  说说
+  <code>
+   class MyImgSprite(pygame.sprite.Sprite
+  </code>
+  ，这是当前游戏中的精灵，我们为他创建了几个属性，其中比较重要的有：
+ </p>
+ <pre><code>self.image = pygame.image.load('./images/a.png') #导入图片
+self.rect = self.image.get_rect() #返回一个rect对象
+self.rect.topleft = (random.randint(40,590),random.randint(40,430))#设置他的坐标  
+self.last_update = pygame.time.get_ticks()#获取当前游戏动行的时间，这是一个整数，不明白可以打印看看
+#移动速度
+self.speed_x = random.randint(1,10)
+self.speed_y = random.randint(1,10)
+</code></pre>
+ <p>
+  有了速度，我们就可以通过
+  <code>
+   update()
+  </code>
+  方法来更新自己的坐标
+ </p>
+ <pre><code>now = pygame.time.get_ticks()
+if now - self.last_update &gt;1:#通过这个时间差来做一些动画       
+    #self.rect.topleft = (random.randint(0,600),random.randint(0,440))#随机变化位置
+    self.rect.x += self.speed_x
+    self.rect.y += self.speed_y
+    self.last_update = now
+</code></pre>
+ <p>
+  如果你不在
+  <code>
+   update()
+  </code>
+  方法更新任何值，那么 这个精灵就是不会动弹的。
+那么问题来了，为什么不直接在游戏循环中更新？
+上节的代码中有段小小的移动是在循环中更新的，因为那只有一段动画，如果以后有很多个对象的话，在循环中更新会很麻烦，这里更新更符合面向对象的的编程方式。
+ </p>
+ <h2>
+  绘制及更新
+ </h2>
+ <p>
+  在rungame函数中创建个绿球，一组红球，然后就可以直接在场景里绘制了，绘制方法：
+ </p>
+ <pre><code>drawbackground()#绘制场景背景颜色
+DISPLAYSURF.blit(m.image,m.rect)#绘制绿球
+myimgs.draw(DISPLAYSURF)#绘制一组红球
+</code></pre>
+ <p>
+  场景中的绘制顺序应该是：
+ </p>
+ <ol>
+  <li>
+   绘制精灵
+  </li>
+  <li>
+   逻辑判断
+  </li>
+  <li>
+   udpate()更新数据
+  </li>
+ </ol>
+ <p>
+  以此为循环，这样反复循环即可生成画面。
+ </p>
+ <h2>
+  逻辑判断
+ </h2>
+ <p>
+  说到逻辑判断，这次场景中包括的判断有二种：边界碰撞及球体之间的碰撞。
+边界碰撞，我自个写了个边界碰撞检测器
+  <code>
+   BorderCrossing.py
+  </code>
+  ，因为我在pygame中没找到边界碰撞检测的方法，大家在运行代码的时候，记得git clone一下整个项目。
+这个边界碰撞检测器，我就不多说了，不然这又一篇博客了，有兴趣可以自己看看源码。
+ </p>
+ <p>
+  球体之间的碰撞检测直接套用的pygame中的碰撞检测，具体可以参考官方文档
+ </p>
+ <p>
+  <a href="http://pygame.org/docs/ref/sprite.html#pygame.sprite.spritecollide">
+   碰撞检测官方文档
+  </a>
+ </p>
+ <h2>
+  更新游戏数据
+ </h2>
+ <p>
+  在逻辑判断中根据自己的需要进行速度等数据修改，最后记得用方法更新一下精灵们的坐标。
+说的不是很好，具体大家跑跑程序，改改数值就明白了，如果有什么不懂的，可以直接留言或是邮件给我。欢迎各位大佬指正！
+ </p>
+ <h2>
+  本文源码下载
+ </h2>
+ <p>
+  请git clone 下所有代码，以免造成游戏跑不起来的情况。
+ </p>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   “编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-19 14:03:46
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <code>
+   pygame
+  </code>
+  的框架使用起来很简单，但这个框架功能也还算可以的，虽然网上对
+  <code>
+   pygame
+  </code>
+  评价褒贬不一，但对于其的存在必有其的存在意义，功能上虽然不能说是十分的完美，但对于新手来说，在使用和学习中还是很有价值的。
+ </p>
+ <h2>
+  <code>
+   pygame
+  </code>
+  图形绘制
+ </h2>
+ <p>
+  rect    绘制矩形
+polygon 绘制多边形（三个及三个以上的边）
+circle  绘制圆
+ellipse 绘制椭圆
+arc 绘制圆弧
+line    绘制线
+lines   绘制一系列的线
+aaline  绘制一根平滑的线
+aalines 绘制一系列平滑的线
+ </p>
+ <p>
+  上边列举了一些图形绘制的方法，第一结中的代码我们只是给出pygame中最简约的实现代码，我们在上节代码的基础之上继续添加一下，试试画出各种图形。
+ </p>
+ <pre><code>pygame.draw.polygon(screen, RED, ((146,0),(290,100),(36,277),(55,200),(0,106)),2)
+pygame.draw.line(screen, BLUE, (11,33), (55,300), 1)
+pygame.draw.circle(screen, GREEN, (300,50), 100, 0)
+pygame.draw.ellipse(screen, RED, (300,250,180,80), 1)
+pygame.draw.rect(screen, RED, (200,150,100,100), 1)
+</code></pre>
+ <p>
+  以上为各种图形绘制的方法演示，关于这些方法的参数，我们可以参考官方的文档，其实都是挺简单的。
+ </p>
+ <h2>
+  在场景中绘制图片
+ </h2>
+ <p>
+  游戏中的角色不可能只是一些简单的图形，大多数时应该都是一张张图片，我们看下图片的绘制方法
+ </p>
+ <pre><code>bosiImg = pygame.image.load('./images/bosi.png')
+screen.blit(bosiImg,(bosix,bosiy))
+</code></pre>
+ <p>
+  通过
+  <code>
+   pygame.image.load()
+  </code>
+  加载图片后，在场景中使用
+  <code>
+   screen.blit
+  </code>
+  绘制，两个参数：图片对象和一个坐标元组。
+ </p>
+ <h2>
+  在场景中写字
+ </h2>
+ <p>
+  pygame中的文字绘制稍稍有一点麻烦，我们看代码：
+ </p>
+ <pre><code>fobj = pygame.font.Font('./font/3.ttf', 40)
+textobj = fobj.render('Hello World', True, GREEN,)
+text = textobj.get_rect()
+text.center = (400, 400)
+screen.blit(textobj, text)#文字显示
+</code></pre>
+ <p>
+  看代码行数是五步：
+ </p>
+ <ol>
+  <li>
+   通过
+   <code>
+    pygame.font.Font()
+   </code>
+   加载字体，创建一个font对象，设置文字的大小
+  </li>
+  <li>
+   通过
+   <code>
+    render('Hello World', True, GREEN,)
+   </code>
+   设置文字的内容，颜色。
+  </li>
+  <li>
+   <code>
+    get_rect()
+   </code>
+   或得一个rect对象，之后就有些象绘制图象了。
+  </li>
+  <li>
+   设置绘制图像的坐标
+  </li>
+  <li>
+   <code>
+    blit()
+   </code>
+   方法绘制文字到场景
+  </li>
+ </ol>
+ <h2>
+  让图片动起来
+ </h2>
+ <p>
+  如何在场景中绘制动画？动画其实就是角色坐标值的修改，
+ </p>
+ <pre><code>bosix = 100
+bosiy = 100
+</code></pre>
+ <p>
+  在代码中我定义了二个变量，然后我在游戏场景的循环输出中，不断的修改角色的坐标值即可达到需要的动画效果了。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171019_3.png"/>
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   “编学编玩”用Pygame写游戏（1）初识pygame
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-19 11:00:31
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/timg.jpeg"/>
+ </p>
+ <h2>
+  啰嗦几句
+ </h2>
+ <p>
+  这阵子一直在看有关
+  <code>
+   Python
+  </code>
+  相关的书，
+  <code>
+   Python
+  </code>
+  上手确实很简单，但这并不意味着
+  <code>
+   Python
+  </code>
+  是一门浅显的编程语言，语法简练确实让我们节省了大量的时间。不过当你深入的学习
+  <code>
+   Python
+  </code>
+  的时候，比如：装饰器，推导，多线程及多进程，协程，高阶函数，元编程等等等等很多，你会发现，
+  <code>
+   Python
+  </code>
+  的深入学习并不是很简单。会写代
+  <code>
+   Python
+  </code>
+  和会优雅的编写
+  <code>
+   Python
+  </code>
+  代码是两回事，出来混的，坑迟早还是要挖的，这不前几天协程的深入学习，搞的我很不爽，到现在还是一头雾水。
+ </p>
+ <p>
+  为了让自己换换心情，前几天想到用
+  <code>
+   python
+  </code>
+  写写小游戏玩玩吧，想到自己以前用
+  <code>
+   java
+  </code>
+  还编写了一个小小的2D游戏引擎半路就放弃了（java就是不爽），这次来试试用
+  <code>
+   Python
+  </code>
+  写些小游戏试试。其实写游戏练习编程确实是一个比较好的方法，几百行的工程量也不算大，游戏设计的逻辑比较紧密，比较适合新手养成编程思维，不过如果是刚刚学习编程，可能还是会觉得游戏中大段的代码，摸不清逻辑，所以通过阅读代码了解游戏的设计意图也算是对编程能力很好的锻炼。
+ </p>
+ <p>
+  好了，啰嗦了半天，我们开始pygame的学习之旅吧。
+ </p>
+ <h2>
+  pygame 安装
+ </h2>
+ <pre><code>pip3 install pygame
+</code></pre>
+ <p>
+  就是这么简单，然后我们可以在python3的终端环境下测试一下
+ </p>
+ <pre><code>import pygame
+</code></pre>
+ <p>
+  如果没有报错，那么恭喜你安装成功了。
+ </p>
+ <h2>
+  pygame的 Hello World
+ </h2>
+ <p>
+  导入pygame模块及常用变量，如果还需要其它模块，可以一并导入，比如sys,os,time random等。
+ </p>
+ <pre><code>import pygame
+from pygame.locals import *
+</code></pre>
+ <p>
+  这里是一个游戏初始化的设置，他应该在游戏代码编写的最前边，不要忘记哦。
+ </p>
+ <pre><code>pygame.init()
+</code></pre>
+ <p>
+  SCREEN 定义了一个游戏的屏幕，我觉得管它叫做画布更形象些，因为后续游戏场景中的游戏对象，都要在这个screen上绘制。
+ </p>
+ <pre><code>SCREEN = pygame.display.set_mode((640, 480))
+</code></pre>
+ <p>
+  设置当前游戏窗口的标题
+ </p>
+ <pre><code>pygame.display.set_caption("Hello World!")
+</code></pre>
+ <p>
+  这里有个死循环，这是游戏的主要逻辑处理及场景渲染器，for循环是处理游戏中的事件触发，其中QUIT表示触发了游戏离开件事，然后调用
+  <code>
+   pygame.quit()
+  </code>
+  函数。
+  <code>
+   pygame.display.updae()
+  </code>
+  这个函数表示更新当前screen的画面。
+ </p>
+ <pre><code>while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+    pygame.display.update()
+</code></pre>
+ <h2>
+  效果如图：
+ </h2>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171019_2.png"/>
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   浅谈Python中的协程及利用协程代替多线程及多进程并发编程
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-15 15:52:46
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。
+ </p>
+ <h2>
+  生成器如何演变成协程？
+ </h2>
+ <p>
+  乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？
+ </p>
+ <pre><code>def cd(n):
+    print("Counting down from %s" % n)
+    while n &gt; 0:
+        yield n
+        n -= 1
+c = cd(10)
+next(c)
+for i in c :
+    print(i,end=' ')
+</code></pre>
+ <p>
+  上边是一个典型的生成器函数，我们稍加变化使之成为协程。
+ </p>
+ <pre><code>def cd1():
+    n = yield
+    while n &gt; 0:
+        print("Counting down from %s" % n)
+        n -= 1
+
+c1 = cd1()
+next(c1)
+c1.send(10)
+#运行到这里应该抛出一个异常
+</code></pre>
+ <p>
+  生成器和协程的不同有没有看出来？很明显的有两处：
+ </p>
+ <ul>
+  <li>
+   yield的位置
+  </li>
+  <li>
+   next()和send()函数的用法
+  </li>
+ </ul>
+ <p>
+  通过运行结果我们可以到最后抛出了一个异常
+  <code>
+   StopIteration
+  </code>
+  ,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。
+ </p>
+ <pre><code>from functools import wraps
+def coroutine(func):
+    @wraps(func)
+    def primer(*args, **kwargs):
+        gen = func(*args,**kwargs)
+        next(gen)
+        return gen
+    return primer
+@coroutine
+def cd2():
+    n = yield
+    while n &gt; 0:
+        print("Counting down from %s" % n)
+        n -= 1
+try:
+    cd2().send(10)
+except Exception as e:
+    print('协程任务终止')
+</code></pre>
+ <p>
+  带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。
+ </p>
+ <h2>
+  利用协程代替线程或进程进行并发编程
+ </h2>
+ <p>
+  我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
+这里的协程用到了asyncio模块，利用asyncio模块实现了一个协程的并发。关于asyncio的实现原理，稍后再研究一下。
+ </p>
+ <pre><code>import asyncio
+import time
+import threading
+def tn(func):
+    '''定义一个程序运行时间计算函数'''
+    def wrapper(*args, **kwargs):
+        start = time.time() # 起始时间
+        func(*args, **kwargs) # 要执行的函数
+        end = time.time() # 结束时间
+        print('程序运行时间:{:.2f}ms'.format((end-start)))
+    return wrapper
+
+def loop1(tname):
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    time.sleep(1)
+
+# @asyncio.coroutine
+async def loop2(tname):# async等同于@asyncio.coroutine
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    # yield from asyncio.sleep(1)
+    await asyncio.sleep(1)  # 等同于yield from
+
+@asyncio.coroutine
+def loop3(tname):# async等同于@asyncio.coroutine
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    yield from asyncio.sleep(1)
+    # await asyncio.sleep(1)  # 等同于yield from
+
+@tn
+def main():
+    print('多线程任务开始执行=====')
+    threads = []#定义一个线程队列
+    for i in range(5):
+        t = threading.Thread(target=loop1, args=("thread"+str(i),))
+        threads.append(t)
+    for i in range(5):
+        threads[i].start()
+    for i in range(5):
+        threads[i].join()
+
+    #协程并发测试
+    print('协程并发测试开始======')
+    loop = asyncio.get_event_loop()# 获取一个event_loop
+    #任务列表
+    tasks = [
+        asyncio.ensure_future(loop2('11111')),
+        asyncio.ensure_future(loop2('22222')),
+        asyncio.ensure_future(loop2('33333')),
+        asyncio.ensure_future(loop3('44444')),#loop3
+        asyncio.ensure_future(loop3('55555'))]#loop3
+    loop.run_until_complete(asyncio.wait(tasks))
+    loop.close()
+if __name__ == '__main__':
+    main()
+</code></pre>
+ <p>
+  上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
+这就是协程的魅力所在，一条线程搞定多线程任务。
+ </p>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   聊聊Python中晦涩的生成器（yield）与生成器表达式
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-14 08:21:49
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171014_4.png"/>
+ </p>
+ <h2>
+  晦涩的生成器yield
+ </h2>
+ <p>
+  刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。
+ </p>
+ <h2>
+  什么是生成器？
+ </h2>
+ <p>
+  书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，
+  <code>
+   __next__()
+  </code>
+  #python3中的特殊方法，应该避免使用特殊方法，
+  <code>
+   next(c)
+  </code>
+  使用内置函数next()即可。
+ </p>
+ <pre><code>def countdown(n):
+    print("Counting down from %s" % n)
+    while n &gt; 0:
+        yield n
+        n -= 1
+    return
+
+c = countdown(10)
+print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
+print(next(c))#使用内置函数next()
+for i in c :
+    print(i,end=' ')
+</code></pre>
+ <p>
+  函数对象调用
+  <code>
+   .__next__()
+  </code>
+  函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
+调用
+  <code>
+   close()
+  </code>
+  方法关闭未使用完的生成器。
+那么问题来了，yield到底是什么？
+ </p>
+ <p>
+  我们把上边的代码稍加变化:
+ </p>
+ <pre><code>def countdown1(n):
+    print("Counting down from %s" % n)
+    while n &gt; 0:
+        yield n*n
+        n -= 1
+    return
+
+c = countdown1(10)
+print(next(c))
+print(next(c))
+print(next(c))
+for i in c :
+    print(i,end=' ')
+</code></pre>
+ <p>
+  运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。
+ </p>
+ <h2>
+  生成器表达式
+ </h2>
+ <p>
+  如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
+因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。
+ </p>
+ <p>
+  代码如下：
+ </p>
+ <pre><code>print('')
+print("生成器表达式:")
+b = (x*x for x in range(10) if (x % 2 ==0))
+print(next(b))
+print(next(b))
+for i in b :
+    print(i, end=' ')
+
+</code></pre>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-13 10:57:48
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171013_1.png"/>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171013_3.png"/>
+ </p>
+ <h2>
+  Tk多线程中的坑
+ </h2>
+ <ul>
+  <li>
+   在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！
+  </li>
+  <li>
+   客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。
+  </li>
+ </ul>
+ <h2>
+  多用户服务器端
+ </h2>
+ <p>
+  每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
+这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。
+ </p>
+ <p>
+  关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。
+ </p>
+ <h2>
+  客户端
+ </h2>
+ <p>
+  客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。
+ </p>
+ <p>
+  具体代码就不贴了，到git下载吧。
+ </p>
+ <p>
+  代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_7.html">
@@ -1305,7 +1284,7 @@ y = math.sin(math.radians(angle)) * (radius）
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    8 / 15
+    8 / 14
    </button>
    <a href="/list/list_9.html">
     <button class="next btn btn-primary" type="button">
