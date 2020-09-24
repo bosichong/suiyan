@@ -135,557 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-14 10:35:05
-  </span>
-  <span class="tag">
-   Django
-  </span>
- </div>
- <p>
- </p>
- <p>
-  使用
-  <code>
-   Django
-  </code>
-  编写个人博客是一件很轻松的事，
-  <code>
-   Django
-  </code>
-  给我们提供了很多功能模块，让我们大大减少了代码的编写，让我们把更多的精力集中到程序的逻辑开发上，让我们有更多的时间去陪家人、陪孩子、和打游戏。
-发自心的感谢:感谢
-  <code>
-   Django
-  </code>
-  ，感谢开源界的程序员及一切。
- </p>
- <h2>
-  引入
-  <code>
-   Markdown
-  </code>
- </h2>
- <p>
-  博客有了，不过文章内容页上只显示的是字符，并没有任何美化的效果，比如插入图片、加入一些样式等，解决这个问题做为一个程序员首先就会想到
-  <code>
-   Markdown
-  </code>
-  ，
-  <code>
-   python3
-  </code>
-  中有
-  <code>
-   Markdown
-  </code>
-  模块，我们先来安装一下：
- </p>
- <pre><code>pip3 install markdown
-</code></pre>
- <h2>
-  使用
-  <code>
-   Markdown
-  </code>
- </h2>
- <pre><code>➜  ~ python3
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
-[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; from markdown import markdown
-&gt;&gt;&gt; s = '###这里是标题'
-&gt;&gt;&gt; m = markdown(s)
-&gt;&gt;&gt; m
-'&lt;h3&gt;这里是标题&lt;/h3&gt;'
-</code></pre>
- <p>
-  额，又是这么简单，接下来就是引入到
-  <code>
-   Django
-  </code>
-  中使用了。
-插播一条广告：如果你对
-  <code>
-   Markdown
-  </code>
-  语法不了解，请看下边的博文。
-  <a href="http://www.17python.com/blog/5">
-   Markdown 语法学习总结
-  </a>
- </p>
- <h2>
-  <code>
-   Django
-  </code>
-  模板中输出
-  <code>
-   html
-  </code>
- </h2>
- <p>
-  启动服务器，我们添加一篇带有
-  <code>
-   markdown
-  </code>
-  语法的文章:
- </p>
- <pre><code>#Markdown文章测试哦
-##Markdown文章测试哦Markdown文章测试哦
-
-1. Markdown文章测试哦
-2. Markdown文章测试哦
-3. Markdown文章测试哦
-
-
-&lt;h1&gt;html测试哦&lt;/h1&gt;
-&lt;br/&gt;
-&lt;h3&gt;html测试哦html测试哦html测试哦&lt;/h3&gt;
-</code></pre>
- <p>
-  打开这个篇博文的页面，我们会看到如下效果：
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_51.png"/>
- </p>
- <p>
-  发现
-  <code>
-   Markdown
-  </code>
-  语法只是原样输出，并没有解析，还有就是
-  <code>
-   html
-  </code>
-  代码被转义了，没有在网页中显示出样式，好了，发现两个问题，我们逐一解决。
- </p>
- <h2>
-  关闭
-  <code>
-   Django
-  </code>
-  模板中的
-  <code>
-   html
-  </code>
-  转义
- </h2>
- <p>
-  关闭
-  <code>
-   Django
-  </code>
-  模板中的
-  <code>
-   html
-  </code>
-  转义有两种方法：
- </p>
- <pre><code>&lt;p&gt;这行不会被转义&lt;/p&gt;: {{ data }}
-&lt;p&gt;这行会被自动转义&lt;/p&gt;: {{ data|safe }}
-</code></pre>
- <p>
-  这种是比较短小的
-  <code>
-   html
-  </code>
-  情况下使用的过滤器
-  <code>
-   safe
-  </code>
-  来关闭
-  <code>
-   html
-  </code>
-  转义，如果是大段的
-  <code>
-   html
-  </code>
-  代码比如博文，我们使用下边的方法：
- </p>
- <pre><code>   {% autoescape off %}
-    {{ article.content }}
-   {% endautoescape %}
-</code></pre>
- <p>
-  其中
-  <code>
-   article.content
-  </code>
-  输出的
-  <code>
-   html
-  </code>
-  代码就不会被转义了，网页上就会显示出具体的样式。我们试下。
- </p>
- <p>
-  打开
-  <code>
-   bolg.html
-  </code>
-  ,修改模板内容渲染：
- </p>
- <pre><code>{% autoescape off %}
-    {{ article.content }}
-{% endautoescape %}
-</code></pre>
- <p>
-  保存后，我们刷新一下页面看看，
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_52.png"/>
- </p>
- <p>
-  <code>
-   html
-  </code>
-  代码已经被正常输出了，网页上显示了还的标题样式，但我们发现
-  <code>
-   markdown
-  </code>
-  的语法还没有被解析成
-  <code>
-   html
-  </code>
-  代码。
- </p>
- <h2>
-  使用
-  <code>
-   Django
-  </code>
-  自定义过滤器+
-  <code>
-   Markdown
-  </code>
-  模块解析
-  <code>
-   Markdown
-  </code>
-  代码
- </h2>
- <p>
-  创建自定义过滤器文件
-  <code>
-   myblog.templatetags.mytags.py
-  </code>
-  ,并在相同目录中添加
-  <code>
-   __init__.py
-  </code>
-  空文件即可。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_56.png"/>
- </p>
- <p>
-  先编写
-  <code>
-   mytags.py
-  </code>
-  过滤器代码：
- </p>
- <pre><code>#coding=utf-8
-#导入基本配置文件
-from django import template
-#导入markdown模块
-from markdown import markdown
-#引入过滤器
-register = template.Library()
-
-#自定义过滤器编写
-
-@register.filter
-def toMarkdown(str):
-    ####markdown解析器
-    return markdown(str)
-</code></pre>
- <p>
-  然后我们在模板中引用一下这个过滤器，
- </p>
- <p>
-  编辑修改
-  <code>
-   blog.html
-  </code>
-  的代码，在头部添加：
- </p>
- <pre><code>{% load mytags %}
-</code></pre>
- <p>
-  表示加载自定义的过滤器，修改渲染文章内容处的代码，添加过滤器，过滤器的用法很简单，具体看代码：
- </p>
- <pre><code>{% autoescape off %}
-    {{ article.content|toMarkdown }}
-{% endautoescape %}
-</code></pre>
- <p>
-  保存后，我们刷新文章页查看一下:
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_58.png"/>
- </p>
- <p>
-  到此，
-  <code>
-   markdown
-  </code>
-  已经在我们的博客中完美引用了，当然做为一个程序员我们经常和代码打交道，博客中少不了要贴代码，所以代码美化也是少不了的。
-这里我推荐一个代码美化的js：
-  <code>
-   highlight.js
-  </code>
-  去他的官方网站上下载一个喜欢的js和css样式，然后加到
-  <code>
-   blog.html
-  </code>
-  中，大体上如下：
- </p>
- <pre><code>&lt;link rel="stylesheet" href="/static/highlight/styles/atom-one-light.css"&gt;
-&lt;script src="/static/highlight/highlight.pack.js"&gt;&lt;/script&gt;
-&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
-</code></pre>
- <p>
-  具体文件请按目录保存，这样你的博客中的代码就有了自己的样式，而不是很单一的颜色了。
- </p>
- <p>
-  好了，这节结束，感觉很简单的东西，怎么写了么这长。。。。。。有问题请在下边留言给俺
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-13 09:54:56
-  </span>
-  <span class="tag">
-   Django
-  </span>
- </div>
- <p>
- </p>
- <p>
-  一不留神已经开始写滴12节了，但感觉还是有很多细节的知识点没有写到，这节说说数据分页在
-  <code>
-   Django
-  </code>
-  的实现吧。
- </p>
- <h2>
-  数据分页
- </h2>
- <p>
-  说道数据分页这个功能，在编程的日常中是经常遇到的，WEB的日常更不用说了，所以理解并熟练的掌握分页的技术可以说是很重要的了。
-关于数据分页的理论这里不再做细节的讨论，我们重点来了解利用
-  <code>
-   Django
-  </code>
-  中的模块的实现方法。
- </p>
- <h2>
-  数据分页终端下的测试
- </h2>
- <p>
-  <code>
-   django.core.paginator
-  </code>
-  是Django提供的一个数据分页模块，当你的分页数据量不大的时候（比如几万的数据量）可以使用这个模块。
-因为这个模块需要先返回所有需要分页的数据，然后根据一定的逻辑进行分页，这就是所谓的逻辑分页吧，所以小数量分页可以直接考虑用
-  <code>
-   django.core.paginator
-  </code>
-  。
-而且这个分页模块可以拿出来单独使用，就象
-  <code>
-   Django ORM
-  </code>
-  一样，可以脱离WEB环境使用，我们创建一个简单的数据来测试一下这个分布模块。
- </p>
- <p>
-  我觉得代码是最好的教程：
- </p>
- <pre><code>➜  ~ python3 
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
-[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; from django.core.paginator import Paginator
-&gt;&gt;&gt; objs = [k for k in range(1000)]
-&gt;&gt;&gt; p = Paginator(objs, 10)
-&gt;&gt;&gt; p.count
-1000
-&gt;&gt;&gt; p.num_pages
-100
-&gt;&gt;&gt; p.page_range
-range(1, 101)
-&gt;&gt;&gt; page1 = p.page(1)
-&gt;&gt;&gt; page1
-&lt;Page 1 of 100&gt;
-&gt;&gt;&gt; page1.object_list
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; page2 = p.page(100)
-&gt;&gt;&gt; page2.object_list
-[990, 991, 992, 993, 994, 995, 996, 997, 998, 999]
-&gt;&gt;&gt; page2.has_next()
-False
-&gt;&gt;&gt; page2.has_previous()
-True
-&gt;&gt;&gt; page1.has_previous()
-False
-&gt;&gt;&gt;
-</code></pre>
- <p>
-  通过上边的代码，我们可以看到
-  <code>
-   Paginator
-  </code>
-  对数据分页的封装是很好的，使用起来也容易理解。
-接下来，我们把
-  <code>
-   django.core.paginator
-  </code>
-  引入到视图中来使用。
- </p>
- <p>
-  views.py中的代码：
- </p>
- <pre><code>############################
-#翻页视图中代码
-############################
-paginator = Paginator(articles, 3)#创建Paginator
-page = request.GET.get('p')#获取当前页码
-try:
-    contacts = paginator.page(page)#取得当前页码所包含的数据
-except PageNotAnInteger:
-    contacts = paginator.page(1)#若不是整数，跳转到第一页。
-except EmptyPage:
-    contacts = paginator.page(paginator.num_pages)#若超过了最后一页
-#############################
-</code></pre>
- <p>
-  把上边的代码加到
-  <code>
-   return
-  </code>
-  之前即可，这里要说明一下，之前我们模板调用的数据是
-  <code>
-   articles
-  </code>
-  ，现在我们需要分页提供的需要显示的数据，
-这里模板中需要引用一组当前页码上需要显示的数据，这里就要使用我们传递的
-  <code>
-   contacts
-  </code>
-  ，这里大家应该明白，这是当前页码需要显示的数据。
-  <strong>
-   然后把模板里的
-   <code>
-    articles
-   </code>
-   换成
-   <code>
-    contacts
-   </code>
-   ，然后把模板里的
-   <code>
-    articles
-   </code>
-   换成contacts
-   <code>
-    ，然后把模板里的
-   </code>
-   articles
-   <code>
-    换成
-   </code>
-   contacts`
-  </strong>
-  重要的事情要说三次。
- </p>
- <p>
-  list.html中的代码：
- </p>
- <pre><code>&lt;!-- 翻页  --&gt;
-&lt;div class="am-pagination am-pagination-centered"&gt;
-    {% if contacts.has_previous %}
-        &lt;li class=""&gt;&lt;a href="?p={{ contacts.previous_page_number }}"&gt;&amp;laquo; 上一页&lt;/a&gt;&lt;/li&gt;
-    {% endif %}
-    {% for p in contacts.paginator.page_range %}   
-        &lt;li class="{% if p == page_number %}am-active{% endif %}"&gt;&lt;a href="?p={{ p }}"&gt;{{ p }}&lt;/a&gt;&lt;/li&gt;
-    {% endfor %}
-    {% if contacts.has_next %}
-        &lt;li class=""&gt;&lt;a href="?p={{ contacts.next_page_number }}"&gt;下一页 &amp;raquo;&lt;/a&gt;&lt;/li&gt;
-    {% endif %}
-&lt;/div&gt;
-</code></pre>
- <p>
-  这里有几个变量可能是头一次看到，都是一些翻页数据变量，这组模板代码中大量的应用了
-  <code>
-   {% if XXX %}{% endif %}
-  </code>
-  标签，
-还有这个翻页组件是Amaze UI提供的，笔者感觉还是不错的。
-接下来就是运行服务器，预览一下效果，动手点点那些数字，看看连接是否对的上？
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171213_48.png"/>
- </p>
- <h2>
-  数据翻页结束了？
- </h2>
- <p>
-  看了代码，大家是不是觉得太简单了？好吧这里我留个坑，有兴趣的可以自己试试，当前的数据翻页只是所有数据的翻页展示，
-如果切换到某个类目下，数据太多，也需要翻页，或是搜索结果很多也需要翻页，大家想想看，根据当前提供一些代码如何扩展实现呢？
- </p>
- <p>
-  如果有问题欢迎各位可以留言给作者提问。
- </p>
- <p>
-  <code>
-   django
-  </code>
-  官方 翻页帮助文档
-https://docs.djangoproject.com/en/1.11/topics/pagination/
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
    实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
   </h1>
   <span class="author">
@@ -1666,6 +1115,188 @@ a.print_text()
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   基于Python、Tk构建的可视化目录文件同步助手
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-26 15:04:15
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180109_24.png"/>
+ </p>
+ <h2>
+  功能需求
+ </h2>
+ <p>
+  之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
+之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
+并且能把比较后的结果复制到备份目录中进行备份。
+ </p>
+ <h2>
+  需求分析
+ </h2>
+ <p>
+  从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
+技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
+ </p>
+ <h2>
+  逻辑分析
+ </h2>
+ <p>
+  通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
+为此，我创建了一个目录比较类，专门负责比较目录与文件。
+此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
+其实本程序中，目录与文件的分析是重要部分：
+ </p>
+ <ul>
+  <li>
+   先判断根目录中不相同的目录与文件，然后分别记录。
+  </li>
+  <li>
+   如果有相同的目录，使用递归比较这二个相同的目录。
+  </li>
+  <li>
+   最后分别创建目录，复制文件到目标目录中。
+  </li>
+ </ul>
+ <h2>
+  Tk Button传参方法
+ </h2>
+ <p>
+  在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
+ </p>
+ <pre><code>command=lambda: def(参数1, 参数2)
+</code></pre>
+ <p>
+  这样即可达到函数传参的实现。
+ </p>
+ <h2>
+  目录与文件的操作
+ </h2>
+ <p>
+  通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
+ </p>
+ <h2>
+  本文源码下载
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PyDirectoryComparison">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-23 15:51:11
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  游戏中绘制圆及圆形的轨迹需求还是不少的，而且很多地方都需要用到圆及弧度的理论，如果想做些游戏的话，必须熟练掌握这些基本知识。
+ </p>
+ <h2>
+  一些知识点
+ </h2>
+ <ul>
+  <li>
+   radius 圆的半径
+  </li>
+  <li>
+   diameter 圆的直径
+  </li>
+  <li>
+   angle 角度
+  </li>
+  <li>
+   一个圆的完整的弧度 PI*2=6.28
+  </li>
+  <li>
+   1弧度的角度值为 360/6.28=57.3248
+  </li>
+  <li>
+   1度的弧度值为 6.28/360=0.0174
+  </li>
+  <li>
+   math.degrees(x)将角度x从弧度转换为度。
+  </li>
+  <li>
+   math.radians(x)将角度x从度转换为弧度。
+  </li>
+  <li>
+   math.sin(x)返回x弧度的正弦值。
+  </li>
+  <li>
+   math.cos(x)返回x弧度的余弦值。
+  </li>
+ </ul>
+ <h2>
+  圆周上点的坐标
+ </h2>
+ <pre><code>x = math.cos(math.radians(angle)) * (radius)
+y = math.sin(math.radians(angle)) * (radius）
+</code></pre>
+ <p>
+  如果不想深入了解的话，只需要记住，我们需要角度，即可求得圆周上的坐标值，对就上边的函数解释应该可以理解上边的python语句的含意。
+ </p>
+ <h2>
+  实例
+ </h2>
+ <p>
+  没有比绘制一个表盘更贴近实际需求的例子了，通过pythondatetime函数，我们可以很方便的获得时间，然后转换成相关数据。
+ </p>
+ <p>
+  以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/Snip20171023_1.png"/>
+ </p>
+ <h2>
+  本文源码下载
+ </h2>
+ <p>
+  请git clone 下所有代码，以免造成游戏跑不起来的情况。本例源文件pygame05.py
+ </p>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_7.html">
@@ -1674,7 +1305,7 @@ a.print_text()
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    8 / 16
+    8 / 15
    </button>
    <a href="/list/list_9.html">
     <button class="next btn btn-primary" type="button">

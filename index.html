@@ -662,303 +662,6 @@ new CleanWebpackPlugin(),//清理目录 而且不用加入目录数组['dist']
  </ol>
  <div class="blog-article">
   <h1 class="title">
-   Vue快速学习笔记(7)使用路由vue-router(3)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-24 10:09:51
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  对vue-router的一些总结
- </h2>
- <ol>
-  <li>
-   <p>
-    导入
-    <code>
-     Vue
-    </code>
-    及
-    <code>
-     vue-router
-    </code>
-    。
-   </p>
-   <p>
-    <script src="/assets/plugins/vue.js">
-    </script>
-    <script src="/assets/plugins/vue-router.js">
-    </script>
-   </p>
-  </li>
- </ol>
- <p>
-  2.HTML结构，声明一个组件的
-  <code>
-   div
-  </code>
-  ,在
-  <code>
-   div
-  </code>
-  内部创建组件的导航
-  <code>
-   router-link
-  </code>
-  ，路由的出口
-  <code>
-   router-view
-  </code>
-  。
- </p>
- <pre><code>&lt;div id="app"&gt;
-    &lt;!-- 使用router-link定义组件导航 --&gt;
-    &lt;router-link to="/login"&gt;登录&lt;/router-link&gt;
-    &lt;router-link to="/register"&gt;注册&lt;/router-link&gt;
-
-    &lt;!-- 路由出口，使用 router-view 显示匹配的组件 --&gt;
-    &lt;router-view&gt;&lt;/router-view&gt;
-&lt;/div&gt;
-</code></pre>
- <ol>
-  <li>
-   <p>
-    <code>
-     javaScript
-    </code>
-    中的路由定义：
-   </p>
-  </li>
-  <li>
-   <p>
-    创建
-    <code>
-     Vue
-    </code>
-    根实例，引入路由。
-   </p>
-  </li>
-  <li>
-   创建引入的路由实例。
-  </li>
-  <li>
-   创建路由的映射配置对象，定义路由与组件的映射。
-  </li>
-  <li>
-   定义与路由映射的组件。
-  </li>
-  <li>
-   <p>
-    以上顺序可以翻转创建。
-   </p>
-   <p>
-    <script>
-     const login = {
-        template: '<h1>登录组件</h1>'
-    }
-    const register = {
-        template: '<h1>注册组件</h1>'
-    }</p>
-<pre><code>// 创建一个路由示例，通过routers属性来匹配规则
-const routerobj = new VueRouter({
-    routes: [{
-            path: '/',
-            redirect: '/login'
-        },
-        {
-            path: '/login',
-            component: login
-        },
-        {
-            path: '/register',
-            component: register
-        }
-    ]
-});
-// 穿件Vue实例
-var vm = new Vue({
-    el: '#app',
-    router: routerobj
-});
-</code></pre>
-    </script>
-   </p>
-  </li>
- </ol>
- <p>
-  通过以上代码就可以创建一个简单的
-  <code>
-   Vue-router
-  </code>
-  的范例了。
- </p>
- <h2>
-  路由的嵌套
- </h2>
- <p>
-  路由的嵌套的关键部分是：
- </p>
- <ol>
-  <li>
-   路由实例属性
-   <code>
-    routers
-   </code>
-   中定义的路由加入
-   <code>
-    children
-   </code>
-   子路由来进行嵌套。
-  </li>
-  <li>
-   <p>
-    子页面中定义的地址要添加完整的路径
-   </p>
-   <p>
-    <router-link to="/home/login">
-     登录
-    </router-link>
-   </p>
-  </li>
-  <li>
-   <p>
-    就是定义好相关的
-    <code>
-     template
-    </code>
-   </p>
-  </li>
- </ol>
- <h2>
-  动态路由匹配
- </h2>
- <p>
-  配置：
- </p>
- <pre><code>{ path:'/user/:id', component:User }
-</code></pre>
- <p>
-  获取：
- </p>
- <pre><code>template: '&lt;div&gt;User {{ $route.params.id }}&lt;/div&gt;'
-</code></pre>
- <p>
-  以上为今天的
-  <code>
-   Vue-router
-  </code>
-  学习总结。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(6)使用路由vue-router(2)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-15 16:14:38
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Vue路由中定义和获取参数值
- </h2>
- <p>
-  通过
-  <code>
-   $route
-  </code>
-  来获得HTTP地址栏中的传参。
-例如:
-  <code>
-   /login?id=10
-  </code>
- </p>
- <pre><code>  created(){ // 组件的生命周期钩子函数
-    // console.log(this.$route)
-    // console.log(this.$route.query.id)
-  }
-</code></pre>
- <p>
-  具体代码：
- </p>
- <pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
-&lt;script src="/assets/plugins/vue.js"&gt;&lt;/script&gt;
-&lt;!-- 引入路由模块 --&gt;
-&lt;script src="/assets/plugins/vue-router.js"&gt;&lt;/script&gt;
-
-&lt;div id="app"&gt;
-    &lt;!-- 使用router-link定义组件导航 --&gt;
-    &lt;router-link to="/login?id=10"&gt;登录&lt;/router-link&gt;
-    &lt;router-link to="/register"&gt;注册&lt;/router-link&gt;
-
-    &lt;!-- 使用 router-view 显示匹配的组件 --&gt;
-    &lt;router-view&gt;&lt;/router-view&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    const login = {
-        template: '&lt;h1&gt;登录组件---{{ $route.query.id }}---&lt;/h1&gt;',
-        data(){
-            return {
-                msg:'888'
-            }
-        },
-        created(){
-            console.log(this.$route)
-        }
-    }
-    const register = {
-        template: '&lt;h1&gt;注册组件&lt;/h1&gt;'
-    }
-
-    // 创建一个路由示例，通过routers属性来匹配规则
-    const routerobj = new VueRouter({
-        routes: [
-            {
-                path: '/login',
-                component: login
-            },
-            {
-                path: '/register',
-                component: register
-            }
-        ]
-    });
-    // 穿件Vue实例
-    var vm = new Vue({
-        el: '#app',
-        router: routerobj
-    });
-&lt;/script&gt;
-</code></pre>
- <p>
-  动态路径参数 以冒号开头，例如
- </p>
- <pre><code>{ path: '/user/:id', component: User }
-</code></pre>
- <p>
-  这样就可以响应地址为:
-  <code>
-   /login/188
-  </code>
-  这种形式的地址了
- </p>
- <div class="blog-article">
-  <h1 class="title">
    Vue快速学习笔记(5)使用路由vue-router(1)
   </h1>
   <span class="author">
@@ -1119,6 +822,181 @@ var vm = new Vue({
  <p>
   子组件向父组件传值
  </p>
+ <div class="blog-article">
+  <h1 class="title">
+   Vue快速学习笔记(3)Vue的组件
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2020-02-04 15:08:07
+  </span>
+  <span class="tag">
+   Vue
+  </span>
+ </div>
+ <p>
+ </p>
+ <h3>
+  Vue中的组件
+ </h3>
+ <p>
+  首先注册组件：
+ </p>
+ <pre><code>    Vue.component("my-btn", {
+        data:function() {
+            return {
+                count:0
+            }
+        },
+        template:"#mybtn"
+    });
+</code></pre>
+ <p>
+  需要一个组件名称和组件的代码模板，组件中的数据和Vue实例的数据不同，一个组件的data选项必须是一个函数。
+ </p>
+ <p>
+  定义模板
+ </p>
+ <pre><code>&lt;template id="mybtn"&gt;
+    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+ <p>
+  编写Vue实例，完整代码如下：
+ </p>
+ <pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
+&lt;script src="/assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;template id="mybtn"&gt;
+    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;div id="app"&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Vue.component("my-btn", {
+        data:function() {
+            return {
+                count:0
+            }
+        },
+        template:"#mybtn"
+    });
+
+    vm = new Vue({
+        el:'#app'
+    })
+
+&lt;/script&gt;
+</code></pre>
+ <p>
+  如上，就可以实现一个全局的组件注册，可以重复使用。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   Vue快速学习笔记(2)Vue中的监听与计算属性
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2020-02-01 10:31:26
+  </span>
+  <span class="tag">
+   Vue
+  </span>
+ </div>
+ <p>
+ </p>
+ <h3>
+  Vue中的监听
+ </h3>
+ <p>
+  <code>
+   watch
+  </code>
+  用来监听
+  <code>
+   Vue
+  </code>
+  实例中数据的变化，然后可以出发一个事件。
+例如，反转字符串：
+ </p>
+ <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+ <pre><code>&lt;script src="/assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;div id="app"&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="nvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+   var vm = new Vue({
+        el:"#app",
+        data:{
+            vt:"",
+            nvt:""
+        },
+        watch: {
+            vt:function(val){
+                this.nvt=this.vt.split('').reverse().join('')
+
+            }
+        },
+    })
+
+&lt;/script&gt;
+</code></pre>
+ <p>
+  除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
+ </p>
+ <h3>
+  Vue中的计算属性
+ </h3>
+ <p>
+  计算属性和监听有些相似，有的时候作用都差不多吧。
+ </p>
+ <p>
+  下边的例子就是采用Vue的计算属性，
+ </p>
+ <p>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="/assets/plugins/vue.js">
+  </script>
+ </p>
+ <pre><code>&lt;div id="app1"&gt;
+    &lt;p&gt;计算属性&lt;/p&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+
+
+    var vm1 = new Vue({
+        el :"#app1",
+        data:{
+            vt:""
+        },
+        computed: {
+            rtvt:function(){
+                return this.vt.split("").reverse().join("")
+            }
+        },
+
+    })
+
+&lt;/script&gt;
+</code></pre>
+ <p>
+  感觉计算属性要比监听简单直观些。
+ </p>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="#">
@@ -1127,7 +1005,7 @@ var vm = new Vue({
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    0 / 16
+    0 / 15
    </button>
    <a href="/list/list_1.html">
     <button class="next btn btn-primary" type="button">

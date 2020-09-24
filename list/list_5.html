@@ -135,232 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   wxPython编程学习笔记(01)Frame程序的窗口
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-18 19:42:47
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  简介
- </h2>
- <p>
-  之前的一些小应用都是用的
-  <code>
-   python tk
-  </code>
-  来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下
-  <code>
-   wxPython
-  </code>
-  <code>
-   wxPython
-  </code>
-  是一个
-  <code>
-   Python
-  </code>
-  包装
-  <code>
-   wxWidgets
-  </code>
-  （这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
-  <code>
-   wxPython
-  </code>
-  是作为一个
-  <code>
-   Python
-  </code>
-  扩展模块。
- </p>
- <h2>
-  wxPython的安装
- </h2>
- <pre><code>pip3 install wxPython
-</code></pre>
- <p>
-  如果网络不太好，可以到官网下载进行安装，官方网址：
-  <code>
-   https://wxpython.org/
-  </code>
- </p>
- <h2>
-  Frame 窗口
- </h2>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/12/Snip20181218_12.png"/>
- </p>
- <p>
-  如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个
-  <code>
-   Frame
-  </code>
-  .
- </p>
- <p>
-  <code>
-   Wx.Frame (parent, id, title, pos, size, style, name)
-  </code>
- </p>
- <p>
-  其中的参数含意如下：
- </p>
- <p>
-  Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
-id 窗口标识。通常-1为了让标识符自动生成
-Title 标题出现在标题栏
-Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
-Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
-style 窗口的外观按样式风格常数控制
-name 对象的内部名称
- </p>
- <h2>
-  wxPython hello world
- </h2>
- <p>
-  我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法
-  <code>
-   __init__
-  </code>
-  中创建窗口中的部件。
-  <code>
-   main()
-  </code>
-  方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。
- </p>
- <p>
-  怎么样，很简单吧？
- </p>
- <pre><code>import wx
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        #创建一个静态文本
-        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
-        font = st.GetFont()
-        font.PointSize += 20
-        font = font.Bold()
-        st.SetFont(font)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python os.path.dirname(__file__) 在终端命令行下报错
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-11-21 22:16:58
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  最近在写程序中用到了
-  <code>
-   os.path.dirname(__file__)
-  </code>
-  ，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错
- </p>
- <pre><code>FileNotFoundError: [Errno 2] No such file or directory
-</code></pre>
- <p>
-  我们先来测试一下，看看报错是什么样的？
- </p>
- <pre><code>print(os.path.dirname(__file__))
-</code></pre>
- <p>
-  如果在终端运行当前程序就会报错：
- </p>
- <pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
-Traceback (most recent call last):
-File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-NameError: name 'os' is not defined
-</code></pre>
- <p>
-  如何使之正确运行呢？如果你用过
-  <code>
-   Django
-  </code>
-  ，就会想到
-  <code>
-   BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-  </code>
-  ,
-这个是
-  <code>
-   Django
-  </code>
-  里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中
-  <code>
-   os.path.abspath(__file__)
-  </code>
-  这条是返回当前文件的绝对地址，
-而
-  <code>
-   os.path.dirname(os.path.abspath(__file__))
-  </code>
-  就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
-困扰人生的小问题就这样绝对喽！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
    MyDjangoBlog是基于Django搭建的个人blog
   </h1>
   <span class="author">
@@ -1138,6 +912,206 @@ tagcss =['am-radius','am-badge-primary','am-badge-secondary','am-badge-success',
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   聊聊Python中的递归与快速排序那点事
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2018-01-30 14:38:39
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
+ </p>
+ <h2>
+  在Python中递归
+ </h2>
+ <p>
+  递归比较简单的例子就是阶乘，看下递归的必要条件：
+ </p>
+ <ul>
+  <li>
+   边界条件：确定递归到何时终止，也称为递归出口。
+  </li>
+  <li>
+   递归模式：大问题是如何分解为小问题的，也称为递归体。
+  </li>
+ </ul>
+ <p>
+  阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
+ </p>
+ <pre><code>def f(n):
+    if n == 1: return 1
+    return n * f(n - 1)
+print(f(5))
+</code></pre>
+ <p>
+  上边就是一个简单的递归阶乘函数，很简单喽，不过在
+  <code>
+   Python
+  </code>
+  中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
+ </p>
+ <pre><code>import sys
+sys.setrecursionlimit(5000)  # 设置递归层数
+print(sys.getrecursionlimit())  # 查看
+</code></pre>
+ <h2>
+  Python中的快速排序
+ </h2>
+ <p>
+  快速排序法是一个非常精典的递归例子，C语言标准库中的
+  <code>
+   qsort
+  </code>
+  函数的实现主是采用的快速排序法。
+快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
+具体看代码：
+ </p>
+ <pre><code>def q_sort(arr):
+    if len(arr) &lt; 2 :
+        return arr
+    else:
+        p = arr[0]
+        print(p)
+        l = [i for i in arr[1:] if i &lt;= p]
+        g = [i for i in arr[1:] if i &gt; p]
+        temp = list()
+        temp.append(p)
+        return q_sort(l) + temp  + q_sort(g)
+print(q_sort([2,44,3,77,6,5,888,999]))
+</code></pre>
+ <p>
+  上边代码如果直接
+  <code>
+   return q_sort(l) + p  + q_sort(g)
+  </code>
+  是会报错的，所以修改了使用list相加。
+算法其实很有意思，程序都是有算法组成的，以后得多看看了。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   实战：利用Django开发部署自己的个人博客（16）博客分类后边显示分类文章数
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2018-01-26 11:49:56
+  </span>
+  <span class="tag">
+   Django
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  通过之前教程的学习，你应该可以把博客部署上线的服务器上了，但是博客的功能依然很简单，这里我们继续丰富一下博客的功能。
+假设我们需要在博客分类展示模块上加上每个分类下拥有的文章数，这个应该如何用Django实现呢？
+ </p>
+ <h2>
+  需求分析
+ </h2>
+ <p>
+  我们需要在博客分类展示模块上加上每个分类下拥有的文章数，这样可以让来访用户更直观的了解分类下文章的数目，具体效果如下：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180126_1.png"/>
+ </p>
+ <p>
+  如果需要知道每个分类下的文章数，需要知道分类的ID，然后在文章表中搜索统计所属此分类的文章即可知道当前分类的下的文章数。
+ </p>
+ <ul>
+  <li>
+   区得当前分类
+  </li>
+  <li>
+   统计属于当前分类的文章数
+  </li>
+  <li>
+   传送到前端展示
+  </li>
+ </ul>
+ <h2>
+  功能实现
+ </h2>
+ <p>
+  当前分类的ID，这个在前端渲染中可以获得，那么如何二次传回获得分类文章总数呢？
+还记得markdown的实现吗？对就是Django的自定义过滤器，
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2017/12/Snip20171214_56.png"/>
+ </p>
+ <p>
+  先编写mytags.py过滤器代码：
+ </p>
+ <pre><code>@register.filter
+def cat_count(cat_id):
+    """统计分类下边的日志数"""
+    return Article.objects.filter(article_category=cat_id).count()
+</code></pre>
+ <p>
+  上边的函数就是统计的核心代码，我们来看看，如何在前端渲染中引用
+ </p>
+ <p>
+  在base.html最顶上中引入
+  <code>
+   {% load mytags %}
+  </code>
+ </p>
+ <p>
+  在分类显示那里添加代码
+ </p>
+ <pre><code>        &lt;!-- 统计分类下文章数 --&gt;
+       &lt;span class="am-badge am-align-right"&gt;{{ c.id|cat_count  }}&lt;/span&gt;
+</code></pre>
+ <p>
+  我们运行服务器测试一下效果:
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2018/01/Snip20180126_1.png"/>
+ </p>
+ <p>
+  大功告成！只要这么简单的几行代码就搞定Django博客分类显示文章数
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/Django">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/Django">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_4.html">
@@ -1146,7 +1120,7 @@ tagcss =['am-radius','am-badge-primary','am-badge-secondary','am-badge-success',
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    5 / 16
+    5 / 15
    </button>
    <a href="/list/list_6.html">
     <button class="next btn btn-primary" type="button">

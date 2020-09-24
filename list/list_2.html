@@ -135,144 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   细说修改碎言博客站点的样式
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-12-30 20:15:29
-  </span>
-  <span class="tag">
-   碎言博客
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  碎言博客HTML结构
- </h2>
- <p>
-  博客HTML只有4个：
- </p>
- <ul>
-  <li>
-   index.html  博客首页
-  </li>
-  <li>
-   archives.html 归档
-  </li>
-  <li>
-   tags.html 标签页
-  </li>
-  <li>
-   p.html 博文详情页
-  </li>
- </ul>
- <h2>
-  CSS修改
- </h2>
- <p>
-  碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:
-  <code>
-   Easy LESS
-  </code>
- </p>
- <p>
-  <img alt="" src="assets/images/blog/Snip20191231_2.png"/>
- </p>
- <p>
-  这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合
-  <code>
-   less
-  </code>
-  的引用命令
-  <code>
-   @import "theme-dark-1.less";
-  </code>
-  使用起来很方便的。
- </p>
- <h2>
-  博客的样式修改
- </h2>
- <p>
-  碎言博客的样式主要集中在
-  <code>
-   &lt;link id="blogcss"&gt;
-  </code>
-  标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。
- </p>
- <h2>
-  Markdown代码样式
- </h2>
- <p>
-  Markdown代码样式通过修改
-  <code>
-   &lt;link id="highlight"&gt;
-  </code>
-  标签连接的highlightCSS来修改，在
-  <code>
-   assets/plugins/highlight/styles
-  </code>
-  下可以选择自己喜欢的样式。
- </p>
- <h2>
-  进阶修改
- </h2>
- <p>
-  觉得手动修改站点样式太麻烦？可以利用
-  <code>
-   jQuery
-  </code>
-  在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   关于站长
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-12-30 16:25:07
-  </span>
-  <span class="tag">
-   未分类
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  About Me
- </h2>
- <p>
-  一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。
- </p>
- <h2>
-  关于碎言博客
- </h2>
- <p>
-  本来用
-  <code>
-   Python Django
-  </code>
-  开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。
- </p>
- <p>
-  索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习
-  <code>
-   JavaScript jQuery
-  </code>
-  ，
- </p>
- <p>
-  索性撸一个静态博客，发现自己就是爱重复造轮子。
- </p>
- <p>
-  欢迎进群讨论学习Q群:217840699
- </p>
- <div class="blog-article">
-  <h1 class="title">
    碎言博客终端操作详解
   </h1>
   <span class="author">
@@ -1353,6 +1215,237 @@ console.log(addOne(2));  // 3
 # 通过继承UserAdmin来解决扩展用户后修改密码明文问题
 class UserProfileAdmin(≈):
 </code></pre>
+ <div class="blog-article">
+  <h1 class="title">
+   基于Django构建的小学生英文单词背写检测考试系统。
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-11-07 16:10:19
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <h1>
+  PyWordTest
+ </h1>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/3tai.jpg"/>
+ </p>
+ <h4>
+  介绍
+ </h4>
+ <p>
+  孩子的学习总是让父母担忧，英语学习也是让家长的头疼之事，做为程序员老爸不能整天忙于编程而忽视了孩子的教育，我们也要搞点事情。孩子英文单词到底背的怎么样了？别怕，用PyWordTest,创建题库，轻松搞定孩子的英语单词拼写情况。
+ </p>
+ <p>
+  <strong>
+   <em>
+    &gt; 本软件非英语单词学习软件，只是通过在线答题来检测孩子对单词拼写的掌握。
+   </em>
+  </strong>
+ </p>
+ <p>
+  软件通过在线考试，记录考试结果及每个单词的拼写对错情况，最后通过一些算法分析孩子对单词拼写熟练度。
+ </p>
+ <p>
+  通过易错单词了解孩子哪些单词没有掌握，通过自建题库加强孩子对生疏单词的反复练习，更多功能还在研发中。
+ </p>
+ <p>
+  程序截图：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/1.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/2.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/3.jpg"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/11/4.jpg"/>
+ </p>
+ <h4>
+  软件架构
+ </h4>
+ <p>
+  基于Django构建的小学生英文单词背写检测考试系统。
+ </p>
+ <p>
+  环境需求：
+python (3.6.1) 
+Django (2.2.7) 
+Pillow
+ </p>
+ <h4>
+  安装教程
+ </h4>
+ <p>
+  进入程序目录后，运行python3 manage.py runserver
+ </p>
+ <p>
+  后台管理地址http://127.0.0.1:8000/admin/
+ </p>
+ <p>
+  管理员登陆:
+ </p>
+ <p>
+  用户名：admin 密码：17python.com
+ </p>
+ <p>
+  前台地址http://127.0.0.1:8000/
+ </p>
+ <h4>
+  使用说明
+ </h4>
+ <p>
+  程序已经采集了近1000小学生常用单词，后台可以根据自己的需要进行添加题库进行测试。
+ </p>
+ <p>
+  建议新建一个帐号用来考试建题库使用。
+ </p>
+ <h4>
+  参与贡献
+ </h4>
+ <p>
+  非常欢迎有想法的程序员参与提交代码，程序还很不完善！希望大家多多参与！
+ </p>
+ <h2>
+  源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/WordTest">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/WordTest">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   PYBabyLog记录孩子成长过程的日记
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-09-29 00:15:30
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <h3>
+  前言
+ </h3>
+ <p>
+  岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
+ </p>
+ <p>
+  当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
+ </p>
+ <p>
+  做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
+ </p>
+ <p>
+  PYBabyLog的前身是
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+ </p>
+ <p>
+  是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
+ </p>
+ <h3>
+  PYBabyLog
+ </h3>
+ <p>
+  PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
+ </p>
+ <p>
+  采用Python+MySQL+argparse技术开发的全终端操作软件。
+ </p>
+ <p>
+  可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
+ </p>
+ <p>
+  本程序数据库和
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+  通用，可以用来展示数据。
+当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
+ </p>
+ <h3>
+  界面截图
+ </h3>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/09/Snip20190928_2.png"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="/assets/images/media/upload/2019/09/Snip20190928_3.png"/>
+ </p>
+ <h3>
+  安装方法
+ </h3>
+ <p>
+  1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
+  <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
+   数据库构建文件
+  </a>
+ </p>
+ <p>
+  2.修改
+  <code>
+   DbHelp.py
+  </code>
+  中的MySQL的连接配置项即可
+ </p>
+ <h3>
+  终端版操作命令简介
+ </h3>
+ <p>
+  <code>
+   整理中。。。。。
+x.py -h 就都出来了。
+  </code>
+ </p>
+ <h3>
+  写在结尾
+ </h3>
+ <p>
+  其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
+ </p>
+ <p>
+  若给各位大虾能提交些代码或是有好的建议，非常欢迎！
+ </p>
+ <h2>
+  程序源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PYBabyLog">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PYBabyLog">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_1.html">
@@ -1361,7 +1454,7 @@ class UserProfileAdmin(≈):
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    2 / 16
+    2 / 15
    </button>
    <a href="/list/list_3.html">
     <button class="next btn btn-primary" type="button">

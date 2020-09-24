@@ -135,181 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   Vue快速学习笔记(3)Vue的组件
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-04 15:08:07
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  Vue中的组件
- </h3>
- <p>
-  首先注册组件：
- </p>
- <pre><code>    Vue.component("my-btn", {
-        data:function() {
-            return {
-                count:0
-            }
-        },
-        template:"#mybtn"
-    });
-</code></pre>
- <p>
-  需要一个组件名称和组件的代码模板，组件中的数据和Vue实例的数据不同，一个组件的data选项必须是一个函数。
- </p>
- <p>
-  定义模板
- </p>
- <pre><code>&lt;template id="mybtn"&gt;
-    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
-&lt;/template&gt;
-</code></pre>
- <p>
-  编写Vue实例，完整代码如下：
- </p>
- <pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
-&lt;script src="/assets/plugins/vue.js"&gt;&lt;/script&gt;
-&lt;template id="mybtn"&gt;
-    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
-&lt;/template&gt;
-
-&lt;div id="app"&gt;
-    &lt;my-btn&gt;&lt;/my-btn&gt;
-    &lt;my-btn&gt;&lt;/my-btn&gt;
-    &lt;my-btn&gt;&lt;/my-btn&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    Vue.component("my-btn", {
-        data:function() {
-            return {
-                count:0
-            }
-        },
-        template:"#mybtn"
-    });
-
-    vm = new Vue({
-        el:'#app'
-    })
-
-&lt;/script&gt;
-</code></pre>
- <p>
-  如上，就可以实现一个全局的组件注册，可以重复使用。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(2)Vue中的监听与计算属性
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-01 10:31:26
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  Vue中的监听
- </h3>
- <p>
-  <code>
-   watch
-  </code>
-  用来监听
-  <code>
-   Vue
-  </code>
-  实例中数据的变化，然后可以出发一个事件。
-例如，反转字符串：
- </p>
- <!-- 开发环境版本，包含了有帮助的命令行警告 -->
- <pre><code>&lt;script src="/assets/plugins/vue.js"&gt;&lt;/script&gt;
-&lt;div id="app"&gt;
-    &lt;input type="text" v-model="vt"&gt;
-    &lt;p v-text="nvt"&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-   var vm = new Vue({
-        el:"#app",
-        data:{
-            vt:"",
-            nvt:""
-        },
-        watch: {
-            vt:function(val){
-                this.nvt=this.vt.split('').reverse().join('')
-
-            }
-        },
-    })
-
-&lt;/script&gt;
-</code></pre>
- <p>
-  除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
- </p>
- <h3>
-  Vue中的计算属性
- </h3>
- <p>
-  计算属性和监听有些相似，有的时候作用都差不多吧。
- </p>
- <p>
-  下边的例子就是采用Vue的计算属性，
- </p>
- <p>
-  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-  <script src="/assets/plugins/vue.js">
-  </script>
- </p>
- <pre><code>&lt;div id="app1"&gt;
-    &lt;p&gt;计算属性&lt;/p&gt;
-    &lt;input type="text" v-model="vt"&gt;
-    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-
-
-    var vm1 = new Vue({
-        el :"#app1",
-        data:{
-            vt:""
-        },
-        computed: {
-            rtvt:function(){
-                return this.vt.split("").reverse().join("")
-            }
-        },
-
-    })
-
-&lt;/script&gt;
-</code></pre>
- <p>
-  感觉计算属性要比监听简单直观些。
- </p>
- <div class="blog-article">
-  <h1 class="title">
    Vue快速学习笔记(1)Vue实例基础
   </h1>
   <span class="author">
@@ -888,6 +713,144 @@ $ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   细说修改碎言博客站点的样式
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-12-30 20:15:29
+  </span>
+  <span class="tag">
+   碎言博客
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  碎言博客HTML结构
+ </h2>
+ <p>
+  博客HTML只有4个：
+ </p>
+ <ul>
+  <li>
+   index.html  博客首页
+  </li>
+  <li>
+   archives.html 归档
+  </li>
+  <li>
+   tags.html 标签页
+  </li>
+  <li>
+   p.html 博文详情页
+  </li>
+ </ul>
+ <h2>
+  CSS修改
+ </h2>
+ <p>
+  碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:
+  <code>
+   Easy LESS
+  </code>
+ </p>
+ <p>
+  <img alt="" src="assets/images/blog/Snip20191231_2.png"/>
+ </p>
+ <p>
+  这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合
+  <code>
+   less
+  </code>
+  的引用命令
+  <code>
+   @import "theme-dark-1.less";
+  </code>
+  使用起来很方便的。
+ </p>
+ <h2>
+  博客的样式修改
+ </h2>
+ <p>
+  碎言博客的样式主要集中在
+  <code>
+   &lt;link id="blogcss"&gt;
+  </code>
+  标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。
+ </p>
+ <h2>
+  Markdown代码样式
+ </h2>
+ <p>
+  Markdown代码样式通过修改
+  <code>
+   &lt;link id="highlight"&gt;
+  </code>
+  标签连接的highlightCSS来修改，在
+  <code>
+   assets/plugins/highlight/styles
+  </code>
+  下可以选择自己喜欢的样式。
+ </p>
+ <h2>
+  进阶修改
+ </h2>
+ <p>
+  觉得手动修改站点样式太麻烦？可以利用
+  <code>
+   jQuery
+  </code>
+  在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
+   关于站长
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-12-30 16:25:07
+  </span>
+  <span class="tag">
+   未分类
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  About Me
+ </h2>
+ <p>
+  一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。
+ </p>
+ <h2>
+  关于碎言博客
+ </h2>
+ <p>
+  本来用
+  <code>
+   Python Django
+  </code>
+  开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。
+ </p>
+ <p>
+  索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习
+  <code>
+   JavaScript jQuery
+  </code>
+  ，
+ </p>
+ <p>
+  索性撸一个静态博客，发现自己就是爱重复造轮子。
+ </p>
+ <p>
+  欢迎进群讨论学习Q群:217840699
+ </p>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_0.html">
@@ -896,7 +859,7 @@ $ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    1 / 16
+    1 / 15
    </button>
    <a href="/list/list_2.html">
     <button class="next btn btn-primary" type="button">

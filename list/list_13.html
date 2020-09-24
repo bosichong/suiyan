@@ -135,262 +135,6 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
-   关于本站封面头部大图
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-18 14:19:35
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   看到喜欢的图片就会换上，不知道为什么会喜欢这些偏暖的色调，记得很久以前的有段时间，也曾偏爱冷色调调，可能偏暖色调更LOMO些。
-  </em>
- </p>
- <h2>
-  2017/09/18
- </h2>
- <p>
-  本图来自bing每日壁纸
- </p>
- <p>
-  戈尔代小镇是普罗旺斯地区最美丽的小镇之一，依山头而建，是众多被日光洗的发白的石头建筑与深深浅浅的绿色植物相拼而成的村庄。每年那里都会入选法国最美丽的小镇之一。从外到内小镇戈尔代给人的印象就是石头建筑，围墙，房子，教堂几乎都是石头堆砌而成，壮观而真实！
- </p>
- <p>
-  <img alt="戈尔代小镇是普罗旺斯地区最美丽的小镇之一" src="![输入图片说明](/assets/images/media/upload/2017/09/BingWallpaper-2017-09-17.jpg"/>
- </p>
- <h2>
-  2017/10/09
- </h2>
- <p>
-  windows10美丽的海边风景
- </p>
- <p>
-  先前的顶部大图太闪眼睛了。。。换个清爽些的。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/10/6fb13e4db9f043b276e06f340cbdff6d.jpg"/>
- </p>
- <h2>
-  2017/11/07
- </h2>
- <p>
-  windows10 秋天
- </p>
- <p>
-  这个秋天真的很无聊，是个多事之秋。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/bing-021.jpg"/>
- </p>
- <h2>
-  2017/11/25
- </h2>
- <p>
-  网上搜索来的图片
- </p>
- <p>
-  冬天来了，我们期待着下雪。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2017/11/timg.jpg"/>
- </p>
- <h2>
-  2017/11/25
- </h2>
- <p>
-  《星月夜》（The Starry Night）是荷兰后印象派画家文森特·梵·高于1889年在法国圣雷米的一家精神病院里创作的一幅油画，是梵高的代表作之一，现藏纽约现代艺术博物馆。
- </p>
- <p>
-  <img alt="输入图片说明" src="/assets/images/media/upload/2018/11/1432084191361509.jpeg"/>
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Python3 datetime模块的时间操作
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-18 13:23:43
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作
-  </em>
- </p>
- <h2>
-  datetime 模块
- </h2>
- <p>
-  导入模块
- </p>
- <pre><code>from datetime import *
-</code></pre>
- <p>
-  获取当前时间:
- </p>
- <pre><code>now = datetime.now()
-td = datetime.today()
-</code></pre>
- <p>
-  格式化打印时间 格式字符串参见后边的附录。
- </p>
- <pre><code>format = "%Y-%m-%d %H:%M:%S"
-print('今天的日期：'+ now.strftime(format))
-</code></pre>
- <p>
-  根据字符串返回datetime对象
-格式化的字符串应与前边的时间对应。比如："2017-09-18 13:02:34", "%Y-%m-%d %H:%M:%S"
- </p>
- <pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
-</code></pre>
- <p>
-  时间对象转换成时间戮
- </p>
- <pre><code>tmp = td.timestamp()
-print('timestamp: {}'.format(tmp))
-</code></pre>
- <p>
-  根据时间戮转换成datetime对象
- </p>
- <pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
-</code></pre>
- <p>
-  星期几？0是星期一
- </p>
- <pre><code>print(now.weekday()+1)
-</code></pre>
- <p>
-  datetime 支持的最大及最小时间单位
- </p>
- <pre><code>print(datetime.max)
-print(datetime.min)
-</code></pre>
- <p>
-  打印datetime对象包含的一个tuple
- </p>
- <pre><code>for it in now.timetuple():
-    print(it)
-</code></pre>
- <h2>
-  附录：格式字符串
- </h2>
- <ul>
-  <li>
-   datetime. strftime (format)
-  </li>
-  <li>
-   %a 星期的简写。如 星期三为Web
-  </li>
-  <li>
-   %A 星期的全写。如 星期三为Wednesday
-  </li>
-  <li>
-   %b 月份的简写。如4月份为Apr
-  </li>
-  <li>
-   %B月份的全写。如4月份为April
-  </li>
-  <li>
-   %c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）
-  </li>
-  <li>
-   %d:  日在这个月中的天数（是这个月的第几天）
-  </li>
-  <li>
-   %f:  微秒（范围[0,999999]）
-  </li>
-  <li>
-   %H:  小时（24小时制，[0, 23]）
-  </li>
-  <li>
-   %I:  小时（12小时制，[0, 11]）
-  </li>
-  <li>
-   %j:  日在年中的天数 [001,366]（是当年的第几天）
-  </li>
-  <li>
-   %m:  月份（[01,12]）
-  </li>
-  <li>
-   %M:  分钟（[00,59]）
-  </li>
-  <li>
-   %p:  AM或者PM
-  </li>
-  <li>
-   %S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）
-  </li>
-  <li>
-   %U:  周在当年的周数当年的第几周），星期天作为周的第一天
-  </li>
-  <li>
-   %w:  今天在这周的天数，范围为[0, 6]，6表示星期天
-  </li>
-  <li>
-   %W:  周在当年的周数（是当年的第几周），星期一作为周的第一天
-  </li>
-  <li>
-   %x:  日期字符串（如：04/07/10）
-  </li>
-  <li>
-   %X:  时间字符串（如：10:43:39）
-  </li>
-  <li>
-   %y:  2个数字表示的年份
-  </li>
-  <li>
-   %Y:  4个数字表示的年份
-  </li>
-  <li>
-   %z:  与utc时间的间隔 （如果是本地时间，返回空字符串）
-  </li>
-  <li>
-   %Z:  时区名称（如果是本地时间，返回空字符串）
-  </li>
-  <li>
-   %%:  %% =&gt; %
-  </li>
- </ul>
- <h2>
-  相关参考
- </h2>
- <p>
-  <a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">
-   官方文档：datetime — 基本日期和时间类型
-  </a>
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
    python3函数学习笔记简单总结
   </h1>
   <span class="author">
@@ -1087,6 +831,652 @@ print(r.text) #返回html代码
    </a>
   </li>
  </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python 采集数据三步曲之[正则表达式 re.py]
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-01 13:09:49
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器
+  </em>
+ </p>
+ <h2>
+  如何用
+  <code>
+   Python
+  </code>
+  开始一个简单的正则表达式？
+ </h2>
+ <p>
+  其实很简单，从
+ </p>
+ <pre><code>import re
+</code></pre>
+ <p>
+  引入
+  <code>
+   Python
+  </code>
+  的正则表达式支持模块开始。
+ </p>
+ <h2>
+  开始使用
+  <code>
+   re
+  </code>
+  模块
+ </h2>
+ <pre><code class="python">#codeing=utf-8
+import re
+p = re.compile(r'17python')#创建Pattern对象
+m = p.match('17python.com')
+if m :
+    print(m.group())
+# 输出结果为：17python
+</code></pre>
+ <p>
+  另一种方式：
+ </p>
+ <pre><code class="python">#使用re模块方法代替实例方法
+print(re.match('17python', '17python.com').group())
+# 输出结果为：17python
+</code></pre>
+ <h2>
+  re模块及正则实例常用方法演示
+ </h2>
+ <pre><code class="python">p = re.compile(r'17python')
+s1 = '17python.com'
+s2 = 'www.17python.com'
+s3 = '17python.com17python.com'
+s4 = 'abc.com'
+p4 = re.compile('abc')
+print(p.match(s1).group())
+print(p.search(s2).group())
+print(p.findall(s3))
+print(p4.sub('17python', s4))
+</code></pre>
+ <p>
+  以上只是
+  <code>
+   Python
+  </code>
+  re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考
+  <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+   <code>
+    Python
+   </code>
+   文档 re模块详解
+  </a>
+ </p>
+ <h2>
+  元字符 （参见 python 模块 re 文档）
+ </h2>
+ <ul>
+  <li>
+   .                    匹配任意字符（不包括换行符）
+  </li>
+  <li>
+   ^                    匹配开始位置，多行模式下匹配每一行的开始
+  </li>
+  <li>
+   $                    匹配结束位置，多行模式下匹配每一行的结束
+  </li>
+  <li>
+   *                    匹配前一个元字符0到多次
+  </li>
+  <li>
+   +                    匹配前一个元字符1到多次
+  </li>
+  <li>
+   ?                    匹配前一个元字符0到1次
+  </li>
+  <li>
+   {m,n}                匹配前一个元字符m到n次
+  </li>
+  <li>
+   \                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符
+  </li>
+  <li>
+   []                   字符集，一个字符的集合，可匹配其中任意一个字符
+  </li>
+  <li>
+   |                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b
+  </li>
+  <li>
+   (...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值
+  </li>
+  <li>
+   (?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I
+  </li>
+  <li>
+   (?:...)              分组的不捕获模式，计算索引时会跳过这个分组
+  </li>
+  <li>
+   (?P
+   <name>
+    ...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name
+   </name>
+  </li>
+  <li>
+   (?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则
+  </li>
+  <li>
+   (?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I
+  </li>
+  <li>
+   (?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则
+  </li>
+  <li>
+   (?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则
+  </li>
+  <li>
+   (?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则
+  </li>
+  <li>
+   (?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则
+  </li>
+  <li>
+   (?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则
+  </li>
+  <li>
+   \number              匹配和前面索引为number的分组捕获到的内容一样的字符串
+  </li>
+  <li>
+   \A                   匹配字符串开始位置，忽略多行模式
+  </li>
+  <li>
+   \Z                   匹配字符串结束位置，忽略多行模式
+  </li>
+  <li>
+   \b                   匹配位于单词开始或结束位置的空字符串
+  </li>
+  <li>
+   \B                   匹配不位于单词开始或结束位置的空字符串
+  </li>
+  <li>
+   \d                   匹配一个数字， 相当于 [0-9]
+  </li>
+  <li>
+   \D                   匹配非数字,相当于 [^0-9]
+  </li>
+  <li>
+   \s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]
+  </li>
+  <li>
+   \S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]
+  </li>
+  <li>
+   \w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]
+  </li>
+  <li>
+   \W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]
+  </li>
+ </ul>
+ <h2>
+  更详细的
+  <code>
+   Python
+  </code>
+  re正则表达式教程
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
+    Python正则表达式指南
+   </a>
+  </li>
+  <li>
+   <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
+    python正则表达式详解
+   </a>
+  </li>
+  <li>
+   <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+    Python文档 re模块详解
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/re">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
+   Python学习资料教程汇总
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-08-31 13:29:13
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  我们为什么用Python编程？
+ </h2>
+ <p>
+  曾经有一段时间一直在考虑一件事，就是想好好学习一下编程，然后靠着一台电脑和海量搜索结果的百度（或是google）精通一门或几门编程语言，然后成为一个黑客，随便都能开发出一个牛逼的软件或网站，然后马上就打开浏览器，搜：XXX语言精通、入门、速成。怀着一份热忱和充满美好希望的决心在互联网上寻找着答案。。。。。。
+ </p>
+ <p>
+  。。。。。。
+ </p>
+ <p>
+  十分钟之后。。去特么蛋的。。。还是打会游戏吧。。。。
+ </p>
+ <h2>
+  好吧 我们继续
+ </h2>
+ <p>
+  经历过痛苦与折磨后，终于明白了编程的意义，那就是先做点正常人做的事吧！说到
+  <code>
+   Python
+  </code>
+  的相关资料教程很多了，整理一下，排名不分前后，评价均人个人观点，不代表教程本身的好坏。
+ </p>
+ <p>
+  其实本想写写基础
+  <code>
+   Python
+  </code>
+  教程，但是网上太多了，不乏众多优秀的教程，就不重复造轮子了，分享出来大家共同学习进步。
+ </p>
+ <h2>
+  Python 基础教程
+ </h2>
+ <p>
+  首先推荐廖雪峰老师的
+  <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">
+   中文，免费，零起点，完整示例，基于最新的Python 3版本教程
+  </a>
+  ，这篇教程无论是学习Python还是了解编程基础来说，都是一篇不错的教程。另外还有
+  <a href="http://vdisk.weibo.com/s/BE2Z8B94-5w97">
+   python简明教程中文.pdf
+  </a>
+ </p>
+ <p>
+  有过编程基础的可以看看这二个：
+ </p>
+ <ul>
+  <li>
+   <a href="http://www.code123.cc/1049.html">
+    分分钟学会一门语言之Python篇
+   </a>
+  </li>
+  <li>
+   <a href="http://www.jianshu.com/p/36ae91c38279">
+    十五分钟让你了解Python套路
+   </a>
+  </li>
+ </ul>
+ <p>
+  当然 还有
+  <a href="http://python.usyiyi.cn/translate/python_352/index.html">
+   <code>
+    Python
+   </code>
+   官方文档--中文汉化版
+  </a>
+  ，算是最全面的教材了！
+ </p>
+ <p>
+  <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
+   Python正则表达式指南
+  </a>
+  ，个人认为是不一篇不错的python正则教程。
+ </p>
+ <h2>
+  基础学习（本站原创）
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.17python.com/blog/12">
+    Python os.path模块中一些常用方法的整理总结
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/13">
+    Python open()函数文件打开、读、写操作总结
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/14">
+    PythonINI配置文件读写的简单方法
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/15">
+    python3函数学习笔记简单总结
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/16">
+    Python3 datetime模块的时间操作
+   </a>
+  </li>
+  <li>
+   <p>
+    <a href="http://www.17python.com/blog/30">
+     Python面向对象编程（OOP）初探
+    </a>
+   </p>
+  </li>
+  <li>
+   <p>
+    <a href="http://www.17python.com/blog/74">
+     妙用IPython学习Python--IPython快速上手
+    </a>
+   </p>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/68">
+    Python生成器yield应用实例——监控日志
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/55">
+    听说存储数据Python与SQLite3更配哦！
+   </a>
+  </li>
+ </ul>
+ <h2>
+  Python GUI tk tkinter 编程（本站原创）
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.17python.com/blog/21">
+    Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/22">
+    Python TK和Tkinter的GUI编程(2)菜单Menu
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/23">
+    Python TK和Tkinter的GUI编程(3) 列表框 Listbox
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/24">
+    Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/25">
+    Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/26">
+    Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/27">
+    Python TK和Tkinter的GUI编程(7) Scrollbar的使用
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/28">
+    Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/29">
+    Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/49">
+    基于Python、Tk构建的可视化目录文件同步助手
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/69">
+    Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
+   </a>
+  </li>
+ </ul>
+ <h2>
+  扩展学习
+ </h2>
+ <p>
+  学习了
+  <code>
+   Python
+  </code>
+  教程后，就可以继续深入学习了，根据自己学习方向可以选择很多，比如：机器学人工智能，web全栈，系统运维等，本人学习主要方向是web，所以目前只能推荐一些WEB相关的教程
+ </p>
+ <h2>
+  有关正则表达式
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
+    Python正则表达式指南
+   </a>
+  </li>
+  <li>
+   <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
+    python正则表达式详解
+   </a>
+  </li>
+  <li>
+   <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+    <code>
+     Python
+    </code>
+    文档 re模块详解
+   </a>
+  </li>
+ </ul>
+ <h2>
+  WEB框架
+ </h2>
+ <ul>
+  <li>
+   Django
+  </li>
+ </ul>
+ <p>
+  本站原创教程：
+ </p>
+ <ul>
+  <li>
+   <a href="http://www.17python.com/blog/52">
+    实战：利用Django开发部署自己的个人博客（1）创建项目
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/53">
+    实战：利用Django开发部署自己的个人博客（2）视图/路由
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/54">
+    实战：利用Django开发部署自己的个人博客（3）Template: Django模板
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/56">
+    实战：利用Django开发部署自己的个人博客（4）Models 数据模型
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/57">
+    实战：利用Django开发部署自己的个人博客（5）Django admin后台管理
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/58">
+    实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/59">
+    实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/60">
+    实战：利用Django开发部署自己的个人博客（8）构建Blog首页
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/61">
+    实战：利用Django开发部署自己的个人博客（9）Django模板的继承
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/62">
+    实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/63">
+    实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/64">
+    实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/65">
+    实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/66">
+    实战：利用Django开发部署自己的个人博客（14）Django实现图片的上传和引用
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/67">
+    实战：利用Django开发部署自己的个人博客（15）Ubuntu+apache部署Django
+   </a>
+  </li>
+ </ul>
+ <p>
+  自强学堂，是我认为网上中文比较不错的
+  <code>
+   Django
+  </code>
+  教程，本站就是通过这篇教程学习后设计制作的。
+  <a href="http://code.ziqiangxuetang.com/django/django-tutorial.html">
+   Django 基础教程
+  </a>
+ </p>
+ <p>
+  <a href="http://djangobook.py3k.cn/2.0/">
+   Django book 2.0 的中文翻译。
+  </a>
+  这个是比较详细的
+  <code>
+   Django
+  </code>
+  教程了，看了都说好。
+ </p>
+ <p>
+  然后就是
+  <code>
+   Django
+  </code>
+  <a href="https://docs.djangoproject.com/en/1.11/">
+   官方文档
+  </a>
+  ，这个不用解释了吧？
+ </p>
+ <h2>
+  “编学编玩”用Pygame写游戏
+ </h2>
+ <ul>
+  <li>
+   <a href="http://www.17python.com/blog/44">
+    “编学编玩”用Pygame写游戏（1）初识pygame
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/45">
+    “编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/46">
+    “编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/47">
+    “编学编玩”用Pygame写游戏（4）一个python问答游戏
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/48">
+    “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/70">
+    “编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/71">
+    “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/73">
+    “编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/76">
+    “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
+   </a>
+  </li>
+  <li>
+   <a href="http://www.17python.com/blog/77">
+    “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
+   </a>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   本文会不定期更新作者推荐的好教程及连接
+  </strong>
+ </p>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
    <a href="/list/list_12.html">
@@ -1095,7 +1485,7 @@ print(r.text) #返回html代码
     </button>
    </a>
    <button class="page btn btn-primary" type="button">
-    13 / 16
+    13 / 15
    </button>
    <a href="/list/list_14.html">
     <button class="next btn btn-primary" type="button">
