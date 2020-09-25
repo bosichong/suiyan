@@ -1,0 +1,2 @@
+Markdown==2.6.8
+beautifulsoup4==4.9.1
