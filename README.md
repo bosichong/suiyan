@@ -25,7 +25,11 @@
 * [Gitee](https://gitee.com/J_Sky/suiyan)
 * [GitHub](https://github.com/Jsky2020/suiyan)
 
-终端运行:`pip install -r requirements.txt`安装相关依赖
+终端运行:
+
+    pip install -r requirements.txt
+
+安装相关依赖
 
 安装完成。
 
