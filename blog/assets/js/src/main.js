@@ -12,7 +12,7 @@ $(document).ready(function () {
         scon += 100;
 
     });
-    $.getJSON("blog_data.json", function (blogdata, textStatus, jqXHR) {
+    $.getJSON("./blog_data.json", function (blogdata, textStatus, jqXHR) {
         suiyan.blog_data = blogdata;
 
         // 搜索按钮
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 shtmlstr += '<ul class="car-list navbar-nav">'
                 for (let index = 0; index < sdata.length; index++) {
                     const el = sdata[index];
-                    shtmlstr += '<li class="list-group-item"><a href="' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
+                    shtmlstr += '<li class="list-group-item"><a href="./' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
                 }
                 shtmlstr += '</ul>'
             } else {
