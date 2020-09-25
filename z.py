@@ -217,7 +217,7 @@ def create_sitemap():
         blogdata = json.load(f)
     for ar in blogdata:
         tmpstr += '<url>\
-        <loc>'+siteurl+'/blog/'+ar["url"]+'.html</loc>\
+        <loc>'+siteurl+ar["url"]+'.html</loc>\
         <lastmod>'+ar["time"]+'</lastmod>\
         <changefreq>daily</changefreq>\
         <priority>0.8</priority></url>'
