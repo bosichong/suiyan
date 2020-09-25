@@ -24,7 +24,7 @@ $(document).ready(function () {
                 shtmlstr += '<ul class="car-list navbar-nav">'
                 for (let index = 0; index < sdata.length; index++) {
                     const el = sdata[index];
-                    shtmlstr += '<li class="list-group-item"><a href="/blog/' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
+                    shtmlstr += '<li class="list-group-item"><a href="' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
                 }
                 shtmlstr += '</ul>'
             } else {
