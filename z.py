@@ -42,6 +42,14 @@ def xurl(url):
     '''去掉目录直接取文件名'''
     return url.split("/")[-1]#去掉目录，直接取文件名。
 
+def rmblog():
+    '''删除blog目录下所有html'''
+    for i in os.listdir(BLOGPAGES) :# os.listdir(path_data)#返回一个列表，里面是当前目录下面的所有东西的相对路径
+        file_data = os.path.join(BLOGPAGES + os.sep , i)#当前文件夹的下面的所有东西的绝对路径
+        if os.path.isfile(file_data) and file_data.endswith(".html"):#os.path.isfile判断是否为文件,如果是文件,就删除.如果是文件夹.递归给del_file.
+            os.remove(file_data)
+            # print(file_data)
+
 def loadcode(path):
     '''载入文件中的代码'''
     code=''
@@ -316,7 +324,7 @@ def create_main_html(str):
     blogfooter = mainbfs.find(name='footer',attrs={"class":"footer"})#blognav
 
     #blogHTMLhead mata 信息
-    metaheml = '<title>'+configdata['blog_name']+ configdata['blog_name']+'</title>\
+    metaheml = '<title>'+configdata['blog_name']+'</title>\
         <meta name="keywords" content="' + configdata['meta_keywords'] + '">\
         <meta name="description" content="' + configdata['meta_description'] + '">\
         <meta name="author" content="' + configdata['blog_author'] + '">';
@@ -527,6 +535,7 @@ def create_archives_html():
 
     archiveshtml  = str(create_main_html(jshtml))
     archivesbfs = BeautifulSoup(archiveshtml, 'html.parser')
+    archivesbfs.title.append("  archives日志归档")
     section = archivesbfs.find(name='section',attrs={"class":"blog-list"})
 
     lihtml = ''
@@ -570,6 +579,7 @@ def create_tags_html():
 
     tagshtml  = str(create_main_html(jshtml))
     tagsbfs = BeautifulSoup(tagshtml, 'html.parser')
+    tagsbfs.title.append("  Tags 标签云")
     section = tagsbfs.find(name='section',attrs={"class":"blog-list"})
 
     data = tagsData()
@@ -610,10 +620,8 @@ def create_tags_html():
 
 def create_allblog():
     '''创建所有blog静态页面'''
-    # if os.path.isdir(BLOGPAGES):
-    #     shutil.rmtree(BLOGPAGES)#删除博文列表目录
-    # os.mkdir(BLOGPAGES)#创建博文列表目录
 
+    
     jshtml ='<!-- 站点自定义JS -->\
   <script src="./assets/js/build/p.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
@@ -633,6 +641,8 @@ def create_blog_html(mainbfs,bloglist,blog):
     '''
     创建blog页面
     '''
+    mainbfs.title.string= ''
+    mainbfs.title.append(blog["title"]+'  碎言博客')
     md_path = os.path.join(ARTICLES_DIR,blog["url"]+'.md')
     md_html_code = loadcode(md_path)
     mdbfs = markdown(md_html_code)#博文
@@ -699,6 +709,8 @@ def main():
         print("sitemap.xml更新完毕！")
         create_alljs()
         print("所有JS文件合并更新完毕！")
+        rmblog()
+        print("清空所有html!")
         create_index_html()
         print("首页及blog列表页更新完毕！")
         create_archives_html()
