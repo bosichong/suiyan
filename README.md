@@ -5,7 +5,8 @@
 ### 介绍
 碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
 
-演示(码云)： [碎言博客](http://j_sky.gitee.io/suiyan)
+演示(码云)： [碎言博客](https://j_sky.gitee.io/suiyan/blog)
+
 演示(github)： [碎言博客](https://jsky2020.github.io/suiyan/blog/)
 
 
