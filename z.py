@@ -16,26 +16,31 @@ from markdown import markdown
 # from fnmatch import fnmatch
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
+BLOGPAGES = os.path.join(BASE_DIR,"blog")#所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, "articles")  # 博文目录
 BLOGLIST = os.path.join(BASE_DIR,"list")
-BLOGPAGES = os.path.join(BASE_DIR,"blog")
-CONFIGJSON = 'config.json'
-BLOGDATAJSON = 'blog_data.json'
 
-JSBUILD = 'assets/js/build'
-JSSRC ='assets/js/src'
-JSUTIL = 'assets/js/src/util.js'
-JSMAIN = 'assets/js/src/main.js'
+CONFIGJSON = os.path.join(BLOGPAGES,'config.json')
+BLOGDATAJSON = os.path.join(BLOGPAGES,'blog_data.json')
+
+JSBUILD = os.path.join(BLOGPAGES,'assets/js/build')
+JSSRC =os.path.join(BLOGPAGES,'assets/js/src')
+JSUTIL = os.path.join(BLOGPAGES,'assets/js/src/util.js')
+JSMAIN = os.path.join(BLOGPAGES,'assets/js/src/main.js')
 NN = '\n\n'
 
-TEMPLATES ='assets/templates'#网页模板目录
+TEMPLATES = os.path.join(BLOGPAGES,'assets/templates')#网页模板目录
 
 
 
 
-SUIYANVERSION = "2.0.0"  # 程序版本
+SUIYANVERSION = "2.0.1"  # 程序版本
 # 匹配文章数据的正则
 DIVRE = '<div class="blog-article">?([\s\S]*?)</div>'
+
+def xurl(url):
+    '''去掉目录直接取文件名'''
+    return url.split("/")[-1]#去掉目录，直接取文件名。
 
 def loadcode(path):
     '''载入文件中的代码'''
@@ -71,6 +76,23 @@ def getjson(s):
     for a in arr:
         data[a[0]] = a[1]
     return data
+
+def load_configjson():
+    '''载入blog配置文件config.json'''
+    config_code = loadcode(CONFIGJSON)
+    
+    config = json.loads(config_code)
+    return config
+
+def load_blogdatajson():
+    '''载入blog配置文件config.json'''
+    blogdata = loadcode(BLOGDATAJSON)
+    
+    blog = json.loads(blogdata)
+    return blog
+
+configdata = load_configjson()#得到blog的配置Python字典
+blogdata = load_blogdatajson()#获得blog的博文数据
 
 def create_blog_data_Json(adir, bdir):
     '''
@@ -110,8 +132,10 @@ def write_data_json(json_str = create_blog_data_Json(ARTICLES_DIR, BASE_DIR)):
     :param json_str: json 字符串
     :return:
     '''
-    with open(os.path.join(os.path.dirname(__file__), 'blog_data.json'), mode='w', encoding='utf-8') as f:
+    with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
+    load_blogdatajson()
+    print("写入blog数据索引完毕！")
 
 def create_blog(title, author, tag, dir, pagename):
     '''
@@ -186,7 +210,7 @@ def create_test(con):
 
 def create_sitemap():
     '''创建网站地图'''
-    siteurl ='http://www.17python.com'
+    siteurl = configdata["siteurl"]
     tmpstr = ""
     blogdata = []
     with open(os.path.join(os.path.dirname(__file__), BLOGDATAJSON), mode='r', encoding='utf-8') as f:
@@ -201,7 +225,7 @@ def create_sitemap():
     xml_str ='<?xml version="1.0" encoding="utf-8"?>\
     <urlset>'+tmpstr+'</urlset>'
     # print(xml_str)
-    with open(os.path.join(os.path.dirname(__file__), 'sitemap.xml'), mode='w', encoding='utf-8') as f:
+    with open(os.path.join(BLOGPAGES, 'sitemap.xml'), mode='w', encoding='utf-8') as f:
         f.write(xml_str)
 
 def create_appjs():
@@ -266,27 +290,14 @@ def create_js_tags():
 
 def create_alljs():
     '''合并所用生产环境下的JS文件'''
+    #清理jsbuild目录。
+    if os.path.isdir(JSBUILD):
+        shutil.rmtree(JSBUILD)#删除目录
+    os.mkdir(JSBUILD)#创建目录
     create_js_index()
     create_js_archive()
     create_js_p()
     create_js_tags()
-
-def load_configjson():
-    '''载入blog配置文件config.json'''
-    config_code = loadcode(CONFIGJSON)
-    
-    config = json.loads(config_code)
-    return config
-
-def load_blogdatajson():
-    '''载入blog配置文件config.json'''
-    blogdata = loadcode(BLOGDATAJSON)
-    
-    blog = json.loads(blogdata)
-    return blog
-
-configdata = load_configjson()#得到blog的配置Python字典
-blogdata = load_blogdatajson()#获得blog的博文数据
 
 def create_main_html(str):
     '''生成所有静态页面的公共代码，包括：<head> <side> <footer>'''
@@ -356,16 +367,13 @@ def create_main_html(str):
 
 def create_index_html():
     '''创建blog站点首页'''
-    if os.path.isdir(BLOGLIST):
-        shutil.rmtree(BLOGLIST)#删除博文列表目录
-    os.mkdir(BLOGLIST)#创建博文列表目录
 
-    indexhtmlpath = os.path.join(BASE_DIR,'index.html')#首页HTML
+    indexhtmlpath = os.path.join(BLOGPAGES,'index.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="../assets/js/build/index.js"></script>\
+  <script src="./assets/js/build/index.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
-  <script src="../assets/plugins/highlight/highlight.pack.js"></script>\
+  <script src="./assets/plugins/highlight/highlight.pack.js"></script>\
   <script >hljs.initHighlightingOnLoad();</script>'
 
     indexhtml  = str(create_main_html(jshtml))
@@ -405,8 +413,8 @@ def create_index_html():
             #组装每一页的博文HTML代码
             bdata += markdown(loadcode(os.path.join(ARTICLES_DIR ,blogdata[p]["url"]+'.md')))
         #组装分页代码
-        prevurl = '../list/list_'+str(i-1)+'.html'
-        nexturl = '../list/list_'+str(i+1)+'.html'
+        prevurl = 'list_'+str(i-1)+'.html'
+        nexturl = 'list_'+str(i+1)+'.html'
         if i == 0 :
             prevurl = '#'
         if i == ps-1 :
@@ -439,12 +447,12 @@ def create_index_html():
                 f.write(indexbfs.prettify())
                 print('合并生成环境index.html成功！')
 
-            with open(os.path.join(BLOGLIST,'list_'+str(i)+'.html'), mode='w', encoding='utf-8') as f:
+            with open(os.path.join(BLOGPAGES,'list_'+str(i)+'.html'), mode='w', encoding='utf-8') as f:
                 f.write(indexbfs.prettify())
                 print('合并生成环境list_'+str(i)+'.html 成功！')
 
         else:
-            with open(os.path.join(BLOGLIST,'list_'+str(i)+'.html'), mode='w', encoding='utf-8') as f:
+            with open(os.path.join(BLOGPAGES,'list_'+str(i)+'.html'), mode='w', encoding='utf-8') as f:
                 f.write(indexbfs.prettify())
                 print('合并生成环境list_'+str(i)+'.html 成功！')
 
@@ -512,10 +520,10 @@ def tagsData():
 
 def create_archives_html():
     '''生成archives.html'''
-    archivestmlpath = os.path.join(BASE_DIR,'archives1.html')#首页HTML
+    archivestmlpath = os.path.join(BLOGPAGES,'archives.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="../assets/js/build/archive.js"></script>'
+  <script src="./assets/js/build/archive.js"></script>'
 
     archiveshtml  = str(create_main_html(jshtml))
     archivesbfs = BeautifulSoup(archiveshtml, 'html.parser')
@@ -526,7 +534,10 @@ def create_archives_html():
     for l in data:
         lihtmlstr=''
         for j in l["data"]:
-            lihtmlstr += '<li class="list-group-item"><a href="blog/'+j["url"]+'.html" target="_blank">'+j["title"]+'</a> <span title="发布日期">'+j["time"]+'</span></li>'
+            burl = j["url"]
+            if "/" in burl:
+                burl = xurl(burl)
+            lihtmlstr += '<li class="list-group-item"><a href="'+burl+'.html" target="_blank">'+j["title"]+'</a> <span title="发布日期">'+j["time"]+'</span></li>'
         ulhtmstr = '<ul class="car-monthlisting list-group" style="display: block;">'+lihtmlstr+'</ul>'
         lihtml += '<li class="nav-item "><span class="car-yearmonth meta" style="cursor:pointer;"><i class="fa fa-list-ul" aria-hidden="true">\
         </i> '+l["date"]+' <span class="meta" title="文章数量">(共'+str(len(l["data"]))+'篇文章)</span></span>'+ulhtmstr+'</li>'
@@ -546,16 +557,16 @@ def create_archives_html():
 
     # print(archivesbfs.prettify())
                 #输出最终的listHTML
-    with open(os.path.join(BASE_DIR,'archives.html'), mode='w', encoding='utf-8') as f:
+    with open(archivestmlpath, mode='w', encoding='utf-8') as f:
         f.write(archivesbfs.prettify())
         print('合并生成环境archives.html成功！')
 
 def create_tags_html():
     '''生成tags.html页面'''
-    tagshtmlpath = os.path.join(BASE_DIR,'tags2.html')#首页HTML
+    tagshtmlpath = os.path.join(BLOGPAGES,'tags.html')#首页HTML
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="../assets/js/build/tags.js"></script>'
+  <script src="./assets/js/build/tags.js"></script>'
 
     tagshtml  = str(create_main_html(jshtml))
     tagsbfs = BeautifulSoup(tagshtml, 'html.parser')
@@ -572,7 +583,10 @@ def create_tags_html():
         <span class="tagval">'+item["tag"]+'</span> <span class="badge badge-light">'+str(len(item["data"]))+'</span></button>'
         tmpcad = ''
         for i in item["data"]:
-            tmpcad+='<li class="list-group-item"><a target="_blank" href="blog/'+i["url"]+'.html">'+i["title"]+'</a> \
+            burl = i["url"]
+            if "/" in burl:
+                burl = xurl(burl)
+            tmpcad+='<li class="list-group-item"><a target="_blank" href="'+burl+'.html">'+i["title"]+'</a> \
             <span class="meta" title="发布日期">'+i["time"]+'</span></li>'
         
         cads += '<div class="collapse" id="cad'+str(k)+'">\
@@ -590,20 +604,20 @@ def create_tags_html():
     tmphtml = BeautifulSoup(tmpstr,'html.parser')
     section.append(tmphtml)
 
-    with open(os.path.join(BASE_DIR,'tags.html'), mode='w', encoding='utf-8') as f:
+    with open(tagshtmlpath, mode='w', encoding='utf-8') as f:
         f.write(tagsbfs.prettify())
         print('合并生成环境tags.html成功！')
 
 def create_allblog():
     '''创建所有blog静态页面'''
-    if os.path.isdir(BLOGPAGES):
-        shutil.rmtree(BLOGPAGES)#删除博文列表目录
-    os.mkdir(BLOGPAGES)#创建博文列表目录
+    # if os.path.isdir(BLOGPAGES):
+    #     shutil.rmtree(BLOGPAGES)#删除博文列表目录
+    # os.mkdir(BLOGPAGES)#创建博文列表目录
 
     jshtml ='<!-- 站点自定义JS -->\
-  <script src="../assets/js/build/p.js"></script>\
+  <script src="./assets/js/build/p.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
-  <script src="../assets/plugins/highlight/highlight.pack.js"></script>\
+  <script src="./assets/plugins/highlight/highlight.pack.js"></script>\
   <script >hljs.initHighlightingOnLoad();</script>'
 
     mainhtml  = str(create_main_html(jshtml))
@@ -622,9 +636,12 @@ def create_blog_html(mainbfs,bloglist,blog):
     md_path = os.path.join(ARTICLES_DIR,blog["url"]+'.md')
     md_html_code = loadcode(md_path)
     mdbfs = markdown(md_html_code)#博文
+    burl = blog["url"]
+    if "/" in burl:
+        burl = xurl(burl)
 
     githtml ='<section class="blog-p text-center">\
-            <div class="gitedit">发现错误？想参与编辑？<a href="'+configdata["github"]+blog["url"]+'.md" class="giturl" target="_blank">\
+            <div class="gitedit">发现错误？想参与编辑？<a href="'+configdata["github"]+burl+'.md" class="giturl" target="_blank">\
                 在 GitHub 上编辑此页！</a></div>\
             <p class="qqqun">如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问</p>\
             <p class="qqqun">Python/Javascript学习QQ群号：217840699</p>\
@@ -634,7 +651,7 @@ def create_blog_html(mainbfs,bloglist,blog):
     whtml ='<div class="container-fluid" id="rt">'+mdbfs+githtml+'<div class="blog-article"></div>'
     blogpagehtml = BeautifulSoup(whtml, 'html.parser')
     bloglist.append(blogpagehtml)
-    blogurl = os.path.join(BLOGPAGES,blog["url"]+'.html')
+    blogurl = os.path.join(BLOGPAGES,burl+'.html')
 
     # 将文件路径分割出来
     file_dir = os.path.split(blogurl)[0]
@@ -702,6 +719,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    
 
 
 

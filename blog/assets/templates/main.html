@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="./assets/images/favicon.ico">
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link id="blogcss" rel="stylesheet" type="text/css" href="./assets/css/theme-dark-1.css">
+  <!-- highlight.js Markdown代码美化 -->
+  <link id="highlight" rel="stylesheet" href="./assets/plugins/highlight/styles/atom-one-dark.css">
+
+
+  
+
+
+</head>
+
+<body>
+  <header class="header text-center">
+    <h1 class="blog-name pt-lg-4 mb-0 hide"><a href="index.html">BlogName</a></h1>
+
+    <nav id="blog-nav" class="navbar navbar-expand-lg navbar-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+      </button>
+      <div id="navigation" class="collapse navbar-collapse flex-column">
+
+        <div class="profile-section pt-3 pt-lg-0">
+          <img class="profile-image mb-3 rounded-circle mx-auto hide" src="./assets/images/touxiang.jpg" width="160px"
+            height="160px">
+
+          <div class="blog-description mb-3 hide">blog_description</div>
+          <!--//sns-->
+          <ul class="social-list list-inline py-3 mx-auto">
+
+
+          </ul>
+          <!--//social-list-->
+          <hr>
+        </div>
+        <!--//profile-section-->
+        <ul class="blog-nav navbar-nav flex-column text-left">
+        </ul>
+
+        <form class="sform hide">
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <input type="text" class="form-control" id="skey" placeholder="JavaScript">
+            </div>
+            <div class="form-group col-md-3">
+              <button type="button" class="search btn btn-primary" data-toggle="modal"
+                data-target=".bd-example-modal-lg">Search</button>
+            </div>
+          </div>
+        </form>
+
+        <a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=cnafsz3c" target="_blank">
+          <img class="img-fluid" src="./assets/images/ad/320X100.jpg" alt="【采购季】上云仅¥223/3年"></a>
+        
+
+
+      </div>
+
+    </nav>
+
+
+  </header>
+
+  <div class="main-wrapper">
+    <section class="blog-list px-3 py-5 p-md-5">
+
+    </section>
+
+    <script src="./assets/plugins/jquery-3.3.1.min.js"></script>
+    <!-- Javascript -->
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <footer class="footer text-center py-2 theme-bg-dark">
+
+
+      <div class="card text-center">
+
+        <div class="card-body">
+            <p><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank"><img style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png"></a></p>
+            <p class="am-text-sm am-text-center"><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank"> 本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。</a></p>
+          <p>Powered by <a href="https://gitee.com/J_Sky/suiyan">SuiYan</a> | by J.sky <small>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2017-2020 碎言博客 </p>
+
+            
+        </div>
+
+      </div>
+
+
+
+
+      <!-- Scroll to Top button selector -->
+      <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+      <script src="./assets/plugins/jquery.toTop.min.js"></script>
+      <script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+      </script>
+
+
+
+      <!-- 搜索模态对话框。 -->
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">搜索结果</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="search-list car-list navbar-nav">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+        
+
+    </footer>
+
+  </div>
+  <!--//main-wrapper-->
+
+
+
+
+
+
+
+</body>
+
+</html>
