@@ -31,22 +31,22 @@
         {
             "ico": "home",
             "text": "Blog Home",
-            "url": "index.html"
+            "url": "./index.html"
         },
         {
             "ico": "archive",
             "text": "Blog Archive",
-            "url": "archives.html"
+            "url": "./archives.html"
         },
         {
             "ico": "tags",
             "text": "Blog Tag",
-            "url": "tags.html"
+            "url": "./tags.html"
         },
         {
             "ico": "user",
             "text": "About Me",
-            "url": "aboutme.html"
+            "url": "./aboutme.html"
         }
     ],
     "blog_list":8,
