@@ -8,6 +8,8 @@ import json
 import datetime
 import random
 import time
+#线程池
+from concurrent.futures import ThreadPoolExecutor
 #解析网页创建并填充数据到页面模板
 from bs4 import BeautifulSoup 
 #导入markdown模块
@@ -413,7 +415,6 @@ def create_index_html():
         if i == ps-1 and len(blogdata)%cs > 0 :
             maxp = cs*i+(len(blogdata)%cs)
         for p in range(cs*i,maxp):
-            
             #处理markdownblog
             # print(p)
             # print(cs*i,maxp,cs-len(blogdata)%cs)
@@ -465,11 +466,6 @@ def create_index_html():
                 print('合并生成环境list_'+str(i)+'.html 成功！')
 
 
-
-
-
-    # print(datalist)
-    # print(bloglist.prettify())
 
 def formatData():
     '''日志归档排序后的数据'''
@@ -629,18 +625,25 @@ def create_allblog():
   <script >hljs.initHighlightingOnLoad();</script>'
 
     mainhtml  = str(create_main_html(jshtml))
-    mainbfs = BeautifulSoup(mainhtml, 'html.parser')
-    bloglist = mainbfs.find(name='section',attrs={"class":"blog-list"})
+    
+    
 
+    # #单线程创建blogHTML
+    # for blog in blogdata:
+    #     create_blog_html(mainhtml,blog)
 
+    # #多线程创建
+    ex = ThreadPoolExecutor(max_workers=8)
     for blog in blogdata:
-        create_blog_html(mainbfs,bloglist,blog)
-        bloglist.string=''
+        ex.submit(create_blog_html,mainhtml,blog)
+        
 
-def create_blog_html(mainbfs,bloglist,blog):
+def create_blog_html(mainhtml,blog):
     '''
     创建blog页面
     '''
+    mainbfs = BeautifulSoup(mainhtml, 'html.parser')
+    bloglist = mainbfs.find(name='section',attrs={"class":"blog-list"})
     mainbfs.title.string= ''
     mainbfs.title.append(blog["title"]+'  碎言博客')
     md_path = os.path.join(ARTICLES_DIR,blog["url"]+'.md')
@@ -674,7 +677,7 @@ def create_blog_html(mainbfs,bloglist,blog):
     with open(blogurl, mode='w', encoding='utf-8') as f:
         f.write(mainbfs.prettify())
         print('生成'+blog["title"]+'页面成功！')
-
+    bloglist.string=''
 
 def main():
     parser = argparse.ArgumentParser()
