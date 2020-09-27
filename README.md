@@ -19,6 +19,22 @@
 
 博客文章写作采用Markdown技术支持，让你专注写作更流畅。
 
+博客的管理支持终端和图形界面：
+
+图形界面：
+
+    python3 w.py
+
+![](blog/assets/images/bloggui.png)
+
+终端：
+
+![](blog/assets/images/zhongduan.png)
+
+可以根据自己的喜好进行选择。
+
+
+
 
 ### 安装教程
 

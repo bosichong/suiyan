@@ -36,7 +36,7 @@ TEMPLATES = os.path.join(BLOGPAGES,'assets/templates')#网页模板目录
 
 
 
-SUIYANVERSION = "2.0.1"  # 程序版本
+SUIYANVERSION = "2.0.2"  # 程序版本
 # 匹配文章数据的正则
 DIVRE = '<div class="blog-article">?([\s\S]*?)</div>'
 
@@ -145,9 +145,9 @@ def write_data_json(json_str = create_blog_data_Json(ARTICLES_DIR, BASE_DIR)):
     with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
     load_blogdatajson()
-    print("写入blog数据索引完毕！")
+    # print("写入blog数据索引完毕！")
 
-def create_blog(title, author, tag, dir, pagename):
+def create_blog(title='', author='', tag='', dir='', pagename=''):
     '''
     创建一篇空白的新blog
     :param title: blog标题
