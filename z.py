@@ -378,16 +378,16 @@ def create_main_html(str):
 def create_index_html():
     '''创建blog站点首页'''
 
-    indexhtmlpath = os.path.join(BLOGPAGES,'index.html')#首页HTML
-
+    
     jshtml ='<!-- 站点自定义JS -->\
   <script src="./assets/js/build/index.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
   <script src="./assets/plugins/highlight/highlight.pack.js"></script>\
   <script >hljs.initHighlightingOnLoad();</script>'
 
+
     indexhtml  = str(create_main_html(jshtml))
-    indexbfs = BeautifulSoup(indexhtml, 'html.parser')
+
     cs = int(configdata['blog_list'])#每页的文章个数
     ps = 0#列表页个数
     #页数计算，如果有余数多加一页
@@ -397,20 +397,32 @@ def create_index_html():
         ps = int(len(blogdata)/cs +1)
     
 
+
+
+    
+    #单线程
+    # for i in range(ps):
+    #     create_list_html(indexhtml,i,ps,cs)
+
+    with ThreadPoolExecutor(max_workers=5) as ex:
+        for i in range(ps):
+            #单线程
+            # create_list_html(indexhtml,i,ps,cs)
+            # #多线程创建
+            ex.submit(create_list_html,indexhtml,i,ps,cs)
+
+def create_list_html(indexhtml,i,ps,cs):
+    '''生成列表单页HTML'''
+
+    indexbfs = BeautifulSoup(indexhtml, 'html.parser')
     bloglist = indexbfs.find(name='section',attrs={"class":"blog-list"})
 
     
-    
-    
-
-
-    for i in range(ps):
-        bloglist.string = ''
-        bdata = ''
-        #组装每页的blog文章
-        if i < ps :
-            # print(i,ps)
-            maxp= cs*i+cs
+    bdata = ''
+    #组装每页的blog文章
+    if i < ps :
+        # print(i,ps)
+        maxp= cs*i+cs
         #若是最后一页，且文章有剩余，则添加余下的博文到最后一页
         if i == ps-1 and len(blogdata)%cs > 0 :
             maxp = cs*i+(len(blogdata)%cs)
@@ -452,6 +464,7 @@ def create_index_html():
 
         if i == 0:
             #输出最终的listHTML
+            indexhtmlpath = os.path.join(BLOGPAGES,'index.html')#首页HTML
             with open(indexhtmlpath, mode='w', encoding='utf-8') as f:
                 f.write(indexbfs.prettify())
                 print('合并生成环境index.html成功！')
@@ -464,8 +477,8 @@ def create_index_html():
             with open(os.path.join(BLOGPAGES,'list_'+str(i)+'.html'), mode='w', encoding='utf-8') as f:
                 f.write(indexbfs.prettify())
                 print('合并生成环境list_'+str(i)+'.html 成功！')
-
-
+        
+        bloglist.string = ''
 
 def formatData():
     '''日志归档排序后的数据'''
@@ -616,7 +629,6 @@ def create_tags_html():
 
 def create_allblog():
     '''创建所有blog静态页面'''
-
     
     jshtml ='<!-- 站点自定义JS -->\
   <script src="./assets/js/build/p.js"></script>\
@@ -633,9 +645,9 @@ def create_allblog():
     #     create_blog_html(mainhtml,blog)
 
     # #多线程创建
-    ex = ThreadPoolExecutor(max_workers=8)
-    for blog in blogdata:
-        ex.submit(create_blog_html,mainhtml,blog)
+    with ThreadPoolExecutor(max_workers=5) as ex:
+        for blog in blogdata:
+            ex.submit(create_blog_html,mainhtml,blog)
         
 
 def create_blog_html(mainhtml,blog):
