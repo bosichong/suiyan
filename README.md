@@ -10,7 +10,7 @@
 演示(github)： [碎言博客](https://bosichong.github.io/suiyan/blog)
 
 
-![](https://j_sky.gitee.io/suiyanassets/images/fabu.png)
+![](blog/assets/images/fabu.png)
 
 ### 软件架构
 前端使用了`jQuery，bootstrap4,font-awesome-4.07,highlight.js,less,jQuery.toTop等技术框架。`
