@@ -19,6 +19,8 @@
 
 博客文章写作采用Markdown技术支持，让你专注写作更流畅。
 
+推荐使用`Vscode`搭配进行blog文章的编写(因为当创建新文章后会直接使用`vscode`直接打开)
+
 博客的管理支持终端和图形界面：
 
 图形界面：
@@ -56,7 +58,10 @@
     python z.py -n 此处写文章标题
 
 
-这个时候就会在`articles`目录下创建一篇文章。[更多终端操作](https://j_sky.gitee.io/suiyan/20191230155649.html)
+这个时候就会在`articles`目录下创建一篇文章,并且使用`vscode`直接打开。
+
+
+[更多终端操作](https://j_sky.gitee.io/suiyan/20191230155649.html)
 
 ### 创建索引
 
