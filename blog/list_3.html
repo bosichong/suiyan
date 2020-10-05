@@ -135,6 +135,215 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   如何在Python程序中使用配置文件.ini(ConfigParser)
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-06-18 15:29:01
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  引言
+ </h2>
+ <p>
+  在
+  <code>
+   Python
+  </code>
+  程序的编写中，我们经常要为程序配置一个
+  <code>
+   配置文件
+  </code>
+  ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+那么如何为自己的
+  <code>
+   Python
+  </code>
+  应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
+ </p>
+ <p>
+  <strong>
+   本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
+  </strong>
+ </p>
+ <p>
+  相关链接：
+  <a href="http://www.17python.com/blog/14">
+   PythonINI配置文件读写的简单方法
+  </a>
+ </p>
+ <p>
+  本文重点讨论如何在程序中使用配置文件，
+  <code>
+   ConfigParser
+  </code>
+  类的具体使用，请参考上文。
+ </p>
+ <h2>
+  需求
+ </h2>
+ <p>
+  前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+具体需求如下：
+ </p>
+ <ol>
+  <li>
+   保存程序设置参数
+  </li>
+  <li>
+   功能使用配置文件的参数
+  </li>
+  <li>
+   组织以上功能封装成为一个类，方便以后功能的扩展。
+  </li>
+ </ol>
+ <h2>
+  分析
+ </h2>
+ <p>
+  先上一个配置文件的工作流程图
+ </p>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
+ </p>
+ <p>
+  通过流程图我们可以总结出配置文件类中需要的方法：
+ </p>
+ <ol>
+  <li>
+   创建(若ini文件不存在)及加载本地配置文件
+  </li>
+  <li>
+   程序加载配置项参数
+  </li>
+  <li>
+   修改参数的时候保存配置项到ini文件
+  </li>
+  <li>
+   整理配置项参数为程序功能所用。
+  </li>
+ </ol>
+ <h2>
+  构建APPconfig类
+ </h2>
+ <p>
+  首先导入必须的包：
+ </p>
+ <pre><code>import os
+from configparser import ConfigParser
+</code></pre>
+ <p>
+  然后确定ini配置文件的物理位置，这里可以引用
+  <code>
+   Django
+  </code>
+  配置文件加载的方法。
+ </p>
+ <pre><code>    #ini程序所在目录，也是当前程序的根目录
+   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+   #INI文件地址
+  INI_PATH = os.path.join(BASE_DIR, 'config.ini')
+</code></pre>
+ <h2>
+  创建INI文件
+ </h2>
+ <p>
+  若程序是首次启动，可以判断配置文件ini是否存在，
+  <strong>
+   若不存在可以创建一个带有默认数据参数的配置文件。
+  </strong>
+  为类添加一个方法
+  <code>
+   def create_ini(self)
+  </code>
+  ，此方法用来创建配置文件ini。
+当在类启动方法中创建了
+  <code>
+   ConfigParser
+  </code>
+  对象后，就可以利用这个对象来编辑修改配置文件了。
+ </p>
+ <h2>
+  加载及保存配置文件
+ </h2>
+ <p>
+  若文件存在，即可直接加载了。
+ </p>
+ <pre><code>    def readINI(self):
+        """ ini文件读取，返回一个INI配置对象
+         或是用来更新内存中的配置文件数据
+         """
+         self.c.read(self.INI_PATH, encoding='utf-8')
+</code></pre>
+ <p>
+  创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
+ </p>
+ <p>
+  有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
+ </p>
+ <pre><code>def saveINI(self):
+    '''保存或是更新ini文件'''
+    with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
+        self.c.write(ini)
+</code></pre>
+ <p>
+  这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
+ </p>
+ <h2>
+  修改并保存配置文件参数
+ </h2>
+ <p>
+  为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
+ </p>
+ <p>
+  范例：
+ </p>
+ <pre><code>def saveNumber(self,number):
+    '''保存口算题个数设置数据'''
+    self.c.set('config','number',number)
+    self.saveINI()
+</code></pre>
+ <h2>
+  读取参数
+ </h2>
+ <p>
+  当创建完
+  <code>
+   ConfigParser
+  </code>
+  对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
+  <a href="http://www.17python.com/blog/14">
+   PythonINI配置文件读写的简单方法
+  </a>
+  也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
+ </p>
+ <p>
+  有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    写在我的博客PV10万时：聊聊编程与画画
   </h1>
   <span class="author">
@@ -914,141 +1123,6 @@ if __name__ == '__main__':
   </li>
   <li>
    <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(05)单选及多选按钮
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-23 18:49:39
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png"/>
- </p>
- <h2>
-  wxPython单选及多选按钮
- </h2>
- <p>
-  单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
-通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。
- </p>
- <h2>
-  多选按钮wx.CheckBox
- </h2>
- <p>
-  创建及绑定事件
- </p>
- <pre><code>cb1=wx.CheckBox(pnl, label='hello', )
-self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
-</code></pre>
- <p>
-  这里的
-  <code>
-   self.Bind
-  </code>
-  是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。
- </p>
- <h2>
-  单选按钮组wx.RadioBox
- </h2>
- <p>
-  这里我直接介绍
-  <code>
-   wx.RadioBox
-  </code>
-  ，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。
- </p>
- <p>
-  创建及绑定
- </p>
- <pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                              style=wx.RA_SPECIFY_ROWS)
-self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
-</code></pre>
- <p>
-  代码很直观，
-  <code>
-   majorDimension
-  </code>
-  表示单选钮的排列方式：0横向，1竖向。
- </p>
- <p>
-  好了，完整的代码在下边，可以跑跑看。
- </p>
- <pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        pnl = wx.Panel(self)
-
-
-        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
-        cb1=wx.CheckBox(pnl, label='hello', )
-        cb2=wx.CheckBox(pnl, label='world', )
-        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
-        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                                  style=wx.RA_SPECIFY_ROWS)
-        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
-
-        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
-
-        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
-
-        btn.Bind(wx.EVT_BUTTON, self.OnClose)
-
-        pnl.SetSizer(hbox3)
-
-
-    def onRadiobox(self,e):
-        rb = e.GetEventObject()
-        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
-
-    def onCheckBox(self,e):
-        cb = e.GetEventObject()
-        if cb.GetValue():
-            print(cb.GetLabel())
-
-    def OnClose(self, e):
-        self.Close(True)
-
-
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">
     开源中国码云镜像gitee
    </a>
   </li>

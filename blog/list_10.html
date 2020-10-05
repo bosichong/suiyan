@@ -135,6 +135,109 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   Python TK和Tkinter的GUI编程(7) Scrollbar的使用
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-27 21:23:07
+  </span>
+  <span class="tag">
+   Python GUI
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  Scrollbar
+ </h2>
+ <p>
+  Scrollbar就是窗口中的滚动条，一般应用在文本框和列表框的外围，如果内容显示超出范围之外，就会显示滚动条。
+ </p>
+ <h2>
+  创建及使用
+ </h2>
+ <ul>
+  <li>
+   创建Scrollbar对象，通过orient设置他的滚动方向，HORIZONTAL or VERTICAL. 默认是VERTICAL。
+  </li>
+  <li>
+   在部件中指定滚动条部件
+   <code>
+    yscrollcommand=ybar.set,xscrollcommand=xbar
+   </code>
+  </li>
+  <li>
+   <code>
+    ybar.config(command=t.yview) xbar.config(command=t.xview)
+   </code>
+   设置滚动条事件，使滚动条交互起来。
+  </li>
+ </ul>
+ <h2>
+  源码
+ </h2>
+ <p>
+  <img alt="效果展示" src="![输入图片说明](assets/images/media/upload/2017/09/Snip20170927_16.png"/>
+ </p>
+ <pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+root.title("Scrollbar 测试")
+#分别创建一个横向，一个坚向的滚动条，
+ybar = tk.Scrollbar(root)
+ybar.pack(fill=tk.Y, side=tk.RIGHT)
+xbar = tk.Scrollbar(root,orient=tk.HORIZONTAL)#orient=tk.HORIZONTAL表示为坚向滚动
+xbar.pack(fill=tk.X, side=tk.BOTTOM,)
+# 创建文本框，并设置横向及坚向的滚动条，wrap='none'表示文本不换
+t = tk.Text(root,yscrollcommand=ybar.set,xscrollcommand=xbar.set, wrap='none')
+t.pack(fill=tk.BOTH)
+# 添加一些字符串
+s = ""
+for i in range(100):
+    for j in range(100):
+        s = s+str(i)+" "
+    s = s+"\n"
+t.insert(tk.END,s)
+#为滚动条添加对应的函数，添加后，滚动条才会有效滚动
+ybar.config(command=t.yview)
+xbar.config(command=t.xview)
+
+root.mainloop()
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <ul>
+  <li>
+   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+    可爱的 Python：Python 中的 TK编程
+   </a>
+  </li>
+  <li>
+   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+    An Introduction To Tkinter
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton
   </h1>
   <span class="author">
@@ -1080,77 +1183,6 @@ print(l)
   </li>
   <li>
    [开源中国码云镜像gitee](https://gitee.com/J_Sky/17python.com/blob/master/random/randomtest.py
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python 对象引用与复制 (Python参考手册读书笔记)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-19 15:51:04
-  </span>
-  <span class="tag">
-   读书笔记
-  </span>
- </div>
- <p>
- </p>
- <p>
-  Python 对象引用与复制 (Python参考手册读书笔记)
-  <img alt="Python参考手册读书笔记" src="![输入图片说明](assets/images/media/upload/2017/09/timg.jpeg"/>
- </p>
- <h2>
-  通过赋值创建一个副本
- </h2>
- <pre><code>a = [1,2,3,4,5]
-b = a
-print(b is a )
-b[2] = -99
-print(a)
-</code></pre>
- <p>
-  通过控制台打印，我们修改list b中的值，打印a发现值也跟着变化了，说明a与b的引用是同一个对象
- </p>
- <h2>
-  浅复制 通过结果可以发现一些不同
- </h2>
- <pre><code class="python">c = [11,22,]
-d = list(c)
-print(c is d)
-d.append(33)
-print(c)
-print(d)
-d[1] = 00
-print(c)
-print(d)
-</code></pre>
- <h2>
-  深复制
- </h2>
- <pre><code class="python">import copy
-e = [11,12,13]
-f = copy.deepcopy(e)
-print(e is f)
-f[1] = 78
-print(e)
-print(f)
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/copy/copytest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/copy/copytest.py">
-    开源中国码云镜像gitee
-   </a>
   </li>
  </ul>
  <div class="spage">

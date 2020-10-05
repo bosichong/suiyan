@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   碎言博客
+   聊聊Python中的装饰器  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -132,194 +132,157 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
+<div class="container-fluid" id="rt">
  <div class="blog-article">
   <h1 class="title">
-   python3 Markdown模块解析Markdown代码
+   聊聊Python中的装饰器
   </h1>
   <span class="author">
    J.sky
   </span>
   <span class="time">
-   2017-08-19 19:59:46
+   2020-10-05 20:34:04
   </span>
   <span class="tag">
-   Python基础
+   Python
   </span>
  </div>
  <p>
  </p>
- <p>
-  python3 markdown模块解析markdown代码，blog中需要一个解析markdown代码的模块，测试了一下markdown模块 ，简单好用。
- </p>
- <h2>
-  安装模块
- </h2>
- <p>
-  <code>
-   pip3 install markdown
-  </code>
- </p>
- <h2>
-  使用
- </h2>
- <p>
-  <code>
-   markdown
-  </code>
-  模块的使用非常简单了，参考下面的代码：
- </p>
- <pre><code class="python">
-#codeing=utf-8
-#引入markdown解析模块
-from markdown import markdown
+</div>
+<h2>
+ Python装饰器是什么？
+</h2>
+<p>
+ 在Django中曾经使用过
+ <code>
+  @fun
+ </code>
+ 这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
+</p>
+<p>
+ 装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
+</p>
+<h2>
+ 定义一个Python的装饰器
+</h2>
+<p>
+ 我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
+</p>
+<pre><code>    import time
+    import functools
 
-s = '###这里是标题'
-m = markdown(s)#解析markdown文件
-print(m)
+    def t(fun):
+    '''定义一个程序运行时间计算函数'''
+    @functools.wraps(fun)
+    def wrapper(*args, **kwargs):
+            start = time.time()  # 起始时间
+            fun(*args, **kwargs)  # 要执行的函数
+            end = time.time()  # 结束时间
+            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
+    return wrapper
+
+    @t
+    def myfunc(x, y):
+    '''打印从x到y的数值'''
+    for i in range(x, y):
+            print(i)
+
+    myfunc(0, 9)
 </code></pre>
- <div class="blog-article">
-  <h1 class="title">
-   创建python 虚拟环境 venv
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 19:53:29
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  创建python 虚拟环境
- </h3>
- <p>
-  最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
-  <pre><code>
-➜  ~ mkdir pywork
-➜  ~ cd pywork/
-➜  ~ python3 -m venv django1.9
-➜  pywork ls
-django1.9
-➜  pywork source django1.9/bin/activate #运行虚拟环境
-(django1.9) ➜  pywork pip list
+<p>
+ 运行结果：
+</p>
+<pre><code>    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    myfunc 程序运行时间:0.03ms
+    这样的话，我们就可以在不破坏原函数代码的情况下为函数添加了计算当前函数运行时间的功能。
 </code></pre>
- </p>
- <p>
-  退出虚拟环境
- </p>
- <pre><code>deactivate
+<h2>
+ 定义一个可以传参的装饰器
+</h2>
+<p>
+ 如果我们的装饰器需要传入参数该怎么写呢？只需要在
+ <code>
+  wrapper
+ </code>
+ 外加一层包装即可。代码如下:
+</p>
+<pre><code>    import time
+    import functools
+
+    def t(str):
+    '''定义一个程序运行时间计算函数'''
+    def decorator(fun):
+            @functools.wraps(fun)
+            def wrapper(*args, **kwargs):
+            start = time.time()  # 起始时间
+            fun(*args, **kwargs)  # 要执行的函数
+            end = time.time()  # 结束时间
+            print('传入的字符串是:', str)
+            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
+            return wrapper
+    return decorator
+
+    @t('hello world')
+    def myfunc(x, y):
+    '''打印从x到y的数值'''
+    for i in range(x, y):
+            print(i)
+
+    myfunc(0, 9)
 </code></pre>
- <p>
-  参考文献：
-http://blog.csdn.net/geekun/article/details/51325383
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   关于17python.com关于我
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 16:51:30
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
-  </em>
- </p>
- <h2>
-  为什么要做这个blog？
- </h2>
- <p>
-  其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
-  <code>
-   Python Django
-  </code>
-  学习的一个总结。
- </p>
- <h2>
-  关于17python
- </h2>
- <p>
-  17Python注册域名的时候就是想，人生苦短，何不一起
-  <code>
-   Python
-  </code>
-  ？任何一个热爱
-  <code>
-   Python
-  </code>
-  的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
-  <code>
-   Python
-  </code>
-  这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
- </p>
- <h2>
-  blog存在的意义
- </h2>
- <p>
-  希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
-  <code>
-   python
-  </code>
- </p>
- <h2>
-  网站备案成功
- </h2>
- <p>
-  今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
- </p>
- <h2>
-  网站改版
- </h2>
- <p>
-  今天折腾了一天把网站换成了自己开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan.git">
-   Gitee
+<p>
+ 运行结果：
+</p>
+<pre><code>    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    传入的字符串是: hello world
+    myfunc 程序运行时间:0.11ms
+    functools.wraps是什么？
+</code></pre>
+<p>
+ <code>
+  functools.wraps
+ </code>
+ 是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
+ <code>
+  functools.wraps
+ </code>
+ 。
+</p>
+<p>
+ functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
+</p>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201005203404.md" target="_blank">
+   在 GitHub 上编辑此页！
   </a>
-  生命在于折腾。
- </p>
- <h2>
-  联系我
- </h2>
- <p>
-  <em>
-   email bosichong@qq.com
-  </em>
- </p>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_12.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    13 / 14
-   </button>
-   <a href="#">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
  </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
 </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
@@ -401,7 +364,7 @@ http://blog.csdn.net/geekun/article/details/51325383
      </div>
     </div>
     <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
+    <script src="./assets/js/build/p.js">
     </script>
     <!-- highlight.js Markdown代码美化 -->
     <script src="./assets/plugins/highlight/highlight.pack.js">

@@ -135,6 +135,140 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   聊聊Python中的装饰器
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2020-10-05 20:34:04
+  </span>
+  <span class="tag">
+   Python
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  Python装饰器是什么？
+ </h2>
+ <p>
+  在Django中曾经使用过
+  <code>
+   @fun
+  </code>
+  这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
+ </p>
+ <p>
+  装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
+ </p>
+ <h2>
+  定义一个Python的装饰器
+ </h2>
+ <p>
+  我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
+ </p>
+ <pre><code>    import time
+    import functools
+
+    def t(fun):
+    '''定义一个程序运行时间计算函数'''
+    @functools.wraps(fun)
+    def wrapper(*args, **kwargs):
+            start = time.time()  # 起始时间
+            fun(*args, **kwargs)  # 要执行的函数
+            end = time.time()  # 结束时间
+            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
+    return wrapper
+
+    @t
+    def myfunc(x, y):
+    '''打印从x到y的数值'''
+    for i in range(x, y):
+            print(i)
+
+    myfunc(0, 9)
+</code></pre>
+ <p>
+  运行结果：
+ </p>
+ <pre><code>    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    myfunc 程序运行时间:0.03ms
+    这样的话，我们就可以在不破坏原函数代码的情况下为函数添加了计算当前函数运行时间的功能。
+</code></pre>
+ <h2>
+  定义一个可以传参的装饰器
+ </h2>
+ <p>
+  如果我们的装饰器需要传入参数该怎么写呢？只需要在
+  <code>
+   wrapper
+  </code>
+  外加一层包装即可。代码如下:
+ </p>
+ <pre><code>    import time
+    import functools
+
+    def t(str):
+    '''定义一个程序运行时间计算函数'''
+    def decorator(fun):
+            @functools.wraps(fun)
+            def wrapper(*args, **kwargs):
+            start = time.time()  # 起始时间
+            fun(*args, **kwargs)  # 要执行的函数
+            end = time.time()  # 结束时间
+            print('传入的字符串是:', str)
+            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
+            return wrapper
+    return decorator
+
+    @t('hello world')
+    def myfunc(x, y):
+    '''打印从x到y的数值'''
+    for i in range(x, y):
+            print(i)
+
+    myfunc(0, 9)
+</code></pre>
+ <p>
+  运行结果：
+ </p>
+ <pre><code>    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    传入的字符串是: hello world
+    myfunc 程序运行时间:0.11ms
+    functools.wraps是什么？
+</code></pre>
+ <p>
+  <code>
+   functools.wraps
+  </code>
+  是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
+  <code>
+   functools.wraps
+  </code>
+  。
+ </p>
+ <p>
+  functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
    npm更换源与nrm安装与配置
   </h1>
   <span class="author">
@@ -891,106 +1025,6 @@ new CleanWebpackPlugin(),//清理目录 而且不用加入目录数组['dist']
 </code></pre>
  <p>
   如上，就可以实现一个全局的组件注册，可以重复使用。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(2)Vue中的监听与计算属性
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-01 10:31:26
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  Vue中的监听
- </h3>
- <p>
-  <code>
-   watch
-  </code>
-  用来监听
-  <code>
-   Vue
-  </code>
-  实例中数据的变化，然后可以出发一个事件。
-例如，反转字符串：
- </p>
- <!-- 开发环境版本，包含了有帮助的命令行警告 -->
- <pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
-&lt;div id="app"&gt;
-    &lt;input type="text" v-model="vt"&gt;
-    &lt;p v-text="nvt"&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-   var vm = new Vue({
-        el:"#app",
-        data:{
-            vt:"",
-            nvt:""
-        },
-        watch: {
-            vt:function(val){
-                this.nvt=this.vt.split('').reverse().join('')
-
-            }
-        },
-    })
-
-&lt;/script&gt;
-</code></pre>
- <p>
-  除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
- </p>
- <h3>
-  Vue中的计算属性
- </h3>
- <p>
-  计算属性和监听有些相似，有的时候作用都差不多吧。
- </p>
- <p>
-  下边的例子就是采用Vue的计算属性，
- </p>
- <p>
-  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-  <script src="assets/plugins/vue.js">
-  </script>
- </p>
- <pre><code>&lt;div id="app1"&gt;
-    &lt;p&gt;计算属性&lt;/p&gt;
-    &lt;input type="text" v-model="vt"&gt;
-    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-
-
-    var vm1 = new Vue({
-        el :"#app1",
-        data:{
-            vt:""
-        },
-        computed: {
-            rtvt:function(){
-                return this.vt.split("").reverse().join("")
-            }
-        },
-
-    })
-
-&lt;/script&gt;
-</code></pre>
- <p>
-  感觉计算属性要比监听简单直观些。
  </p>
  <div class="spage">
   <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
