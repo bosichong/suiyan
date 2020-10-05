@@ -30,7 +30,7 @@ def upindex():
 
 
 def newmd():
-    z.create_blog()
+    z.create_blog(title='请填写博客标题！')
 
 
 def main():

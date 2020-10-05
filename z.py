@@ -103,15 +103,14 @@ def load_configjson():
 
 
 def load_blogdatajson():
-    '''载入blog配置文件config.json'''
+    '''载入blog数据blog_data.json'''
     blogdata = loadcode(BLOGDATAJSON)
 
     blog = json.loads(blogdata)
     return blog
 
 
-configdata = load_configjson()  # 得到blog的配置Python字典
-blogdata = load_blogdatajson()  # 获得blog的博文数据
+
 
 
 def create_blog_data_Json(adir, bdir):
@@ -148,15 +147,15 @@ def create_blog_data_Json(adir, bdir):
     return data_json_str
 
 
-def write_data_json(json_str=create_blog_data_Json(ARTICLES_DIR, BASE_DIR)):
+def write_data_json():
     '''
     创建blog索引.json
     :param json_str: json 字符串
     :return:
     '''
+    json_str=create_blog_data_Json(ARTICLES_DIR, BASE_DIR)
     with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
-    load_blogdatajson()
     # print("写入blog数据索引完毕！")
 
 
@@ -196,13 +195,9 @@ def create_blog(title='', author='', tag='', dir='', pagename=''):
         os.makedirs(file_dir)
 
     # print(blogpath)
-    bloghtml = '<div class="blog-article">\n\
-        <h1 class="title">' + title + '</h1>\n\
-        <span class="author">' + author + '</span>\n\
-        <span class="time">' + create_time + '</span>\n\
-        <span class="tag">' + tag + '</span>\n\
-        </div>\n</br>\n\n\
-        ## 可以开始写blog啦(*￣︶￣)'
+    bloghtml = '<div class="blog-article">\n<h1 class="title">' + title + '</h1>\n<span class="author">' + author + '</span>\n\
+<span class="time">' + create_time + '</span>\n<span class="tag">' + tag + '</span>\n</div>\n\
+</br>\n\n ## 可以开始写blog啦(*￣︶￣)'
 
     if os.path.isfile(blogfile):
         print('文件存在相同名称，创建失败。')
@@ -210,7 +205,7 @@ def create_blog(title='', author='', tag='', dir='', pagename=''):
         with open(blogfile, mode='w', encoding='utf-8') as f:
             f.write(bloghtml)
         print('blog文章.md创建成功！')
-        os.system('code '+blogfile)
+        os.system('code ' + blogfile)
 
     # print(getjson(str))
 
@@ -235,11 +230,10 @@ def create_test(con):
 
 def create_sitemap():
     '''创建网站地图'''
+    configdata = load_configjson()  # 得到blog的配置Python字典
     siteurl = configdata["siteurl"]
     tmpstr = ""
-    blogdata = []
-    with open(os.path.join(os.path.dirname(__file__), BLOGDATAJSON), mode='r', encoding='utf-8') as f:
-        blogdata = json.load(f)
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     for ar in blogdata:
         tmpstr += '<url>\
         <loc>' + siteurl + ar["url"] + '.html</loc>\
@@ -331,7 +325,7 @@ def create_alljs():
 
 def create_main_html(str):
     '''生成所有静态页面的公共代码，包括：<head> <side> <footer>'''
-
+    configdata = load_configjson()  # 得到blog的配置Python字典
     main_path = os.path.join(TEMPLATES, 'main.html')
     main_html_code = loadcode(main_path)
     mainbfs = BeautifulSoup(main_html_code, 'html.parser')
@@ -393,7 +387,8 @@ def create_main_html(str):
 
 def create_index_html():
     '''创建blog站点首页'''
-
+    configdata = load_configjson()  # 得到blog的配置Python字典
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     jshtml = '<!-- 站点自定义JS -->\
   <script src="./assets/js/build/index.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
@@ -424,7 +419,7 @@ def create_index_html():
 
 def create_list_html(indexhtml, i, ps, cs):
     '''生成列表单页HTML'''
-
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     indexbfs = BeautifulSoup(indexhtml, 'html.parser')
     bloglist = indexbfs.find(name='section', attrs={"class": "blog-list"})
 
@@ -493,6 +488,7 @@ def create_list_html(indexhtml, i, ps, cs):
 
 def formatData():
     '''日志归档排序后的数据'''
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     tmplist = []
     for item in blogdata:
 
@@ -520,6 +516,7 @@ def formatData():
 
 def tagsData():
     '''tag归档排序后的数据'''
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     tmplist = []
     for item in blogdata:
         tmptag = item["tag"]
@@ -549,6 +546,7 @@ def tagsData():
 
 def create_archives_html():
     '''生成archives.html'''
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     archivestmlpath = os.path.join(BLOGPAGES, 'archives.html')  # 首页HTML
 
     jshtml = '<!-- 站点自定义JS -->\
@@ -646,7 +644,7 @@ def create_tags_html():
 
 def create_allblog():
     '''创建所有blog静态页面'''
-
+    blogdata = load_blogdatajson()  # 获得blog的博文数据
     jshtml = '<!-- 站点自定义JS -->\
   <script src="./assets/js/build/p.js"></script>\
   <!-- highlight.js Markdown代码美化 -->\
@@ -669,6 +667,7 @@ def create_blog_html(mainhtml, blog):
     '''
     创建blog页面
     '''
+    configdata = load_configjson()  # 得到blog的配置Python字典
     mainbfs = BeautifulSoup(mainhtml, 'html.parser')
     bloglist = mainbfs.find(name='section', attrs={"class": "blog-list"})
     mainbfs.title.string = ''
@@ -730,10 +729,6 @@ def main():
         create_blog(title=args.newblog, author=args.author,
                     tag=args.tag, dir=args.dir, pagename=args.pagename,)
         print("新文章.md创建完毕！")
-        write_data_json()
-        print("blog_data.json索引文件更新完毕！")
-        create_sitemap()
-        print("sitemap.xml 更新完毕！")
     elif args.suiyantest:
         create_test(args.suiyantest)
         print("测试文件创建完毕！")
