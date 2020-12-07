@@ -135,6 +135,92 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   Python os.path模块中一些常用方法的整理总结
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-09-04 14:37:17
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <em>
+   跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法
+  </em>
+ </p>
+ <h2>
+  os.path 模块
+ </h2>
+ <p>
+  首先，导入一些必须的模块
+ </p>
+ <pre><code>import os
+import time
+</code></pre>
+ <h2>
+  路径操作的常用方法：
+ </h2>
+ <pre><code class="python">print(__file__) #当前文件的完整地址
+print(os.path.abspath('ospathtest.py'))#当前文件的完整地址
+print(os.path.dirname(__file__)) #当前目录所属地址
+print(os.path.isdir(os.path.dirname(__file__)))# 判断是否为路径
+print(os.path.isfile(os.path.dirname(__file__)))# 判断是否为文件
+</code></pre>
+ <h2>
+  组装及创建目录
+ </h2>
+ <pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
+os.mkdir(p) # 创建目录
+time.sleep(3)# 暂停3秒，这样就可以在左侧目录中看到新建的'aaa'目录了
+os.rmdir(p)
+print(p)# 组装目录
+print(os.path.split(__file__))# 分割路径与文件名
+</code></pre>
+ <h2>
+  os.path中的一些is get方法
+ </h2>
+ <pre><code class="python">path = __file__
+print(os.path.getatime(path))  #返回最后一次进入此path的时间。
+print(os.path.getmtime(path))  #返回在此path下最后一次修改的时间。
+print(os.path.getctime(path))  #返回path的大小
+print(os.path.getsize(path))  #返回文件大小，如果文件不存在就返回错误
+print(os.path.isabs(path))  #判断是否为绝对路径
+print(os.path.isfile(path))  #判断路径是否为文件
+print(os.path.isdir(path))  #判断路径是否为目录
+print(os.path.islink(path))  #判断路径是否为链接
+print(os.path.ismount(path))  #判断路径是否为挂载点（）
+</code></pre>
+ <h2>
+  相关参考
+ </h2>
+ <p>
+  <a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">
+   os.path — 路径操作
+  </a>
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    Python 采集数据三步曲之[Requests + re.py模块进行数据采集]
   </h1>
   <span class="author">
@@ -1635,100 +1721,6 @@ __Spring Boot__
   参考：
   <a href="http://www.appinn.com/markdown/basic.html">
    Markdown: Basics （快速入门）
-  </a>
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   17python.com网站已经部署上线及后期更新记录
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-25 01:09:49
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  今天是个好日子
- </h2>
- <p>
-  折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学
-  <code>
-   Python Django
-  </code>
-  感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习
-  <code>
-   Python
-  </code>
-  的日子还长，学习还是要继续的，给自己打气加油！
- </p>
- <h2>
-  耐心等待备案下来
- </h2>
- <p>
-  希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次
-  <code>
-   blog
-  </code>
-  搭建的经验。
- </p>
- <h2>
-  更新在2017-09-04
- </h2>
- <p>
-  公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。
- </p>
- <h2>
-  腾讯公益404
- </h2>
- <ul>
-  <li>
-   本站演示地址
-   <a href="http://www.17python.com/404">
-    404Not-Found
-   </a>
-   <blockquote>
-    <p>
-     不解释，希望更多的站长加入吧
-     <a href="http://www.qq.com/404/">
-      传送门请点这里
-     </a>
-     希望走失的宝宝将来都能找到自己的亲人。
-    </p>
-   </blockquote>
-  </li>
- </ul>
- <h2>
-  2017-10-06更新博客功能
- </h2>
- <p>
-  为博客添加了标签云，日志归档功能。
- </p>
- <h2>
-  2017-12-22
- </h2>
- <p>
-  添加原创及转载标识，添加站点统计、热门文章功能。
- </p>
- <h2>
-  2020-01-07
- </h2>
- <p>
-  把原来由
-  <code>
-   Django
-  </code>
-  构建的博客换成了自己的新开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan">
-   下载地址
   </a>
  </p>
  <div class="spage">

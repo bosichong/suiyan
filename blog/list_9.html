@@ -135,6 +135,156 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   聊聊Python闭包（Closure）的那点事。
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-09 15:36:19
+  </span>
+  <span class="tag">
+   Python基础
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  记得当年学
+  <code>
+   JavaScript
+  </code>
+  时，对闭包的认识那真是朦朦胧胧，后来接触到
+  <code>
+   jQuery
+  </code>
+  之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言
+  <code>
+   java
+  </code>
+  给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题
+ </p>
+ <h2>
+  Pythib闭包
+ </h2>
+ <p>
+  先来一个栗子，我们慢慢理顺一下：
+ </p>
+ <pre><code class="python">def callf():
+    def hello():
+        return "hello world"
+    return hello
+
+cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
+print(type(cf)) # 查看cf类型，证实上边的结论。
+print(cf()) #打印最终结果。
+</code></pre>
+ <p>
+  在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
+上边就算是闭包最简单的例子，多看几次应该就理解了。
+ </p>
+ <p>
+  再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？
+ </p>
+ <pre><code class="python">def countdown(n):
+    def next():
+        nonlocal n 
+        r = n 
+        n -= 1
+        return r
+    return next
+
+nt = countdown(5)
+while True:
+    v = nt()
+    print(v)
+    if not v :break
+</code></pre>
+ <p>
+  这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉
+  <code>
+   nonlocal n
+  </code>
+  ，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量
+  <code>
+   n
+  </code>
+  的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。
+ </p>
+ <h1>
+  再看循环中的闭包：
+ </h1>
+ <pre><code class="python">def loop():
+    fs = []
+    for i in range(1,4):
+        def f():
+            return i*i
+        fs.append(f)
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+</code></pre>
+ <p>
+  <code>
+   f1()
+  </code>
+  的打印竟然9，这个有点出乎意料！我们修改一下这个函数
+ </p>
+ <pre><code class="python">def loop(): 
+    def f(j):
+        return lambda: j*j
+    fs = []
+    for i in range(1,4):
+        fs.append(f(i))       
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+print(f2())
+print(f3())
+</code></pre>
+ <p>
+  对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了
+  <code>
+   f()
+  </code>
+  函数
+  <code>
+   return
+  </code>
+  所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
+有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用
+  <code>
+   Python
+  </code>
+  函数的高级应用，不妨仔细的了解一下闭包吧。
+ </p>
+ <h2>
+  参考文档
+ </h2>
+ <ul>
+  <li>
+   <a href="https://zhuanlan.zhihu.com/p/22229197">
+    深入浅出python闭包
+   </a>
+  </li>
+ </ul>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    Python并发编程（下）功能强大设置简单的分布式多进程生产者与消费者模式
   </h1>
   <span class="author">
@@ -1460,126 +1610,6 @@ def printProtocol():
 root.protocol('WM_DELETE_WINDOW', printProtocol)  
 root.mainloop()
 </key></return></shift_l></shift_r></buttonrelease-2></b1-motion></button-3></button-2></button-1></leave></triple-button-1></double-button-1></buttonrelease-2></b1-motion></button-3></button-2></button-1></leave></triple-button-1></double-button-1></code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-    可爱的 Python：Python 中的 TK编程
-   </a>
-  </li>
-  <li>
-   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-    An Introduction To Tkinter
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-28 09:50:15
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  Scalet和Spinbox 是tk中用来调节刻度的小部件。
- </p>
- <h2>
-  Scalet 滑动模块部件
- </h2>
- <p>
-  Scalet 在使用中有几个必要的地方：
- </p>
- <ul>
-  <li>
-   设置刻度，
-   <code>
-    from_=0, to=1000,
-   </code>
-   还可以
-   <code>
-    from_=0, to=10,resolution=0.1
-   </code>
-   ,设置每次调结刻度值
-  </li>
-  <li>
-   滑块滑动事件，当滑动时，返回当前的刻度，有二种方法，无论哪种方法，需要先绑定回调函数
-   <code>
-    command=prtsa
-   </code>
-  </li>
-  <li>
-   取回当前刻度值，回调函数包括一个text字符串参数，通过这个参数可以直接返回当前的刻度值，另外还可以通过绑定变量来返回刻度值。
-  </li>
- </ul>
- <h2>
-  Spinbox
- </h2>
- <ul>
-  <li>
-   绑定回调函数，然后通过
-   <code>
-    get()
-   </code>
-   方法返部件当前值。
-  </li>
- </ul>
- <h2>
-  源码
- </h2>
- <p>
-  <img alt="" src="assets/images/media/upload/2017/09/Snip20170928_17.png"/>
- </p>
- <pre><code class="python">import tkinter as tk
-
-root = tk.Tk()
-root.title("Scrollbar 测试")
-#分别创建一个横向，一个坚向的滚动条，
-ybar = tk.Scrollbar(root)
-ybar.pack(fill=tk.Y, side=tk.RIGHT)
-xbar = tk.Scrollbar(root,orient=tk.HORIZONTAL)#orient=tk.HORIZONTAL表示为坚向滚动
-xbar.pack(fill=tk.X, side=tk.BOTTOM,)
-# 创建文本框，并设置横向及坚向的滚动条，wrap='none'表示文本不换
-t = tk.Text(root,yscrollcommand=ybar.set,xscrollcommand=xbar.set, wrap='none')
-t.pack(fill=tk.BOTH)
-# 添加一些字符串
-s = ""
-for i in range(100):
-    for j in range(100):
-        s = s+str(i)+" "
-    s = s+"\n"
-t.insert(tk.END,s)
-#为滚动条添加对应的函数，添加后，滚动条才会有效滚动
-ybar.config(command=t.yview)
-xbar.config(command=t.xview)
-
-root.mainloop()
-</code></pre>
  <h2>
   相关参考
  </h2>

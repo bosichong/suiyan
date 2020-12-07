@@ -135,6 +135,99 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   细说修改碎言博客站点的样式
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-12-30 20:15:29
+  </span>
+  <span class="tag">
+   碎言博客
+  </span>
+ </div>
+ <p>
+ </p>
+ <h2>
+  碎言博客HTML结构
+ </h2>
+ <p>
+  博客HTML只有4个：
+ </p>
+ <ul>
+  <li>
+   index.html  博客首页
+  </li>
+  <li>
+   archives.html 归档
+  </li>
+  <li>
+   tags.html 标签页
+  </li>
+  <li>
+   p.html 博文详情页
+  </li>
+ </ul>
+ <h2>
+  CSS修改
+ </h2>
+ <p>
+  碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:
+  <code>
+   Easy LESS
+  </code>
+ </p>
+ <p>
+  <img alt="" src="assets/images/blog/Snip20191231_2.png"/>
+ </p>
+ <p>
+  这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合
+  <code>
+   less
+  </code>
+  的引用命令
+  <code>
+   @import "theme-dark-1.less";
+  </code>
+  使用起来很方便的。
+ </p>
+ <h2>
+  博客的样式修改
+ </h2>
+ <p>
+  碎言博客的样式主要集中在
+  <code>
+   &lt;link id="blogcss"&gt;
+  </code>
+  标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。
+ </p>
+ <h2>
+  Markdown代码样式
+ </h2>
+ <p>
+  Markdown代码样式通过修改
+  <code>
+   &lt;link id="highlight"&gt;
+  </code>
+  标签连接的highlightCSS来修改，在
+  <code>
+   assets/plugins/highlight/styles
+  </code>
+  下可以选择自己喜欢的样式。
+ </p>
+ <h2>
+  进阶修改
+ </h2>
+ <p>
+  觉得手动修改站点样式太麻烦？可以利用
+  <code>
+   jQuery
+  </code>
+  在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
+ </p>
+ <div class="blog-article">
+  <h1 class="title">
    关于站长
   </h1>
   <span class="author">
@@ -1336,121 +1429,6 @@ Pillow
   </li>
   <li>
    <a href="https://gitee.com/J_Sky/WordTest">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   PYBabyLog记录孩子成长过程的日记
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-09-29 00:15:30
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  前言
- </h3>
- <p>
-  岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
- </p>
- <p>
-  当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
- </p>
- <p>
-  做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
- </p>
- <p>
-  PYBabyLog的前身是
-  <a href="https://gitee.com/J_Sky/babylog">
-   BabyLog(Java开发版)
-  </a>
- </p>
- <p>
-  是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
- </p>
- <h3>
-  PYBabyLog
- </h3>
- <p>
-  PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
- </p>
- <p>
-  采用Python+MySQL+argparse技术开发的全终端操作软件。
- </p>
- <p>
-  可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
- </p>
- <p>
-  本程序数据库和
-  <a href="https://gitee.com/J_Sky/babylog">
-   BabyLog(Java开发版)
-  </a>
-  通用，可以用来展示数据。
-当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
- </p>
- <h3>
-  界面截图
- </h3>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png"/>
- </p>
- <h3>
-  安装方法
- </h3>
- <p>
-  1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
-  <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
-   数据库构建文件
-  </a>
- </p>
- <p>
-  2.修改
-  <code>
-   DbHelp.py
-  </code>
-  中的MySQL的连接配置项即可
- </p>
- <h3>
-  终端版操作命令简介
- </h3>
- <p>
-  <code>
-   整理中。。。。。
-x.py -h 就都出来了。
-  </code>
- </p>
- <h3>
-  写在结尾
- </h3>
- <p>
-  其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
- </p>
- <p>
-  若给各位大虾能提交些代码或是有好的建议，非常欢迎！
- </p>
- <h2>
-  程序源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PYBabyLog">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/PYBabyLog">
     开源中国码云镜像gitee
    </a>
   </li>

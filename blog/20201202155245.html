@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   碎言博客
+   如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -132,288 +132,233 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
+<div class="container-fluid" id="rt">
  <div class="blog-article">
   <h1 class="title">
-   17python.com网站已经部署上线及后期更新记录
+   如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
   </h1>
   <span class="author">
    J.sky
   </span>
   <span class="time">
-   2017-08-25 01:09:49
+   2020-12-07 20:30:45
   </span>
   <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  今天是个好日子
- </h2>
- <p>
-  折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学
-  <code>
-   Python Django
-  </code>
-  感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习
-  <code>
    Python
-  </code>
-  的日子还长，学习还是要继续的，给自己打气加油！
- </p>
- <h2>
-  耐心等待备案下来
- </h2>
- <p>
-  希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次
-  <code>
-   blog
-  </code>
-  搭建的经验。
- </p>
- <h2>
-  更新在2017-09-04
- </h2>
- <p>
-  公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。
- </p>
- <h2>
-  腾讯公益404
- </h2>
- <ul>
-  <li>
-   本站演示地址
-   <a href="http://www.17python.com/404">
-    404Not-Found
-   </a>
-   <blockquote>
-    <p>
-     不解释，希望更多的站长加入吧
-     <a href="http://www.qq.com/404/">
-      传送门请点这里
-     </a>
-     希望走失的宝宝将来都能找到自己的亲人。
-    </p>
-   </blockquote>
-  </li>
- </ul>
- <h2>
-  2017-10-06更新博客功能
- </h2>
- <p>
-  为博客添加了标签云，日志归档功能。
- </p>
- <h2>
-  2017-12-22
- </h2>
- <p>
-  添加原创及转载标识，添加站点统计、热门文章功能。
- </p>
- <h2>
-  2020-01-07
- </h2>
- <p>
-  把原来由
-  <code>
-   Django
-  </code>
-  构建的博客换成了自己的新开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan">
-   下载地址
-  </a>
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   python3 Markdown模块解析Markdown代码
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 19:59:46
-  </span>
-  <span class="tag">
-   Python基础
   </span>
  </div>
  <p>
  </p>
- <p>
-  python3 markdown模块解析markdown代码，blog中需要一个解析markdown代码的模块，测试了一下markdown模块 ，简单好用。
- </p>
- <h2>
-  安装模块
- </h2>
- <p>
-  <code>
-   pip3 install markdown
-  </code>
- </p>
- <h2>
-  使用
- </h2>
- <p>
-  <code>
-   markdown
-  </code>
-  模块的使用非常简单了，参考下面的代码：
- </p>
- <pre><code class="python">
-#codeing=utf-8
-#引入markdown解析模块
-from markdown import markdown
+</div>
+<p>
+ ## 如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
+</p>
+<p>
+ 在学习和编写Python代码的过程中我们经常会用到
+ <code>
+  pip
+ </code>
+ 来安装一些其他包，用
+ <code>
+  pip
+ </code>
+ 下载很方便的，那么如果我们自己写了Python的代码包，如何能让别人也试用
+ <code>
+  pip
+ </code>
+ 来进行安装呢？真巧，我这几天就打包了一个自己写的程序发布到了
+ <code>
+  pypi.org
+ </code>
+ ，写个上传记录供大家参考。
+</p>
+<h3>
+ 安装依赖包
+</h3>
+<p>
+ <code>
+  whell
+ </code>
+ 用来打包，
+ <code>
+  twine
+ </code>
+ 用来上传包到
+ <code>
+  pypi.org
+ </code>
+</p>
+<pre><code>pip install whell
+pip install twine
+</code></pre>
+<p>
+ 如果无法下载，请尝试更换下载源，也可能会遇到pip版本太低需要升级的情况，升级后在试试安装。
+</p>
+<pre><code>pip install wheel
+</code></pre>
+<p>
+ 改为：
+</p>
+<pre><code>pip install wheel -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+</code></pre>
+<h3>
+ 打包项目配置
+</h3>
+<p>
+ 需要打包的项目结构图如下：
+</p>
+<p>
+ <img alt="" src="assets/images/2021/Snip20201207_1.png"/>
+</p>
+<p>
+ <code>
+  PrimarySchoolMath
+ </code>
+ 目录就是我们要打包的项目目录(这个名称和setup.py里的项目名称要一致，也是pip install XXXX  的名字是一样的)。
+ <code>
+  LICENSE
+ </code>
+ 是软件的开源协议，如果不知道怎么选可以到https://choosealicense.com 这里选择一下。
+ <code>
+  readme.md
+ </code>
+ 是软件或包的说明，可以写一些仓库地址简要说明。
+ <code>
+  setup.py
+ </code>
+ 打包的配以文件，后边详细说明。
+</p>
+<h3>
+ setup.py打包配置文件说明
+</h3>
+<p>
+ <code>
+  setup.py
+ </code>
+ :
+</p>
+<pre><code>import setuptools
 
-s = '###这里是标题'
-m = markdown(s)#解析markdown文件
-print(m)
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name="PrimarySchoolMath",# 项目名称，保证它的唯一性，不要跟已存在的包名冲突即可
+    version="1.0.4",#程序版本
+    author="J.sky", # 项目作者
+    author_email="bosichong@qq.com",#作者邮件
+    description="小学生口算题的小应用", # 项目的一句话描述
+    long_description=long_description,#加长版描述？
+    long_description_content_type="text/markdown",#描述使用Markdown
+    url="https://github.com/bosichong/PrimarySchoolMathematics",# 项目地址
+    packages=setuptools.find_packages(),#无需修改
+    classifiers=[
+        "Programming Language :: Python :: 3",#使用Python3
+        "License :: OSI Approved :: Apache Software License",#开源协议
+        "Operating System :: OS Independent",
+    ],
+)
 </code></pre>
- <div class="blog-article">
-  <h1 class="title">
-   创建python 虚拟环境 venv
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 19:53:29
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  创建python 虚拟环境
- </h3>
- <p>
-  最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
-  <pre><code>
-➜  ~ mkdir pywork
-➜  ~ cd pywork/
-➜  ~ python3 -m venv django1.9
-➜  pywork ls
-django1.9
-➜  pywork source django1.9/bin/activate #运行虚拟环境
-(django1.9) ➜  pywork pip list
+<p>
+ 至此，所有打包的准备工作都已经准备好了，接下来就是利用命令来打包上传了。
+</p>
+<h3>
+ 打包
+</h3>
+<p>
+ 项目目录下打开终端：
+</p>
+<pre><code>python3 setup.py sdist bdist_wheel
 </code></pre>
- </p>
- <p>
-  退出虚拟环境
- </p>
- <pre><code>deactivate
+<p>
+ 打包完毕，此时的项目目录如下：
+</p>
+<p>
+ <img alt="" src="assets/images/2021/Snip20201207_4.png"/>
+</p>
+<p>
+ <code>
+  dist
+ </code>
+ 下就是要上传的打包文件了。
+</p>
+<h3>
+ 上传到pypi.com
+</h3>
+<p>
+ 这里的上传可以使用测试上传或是直接上传。
+</p>
+<p>
+ 测试上传会将包传到
+ <code>
+  https://test.pypi.org/
+ </code>
+ ，所以你需要在这个地址下注册一个测试账号，然后使用一下命令进行上传，这里不再介绍了。
+</p>
+<pre><code>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 </code></pre>
- <p>
-  参考文献：
-http://blog.csdn.net/geekun/article/details/51325383
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   关于17python.com关于我
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 16:51:30
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
-  </em>
- </p>
- <h2>
-  为什么要做这个blog？
- </h2>
- <p>
-  其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
-  <code>
-   Python Django
-  </code>
-  学习的一个总结。
- </p>
- <h2>
-  关于17python
- </h2>
- <p>
-  17Python注册域名的时候就是想，人生苦短，何不一起
-  <code>
-   Python
-  </code>
-  ？任何一个热爱
-  <code>
-   Python
-  </code>
-  的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
-  <code>
-   Python
-  </code>
-  这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
- </p>
- <h2>
-  blog存在的意义
- </h2>
- <p>
-  希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
-  <code>
-   python
-  </code>
- </p>
- <h2>
-  网站备案成功
- </h2>
- <p>
-  今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
- </p>
- <h2>
-  网站改版
- </h2>
- <p>
-  今天折腾了一天把网站换成了自己开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan.git">
-   Gitee
+<p>
+ 直接上传到
+ <code>
+  pypi.org
+ </code>
+ ,使用命令：
+</p>
+<pre><code>python3 -m twine upload dist/*
+</code></pre>
+<p>
+ 然后输入在
+ <code>
+  pypi.org
+ </code>
+ 注册的账号密码就可以上传了。
+</p>
+<pre><code>python3 -m twine upload dist/*
+Uploading distributions to https://upload.pypi.org/legacy/
+Enter your username: bosichong
+Enter your password:
+</code></pre>
+<p>
+ 如果没有什么错误就可以上传成功了！登录网站就可以看到刚刚上传的软件包了
+</p>
+<p>
+ <img alt="" src="assets/images/2021/Snip20201207_6.png"/>
+</p>
+<p>
+ 然后使用
+ <code>
+  pip install XXXX
+ </code>
+ 安装测试吧。
+</p>
+<h3>
+ 其他注意事项
+</h3>
+<p>
+ 如果需要更新软件包，修改完代码后记得修改
+ <code>
+  setup.py
+ </code>
+ 中的软件版本，这样才能正常上传。
+</p>
+<p>
+ 至此，一次Python软件包的上传就搞定了，简单吧？
+</p>
+<section class="blog-p text-center">
+ <div class="gitedit">
+  发现错误？想参与编辑？
+  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201202155245.md" target="_blank">
+   在 GitHub 上编辑此页！
   </a>
-  生命在于折腾。
- </p>
- <h2>
-  联系我
- </h2>
- <p>
-  <em>
-   email bosichong@qq.com
-  </em>
- </p>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_12.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    13 / 14
-   </button>
-   <a href="#">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
  </div>
+ <p class="qqqun">
+  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+ </p>
+ <p class="qqqun">
+  Python/Javascript学习QQ群号：217840699
+ </p>
+</section>
+<div class="blog-article">
 </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
@@ -495,7 +440,7 @@ http://blog.csdn.net/geekun/article/details/51325383
      </div>
     </div>
     <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
+    <script src="./assets/js/build/p.js">
     </script>
     <!-- highlight.js Markdown代码美化 -->
     <script src="./assets/plugins/highlight/highlight.pack.js">

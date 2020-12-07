@@ -135,6 +135,121 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   PYBabyLog记录孩子成长过程的日记
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2019-09-29 00:15:30
+  </span>
+  <span class="tag">
+   站长源创
+  </span>
+ </div>
+ <p>
+ </p>
+ <h3>
+  前言
+ </h3>
+ <p>
+  岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
+ </p>
+ <p>
+  当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
+ </p>
+ <p>
+  做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
+ </p>
+ <p>
+  PYBabyLog的前身是
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+ </p>
+ <p>
+  是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
+ </p>
+ <h3>
+  PYBabyLog
+ </h3>
+ <p>
+  PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
+ </p>
+ <p>
+  采用Python+MySQL+argparse技术开发的全终端操作软件。
+ </p>
+ <p>
+  可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
+ </p>
+ <p>
+  本程序数据库和
+  <a href="https://gitee.com/J_Sky/babylog">
+   BabyLog(Java开发版)
+  </a>
+  通用，可以用来展示数据。
+当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
+ </p>
+ <h3>
+  界面截图
+ </h3>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png"/>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png"/>
+ </p>
+ <h3>
+  安装方法
+ </h3>
+ <p>
+  1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
+  <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
+   数据库构建文件
+  </a>
+ </p>
+ <p>
+  2.修改
+  <code>
+   DbHelp.py
+  </code>
+  中的MySQL的连接配置项即可
+ </p>
+ <h3>
+  终端版操作命令简介
+ </h3>
+ <p>
+  <code>
+   整理中。。。。。
+x.py -h 就都出来了。
+  </code>
+ </p>
+ <h3>
+  写在结尾
+ </h3>
+ <p>
+  其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
+ </p>
+ <p>
+  若给各位大虾能提交些代码或是有好的建议，非常欢迎！
+ </p>
+ <h2>
+  程序源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PYBabyLog">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/PYBabyLog">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    如何在Python程序中使用配置文件.ini(ConfigParser)
   </h1>
   <span class="author">
@@ -1028,101 +1143,6 @@ if __name__ == '__main__':
   </li>
   <li>
    <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy07.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(06)wx.ComboBox下拉列表框
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-24 14:24:56
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181224_2.png"/>
- </p>
- <h2>
-  wx.ComboBox下拉列表框
- </h2>
- <p>
-  下拉列表框，可以通过下拉列表选择内容，在使用中可以为内容节省不少空间，是GUI中比较常用的小部件。
- </p>
- <h2>
-  wx.ComboBox的创建与绑定
- </h2>
- <pre><code>    #创建ComboBox
-    l = ["Python","Django","Flask","wxPython","Java"]
-    cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
-    cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
-</code></pre>
- <p>
-  通过以上方法即可简单的创建
-  <code>
-   ComboBox
-  </code>
-  与绑定事件.
- </p>
- <p>
-  具体代码再下边，跑下即可了解。
- </p>
- <pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        pnl = wx.Panel(self)
-        hbox = wx.BoxSizer(wx.VERTICAL)
-
-        #创建ComboBox
-        l = ["Python","Django","Flask","wxPython","Java"]
-        cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
-        cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
-        hbox.Add(cb,0,wx.CENTER|wx.EXPAND,20)
-
-        #创建一个静态文本用来显示上拉列表框选择的内容
-        self.st = wx.StaticText(pnl, label='请点选ComboBox')
-        hbox.Add(self.st,0,wx.CENTER|wx.TOP,20)
-
-
-        pnl.SetSizer(hbox)
-
-    def OnSelect(self,e):
-        s = e.GetString()
-        self.st.SetLabel(s)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy06.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">
     开源中国码云镜像gitee
    </a>
   </li>

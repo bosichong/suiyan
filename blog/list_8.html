@@ -135,6 +135,152 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   “编学编玩”用Pygame写游戏（1）初识pygame
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2017-10-19 11:00:31
+  </span>
+  <span class="tag">
+   pygame
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/timg.jpeg"/>
+ </p>
+ <h2>
+  啰嗦几句
+ </h2>
+ <p>
+  这阵子一直在看有关
+  <code>
+   Python
+  </code>
+  相关的书，
+  <code>
+   Python
+  </code>
+  上手确实很简单，但这并不意味着
+  <code>
+   Python
+  </code>
+  是一门浅显的编程语言，语法简练确实让我们节省了大量的时间。不过当你深入的学习
+  <code>
+   Python
+  </code>
+  的时候，比如：装饰器，推导，多线程及多进程，协程，高阶函数，元编程等等等等很多，你会发现，
+  <code>
+   Python
+  </code>
+  的深入学习并不是很简单。会写代
+  <code>
+   Python
+  </code>
+  和会优雅的编写
+  <code>
+   Python
+  </code>
+  代码是两回事，出来混的，坑迟早还是要挖的，这不前几天协程的深入学习，搞的我很不爽，到现在还是一头雾水。
+ </p>
+ <p>
+  为了让自己换换心情，前几天想到用
+  <code>
+   python
+  </code>
+  写写小游戏玩玩吧，想到自己以前用
+  <code>
+   java
+  </code>
+  还编写了一个小小的2D游戏引擎半路就放弃了（java就是不爽），这次来试试用
+  <code>
+   Python
+  </code>
+  写些小游戏试试。其实写游戏练习编程确实是一个比较好的方法，几百行的工程量也不算大，游戏设计的逻辑比较紧密，比较适合新手养成编程思维，不过如果是刚刚学习编程，可能还是会觉得游戏中大段的代码，摸不清逻辑，所以通过阅读代码了解游戏的设计意图也算是对编程能力很好的锻炼。
+ </p>
+ <p>
+  好了，啰嗦了半天，我们开始pygame的学习之旅吧。
+ </p>
+ <h2>
+  pygame 安装
+ </h2>
+ <pre><code>pip3 install pygame
+</code></pre>
+ <p>
+  就是这么简单，然后我们可以在python3的终端环境下测试一下
+ </p>
+ <pre><code>import pygame
+</code></pre>
+ <p>
+  如果没有报错，那么恭喜你安装成功了。
+ </p>
+ <h2>
+  pygame的 Hello World
+ </h2>
+ <p>
+  导入pygame模块及常用变量，如果还需要其它模块，可以一并导入，比如sys,os,time random等。
+ </p>
+ <pre><code>import pygame
+from pygame.locals import *
+</code></pre>
+ <p>
+  这里是一个游戏初始化的设置，他应该在游戏代码编写的最前边，不要忘记哦。
+ </p>
+ <pre><code>pygame.init()
+</code></pre>
+ <p>
+  SCREEN 定义了一个游戏的屏幕，我觉得管它叫做画布更形象些，因为后续游戏场景中的游戏对象，都要在这个screen上绘制。
+ </p>
+ <pre><code>SCREEN = pygame.display.set_mode((640, 480))
+</code></pre>
+ <p>
+  设置当前游戏窗口的标题
+ </p>
+ <pre><code>pygame.display.set_caption("Hello World!")
+</code></pre>
+ <p>
+  这里有个死循环，这是游戏的主要逻辑处理及场景渲染器，for循环是处理游戏中的事件触发，其中QUIT表示触发了游戏离开件事，然后调用
+  <code>
+   pygame.quit()
+  </code>
+  函数。
+  <code>
+   pygame.display.updae()
+  </code>
+  这个函数表示更新当前screen的画面。
+ </p>
+ <pre><code>while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+    pygame.display.update()
+</code></pre>
+ <h2>
+  效果如图：
+ </h2>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_2.png"/>
+ </p>
+ <h2>
+  本文源码下载：
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">
+    github
+   </a>
+  </li>
+  <li>
+   <a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">
+    开源中国码云镜像gitee
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    浅谈Python中的协程及利用协程代替多线程及多进程并发编程
   </h1>
   <span class="author">
@@ -1018,156 +1164,6 @@ print("距离成为一名黑客还差{0}行代码".format(hacker-lines))
      全国公安机关互联网安全服务备案
     </a>
    </p>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python闭包（Closure）的那点事。
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-09 15:36:19
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  记得当年学
-  <code>
-   JavaScript
-  </code>
-  时，对闭包的认识那真是朦朦胧胧，后来接触到
-  <code>
-   jQuery
-  </code>
-  之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言
-  <code>
-   java
-  </code>
-  给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题
- </p>
- <h2>
-  Pythib闭包
- </h2>
- <p>
-  先来一个栗子，我们慢慢理顺一下：
- </p>
- <pre><code class="python">def callf():
-    def hello():
-        return "hello world"
-    return hello
-
-cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
-print(type(cf)) # 查看cf类型，证实上边的结论。
-print(cf()) #打印最终结果。
-</code></pre>
- <p>
-  在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
-上边就算是闭包最简单的例子，多看几次应该就理解了。
- </p>
- <p>
-  再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？
- </p>
- <pre><code class="python">def countdown(n):
-    def next():
-        nonlocal n 
-        r = n 
-        n -= 1
-        return r
-    return next
-
-nt = countdown(5)
-while True:
-    v = nt()
-    print(v)
-    if not v :break
-</code></pre>
- <p>
-  这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉
-  <code>
-   nonlocal n
-  </code>
-  ，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量
-  <code>
-   n
-  </code>
-  的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。
- </p>
- <h1>
-  再看循环中的闭包：
- </h1>
- <pre><code class="python">def loop():
-    fs = []
-    for i in range(1,4):
-        def f():
-            return i*i
-        fs.append(f)
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-</code></pre>
- <p>
-  <code>
-   f1()
-  </code>
-  的打印竟然9，这个有点出乎意料！我们修改一下这个函数
- </p>
- <pre><code class="python">def loop(): 
-    def f(j):
-        return lambda: j*j
-    fs = []
-    for i in range(1,4):
-        fs.append(f(i))       
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-print(f2())
-print(f3())
-</code></pre>
- <p>
-  对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了
-  <code>
-   f()
-  </code>
-  函数
-  <code>
-   return
-  </code>
-  所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
-有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用
-  <code>
-   Python
-  </code>
-  函数的高级应用，不妨仔细的了解一下闭包吧。
- </p>
- <h2>
-  参考文档
- </h2>
- <ul>
-  <li>
-   <a href="https://zhuanlan.zhihu.com/p/22229197">
-    深入浅出python闭包
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">
-    开源中国码云镜像gitee
-   </a>
   </li>
  </ul>
  <div class="spage">

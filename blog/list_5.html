@@ -135,6 +135,198 @@
 <div class="data-list list-group">
  <div class="blog-article">
   <h1 class="title">
+   Git多人协作（码云）中的一些操作简单记录
+  </h1>
+  <span class="author">
+   J.sky
+  </span>
+  <span class="time">
+   2018-10-28 14:24:15
+  </span>
+  <span class="tag">
+   Git
+  </span>
+ </div>
+ <p>
+ </p>
+ <p>
+  最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。
+ </p>
+ <p>
+  我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:
+ </p>
+ <h2>
+  创建远程代码仓库和本地仓库。
+ </h2>
+ <ul>
+  <li>
+   选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。
+  </li>
+  <li>
+   创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。
+  </li>
+  <li>
+   但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.
+   <pre><code>➜  test git:(master) git branch 
+* master
+➜  test git:(master) git checkout -b dev
+Switched to a new branch 'dev'
+➜  test git:(dev) git pull origin dev   
+From https://gitee.com/bosichong/test
+* branch            dev        -&gt; FETCH_HEAD
+Already up-to-date.
+➜  test git:(dev) git branch 
+* dev
+master
+</code></pre>
+  </li>
+ </ul>
+ <p>
+  这样的话我们的本地库与远程代码仓库相关联了。
+ </p>
+ <h2>
+  如何协作更新代码？
+ </h2>
+ <p>
+  远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
+模拟一次git协作：
+假设需要研发一个人工智能编码器，我和我的小伙们都在进行编码，我在分支aicode仓库中ai.py编写了大量的代码并完成需要上传远程仓库dev。
+首先我把aicode分支全并到本地的dev,然后上传到远程dev仓库。
+ </p>
+ <pre><code>➜  test git:(dev) git checkout -b aicode
+Switched to a new branch 'aicode'
+➜  test git:(aicode) touch ai.py
+➜  test git:(aicode) ✗ vi ai.py 
+➜  test git:(aicode) ✗ git add .
+➜  test git:(aicode) ✗ git commit -m 'aicode功能更新'
+[aicode a1e0b50] aicode功能更新
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(aicode) git checkout dev 
+Switched to branch 'dev'
+➜  test git:(dev) git merge aicode 
+Updating 8fcac3b..a1e0b50
+Fast-forward
+ai.py | 2 ++
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(dev) git push origin dev  
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 298.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: Powered by Gitee.com
+To https://gitee.com/bosichong/test.git
+8fcac3b..a1e0b50  dev -&gt; dev
+</code></pre>
+ <p>
+  这样我就完成了一次更新，其实挺简单的。
+ </p>
+ <h2>
+  发生冲突怎么办？
+ </h2>
+ <p>
+  有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：
+ </p>
+ <pre><code>To https://gitee.com/bosichong/test.git
+! [rejected]        dev -&gt; dev (fetch first)
+error: failed to push some refs to 'https://gitee.com/bosichong/test.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+ <p>
+  大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
+然后再pull的时候提示如下：
+ </p>
+ <pre><code>* branch            dev        -&gt; FETCH_HEAD
+99ccc9c..4c49e33  dev        -&gt; origin/dev
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+ <p>
+  大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
+我们解决一下文件中的冲突内容：
+ </p>
+ <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+我更新的下半部分啊
+=======
+小伙伴更新的上半部分
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 4c49e33af00dd498b2d4761d3fc607ee29afbdf4
+</code></pre>
+ <p>
+  这里我这样的修改的：
+ </p>
+ <pre><code>小伙伴更新的上半部分
+我更新的下半部分啊
+</code></pre>
+ <p>
+  处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。
+ </p>
+ <p>
+  遇到问题：
+1.今天小伙伴更新dev分支，但我怎么也pull不来，提示如下：
+ </p>
+ <pre><code>Updating e32f487..204c0a1
+error: Your local changes to the following files would be overwritten by merge:
+    Psmrcddup.py
+Please commit your changes or stash them before you merge.
+</code></pre>
+ <p>
+  解决方法：
+ </p>
+ <pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
+➜  PrimarySchoolMath git:(dev) git pull gitee dev
+</code></pre>
+ <h2>
+  分支策略
+ </h2>
+ <p>
+  在实际开发中，我们应该按照几个基本原则进行分支管理：
+ </p>
+ <p>
+  首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+ </p>
+ <p>
+  那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。
+ </p>
+ <p>
+  你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+ </p>
+ <p>
+  所以，团队合作的分支看起来就像这样：
+ </p>
+ <p>
+  <img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png"/>
+ </p>
+ <p>
+  一些常用协作git命令：
+ </p>
+ <pre><code>查看分支：git branch
+创建分支：git branch &lt;name&gt;
+切换分支：git checkout &lt;name&gt;
+创建+切换分支：git checkout -b &lt;name&gt;
+合并某分支到当前分支：git merge &lt;name&gt;
+删除分支：git branch -d &lt;name&gt;
+git remote 显示 远程仓库的分支
+git remote -v 显示更详细的信息：
+</code></pre>
+ <h2>
+  相关文章
+ </h2>
+ <ul>
+  <li>
+   <a href="https://github.com/bosichong/PrimarySchoolMathematics">
+    廖雪峰：git多人协作
+   </a>
+  </li>
+ </ul>
+ <div class="blog-article">
+  <h1 class="title">
    利用Python自动生成小学生加减乘除口算考试题卷。
   </h1>
   <span class="author">
@@ -831,198 +1023,6 @@ In [1]:
   </li>
   <li>
    <a href="https://gitee.com/J_Sky/17python.com/">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   “编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-05 09:41:22
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_16.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_17.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_18.png"/>
- </p>
- <h2>
-  GreedSnake贪食蛇设计思路
- </h2>
- <p>
-  游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
-这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_13.png"/>
- </p>
- <p>
-  除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：
- </p>
- <ul>
-  <li>
-   游戏的背景渲染
-  </li>
-  <li>
-   蛇的运动
-  </li>
-  <li>
-   食物的生成
-  </li>
-  <li>
-   游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？
-  </li>
- </ul>
- <p>
-  当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用
-  <code>
-   PY_RPG+pygame
-  </code>
-  来实现这个简单的小游戏吧。
- </p>
- <h2>
-  游戏背景渲染
- </h2>
- <p>
-  分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
-对于
-  <code>
-   GreedSnake
-  </code>
-  来说，我们需要有一组是浅色网格组成的背景，
-对于游戏背景，我单独创建了一个class
-  <code>
-   GameBackground
-  </code>
-  ,背景绘制的核心逻辑代码如下：
- </p>
- <pre><code>self.screen.fill((221, 221, 221))
-for i in range(0, 10):
-    for j in range(0,10):
-         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
-</code></pre>
- <p>
-  在场景中创建对象后，进行渲染，效果如下：
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_12.png"/>
- </p>
- <h2>
-  绘制蛇并让它动起来
- </h2>
- <p>
-  默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
-这样我们在游戏场景中创建一个list用来表示蛇的身体：
- </p>
- <pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
-for i in range(0,4):
-    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
-</code></pre>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_14.png"/>
- </p>
- <p>
-  蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:
- </p>
- <pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
-    for i in range(0, 5):
-        if i == 0:
-            color = RED
-        else:
-            color = BLACK
-        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
-</code></pre>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_15.png"/>
- </p>
- <p>
-  这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
-关于蛇的移动逻辑：
- </p>
- <ul>
-  <li>
-   蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在
-   <code>
-    GreedSnake.update()
-   </code>
-   中，我们通过判断来更新蛇的位置。
-  </li>
-  <li>
-   <code>
-    GreedSnake.handle_event()
-   </code>
-   中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向
-  </li>
- </ul>
- <p>
-  具体代码就不贴了，可以参考源文件代码。
- </p>
- <h2>
-  生成食物与吃掉食物。
- </h2>
- <p>
-  关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。
- </p>
- <h2>
-  游戏结束
- </h2>
- <p>
-  游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。
- </p>
- <h2>
-  游戏暂停
- </h2>
- <p>
-  在游戏场景类中加入了一个
-  <code>
-   pause
-  </code>
-  的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在
-  <code>
-   update
-  </code>
-  中控制整个游戏的更新，这样就可以达到控制游戏暂停了。
- </p>
- <h2>
-  总结
- </h2>
- <p>
-  教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。
- </p>
- <h2>
-  本文源码下载
- </h2>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：
-  <code>
-   PY_RPG.GreedSnake.py
-  </code>
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
     开源中国码云镜像gitee
    </a>
   </li>
