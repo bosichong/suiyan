@@ -132,51 +132,315 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(06)wx.ComboBox下拉列表框
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-24 14:24:56
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181224_2.png"/>
- </p>
- <h2>
-  wx.ComboBox下拉列表框
- </h2>
- <p>
-  下拉列表框，可以通过下拉列表选择内容，在使用中可以为内容节省不少空间，是GUI中比较常用的小部件。
- </p>
- <h2>
-  wx.ComboBox的创建与绑定
- </h2>
- <pre><code>    #创建ComboBox
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(08)wx.ListBox 下拉列表框
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-27 09:51:07
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      wx.ListBox 下拉列表框
+     </h2>
+     <p>
+      wx.ListBox是以中数据展示的小部件，使用方便简单，可以用来展示比较单一的数据，例如：各种地址，名称列表等。
+这次准备了一个基于wx.ListBox构建的小小通讯录，实现了增删改但是木有查，为什么没有查？因为我没写，就这样了。
+具体效果展示如下：
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181227_7.png"/>
+     </p>
+     <h2>
+      wx.ListBox的创建及一些方法
+     </h2>
+     <p>
+      创建
+     </p>
+     <pre><code>listbox = wx.ListBox(panel,choices=ls)
+</code></pre>
+     <p>
+      ListBox 有些常用的方法，用来处理列表中的数据
+     </p>
+     <pre><code>listbox.Append(text) 添加
+listbox.GetSelection() 获取索引
+listbox.GetString(sel) 通过索引获取字符串
+listbox.Delete(sel) 删除当前索引
+listbox.Insert(renamed, sel) 在当前索引处添加新的值，返回当前索引
+listbox.SetSelection(item_id) 根据索引值选择项
+listbox.Clear() 清空当前列表
+</code></pre>
+     <h2>
+      通讯录的数据保存
+     </h2>
+     <p>
+      作为一个简单的通讯录应该能保存数据，处于简单化处理，我只保存一个文本到目录下，若是需要可以使用数据库。
+通讯录在操作的同时我们要更新保存数据，所以，我建了三个方法，分别处理新建数据文本，打开读取，保存数据。
+分别对应：newFile openFile saveFile,这样配合这几个方法就可以实现一个简单的通讯录了。
+     </p>
+     <p>
+      具体代码如下，可以跑跑看啦：
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy08.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy08.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(07)wxPython Dialog 弹出对话
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-25 13:17:28
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181225_6.png"/>
+     </p>
+     <h2>
+      wxPython dialogs 弹出对话框
+     </h2>
+     <p>
+      程序中经常会遇到弹出对话框询问操作的场景，wxPython dialogs为此提供了应用的支持，
+wxPython dialogs有几种，常用的比如：wx.MessageBox wx.MessageDialog wx.Dialog wx.adv.AboutBox等。
+     </p>
+     <h2>
+      dialog的创建
+     </h2>
+     <p>
+      一般dialog都会配合Button使用，当按钮绑定事件后，在绑定事件的函数中创建应用即可，代码如下：
+     </p>
+     <pre><code>wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
+</code></pre>
+     <p>
+      其它类型的Dialog创建也类似如下代码，其中风格参数如下：
+     </p>
+     <pre><code>flag    meaning
+wx.OK   show OK button
+wx.CANCEL   show Cancel button
+wx.YES_NO   show Yes, No buttons
+wx.YES_DEFAULT  make Yes button the default
+wx.NO_DEFAULT   make No button the default
+wx.ICON_EXCLAMATION show an alert icon
+wx.ICON_ERROR   show an error icon
+wx.ICON_HAND    same as wx.ICON_ERROR
+wx.ICON_INFORMATION show an info icon
+wx.ICON_QUESTION    show a question icon
+</code></pre>
+     <p>
+      可以根据自己的需要进行组合，例如组合YES和NO，yes默认选择，并且加带图标的代码：wx.YES_NO|wx.YES_DEFAULT | wx.ICON_INFORMATION
+     </p>
+     <h2>
+      MessageDialog 获取返回值
+     </h2>
+     <p>
+      当点击对话框上的按钮后窗口就会关闭，我们需要获得关闭后的返回值，可以通过如下代码获得：
+     </p>
+     <pre><code>    dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
+        wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
+    ret = dial.ShowModal()
+    if ret == wx.ID_YES:
+        print("YES")
+    else:
+        print("NO")
+</code></pre>
+     <p>
+      好啦，完整的代码在下边，大家可以跑跑看看。
+     </p>
+     <h2>
+      Dialog和窗口间传递数据
+     </h2>
+     <p>
+      遇到过一个在主窗口弹出Dialog的需求，因为是第一次用wxPython，所以不知道数据如何传送给主窗口，后来网上扒了扒发现了一些答案。
+我这里的解决方案：
+     </p>
+     <ol>
+      <li>
+       先在Dialog窗口中创建类属性，然后通过类属性传递给主窗口
+      </li>
+      <li>
+       Dialog中创建一个属性self.ret=0，当点击按钮的时候设置其值为1，这样判断一下这个值，用来接收数据，如果为0就不接收。
+      </li>
+     </ol>
+     <p>
+      具体可以参考下边的代码
+     </p>
+     <pre><code>import wx
+
+
+class MyDialog(wx.Dialog):
+    def __init__(self, *args, **kw):
+        super(MyDialog, self).__init__(*args, **kw)
+        self.ret = 0
+        hbox = wx.BoxSizer(wx.HORIZONTAL)
+        self.st = wx.TextCtrl(self, wx.ID_ANY, "111")
+        self.bt = wx.Button(self, wx.ID_ANY, "提交数据")
+        self.bt.Bind(wx.EVT_BUTTON,self.onButton)
+        hbox.AddMany([(self.st),(self.bt)])
+        self.SetSizer(hbox)
+
+    def onButton(self,e):
+        self.ret=1
+        self.EndModal(1)
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        # 调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+        hbox = wx.BoxSizer(wx.VERTICAL)
+        bt0 = wx.Button(self, 1, "wx.Dialog")
+        bt1 = wx.Button(self, 1, "wx.Dialog")
+        bt2 = wx.Button(self, 1, 'Error')
+        bt3 = wx.Button(self, 1, 'Question')
+        bt4 = wx.Button(self, 1, 'Alert')
+
+        bt0.Bind(wx.EVT_BUTTON, self.onModal0)
+        bt1.Bind(wx.EVT_BUTTON, self.onModal1)
+        bt2.Bind(wx.EVT_BUTTON, self.showMessage1)
+        bt3.Bind(wx.EVT_BUTTON, self.showMessage2)
+        bt4.Bind(wx.EVT_BUTTON, self.showMessage3)
+
+        hbox.AddMany([(bt0, 1, wx.EXPAND | wx.ALIGN_TOP), (bt1, 1, wx.EXPAND), (bt2, 1, wx.EXPAND), (bt3, 1, wx.EXPAND),
+                      (bt4, 1, wx.EXPAND), ])
+        self.SetSizer(hbox)
+
+    def onModal0(self, event):
+        '''模态'''
+        myDialog= MyDialog(None, 22, title="Dialog")
+        myDialog.ShowModal()
+        if myDialog.ret == 1:
+            print(myDialog.st.GetValue())
+        else:
+            print("888888")
+        myDialog.Destroy()
+
+    def onModal1(self, event):
+        '''无模态'''
+        wx.Dialog(self, 1, "Dialog", pos=(100, 100)).Show()
+
+    def showMessage(self, e):
+        smd = wx.MessageDialog(None, "This is a Message Box", "Message",
+                               wx.YES_NO | wx.YES_DEFAULT | wx.ICON_INFORMATION)
+        smd.ShowModal()
+
+    def showMessage1(self, event):
+        dial = wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
+        ret = dial.ShowModal()
+        if ret == wx.OK:
+            print("OK")
+
+    def showMessage2(self, event):
+        dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
+                                wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
+        ret = dial.ShowModal()
+        if ret == wx.ID_YES:
+            print("YES")
+        else:
+            print("NO")
+
+    def showMessage3(self, event):
+        dial = wx.MessageBox('Download completed', 'Info',
+                             wx.OK | wx.ICON_INFORMATION)
+        ret = dial
+        if ret == wx.OK:
+            print("OK")
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button', )
+    frm.Show()  # 显示窗口
+    app.MainLoop()  # 持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy07.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy07.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(06)wx.ComboBox下拉列表框
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-24 14:24:56
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181224_2.png"/>
+     </p>
+     <h2>
+      wx.ComboBox下拉列表框
+     </h2>
+     <p>
+      下拉列表框，可以通过下拉列表选择内容，在使用中可以为内容节省不少空间，是GUI中比较常用的小部件。
+     </p>
+     <h2>
+      wx.ComboBox的创建与绑定
+     </h2>
+     <pre><code>    #创建ComboBox
     l = ["Python","Django","Flask","wxPython","Java"]
     cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
     cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
 </code></pre>
- <p>
-  通过以上方法即可简单的创建
-  <code>
-   ComboBox
-  </code>
-  与绑定事件.
- </p>
- <p>
-  具体代码再下边，跑下即可了解。
- </p>
- <pre><code>import wx
+     <p>
+      通过以上方法即可简单的创建
+      <code>
+       ComboBox
+      </code>
+      与绑定事件.
+     </p>
+     <p>
+      具体代码再下边，跑下即可了解。
+     </p>
+     <pre><code>import wx
 
 class HelloFrame(wx.Frame):
     def __init__(self, *args, **kw):
@@ -213,91 +477,91 @@ def main():
 if __name__ == '__main__':
         main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy06.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(05)单选及多选按钮
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-23 18:49:39
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png"/>
- </p>
- <h2>
-  wxPython单选及多选按钮
- </h2>
- <p>
-  单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy06.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(05)单选及多选按钮
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-23 18:49:39
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png"/>
+     </p>
+     <h2>
+      wxPython单选及多选按钮
+     </h2>
+     <p>
+      单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
 通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。
- </p>
- <h2>
-  多选按钮wx.CheckBox
- </h2>
- <p>
-  创建及绑定事件
- </p>
- <pre><code>cb1=wx.CheckBox(pnl, label='hello', )
+     </p>
+     <h2>
+      多选按钮wx.CheckBox
+     </h2>
+     <p>
+      创建及绑定事件
+     </p>
+     <pre><code>cb1=wx.CheckBox(pnl, label='hello', )
 self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
 </code></pre>
- <p>
-  这里的
-  <code>
-   self.Bind
-  </code>
-  是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。
- </p>
- <h2>
-  单选按钮组wx.RadioBox
- </h2>
- <p>
-  这里我直接介绍
-  <code>
-   wx.RadioBox
-  </code>
-  ，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。
- </p>
- <p>
-  创建及绑定
- </p>
- <pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+     <p>
+      这里的
+      <code>
+       self.Bind
+      </code>
+      是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。
+     </p>
+     <h2>
+      单选按钮组wx.RadioBox
+     </h2>
+     <p>
+      这里我直接介绍
+      <code>
+       wx.RadioBox
+      </code>
+      ，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。
+     </p>
+     <p>
+      创建及绑定
+     </p>
+     <pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
                               style=wx.RA_SPECIFY_ROWS)
 self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
 </code></pre>
- <p>
-  代码很直观，
-  <code>
-   majorDimension
-  </code>
-  表示单选钮的排列方式：0横向，1竖向。
- </p>
- <p>
-  好了，完整的代码在下边，可以跑跑看。
- </p>
- <pre><code>import wx
+     <p>
+      代码很直观，
+      <code>
+       majorDimension
+      </code>
+      表示单选钮的排列方式：0横向，1竖向。
+     </p>
+     <p>
+      好了，完整的代码在下边，可以跑跑看。
+     </p>
+     <pre><code>import wx
 
 class HelloFrame(wx.Frame):
     def __init__(self, *args, **kw):
@@ -348,81 +612,81 @@ def main():
 if __name__ == '__main__':
         main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(04)wx.Butoon的应用
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-22 20:26:29
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png"/>
- </p>
- <h2>
-  wx.Butoon
- </h2>
- <p>
-  按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。
-  <code>
-   wx.Button
-  </code>
-  使用起来操作简单。
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(04)wx.Butoon的应用
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-22 20:26:29
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png"/>
+     </p>
+     <h2>
+      wx.Butoon
+     </h2>
+     <p>
+      按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。
+      <code>
+       wx.Button
+      </code>
+      使用起来操作简单。
 wx中开关按钮
-  <code>
-   ToggleButton
-  </code>
-  ，类似于电灯开关，绑定事件后可以通过
- </p>
- <pre><code>obj = e.GetEventObject()
+      <code>
+       ToggleButton
+      </code>
+      ，类似于电灯开关，绑定事件后可以通过
+     </p>
+     <pre><code>obj = e.GetEventObject()
 isPressed = obj.GetValue()
 </code></pre>
- <p>
-  来获取对象的属性，这样就可以知道开关按钮的状态了。
- </p>
- <h2>
-  Button的创建与使用
- </h2>
- <p>
-  创建
- </p>
- <pre><code>bt = wx.Button(self,label="关闭窗口",)
+     <p>
+      来获取对象的属性，这样就可以知道开关按钮的状态了。
+     </p>
+     <h2>
+      Button的创建与使用
+     </h2>
+     <p>
+      创建
+     </p>
+     <pre><code>bt = wx.Button(self,label="关闭窗口",)
 </code></pre>
- <p>
-  绑定事件
- </p>
- <pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
+     <p>
+      绑定事件
+     </p>
+     <pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
 </code></pre>
- <p>
-  然后编写绑定事件的函数方法，这样就可以调用此方法了。
- </p>
- <p>
-  具体代码如下，希望这些短小的代码，能给您带来帮助。
- </p>
- <pre><code>import wx
+     <p>
+      然后编写绑定事件的函数方法，这样就可以调用此方法了。
+     </p>
+     <p>
+      具体代码如下，希望这些短小的代码，能给您带来帮助。
+     </p>
+     <pre><code>import wx
 
 class HelloFrame(wx.Frame):
     def __init__(self, *args, **kw):
@@ -474,81 +738,81 @@ def main():
 if __name__ == '__main__':
         main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(03)wxPython中的事件
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-21 19:11:40
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png"/>
- </p>
- <h2>
-  wxPython中的事件
- </h2>
- <p>
-  和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。
- </p>
- <p>
-  wxPython中的事件绑定很简单：
- </p>
- <pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(03)wxPython中的事件
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-21 19:11:40
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png"/>
+     </p>
+     <h2>
+      wxPython中的事件
+     </h2>
+     <p>
+      和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。
+     </p>
+     <p>
+      wxPython中的事件绑定很简单：
+     </p>
+     <pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
 </code></pre>
- <p>
-  上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，
-  <code>
-   self.onMove
-  </code>
-  就是这个事件处发时要执行的方法函数。
+     <p>
+      上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，
+      <code>
+       self.onMove
+      </code>
+      就是这个事件处发时要执行的方法函数。
 我们只要在
-  <code>
-   class
-  </code>
-  中定义
-  <code>
-   self.onMove
-  </code>
-  方法的代码，然后当事件触发时，就可以执行
-  <code>
-   onMove
-  </code>
-  方法了。
- </p>
- <p>
-  <code>
-   wx.EVT_XXXXX
-  </code>
-  这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。
- </p>
- <p>
-  好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。
- </p>
- <pre><code>import wx
+      <code>
+       class
+      </code>
+      中定义
+      <code>
+       self.onMove
+      </code>
+      方法的代码，然后当事件触发时，就可以执行
+      <code>
+       onMove
+      </code>
+      方法了。
+     </p>
+     <p>
+      <code>
+       wx.EVT_XXXXX
+      </code>
+      这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。
+     </p>
+     <p>
+      好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。
+     </p>
+     <pre><code>import wx
 
 class HelloFrame(wx.Frame):
     def __init__(self, *args, **kw):
@@ -592,130 +856,130 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(02)wxPython的布局
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-19 20:22:01
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png"/>
- </p>
- <h2>
-  wxPython的布局
- </h2>
- <p>
-  窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，
- </p>
- <p>
-  我们可以选择下列sizers：
- </p>
- <p>
-  1.wx.BoxSizer
- </p>
- <p>
-  2.wx.StaticBoxSizer
- </p>
- <p>
-  3.wx.GridSizer
- </p>
- <p>
-  4.wx.FlexGridSizer
- </p>
- <p>
-  5.wx.GridBagSizer
- </p>
- <p>
-  这里我介绍一下
-  <code>
-   wx.BoxSizer
-  </code>
-  ，灵活应用它基本上可以满足大部分窗口中的布局。
- </p>
- <h2>
-  wx.BoxSizer
- </h2>
- <p>
-  <code>
-   wx.BoxSizer
-  </code>
-  有
-  <code>
-   wx.VERTICAL
-  </code>
-  或
-  <code>
-   wx.HORIZONTAL
-  </code>
-  两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。
- </p>
- <p>
-  如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。
- </p>
- <p>
-  列举一些属性：
- </p>
- <p>
-  1.wx.LEFT
- </p>
- <p>
-  2.wx.RIGHT
- </p>
- <p>
-  3.wx.BOTTOM
- </p>
- <p>
-  4.wx.TOP
- </p>
- <p>
-  5.wx.ALL
- </p>
- <p>
-  以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：
- </p>
- <pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(02)wxPython的布局
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-19 20:22:01
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png"/>
+     </p>
+     <h2>
+      wxPython的布局
+     </h2>
+     <p>
+      窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，
+     </p>
+     <p>
+      我们可以选择下列sizers：
+     </p>
+     <p>
+      1.wx.BoxSizer
+     </p>
+     <p>
+      2.wx.StaticBoxSizer
+     </p>
+     <p>
+      3.wx.GridSizer
+     </p>
+     <p>
+      4.wx.FlexGridSizer
+     </p>
+     <p>
+      5.wx.GridBagSizer
+     </p>
+     <p>
+      这里我介绍一下
+      <code>
+       wx.BoxSizer
+      </code>
+      ，灵活应用它基本上可以满足大部分窗口中的布局。
+     </p>
+     <h2>
+      wx.BoxSizer
+     </h2>
+     <p>
+      <code>
+       wx.BoxSizer
+      </code>
+      有
+      <code>
+       wx.VERTICAL
+      </code>
+      或
+      <code>
+       wx.HORIZONTAL
+      </code>
+      两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。
+     </p>
+     <p>
+      如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。
+     </p>
+     <p>
+      列举一些属性：
+     </p>
+     <p>
+      1.wx.LEFT
+     </p>
+     <p>
+      2.wx.RIGHT
+     </p>
+     <p>
+      3.wx.BOTTOM
+     </p>
+     <p>
+      4.wx.TOP
+     </p>
+     <p>
+      5.wx.ALL
+     </p>
+     <p>
+      以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：
+     </p>
+     <pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
 </code></pre>
- <p>
-  我们还可以通过以下属性定义我们的部件对齐：：
- </p>
- <p>
-  1.wx.ALIGN_LEFT
+     <p>
+      我们还可以通过以下属性定义我们的部件对齐：：
+     </p>
+     <p>
+      1.wx.ALIGN_LEFT
 2.wx.ALIGN_RIGHT
 3.wx.ALIGN_TOP
 4.wx.ALIGN_BOTTOM
 5.wx.ALIGN_CENTER_VERTICAL
 6.wx.ALIGN_CENTER_HORIZONTAL
 7.wx.ALIGN_CENTER
- </p>
- <p>
-  好了，下边列举了一下小例子：
- </p>
- <pre><code>import wx
+     </p>
+     <p>
+      好了，下边列举了一下小例子：
+     </p>
+     <pre><code>import wx
 
 
 class HelloFrame(wx.Frame):
@@ -766,129 +1030,129 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(01)Frame程序的窗口
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-18 19:42:47
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  简介
- </h2>
- <p>
-  之前的一些小应用都是用的
-  <code>
-   python tk
-  </code>
-  来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下
-  <code>
-   wxPython
-  </code>
-  <code>
-   wxPython
-  </code>
-  是一个
-  <code>
-   Python
-  </code>
-  包装
-  <code>
-   wxWidgets
-  </code>
-  （这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
-  <code>
-   wxPython
-  </code>
-  是作为一个
-  <code>
-   Python
-  </code>
-  扩展模块。
- </p>
- <h2>
-  wxPython的安装
- </h2>
- <pre><code>pip3 install wxPython
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(01)Frame程序的窗口
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-18 19:42:47
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      简介
+     </h2>
+     <p>
+      之前的一些小应用都是用的
+      <code>
+       python tk
+      </code>
+      来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下
+      <code>
+       wxPython
+      </code>
+      <code>
+       wxPython
+      </code>
+      是一个
+      <code>
+       Python
+      </code>
+      包装
+      <code>
+       wxWidgets
+      </code>
+      （这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
+      <code>
+       wxPython
+      </code>
+      是作为一个
+      <code>
+       Python
+      </code>
+      扩展模块。
+     </p>
+     <h2>
+      wxPython的安装
+     </h2>
+     <pre><code>pip3 install wxPython
 </code></pre>
- <p>
-  如果网络不太好，可以到官网下载进行安装，官方网址：
-  <code>
-   https://wxpython.org/
-  </code>
- </p>
- <h2>
-  Frame 窗口
- </h2>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png"/>
- </p>
- <p>
-  如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个
-  <code>
-   Frame
-  </code>
-  .
- </p>
- <p>
-  <code>
-   Wx.Frame (parent, id, title, pos, size, style, name)
-  </code>
- </p>
- <p>
-  其中的参数含意如下：
- </p>
- <p>
-  Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
+     <p>
+      如果网络不太好，可以到官网下载进行安装，官方网址：
+      <code>
+       https://wxpython.org/
+      </code>
+     </p>
+     <h2>
+      Frame 窗口
+     </h2>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png"/>
+     </p>
+     <p>
+      如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个
+      <code>
+       Frame
+      </code>
+      .
+     </p>
+     <p>
+      <code>
+       Wx.Frame (parent, id, title, pos, size, style, name)
+      </code>
+     </p>
+     <p>
+      其中的参数含意如下：
+     </p>
+     <p>
+      Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
 id 窗口标识。通常-1为了让标识符自动生成
 Title 标题出现在标题栏
 Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
 Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
 style 窗口的外观按样式风格常数控制
 name 对象的内部名称
- </p>
- <h2>
-  wxPython hello world
- </h2>
- <p>
-  我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法
-  <code>
-   __init__
-  </code>
-  中创建窗口中的部件。
-  <code>
-   main()
-  </code>
-  方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。
- </p>
- <p>
-  怎么样，很简单吧？
- </p>
- <pre><code>import wx
+     </p>
+     <h2>
+      wxPython hello world
+     </h2>
+     <p>
+      我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法
+      <code>
+       __init__
+      </code>
+      中创建窗口中的部件。
+      <code>
+       main()
+      </code>
+      方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。
+     </p>
+     <p>
+      怎么样，很简单吧？
+     </p>
+     <pre><code>import wx
 class HelloFrame(wx.Frame):
     def __init__(self, *args, **kw):
         #调用父类的创建方法
@@ -913,243 +1177,39 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python os.path.dirname(__file__) 在终端命令行下报错
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-11-21 22:16:58
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  最近在写程序中用到了
-  <code>
-   os.path.dirname(__file__)
-  </code>
-  ，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错
- </p>
- <pre><code>FileNotFoundError: [Errno 2] No such file or directory
-</code></pre>
- <p>
-  我们先来测试一下，看看报错是什么样的？
- </p>
- <pre><code>print(os.path.dirname(__file__))
-</code></pre>
- <p>
-  如果在终端运行当前程序就会报错：
- </p>
- <pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
-Traceback (most recent call last):
-File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-NameError: name 'os' is not defined
-</code></pre>
- <p>
-  如何使之正确运行呢？如果你用过
-  <code>
-   Django
-  </code>
-  ，就会想到
-  <code>
-   BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-  </code>
-  ,
-这个是
-  <code>
-   Django
-  </code>
-  里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中
-  <code>
-   os.path.abspath(__file__)
-  </code>
-  这条是返回当前文件的绝对地址，
-而
-  <code>
-   os.path.dirname(os.path.abspath(__file__))
-  </code>
-  就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
-困扰人生的小问题就这样绝对喽！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   MyDjangoBlog是基于Django搭建的个人blog
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-11-20 08:55:16
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
- <p>
-  开心Python Django 学习交流q群：217840699
- </p>
- <p>
-  一个简易易用的blog，基于以下技术构建
- </p>
- <ul>
-  <li>
-   Python
-  </li>
-  <li>
-   Django
-  </li>
-  <li>
-   Amaze UI
-  </li>
-  <li>
-   SQLite3
-  </li>
-  <li>
-   highlight.js
-  </li>
- </ul>
- <p>
-  后台基于Django admin搭建。
- </p>
- <p>
-  展示如下图，
-  <a href="http://www.17python.com">
-   点击博客
-  </a>
-  查看在线演示效果
- </p>
- <p>
-  <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/201630_6f5d34a4_125848.png" title="001.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/204359_4d1b64ee_125848.png" title="002.png"/>
- </p>
- <h1>
-  本地调试
- </h1>
- <p>
-  环境需求：
- </p>
- <p>
-  python (3.6.1)
-Django (1.11.3)
-Markdown (2.6.8)
-Pillow (4.2.1)
- </p>
- <p>
-  进入程序目录后，运行
-  <code>
-   python3 manage.py runserver
-  </code>
- </p>
- <p>
-  后台管理地址
-  <code>
-   http://127.0.0.1:8000/admin/
-  </code>
- </p>
- <p>
-  管理员登陆:
- </p>
- <p>
-  用户名：
-  <code>
-   admin
-  </code>
-  密码：
-  <code>
-   17python.com
-  </code>
- </p>
- <p>
-  前台地址
-  <code>
-   http://127.0.0.1:8000/
-  </code>
- </p>
- <p>
-  如果想在部署到生产环境，
-  <a href="http://www.17python.com/blog/67">
-   请点此查看详细教程
-  </a>
- </p>
- <p>
-  欢迎有识之士参与提交代码，大家共同学习共同进步！
- </p>
- <p>
-  开心Python Django 学习交流q群：217840699
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/www.17python.com">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_3.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    4 / 14
-   </button>
-   <a href="list_5.html">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_3.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        4 / 14
+       </button>
+       <a href="list_5.html">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

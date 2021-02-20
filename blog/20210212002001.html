@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Mac OS X gitk窗口打不开及Git的升级方法  碎言博客
+   Anaconda常用终端命令  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -135,144 +135,78 @@
     <div class="container-fluid" id="rt">
      <div class="blog-article">
       <h1 class="title">
-       Mac OS X gitk窗口打不开及Git的升级方法
+       Anaconda常用终端命令
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2017-08-26 16:36:30
+       2021-02-12 00:20:01
       </span>
       <span class="tag">
-       Git
+       Python
       </span>
      </div>
      <p>
      </p>
      <p>
-      <em>
-       今天随手在终端中敲了一下
-       <code>
-        Gitk
-       </code>
-       ，就是想试试
-       <code>
-        Git GUI
-       </code>
-       ，结果窗口一闪而过，然后看了一下版本，老掉牙的版本了，所以决定要升级一下
-       <code>
-        Git
-       </code>
-      </em>
-     </p>
-     <h2>
-      下载Mac os X Git
-     </h2>
-     <ul>
-      <li>
-       Mac osx
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-     </ul>
-     <h2>
-      安装
-     </h2>
-     <p>
-      安装很简单了，直接下一步，然后安装完毕。
-     </p>
-     <h2>
-      使用新版Git
-     </h2>
-     <p>
-      终端输入
-      <code>
-       git --version
-      </code>
-      ，发现还是原来的版本哇？
-      <code>
-       what?
-      </code>
-      ，
-终端输入：
-     </p>
-     <pre><code>which git
-/usr/bin/git</code></pre>
-     <p>
-      发现
-      <code>
-       Git
-      </code>
-      还是以前目录里的，并不是新安装目录下的
-      <code>
-       /usr/local/bin/git
-      </code>
-     </p>
-     <h2>
-      解决方法
-     </h2>
-     <p>
-      很明显这是环境变量的问题.
-     </p>
-     <pre><code>cd ~
-vi .bash_profile</code></pre>
-     <p>
-      把
-      <code>
-       /usr/local/bin:
-      </code>
-      这个环境变量放到
-      <code>
-       /usr/bin/
-      </code>
-      前边
+      ## conda 常用的命令。
      </p>
      <p>
-      我的环境变量最后输出如下：
-      <code>
-       export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:$PATH
-      </code>
+      1） conda list  查看安装了哪些包。
      </p>
      <p>
-      然后执行
-      <code>
-       source ~/.bash_profile
-      </code>
-      刷新一下环境变量。
+      2） conda env list  或  conda info -e  查看当前存在哪些虚拟环境
      </p>
      <p>
-      再次测试
-      <code>
-       git --version
-      </code>
-      或
-      <code>
-       gitk
-      </code>
-      一切正常。
+      3） conda update conda  检查更新当前conda
      </p>
-     <h2>
-      总结
-     </h2>
      <p>
-      <code>
-       Mac osX
-      </code>
-      安装完新版
-      <code>
-       Git
-      </code>
-      后，需要修改一下环境变量，使之指向新版的
-      <code>
-       Git
-      </code>
-      即可。
+      4） conda --version  查询conda版本
+     </p>
+     <p>
+      5） conda -h  查询conda的命令使用
+     </p>
+     <p>
+      activate // 切换到base环境
+     </p>
+     <p>
+      conda deactivate //退出虚拟环境
+     </p>
+     <p>
+      activate learn // 切换到learn环境
+     </p>
+     <p>
+      conda create -n learn python=3 // 创建一个名为learn的环境并指定python版本为3(的最新版本)
+     </p>
+     <p>
+      conda env list // 列出conda管理的所有环境
+     </p>
+     <p>
+      conda list // 列出当前环境的所有包
+     </p>
+     <p>
+      conda install requests 安装requests包
+     </p>
+     <p>
+      conda remove requests 卸载requets包
+     </p>
+     <p>
+      conda remove -n learn --all // 删除learn环境及下属所有包
+     </p>
+     <p>
+      conda update requests 更新requests包
+     </p>
+     <p>
+      conda env export &gt; environment.yaml // 导出当前环境的包信息
+     </p>
+     <p>
+      conda env create -f environment.yaml // 用配置文件创建新的虚拟环境
      </p>
      <section class="blog-p text-center">
       <div class="gitedit">
        发现错误？想参与编辑？
-       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/7.md" target="_blank">
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210212002001.md" target="_blank">
         在 GitHub 上编辑此页！
        </a>
       </div>

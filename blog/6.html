@@ -132,269 +132,269 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Git 版本控制常用命令 简明指南教程
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-26 13:03:59
-  </span>
-  <span class="tag">
-   Git
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <em>
-  最近使用
-  <code>
-   Django
-  </code>
-  设计自己的个人blog，免不了要对程序的版本进行备份，所以用到了
-  <code>
-   Git
-  </code>
-  。
-  <code>
-   Git
-  </code>
-  确实是程序员居家旅游，编程备份之良药哇，本文旨在对
-  <code>
-   Git
-  </code>
-  日常使用中，使用频率较高的命令进行了一个简单的总结
- </em>
-</p>
-<h2>
- 运行环境
-</h2>
-<ul>
- <li>
-  MacBookPro
- </li>
- <li>
-  OS X 10.11.6
- </li>
-</ul>
-<p>
- 如果您使用windows操作系统，终端下的命令可能会与我提供的有些不同，但git命令是一样的。
-</p>
-<h2>
- 安装新版Git
-</h2>
-<ul>
- <li>
-  Mac osx
-  <a href="http://git-scm.com/download/mac">
-   点此下载
-  </a>
- </li>
- <li>
-  Windows
-  <a href="http://git-scm.com/download/mac">
-   点此下载
-  </a>
- </li>
- <li>
-  Linux
-  <a href="http://git-scm.com/download/mac">
-   点此下载
-  </a>
- </li>
-</ul>
-<h2>
- 开始Git之旅
-</h2>
-<p>
- 我们可以从一个简单的
- <code>
-  git
- </code>
- 命令行开始,在终端下输入如下命令
-</p>
-<pre><code>mkdir gittest
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Git 版本控制常用命令 简明指南教程
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-26 13:03:59
+      </span>
+      <span class="tag">
+       Git
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       最近使用
+       <code>
+        Django
+       </code>
+       设计自己的个人blog，免不了要对程序的版本进行备份，所以用到了
+       <code>
+        Git
+       </code>
+       。
+       <code>
+        Git
+       </code>
+       确实是程序员居家旅游，编程备份之良药哇，本文旨在对
+       <code>
+        Git
+       </code>
+       日常使用中，使用频率较高的命令进行了一个简单的总结
+      </em>
+     </p>
+     <h2>
+      运行环境
+     </h2>
+     <ul>
+      <li>
+       MacBookPro
+      </li>
+      <li>
+       OS X 10.11.6
+      </li>
+     </ul>
+     <p>
+      如果您使用windows操作系统，终端下的命令可能会与我提供的有些不同，但git命令是一样的。
+     </p>
+     <h2>
+      安装新版Git
+     </h2>
+     <ul>
+      <li>
+       Mac osx
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+      <li>
+       Windows
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+      <li>
+       Linux
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+     </ul>
+     <h2>
+      开始Git之旅
+     </h2>
+     <p>
+      我们可以从一个简单的
+      <code>
+       git
+      </code>
+      命令行开始,在终端下输入如下命令
+     </p>
+     <pre><code>mkdir gittest
 cd gittest/
 gittest git init 
 Initialized empty Git repository in /Users/mac/gittest/.git/
 </code></pre>
-<h2>
- 取消目录的git版本控制
-</h2>
-<p>
- 当然 如果我们想取消当前目录的git版本控制，可以进入当前目录后，使用
- <code>
-  rm -rf .git
- </code>
- 来删除git版本控制的文件取消当前目录的版本控制。
-</p>
-<h2>
- clone 项目
-</h2>
-<p>
- 终端中输入代码，下载一个项目和它的整个代码历史。
-</p>
-<pre><code>mkdir gittest
+     <h2>
+      取消目录的git版本控制
+     </h2>
+     <p>
+      当然 如果我们想取消当前目录的git版本控制，可以进入当前目录后，使用
+      <code>
+       rm -rf .git
+      </code>
+      来删除git版本控制的文件取消当前目录的版本控制。
+     </p>
+     <h2>
+      clone 项目
+     </h2>
+     <p>
+      终端中输入代码，下载一个项目和它的整个代码历史。
+     </p>
+     <pre><code>mkdir gittest
 git clone 项目地址
 </code></pre>
-<p>
- <strong>
-  git四大域：工作目录，暂存区，仓库，远程仓库。
- </strong>
-</p>
-<h2>
- 配置Git
-</h2>
-<p>
- 查看Git配置项
-</p>
-<pre><code>git config --list
+     <p>
+      <strong>
+       git四大域：工作目录，暂存区，仓库，远程仓库。
+      </strong>
+     </p>
+     <h2>
+      配置Git
+     </h2>
+     <p>
+      查看Git配置项
+     </p>
+     <pre><code>git config --list
 </code></pre>
-<p>
- 设置提交代码时的用户信息，--global表示设置为全局。
-</p>
-<pre><code>git config [--global] user.name "[name]"
+     <p>
+      设置提交代码时的用户信息，--global表示设置为全局。
+     </p>
+     <pre><code>git config [--global] user.name "[name]"
 git config [--global] user.email "[email address]"
 </code></pre>
-<h2>
- 添加删除
-</h2>
-<p>
- 添加文件、目录、当前所有文件及目录到暂存区。
-</p>
-<pre><code>git add [filename]
+     <h2>
+      添加删除
+     </h2>
+     <p>
+      添加文件、目录、当前所有文件及目录到暂存区。
+     </p>
+     <pre><code>git add [filename]
 git add [dir]
 git add .
 </code></pre>
-<h2>
- 删除暂存区的文件及目录
-</h2>
-<p>
- 删除工作区文件，并且将这次删除放入暂存区
-</p>
-<pre><code>git rm [file1] [file2] ...
+     <h2>
+      删除暂存区的文件及目录
+     </h2>
+     <p>
+      删除工作区文件，并且将这次删除放入暂存区
+     </p>
+     <pre><code>git rm [file1] [file2] ...
 git rm --cached [file] #删除缓存
 </code></pre>
-<h2>
- 提交
-</h2>
-<p>
- 提交暂存区内容到本地仓库
-</p>
-<pre><code>git commit -m '修改提交消息'
+     <h2>
+      提交
+     </h2>
+     <p>
+      提交暂存区内容到本地仓库
+     </p>
+     <pre><code>git commit -m '修改提交消息'
 </code></pre>
-<p>
- 提交到远程仓库，先绑定远程仓库，然后推送。
-</p>
-<pre><code>git remote add origin &lt;server&gt;
+     <p>
+      提交到远程仓库，先绑定远程仓库，然后推送。
+     </p>
+     <pre><code>git remote add origin &lt;server&gt;
 git push origin master
 </code></pre>
-<h2>
- 分支
-</h2>
-<p>
- 避免错误，可以在其它分支上进行开发修改。
-</p>
-<pre><code>git branch [branch-name] #新建分支
+     <h2>
+      分支
+     </h2>
+     <p>
+      避免错误，可以在其它分支上进行开发修改。
+     </p>
+     <pre><code>git branch [branch-name] #新建分支
 git checkout -b [branch] #新建并切换到新分支
 git checkout [branch-name] #切换到指定分支
 git branch -d [branch-name] # 删除分支
 </code></pre>
-<h2>
- 更新与合并
-</h2>
-<pre><code>git cherry-pick [commit] # 选择一个commit，合并进当前分支
+     <h2>
+      更新与合并
+     </h2>
+     <pre><code>git cherry-pick [commit] # 选择一个commit，合并进当前分支
 git pull #要更新你的本地仓库至最新改动
 git merge &lt;branch&gt; #全并分支到当前分支
 </code></pre>
-<h2>
- 标签
-</h2>
-<pre><code>git tag 1.0.0 7b8a9d199
+     <h2>
+      标签
+     </h2>
+     <pre><code>git tag 1.0.0 7b8a9d199
 </code></pre>
-<h2>
- 查询
-</h2>
-<pre><code>git log
+     <h2>
+      查询
+     </h2>
+     <pre><code>git log
 </code></pre>
-<h2>
- git提交到多个远程仓库
-</h2>
-<pre><code>git remote add github git@https://github.com/bosichong/17python.com.git
+     <h2>
+      git提交到多个远程仓库
+     </h2>
+     <pre><code>git remote add github git@https://github.com/bosichong/17python.com.git
 git remote add gitee git@https://gitee.com/J_Sky/17python.com.git
 </code></pre>
-<p>
- 这样就保存了两个远程仓库，然后分别提交
-</p>
-<pre><code>git push github master
+     <p>
+      这样就保存了两个远程仓库，然后分别提交
+     </p>
+     <pre><code>git push github master
 git push gitee master
 </code></pre>
-<h2>
- 新建git远程仓库上传出错
-</h2>
-<p>
- 在gitee仓库新建库的时候总有一些其它文件一起创建了，这样我们push的时候是传不上去的，需要先把没有的文件pull下来。
-</p>
-<pre><code>git pull
+     <h2>
+      新建git远程仓库上传出错
+     </h2>
+     <p>
+      在gitee仓库新建库的时候总有一些其它文件一起创建了，这样我们push的时候是传不上去的，需要先把没有的文件pull下来。
+     </p>
+     <pre><code>git pull
 </code></pre>
-<p>
- 然后报错
-</p>
-<pre><code> * branch            master     -&gt; FETCH_HEAD
+     <p>
+      然后报错
+     </p>
+     <pre><code> * branch            master     -&gt; FETCH_HEAD
 fatal: refusing to merge unrelated histories
 </code></pre>
-<p>
- 解决方法：
-</p>
-<pre><code>git pull osc master --allow-unrelated-histories
+     <p>
+      解决方法：
+     </p>
+     <pre><code>git pull osc master --allow-unrelated-histories
 </code></pre>
-<p>
- <strong>
-  osc 换成你自己的别名哦。
- </strong>
-</p>
-<h2>
- 相关参考文档及教程
-</h2>
-<p>
- <a href="http://www.liuyunfei.cn/blog/detail/172">
-  常用 Git 命令清单
- </a>
- 相对比较完整的常用命令
-</p>
-<p>
- <a href="http://rogerdudler.github.io/git-guide/index.zh.html">
-  git - 简明指南
- </a>
- 初学者推荐，简单实用
-</p>
-<p>
- <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">
-  史上最浅显易懂的Git教程！
- </a>
- 廖雪峰老师的Git教程。
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/6.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      <strong>
+       osc 换成你自己的别名哦。
+      </strong>
+     </p>
+     <h2>
+      相关参考文档及教程
+     </h2>
+     <p>
+      <a href="http://www.liuyunfei.cn/blog/detail/172">
+       常用 Git 命令清单
+      </a>
+      相对比较完整的常用命令
+     </p>
+     <p>
+      <a href="http://rogerdudler.github.io/git-guide/index.zh.html">
+       git - 简明指南
+      </a>
+      初学者推荐，简单实用
+     </p>
+     <p>
+      <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">
+       史上最浅显易懂的Git教程！
+      </a>
+      廖雪峰老师的Git教程。
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/6.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

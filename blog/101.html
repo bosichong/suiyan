@@ -132,233 +132,233 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   如何在Python程序中使用配置文件.ini(ConfigParser)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-06-18 15:29:01
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h2>
- 引言
-</h2>
-<p>
- 在
- <code>
-  Python
- </code>
- 程序的编写中，我们经常要为程序配置一个
- <code>
-  配置文件
- </code>
- ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       如何在Python程序中使用配置文件.ini(ConfigParser)
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-06-18 15:29:01
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      引言
+     </h2>
+     <p>
+      在
+      <code>
+       Python
+      </code>
+      程序的编写中，我们经常要为程序配置一个
+      <code>
+       配置文件
+      </code>
+      ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
 那么如何为自己的
- <code>
-  Python
- </code>
- 应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
-</p>
-<p>
- <strong>
-  本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
- </strong>
-</p>
-<p>
- 相关链接：
- <a href="http://www.17python.com/blog/14">
-  PythonINI配置文件读写的简单方法
- </a>
-</p>
-<p>
- 本文重点讨论如何在程序中使用配置文件，
- <code>
-  ConfigParser
- </code>
- 类的具体使用，请参考上文。
-</p>
-<h2>
- 需求
-</h2>
-<p>
- 前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+      <code>
+       Python
+      </code>
+      应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
+     </p>
+     <p>
+      <strong>
+       本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
+      </strong>
+     </p>
+     <p>
+      相关链接：
+      <a href="http://www.17python.com/blog/14">
+       PythonINI配置文件读写的简单方法
+      </a>
+     </p>
+     <p>
+      本文重点讨论如何在程序中使用配置文件，
+      <code>
+       ConfigParser
+      </code>
+      类的具体使用，请参考上文。
+     </p>
+     <h2>
+      需求
+     </h2>
+     <p>
+      前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
 具体需求如下：
-</p>
-<ol>
- <li>
-  保存程序设置参数
- </li>
- <li>
-  功能使用配置文件的参数
- </li>
- <li>
-  组织以上功能封装成为一个类，方便以后功能的扩展。
- </li>
-</ol>
-<h2>
- 分析
-</h2>
-<p>
- 先上一个配置文件的工作流程图
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
-</p>
-<p>
- 通过流程图我们可以总结出配置文件类中需要的方法：
-</p>
-<ol>
- <li>
-  创建(若ini文件不存在)及加载本地配置文件
- </li>
- <li>
-  程序加载配置项参数
- </li>
- <li>
-  修改参数的时候保存配置项到ini文件
- </li>
- <li>
-  整理配置项参数为程序功能所用。
- </li>
-</ol>
-<h2>
- 构建APPconfig类
-</h2>
-<p>
- 首先导入必须的包：
-</p>
-<pre><code>import os
+     </p>
+     <ol>
+      <li>
+       保存程序设置参数
+      </li>
+      <li>
+       功能使用配置文件的参数
+      </li>
+      <li>
+       组织以上功能封装成为一个类，方便以后功能的扩展。
+      </li>
+     </ol>
+     <h2>
+      分析
+     </h2>
+     <p>
+      先上一个配置文件的工作流程图
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
+     </p>
+     <p>
+      通过流程图我们可以总结出配置文件类中需要的方法：
+     </p>
+     <ol>
+      <li>
+       创建(若ini文件不存在)及加载本地配置文件
+      </li>
+      <li>
+       程序加载配置项参数
+      </li>
+      <li>
+       修改参数的时候保存配置项到ini文件
+      </li>
+      <li>
+       整理配置项参数为程序功能所用。
+      </li>
+     </ol>
+     <h2>
+      构建APPconfig类
+     </h2>
+     <p>
+      首先导入必须的包：
+     </p>
+     <pre><code>import os
 from configparser import ConfigParser
 </code></pre>
-<p>
- 然后确定ini配置文件的物理位置，这里可以引用
- <code>
-  Django
- </code>
- 配置文件加载的方法。
-</p>
-<pre><code>    #ini程序所在目录，也是当前程序的根目录
+     <p>
+      然后确定ini配置文件的物理位置，这里可以引用
+      <code>
+       Django
+      </code>
+      配置文件加载的方法。
+     </p>
+     <pre><code>    #ini程序所在目录，也是当前程序的根目录
    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
    #INI文件地址
   INI_PATH = os.path.join(BASE_DIR, 'config.ini')
 </code></pre>
-<h2>
- 创建INI文件
-</h2>
-<p>
- 若程序是首次启动，可以判断配置文件ini是否存在，
- <strong>
-  若不存在可以创建一个带有默认数据参数的配置文件。
- </strong>
- 为类添加一个方法
- <code>
-  def create_ini(self)
- </code>
- ，此方法用来创建配置文件ini。
+     <h2>
+      创建INI文件
+     </h2>
+     <p>
+      若程序是首次启动，可以判断配置文件ini是否存在，
+      <strong>
+       若不存在可以创建一个带有默认数据参数的配置文件。
+      </strong>
+      为类添加一个方法
+      <code>
+       def create_ini(self)
+      </code>
+      ，此方法用来创建配置文件ini。
 当在类启动方法中创建了
- <code>
-  ConfigParser
- </code>
- 对象后，就可以利用这个对象来编辑修改配置文件了。
-</p>
-<h2>
- 加载及保存配置文件
-</h2>
-<p>
- 若文件存在，即可直接加载了。
-</p>
-<pre><code>    def readINI(self):
+      <code>
+       ConfigParser
+      </code>
+      对象后，就可以利用这个对象来编辑修改配置文件了。
+     </p>
+     <h2>
+      加载及保存配置文件
+     </h2>
+     <p>
+      若文件存在，即可直接加载了。
+     </p>
+     <pre><code>    def readINI(self):
         """ ini文件读取，返回一个INI配置对象
          或是用来更新内存中的配置文件数据
          """
          self.c.read(self.INI_PATH, encoding='utf-8')
 </code></pre>
-<p>
- 创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
-</p>
-<p>
- 有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
-</p>
-<pre><code>def saveINI(self):
+     <p>
+      创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
+     </p>
+     <p>
+      有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
+     </p>
+     <pre><code>def saveINI(self):
     '''保存或是更新ini文件'''
     with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
         self.c.write(ini)
 </code></pre>
-<p>
- 这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
-</p>
-<h2>
- 修改并保存配置文件参数
-</h2>
-<p>
- 为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
-</p>
-<p>
- 范例：
-</p>
-<pre><code>def saveNumber(self,number):
+     <p>
+      这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
+     </p>
+     <h2>
+      修改并保存配置文件参数
+     </h2>
+     <p>
+      为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
+     </p>
+     <p>
+      范例：
+     </p>
+     <pre><code>def saveNumber(self,number):
     '''保存口算题个数设置数据'''
     self.c.set('config','number',number)
     self.saveINI()
 </code></pre>
-<h2>
- 读取参数
-</h2>
-<p>
- 当创建完
- <code>
-  ConfigParser
- </code>
- 对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
- <a href="http://www.17python.com/blog/14">
-  PythonINI配置文件读写的简单方法
- </a>
- 也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
-</p>
-<p>
- 有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/101.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      读取参数
+     </h2>
+     <p>
+      当创建完
+      <code>
+       ConfigParser
+      </code>
+      对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
+      <a href="http://www.17python.com/blog/14">
+       PythonINI配置文件读写的简单方法
+      </a>
+      也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
+     </p>
+     <p>
+      有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/101.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

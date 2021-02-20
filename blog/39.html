@@ -132,84 +132,84 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python程序在Windows10终端运行中文乱码解决方法
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-10 21:03:34
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 今天发布了一段代码，微博上有朋友在win10下边测试报错，看错误应该是中文编码问题，然后自己试了下，总结了一下原因：
-</p>
-<h2>
- 测试中文打印print()
-</h2>
-<p>
- 在win10中新建记事本文档， 敲入代码：
-</p>
-<pre><code>print("我来试试哈")
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python程序在Windows10终端运行中文乱码解决方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-10 21:03:34
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      今天发布了一段代码，微博上有朋友在win10下边测试报错，看错误应该是中文编码问题，然后自己试了下，总结了一下原因：
+     </p>
+     <h2>
+      测试中文打印print()
+     </h2>
+     <p>
+      在win10中新建记事本文档， 敲入代码：
+     </p>
+     <pre><code>print("我来试试哈")
 </code></pre>
-<p>
- 保存test.py，运行，果然报错，如下图：
-</p>
-<pre><code>SyntaxError: Non-UTF-8 code starting with '\xce' in file i:/python3/te
+     <p>
+      保存test.py，运行，果然报错，如下图：
+     </p>
+     <pre><code>SyntaxError: Non-UTF-8 code starting with '\xce' in file i:/python3/te
 st.py on line 1, but no encoding declared; see http://python.org/dev/p
 eps/pep-0263/ for details</code></pre>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_14.png"/>
-</p>
-<h2>
- 为什么呢？
-</h2>
-<p>
- 因为win10下边新建记事本文件是ANSIX编码的
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_15.png"/>
-</p>
-<h2>
- 解决方法
-</h2>
-<p>
- 把文件另存，在编码中选择utf8。
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_16.png"/>
-</p>
-<p>
- 然后运行，完美解决！
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_17.png"/>
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/39.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_14.png"/>
+     </p>
+     <h2>
+      为什么呢？
+     </h2>
+     <p>
+      因为win10下边新建记事本文件是ANSIX编码的
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_15.png"/>
+     </p>
+     <h2>
+      解决方法
+     </h2>
+     <p>
+      把文件另存，在编码中选择utf8。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_16.png"/>
+     </p>
+     <p>
+      然后运行，完美解决！
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_17.png"/>
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/39.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

@@ -132,202 +132,202 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python3 datetime模块的时间操作
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-18 13:23:43
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <em>
-  出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作
- </em>
-</p>
-<h2>
- datetime 模块
-</h2>
-<p>
- 导入模块
-</p>
-<pre><code>from datetime import *
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python3 datetime模块的时间操作
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-18 13:23:43
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作
+      </em>
+     </p>
+     <h2>
+      datetime 模块
+     </h2>
+     <p>
+      导入模块
+     </p>
+     <pre><code>from datetime import *
 </code></pre>
-<p>
- 获取当前时间:
-</p>
-<pre><code>now = datetime.now()
+     <p>
+      获取当前时间:
+     </p>
+     <pre><code>now = datetime.now()
 td = datetime.today()
 </code></pre>
-<p>
- 格式化打印时间 格式字符串参见后边的附录。
-</p>
-<pre><code>format = "%Y-%m-%d %H:%M:%S"
+     <p>
+      格式化打印时间 格式字符串参见后边的附录。
+     </p>
+     <pre><code>format = "%Y-%m-%d %H:%M:%S"
 print('今天的日期：'+ now.strftime(format))
 </code></pre>
-<p>
- 根据字符串返回datetime对象
+     <p>
+      根据字符串返回datetime对象
 格式化的字符串应与前边的时间对应。比如："2017-09-18 13:02:34", "%Y-%m-%d %H:%M:%S"
-</p>
-<pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
+     </p>
+     <pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
 </code></pre>
-<p>
- 时间对象转换成时间戮
-</p>
-<pre><code>tmp = td.timestamp()
+     <p>
+      时间对象转换成时间戮
+     </p>
+     <pre><code>tmp = td.timestamp()
 print('timestamp: {}'.format(tmp))
 </code></pre>
-<p>
- 根据时间戮转换成datetime对象
-</p>
-<pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
+     <p>
+      根据时间戮转换成datetime对象
+     </p>
+     <pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
 </code></pre>
-<p>
- 星期几？0是星期一
-</p>
-<pre><code>print(now.weekday()+1)
+     <p>
+      星期几？0是星期一
+     </p>
+     <pre><code>print(now.weekday()+1)
 </code></pre>
-<p>
- datetime 支持的最大及最小时间单位
-</p>
-<pre><code>print(datetime.max)
+     <p>
+      datetime 支持的最大及最小时间单位
+     </p>
+     <pre><code>print(datetime.max)
 print(datetime.min)
 </code></pre>
-<p>
- 打印datetime对象包含的一个tuple
-</p>
-<pre><code>for it in now.timetuple():
+     <p>
+      打印datetime对象包含的一个tuple
+     </p>
+     <pre><code>for it in now.timetuple():
     print(it)
 </code></pre>
-<h2>
- 附录：格式字符串
-</h2>
-<ul>
- <li>
-  datetime. strftime (format)
- </li>
- <li>
-  %a 星期的简写。如 星期三为Web
- </li>
- <li>
-  %A 星期的全写。如 星期三为Wednesday
- </li>
- <li>
-  %b 月份的简写。如4月份为Apr
- </li>
- <li>
-  %B月份的全写。如4月份为April
- </li>
- <li>
-  %c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）
- </li>
- <li>
-  %d:  日在这个月中的天数（是这个月的第几天）
- </li>
- <li>
-  %f:  微秒（范围[0,999999]）
- </li>
- <li>
-  %H:  小时（24小时制，[0, 23]）
- </li>
- <li>
-  %I:  小时（12小时制，[0, 11]）
- </li>
- <li>
-  %j:  日在年中的天数 [001,366]（是当年的第几天）
- </li>
- <li>
-  %m:  月份（[01,12]）
- </li>
- <li>
-  %M:  分钟（[00,59]）
- </li>
- <li>
-  %p:  AM或者PM
- </li>
- <li>
-  %S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）
- </li>
- <li>
-  %U:  周在当年的周数当年的第几周），星期天作为周的第一天
- </li>
- <li>
-  %w:  今天在这周的天数，范围为[0, 6]，6表示星期天
- </li>
- <li>
-  %W:  周在当年的周数（是当年的第几周），星期一作为周的第一天
- </li>
- <li>
-  %x:  日期字符串（如：04/07/10）
- </li>
- <li>
-  %X:  时间字符串（如：10:43:39）
- </li>
- <li>
-  %y:  2个数字表示的年份
- </li>
- <li>
-  %Y:  4个数字表示的年份
- </li>
- <li>
-  %z:  与utc时间的间隔 （如果是本地时间，返回空字符串）
- </li>
- <li>
-  %Z:  时区名称（如果是本地时间，返回空字符串）
- </li>
- <li>
-  %%:  %% =&gt; %
- </li>
-</ul>
-<h2>
- 相关参考
-</h2>
-<p>
- <a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">
-  官方文档：datetime — 基本日期和时间类型
- </a>
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/16.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      附录：格式字符串
+     </h2>
+     <ul>
+      <li>
+       datetime. strftime (format)
+      </li>
+      <li>
+       %a 星期的简写。如 星期三为Web
+      </li>
+      <li>
+       %A 星期的全写。如 星期三为Wednesday
+      </li>
+      <li>
+       %b 月份的简写。如4月份为Apr
+      </li>
+      <li>
+       %B月份的全写。如4月份为April
+      </li>
+      <li>
+       %c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）
+      </li>
+      <li>
+       %d:  日在这个月中的天数（是这个月的第几天）
+      </li>
+      <li>
+       %f:  微秒（范围[0,999999]）
+      </li>
+      <li>
+       %H:  小时（24小时制，[0, 23]）
+      </li>
+      <li>
+       %I:  小时（12小时制，[0, 11]）
+      </li>
+      <li>
+       %j:  日在年中的天数 [001,366]（是当年的第几天）
+      </li>
+      <li>
+       %m:  月份（[01,12]）
+      </li>
+      <li>
+       %M:  分钟（[00,59]）
+      </li>
+      <li>
+       %p:  AM或者PM
+      </li>
+      <li>
+       %S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）
+      </li>
+      <li>
+       %U:  周在当年的周数当年的第几周），星期天作为周的第一天
+      </li>
+      <li>
+       %w:  今天在这周的天数，范围为[0, 6]，6表示星期天
+      </li>
+      <li>
+       %W:  周在当年的周数（是当年的第几周），星期一作为周的第一天
+      </li>
+      <li>
+       %x:  日期字符串（如：04/07/10）
+      </li>
+      <li>
+       %X:  时间字符串（如：10:43:39）
+      </li>
+      <li>
+       %y:  2个数字表示的年份
+      </li>
+      <li>
+       %Y:  4个数字表示的年份
+      </li>
+      <li>
+       %z:  与utc时间的间隔 （如果是本地时间，返回空字符串）
+      </li>
+      <li>
+       %Z:  时区名称（如果是本地时间，返回空字符串）
+      </li>
+      <li>
+       %%:  %% =&gt; %
+      </li>
+     </ul>
+     <h2>
+      相关参考
+     </h2>
+     <p>
+      <a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">
+       官方文档：datetime — 基本日期和时间类型
+      </a>
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/16.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

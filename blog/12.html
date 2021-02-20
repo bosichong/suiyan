@@ -132,61 +132,60 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python os.path模块中一些常用方法的整理总结
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-04 14:37:17
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <em>
-  跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法
- </em>
-</p>
-<h2>
- os.path 模块
-</h2>
-<p>
- 首先，导入一些必须的模块
-</p>
-<pre><code>import os
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python os.path模块中一些常用方法的整理总结
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-04 14:37:17
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法
+      </em>
+     </p>
+     <h2>
+      os.path 模块
+     </h2>
+     <p>
+      首先，导入一些必须的模块
+     </p>
+     <pre><code>import os
 import time
 </code></pre>
-<h2>
- 路径操作的常用方法：
-</h2>
-<pre><code class="python">print(__file__) #当前文件的完整地址
+     <h2>
+      路径操作的常用方法：
+     </h2>
+     <pre><code class="python">print(__file__) #当前文件的完整地址
 print(os.path.abspath('ospathtest.py'))#当前文件的完整地址
 print(os.path.dirname(__file__)) #当前目录所属地址
 print(os.path.isdir(os.path.dirname(__file__)))# 判断是否为路径
 print(os.path.isfile(os.path.dirname(__file__)))# 判断是否为文件
 </code></pre>
-<h2>
- 组装及创建目录
-</h2>
-<pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
+     <h2>
+      组装及创建目录
+     </h2>
+     <pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
 os.mkdir(p) # 创建目录
 time.sleep(3)# 暂停3秒，这样就可以在左侧目录中看到新建的'aaa'目录了
 os.rmdir(p)
 print(p)# 组装目录
 print(os.path.split(__file__))# 分割路径与文件名
 </code></pre>
-<h2>
- os.path中的一些is get方法
-</h2>
-<pre><code class="python">path = __file__
+     <h2>
+      os.path中的一些is get方法
+     </h2>
+     <pre><code class="python">path = __file__
 print(os.path.getatime(path))  #返回最后一次进入此path的时间。
 print(os.path.getmtime(path))  #返回在此path下最后一次修改的时间。
 print(os.path.getctime(path))  #返回path的大小
@@ -197,45 +196,46 @@ print(os.path.isdir(path))  #判断路径是否为目录
 print(os.path.islink(path))  #判断路径是否为链接
 print(os.path.ismount(path))  #判断路径是否为挂载点（）
 </code></pre>
-<h2>
- 相关参考
-</h2>
-<p>
- <a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">
-  os.path — 路径操作
- </a>
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/12.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      相关参考
+     </h2>
+     <p>
+      <a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">
+       os.path — 路径操作
+      </a>
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/12.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

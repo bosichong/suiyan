@@ -132,45 +132,232 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python闭包（Closure）的那点事。
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-09 15:36:19
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  记得当年学
-  <code>
-   JavaScript
-  </code>
-  时，对闭包的认识那真是朦朦胧胧，后来接触到
-  <code>
-   jQuery
-  </code>
-  之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言
-  <code>
-   java
-  </code>
-  给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题
- </p>
- <h2>
-  Pythib闭包
- </h2>
- <p>
-  先来一个栗子，我们慢慢理顺一下：
- </p>
- <pre><code class="python">def callf():
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       你与黑客之间差了多少行Python代码？
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-10 15:23:17
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_11.png"/>
+     </p>
+     <p>
+      雷布斯曾说过：“必须写够十万行代码，不要心存侥幸。没有写过足够代码量的，想成为高手是不可能的，只能纸上谈兵！”，看来要成一名黑客10万代码量也许只是个起步。那么自己与黑客差了多少呢，要不咱统计一下吧。
+     </p>
+     <h2>
+      编写思路
+     </h2>
+     <p>
+      程序的编写思路其实很简单：统计自己编写过的.py文件，然后统计文件行数累加到一起就ok。
+     </p>
+     <p>
+      <code>
+       os.walk
+      </code>
+      这个方法可以统计当前目录下所有的文件、子目录、子目录下的文件，有了这个数据，我们只需要排除掉不需要的，统计以.py为结尾的文件目录地址加入一个列表即可。
+     </p>
+     <p>
+      有了所有.py文件的列表，循环迭代出每个文件的行数，加到一起总数据就出来了。具体实现请看代码：
+     </p>
+     <pre><code class="python">import os
+def getpys(dir):
+    '''
+    递归获得当前目录及其子目录中所有的.py文件列表。
+    '''
+    pys = []
+    # 当前目录下所有的文件、子目录、子目录下的文件。
+    for root, dirs, files in os.walk(dir):
+        for name in files:
+            #排除掉git目录中的备份的文件，只保留.py文件
+            if '.git' not in root and name.endswith('.py'):
+                pys.append(os.path.join(root, name))
+        #下边是拼装所有目录
+        # for name in dirs:
+        #     print(os.path.join(root, name))
+    return pys
+pys = getpys(os.path.dirname(__file__))
+# print(pys)
+hacker=100000#假设黑客需要10万行代码才能练成
+lines = 0
+for file in pys:
+    with open(file, mode='r', encoding='utf8') as f:
+        lines = lines + len(f.readlines())#统计每个文件的行数。
+print("累计编写了源文件{0}个,手打{1}行Python代码，完成度{2:.2f}%".format(len(pys),lines,lines/hacker*100))
+print("距离成为一名黑客还差{0}行代码".format(hacker-lines))
+</code></pre>
+     <p>
+      累计编写了源文件32个,手打2133行Python代码，完成度2.13%
+距离成为一名黑客还差97867行代码
+     </p>
+     <p>
+      这个数量有点惨。。。不过我会努力的。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/counttest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/counttest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       一些站长常用的搜索收录、访问统计平台
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-09 20:45:57
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <ul>
+      <li>
+       <p>
+        <a href="http://ziyuan.baidu.com">
+         百度搜索资源平台
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://union.baidu.com">
+         百度联盟
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://zhanzhang.so.com/">
+         360站长平台
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://ce.baidu.com/">
+         百度云观测
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://ziyuan.baidu.com">
+         百度搜索资源平台
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://www.jiathis.com/">
+         JiaThis社会化分享按钮
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">
+         署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://changyan.kuaizhan.com/">
+         畅言网站评论系统
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://zhanzhang.sogou.com">
+         搜狗站长平台
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="https://web.umeng.com/main.php?c=site&amp;a=add">
+         CNZZ站长统计数据专家
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://www.miitbeian.gov.cn/">
+         工信部ICP备案查询
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a href="http://www.beian.gov.cn/">
+         全国公安机关互联网安全服务备案
+        </a>
+       </p>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       聊聊Python闭包（Closure）的那点事。
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-09 15:36:19
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      记得当年学
+      <code>
+       JavaScript
+      </code>
+      时，对闭包的认识那真是朦朦胧胧，后来接触到
+      <code>
+       jQuery
+      </code>
+      之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言
+      <code>
+       java
+      </code>
+      给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题
+     </p>
+     <h2>
+      Pythib闭包
+     </h2>
+     <p>
+      先来一个栗子，我们慢慢理顺一下：
+     </p>
+     <pre><code class="python">def callf():
     def hello():
         return "hello world"
     return hello
@@ -179,14 +366,14 @@ cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
 print(type(cf)) # 查看cf类型，证实上边的结论。
 print(cf()) #打印最终结果。
 </code></pre>
- <p>
-  在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
+     <p>
+      在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
 上边就算是闭包最简单的例子，多看几次应该就理解了。
- </p>
- <p>
-  再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？
- </p>
- <pre><code class="python">def countdown(n):
+     </p>
+     <p>
+      再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？
+     </p>
+     <pre><code class="python">def countdown(n):
     def next():
         nonlocal n 
         r = n 
@@ -200,21 +387,21 @@ while True:
     print(v)
     if not v :break
 </code></pre>
- <p>
-  这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉
-  <code>
-   nonlocal n
-  </code>
-  ，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量
-  <code>
-   n
-  </code>
-  的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。
- </p>
- <h1>
-  再看循环中的闭包：
- </h1>
- <pre><code class="python">def loop():
+     <p>
+      这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉
+      <code>
+       nonlocal n
+      </code>
+      ，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量
+      <code>
+       n
+      </code>
+      的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。
+     </p>
+     <h1>
+      再看循环中的闭包：
+     </h1>
+     <pre><code class="python">def loop():
     fs = []
     for i in range(1,4):
         def f():
@@ -224,13 +411,13 @@ while True:
 f1,f2,f3 = loop()
 print(f1())
 </code></pre>
- <p>
-  <code>
-   f1()
-  </code>
-  的打印竟然9，这个有点出乎意料！我们修改一下这个函数
- </p>
- <pre><code class="python">def loop(): 
+     <p>
+      <code>
+       f1()
+      </code>
+      的打印竟然9，这个有点出乎意料！我们修改一下这个函数
+     </p>
+     <pre><code class="python">def loop(): 
     def f(j):
         return lambda: j*j
     fs = []
@@ -242,207 +429,207 @@ print(f1())
 print(f2())
 print(f3())
 </code></pre>
- <p>
-  对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了
-  <code>
-   f()
-  </code>
-  函数
-  <code>
-   return
-  </code>
-  所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
+     <p>
+      对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了
+      <code>
+       f()
+      </code>
+      函数
+      <code>
+       return
+      </code>
+      所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
 有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用
-  <code>
-   Python
-  </code>
-  函数的高级应用，不妨仔细的了解一下闭包吧。
- </p>
- <h2>
-  参考文档
- </h2>
- <ul>
-  <li>
-   <a href="https://zhuanlan.zhihu.com/p/22229197">
-    深入浅出python闭包
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python并发编程（下）功能强大设置简单的分布式多进程生产者与消费者模式
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-07 14:09:46
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/e.jpg"/>
-  在
-  <code>
-   Python
-  </code>
-  的日常生活中，当你要进行一系列超大型密集的计算任务或是超多未知的数据需要采集时，一台机器或许已经无法满足你的需求了，这时就得考虑使用到分布式操作进行任务处理了。
- </p>
- <h2>
-  一个无聊而又变态的需求
- </h2>
- <p>
-  我们假设有一个无聊而又变态的任务：有一系列的任务会成生一组随机&gt;=0的整数队列[n,n,n,.....n,n]，我们需要立即取得他们的n*n自乘结果。当然你也可以使用单线程进行相关的操作，但是由于计算任务巨大，我们不得采用分布式多进程生产者与消费者模式来进行程序的执行了，好吧，我们先了解一下相关术语。
- </p>
- <h2>
-  分布式
- </h2>
- <p>
-  在一个分布式系统中，一组独立的计算机展现给用户的是一个统一的整体，就好像是一个系统似的。这种情景下就是分布式。
- </p>
- <h2>
-  为什么要用分布式多进程而不是多线程？
- </h2>
- <p>
-  由于
-  <code>
-   Python
-  </code>
-  解释器中使用了内部的GIL全局解释器锁，使得
-  <code>
-   Python
-  </code>
-  多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。所以多线程并不适用于高密度的计算任务，由于计算任务数量庞大，所以采用分布式可以大大提高计算的速度。
- </p>
- <h2>
-  关于
-  <code>
-   Python
-  </code>
-  的进程
- </h2>
- <p>
-  请点击传送门:
-  <a href="http://www.17python.com/blog/34">
-   Python并发编程（上）进程模块multiprocessing模块和Process类
-  </a>
- </p>
- <h2>
-  Managers
- </h2>
- <p>
-  管理器提供一种创建可在不同进程之间共享的数据的方法，包括在不同机器上运行的进程之间通过网络共享。管理员对象控制管理共享对象的服务器进程。其他进程可以通过使用代理访问共享对象。这里我们使用
-  <code>
-   multiprocessing.managers.BaseManager
-  </code>
-  来创建一个多进程管理器，对网络的任务进行注册和管理。
-  <code>
-   BaseManager
-  </code>
-  下边封装了很多相关的方法，大大简化了网络上进程之间的通信，可以方便的组建分布式的进程任务。
- </p>
- <h2>
-  Queue
- </h2>
- <p>
-  <code>
-   Queue
-  </code>
-  实现多生产者，多消费者队列。它特别适用于信息必须在多个线程间安全地交换的多线程程序中。在本次分布式多进程的任务
-  <code>
-   Queue
-  </code>
-  起到了非常重要的作用。
- </p>
- <h2>
-  开始编码前
- </h2>
- <p>
-  我们先构思一下程序需要的模块：
- </p>
- <ul>
-  <li>
-   上帝（God也是服务器，服务器负责注册队列queue,并接收并查看到最终结果。）
-  </li>
-  <li>
-   生产者（Producer,负责生产出需要进行计算的数据并发送给消费者。）
-  </li>
-  <li>
-   消费者（Consumer，负责接收生产者发来的数据并进行计算，最后把结果发送给上帝看.）
-  </li>
- </ul>
- <p>
-  相关思维导图：如果下
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/swdt.png"/>
- </p>
- <h2>
-  程序构建要点：
- </h2>
- <pre><code>class GodManager(BaseManager):
+      <code>
+       Python
+      </code>
+      函数的高级应用，不妨仔细的了解一下闭包吧。
+     </p>
+     <h2>
+      参考文档
+     </h2>
+     <ul>
+      <li>
+       <a href="https://zhuanlan.zhihu.com/p/22229197">
+        深入浅出python闭包
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python并发编程（下）功能强大设置简单的分布式多进程生产者与消费者模式
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-07 14:09:46
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/e.jpg"/>
+      在
+      <code>
+       Python
+      </code>
+      的日常生活中，当你要进行一系列超大型密集的计算任务或是超多未知的数据需要采集时，一台机器或许已经无法满足你的需求了，这时就得考虑使用到分布式操作进行任务处理了。
+     </p>
+     <h2>
+      一个无聊而又变态的需求
+     </h2>
+     <p>
+      我们假设有一个无聊而又变态的任务：有一系列的任务会成生一组随机&gt;=0的整数队列[n,n,n,.....n,n]，我们需要立即取得他们的n*n自乘结果。当然你也可以使用单线程进行相关的操作，但是由于计算任务巨大，我们不得采用分布式多进程生产者与消费者模式来进行程序的执行了，好吧，我们先了解一下相关术语。
+     </p>
+     <h2>
+      分布式
+     </h2>
+     <p>
+      在一个分布式系统中，一组独立的计算机展现给用户的是一个统一的整体，就好像是一个系统似的。这种情景下就是分布式。
+     </p>
+     <h2>
+      为什么要用分布式多进程而不是多线程？
+     </h2>
+     <p>
+      由于
+      <code>
+       Python
+      </code>
+      解释器中使用了内部的GIL全局解释器锁，使得
+      <code>
+       Python
+      </code>
+      多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。所以多线程并不适用于高密度的计算任务，由于计算任务数量庞大，所以采用分布式可以大大提高计算的速度。
+     </p>
+     <h2>
+      关于
+      <code>
+       Python
+      </code>
+      的进程
+     </h2>
+     <p>
+      请点击传送门:
+      <a href="http://www.17python.com/blog/34">
+       Python并发编程（上）进程模块multiprocessing模块和Process类
+      </a>
+     </p>
+     <h2>
+      Managers
+     </h2>
+     <p>
+      管理器提供一种创建可在不同进程之间共享的数据的方法，包括在不同机器上运行的进程之间通过网络共享。管理员对象控制管理共享对象的服务器进程。其他进程可以通过使用代理访问共享对象。这里我们使用
+      <code>
+       multiprocessing.managers.BaseManager
+      </code>
+      来创建一个多进程管理器，对网络的任务进行注册和管理。
+      <code>
+       BaseManager
+      </code>
+      下边封装了很多相关的方法，大大简化了网络上进程之间的通信，可以方便的组建分布式的进程任务。
+     </p>
+     <h2>
+      Queue
+     </h2>
+     <p>
+      <code>
+       Queue
+      </code>
+      实现多生产者，多消费者队列。它特别适用于信息必须在多个线程间安全地交换的多线程程序中。在本次分布式多进程的任务
+      <code>
+       Queue
+      </code>
+      起到了非常重要的作用。
+     </p>
+     <h2>
+      开始编码前
+     </h2>
+     <p>
+      我们先构思一下程序需要的模块：
+     </p>
+     <ul>
+      <li>
+       上帝（God也是服务器，服务器负责注册队列queue,并接收并查看到最终结果。）
+      </li>
+      <li>
+       生产者（Producer,负责生产出需要进行计算的数据并发送给消费者。）
+      </li>
+      <li>
+       消费者（Consumer，负责接收生产者发来的数据并进行计算，最后把结果发送给上帝看.）
+      </li>
+     </ul>
+     <p>
+      相关思维导图：如果下
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/swdt.png"/>
+     </p>
+     <h2>
+      程序构建要点：
+     </h2>
+     <pre><code>class GodManager(BaseManager):
     pass
 </code></pre>
- <p>
-  注册一个管理器，负责注册或获取网上的队列
-  <code>
-   Queue
-  </code>
-  。
- </p>
- <p>
-  服务器上需要创建程序中必需的queue,并注册到网上。
- </p>
- <pre><code>GodManager(address=('192.168.0.88',5678),authkey=b'www.17python.com')
+     <p>
+      注册一个管理器，负责注册或获取网上的队列
+      <code>
+       Queue
+      </code>
+      。
+     </p>
+     <p>
+      服务器上需要创建程序中必需的queue,并注册到网上。
+     </p>
+     <pre><code>GodManager(address=('192.168.0.88',5678),authkey=b'www.17python.com')
 </code></pre>
- <p>
-  注册服务器，通过
-  <code>
-   start()
-  </code>
-  启动，通过
-  <code>
-   connect()
-  </code>
-  连接。通过
-  <code>
-   manager.pq()
-  </code>
-  类似的方法获取网上的队列。
- </p>
- <p>
-  <em>
-   注意，分布式多进程中一定要获取网上注册的
-   <code>
-    queue
-   </code>
-  </em>
-  ，否则会造成数据错乱。
- </p>
- <p>
-  另外，测试时，请在终端中启动程序，网络连接错误的，建议查看一下防火墙是不是禁止了网络的连通，不要在IDE中使用调试来测试本程序。
- </p>
- <h2>
-  God源码
- </h2>
- <pre><code class="python">import random, time, queue
+     <p>
+      注册服务器，通过
+      <code>
+       start()
+      </code>
+      启动，通过
+      <code>
+       connect()
+      </code>
+      连接。通过
+      <code>
+       manager.pq()
+      </code>
+      类似的方法获取网上的队列。
+     </p>
+     <p>
+      <em>
+       注意，分布式多进程中一定要获取网上注册的
+       <code>
+        queue
+       </code>
+      </em>
+      ，否则会造成数据错乱。
+     </p>
+     <p>
+      另外，测试时，请在终端中启动程序，网络连接错误的，建议查看一下防火墙是不是禁止了网络的连通，不要在IDE中使用调试来测试本程序。
+     </p>
+     <h2>
+      God源码
+     </h2>
+     <pre><code class="python">import random, time, queue
 from multiprocessing.managers import BaseManager
 # 创建任务需要的两个队列
 pq = queue.Queue()
@@ -470,10 +657,10 @@ while True:
         r = c_q.get()#获得传来的计算结果
         print("收到任务计算结果%s" % r)
 </code></pre>
- <h2>
-  Producer 生产者
- </h2>
- <pre><code class="python">import random, time
+     <h2>
+      Producer 生产者
+     </h2>
+     <pre><code class="python">import random, time
 from multiprocessing.managers import BaseManager
 
 # 注册一个管理器，负责管理调度网上注册的Queue队列
@@ -496,10 +683,10 @@ while True:
     k += 1
     time.sleep(3)
 </code></pre>
- <h2>
-  Consumer 消费者
- </h2>
- <pre><code class="python">import time
+     <h2>
+      Consumer 消费者
+     </h2>
+     <pre><code class="python">import time
 from multiprocessing.managers import BaseManager
 
 # 注册一个管理器，负责管理调度网上注册的Queue队列
@@ -524,103 +711,103 @@ while True:
         time.sleep(1)
         print("好无聊，我在等待任务安排中")
 </code></pre>
- <p>
-  在终端分别启动
-  <code>
-   python3 God.py
-  </code>
-  <code>
-   python3 producer.py
-  </code>
-  <code>
-   python3 Consumer.py
-  </code>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_3.png"/>
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_4.png"/>
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_5.png"/>
- </p>
- <p>
-  然后就可以观察终端打印的结果，服务器终端显示着计算回来的结果，除了服务器以外，生产者和消费者都可以分布式在各个终端上启动多个进行任务的生成和计算。
+     <p>
+      在终端分别启动
+      <code>
+       python3 God.py
+      </code>
+      <code>
+       python3 producer.py
+      </code>
+      <code>
+       python3 Consumer.py
+      </code>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_3.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_4.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171007_5.png"/>
+     </p>
+     <p>
+      然后就可以观察终端打印的结果，服务器终端显示着计算回来的结果，除了服务器以外，生产者和消费者都可以分布式在各个终端上启动多个进行任务的生成和计算。
 我这里只在本机上进行测试了，如果只是在一台机器上进行多进程的计算，可以不必网上注册，使用唯一的
-  <code>
-   Queue
-  </code>
-  进行通信即可。
- </p>
- <p>
-  别小睢这个小小的分布式，稍加修改任务即可变成强大的分布式采集程序，看你怎么用了。
- </p>
- <h2>
-  参考文档
- </h2>
- <ul>
-  <li>
-   <a href="http://python.usyiyi.cn/documents/python_352/library/queue.html#queue.Queue">
-    queue - 同步队列类
-   </a>
-  </li>
-  <li>
-   <a href="http://python.usyiyi.cn/documents/python_352/library/multiprocessing.html">
-    multiprocessing —— 基于进程的并行
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python并发编程（上）进程模块multiprocessing模块和Process类
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-06 09:43:48
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Python中为什么要用多进程编程？
- </h2>
- <p>
-  由于
-  <code>
-   Python
-  </code>
-  解释器中使用了内部的GIL全局解释器锁，使得
-  <code>
-   Python
-  </code>
-  多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。
+      <code>
+       Queue
+      </code>
+      进行通信即可。
+     </p>
+     <p>
+      别小睢这个小小的分布式，稍加修改任务即可变成强大的分布式采集程序，看你怎么用了。
+     </p>
+     <h2>
+      参考文档
+     </h2>
+     <ul>
+      <li>
+       <a href="http://python.usyiyi.cn/documents/python_352/library/queue.html#queue.Queue">
+        queue - 同步队列类
+       </a>
+      </li>
+      <li>
+       <a href="http://python.usyiyi.cn/documents/python_352/library/multiprocessing.html">
+        multiprocessing —— 基于进程的并行
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python并发编程（上）进程模块multiprocessing模块和Process类
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-06 09:43:48
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python中为什么要用多进程编程？
+     </h2>
+     <p>
+      由于
+      <code>
+       Python
+      </code>
+      解释器中使用了内部的GIL全局解释器锁，使得
+      <code>
+       Python
+      </code>
+      多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。
 当程序是在I/O密集时，CPU可能会有更多的空闲处理多线程的并发，这种情况下一般是没有问题的。如果是大量计算密集型的应用，如果使用多线程来并发，性能会大大降低，这个时候，我们就得考虑使用进程
-  <code>
-   Process
-  </code>
-  来进行编程及通信了。
- </p>
- <h2>
-  创建进程Process(方法1)
- </h2>
- <pre><code class="python">import time, os
+      <code>
+       Process
+      </code>
+      来进行编程及通信了。
+     </p>
+     <h2>
+      创建进程Process(方法1)
+     </h2>
+     <pre><code class="python">import time, os
 from multiprocessing import Process
 def clock(x,y):
     for i in range(x):
@@ -631,10 +818,10 @@ if __name__ == '__main__':
     p.start()
     p.join()
 </code></pre>
- <h2>
-  创建进程Process(方法2)
- </h2>
- <pre><code class="python">import time, os
+     <h2>
+      创建进程Process(方法2)
+     </h2>
+     <pre><code class="python">import time, os
 from multiprocessing import Process
 class ClockProcess(Process):
     def __init__(self,x,y):
@@ -654,25 +841,25 @@ if __name__ == '__main__':
     p.join()
     p1.join()
 </code></pre>
- <p>
-  通过
-  <code>
-   Process
-  </code>
-  类创建实例，然后传函数创建进程，另一种是继承
-  <code>
-   Process
-  </code>
-  类，然后重写
-  <code>
-   run()
-  </code>
-  方法创建要执行的任务。
- </p>
- <h2>
-  进程池 Pool(方法3)
- </h2>
- <pre><code class="python">from multiprocessing import Pool
+     <p>
+      通过
+      <code>
+       Process
+      </code>
+      类创建实例，然后传函数创建进程，另一种是继承
+      <code>
+       Process
+      </code>
+      类，然后重写
+      <code>
+       run()
+      </code>
+      方法创建要执行的任务。
+     </p>
+     <h2>
+      进程池 Pool(方法3)
+     </h2>
+     <pre><code class="python">from multiprocessing import Pool
 import os
 
 def clock(k):
@@ -684,33 +871,33 @@ if __name__ == '__main__':
     with Pool(5) as p:
         p.map(clock,l)
 </code></pre>
- <p>
-  进程池方便创建多进程进行操作，创建使用也是比较简单的，使用时可以根据应用场景对线程的控制要求来选择线程的创建方式。
- </p>
- <h2>
-  线程间的通信
- </h2>
- <p>
-  <code>
-   Python
-  </code>
-  为线程提供了
-  <code>
-   Queue、Pipes
-  </code>
-  等多种方式来交换数据，我们以
-  <code>
-   Queue
-  </code>
-  为例来演示学习一下进程间的通信及协作，稍后我们还要做分布式多进程的演示。
- </p>
- <p>
-  <code>
-   Queue
-  </code>
-  进程间通信演示：
- </p>
- <pre><code class="python">import multiprocessing as mp
+     <p>
+      进程池方便创建多进程进行操作，创建使用也是比较简单的，使用时可以根据应用场景对线程的控制要求来选择线程的创建方式。
+     </p>
+     <h2>
+      线程间的通信
+     </h2>
+     <p>
+      <code>
+       Python
+      </code>
+      为线程提供了
+      <code>
+       Queue、Pipes
+      </code>
+      等多种方式来交换数据，我们以
+      <code>
+       Queue
+      </code>
+      为例来演示学习一下进程间的通信及协作，稍后我们还要做分布式多进程的演示。
+     </p>
+     <p>
+      <code>
+       Queue
+      </code>
+      进程间通信演示：
+     </p>
+     <pre><code class="python">import multiprocessing as mp
 import time, os
 from queue import Queue
 
@@ -733,63 +920,63 @@ if __name__ == '__main__':
     p.start()
     p.join()
 </code></pre>
- <p>
-  <code>
-   Queue
-  </code>
-  的使用其实就是生产者与消费者的模式，上边的代码运行后会有死锁，请按
-  <code>
-   ctrl+c
-  </code>
-  强制停止程序运行。
-  <code>
-   Python
-  </code>
-  的进程有个很强大的地方，就是通过简单的配置就可以进行分布式多进程，这点是很吸引人的，稍后我会有一个篇幅来介绍一下分布式多进程。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python多线程编程（下）多线程锁 threading.Lock
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-04 14:49:34
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在多线程任务中，线程对数据的操作是随机的，这个先后次序无法预测，如果利用多线程修改唯一数据，由于对数据操作的随机性，必会影响到数据结果的准确性，所以在多线程的任务的编码中，我们必须使用线程锁。
- </p>
- <h2>
-  Python的多线程锁 threading.Lock
- </h2>
- <p>
-  通过下边的例子，我们来看看多线程锁的重要性，定义两个数据，同时利用多线程对其+ -相同的数值，
+     <p>
+      <code>
+       Queue
+      </code>
+      的使用其实就是生产者与消费者的模式，上边的代码运行后会有死锁，请按
+      <code>
+       ctrl+c
+      </code>
+      强制停止程序运行。
+      <code>
+       Python
+      </code>
+      的进程有个很强大的地方，就是通过简单的配置就可以进行分布式多进程，这点是很吸引人的，稍后我会有一个篇幅来介绍一下分布式多进程。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python多线程编程（下）多线程锁 threading.Lock
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-04 14:49:34
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      在多线程任务中，线程对数据的操作是随机的，这个先后次序无法预测，如果利用多线程修改唯一数据，由于对数据操作的随机性，必会影响到数据结果的准确性，所以在多线程的任务的编码中，我们必须使用线程锁。
+     </p>
+     <h2>
+      Python的多线程锁 threading.Lock
+     </h2>
+     <p>
+      通过下边的例子，我们来看看多线程锁的重要性，定义两个数据，同时利用多线程对其+ -相同的数值，
 如果操作次序是正常的，一加一减，那个数据应该是没有变化的，但是因为多线程操作没有加锁时对数据的操作是随机争抢资源的，
 多线程操作时会发生，多加或是多减的结果，我们看下边的例子：
- </p>
- <pre><code class="python">import threading
+     </p>
+     <pre><code class="python">import threading
 
 data = 0
 lock_data = 0
@@ -837,68 +1024,68 @@ if __name__ == '__main__':
     main()
 
 </code></pre>
- <p>
-  多次运行后我们会发现，无锁数据的最终结果会出现不同，因为可以证明，无锁的时候多线程操作是随机性的。所以在多线程操作中，如果存在多线程操作唯一数据时，一定要加锁保证每次只有一个线程对基进行操作。
- </p>
- <p>
-  除了对多唯一数据进行加锁这种方法以外，在
-  <code>
-   Python
-  </code>
-  中还可以使用信号量或是事件对线程进行控制，但笔者认为，还是使用Lock对象比较方便。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/thread">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python多线程编程（上）多线程创建的几种方法
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-03 13:01:21
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Python多线程
- </h2>
- <p>
-  在编程的日常中，如果遇到大量相同并且重复的计算任务时，我们考虑使用多线程，多线程可以并发的执行程序中的函数，这样就可以更快的利用CPU计算结果，结省时间成本。
-  <code>
-   Python
-  </code>
-  中创建线程的方法有很多，可以通过
-  <code>
-   thread threading.Thread
-  </code>
-  或是线程池提供的方法来创建线程,这节我们主要讨论如何创建线程。
- </p>
- <h2>
-  单线程时的操作
- </h2>
- <p>
-  我们定义一些操作，先用单线顺序操作。
- </p>
- <pre><code class="python">import time
+     <p>
+      多次运行后我们会发现，无锁数据的最终结果会出现不同，因为可以证明，无锁的时候多线程操作是随机性的。所以在多线程操作中，如果存在多线程操作唯一数据时，一定要加锁保证每次只有一个线程对基进行操作。
+     </p>
+     <p>
+      除了对多唯一数据进行加锁这种方法以外，在
+      <code>
+       Python
+      </code>
+      中还可以使用信号量或是事件对线程进行控制，但笔者认为，还是使用Lock对象比较方便。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python多线程编程（上）多线程创建的几种方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-03 13:01:21
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python多线程
+     </h2>
+     <p>
+      在编程的日常中，如果遇到大量相同并且重复的计算任务时，我们考虑使用多线程，多线程可以并发的执行程序中的函数，这样就可以更快的利用CPU计算结果，结省时间成本。
+      <code>
+       Python
+      </code>
+      中创建线程的方法有很多，可以通过
+      <code>
+       thread threading.Thread
+      </code>
+      或是线程池提供的方法来创建线程,这节我们主要讨论如何创建线程。
+     </p>
+     <h2>
+      单线程时的操作
+     </h2>
+     <p>
+      我们定义一些操作，先用单线顺序操作。
+     </p>
+     <pre><code class="python">import time
 def loop():
     print("循环loop1打印时间======",time.ctime())
     time.sleep(3)   
@@ -906,35 +1093,35 @@ loop()
 loop()
 print("loop1打印结束时间======",time.ctime())
 </code></pre>
- <p>
-  程序执行结果：
- </p>
- <p>
-  循环loop1打印时间====== Mon Oct  2 07:59:17 2017
- </p>
- <p>
-  循环loop1打印时间====== Mon Oct  2 07:59:20 2017
- </p>
- <p>
-  loop1打印结束时间====== Mon Oct  2 07:59:23 2017
- </p>
- <p>
-  顺序执行程序后，共花掉6秒时间，如果我们可以并发执行这个打印，或许我们能节约一些时间。
- </p>
- <h2>
-  thread
- </h2>
- <p>
-  <code>
-   thread
-  </code>
-  提供了一些线程创建与操作的方法，但官方文档及各类参考书中均有提到，
-  <code>
-   _thread
-  </code>
-  是一个比较低级的线程操作模块不建使用，这里我们也只是带过。
- </p>
- <pre><code class="python">import _thread
+     <p>
+      程序执行结果：
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 07:59:17 2017
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 07:59:20 2017
+     </p>
+     <p>
+      loop1打印结束时间====== Mon Oct  2 07:59:23 2017
+     </p>
+     <p>
+      顺序执行程序后，共花掉6秒时间，如果我们可以并发执行这个打印，或许我们能节约一些时间。
+     </p>
+     <h2>
+      thread
+     </h2>
+     <p>
+      <code>
+       thread
+      </code>
+      提供了一些线程创建与操作的方法，但官方文档及各类参考书中均有提到，
+      <code>
+       _thread
+      </code>
+      是一个比较低级的线程操作模块不建使用，这里我们也只是带过。
+     </p>
+     <pre><code class="python">import _thread
 from utils import tn # 导入工具类中计算程序执行时间的函数
 def loop():
     print("循环loop1打印时间======",time.ctime())
@@ -948,57 +1135,57 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <p>
-  程序执行结果：
- </p>
- <p>
-  循环loop1打印时间====== Mon Oct  2 14:24:49 2017
- </p>
- <p>
-  循环loop1打印时间====== Mon Oct  2 14:24:49 2017
- </p>
- <p>
-  如果上边没有sleep()，程序会没有运行完打印直接退出
- </p>
- <p>
-  程序运行时间:3.01ms
- </p>
- <p>
-  这次程序的运行我节省了3秒钟的宝贵时间！但也发现了
-  <code>
-   thread
-  </code>
-  模块的一些缺点，比如主线程结束时不会等待其它线程，这将导致程序没有打印结果直接退出了，这是我们不想看到的。
+     <p>
+      程序执行结果：
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
+     </p>
+     <p>
+      如果上边没有sleep()，程序会没有运行完打印直接退出
+     </p>
+     <p>
+      程序运行时间:3.01ms
+     </p>
+     <p>
+      这次程序的运行我节省了3秒钟的宝贵时间！但也发现了
+      <code>
+       thread
+      </code>
+      模块的一些缺点，比如主线程结束时不会等待其它线程，这将导致程序没有打印结果直接退出了，这是我们不想看到的。
 所以，由于
-  <code>
-   thread
-  </code>
-  模块的功能缺陷，通常不推荐使用
-  <code>
-   thread
-  </code>
-  ,我们将继续讨论更高级的线程模块
-  <code>
-   threading
-  </code>
-  和其它线程相关模块。
- </p>
- <h2>
-  threading模块 Thread类
- </h2>
- <p>
-  创建一个
-  <code>
-   Thread
-  </code>
-  实例，其中
-  <code>
-   target
-  </code>
-  这个参数可以接受一个函数.
+      <code>
+       thread
+      </code>
+      模块的功能缺陷，通常不推荐使用
+      <code>
+       thread
+      </code>
+      ,我们将继续讨论更高级的线程模块
+      <code>
+       threading
+      </code>
+      和其它线程相关模块。
+     </p>
+     <h2>
+      threading模块 Thread类
+     </h2>
+     <p>
+      创建一个
+      <code>
+       Thread
+      </code>
+      实例，其中
+      <code>
+       target
+      </code>
+      这个参数可以接受一个函数.
 我们先来试试，代码如下：
- </p>
- <pre><code class="python">import time
+     </p>
+     <pre><code class="python">import time
 import threading
 from utils import tn # 导入工具类中计算程序执行时间的函数
 def loop1(tname):
@@ -1018,14 +1205,14 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <p>
-  通过继承
-  <code>
-   Thread
-  </code>
-  类派生子类并创建线程的对象，是创建线程的另一种方法：
- </p>
- <pre><code class="python">
+     <p>
+      通过继承
+      <code>
+       Thread
+      </code>
+      类派生子类并创建线程的对象，是创建线程的另一种方法：
+     </p>
+     <pre><code class="python">
 import time
 import threading
 from utils import tn # 导入工具类中计算程序执行时间的函数
@@ -1055,49 +1242,49 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <p>
-  注意：
-  <code>
-   run()
-  </code>
-  此方法必须实现;
-  <code>
-   threading.Thread.__init__(self)
-  </code>
-  必须添加父类的构器方法
- </p>
- <p>
-  二种方法相比较起来，通过继承
-  <code>
-   Thread
-  </code>
-  类来创建线程的实例更直观灵活一些，通过以上例子的对比来看，多线程并发执行程序要比单线程执行节约很多时间。
+     <p>
+      注意：
+      <code>
+       run()
+      </code>
+      此方法必须实现;
+      <code>
+       threading.Thread.__init__(self)
+      </code>
+      必须添加父类的构器方法
+     </p>
+     <p>
+      二种方法相比较起来，通过继承
+      <code>
+       Thread
+      </code>
+      类来创建线程的实例更直观灵活一些，通过以上例子的对比来看，多线程并发执行程序要比单线程执行节约很多时间。
 关于多线程实例的创建还有其它方法，比如
-  <code>
-   Thread
-  </code>
-  构建方法中target参数也可以传入一个实例，不过个人感觉没有继承
-  <code>
-   Thread
-  </code>
-  类创建的实例更直观些，这里也就不举例了，
+      <code>
+       Thread
+      </code>
+      构建方法中target参数也可以传入一个实例，不过个人感觉没有继承
+      <code>
+       Thread
+      </code>
+      类创建的实例更直观些，这里也就不举例了，
 另外还可以通过线程池创建一组线程用来执行任务。
- </p>
- <h2>
-  threadpool Python线程池
- </h2>
- <p>
-  <code>
-   Python3
-  </code>
-  下载安装模块
- </p>
- <pre><code>pip3 install threadpool
+     </p>
+     <h2>
+      threadpool Python线程池
+     </h2>
+     <p>
+      <code>
+       Python3
+      </code>
+      下载安装模块
+     </p>
+     <pre><code>pip3 install threadpool
 </code></pre>
- <p>
-  用线程池测试一下刚才的打印，代码如下：
- </p>
- <pre><code class="python">import time
+     <p>
+      用线程池测试一下刚才的打印，代码如下：
+     </p>
+     <pre><code class="python">import time
 import threadpool
 from utils import tn # 导入工具类中计算程序执行时间的函数
 def loop1(tname):
@@ -1114,78 +1301,78 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
- <p>
-  <code>
-   Python
-  </code>
-  线程的创建方法应该还有很多种，这里就不在介绍了，博主感觉继承
-  <code>
-   Thread
-  </code>
-  类创建实例的方法比较经典可行，代码直观，其次是创建
-  <code>
-   Thread
-  </code>
-  对象传参进去也是简单到家了。
+     <p>
+      <code>
+       Python
+      </code>
+      线程的创建方法应该还有很多种，这里就不在介绍了，博主感觉继承
+      <code>
+       Thread
+      </code>
+      类创建实例的方法比较经典可行，代码直观，其次是创建
+      <code>
+       Thread
+      </code>
+      对象传参进去也是简单到家了。
 有关
-  <code>
-   Python
-  </code>
-  线程的创建就先聊到这里，稍后再研究一下线程锁，这几天正值国庆节，祝大家玩的开心！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/thread">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   python 类的静态方法和类方法
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-30 09:31:31
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  静态方法和类方法的定义
- </h2>
- <p>
-  <code>
-   Python
-  </code>
-  中类的静态方法使用
-  <code>
-   @staticmethod
-  </code>
-  装饰器来定义
-  <code>
-   Python
-  </code>
-  中类方法使用
-  <code>
-   @classmethod
-  </code>
-  装饰器来定义
- </p>
- <pre><code class="python">
+      <code>
+       Python
+      </code>
+      线程的创建就先聊到这里，稍后再研究一下线程锁，这几天正值国庆节，祝大家玩的开心！
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       python 类的静态方法和类方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-30 09:31:31
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      静态方法和类方法的定义
+     </h2>
+     <p>
+      <code>
+       Python
+      </code>
+      中类的静态方法使用
+      <code>
+       @staticmethod
+      </code>
+      装饰器来定义
+      <code>
+       Python
+      </code>
+      中类方法使用
+      <code>
+       @classmethod
+      </code>
+      装饰器来定义
+     </p>
+     <pre><code class="python">
 class Hello:
     k = 2
     #定义一个类的静态方法
@@ -1200,464 +1387,56 @@ class Hello:
 print(Hello.add(999,1))#使用静态方法 结果为1000
 print(Hello.mul(2))#使用类方法 结果为4
 </code></pre>
- <p>
-  类的静态方法使用和使用普通函数一样简单，但类方法确有些不同，她只能用于类本身，把自身做为对象进行操作。
+     <p>
+      类的静态方法使用和使用普通函数一样简单，但类方法确有些不同，她只能用于类本身，把自身做为对象进行操作。
 我们继承一下
-  <code>
-   Hello
-  </code>
-  这个类，看看静态方法和类方法是不是能被继承？
- </p>
- <pre><code class="python">class World(Hello):
+      <code>
+       Hello
+      </code>
+      这个类，看看静态方法和类方法是不是能被继承？
+     </p>
+     <pre><code class="python">class World(Hello):
     k = 4
 
 print(World.add(1,999))
 print(World.mul(2))
 </code></pre>
- <p>
-  通过上边的例子，我们可以发现子类可以继承使用父类方法和父类的静态方法，如果类变量值有所变化，结果也会有所不同。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classstatictest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classstatictest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python面向对象编程（OOP）初探
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-29 15:27:35
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2017/09/44344855_33.jpeg"/>
- </p>
- <h2>
-  面向对象编程
- </h2>
- <p>
-  说起面向对象编程，除了那些晦涩抽象的定义，我脑海中印象比较深的就是那张王宝强的表情图：程序员？面向对象编程？哈哈哈没有对象你编毛程？
- </p>
- <h2>
-  三大特征
- </h2>
- <p>
-  学过java的同学应该非常的了解这三个特征：
-  <em>
-   封装、继承、多态
-  </em>
-  在Python的世界中，一切都是对象，为什么要用面向对象模式来进行编程？因为这样更接近人类对自然的认识过程，更直观，如果对面向编程的理论不太了解，建议百度搜索相关知识了解一下。
- </p>
- <h2>
-  Python中的Class
- </h2>
- <p>
-  在Python中定义一个Class是非常简单的，语方法如下：
- </p>
- <pre><code>Class classname(object):
-    pass
-</code></pre>
- <p>
-  其中（object）是用来定义需要继承的父类，Python中，可以继承多个类，这个与java的单继承不同。
- </p>
- <pre><code class="python">def run():
-    print("我会跑！")
-
-class Animal(object):
-    k = 0#类属性
-    def __init__(self,name):#类构造器
-        self.name = name#实例的属性
-    #实例的方法
-    def say(self):
-        Animal.k += 1
-        print("{0}:我会呼吸！".format(self.name))
-        print("Animal.k={0}".format(Animal.k))
-
-a = Animal("aaaa")
-a.say()#执行实例的方法
-print("Animal.k:{0}".format(Animal.k))#打印类属性
-print(Animal.__init__)
-print(Animal.say)
-Animal.m = 1
-a.color = "red" #动态的添加属性
-a.run = run()#动态的添加属性
-print("我的颜色是=%s" % a.color)
-print("Animal.m=%s" % Animal.m)
-print("a.m=%s" % a.m)
-# print("Animal.a：%s" % Animal.a)  这里会抛出错误
-</code></pre>
- <p>
-  上边的实例不难发现，在类中，包括
-  <code>
-   k
-  </code>
-  类变量、
-  <code>
-   self.name
-  </code>
-  实例变量、
-  <code>
-   say
-  </code>
-  实例的方法，这些成员，都是类的的属性。
-Python中的实例对象可以动态的添加类变量及实例变量，只需要点一个
-  <code>
-   .
-  </code>
-  这和Java不同（当然Java也可以通过反射aop切面方式动态为对象添加功能方法）。
- </p>
- <h2>
-  构造器和self
- </h2>
- <p>
-  <code>
-   __init__(self)
-  </code>
-  类中的这个特殊方法就是类的构造器，
-  <code>
-   self
-  </code>
-  代表着这个类创建的对象。
-关于成员变量我们可以这样理解：对象和类说：
-  <code>
-   关于变量，你的就是我的，我的确只是我的。
-  </code>
- </p>
- <h2>
-  Python的继承
- </h2>
- <p>
-  Python中，类的继承很简单方便，看下下边的代码
- </p>
- <pre><code class="python">class Dog(Animal):
-    k = 999 #我们定义了一个与父类相同的类变量
-    def __init__(self,name):#同样定义了一个相同名称的实例变量
-        Animal.__init__(self,name)#注意这里没有:::::号
-
-    def say(self):
-        print(self.name+":我的叫声是：汪汪汪！")
-        print("Dog.k={0}".format(Dog.k)),
-
-dog = Dog("wangwang")
-dog.say()
-print("Animal.k:{0}".format(Animal.k))#打印父类属性
-print("Dog.k:{0}".format(Dog.k))#打印子类属性
-# dog.run #这个动态添加到父类创建的实例中的变量是无法继承过来的。 非得执行的话会报错。
-</code></pre>
- <p>
-  通过上边的例子，我们可以看出，类继承后，实例的变量是可以继承的，通过调用父类的
-  <code>
-   __init__()
-  </code>
-  方法来简化实例构造。
-但是父类的类属性是无法继承的，他们互相独立存在在内存中。
-  <code>
-   Dog
-  </code>
-  类中的也有一个
-  <code>
-   say()
-  </code>
-  的方法，象这样与父类拥有相同的方法名称而具有不相同的执行结果的行为叫做方法重写。
- </p>
- <h2>
-  多态
- </h2>
- <p>
-  我们在创建一个新类继承
-  <code>
-   Animal
-  </code>
- </p>
- <pre><code class="python">
-class Cat(Animal):
-    def __init__(self,name):
-        Animal.__init__(self,name)
-
-    def say(self):
-        print(self.name+":我的叫声是：喵喵喵")
-
-cat = Cat("Tom")
-cat.say()
-</code></pre>
- <p>
-  <code>
-   isinstance()
-  </code>
-  函数，可以用来判断一个变量是否是某个类，我们测试一下
- </p>
- <pre><code>print(isinstance(cat,Cat))#True
-print(isinstance(cat,Animal))#True
-print(isinstance(a,Animal))#True
-print(isinstance(a,Cat))#False
-</code></pre>
- <p>
-  很明显，动物的对象不能说成是猫，但猫的对象可以是猫类，说猫是动物类也没什么错误。也就是说，继承是从上到下。
-那多态是什么？我们还需要一个函数，然后来看看。
- </p>
- <pre><code class="python">def isay(animal):
-    animal.say()
-
-isay(a)#aaaa:我会呼吸！
-isay(dog)#wangwang:我的叫声是：汪汪汪！
-isay(cat)#Tom:我的叫声是：喵喵喵
-</code></pre>
- <p>
-  通过
-  <code>
-   isay()
-  </code>
-  方法的输出，我们多少对多态这个概念有那么一点了解了，回想当年学Java的多态的时候，和现在的情况大同小异乎？
-如果我们随便建一个类，包括
-  <code>
-   say()
-  </code>
-  方法，然后用
-  <code>
-   isay()
-  </code>
-  方法输出打印，会不会也是产生多态的效果呢？
-答案是：会的！在
-  <code>
-   Pyhong
-  </code>
-  中，这就是动态语言的“鸭子类型”，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
-然在
-  <code>
-   Java
-  </code>
-  静态语言中，则会对父类进行检查，如果不是同一个父类，那么就会报错。
- </p>
- <p>
-  好吧，有关Python类，对象相关先说到这里，希望大家国庆节快乐哦！
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classtest.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classtest.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-28 13:33:43
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Event鼠标事件
- </h2>
- <ul>
-  <li>
-   <button-1>
-    ：鼠标左击事件
-   </button-1>
-  </li>
-  <li>
-   <button-2>
-    ：鼠标右击事件
-   </button-2>
-  </li>
-  <li>
-   <button-3>
-    ：鼠标中击事件
-   </button-3>
-  </li>
-  <li>
-   <double-button-1>
-    ：双击事件
-   </double-button-1>
-  </li>
-  <li>
-   <triple-button-1>
-    ：三击事件
-   </triple-button-1>
-  </li>
-  <li>
-   <bx-motion>
-    ：鼠标移动事件,x=[1,2,3]分别表示左、中、右鼠标操作。
-   </bx-motion>
-  </li>
-  <li>
-   <buttonrelease-x>
-    鼠标释放事件,x=[1,2,3],分别表示鼠标的左、中、右键操作
-   </buttonrelease-x>
-  </li>
-  <li>
-   <leave>
-    ：鼠标离开时产生此事件
-   </leave>
-  </li>
- </ul>
- <h2>
-  Event键盘事件
- </h2>
- <p>
-  bing
-  <key>
-   和事件函数来触发，其中Key 可以换成对应的键值，也可以是组合键。
-  </key>
- </p>
- <h2>
-  程序事件
- </h2>
- <p>
-  程序退出
-  <code>
-   root.protocol('WM_DELETE_WINDOW', printProtocol)
-  </code>
- </p>
- <h2>
-  源码
- </h2>
- <p>
-  <img alt="" src="assets/images/media/upload/2017/09/Snip20170928_18.png"/>
- </p>
- <pre><code class="python">import tkinter as tk
-
-root = tk.Tk()
-
-###################################
-# 鼠标事件
-###################################
-def printroot(event):
-    print(event.x,event.y)
-
-bt = tk.Button(root, text="<double-button-1>：双击事件 ")
-bt1 = tk.Button(root, text="<triple-button-1>：三击事件  ")
-bt2 = tk.Button(root, text="<leave>：鼠标离开时产生此事件")
-bt3 = tk.Button(root, text="<button-1>：鼠标左击事件")
-bt4 = tk.Button(root, text="<button-2>：鼠标右击事件")
-bt5 = tk.Button(root, text="<button-3>：鼠标中击事件")
-bt6 = tk.Button(root, text="<b1-motion>：鼠标移动事件,x=[1,2,3]分别表示左、右、中鼠标操作。  ")
-bt7 = tk.Button(root, text="<buttonrelease-2>鼠标释放事件,x=[1,2,3],分别表示鼠标的左、右、中键操作  ")
-bt.grid()
-bt1.grid()
-bt2.grid()
-bt3.grid()
-bt4.grid()
-bt5.grid()
-bt6.grid()
-bt7.grid()
-bt.bind("<double-button-1>",printroot)
-bt1.bind("<triple-button-1>",printroot)
-bt2.bind("<leave>",printroot)
-bt3.bind("<button-1>",printroot)
-bt4.bind("<button-2>",printroot)
-bt5.bind("<button-3>",printroot)
-bt6.bind("<b1-motion>",printroot)
-bt7.bind("<buttonrelease-2>",printroot)
-
-
-###################################
-# 键盘事件
-###################################
-def printkey(event):
-    print("event.char = " + event.char)
-    print('event.keycode = ', event.keycode)  
-
-
-root.bind("<shift_r>",printkey)
-root.bind("<shift_l>",printkey)
-root.bind("<return>",printkey)
-root.bind("<key>",printkey)
-
-
-###################################
-# 程序退出
-###################################
-def printProtocol():  
-    print('WM_DELETE_WINDOW')  
-    root.destroy() 
-
-root.protocol('WM_DELETE_WINDOW', printProtocol)  
-root.mainloop()
-</key></return></shift_l></shift_r></buttonrelease-2></b1-motion></button-3></button-2></button-1></leave></triple-button-1></double-button-1></buttonrelease-2></b1-motion></button-3></button-2></button-1></leave></triple-button-1></double-button-1></code></pre>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-    可爱的 Python：Python 中的 TK编程
-   </a>
-  </li>
-  <li>
-   <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-    An Introduction To Tkinter
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_8.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    9 / 14
-   </button>
-   <a href="list_10.html">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+     <p>
+      通过上边的例子，我们可以发现子类可以继承使用父类方法和父类的静态方法，如果类变量值有所变化，结果也会有所不同。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classstatictest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classstatictest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_8.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        9 / 14
+       </button>
+       <a href="list_10.html">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

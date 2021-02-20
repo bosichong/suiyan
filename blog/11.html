@@ -132,69 +132,68 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python 采集数据三步曲之[Requests + re.py模块进行数据采集]
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-02 12:41:30
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <em>
-  当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。
- </em>
-</p>
-<h2>
- 数据采集第一步，加载数据源。
-</h2>
-<p>
- 这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。
-</p>
-<pre><code class="python">import re, requests # 加载所需模块
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python 采集数据三步曲之[Requests + re.py模块进行数据采集]
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-02 12:41:30
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。
+      </em>
+     </p>
+     <h2>
+      数据采集第一步，加载数据源。
+     </h2>
+     <p>
+      这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。
+     </p>
+     <pre><code class="python">import re, requests # 加载所需模块
 r = requests.get('http://hq.sinajs.cn/list=s_sh000001') #互联网上市公司股票价格
 r.encoding = 'gbk'# 设置编码 解决乱码问题
 print(r.text) #返回html代码（数据）
 </code></pre>
-<p>
- 通过上边的代码运行之后我们会得到一组数据：
-</p>
-<pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
+     <p>
+      通过上边的代码运行之后我们会得到一组数据：
+     </p>
+     <pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
 </code></pre>
-<p>
- 数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；
-</p>
-<p>
- 这样我们只要提示自己需要的
- <code>
-  上证指数,3367.1194,6.3091,0.19,2824975,31372209
- </code>
- 这段数据后，就可以把它转换成自己需要的对象，然后处理打印。
-</p>
-<h2>
- 数据采集第二步，解析数据，提取我们自己需要的。
-</h2>
-<pre><code class="python">s = r.text # 获取数据
+     <p>
+      数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；
+     </p>
+     <p>
+      这样我们只要提示自己需要的
+      <code>
+       上证指数,3367.1194,6.3091,0.19,2824975,31372209
+      </code>
+      这段数据后，就可以把它转换成自己需要的对象，然后处理打印。
+     </p>
+     <h2>
+      数据采集第二步，解析数据，提取我们自己需要的。
+     </h2>
+     <pre><code class="python">s = r.text # 获取数据
 p = r'"(.+)"' #设置正则表达式
 r = re.search(p, s).group(1) #匹配并获取结果字符串
 print(r)
 ls = r.split(',')
 print(ls)
 </code></pre>
-<h2>
- 数据采集第三步，处理最后的打印
-</h2>
-<pre><code class="python">print('''{}:{}
+     <h2>
+      数据采集第三步，处理最后的打印
+     </h2>
+     <pre><code class="python">print('''{}:{}
 当前价格:{}
 涨跌率:{}
 成交量（手）:{}
@@ -208,40 +207,41 @@ print(ls)
 #成交量（手）:2824975
 #成交额（万元）:31372209
 </code></pre>
-<p>
- 得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/tree/master/re">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/11.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/re">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/11.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

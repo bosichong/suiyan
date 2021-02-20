@@ -132,458 +132,742 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   PYBabyLog记录孩子成长过程的日记
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-09-29 00:15:30
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  前言
- </h3>
- <p>
-  岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
- </p>
- <p>
-  当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
- </p>
- <p>
-  做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
- </p>
- <p>
-  PYBabyLog的前身是
-  <a href="https://gitee.com/J_Sky/babylog">
-   BabyLog(Java开发版)
-  </a>
- </p>
- <p>
-  是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
- </p>
- <h3>
-  PYBabyLog
- </h3>
- <p>
-  PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
- </p>
- <p>
-  采用Python+MySQL+argparse技术开发的全终端操作软件。
- </p>
- <p>
-  可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
- </p>
- <p>
-  本程序数据库和
-  <a href="https://gitee.com/J_Sky/babylog">
-   BabyLog(Java开发版)
-  </a>
-  通用，可以用来展示数据。
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       这是一个快速学习JavaScript的学习笔记2
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-12-22 10:55:19
+      </span>
+      <span class="tag">
+       JavaScript
+      </span>
+     </div>
+     <h2>
+      JavaScript语句
+     </h2>
+     <p>
+      var和function是用来声明变量和语句的。
+```JavaScript
+var a,b,c=88;
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      条件语句
+     </h3>
+     <p>
+      ```JavaScript
+//if else
+var n = 2;
+if (n == 1) {
+    alert('ok')
+} else {
+    lert('no')
+}
+     </p>
+     <p>
+      //switch
+var m = 4;
+switch (m) {
+    case 1:
+        alert('no')
+        break;
+    case 4:
+        alert('yes')
+    default: //如果条件都不符合执行
+        break;
+}
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      循环语句
+     </h3>
+     <ul>
+      <li>
+       for - 多次遍历代码块
+      </li>
+      <li>
+       for/in - 遍历对象属性
+      </li>
+      <li>
+       while - 当指定条件为 true 时循环一段代码块
+      </li>
+      <li>
+       <p>
+        do/while - 当指定条件为 true 时循环一段代码块
+       </p>
+      </li>
+      <li>
+       <p>
+        break 语句“跳出”循环。
+       </p>
+      </li>
+      <li>
+       continue 语句“跳过”循环中的一个迭代。
+      </li>
+     </ul>
+     <p>
+      ```JavaScript
+//while 略
+//do while 略
+     </p>
+     <p>
+      // for
+var i = 0, j = 10;
+for (i; i&lt;j; i++) {
+    console.log(i)
+     </p>
+     <p>
+      }
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      function
+     </h3>
+     <p>
+      function用来声明一个函数。
+     </p>
+     <p>
+      ```JavaScript
+function myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}
+     </p>
+     <p>
+      var mf = myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}
+     </p>
+     <p>
+      //见 test.js
+var mf = function myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}
+document.querySelector("div").textContent = mf(6,2);//12
+     </p>
+     <p>
+      ```
+     </p>
+     <h2>
+      <p id="m1">
+       匿名函数与闭包
+      </p>
+     </h2>
+     <p>
+      ```JavaScript
+     </p>
+     <p>
+      //这是一个匿名函数
+//匿名函数可以用来命名空间，且立即执行，避免变量污染。
+(function(){console.log('匿名函数写法1')}());
+//推荐第二种方法。
+(function(s){console.log(s)})('匿名函数写法2');
+     </p>
+     <p>
+      //简书上一篇不错的JavaScript闭包的文章
+//https://www.jianshu.com/p/80fb145d57d7
+//闭包1
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+     </p>
+     <p>
+      add();
+add();
+console.log(add());//=&gt;3
+     </p>
+     <p>
+      //闭包2
+;(function(){
+    var a=1;
+    var addOne=function(x){
+        return x+a;
+    }
+    window.addOne=addOne;
+})()
+console.log(addOne(2));  // 3
+     </p>
+     <p>
+      ```
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       基于Django构建的小学生英文单词背写检测考试系统。
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-11-07 16:10:19
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <h1>
+      PyWordTest
+     </h1>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/3tai.jpg"/>
+     </p>
+     <h4>
+      介绍
+     </h4>
+     <p>
+      孩子的学习总是让父母担忧，英语学习也是让家长的头疼之事，做为程序员老爸不能整天忙于编程而忽视了孩子的教育，我们也要搞点事情。孩子英文单词到底背的怎么样了？别怕，用PyWordTest,创建题库，轻松搞定孩子的英语单词拼写情况。
+     </p>
+     <p>
+      <strong>
+       <em>
+        &gt; 本软件非英语单词学习软件，只是通过在线答题来检测孩子对单词拼写的掌握。
+       </em>
+      </strong>
+     </p>
+     <p>
+      软件通过在线考试，记录考试结果及每个单词的拼写对错情况，最后通过一些算法分析孩子对单词拼写熟练度。
+     </p>
+     <p>
+      通过易错单词了解孩子哪些单词没有掌握，通过自建题库加强孩子对生疏单词的反复练习，更多功能还在研发中。
+     </p>
+     <p>
+      程序截图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/1.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/2.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/3.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/4.jpg"/>
+     </p>
+     <h4>
+      软件架构
+     </h4>
+     <p>
+      基于Django构建的小学生英文单词背写检测考试系统。
+     </p>
+     <p>
+      环境需求：
+python (3.6.1) 
+Django (2.2.7) 
+Pillow
+     </p>
+     <h4>
+      安装教程
+     </h4>
+     <p>
+      进入程序目录后，运行python3 manage.py runserver
+     </p>
+     <p>
+      后台管理地址http://127.0.0.1:8000/admin/
+     </p>
+     <p>
+      管理员登陆:
+     </p>
+     <p>
+      用户名：admin 密码：17python.com
+     </p>
+     <p>
+      前台地址http://127.0.0.1:8000/
+     </p>
+     <h4>
+      使用说明
+     </h4>
+     <p>
+      程序已经采集了近1000小学生常用单词，后台可以根据自己的需要进行添加题库进行测试。
+     </p>
+     <p>
+      建议新建一个帐号用来考试建题库使用。
+     </p>
+     <h4>
+      参与贡献
+     </h4>
+     <p>
+      非常欢迎有想法的程序员参与提交代码，程序还很不完善！希望大家多多参与！
+     </p>
+     <h2>
+      源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/WordTest">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/WordTest">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       PYBabyLog记录孩子成长过程的日记
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-09-29 00:15:30
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <h3>
+      前言
+     </h3>
+     <p>
+      岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
+     </p>
+     <p>
+      当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
+     </p>
+     <p>
+      做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
+     </p>
+     <p>
+      PYBabyLog的前身是
+      <a href="https://gitee.com/J_Sky/babylog">
+       BabyLog(Java开发版)
+      </a>
+     </p>
+     <p>
+      是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
+     </p>
+     <h3>
+      PYBabyLog
+     </h3>
+     <p>
+      PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
+     </p>
+     <p>
+      采用Python+MySQL+argparse技术开发的全终端操作软件。
+     </p>
+     <p>
+      可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
+     </p>
+     <p>
+      本程序数据库和
+      <a href="https://gitee.com/J_Sky/babylog">
+       BabyLog(Java开发版)
+      </a>
+      通用，可以用来展示数据。
 当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
- </p>
- <h3>
-  界面截图
- </h3>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png"/>
- </p>
- <h3>
-  安装方法
- </h3>
- <p>
-  1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
-  <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
-   数据库构建文件
-  </a>
- </p>
- <p>
-  2.修改
-  <code>
-   DbHelp.py
-  </code>
-  中的MySQL的连接配置项即可
- </p>
- <h3>
-  终端版操作命令简介
- </h3>
- <p>
-  <code>
-   整理中。。。。。
+     </p>
+     <h3>
+      界面截图
+     </h3>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png"/>
+     </p>
+     <h3>
+      安装方法
+     </h3>
+     <p>
+      1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
+      <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
+       数据库构建文件
+      </a>
+     </p>
+     <p>
+      2.修改
+      <code>
+       DbHelp.py
+      </code>
+      中的MySQL的连接配置项即可
+     </p>
+     <h3>
+      终端版操作命令简介
+     </h3>
+     <p>
+      <code>
+       整理中。。。。。
 x.py -h 就都出来了。
-  </code>
- </p>
- <h3>
-  写在结尾
- </h3>
- <p>
-  其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
- </p>
- <p>
-  若给各位大虾能提交些代码或是有好的建议，非常欢迎！
- </p>
- <h2>
-  程序源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PYBabyLog">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/PYBabyLog">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   如何在Python程序中使用配置文件.ini(ConfigParser)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-06-18 15:29:01
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  引言
- </h2>
- <p>
-  在
-  <code>
-   Python
-  </code>
-  程序的编写中，我们经常要为程序配置一个
-  <code>
-   配置文件
-  </code>
-  ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+      </code>
+     </p>
+     <h3>
+      写在结尾
+     </h3>
+     <p>
+      其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
+     </p>
+     <p>
+      若给各位大虾能提交些代码或是有好的建议，非常欢迎！
+     </p>
+     <h2>
+      程序源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PYBabyLog">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PYBabyLog">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       如何在Python程序中使用配置文件.ini(ConfigParser)
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-06-18 15:29:01
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      引言
+     </h2>
+     <p>
+      在
+      <code>
+       Python
+      </code>
+      程序的编写中，我们经常要为程序配置一个
+      <code>
+       配置文件
+      </code>
+      ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
 那么如何为自己的
-  <code>
-   Python
-  </code>
-  应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
- </p>
- <p>
-  <strong>
-   本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
-  </strong>
- </p>
- <p>
-  相关链接：
-  <a href="http://www.17python.com/blog/14">
-   PythonINI配置文件读写的简单方法
-  </a>
- </p>
- <p>
-  本文重点讨论如何在程序中使用配置文件，
-  <code>
-   ConfigParser
-  </code>
-  类的具体使用，请参考上文。
- </p>
- <h2>
-  需求
- </h2>
- <p>
-  前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+      <code>
+       Python
+      </code>
+      应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
+     </p>
+     <p>
+      <strong>
+       本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
+      </strong>
+     </p>
+     <p>
+      相关链接：
+      <a href="http://www.17python.com/blog/14">
+       PythonINI配置文件读写的简单方法
+      </a>
+     </p>
+     <p>
+      本文重点讨论如何在程序中使用配置文件，
+      <code>
+       ConfigParser
+      </code>
+      类的具体使用，请参考上文。
+     </p>
+     <h2>
+      需求
+     </h2>
+     <p>
+      前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
 具体需求如下：
- </p>
- <ol>
-  <li>
-   保存程序设置参数
-  </li>
-  <li>
-   功能使用配置文件的参数
-  </li>
-  <li>
-   组织以上功能封装成为一个类，方便以后功能的扩展。
-  </li>
- </ol>
- <h2>
-  分析
- </h2>
- <p>
-  先上一个配置文件的工作流程图
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
- </p>
- <p>
-  通过流程图我们可以总结出配置文件类中需要的方法：
- </p>
- <ol>
-  <li>
-   创建(若ini文件不存在)及加载本地配置文件
-  </li>
-  <li>
-   程序加载配置项参数
-  </li>
-  <li>
-   修改参数的时候保存配置项到ini文件
-  </li>
-  <li>
-   整理配置项参数为程序功能所用。
-  </li>
- </ol>
- <h2>
-  构建APPconfig类
- </h2>
- <p>
-  首先导入必须的包：
- </p>
- <pre><code>import os
+     </p>
+     <ol>
+      <li>
+       保存程序设置参数
+      </li>
+      <li>
+       功能使用配置文件的参数
+      </li>
+      <li>
+       组织以上功能封装成为一个类，方便以后功能的扩展。
+      </li>
+     </ol>
+     <h2>
+      分析
+     </h2>
+     <p>
+      先上一个配置文件的工作流程图
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
+     </p>
+     <p>
+      通过流程图我们可以总结出配置文件类中需要的方法：
+     </p>
+     <ol>
+      <li>
+       创建(若ini文件不存在)及加载本地配置文件
+      </li>
+      <li>
+       程序加载配置项参数
+      </li>
+      <li>
+       修改参数的时候保存配置项到ini文件
+      </li>
+      <li>
+       整理配置项参数为程序功能所用。
+      </li>
+     </ol>
+     <h2>
+      构建APPconfig类
+     </h2>
+     <p>
+      首先导入必须的包：
+     </p>
+     <pre><code>import os
 from configparser import ConfigParser
 </code></pre>
- <p>
-  然后确定ini配置文件的物理位置，这里可以引用
-  <code>
-   Django
-  </code>
-  配置文件加载的方法。
- </p>
- <pre><code>    #ini程序所在目录，也是当前程序的根目录
+     <p>
+      然后确定ini配置文件的物理位置，这里可以引用
+      <code>
+       Django
+      </code>
+      配置文件加载的方法。
+     </p>
+     <pre><code>    #ini程序所在目录，也是当前程序的根目录
    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
    #INI文件地址
   INI_PATH = os.path.join(BASE_DIR, 'config.ini')
 </code></pre>
- <h2>
-  创建INI文件
- </h2>
- <p>
-  若程序是首次启动，可以判断配置文件ini是否存在，
-  <strong>
-   若不存在可以创建一个带有默认数据参数的配置文件。
-  </strong>
-  为类添加一个方法
-  <code>
-   def create_ini(self)
-  </code>
-  ，此方法用来创建配置文件ini。
+     <h2>
+      创建INI文件
+     </h2>
+     <p>
+      若程序是首次启动，可以判断配置文件ini是否存在，
+      <strong>
+       若不存在可以创建一个带有默认数据参数的配置文件。
+      </strong>
+      为类添加一个方法
+      <code>
+       def create_ini(self)
+      </code>
+      ，此方法用来创建配置文件ini。
 当在类启动方法中创建了
-  <code>
-   ConfigParser
-  </code>
-  对象后，就可以利用这个对象来编辑修改配置文件了。
- </p>
- <h2>
-  加载及保存配置文件
- </h2>
- <p>
-  若文件存在，即可直接加载了。
- </p>
- <pre><code>    def readINI(self):
+      <code>
+       ConfigParser
+      </code>
+      对象后，就可以利用这个对象来编辑修改配置文件了。
+     </p>
+     <h2>
+      加载及保存配置文件
+     </h2>
+     <p>
+      若文件存在，即可直接加载了。
+     </p>
+     <pre><code>    def readINI(self):
         """ ini文件读取，返回一个INI配置对象
          或是用来更新内存中的配置文件数据
          """
          self.c.read(self.INI_PATH, encoding='utf-8')
 </code></pre>
- <p>
-  创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
- </p>
- <p>
-  有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
- </p>
- <pre><code>def saveINI(self):
+     <p>
+      创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
+     </p>
+     <p>
+      有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
+     </p>
+     <pre><code>def saveINI(self):
     '''保存或是更新ini文件'''
     with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
         self.c.write(ini)
 </code></pre>
- <p>
-  这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
- </p>
- <h2>
-  修改并保存配置文件参数
- </h2>
- <p>
-  为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
- </p>
- <p>
-  范例：
- </p>
- <pre><code>def saveNumber(self,number):
+     <p>
+      这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
+     </p>
+     <h2>
+      修改并保存配置文件参数
+     </h2>
+     <p>
+      为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
+     </p>
+     <p>
+      范例：
+     </p>
+     <pre><code>def saveNumber(self,number):
     '''保存口算题个数设置数据'''
     self.c.set('config','number',number)
     self.saveINI()
 </code></pre>
- <h2>
-  读取参数
- </h2>
- <p>
-  当创建完
-  <code>
-   ConfigParser
-  </code>
-  对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
-  <a href="http://www.17python.com/blog/14">
-   PythonINI配置文件读写的简单方法
-  </a>
-  也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
- </p>
- <p>
-  有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   写在我的博客PV10万时：聊聊编程与画画
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-05-14 09:11:29
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Snip20190514_1.png"/>
- </p>
- <p>
-  转眼间我的
-  <code>
-   blog
-  </code>
-  PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此
-  <code>
-   blog
-  </code>
-  运行已有快二年了，没想到PV会达到10万。
- </p>
- <p>
-  回想学习
-  <code>
-   Python
-  </code>
-  大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。
- </p>
- <p>
-  贴几张近作，显吧一下吧
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg"/>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg"/>
- </p>
- <p>
-  为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。
- </p>
- <p>
-  编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。
-  <strong>
-   有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣
-  </strong>
-  。
- </p>
- <p>
-  自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。
- </p>
- <p>
-  未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。
- </p>
- <p>
-  还有三年的时候
-  <code>
-   blog
-  </code>
-  PV达到百万（是不是有点飘了？），下半年继续更新
-  <code>
-   blog
-  </code>
-  ，继续学习
-  <code>
-   Python Django PYgame
-  </code>
-  等。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(10)wx.FileDialog文件选择框
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-01-05 14:41:02
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png"/>
- </p>
- <h2>
-  wx.FileDialog文件选择框
- </h2>
- <p>
-  'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。
- </p>
- <h2>
-  创建
- </h2>
- <pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
+     <h2>
+      读取参数
+     </h2>
+     <p>
+      当创建完
+      <code>
+       ConfigParser
+      </code>
+      对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
+      <a href="http://www.17python.com/blog/14">
+       PythonINI配置文件读写的简单方法
+      </a>
+      也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
+     </p>
+     <p>
+      有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       写在我的博客PV10万时：聊聊编程与画画
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-05-14 09:11:29
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Snip20190514_1.png"/>
+     </p>
+     <p>
+      转眼间我的
+      <code>
+       blog
+      </code>
+      PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此
+      <code>
+       blog
+      </code>
+      运行已有快二年了，没想到PV会达到10万。
+     </p>
+     <p>
+      回想学习
+      <code>
+       Python
+      </code>
+      大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。
+     </p>
+     <p>
+      贴几张近作，显吧一下吧
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg"/>
+     </p>
+     <p>
+      为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。
+     </p>
+     <p>
+      编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。
+      <strong>
+       有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣
+      </strong>
+      。
+     </p>
+     <p>
+      自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。
+     </p>
+     <p>
+      未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。
+     </p>
+     <p>
+      还有三年的时候
+      <code>
+       blog
+      </code>
+      PV达到百万（是不是有点飘了？），下半年继续更新
+      <code>
+       blog
+      </code>
+      ，继续学习
+      <code>
+       Python Django PYgame
+      </code>
+      等。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(10)wx.FileDialog文件选择框
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-01-05 14:41:02
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png"/>
+     </p>
+     <h2>
+      wx.FileDialog文件选择框
+     </h2>
+     <p>
+      'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。
+     </p>
+     <h2>
+      创建
+     </h2>
+     <pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
 dlg.GetPath()#返回文件地址字符串
 </code></pre>
- <p>
-  其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。
- </p>
- <p>
-  我做了一个测试，代码下边跑跑看吧，希望能帮助到你。
- </p>
- <pre><code>import wx
+     <p>
+      其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。
+     </p>
+     <p>
+      我做了一个测试，代码下边跑跑看吧，希望能帮助到你。
+     </p>
+     <pre><code>import wx
 import os
 import time
 
@@ -672,73 +956,73 @@ if __name__ == "__main__":
     app = MyApp(0)
     app.MainLoop()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(09)wx.Python Menu 菜单
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-01-03 18:08:40
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190103_12.png"/>
- </p>
- <h2>
-  Menu 菜单
- </h2>
- <p>
-  菜单是程序经常用到的小部件，我们来看看如何创建。
- </p>
- <pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(09)wx.Python Menu 菜单
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-01-03 18:08:40
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190103_12.png"/>
+     </p>
+     <h2>
+      Menu 菜单
+     </h2>
+     <p>
+      菜单是程序经常用到的小部件，我们来看看如何创建。
+     </p>
+     <pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
     self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
     self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
     self.fileMenu.Append(self.new)#添加菜单项
 </code></pre>
- <p>
-  以上这几个操作就可以创建一个菜单及菜单项了
- </p>
- <h2>
-  wxPython 右键菜单
- </h2>
- <p>
-  创建方法，可以先创建一个菜单类
-  <code>
-   class MyPopupMenu(wx.Menu)
-  </code>
-  然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：
-  <code>
-   self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-  </code>
-  然后事件函数中生成这个菜单
-  <code>
-   self.PopupMenu(MyPopupMenu(self), e.GetPosition())
-  </code>
-  这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试
- </p>
- <pre><code>import wx
+     <p>
+      以上这几个操作就可以创建一个菜单及菜单项了
+     </p>
+     <h2>
+      wxPython 右键菜单
+     </h2>
+     <p>
+      创建方法，可以先创建一个菜单类
+      <code>
+       class MyPopupMenu(wx.Menu)
+      </code>
+      然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：
+      <code>
+       self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+      </code>
+      然后事件函数中生成这个菜单
+      <code>
+       self.PopupMenu(MyPopupMenu(self), e.GetPosition())
+      </code>
+      这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试
+     </p>
+     <pre><code>import wx
 
 class MyPopupMenu(wx.Menu):
 
@@ -809,362 +1093,98 @@ def main():
 if __name__ == '__main__':
         main()
 </code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   Python os.mknod 运行报错无法创建文件
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-27 10:47:01
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  import os
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python os.mknod 运行报错无法创建文件
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-27 10:47:01
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      import os
     file = os.path.join(os.path.dirname(
-  <strong>
-   file
-  </strong>
-  ),'17python888.txt')
+      <strong>
+       file
+      </strong>
+      ),'17python888.txt')
     os.mknod(file)#运行到此处，就会报错
- </p>
- <pre><code># 解开注释，用下边的方法试试
+     </p>
+     <pre><code># 解开注释，用下边的方法试试
 # with open(file, mode='a',encoding='utf-8') as f:
 #     pass
 </code></pre>
- <p>
-  前几天因为要创建一个文件，但是osx下边却发生了错误，可以运行上边的代码试试
- </p>
- <pre><code>os.mknod(file)#运行到此处，就会报错
+     <p>
+      前几天因为要创建一个文件，但是osx下边却发生了错误，可以运行上边的代码试试
+     </p>
+     <pre><code>os.mknod(file)#运行到此处，就会报错
 PermissionError: [Errno 1] Operation not permitted
 </code></pre>
- <p>
-  这个错误是由于linux系统权限不够，这可真是一个坑。
- </p>
- <p>
-  那么怎么办?
- </p>
- <p>
-  网上查了一下，可以用
-  <code>
-   open()
-  </code>
-  方法，咱试试。
- </p>
- <p>
-  通过测试，使用
-  <code>
-   open()
-  </code>
-  方法
-  <code>
-   mode="a"
-  </code>
-  即可搞定文件的创建。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(08)wx.ListBox 下拉列表框
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-27 09:51:07
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  wx.ListBox 下拉列表框
- </h2>
- <p>
-  wx.ListBox是以中数据展示的小部件，使用方便简单，可以用来展示比较单一的数据，例如：各种地址，名称列表等。
-这次准备了一个基于wx.ListBox构建的小小通讯录，实现了增删改但是木有查，为什么没有查？因为我没写，就这样了。
-具体效果展示如下：
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181227_7.png"/>
- </p>
- <h2>
-  wx.ListBox的创建及一些方法
- </h2>
- <p>
-  创建
- </p>
- <pre><code>listbox = wx.ListBox(panel,choices=ls)
-</code></pre>
- <p>
-  ListBox 有些常用的方法，用来处理列表中的数据
- </p>
- <pre><code>listbox.Append(text) 添加
-listbox.GetSelection() 获取索引
-listbox.GetString(sel) 通过索引获取字符串
-listbox.Delete(sel) 删除当前索引
-listbox.Insert(renamed, sel) 在当前索引处添加新的值，返回当前索引
-listbox.SetSelection(item_id) 根据索引值选择项
-listbox.Clear() 清空当前列表
-</code></pre>
- <h2>
-  通讯录的数据保存
- </h2>
- <p>
-  作为一个简单的通讯录应该能保存数据，处于简单化处理，我只保存一个文本到目录下，若是需要可以使用数据库。
-通讯录在操作的同时我们要更新保存数据，所以，我建了三个方法，分别处理新建数据文本，打开读取，保存数据。
-分别对应：newFile openFile saveFile,这样配合这几个方法就可以实现一个简单的通讯录了。
- </p>
- <p>
-  具体代码如下，可以跑跑看啦：
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy08.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy08.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   wxPython编程学习笔记(07)wxPython Dialog 弹出对话
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-12-25 13:17:28
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181225_6.png"/>
- </p>
- <h2>
-  wxPython dialogs 弹出对话框
- </h2>
- <p>
-  程序中经常会遇到弹出对话框询问操作的场景，wxPython dialogs为此提供了应用的支持，
-wxPython dialogs有几种，常用的比如：wx.MessageBox wx.MessageDialog wx.Dialog wx.adv.AboutBox等。
- </p>
- <h2>
-  dialog的创建
- </h2>
- <p>
-  一般dialog都会配合Button使用，当按钮绑定事件后，在绑定事件的函数中创建应用即可，代码如下：
- </p>
- <pre><code>wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
-</code></pre>
- <p>
-  其它类型的Dialog创建也类似如下代码，其中风格参数如下：
- </p>
- <pre><code>flag    meaning
-wx.OK   show OK button
-wx.CANCEL   show Cancel button
-wx.YES_NO   show Yes, No buttons
-wx.YES_DEFAULT  make Yes button the default
-wx.NO_DEFAULT   make No button the default
-wx.ICON_EXCLAMATION show an alert icon
-wx.ICON_ERROR   show an error icon
-wx.ICON_HAND    same as wx.ICON_ERROR
-wx.ICON_INFORMATION show an info icon
-wx.ICON_QUESTION    show a question icon
-</code></pre>
- <p>
-  可以根据自己的需要进行组合，例如组合YES和NO，yes默认选择，并且加带图标的代码：wx.YES_NO|wx.YES_DEFAULT | wx.ICON_INFORMATION
- </p>
- <h2>
-  MessageDialog 获取返回值
- </h2>
- <p>
-  当点击对话框上的按钮后窗口就会关闭，我们需要获得关闭后的返回值，可以通过如下代码获得：
- </p>
- <pre><code>    dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
-        wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
-    ret = dial.ShowModal()
-    if ret == wx.ID_YES:
-        print("YES")
-    else:
-        print("NO")
-</code></pre>
- <p>
-  好啦，完整的代码在下边，大家可以跑跑看看。
- </p>
- <h2>
-  Dialog和窗口间传递数据
- </h2>
- <p>
-  遇到过一个在主窗口弹出Dialog的需求，因为是第一次用wxPython，所以不知道数据如何传送给主窗口，后来网上扒了扒发现了一些答案。
-我这里的解决方案：
- </p>
- <ol>
-  <li>
-   先在Dialog窗口中创建类属性，然后通过类属性传递给主窗口
-  </li>
-  <li>
-   Dialog中创建一个属性self.ret=0，当点击按钮的时候设置其值为1，这样判断一下这个值，用来接收数据，如果为0就不接收。
-  </li>
- </ol>
- <p>
-  具体可以参考下边的代码
- </p>
- <pre><code>import wx
-
-
-class MyDialog(wx.Dialog):
-    def __init__(self, *args, **kw):
-        super(MyDialog, self).__init__(*args, **kw)
-        self.ret = 0
-        hbox = wx.BoxSizer(wx.HORIZONTAL)
-        self.st = wx.TextCtrl(self, wx.ID_ANY, "111")
-        self.bt = wx.Button(self, wx.ID_ANY, "提交数据")
-        self.bt.Bind(wx.EVT_BUTTON,self.onButton)
-        hbox.AddMany([(self.st),(self.bt)])
-        self.SetSizer(hbox)
-
-    def onButton(self,e):
-        self.ret=1
-        self.EndModal(1)
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        # 调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-        hbox = wx.BoxSizer(wx.VERTICAL)
-        bt0 = wx.Button(self, 1, "wx.Dialog")
-        bt1 = wx.Button(self, 1, "wx.Dialog")
-        bt2 = wx.Button(self, 1, 'Error')
-        bt3 = wx.Button(self, 1, 'Question')
-        bt4 = wx.Button(self, 1, 'Alert')
-
-        bt0.Bind(wx.EVT_BUTTON, self.onModal0)
-        bt1.Bind(wx.EVT_BUTTON, self.onModal1)
-        bt2.Bind(wx.EVT_BUTTON, self.showMessage1)
-        bt3.Bind(wx.EVT_BUTTON, self.showMessage2)
-        bt4.Bind(wx.EVT_BUTTON, self.showMessage3)
-
-        hbox.AddMany([(bt0, 1, wx.EXPAND | wx.ALIGN_TOP), (bt1, 1, wx.EXPAND), (bt2, 1, wx.EXPAND), (bt3, 1, wx.EXPAND),
-                      (bt4, 1, wx.EXPAND), ])
-        self.SetSizer(hbox)
-
-    def onModal0(self, event):
-        '''模态'''
-        myDialog= MyDialog(None, 22, title="Dialog")
-        myDialog.ShowModal()
-        if myDialog.ret == 1:
-            print(myDialog.st.GetValue())
-        else:
-            print("888888")
-        myDialog.Destroy()
-
-    def onModal1(self, event):
-        '''无模态'''
-        wx.Dialog(self, 1, "Dialog", pos=(100, 100)).Show()
-
-    def showMessage(self, e):
-        smd = wx.MessageDialog(None, "This is a Message Box", "Message",
-                               wx.YES_NO | wx.YES_DEFAULT | wx.ICON_INFORMATION)
-        smd.ShowModal()
-
-    def showMessage1(self, event):
-        dial = wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
-        ret = dial.ShowModal()
-        if ret == wx.OK:
-            print("OK")
-
-    def showMessage2(self, event):
-        dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
-                                wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
-        ret = dial.ShowModal()
-        if ret == wx.ID_YES:
-            print("YES")
-        else:
-            print("NO")
-
-    def showMessage3(self, event):
-        dial = wx.MessageBox('Download completed', 'Info',
-                             wx.OK | wx.ICON_INFORMATION)
-        ret = dial
-        if ret == wx.OK:
-            print("OK")
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button', )
-    frm.Show()  # 显示窗口
-    app.MainLoop()  # 持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy07.py">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy07.py">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_2.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    3 / 14
-   </button>
-   <a href="list_4.html">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+     <p>
+      这个错误是由于linux系统权限不够，这可真是一个坑。
+     </p>
+     <p>
+      那么怎么办?
+     </p>
+     <p>
+      网上查了一下，可以用
+      <code>
+       open()
+      </code>
+      方法，咱试试。
+     </p>
+     <p>
+      通过测试，使用
+      <code>
+       open()
+      </code>
+      方法
+      <code>
+       mode="a"
+      </code>
+      即可搞定文件的创建。
+     </p>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_2.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        3 / 14
+       </button>
+       <a href="list_4.html">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

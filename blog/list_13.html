@@ -132,138 +132,620 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   17python.com网站已经部署上线及后期更新记录
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-25 01:09:49
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  今天是个好日子
- </h2>
- <p>
-  折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学
-  <code>
-   Python Django
-  </code>
-  感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习
-  <code>
-   Python
-  </code>
-  的日子还长，学习还是要继续的，给自己打气加油！
- </p>
- <h2>
-  耐心等待备案下来
- </h2>
- <p>
-  希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次
-  <code>
-   blog
-  </code>
-  搭建的经验。
- </p>
- <h2>
-  更新在2017-09-04
- </h2>
- <p>
-  公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。
- </p>
- <h2>
-  腾讯公益404
- </h2>
- <ul>
-  <li>
-   本站演示地址
-   <a href="http://www.17python.com/404">
-    404Not-Found
-   </a>
-   <blockquote>
-    <p>
-     不解释，希望更多的站长加入吧
-     <a href="http://www.qq.com/404/">
-      传送门请点这里
-     </a>
-     希望走失的宝宝将来都能找到自己的亲人。
-    </p>
-   </blockquote>
-  </li>
- </ul>
- <h2>
-  2017-10-06更新博客功能
- </h2>
- <p>
-  为博客添加了标签云，日志归档功能。
- </p>
- <h2>
-  2017-12-22
- </h2>
- <p>
-  添加原创及转载标识，添加站点统计、热门文章功能。
- </p>
- <h2>
-  2020-01-07
- </h2>
- <p>
-  把原来由
-  <code>
-   Django
-  </code>
-  构建的博客换成了自己的新开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan">
-   下载地址
-  </a>
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   python3 Markdown模块解析Markdown代码
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 19:59:46
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  python3 markdown模块解析markdown代码，blog中需要一个解析markdown代码的模块，测试了一下markdown模块 ，简单好用。
- </p>
- <h2>
-  安装模块
- </h2>
- <p>
-  <code>
-   pip3 install markdown
-  </code>
- </p>
- <h2>
-  使用
- </h2>
- <p>
-  <code>
-   markdown
-  </code>
-  模块的使用非常简单了，参考下面的代码：
- </p>
- <pre><code class="python">
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       Git 版本控制常用命令 简明指南教程
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-26 13:03:59
+      </span>
+      <span class="tag">
+       Git
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       最近使用
+       <code>
+        Django
+       </code>
+       设计自己的个人blog，免不了要对程序的版本进行备份，所以用到了
+       <code>
+        Git
+       </code>
+       。
+       <code>
+        Git
+       </code>
+       确实是程序员居家旅游，编程备份之良药哇，本文旨在对
+       <code>
+        Git
+       </code>
+       日常使用中，使用频率较高的命令进行了一个简单的总结
+      </em>
+     </p>
+     <h2>
+      运行环境
+     </h2>
+     <ul>
+      <li>
+       MacBookPro
+      </li>
+      <li>
+       OS X 10.11.6
+      </li>
+     </ul>
+     <p>
+      如果您使用windows操作系统，终端下的命令可能会与我提供的有些不同，但git命令是一样的。
+     </p>
+     <h2>
+      安装新版Git
+     </h2>
+     <ul>
+      <li>
+       Mac osx
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+      <li>
+       Windows
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+      <li>
+       Linux
+       <a href="http://git-scm.com/download/mac">
+        点此下载
+       </a>
+      </li>
+     </ul>
+     <h2>
+      开始Git之旅
+     </h2>
+     <p>
+      我们可以从一个简单的
+      <code>
+       git
+      </code>
+      命令行开始,在终端下输入如下命令
+     </p>
+     <pre><code>mkdir gittest
+cd gittest/
+gittest git init 
+Initialized empty Git repository in /Users/mac/gittest/.git/
+</code></pre>
+     <h2>
+      取消目录的git版本控制
+     </h2>
+     <p>
+      当然 如果我们想取消当前目录的git版本控制，可以进入当前目录后，使用
+      <code>
+       rm -rf .git
+      </code>
+      来删除git版本控制的文件取消当前目录的版本控制。
+     </p>
+     <h2>
+      clone 项目
+     </h2>
+     <p>
+      终端中输入代码，下载一个项目和它的整个代码历史。
+     </p>
+     <pre><code>mkdir gittest
+git clone 项目地址
+</code></pre>
+     <p>
+      <strong>
+       git四大域：工作目录，暂存区，仓库，远程仓库。
+      </strong>
+     </p>
+     <h2>
+      配置Git
+     </h2>
+     <p>
+      查看Git配置项
+     </p>
+     <pre><code>git config --list
+</code></pre>
+     <p>
+      设置提交代码时的用户信息，--global表示设置为全局。
+     </p>
+     <pre><code>git config [--global] user.name "[name]"
+git config [--global] user.email "[email address]"
+</code></pre>
+     <h2>
+      添加删除
+     </h2>
+     <p>
+      添加文件、目录、当前所有文件及目录到暂存区。
+     </p>
+     <pre><code>git add [filename]
+git add [dir]
+git add .
+</code></pre>
+     <h2>
+      删除暂存区的文件及目录
+     </h2>
+     <p>
+      删除工作区文件，并且将这次删除放入暂存区
+     </p>
+     <pre><code>git rm [file1] [file2] ...
+git rm --cached [file] #删除缓存
+</code></pre>
+     <h2>
+      提交
+     </h2>
+     <p>
+      提交暂存区内容到本地仓库
+     </p>
+     <pre><code>git commit -m '修改提交消息'
+</code></pre>
+     <p>
+      提交到远程仓库，先绑定远程仓库，然后推送。
+     </p>
+     <pre><code>git remote add origin &lt;server&gt;
+git push origin master
+</code></pre>
+     <h2>
+      分支
+     </h2>
+     <p>
+      避免错误，可以在其它分支上进行开发修改。
+     </p>
+     <pre><code>git branch [branch-name] #新建分支
+git checkout -b [branch] #新建并切换到新分支
+git checkout [branch-name] #切换到指定分支
+git branch -d [branch-name] # 删除分支
+</code></pre>
+     <h2>
+      更新与合并
+     </h2>
+     <pre><code>git cherry-pick [commit] # 选择一个commit，合并进当前分支
+git pull #要更新你的本地仓库至最新改动
+git merge &lt;branch&gt; #全并分支到当前分支
+</code></pre>
+     <h2>
+      标签
+     </h2>
+     <pre><code>git tag 1.0.0 7b8a9d199
+</code></pre>
+     <h2>
+      查询
+     </h2>
+     <pre><code>git log
+</code></pre>
+     <h2>
+      git提交到多个远程仓库
+     </h2>
+     <pre><code>git remote add github git@https://github.com/bosichong/17python.com.git
+git remote add gitee git@https://gitee.com/J_Sky/17python.com.git
+</code></pre>
+     <p>
+      这样就保存了两个远程仓库，然后分别提交
+     </p>
+     <pre><code>git push github master
+git push gitee master
+</code></pre>
+     <h2>
+      新建git远程仓库上传出错
+     </h2>
+     <p>
+      在gitee仓库新建库的时候总有一些其它文件一起创建了，这样我们push的时候是传不上去的，需要先把没有的文件pull下来。
+     </p>
+     <pre><code>git pull
+</code></pre>
+     <p>
+      然后报错
+     </p>
+     <pre><code> * branch            master     -&gt; FETCH_HEAD
+fatal: refusing to merge unrelated histories
+</code></pre>
+     <p>
+      解决方法：
+     </p>
+     <pre><code>git pull osc master --allow-unrelated-histories
+</code></pre>
+     <p>
+      <strong>
+       osc 换成你自己的别名哦。
+      </strong>
+     </p>
+     <h2>
+      相关参考文档及教程
+     </h2>
+     <p>
+      <a href="http://www.liuyunfei.cn/blog/detail/172">
+       常用 Git 命令清单
+      </a>
+      相对比较完整的常用命令
+     </p>
+     <p>
+      <a href="http://rogerdudler.github.io/git-guide/index.zh.html">
+       git - 简明指南
+      </a>
+      初学者推荐，简单实用
+     </p>
+     <p>
+      <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">
+       史上最浅显易懂的Git教程！
+      </a>
+      廖雪峰老师的Git教程。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       Markdown 语法学习总结
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-25 08:55:15
+      </span>
+      <span class="tag">
+       网站运维
+      </span>
+     </div>
+     <p>
+     </p>
+     <blockquote>
+      <p>
+       Markdown 的目标是实现「易读易写」。
+      </p>
+     </blockquote>
+     <h2>
+      需求
+     </h2>
+     <p>
+      因为以后更新博客就需要和
+      <code>
+       Markdown
+      </code>
+      语法一直打交道了，所以有必要总结一下常用的Markdown语法，就当笔记记录一下，如有需要的时候翻查回忆一下。
+     </p>
+     <h2>
+      解决方案
+     </h2>
+     <p>
+      <code>
+       Markdown
+      </code>
+      语法的相关文档及教程在网上一搜一大把，这篇并不是
+      <code>
+       Markdown
+      </code>
+      的详细教程，只是笔者对以后博文更新常用的
+      <code>
+       Markdown
+      </code>
+      语法的一次学习及总结。
+     </p>
+     <h1>
+      语法说明
+     </h1>
+     <p>
+      ### 标题
+     </p>
+     <pre><code>### 标题哈  
+## 标题哈  
+# 标题哈
+</code></pre>
+     <h3>
+      标题哈
+     </h3>
+     <h2>
+      标题哈
+     </h2>
+     <h1>
+      标题哈
+     </h1>
+     <p>
+      官方文档中的另一种标题写法
+     </p>
+     <pre><code>This is an H1
+=============
+
+This is an H2
+-------------
+</code></pre>
+     <h1>
+      这是标题 H1
+     </h1>
+     <h2>
+      是标题 H2
+     </h2>
+     <h3>
+      引用
+     </h3>
+     <pre><code class="markdown">&gt; Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式</code></pre>
+     <blockquote>
+      <p>
+       Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式
+      </p>
+     </blockquote>
+     <h3>
+      序列
+     </h3>
+     <p>
+      序列是文章中经常用到的，有几种写法如下：
+     </p>
+     <pre><code>* Python
++ Django
+- Java
+1. Python
+2. Django
+3. Java
+</code></pre>
+     <ul>
+      <li>
+       Python
+      </li>
+      <li>
+       Django
+      </li>
+      <li>
+       Java
+      </li>
+      <li>
+       Python
+      </li>
+      <li>
+       Django
+      </li>
+      <li>
+       Java
+      </li>
+     </ul>
+     <h3>
+      Markdown 代码块
+     </h3>
+     <p>
+      比较常用的有三种方式，最简单的就是下边这种方式，一般都是用来显示一些编程语言名称提示比如
+      <code>
+       Python Django
+      </code>
+     </p>
+     <pre><code class="markdown">\`这里是一小段代码哦\`</code></pre>
+     <p>
+      <code>
+       这里是一小段代码哦
+      </code>
+     </p>
+     <p>
+      要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，显示一行或简单几行的代码时可以用这种方法
+     </p>
+     <pre><code>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以
+</code></pre>
+     <p>
+      pre 和 code 可以直接上代码段，如果是大代码段推荐使用这种方法，如果引用了第三方的code样式，可以加上 class="你的编程语言"，这样会更友好的显示。
+     </p>
+     <pre><code class="markdown">
+&lt;pre&gt;&lt;code class="markdown"&gt;这里是一小段代码哦&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+     <pre><code class="markdown">这里是一小段代码哦</code></pre>
+     <h3>
+      超链接
+     </h3>
+     <pre><code class="markdown">\[17python]()
+\[百度](http://www.baidu.com)
+</code></pre>
+     <p>
+      <a href="http://www.17python.com">
+       17python
+      </a>
+     </p>
+     <p>
+      <a href="http://www.baidu.com">
+       百度
+      </a>
+     </p>
+     <h3>
+      强调
+     </h3>
+     <pre><code class="markdown">*Python*
+
+_Django_
+
+**Java**
+
+__Spring Boot__
+</code></pre>
+     <p>
+      <em>
+       Python
+      </em>
+     </p>
+     <p>
+      <em>
+       Django
+      </em>
+     </p>
+     <p>
+      <strong>
+       Java
+      </strong>
+     </p>
+     <p>
+      <strong>
+       Spring Boot
+      </strong>
+     </p>
+     <h3>
+      插入图片
+     </h3>
+     <pre><code class="markdown">![其实这不是站长的本人的照片](/media/upload/2017/08/avatar.jpg)
+
+![17python 微信公众号，欢迎关注哦！](/media/upload/2017/08/wx.jpg "www.17python.com")</code></pre>
+     <p>
+      <img alt="其实这不是站长的本人的照片" src="assets/images/media/upload/2017/08/avatar.jpg"/>
+     </p>
+     <p>
+      <img alt="17python 微信公众号，欢迎关注哦！" src="assets/images/media/upload/2017/08/wx.jpg" title="www.17python.com"/>
+     </p>
+     <p>
+      如果需要控制图片大小的话，直接插入
+      <code>
+       html img
+      </code>
+      标签控制图片大小即可。
+      <em>
+       markdown 中是可以兼容html代码的哦！！！！
+      </em>
+     </p>
+     <h3>
+      最后
+     </h3>
+     <p>
+      <code>
+       &lt;font color=red&gt;Markdown 支持内嵌 HTML 标签。&lt;/font&gt;
+      </code>
+      <font color="red">
+       Markdown 支持内嵌 HTML 标签。
+      </font>
+     </p>
+     <p>
+      参考：
+      <a href="http://www.appinn.com/markdown/basic.html">
+       Markdown: Basics （快速入门）
+      </a>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       17python.com网站已经部署上线及后期更新记录
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-25 01:09:49
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      今天是个好日子
+     </h2>
+     <p>
+      折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学
+      <code>
+       Python Django
+      </code>
+      感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习
+      <code>
+       Python
+      </code>
+      的日子还长，学习还是要继续的，给自己打气加油！
+     </p>
+     <h2>
+      耐心等待备案下来
+     </h2>
+     <p>
+      希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次
+      <code>
+       blog
+      </code>
+      搭建的经验。
+     </p>
+     <h2>
+      更新在2017-09-04
+     </h2>
+     <p>
+      公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。
+     </p>
+     <h2>
+      腾讯公益404
+     </h2>
+     <ul>
+      <li>
+       本站演示地址
+       <a href="http://www.17python.com/404">
+        404Not-Found
+       </a>
+       <blockquote>
+        <p>
+         不解释，希望更多的站长加入吧
+         <a href="http://www.qq.com/404/">
+          传送门请点这里
+         </a>
+         希望走失的宝宝将来都能找到自己的亲人。
+        </p>
+       </blockquote>
+      </li>
+     </ul>
+     <h2>
+      2017-10-06更新博客功能
+     </h2>
+     <p>
+      为博客添加了标签云，日志归档功能。
+     </p>
+     <h2>
+      2017-12-22
+     </h2>
+     <p>
+      添加原创及转载标识，添加站点统计、热门文章功能。
+     </p>
+     <h2>
+      2020-01-07
+     </h2>
+     <p>
+      把原来由
+      <code>
+       Django
+      </code>
+      构建的博客换成了自己的新开发的
+      <code>
+       碎言静态博客
+      </code>
+      <a href="https://gitee.com/J_Sky/suiyan">
+       下载地址
+      </a>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       python3 Markdown模块解析Markdown代码
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-19 19:59:46
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      python3 markdown模块解析markdown代码，blog中需要一个解析markdown代码的模块，测试了一下markdown模块 ，简单好用。
+     </p>
+     <h2>
+      安装模块
+     </h2>
+     <p>
+      <code>
+       pip3 install markdown
+      </code>
+     </p>
+     <h2>
+      使用
+     </h2>
+     <p>
+      <code>
+       markdown
+      </code>
+      模块的使用非常简单了，参考下面的代码：
+     </p>
+     <pre><code class="python">
 #codeing=utf-8
 #引入markdown解析模块
 from markdown import markdown
@@ -272,28 +754,29 @@ s = '###这里是标题'
 m = markdown(s)#解析markdown文件
 print(m)
 </code></pre>
- <div class="blog-article">
-  <h1 class="title">
-   创建python 虚拟环境 venv
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 19:53:29
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  创建python 虚拟环境
- </h3>
- <p>
-  最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
-  <pre><code>
+     <div class="blog-article">
+      <h1 class="title">
+       创建python 虚拟环境 venv
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-19 19:53:29
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h3>
+      创建python 虚拟环境
+     </h3>
+     <p>
+      最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
+     </p>
+     <pre><code>
 ➜  ~ mkdir pywork
 ➜  ~ cd pywork/
 ➜  ~ python3 -m venv django1.9
@@ -302,119 +785,118 @@ django1.9
 ➜  pywork source django1.9/bin/activate #运行虚拟环境
 (django1.9) ➜  pywork pip list
 </code></pre>
- </p>
- <p>
-  退出虚拟环境
- </p>
- <pre><code>deactivate
+     <p>
+      退出虚拟环境
+     </p>
+     <pre><code>deactivate
 </code></pre>
- <p>
-  参考文献：
+     <p>
+      参考文献：
 http://blog.csdn.net/geekun/article/details/51325383
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   关于17python.com关于我
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-19 16:51:30
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  <em>
-   非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
-  </em>
- </p>
- <h2>
-  为什么要做这个blog？
- </h2>
- <p>
-  其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
-  <code>
-   Python Django
-  </code>
-  学习的一个总结。
- </p>
- <h2>
-  关于17python
- </h2>
- <p>
-  17Python注册域名的时候就是想，人生苦短，何不一起
-  <code>
-   Python
-  </code>
-  ？任何一个热爱
-  <code>
-   Python
-  </code>
-  的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
-  <code>
-   Python
-  </code>
-  这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
- </p>
- <h2>
-  blog存在的意义
- </h2>
- <p>
-  希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
-  <code>
-   python
-  </code>
- </p>
- <h2>
-  网站备案成功
- </h2>
- <p>
-  今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
- </p>
- <h2>
-  网站改版
- </h2>
- <p>
-  今天折腾了一天把网站换成了自己开发的
-  <code>
-   碎言静态博客
-  </code>
-  <a href="https://gitee.com/J_Sky/suiyan.git">
-   Gitee
-  </a>
-  生命在于折腾。
- </p>
- <h2>
-  联系我
- </h2>
- <p>
-  <em>
-   email bosichong@qq.com
-  </em>
- </p>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_12.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    13 / 14
-   </button>
-   <a href="#">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       关于17python.com关于我
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-19 16:51:30
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
+      </em>
+     </p>
+     <h2>
+      为什么要做这个blog？
+     </h2>
+     <p>
+      其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
+      <code>
+       Python Django
+      </code>
+      学习的一个总结。
+     </p>
+     <h2>
+      关于17python
+     </h2>
+     <p>
+      17Python注册域名的时候就是想，人生苦短，何不一起
+      <code>
+       Python
+      </code>
+      ？任何一个热爱
+      <code>
+       Python
+      </code>
+      的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
+      <code>
+       Python
+      </code>
+      这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
+     </p>
+     <h2>
+      blog存在的意义
+     </h2>
+     <p>
+      希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
+      <code>
+       python
+      </code>
+     </p>
+     <h2>
+      网站备案成功
+     </h2>
+     <p>
+      今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
+     </p>
+     <h2>
+      网站改版
+     </h2>
+     <p>
+      今天折腾了一天把网站换成了自己开发的
+      <code>
+       碎言静态博客
+      </code>
+      <a href="https://gitee.com/J_Sky/suiyan.git">
+       Gitee
+      </a>
+      生命在于折腾。
+     </p>
+     <h2>
+      联系我
+     </h2>
+     <p>
+      <em>
+       email bosichong@qq.com
+      </em>
+     </p>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_12.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        13 / 14
+       </button>
+       <a href="#">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

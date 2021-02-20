@@ -132,108 +132,305 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-12-07 20:30:45
-  </span>
-  <span class="tag">
-   Python
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在学习和编写Python代码的过程中我们经常会用到
-  <code>
-   pip
-  </code>
-  来安装一些其他包，用
-  <code>
-   pip
-  </code>
-  下载很方便的，那么如果我们自己写了Python的代码包，如何能让别人也试用
-  <code>
-   pip
-  </code>
-  来进行安装呢？真巧，我这几天就打包了一个自己写的程序发布到了
-  <code>
-   pypi.org
-  </code>
-  ，写个上传记录供大家参考。
- </p>
- <h3>
-  安装依赖包
- </h3>
- <p>
-  <code>
-   whell
-  </code>
-  用来打包，
-  <code>
-   twine
-  </code>
-  用来上传包到
-  <code>
-   pypi.org
-  </code>
- </p>
- <pre><code>pip install whell
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       pipenv 简化的虚拟环境、项目依赖管理工具
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2021-02-20 15:38:15
+      </span>
+      <span class="tag">
+       flask
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近学习flask，由于flask框架本身非常极简，功能上需要很多的扩展包，所以项目需要在Python的虚拟环境下来安装管理这些扩展，这样才会方便项目在其他地方进行扩展包的安装。这里推荐
+      <code>
+       pipenv
+      </code>
+      来管理虚拟环境和扩展。
+     </p>
+     <p>
+      ## 安装并激活虚拟环境
+     </p>
+     <pre><code>pip install pipenv
+</code></pre>
+     <p>
+      终端进入项目目录，
+      <code>
+       pipenv shell
+      </code>
+      激活并初始化虚拟环境，
+     </p>
+     <pre><code>(base) （￣︶￣）↗ pipenv shell
+Launching subshell in virtual environment...
+bash-3.2$  . /Users/mac/.local/share/virtualenvs/Flask-BabyLog-cH2fMiTs/bin/activate
+(Flask-BabyLog) bash-3.2$
+</code></pre>
+     <p>
+      我们可以看到环境配置文件的目录，以及终端的提示符的变化。
+     </p>
+     <p>
+      使用
+      <code>
+       exit
+      </code>
+      退出虚拟环境。
+     </p>
+     <h2>
+      安装项目依赖
+     </h2>
+     <p>
+      把平时的
+      <code>
+       pip
+      </code>
+      换成
+      <code>
+       pipenv
+      </code>
+     </p>
+     <pre><code>pipenv install requests
+</code></pre>
+     <p>
+      <img alt="" src="assets/images/2021/2021-02-20 16_07_18.gif"/>
+     </p>
+     <p>
+      打开项目目录中的
+      <code>
+       Pipfile
+      </code>
+     </p>
+     <pre><code>[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+</code></pre>
+     <p>
+      <code>
+       url
+      </code>
+      那里可以修改pip的镜像地址，如果下载太慢，可以换成国内的镜像地址。
+      <code>
+       [packages]
+      </code>
+      是虚拟环境中安装过的扩展包
+     </p>
+     <p>
+      假设换了一台机器，我们从GitHub上clone下来项目，当然项目中的包含
+      <code>
+       Pipfile
+      </code>
+      <code>
+       Pipfile.lock
+      </code>
+      二个文件。
+     </p>
+     <p>
+      终端运行:
+     </p>
+     <pre><code>pipenv install
+</code></pre>
+     <p>
+      即可安装项目的所有依赖。
+     </p>
+     <p>
+      以上为
+      <code>
+       pipenv
+      </code>
+      的一些简单操作，更多请参考官方文档。
+     </p>
+     <p>
+      <a href="https://pipenv.pypa.io/en/latest/?badge=latest#">
+       pipenv官方文档
+      </a>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       Anaconda常用终端命令
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2021-02-12 00:20:01
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      ## conda 常用的命令。
+     </p>
+     <p>
+      1） conda list  查看安装了哪些包。
+     </p>
+     <p>
+      2） conda env list  或  conda info -e  查看当前存在哪些虚拟环境
+     </p>
+     <p>
+      3） conda update conda  检查更新当前conda
+     </p>
+     <p>
+      4） conda --version  查询conda版本
+     </p>
+     <p>
+      5） conda -h  查询conda的命令使用
+     </p>
+     <p>
+      activate // 切换到base环境
+     </p>
+     <p>
+      conda deactivate //退出虚拟环境
+     </p>
+     <p>
+      activate learn // 切换到learn环境
+     </p>
+     <p>
+      conda create -n learn python=3 // 创建一个名为learn的环境并指定python版本为3(的最新版本)
+     </p>
+     <p>
+      conda env list // 列出conda管理的所有环境
+     </p>
+     <p>
+      conda list // 列出当前环境的所有包
+     </p>
+     <p>
+      conda install requests 安装requests包
+     </p>
+     <p>
+      conda remove requests 卸载requets包
+     </p>
+     <p>
+      conda remove -n learn --all // 删除learn环境及下属所有包
+     </p>
+     <p>
+      conda update requests 更新requests包
+     </p>
+     <p>
+      conda env export &gt; environment.yaml // 导出当前环境的包信息
+     </p>
+     <p>
+      conda env create -f environment.yaml // 用配置文件创建新的虚拟环境
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-12-07 20:30:45
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      在学习和编写Python代码的过程中我们经常会用到
+      <code>
+       pip
+      </code>
+      来安装一些其他包，用
+      <code>
+       pip
+      </code>
+      下载很方便的，那么如果我们自己写了Python的代码包，如何能让别人也试用
+      <code>
+       pip
+      </code>
+      来进行安装呢？真巧，我这几天就打包了一个自己写的程序发布到了
+      <code>
+       pypi.org
+      </code>
+      ，写个上传记录供大家参考。
+     </p>
+     <h3>
+      安装依赖包
+     </h3>
+     <p>
+      <code>
+       whell
+      </code>
+      用来打包，
+      <code>
+       twine
+      </code>
+      用来上传包到
+      <code>
+       pypi.org
+      </code>
+     </p>
+     <pre><code>pip install whell
 pip install twine
 </code></pre>
- <p>
-  如果无法下载，请尝试更换下载源，也可能会遇到pip版本太低需要升级的情况，升级后在试试安装。
- </p>
- <pre><code>pip install wheel
+     <p>
+      如果无法下载，请尝试更换下载源，也可能会遇到pip版本太低需要升级的情况，升级后在试试安装。
+     </p>
+     <pre><code>pip install wheel
 </code></pre>
- <p>
-  改为：
- </p>
- <pre><code>pip install wheel -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+     <p>
+      改为：
+     </p>
+     <pre><code>pip install wheel -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 </code></pre>
- <h3>
-  打包项目配置
- </h3>
- <p>
-  需要打包的项目结构图如下：
- </p>
- <p>
-  <img alt="" src="assets/images/2021/Snip20201207_1.png"/>
- </p>
- <p>
-  <code>
-   PrimarySchoolMath
-  </code>
-  目录就是我们要打包的项目目录(这个名称和setup.py里的项目名称要一致，也是pip install XXXX  的名字是一样的)。
-  <code>
-   LICENSE
-  </code>
-  是软件的开源协议，如果不知道怎么选可以到https://choosealicense.com 这里选择一下。
-  <code>
-   readme.md
-  </code>
-  是软件或包的说明，可以写一些仓库地址简要说明。
-  <code>
-   setup.py
-  </code>
-  打包的配以文件，后边详细说明。
- </p>
- <h3>
-  setup.py打包配置文件说明
- </h3>
- <p>
-  <code>
-   setup.py
-  </code>
-  :
- </p>
- <pre><code>import setuptools
+     <h3>
+      打包项目配置
+     </h3>
+     <p>
+      需要打包的项目结构图如下：
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_1.png"/>
+     </p>
+     <p>
+      <code>
+       PrimarySchoolMath
+      </code>
+      目录就是我们要打包的项目目录(这个名称和setup.py里的项目名称要一致，也是pip install XXXX  的名字是一样的)。
+      <code>
+       LICENSE
+      </code>
+      是软件的开源协议，如果不知道怎么选可以到https://choosealicense.com 这里选择一下。
+      <code>
+       readme.md
+      </code>
+      是软件或包的说明，可以写一些仓库地址简要说明。
+      <code>
+       setup.py
+      </code>
+      打包的配以文件，后边详细说明。
+     </p>
+     <h3>
+      setup.py打包配置文件说明
+     </h3>
+     <p>
+      <code>
+       setup.py
+      </code>
+      :
+     </p>
+     <pre><code>import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -255,127 +452,127 @@ setuptools.setup(
     ],
 )
 </code></pre>
- <p>
-  至此，所有打包的准备工作都已经准备好了，接下来就是利用命令来打包上传了。
- </p>
- <h3>
-  打包
- </h3>
- <p>
-  项目目录下打开终端：
- </p>
- <pre><code>python3 setup.py sdist bdist_wheel
+     <p>
+      至此，所有打包的准备工作都已经准备好了，接下来就是利用命令来打包上传了。
+     </p>
+     <h3>
+      打包
+     </h3>
+     <p>
+      项目目录下打开终端：
+     </p>
+     <pre><code>python3 setup.py sdist bdist_wheel
 </code></pre>
- <p>
-  打包完毕，此时的项目目录如下：
- </p>
- <p>
-  <img alt="" src="assets/images/2021/Snip20201207_4.png"/>
- </p>
- <p>
-  <code>
-   dist
-  </code>
-  下就是要上传的打包文件了。
- </p>
- <h3>
-  上传到pypi.org
- </h3>
- <p>
-  这里的上传可以使用测试上传或是直接上传。
- </p>
- <p>
-  测试上传会将包传到
-  <code>
-   https://test.pypi.org/
-  </code>
-  ，所以你需要在这个地址下注册一个测试账号，然后使用一下命令进行上传，这里不再介绍了。
- </p>
- <pre><code>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+     <p>
+      打包完毕，此时的项目目录如下：
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_4.png"/>
+     </p>
+     <p>
+      <code>
+       dist
+      </code>
+      下就是要上传的打包文件了。
+     </p>
+     <h3>
+      上传到pypi.org
+     </h3>
+     <p>
+      这里的上传可以使用测试上传或是直接上传。
+     </p>
+     <p>
+      测试上传会将包传到
+      <code>
+       https://test.pypi.org/
+      </code>
+      ，所以你需要在这个地址下注册一个测试账号，然后使用一下命令进行上传，这里不再介绍了。
+     </p>
+     <pre><code>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 </code></pre>
- <p>
-  直接上传到
-  <code>
-   pypi.org
-  </code>
-  ,使用命令：
- </p>
- <pre><code>python3 -m twine upload dist/*
+     <p>
+      直接上传到
+      <code>
+       pypi.org
+      </code>
+      ,使用命令：
+     </p>
+     <pre><code>python3 -m twine upload dist/*
 </code></pre>
- <p>
-  然后输入在
-  <code>
-   pypi.org
-  </code>
-  注册的账号密码就可以上传了。
- </p>
- <pre><code>python3 -m twine upload dist/*
+     <p>
+      然后输入在
+      <code>
+       pypi.org
+      </code>
+      注册的账号密码就可以上传了。
+     </p>
+     <pre><code>python3 -m twine upload dist/*
 Uploading distributions to https://upload.pypi.org/legacy/
 Enter your username: bosichong
 Enter your password:
 </code></pre>
- <p>
-  如果没有什么错误就可以上传成功了！登录网站就可以看到刚刚上传的软件包了
- </p>
- <p>
-  <img alt="" src="assets/images/2021/Snip20201207_6.png"/>
- </p>
- <p>
-  然后使用
-  <code>
-   pip install XXXX
-  </code>
-  安装测试吧。
- </p>
- <h3>
-  其他注意事项
- </h3>
- <p>
-  如果需要更新软件包，修改完代码后记得修改
-  <code>
-   setup.py
-  </code>
-  中的软件版本，这样才能正常上传。
- </p>
- <p>
-  至此，一次Python软件包的上传就搞定了，简单吧？
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python中的装饰器
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-10-05 20:34:04
-  </span>
-  <span class="tag">
-   Python
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Python装饰器是什么？
- </h2>
- <p>
-  在Django中曾经使用过
-  <code>
-   @fun
-  </code>
-  这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
- </p>
- <p>
-  装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
- </p>
- <h2>
-  定义一个Python的装饰器
- </h2>
- <p>
-  我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
- </p>
- <pre><code>    import time
+     <p>
+      如果没有什么错误就可以上传成功了！登录网站就可以看到刚刚上传的软件包了
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_6.png"/>
+     </p>
+     <p>
+      然后使用
+      <code>
+       pip install XXXX
+      </code>
+      安装测试吧。
+     </p>
+     <h3>
+      其他注意事项
+     </h3>
+     <p>
+      如果需要更新软件包，修改完代码后记得修改
+      <code>
+       setup.py
+      </code>
+      中的软件版本，这样才能正常上传。
+     </p>
+     <p>
+      至此，一次Python软件包的上传就搞定了，简单吧？
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       聊聊Python中的装饰器
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-10-05 20:34:04
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python装饰器是什么？
+     </h2>
+     <p>
+      在Django中曾经使用过
+      <code>
+       @fun
+      </code>
+      这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
+     </p>
+     <p>
+      装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
+     </p>
+     <h2>
+      定义一个Python的装饰器
+     </h2>
+     <p>
+      我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
+     </p>
+     <pre><code>    import time
     import functools
 
     def t(fun):
@@ -396,10 +593,10 @@ Enter your password:
 
     myfunc(0, 9)
 </code></pre>
- <p>
-  运行结果：
- </p>
- <pre><code>    0
+     <p>
+      运行结果：
+     </p>
+     <pre><code>    0
     1
     2
     3
@@ -411,17 +608,17 @@ Enter your password:
     myfunc 程序运行时间:0.03ms
     这样的话，我们就可以在不破坏原函数代码的情况下为函数添加了计算当前函数运行时间的功能。
 </code></pre>
- <h2>
-  定义一个可以传参的装饰器
- </h2>
- <p>
-  如果我们的装饰器需要传入参数该怎么写呢？只需要在
-  <code>
-   wrapper
-  </code>
-  外加一层包装即可。代码如下:
- </p>
- <pre><code>    import time
+     <h2>
+      定义一个可以传参的装饰器
+     </h2>
+     <p>
+      如果我们的装饰器需要传入参数该怎么写呢？只需要在
+      <code>
+       wrapper
+      </code>
+      外加一层包装即可。代码如下:
+     </p>
+     <pre><code>    import time
     import functools
 
     def t(str):
@@ -445,10 +642,10 @@ Enter your password:
 
     myfunc(0, 9)
 </code></pre>
- <p>
-  运行结果：
- </p>
- <pre><code>    0
+     <p>
+      运行结果：
+     </p>
+     <pre><code>    0
     1
     2
     3
@@ -461,179 +658,179 @@ Enter your password:
     myfunc 程序运行时间:0.11ms
     functools.wraps是什么？
 </code></pre>
- <p>
-  <code>
-   functools.wraps
-  </code>
-  是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
-  <code>
-   functools.wraps
-  </code>
-  。
- </p>
- <p>
-  functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   npm更换源与nrm安装与配置
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-03-30 19:43:28
-  </span>
-  <span class="tag">
-   webpack
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  nrm
- </h2>
- <p>
-  安装nrm
- </p>
- <p>
-  在命令行执行命令，
-  <code>
-   npm install -g nrm
-  </code>
-  ，全局安装nrm。
- </p>
- <p>
-  执行命令
-  <code>
-   nrm ls
-  </code>
-  查看可选的源。
- </p>
- <p>
-  如果要切换到taobao源，执行命令
-  <code>
-   nrm use taobao
-  </code>
-  。
- </p>
- <p>
-  很简单吧？
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   pip临时修改下载源
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-03-30 19:38:16
-  </span>
-  <span class="tag">
-   Python
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  pip临时修改源
- </h2>
- <p>
-  PYPI国内源路径
- </p>
- <ul>
-  <li>
-   阿里云 http://mirrors.aliyun.com/pypi/simple/
-  </li>
-  <li>
-   豆瓣(douban) http://pypi.douban.com/simple/
-  </li>
-  <li>
-   清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
-  </li>
-  <li>
-   中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/
-  </li>
- </ul>
- <h3>
-  临时换源
- </h3>
- <p>
-  临时换源只需要在pip安装包时，加上一个-i参数后接源的url即可：
- </p>
- <pre><code># 下载python中的Django包，这里使用的是豆瓣源
+     <p>
+      <code>
+       functools.wraps
+      </code>
+      是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
+      <code>
+       functools.wraps
+      </code>
+      。
+     </p>
+     <p>
+      functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       npm更换源与nrm安装与配置
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-30 19:43:28
+      </span>
+      <span class="tag">
+       webpack
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      nrm
+     </h2>
+     <p>
+      安装nrm
+     </p>
+     <p>
+      在命令行执行命令，
+      <code>
+       npm install -g nrm
+      </code>
+      ，全局安装nrm。
+     </p>
+     <p>
+      执行命令
+      <code>
+       nrm ls
+      </code>
+      查看可选的源。
+     </p>
+     <p>
+      如果要切换到taobao源，执行命令
+      <code>
+       nrm use taobao
+      </code>
+      。
+     </p>
+     <p>
+      很简单吧？
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       pip临时修改下载源
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-30 19:38:16
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      pip临时修改源
+     </h2>
+     <p>
+      PYPI国内源路径
+     </p>
+     <ul>
+      <li>
+       阿里云 http://mirrors.aliyun.com/pypi/simple/
+      </li>
+      <li>
+       豆瓣(douban) http://pypi.douban.com/simple/
+      </li>
+      <li>
+       清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
+      </li>
+      <li>
+       中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/
+      </li>
+     </ul>
+     <h3>
+      临时换源
+     </h3>
+     <p>
+      临时换源只需要在pip安装包时，加上一个-i参数后接源的url即可：
+     </p>
+     <pre><code># 下载python中的Django包，这里使用的是豆瓣源
 pip install django -i http://pypi.douban.com/simple
 </code></pre>
- <h3>
-  永久换源（更换默认源）
- </h3>
- <p>
-  Linux
- </p>
- <p>
-  在根目录下创建/修改～/.pip/pip.confpip配置文件；
+     <h3>
+      永久换源（更换默认源）
+     </h3>
+     <p>
+      Linux
+     </p>
+     <p>
+      在根目录下创建/修改～/.pip/pip.confpip配置文件；
 进入文件新增/修改内容；
- </p>
- <pre><code>[global]
+     </p>
+     <pre><code>[global]
 index-url=http://pypi.douban.com/simple
 [install]
 trusted-host=pypi.douban.com
 </code></pre>
- <p>
-  保存文件并退出；
- </p>
- <p>
-  Windows
- </p>
- <p>
-  windows在%HOMEPATH%\pip\pip.ini中修改上面第二步的内容；
+     <p>
+      保存文件并退出；
+     </p>
+     <p>
+      Windows
+     </p>
+     <p>
+      windows在%HOMEPATH%\pip\pip.ini中修改上面第二步的内容；
 保存文件退出；
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(9)Vuetify配置及简单使用
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-03-19 09:33:18
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  Vuetify的安装及配置
- </h2>
- <p>
-  相对来说vuecli的安装配置比较简单，在插件里搜索
-  <code>
-   Vuetify
-  </code>
-  ，安装即可，这里说下
-  <code>
-   Vuetify
-  </code>
-  在
-  <code>
-   webpack
-  </code>
-  的安装及配置方式。
- </p>
- <p>
-  首先是:
- </p>
- <pre><code>npm install vuetify
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       Vue快速学习笔记(9)Vuetify配置及简单使用
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-19 09:33:18
+      </span>
+      <span class="tag">
+       Vue
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Vuetify的安装及配置
+     </h2>
+     <p>
+      相对来说vuecli的安装配置比较简单，在插件里搜索
+      <code>
+       Vuetify
+      </code>
+      ，安装即可，这里说下
+      <code>
+       Vuetify
+      </code>
+      在
+      <code>
+       webpack
+      </code>
+      的安装及配置方式。
+     </p>
+     <p>
+      首先是:
+     </p>
+     <pre><code>npm install vuetify
 npm install sass sass-loader fibers deepmerge -D
 </code></pre>
- <p>
-  然后是配置文件里的加载器配置，因为使用了sass,如下方法配置。
- </p>
- <pre><code>// webpack.config.js
+     <p>
+      然后是配置文件里的加载器配置，因为使用了sass,如下方法配置。
+     </p>
+     <pre><code>// webpack.config.js
 
 module.exports = {
 rules: [
@@ -664,23 +861,23 @@ rules: [
 ],
 }
 </code></pre>
- <p>
-  然后是引入，这里官网用了一个新建.js来配置
-  <code>
-   Vuetify
-  </code>
-  的引入，如果没有设置
-  <code>
-   @
-  </code>
-  指向目录，可能会没有效果。
+     <p>
+      然后是引入，这里官网用了一个新建.js来配置
+      <code>
+       Vuetify
+      </code>
+      的引入，如果没有设置
+      <code>
+       @
+      </code>
+      指向目录，可能会没有效果。
 这里我就直接修改了在
-  <code>
-   main.js
-  </code>
-  里引用：
- </p>
- <pre><code>//导入Vue
+      <code>
+       main.js
+      </code>
+      里引用：
+     </p>
+     <pre><code>//导入Vue
 import Vue from "vue";
 
 import App from "./components/App.vue";
@@ -699,483 +896,326 @@ var vm = new Vue({
 
 });
 </code></pre>
- <p>
-  好了，大功告成，现在就可以开始愉快的使用
-  <code>
-   Vuetify
-  </code>
-  了，总体来说，我比较喜欢
-  <code>
-   Vuetify
-  </code>
-  ，很有设计感细节颜色设计的非常棒。
+     <p>
+      好了，大功告成，现在就可以开始愉快的使用
+      <code>
+       Vuetify
+      </code>
+      了，总体来说，我比较喜欢
+      <code>
+       Vuetify
+      </code>
+      ，很有设计感细节颜色设计的非常棒。
 javaScript在线正则表达式测试，本程序纯粹是为了学习Vue、webpack、Vuetify，一个重复制造轮子的的实践。欢迎大家交流学习。
- </p>
- <p>
-  项目演示地址：
-  <a href="http://j_sky.gitee.io/javascript_regexp/">
-   JavaScript_RegExp
-  </a>
- </p>
- <p>
-  项目仓库地址：
- </p>
- <p>
-  <a href="https://gitee.com/J_Sky/JavaScript_RegExp">
-   JavaScript_RegExp___gitee
-  </a>
-  <a href="https://gitee.com/J_Sky/JavaScript_RegExp">
-   JavaScript_RegExp___github
-  </a>
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(8)webpack4.X配置Vue开发打包环境
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-03-05 15:16:08
-  </span>
-  <span class="tag">
-   webpack
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  webpack 简介
- </h2>
- <p>
-  webpack是前端的一个项目构建工具，它是基于
-  <code>
-   Node.js
-  </code>
-  开发出来的一个前端工具.
+     </p>
+     <p>
+      项目演示地址：
+      <a href="http://j_sky.gitee.io/javascript_regexp/">
+       JavaScript_RegExp
+      </a>
+     </p>
+     <p>
+      项目仓库地址：
+     </p>
+     <p>
+      <a href="https://gitee.com/J_Sky/JavaScript_RegExp">
+       JavaScript_RegExp___gitee
+      </a>
+      <a href="https://gitee.com/J_Sky/JavaScript_RegExp">
+       JavaScript_RegExp___github
+      </a>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       Vue快速学习笔记(8)webpack4.X配置Vue开发打包环境
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-05 15:16:08
+      </span>
+      <span class="tag">
+       webpack
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      webpack 简介
+     </h2>
+     <p>
+      webpack是前端的一个项目构建工具，它是基于
+      <code>
+       Node.js
+      </code>
+      开发出来的一个前端工具.
 webpack可以完美实现资源的合并、打包、压缩、混淆等诸多功能。
- </p>
- <h3>
-  npm修改下载源
- </h3>
- <ul>
-  <li>
-   先安装
-   <code>
-    node.js
-   </code>
-   ，这个大家百度一下，介绍的太多了，这里不敷衍了。安装了
-   <code>
-    node.js
-   </code>
-   后就集成了npm *
-   <code>
-    npm
-   </code>
-   如果不修改下载源，下载会很慢的，所以推荐修改为淘宝的源。修改方式推荐使用
-   <code>
-    nrm
-   </code>
-   。
-  </li>
- </ul>
- <p>
-  安装：
- </p>
- <pre><code>npm install -g nrm //全局安装
+     </p>
+     <h3>
+      npm修改下载源
+     </h3>
+     <ul>
+      <li>
+       先安装
+       <code>
+        node.js
+       </code>
+       ，这个大家百度一下，介绍的太多了，这里不敷衍了。安装了
+       <code>
+        node.js
+       </code>
+       后就集成了npm *
+       <code>
+        npm
+       </code>
+       如果不修改下载源，下载会很慢的，所以推荐修改为淘宝的源。修改方式推荐使用
+       <code>
+        nrm
+       </code>
+       。
+      </li>
+     </ul>
+     <p>
+      安装：
+     </p>
+     <pre><code>npm install -g nrm //全局安装
 </code></pre>
- <p>
-  <code>
-   nrm ls
-  </code>
-  列出所有源，
-  <code>
-   nrm use taobao
-  </code>
-  切换淘宝源，至此我们可以无忧的下载了。
- </p>
- <p>
-  另外，也有可能出现在没有切换源的时候，连
-  <code>
-   nrm
-  </code>
-  都下载不下来的时候，比如我。
+     <p>
+      <code>
+       nrm ls
+      </code>
+      列出所有源，
+      <code>
+       nrm use taobao
+      </code>
+      切换淘宝源，至此我们可以无忧的下载了。
+     </p>
+     <p>
+      另外，也有可能出现在没有切换源的时候，连
+      <code>
+       nrm
+      </code>
+      都下载不下来的时候，比如我。
 那么我们先临时切换npm的下载源：
- </p>
- <pre><code>npm config set registry https://registry.npm.taobao.org
+     </p>
+     <pre><code>npm config set registry https://registry.npm.taobao.org
 </code></pre>
- <p>
-  测试是否改变了源。
- </p>
- <pre><code>npm config get registry
+     <p>
+      测试是否改变了源。
+     </p>
+     <pre><code>npm config get registry
 </code></pre>
- <h3>
-  安装及初始化webpack
- </h3>
- <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
+     <h3>
+      安装及初始化webpack
+     </h3>
+     <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
 npm init -y
 npm install webpack webpack-cli --save-dev
 </code></pre>
- <h3>
-  一些npm的安装命令
- </h3>
- <p>
-  npm i module_name 　　　　　　　　     # 安装模块到项目目录下
+     <h3>
+      一些npm的安装命令
+     </h3>
+     <p>
+      npm i module_name 　　　　　　　　     # 安装模块到项目目录下
 npm i module_name -g 　　　　　　     # -g 的意思是将模块安装到全局，具体安装到磁盘哪个位置，要看 npm config prefix 的位置。 
 npm i module_name -S(-save) 　　　 　# --save 的意思是将模块安装到项目目录下，并在package文件的dependencies节点写入依赖。 
 npm i module_name -D(--save-dev)　  # --save-dev 的意思是将模块安装到项目目录下，并在package文件的devDependencies节点写入依赖。
- </p>
- <h2>
-  初始化webpack
- </h2>
- <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
+     </p>
+     <h2>
+      初始化webpack
+     </h2>
+     <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
 npm init -y
 npm install webpack webpack-cli --save-dev
 </code></pre>
- <p>
-  通过上边的终端魔法，我们成功的初始化了一个前端项目。
+     <p>
+      通过上边的终端魔法，我们成功的初始化了一个前端项目。
 我们现在的目的是配置webpack成为一个模块化的
-  <code>
-   Vue
-  </code>
-  前端开发项目，来看看我们需要做哪些事情。
- </p>
- <p>
-  webpack打包这里总结为：
- </p>
- <ol>
-  <li>
-   配置文件
-   <code>
-    config.js
-   </code>
-   用来管理配置：开发环境，loader模块，插件，打包等。
-  </li>
-  <li>
-   <code>
-    package.json
-   </code>
-   ,管理各种包依赖插件，还有添加脚本命令。
-  </li>
-  <li>
-   添加并配置各种loader，使webpack能有处理更多文件的能力。
-  </li>
-  <li>
-   添加并配置各种插件，可以处理生产打包中的一些额外功能。
-  </li>
- </ol>
- <h2>
-  webpack的配置文件
- </h2>
- <p>
-  关于webpack的配置文件修改，我推荐安装
-  <code>
-   webpack-merge
-  </code>
-  实现配置文件合并.
- </p>
- <p>
-  假设：
- </p>
- <p>
-  webpack.common.js 公共部分文件
+      <code>
+       Vue
+      </code>
+      前端开发项目，来看看我们需要做哪些事情。
+     </p>
+     <p>
+      webpack打包这里总结为：
+     </p>
+     <ol>
+      <li>
+       配置文件
+       <code>
+        config.js
+       </code>
+       用来管理配置：开发环境，loader模块，插件，打包等。
+      </li>
+      <li>
+       <code>
+        package.json
+       </code>
+       ,管理各种包依赖插件，还有添加脚本命令。
+      </li>
+      <li>
+       添加并配置各种loader，使webpack能有处理更多文件的能力。
+      </li>
+      <li>
+       添加并配置各种插件，可以处理生产打包中的一些额外功能。
+      </li>
+     </ol>
+     <h2>
+      webpack的配置文件
+     </h2>
+     <p>
+      关于webpack的配置文件修改，我推荐安装
+      <code>
+       webpack-merge
+      </code>
+      实现配置文件合并.
+     </p>
+     <p>
+      假设：
+     </p>
+     <p>
+      webpack.common.js 公共部分文件
 webpack.dev.js 开发环境
 webpack.prod.js 生产环境
- </p>
- <pre><code>const merge = require('webpack-merge');//导入包
+     </p>
+     <pre><code>const merge = require('webpack-merge');//导入包
 const common = require('./webpack.common');//导入公共配置文件
 。。。。。。config
 module.exports=merge(common,devConfig);//合并配置文件
 </code></pre>
- <p>
-  使用起来很方便，这样就可以方便的配置多种开发调试及生产环境。
- </p>
- <p>
-  配置文件的结构目前来说分为四大部分：
- </p>
- <ol>
-  <li>
-   入口entry
-  </li>
-  <li>
-   出口output
-  </li>
-  <li>
-   模块module
-  </li>
-  <li>
-   插件plugins
-  </li>
- </ol>
- <p>
-  配置文件结构展示图：
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/blog/Snip20200306_2.png"/>
- </p>
- <p>
-  如果详细讲解webpack的各种配置讲个几天几夜也是说不完的，还是看代码研究吧。
+     <p>
+      使用起来很方便，这样就可以方便的配置多种开发调试及生产环境。
+     </p>
+     <p>
+      配置文件的结构目前来说分为四大部分：
+     </p>
+     <ol>
+      <li>
+       入口entry
+      </li>
+      <li>
+       出口output
+      </li>
+      <li>
+       模块module
+      </li>
+      <li>
+       插件plugins
+      </li>
+     </ol>
+     <p>
+      配置文件结构展示图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/blog/Snip20200306_2.png"/>
+     </p>
+     <p>
+      如果详细讲解webpack的各种配置讲个几天几夜也是说不完的，还是看代码研究吧。
 配置的重点在于模块和插件的选项，这我就不贴代码了，如果你有兴趣可以clone仓库里的代码研究一下。
 本仓库集成了最基础的模块和插件，包括处理：js es6 css less sass 图片 Vue vue-router，配置文件设置了公共文件，打包在此基础上做了开发和生产两种打包模式。
- </p>
- <p>
-  基于webpack4.X创建的Vue开发环境基础搭建的项目，地址如下：
- </p>
- <h2>
-  仓库源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/webpack4.X_vue_demo.git">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/webpack4.X_vue_demo.git">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <h2>
-  一些其他注意事项
- </h2>
- <p>
-  由于现在新版本的 clean-webpack-plugin 插件引入已经改为:
+     </p>
+     <p>
+      基于webpack4.X创建的Vue开发环境基础搭建的项目，地址如下：
+     </p>
+     <h2>
+      仓库源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/webpack4.X_vue_demo.git">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/webpack4.X_vue_demo.git">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <h2>
+      一些其他注意事项
+     </h2>
+     <p>
+      由于现在新版本的 clean-webpack-plugin 插件引入已经改为:
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 new CleanWebpackPlugin(),//清理目录 而且不用加入目录数组['dist']
- </p>
- <h3>
-  使用 webpack-dev-server
- </h3>
- <pre><code>npm install --save-dev webpack-dev-server
+     </p>
+     <h3>
+      使用 webpack-dev-server
+     </h3>
+     <pre><code>npm install --save-dev webpack-dev-server
 </code></pre>
- <p>
-  如果报错 
+     <p>
+      如果报错 
     npm ERR! Failed at the webpack-demo@1.0.0 start script.
     npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
- </p>
- <h2>
-  使用babel处理高级JS语法
- </h2>
- <p>
-  npm i -D babel-core@6.26.3 babel-loader@7.1.4 babel-preset-env@1.6.1
- </p>
- <ol>
-  <li>
-   在
-   <code>
-    webpack.config.js
-   </code>
-   中添加相关loader模块，其中需要注意的是，一定要把
-   <code>
-    node_modules
-   </code>
-   文件夹添加到排除项：
-   <code>
-    { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
-   </code>
-  </li>
-  <li>
-   在项目根目录中添加
-   <code>
-    .babelrc
-   </code>
-   文件，并修改这个配置文件如下：
-   <code>
-    {
+     </p>
+     <h2>
+      使用babel处理高级JS语法
+     </h2>
+     <p>
+      npm i -D babel-core@6.26.3 babel-loader@7.1.4 babel-preset-env@1.6.1
+     </p>
+     <ol>
+      <li>
+       在
+       <code>
+        webpack.config.js
+       </code>
+       中添加相关loader模块，其中需要注意的是，一定要把
+       <code>
+        node_modules
+       </code>
+       文件夹添加到排除项：
+       <code>
+        { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
+       </code>
+      </li>
+      <li>
+       在项目根目录中添加
+       <code>
+        .babelrc
+       </code>
+       文件，并修改这个配置文件如下：
+       <code>
+        {
     "presets": ["env"]
 }
-   </code>
-  </li>
-  <li>
-   <strong>
-    注意：语法插件
-    <code>
-     babel-preset-es2015
-    </code>
-    可以更新为
-    <code>
-     babel-preset-env
-    </code>
-    ，它包含了所有的ES相关的语法；
-   </strong>
-  </li>
- </ol>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(5)使用路由vue-router(1)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-12 19:03:02
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h2>
-  在Vue中使用路由vue-router
- </h2>
- <ol>
-  <li>
-   <code>
-    html
-   </code>
-   中导入vue-router.
-  </li>
-  <li>
-   编写
-   <code>
-    router-link
-   </code>
-   和
-   <code>
-    router-view
-   </code>
-   标签代码
-  </li>
-  <li>
-   <code>
-    JavaScript
-   </code>
-   中编写模板对象，定义路由对象及创建Vue实例。
-  </li>
- </ol>
- <p>
-  具体代码参考：
- </p>
- <pre><code>&lt;div id="app"&gt;
-    &lt;!-- 使用router-link定义组件导航 --&gt;
-    &lt;router-link to="/login"&gt;登录&lt;/router-link&gt;
-    &lt;router-link to="/register"&gt;注册&lt;/router-link&gt;
-
-    &lt;!-- 使用 router-view 显示匹配的组件 --&gt;
-    &lt;router-view&gt;&lt;/router-view&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    const login = {
-        template: '&lt;h1&gt;登录组件&lt;/h1&gt;'
-    }
-    const register = {
-        template: '&lt;h1&gt;注册组件&lt;/h1&gt;'
-    }
-
-    // 创建一个路由示例，通过routers属性来匹配规则
-    const routerobj = new VueRouter({
-        routes: [{
-                path: '/',
-                redirect: '/login'
-            },
-            {
-                path: '/login',
-                component: login
-            },
-            {
-                path: '/register',
-                component: register
-            }
-        ]
-    });
-    // 穿件Vue实例
-    var vm = new Vue({
-        el: '#app',
-        router: routerobj
-    });
-&lt;/script&gt;
-</code></pre>
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(4)Vue组件中的数据传递
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-11 15:33:53
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
- <h3>
-  Vue组件中的数据传递
- </h3>
- <p>
-  父组件向子组件传递数据:
- </p>
- <ul>
-  <li>
-   使用
-   <code>
-    props
-   </code>
-   属性来定义子组件的数据。
-  </li>
-  <li>
-   使用
-   <code>
-    v-bind
-   </code>
-   指令在组件中可以使父组件的数据传递到子组件中。
-  </li>
- </ul>
- <p>
-  示例代码
- </p>
- <pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
-&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
-&lt;template id="mh"&gt;
-    &lt;h1&gt; {{finfo}}&lt;/h1&gt;
-&lt;/template&gt;
-
-&lt;div id="app"&gt;
-    &lt;mh finfo="子组件的数据"&gt;&lt;/mh&gt;
-    &lt;mh :finfo="msg"&gt;&lt;/mh&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    var vm = new Vue({
-        el: "#app",
-        data: {
-            msg:"这是父组件Vue实例中传来的消息。"
-        },
-        components:{
-            mh:{
-                template:"#mh",
-                props:['finfo']
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre>
- <p>
-  子组件向父组件传值
- </p>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="#">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    0 / 14
-   </button>
-   <a href="list_1.html">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+       </code>
+      </li>
+      <li>
+       <strong>
+        注意：语法插件
+        <code>
+         babel-preset-es2015
+        </code>
+        可以更新为
+        <code>
+         babel-preset-env
+        </code>
+        ，它包含了所有的ES相关的语法；
+       </strong>
+      </li>
+     </ol>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="#">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        0 / 14
+       </button>
+       <a href="list_1.html">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

@@ -132,181 +132,178 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Markdown 语法学习总结
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-08-25 08:55:15
-  </span>
-  <span class="tag">
-   网站运维
-  </span>
- </div>
- <p>
- </p>
-</div>
-<blockquote>
- <p>
-  Markdown 的目标是实现「易读易写」。
- </p>
-</blockquote>
-<h2>
- 需求
-</h2>
-<p>
- 因为以后更新博客就需要和
- <code>
-  Markdown
- </code>
- 语法一直打交道了，所以有必要总结一下常用的Markdown语法，就当笔记记录一下，如有需要的时候翻查回忆一下。
-</p>
-<h2>
- 解决方案
-</h2>
-<p>
- <code>
-  Markdown
- </code>
- 语法的相关文档及教程在网上一搜一大把，这篇并不是
- <code>
-  Markdown
- </code>
- 的详细教程，只是笔者对以后博文更新常用的
- <code>
-  Markdown
- </code>
- 语法的一次学习及总结。
-</p>
-<h1>
- 语法说明
-</h1>
-<p>
- ### 标题
-</p>
-<pre><code>### 标题哈  
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Markdown 语法学习总结
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-08-25 08:55:15
+      </span>
+      <span class="tag">
+       网站运维
+      </span>
+     </div>
+     <p>
+     </p>
+     <blockquote>
+      <p>
+       Markdown 的目标是实现「易读易写」。
+      </p>
+     </blockquote>
+     <h2>
+      需求
+     </h2>
+     <p>
+      因为以后更新博客就需要和
+      <code>
+       Markdown
+      </code>
+      语法一直打交道了，所以有必要总结一下常用的Markdown语法，就当笔记记录一下，如有需要的时候翻查回忆一下。
+     </p>
+     <h2>
+      解决方案
+     </h2>
+     <p>
+      <code>
+       Markdown
+      </code>
+      语法的相关文档及教程在网上一搜一大把，这篇并不是
+      <code>
+       Markdown
+      </code>
+      的详细教程，只是笔者对以后博文更新常用的
+      <code>
+       Markdown
+      </code>
+      语法的一次学习及总结。
+     </p>
+     <h1>
+      语法说明
+     </h1>
+     <p>
+      ### 标题
+     </p>
+     <pre><code>### 标题哈  
 ## 标题哈  
 # 标题哈
 </code></pre>
-<h3>
- 标题哈
-</h3>
-<h2>
- 标题哈
-</h2>
-<h1>
- 标题哈
-</h1>
-<p>
- 官方文档中的另一种标题写法
-</p>
-<pre><code>This is an H1
+     <h3>
+      标题哈
+     </h3>
+     <h2>
+      标题哈
+     </h2>
+     <h1>
+      标题哈
+     </h1>
+     <p>
+      官方文档中的另一种标题写法
+     </p>
+     <pre><code>This is an H1
 =============
 
 This is an H2
 -------------
 </code></pre>
-<h1>
- 这是标题 H1
-</h1>
-<h2>
- 是标题 H2
-</h2>
-<h3>
- 引用
-</h3>
-<p>
- <pre><code class="markdown">&gt; Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式</code></pre>
-</p>
-<blockquote>
- <p>
-  Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式
- </p>
-</blockquote>
-<h3>
- 序列
-</h3>
-<p>
- 序列是文章中经常用到的，有几种写法如下：
-</p>
-<pre><code>* Python
+     <h1>
+      这是标题 H1
+     </h1>
+     <h2>
+      是标题 H2
+     </h2>
+     <h3>
+      引用
+     </h3>
+     <pre><code class="markdown">&gt; Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式</code></pre>
+     <blockquote>
+      <p>
+       Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式
+      </p>
+     </blockquote>
+     <h3>
+      序列
+     </h3>
+     <p>
+      序列是文章中经常用到的，有几种写法如下：
+     </p>
+     <pre><code>* Python
 + Django
 - Java
 1. Python
 2. Django
 3. Java
 </code></pre>
-<ul>
- <li>
-  Python
- </li>
- <li>
-  Django
- </li>
- <li>
-  Java
- </li>
- <li>
-  Python
- </li>
- <li>
-  Django
- </li>
- <li>
-  Java
- </li>
-</ul>
-<h3>
- Markdown 代码块
-</h3>
-<p>
- 比较常用的有三种方式，最简单的就是下边这种方式，一般都是用来显示一些编程语言名称提示比如
- <code>
-  Python Django
- </code>
- <pre><code class="markdown">`这里是一小段代码哦`</code></pre>
- <code>
-  这里是一小段代码哦
- </code>
-</p>
-<p>
- 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，显示一行或简单几行的代码时可以用这种方法
-</p>
-<pre><code>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以
+     <ul>
+      <li>
+       Python
+      </li>
+      <li>
+       Django
+      </li>
+      <li>
+       Java
+      </li>
+      <li>
+       Python
+      </li>
+      <li>
+       Django
+      </li>
+      <li>
+       Java
+      </li>
+     </ul>
+     <h3>
+      Markdown 代码块
+     </h3>
+     <p>
+      比较常用的有三种方式，最简单的就是下边这种方式，一般都是用来显示一些编程语言名称提示比如
+      <code>
+       Python Django
+      </code>
+     </p>
+     <pre><code class="markdown">\`这里是一小段代码哦\`</code></pre>
+     <p>
+      <code>
+       这里是一小段代码哦
+      </code>
+     </p>
+     <p>
+      要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，显示一行或简单几行的代码时可以用这种方法
+     </p>
+     <pre><code>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以
 </code></pre>
-<p>
- pre 和 code 可以直接上代码段，如果是大代码段推荐使用这种方法，如果引用了第三方的code样式，可以加上 class="你的编程语言"，这样会更友好的显示。
- <pre><code class="markdown">
+     <p>
+      pre 和 code 可以直接上代码段，如果是大代码段推荐使用这种方法，如果引用了第三方的code样式，可以加上 class="你的编程语言"，这样会更友好的显示。
+     </p>
+     <pre><code class="markdown">
 &lt;pre&gt;&lt;code class="markdown"&gt;这里是一小段代码哦&lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-</p>
-<pre><code class="markdown">这里是一小段代码哦</code></pre>
-<h3>
- 超链接
-</h3>
-<p>
- <pre><code class="markdown">[17python]()
-[百度](http://www.baidu.com)
+     <pre><code class="markdown">这里是一小段代码哦</code></pre>
+     <h3>
+      超链接
+     </h3>
+     <pre><code class="markdown">\[17python]()
+\[百度](http://www.baidu.com)
 </code></pre>
-</p>
-<p>
- <a href="http://www.17python.com">
-  17python
- </a>
-</p>
-<p>
- <a href="http://www.baidu.com">
-  百度
- </a>
-</p>
-<h3>
- 强调
-</h3>
-<pre><code class="markdown">*Python*
+     <p>
+      <a href="http://www.17python.com">
+       17python
+      </a>
+     </p>
+     <p>
+      <a href="http://www.baidu.com">
+       百度
+      </a>
+     </p>
+     <h3>
+      强调
+     </h3>
+     <pre><code class="markdown">*Python*
 
 _Django_
 
@@ -314,81 +311,82 @@ _Django_
 
 __Spring Boot__
 </code></pre>
-<p>
- <em>
-  Python
- </em>
-</p>
-<p>
- <em>
-  Django
- </em>
-</p>
-<p>
- <strong>
-  Java
- </strong>
-</p>
-<p>
- <strong>
-  Spring Boot
- </strong>
-</p>
-<h3>
- 插入图片
-</h3>
-<pre><code class="markdown">![其实这不是站长的本人的照片](/media/upload/2017/08/avatar.jpg)
+     <p>
+      <em>
+       Python
+      </em>
+     </p>
+     <p>
+      <em>
+       Django
+      </em>
+     </p>
+     <p>
+      <strong>
+       Java
+      </strong>
+     </p>
+     <p>
+      <strong>
+       Spring Boot
+      </strong>
+     </p>
+     <h3>
+      插入图片
+     </h3>
+     <pre><code class="markdown">![其实这不是站长的本人的照片](/media/upload/2017/08/avatar.jpg)
 
 ![17python 微信公众号，欢迎关注哦！](/media/upload/2017/08/wx.jpg "www.17python.com")</code></pre>
-<p>
- <img alt="其实这不是站长的本人的照片" src="assets/images/media/upload/2017/08/avatar.jpg"/>
-</p>
-<p>
- <img alt="17python 微信公众号，欢迎关注哦！" src="assets/images/media/upload/2017/08/wx.jpg" title="www.17python.com"/>
-</p>
-<p>
- 如果需要控制图片大小的话，直接插入
- <code>
-  html img
- </code>
- 标签控制图片大小即可。
- <em>
-  markdown 中是可以兼容html代码的哦！！！！
- </em>
-</p>
-<h3>
- 最后
-</h3>
-<p>
- <code>
-  &lt;font color=red&gt;Markdown 支持内嵌 HTML 标签。&lt;/font&gt;
- </code>
- <font color="red">
-  Markdown 支持内嵌 HTML 标签。
- </font>
-</p>
-<p>
- 参考：
- <a href="http://www.appinn.com/markdown/basic.html">
-  Markdown: Basics （快速入门）
- </a>
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/5.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      <img alt="其实这不是站长的本人的照片" src="assets/images/media/upload/2017/08/avatar.jpg"/>
+     </p>
+     <p>
+      <img alt="17python 微信公众号，欢迎关注哦！" src="assets/images/media/upload/2017/08/wx.jpg" title="www.17python.com"/>
+     </p>
+     <p>
+      如果需要控制图片大小的话，直接插入
+      <code>
+       html img
+      </code>
+      标签控制图片大小即可。
+      <em>
+       markdown 中是可以兼容html代码的哦！！！！
+      </em>
+     </p>
+     <h3>
+      最后
+     </h3>
+     <p>
+      <code>
+       &lt;font color=red&gt;Markdown 支持内嵌 HTML 标签。&lt;/font&gt;
+      </code>
+      <font color="red">
+       Markdown 支持内嵌 HTML 标签。
+      </font>
+     </p>
+     <p>
+      参考：
+      <a href="http://www.appinn.com/markdown/basic.html">
+       Markdown: Basics （快速入门）
+      </a>
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/5.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

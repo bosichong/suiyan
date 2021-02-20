@@ -132,40 +132,39 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(2)Vue中的监听与计算属性
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-02-01 10:31:26
-  </span>
-  <span class="tag">
-   Vue
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h3>
- Vue中的监听
-</h3>
-<p>
- <code>
-  watch
- </code>
- 用来监听
- <code>
-  Vue
- </code>
- 实例中数据的变化，然后可以出发一个事件。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Vue快速学习笔记(2)Vue中的监听与计算属性
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-02-01 10:31:26
+      </span>
+      <span class="tag">
+       Vue
+      </span>
+     </div>
+     <p>
+     </p>
+     <h3>
+      Vue中的监听
+     </h3>
+     <p>
+      <code>
+       watch
+      </code>
+      用来监听
+      <code>
+       Vue
+      </code>
+      实例中数据的变化，然后可以出发一个事件。
 例如，反转字符串：
-</p>
-<!-- 开发环境版本，包含了有帮助的命令行警告 -->
-<pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+     </p>
+     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+     <pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
 &lt;div id="app"&gt;
     &lt;input type="text" v-model="vt"&gt;
     &lt;p v-text="nvt"&gt;&lt;/p&gt;
@@ -189,24 +188,22 @@
 
 &lt;/script&gt;
 </code></pre>
-<p>
- 除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
-</p>
-<h3>
- Vue中的计算属性
-</h3>
-<p>
- 计算属性和监听有些相似，有的时候作用都差不多吧。
-</p>
-<p>
- 下边的例子就是采用Vue的计算属性，
-</p>
-<p>
- <!-- 开发环境版本，包含了有帮助的命令行警告 -->
- <script src="assets/plugins/vue.js">
- </script>
-</p>
-<pre><code>&lt;div id="app1"&gt;
+     <p>
+      除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
+     </p>
+     <h3>
+      Vue中的计算属性
+     </h3>
+     <p>
+      计算属性和监听有些相似，有的时候作用都差不多吧。
+     </p>
+     <p>
+      下边的例子就是采用Vue的计算属性，
+     </p>
+     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+     <pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="app1"&gt;
     &lt;p&gt;计算属性&lt;/p&gt;
     &lt;input type="text" v-model="vt"&gt;
     &lt;p v-text="rtvt"&gt;&lt;/p&gt;
@@ -231,25 +228,26 @@
 
 &lt;/script&gt;
 </code></pre>
-<p>
- 感觉计算属性要比监听简单直观些。
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20200201103126.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      感觉计算属性要比监听简单直观些。
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20200201103126.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

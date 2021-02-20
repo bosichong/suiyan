@@ -132,109 +132,108 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-12-07 20:30:45
-  </span>
-  <span class="tag">
-   Python
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 在学习和编写Python代码的过程中我们经常会用到
- <code>
-  pip
- </code>
- 来安装一些其他包，用
- <code>
-  pip
- </code>
- 下载很方便的，那么如果我们自己写了Python的代码包，如何能让别人也试用
- <code>
-  pip
- </code>
- 来进行安装呢？真巧，我这几天就打包了一个自己写的程序发布到了
- <code>
-  pypi.org
- </code>
- ，写个上传记录供大家参考。
-</p>
-<h3>
- 安装依赖包
-</h3>
-<p>
- <code>
-  whell
- </code>
- 用来打包，
- <code>
-  twine
- </code>
- 用来上传包到
- <code>
-  pypi.org
- </code>
-</p>
-<pre><code>pip install whell
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-12-07 20:30:45
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      在学习和编写Python代码的过程中我们经常会用到
+      <code>
+       pip
+      </code>
+      来安装一些其他包，用
+      <code>
+       pip
+      </code>
+      下载很方便的，那么如果我们自己写了Python的代码包，如何能让别人也试用
+      <code>
+       pip
+      </code>
+      来进行安装呢？真巧，我这几天就打包了一个自己写的程序发布到了
+      <code>
+       pypi.org
+      </code>
+      ，写个上传记录供大家参考。
+     </p>
+     <h3>
+      安装依赖包
+     </h3>
+     <p>
+      <code>
+       whell
+      </code>
+      用来打包，
+      <code>
+       twine
+      </code>
+      用来上传包到
+      <code>
+       pypi.org
+      </code>
+     </p>
+     <pre><code>pip install whell
 pip install twine
 </code></pre>
-<p>
- 如果无法下载，请尝试更换下载源，也可能会遇到pip版本太低需要升级的情况，升级后在试试安装。
-</p>
-<pre><code>pip install wheel
+     <p>
+      如果无法下载，请尝试更换下载源，也可能会遇到pip版本太低需要升级的情况，升级后在试试安装。
+     </p>
+     <pre><code>pip install wheel
 </code></pre>
-<p>
- 改为：
-</p>
-<pre><code>pip install wheel -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+     <p>
+      改为：
+     </p>
+     <pre><code>pip install wheel -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 </code></pre>
-<h3>
- 打包项目配置
-</h3>
-<p>
- 需要打包的项目结构图如下：
-</p>
-<p>
- <img alt="" src="assets/images/2021/Snip20201207_1.png"/>
-</p>
-<p>
- <code>
-  PrimarySchoolMath
- </code>
- 目录就是我们要打包的项目目录(这个名称和setup.py里的项目名称要一致，也是pip install XXXX  的名字是一样的)。
- <code>
-  LICENSE
- </code>
- 是软件的开源协议，如果不知道怎么选可以到https://choosealicense.com 这里选择一下。
- <code>
-  readme.md
- </code>
- 是软件或包的说明，可以写一些仓库地址简要说明。
- <code>
-  setup.py
- </code>
- 打包的配以文件，后边详细说明。
-</p>
-<h3>
- setup.py打包配置文件说明
-</h3>
-<p>
- <code>
-  setup.py
- </code>
- :
-</p>
-<pre><code>import setuptools
+     <h3>
+      打包项目配置
+     </h3>
+     <p>
+      需要打包的项目结构图如下：
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_1.png"/>
+     </p>
+     <p>
+      <code>
+       PrimarySchoolMath
+      </code>
+      目录就是我们要打包的项目目录(这个名称和setup.py里的项目名称要一致，也是pip install XXXX  的名字是一样的)。
+      <code>
+       LICENSE
+      </code>
+      是软件的开源协议，如果不知道怎么选可以到https://choosealicense.com 这里选择一下。
+      <code>
+       readme.md
+      </code>
+      是软件或包的说明，可以写一些仓库地址简要说明。
+      <code>
+       setup.py
+      </code>
+      打包的配以文件，后边详细说明。
+     </p>
+     <h3>
+      setup.py打包配置文件说明
+     </h3>
+     <p>
+      <code>
+       setup.py
+      </code>
+      :
+     </p>
+     <pre><code>import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -256,107 +255,108 @@ setuptools.setup(
     ],
 )
 </code></pre>
-<p>
- 至此，所有打包的准备工作都已经准备好了，接下来就是利用命令来打包上传了。
-</p>
-<h3>
- 打包
-</h3>
-<p>
- 项目目录下打开终端：
-</p>
-<pre><code>python3 setup.py sdist bdist_wheel
+     <p>
+      至此，所有打包的准备工作都已经准备好了，接下来就是利用命令来打包上传了。
+     </p>
+     <h3>
+      打包
+     </h3>
+     <p>
+      项目目录下打开终端：
+     </p>
+     <pre><code>python3 setup.py sdist bdist_wheel
 </code></pre>
-<p>
- 打包完毕，此时的项目目录如下：
-</p>
-<p>
- <img alt="" src="assets/images/2021/Snip20201207_4.png"/>
-</p>
-<p>
- <code>
-  dist
- </code>
- 下就是要上传的打包文件了。
-</p>
-<h3>
- 上传到pypi.org
-</h3>
-<p>
- 这里的上传可以使用测试上传或是直接上传。
-</p>
-<p>
- 测试上传会将包传到
- <code>
-  https://test.pypi.org/
- </code>
- ，所以你需要在这个地址下注册一个测试账号，然后使用一下命令进行上传，这里不再介绍了。
-</p>
-<pre><code>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+     <p>
+      打包完毕，此时的项目目录如下：
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_4.png"/>
+     </p>
+     <p>
+      <code>
+       dist
+      </code>
+      下就是要上传的打包文件了。
+     </p>
+     <h3>
+      上传到pypi.org
+     </h3>
+     <p>
+      这里的上传可以使用测试上传或是直接上传。
+     </p>
+     <p>
+      测试上传会将包传到
+      <code>
+       https://test.pypi.org/
+      </code>
+      ，所以你需要在这个地址下注册一个测试账号，然后使用一下命令进行上传，这里不再介绍了。
+     </p>
+     <pre><code>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 </code></pre>
-<p>
- 直接上传到
- <code>
-  pypi.org
- </code>
- ,使用命令：
-</p>
-<pre><code>python3 -m twine upload dist/*
+     <p>
+      直接上传到
+      <code>
+       pypi.org
+      </code>
+      ,使用命令：
+     </p>
+     <pre><code>python3 -m twine upload dist/*
 </code></pre>
-<p>
- 然后输入在
- <code>
-  pypi.org
- </code>
- 注册的账号密码就可以上传了。
-</p>
-<pre><code>python3 -m twine upload dist/*
+     <p>
+      然后输入在
+      <code>
+       pypi.org
+      </code>
+      注册的账号密码就可以上传了。
+     </p>
+     <pre><code>python3 -m twine upload dist/*
 Uploading distributions to https://upload.pypi.org/legacy/
 Enter your username: bosichong
 Enter your password:
 </code></pre>
-<p>
- 如果没有什么错误就可以上传成功了！登录网站就可以看到刚刚上传的软件包了
-</p>
-<p>
- <img alt="" src="assets/images/2021/Snip20201207_6.png"/>
-</p>
-<p>
- 然后使用
- <code>
-  pip install XXXX
- </code>
- 安装测试吧。
-</p>
-<h3>
- 其他注意事项
-</h3>
-<p>
- 如果需要更新软件包，修改完代码后记得修改
- <code>
-  setup.py
- </code>
- 中的软件版本，这样才能正常上传。
-</p>
-<p>
- 至此，一次Python软件包的上传就搞定了，简单吧？
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201202155245.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      如果没有什么错误就可以上传成功了！登录网站就可以看到刚刚上传的软件包了
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20201207_6.png"/>
+     </p>
+     <p>
+      然后使用
+      <code>
+       pip install XXXX
+      </code>
+      安装测试吧。
+     </p>
+     <h3>
+      其他注意事项
+     </h3>
+     <p>
+      如果需要更新软件包，修改完代码后记得修改
+      <code>
+       setup.py
+      </code>
+      中的软件版本，这样才能正常上传。
+     </p>
+     <p>
+      至此，一次Python软件包的上传就搞定了，简单吧？
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201202155245.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

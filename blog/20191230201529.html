@@ -132,117 +132,117 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   细说修改碎言博客站点的样式
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-12-30 20:15:29
-  </span>
-  <span class="tag">
-   碎言博客
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h2>
- 碎言博客HTML结构
-</h2>
-<p>
- 博客HTML只有4个：
-</p>
-<ul>
- <li>
-  index.html  博客首页
- </li>
- <li>
-  archives.html 归档
- </li>
- <li>
-  tags.html 标签页
- </li>
- <li>
-  p.html 博文详情页
- </li>
-</ul>
-<h2>
- CSS修改
-</h2>
-<p>
- 碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:
- <code>
-  Easy LESS
- </code>
-</p>
-<p>
- <img alt="" src="assets/images/blog/Snip20191231_2.png"/>
-</p>
-<p>
- 这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合
- <code>
-  less
- </code>
- 的引用命令
- <code>
-  @import "theme-dark-1.less";
- </code>
- 使用起来很方便的。
-</p>
-<h2>
- 博客的样式修改
-</h2>
-<p>
- 碎言博客的样式主要集中在
- <code>
-  &lt;link id="blogcss"&gt;
- </code>
- 标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。
-</p>
-<h2>
- Markdown代码样式
-</h2>
-<p>
- Markdown代码样式通过修改
- <code>
-  &lt;link id="highlight"&gt;
- </code>
- 标签连接的highlightCSS来修改，在
- <code>
-  assets/plugins/highlight/styles
- </code>
- 下可以选择自己喜欢的样式。
-</p>
-<h2>
- 进阶修改
-</h2>
-<p>
- 觉得手动修改站点样式太麻烦？可以利用
- <code>
-  jQuery
- </code>
- 在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20191230201529.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       细说修改碎言博客站点的样式
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-12-30 20:15:29
+      </span>
+      <span class="tag">
+       碎言博客
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      碎言博客HTML结构
+     </h2>
+     <p>
+      博客HTML只有4个：
+     </p>
+     <ul>
+      <li>
+       index.html  博客首页
+      </li>
+      <li>
+       archives.html 归档
+      </li>
+      <li>
+       tags.html 标签页
+      </li>
+      <li>
+       p.html 博文详情页
+      </li>
+     </ul>
+     <h2>
+      CSS修改
+     </h2>
+     <p>
+      碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:
+      <code>
+       Easy LESS
+      </code>
+     </p>
+     <p>
+      <img alt="" src="assets/images/blog/Snip20191231_2.png"/>
+     </p>
+     <p>
+      这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合
+      <code>
+       less
+      </code>
+      的引用命令
+      <code>
+       @import "theme-dark-1.less";
+      </code>
+      使用起来很方便的。
+     </p>
+     <h2>
+      博客的样式修改
+     </h2>
+     <p>
+      碎言博客的样式主要集中在
+      <code>
+       &lt;link id="blogcss"&gt;
+      </code>
+      标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。
+     </p>
+     <h2>
+      Markdown代码样式
+     </h2>
+     <p>
+      Markdown代码样式通过修改
+      <code>
+       &lt;link id="highlight"&gt;
+      </code>
+      标签连接的highlightCSS来修改，在
+      <code>
+       assets/plugins/highlight/styles
+      </code>
+      下可以选择自己喜欢的样式。
+     </p>
+     <h2>
+      进阶修改
+     </h2>
+     <p>
+      觉得手动修改站点样式太麻烦？可以利用
+      <code>
+       jQuery
+      </code>
+      在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20191230201529.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

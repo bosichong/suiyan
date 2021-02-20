@@ -132,44 +132,43 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python中的装饰器
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-10-05 20:34:04
-  </span>
-  <span class="tag">
-   Python
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h2>
- Python装饰器是什么？
-</h2>
-<p>
- 在Django中曾经使用过
- <code>
-  @fun
- </code>
- 这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
-</p>
-<p>
- 装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
-</p>
-<h2>
- 定义一个Python的装饰器
-</h2>
-<p>
- 我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
-</p>
-<pre><code>    import time
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       聊聊Python中的装饰器
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-10-05 20:34:04
+      </span>
+      <span class="tag">
+       Python
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python装饰器是什么？
+     </h2>
+     <p>
+      在Django中曾经使用过
+      <code>
+       @fun
+      </code>
+      这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。
+     </p>
+     <p>
+      装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。
+     </p>
+     <h2>
+      定义一个Python的装饰器
+     </h2>
+     <p>
+      我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：
+     </p>
+     <pre><code>    import time
     import functools
 
     def t(fun):
@@ -190,10 +189,10 @@
 
     myfunc(0, 9)
 </code></pre>
-<p>
- 运行结果：
-</p>
-<pre><code>    0
+     <p>
+      运行结果：
+     </p>
+     <pre><code>    0
     1
     2
     3
@@ -205,17 +204,17 @@
     myfunc 程序运行时间:0.03ms
     这样的话，我们就可以在不破坏原函数代码的情况下为函数添加了计算当前函数运行时间的功能。
 </code></pre>
-<h2>
- 定义一个可以传参的装饰器
-</h2>
-<p>
- 如果我们的装饰器需要传入参数该怎么写呢？只需要在
- <code>
-  wrapper
- </code>
- 外加一层包装即可。代码如下:
-</p>
-<pre><code>    import time
+     <h2>
+      定义一个可以传参的装饰器
+     </h2>
+     <p>
+      如果我们的装饰器需要传入参数该怎么写呢？只需要在
+      <code>
+       wrapper
+      </code>
+      外加一层包装即可。代码如下:
+     </p>
+     <pre><code>    import time
     import functools
 
     def t(str):
@@ -239,10 +238,10 @@
 
     myfunc(0, 9)
 </code></pre>
-<p>
- 运行结果：
-</p>
-<pre><code>    0
+     <p>
+      运行结果：
+     </p>
+     <pre><code>    0
     1
     2
     3
@@ -255,35 +254,36 @@
     myfunc 程序运行时间:0.11ms
     functools.wraps是什么？
 </code></pre>
-<p>
- <code>
-  functools.wraps
- </code>
- 是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
- <code>
-  functools.wraps
- </code>
- 。
-</p>
-<p>
- functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201005203404.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      <code>
+       functools.wraps
+      </code>
+      是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用
+      <code>
+       functools.wraps
+      </code>
+      。
+     </p>
+     <p>
+      functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20201005203404.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

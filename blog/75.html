@@ -132,139 +132,138 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   极速学习C++之基础篇
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-11 09:07:47
-  </span>
-  <span class="tag">
-   C/C++
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       极速学习C++之基础篇
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-11 09:07:47
+      </span>
+      <span class="tag">
+       C/C++
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
 假设你和笔者有相同的经历，曾经接触过php java js python，并且和每个语言有过一段还不算太短的"恋情"，那么我开始极速极速学习C++。
-</p>
-<h2>
- 万年不变的HelloWorld
-</h2>
-<p>
- C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
+     </p>
+     <h2>
+      万年不变的HelloWorld
+     </h2>
+     <p>
+      C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
 打开CLion,new一个C++ Project，输入以下代码：
-</p>
-<h1>
- include "iostream"
-</h1>
-<pre><code>using namespace std;
+     </p>
+     <h1>
+      include "iostream"
+     </h1>
+     <pre><code>using namespace std;
 int main()
 {
     cout &lt;&lt; "Hello World!" &lt;&lt; endl;
     return 0;
 }
 </code></pre>
-<p>
- 好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。
-</p>
-<h2>
- 常量变量及运算
-</h2>
-<p>
- 常量定义的二种方法：
-</p>
-<pre><code>#define COOL 18
+     <p>
+      好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。
+     </p>
+     <h2>
+      常量变量及运算
+     </h2>
+     <p>
+      常量定义的二种方法：
+     </p>
+     <pre><code>#define COOL 18
 const int COOLA = 19;
 cout &lt;&lt; "COOL : " &lt;&lt; COOL &lt;&lt; "  COOLA : " &lt;&lt; COOLA &lt;&lt; endl;
 </code></pre>
-<p>
- 这样就可以打印常量了。
-</p>
-<p>
- 定义变量和运算符也是如此简单上手：
-</p>
-<pre><code>int a,b,c;
+     <p>
+      这样就可以打印常量了。
+     </p>
+     <p>
+      定义变量和运算符也是如此简单上手：
+     </p>
+     <pre><code>int a,b,c;
 float d = 23.99;
 double e = 1.9876;
 char s[] = "hellp";
 string str = "world";
 a = 10,b=21,c=43;
 </code></pre>
-<p>
- cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;
-</p>
-<p>
- 当然运算符远远不指这些，还有很多，具体可以查阅相关资料。
-</p>
-<h2>
- 条件与循环
-</h2>
-<p>
- 条件判断：
-</p>
-<pre><code>int a = 10;
+     <p>
+      cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;
+     </p>
+     <p>
+      当然运算符远远不指这些，还有很多，具体可以查阅相关资料。
+     </p>
+     <h2>
+      条件与循环
+     </h2>
+     <p>
+      条件判断：
+     </p>
+     <pre><code>int a = 10;
 int b = 20;
 if(a &lt; b){
     cout &lt;&lt; "a &lt; b" &lt;&lt;endl;
 }
 </code></pre>
-<p>
- 循环输出九九乘法口决：
-</p>
-<pre><code>for (int i = 1; i &lt; 10; ++i) {
+     <p>
+      循环输出九九乘法口决：
+     </p>
+     <pre><code>for (int i = 1; i &lt; 10; ++i) {
     for (int j = 1; j &lt;= i; ++j) {
         cout &lt;&lt; j &lt;&lt; "*" &lt;&lt; i &lt;&lt; "=" &lt;&lt; i * j &lt;&lt; "   ";
     }
     cout &lt;&lt; endl;
 }
 </code></pre>
-<h2>
- 函数声明及使用
-</h2>
-<p>
- 要使用一个函数，需要先在源文件的顶部声明：
-</p>
-<pre><code>int add (int a,intb)
+     <h2>
+      函数声明及使用
+     </h2>
+     <p>
+      要使用一个函数，需要先在源文件的顶部声明：
+     </p>
+     <pre><code>int add (int a,intb)
 </code></pre>
-<p>
- 然后再源文件中编写代码：
-</p>
-<pre><code>int add(int a, int b) {
+     <p>
+      然后再源文件中编写代码：
+     </p>
+     <pre><code>int add(int a, int b) {
     return a + b;
 }
 </code></pre>
-<p>
- 然后就可以调用了：
-</p>
-<pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
+     <p>
+      然后就可以调用了：
+     </p>
+     <pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
 </code></pre>
-<h2>
- C++中的指针
-</h2>
-<pre><code>int var = 9;
+     <h2>
+      C++中的指针
+     </h2>
+     <pre><code>int var = 9;
 int *ip = &amp;var;
 
 cout &lt;&lt; "ip " &lt;&lt; ip &lt;&lt; endl;
 cout &lt;&lt; "*ip " &lt;&lt; *ip &lt;&lt; endl;
 </code></pre>
-<p>
- 是不是理解了？一个输出内存的地址，一个输出地址中的值。
-</p>
-<h2>
- 结构体与枚举
-</h2>
-<p>
- 结构体与类很相似，结构体是C中的数据结构。
+     <p>
+      是不是理解了？一个输出内存的地址，一个输出地址中的值。
+     </p>
+     <h2>
+      结构体与枚举
+     </h2>
+     <p>
+      结构体与类很相似，结构体是C中的数据结构。
 枚举用起来很方便，有枚举常量和枚举变量，注意区分。
-</p>
-<pre><code>#include &lt;iostream&gt;
+     </p>
+     <pre><code>#include &lt;iostream&gt;
 using namespace std;
 
 struct Books {
@@ -294,25 +293,26 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>
- 基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。
-</p>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/75.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/75.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Mac OS X gitk窗口打不开及Git的升级方法  碎言博客
+   pipenv 简化的虚拟环境、项目依赖管理工具  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -135,144 +135,135 @@
     <div class="container-fluid" id="rt">
      <div class="blog-article">
       <h1 class="title">
-       Mac OS X gitk窗口打不开及Git的升级方法
+       pipenv 简化的虚拟环境、项目依赖管理工具
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2017-08-26 16:36:30
+       2021-02-20 15:38:15
       </span>
       <span class="tag">
-       Git
+       flask
       </span>
      </div>
      <p>
      </p>
      <p>
-      <em>
-       今天随手在终端中敲了一下
-       <code>
-        Gitk
-       </code>
-       ，就是想试试
-       <code>
-        Git GUI
-       </code>
-       ，结果窗口一闪而过，然后看了一下版本，老掉牙的版本了，所以决定要升级一下
-       <code>
-        Git
-       </code>
-      </em>
+      最近学习flask，由于flask框架本身非常极简，功能上需要很多的扩展包，所以项目需要在Python的虚拟环境下来安装管理这些扩展，这样才会方便项目在其他地方进行扩展包的安装。这里推荐
+      <code>
+       pipenv
+      </code>
+      来管理虚拟环境和扩展。
+     </p>
+     <p>
+      ## 安装并激活虚拟环境
+     </p>
+     <pre><code>pip install pipenv
+</code></pre>
+     <p>
+      终端进入项目目录，
+      <code>
+       pipenv shell
+      </code>
+      激活并初始化虚拟环境，
+     </p>
+     <pre><code>(base) （￣︶￣）↗ pipenv shell
+Launching subshell in virtual environment...
+bash-3.2$  . /Users/mac/.local/share/virtualenvs/Flask-BabyLog-cH2fMiTs/bin/activate
+(Flask-BabyLog) bash-3.2$
+</code></pre>
+     <p>
+      我们可以看到环境配置文件的目录，以及终端的提示符的变化。
+     </p>
+     <p>
+      使用
+      <code>
+       exit
+      </code>
+      退出虚拟环境。
      </p>
      <h2>
-      下载Mac os X Git
-     </h2>
-     <ul>
-      <li>
-       Mac osx
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-     </ul>
-     <h2>
-      安装
+      安装项目依赖
      </h2>
      <p>
-      安装很简单了，直接下一步，然后安装完毕。
-     </p>
-     <h2>
-      使用新版Git
-     </h2>
-     <p>
-      终端输入
+      把平时的
       <code>
-       git --version
+       pip
       </code>
-      ，发现还是原来的版本哇？
+      换成
       <code>
-       what?
-      </code>
-      ，
-终端输入：
-     </p>
-     <pre><code>which git
-/usr/bin/git</code></pre>
-     <p>
-      发现
-      <code>
-       Git
-      </code>
-      还是以前目录里的，并不是新安装目录下的
-      <code>
-       /usr/local/bin/git
+       pipenv
       </code>
      </p>
-     <h2>
-      解决方法
-     </h2>
+     <pre><code>pipenv install requests
+</code></pre>
      <p>
-      很明显这是环境变量的问题.
-     </p>
-     <pre><code>cd ~
-vi .bash_profile</code></pre>
-     <p>
-      把
-      <code>
-       /usr/local/bin:
-      </code>
-      这个环境变量放到
-      <code>
-       /usr/bin/
-      </code>
-      前边
+      <img alt="" src="assets/images/2021/2021-02-20 16_07_18.gif"/>
      </p>
      <p>
-      我的环境变量最后输出如下：
+      打开项目目录中的
       <code>
-       export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:$PATH
+       Pipfile
       </code>
      </p>
+     <pre><code>[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+</code></pre>
      <p>
-      然后执行
       <code>
-       source ~/.bash_profile
+       url
       </code>
-      刷新一下环境变量。
+      那里可以修改pip的镜像地址，如果下载太慢，可以换成国内的镜像地址。
+      <code>
+       [packages]
+      </code>
+      是虚拟环境中安装过的扩展包
      </p>
      <p>
-      再次测试
+      假设换了一台机器，我们从GitHub上clone下来项目，当然项目中的包含
       <code>
-       git --version
+       Pipfile
       </code>
-      或
       <code>
-       gitk
+       Pipfile.lock
       </code>
-      一切正常。
+      二个文件。
      </p>
-     <h2>
-      总结
-     </h2>
      <p>
+      终端运行:
+     </p>
+     <pre><code>pipenv install
+</code></pre>
+     <p>
+      即可安装项目的所有依赖。
+     </p>
+     <p>
+      以上为
       <code>
-       Mac osX
+       pipenv
       </code>
-      安装完新版
-      <code>
-       Git
-      </code>
-      后，需要修改一下环境变量，使之指向新版的
-      <code>
-       Git
-      </code>
-      即可。
+      的一些简单操作，更多请参考官方文档。
+     </p>
+     <p>
+      <a href="https://pipenv.pypa.io/en/latest/?badge=latest#">
+       pipenv官方文档
+      </a>
      </p>
      <section class="blog-p text-center">
       <div class="gitedit">
        发现错误？想参与编辑？
-       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/7.md" target="_blank">
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210220153815.md" target="_blank">
         在 GitHub 上编辑此页！
        </a>
       </div>

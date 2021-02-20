@@ -132,144 +132,144 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   碎言博客终端操作详解
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-12-30 15:56:49
-  </span>
-  <span class="tag">
-   碎言博客
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h2>
- 关于z.py
-</h2>
-<p>
- <code>
-  z.py
- </code>
- 是碎言博客构建索引的关键程序，采用
- <code>
-  Python3
- </code>
- 相关技术开发。
-</p>
-<p>
- 终端运行：
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       碎言博客终端操作详解
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-12-30 15:56:49
+      </span>
+      <span class="tag">
+       碎言博客
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      关于z.py
+     </h2>
+     <p>
+      <code>
+       z.py
+      </code>
+      是碎言博客构建索引的关键程序，采用
+      <code>
+       Python3
+      </code>
+      相关技术开发。
+     </p>
+     <p>
+      终端运行：
     python3 z.py
-</p>
-<p>
- <img alt="" src="assets/images/blog/Snip20191230_4.png"/>
-</p>
-<p>
- 即可看到相关的命令帮助。
-</p>
-<h2>
- -i
-</h2>
-<pre><code>python3 z.py -i
+     </p>
+     <p>
+      <img alt="" src="assets/images/blog/Snip20191230_4.png"/>
+     </p>
+     <p>
+      即可看到相关的命令帮助。
+     </p>
+     <h2>
+      -i
+     </h2>
+     <pre><code>python3 z.py -i
 </code></pre>
-<p>
- 每次创建完新文章后都会自动创建索引，若是修改了文章的标题，作者，标签，时间等头部信息后，应该运行此命令进行索引更新。
-</p>
-<h2>
- -n
-</h2>
-<pre><code>python3 z.py -n 这里写你的新文章的标题名称
+     <p>
+      每次创建完新文章后都会自动创建索引，若是修改了文章的标题，作者，标签，时间等头部信息后，应该运行此命令进行索引更新。
+     </p>
+     <h2>
+      -n
+     </h2>
+     <pre><code>python3 z.py -n 这里写你的新文章的标题名称
 </code></pre>
-<ul>
- <li>
-  <code>
-   -n
-  </code>
-  用来创建新文章，其中还有几个选项可以使用，其中
-  <code>
-   -n
-  </code>
-  后边必须跟随一个新标题。
- </li>
- <li>
-  <p>
-   <code>
-    -d
-   </code>
-   用来创建一个存放的目录
-  </p>
-  <p>
-   python3 z.py -n blog_title -d blog
-  </p>
- </li>
-</ul>
-<p>
- 会在默认
- <code>
-  .md
- </code>
- 存放目录
- <code>
-  articles
- </code>
- 下创建一个
- <code>
-  blog
- </code>
- 目录，新文章就创建在这里。
-</p>
-<ul>
- <li>
-  <p>
-   <code>
-    -t -a -p
-   </code>
-   分别对应标签，作者和文章地址页面名称。作者留空默认填充为博客站长昵称。
-  </p>
- </li>
- <li>
-  <p>
-   <code>
-    -v
-   </code>
-   显示当前程序的版本。
-  </p>
- </li>
- <li>
-  <p>
-   <code>
-    -tt
-   </code>
-   参数为
-   <code>
-    int
-   </code>
-   ，此命令用来生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。
-  </p>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20191230155649.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <ul>
+      <li>
+       <code>
+        -n
+       </code>
+       用来创建新文章，其中还有几个选项可以使用，其中
+       <code>
+        -n
+       </code>
+       后边必须跟随一个新标题。
+      </li>
+      <li>
+       <p>
+        <code>
+         -d
+        </code>
+        用来创建一个存放的目录
+       </p>
+       <p>
+        python3 z.py -n blog_title -d blog
+       </p>
+      </li>
+     </ul>
+     <p>
+      会在默认
+      <code>
+       .md
+      </code>
+      存放目录
+      <code>
+       articles
+      </code>
+      下创建一个
+      <code>
+       blog
+      </code>
+      目录，新文章就创建在这里。
+     </p>
+     <ul>
+      <li>
+       <p>
+        <code>
+         -t -a -p
+        </code>
+        分别对应标签，作者和文章地址页面名称。作者留空默认填充为博客站长昵称。
+       </p>
+      </li>
+      <li>
+       <p>
+        <code>
+         -v
+        </code>
+        显示当前程序的版本。
+       </p>
+      </li>
+      <li>
+       <p>
+        <code>
+         -tt
+        </code>
+        参数为
+        <code>
+         int
+        </code>
+        ，此命令用来生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。
+       </p>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20191230155649.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

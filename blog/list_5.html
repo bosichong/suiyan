@@ -132,42 +132,246 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="data-list list-group">
- <div class="blog-article">
-  <h1 class="title">
-   Git多人协作（码云）中的一些操作简单记录
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-10-28 14:24:15
-  </span>
-  <span class="tag">
-   Git
-  </span>
- </div>
- <p>
- </p>
- <p>
-  最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。
- </p>
- <p>
-  我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:
- </p>
- <h2>
-  创建远程代码仓库和本地仓库。
- </h2>
- <ul>
-  <li>
-   选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。
-  </li>
-  <li>
-   创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。
-  </li>
-  <li>
-   但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.
-   <pre><code>➜  test git:(master) git branch 
+    <div class="data-list list-group">
+     <div class="blog-article">
+      <h1 class="title">
+       Python os.path.dirname(__file__) 在终端命令行下报错
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-11-21 22:16:58
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近在写程序中用到了
+      <code>
+       os.path.dirname(__file__)
+      </code>
+      ，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错
+     </p>
+     <pre><code>FileNotFoundError: [Errno 2] No such file or directory
+</code></pre>
+     <p>
+      我们先来测试一下，看看报错是什么样的？
+     </p>
+     <pre><code>print(os.path.dirname(__file__))
+</code></pre>
+     <p>
+      如果在终端运行当前程序就会报错：
+     </p>
+     <pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'os' is not defined
+</code></pre>
+     <p>
+      如何使之正确运行呢？如果你用过
+      <code>
+       Django
+      </code>
+      ，就会想到
+      <code>
+       BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+      </code>
+      ,
+这个是
+      <code>
+       Django
+      </code>
+      里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中
+      <code>
+       os.path.abspath(__file__)
+      </code>
+      这条是返回当前文件的绝对地址，
+而
+      <code>
+       os.path.dirname(os.path.abspath(__file__))
+      </code>
+      就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
+困扰人生的小问题就这样绝对喽！
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       MyDjangoBlog是基于Django搭建的个人blog
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-11-20 08:55:16
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      开心Python Django 学习交流q群：217840699
+     </p>
+     <p>
+      一个简易易用的blog，基于以下技术构建
+     </p>
+     <ul>
+      <li>
+       Python
+      </li>
+      <li>
+       Django
+      </li>
+      <li>
+       Amaze UI
+      </li>
+      <li>
+       SQLite3
+      </li>
+      <li>
+       highlight.js
+      </li>
+     </ul>
+     <p>
+      后台基于Django admin搭建。
+     </p>
+     <p>
+      展示如下图，
+      <a href="http://www.17python.com">
+       点击博客
+      </a>
+      查看在线演示效果
+     </p>
+     <p>
+      <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/201630_6f5d34a4_125848.png" title="001.png"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/204359_4d1b64ee_125848.png" title="002.png"/>
+     </p>
+     <h1>
+      本地调试
+     </h1>
+     <p>
+      环境需求：
+     </p>
+     <p>
+      python (3.6.1)
+Django (1.11.3)
+Markdown (2.6.8)
+Pillow (4.2.1)
+     </p>
+     <p>
+      进入程序目录后，运行
+      <code>
+       python3 manage.py runserver
+      </code>
+     </p>
+     <p>
+      后台管理地址
+      <code>
+       http://127.0.0.1:8000/admin/
+      </code>
+     </p>
+     <p>
+      管理员登陆:
+     </p>
+     <p>
+      用户名：
+      <code>
+       admin
+      </code>
+      密码：
+      <code>
+       17python.com
+      </code>
+     </p>
+     <p>
+      前台地址
+      <code>
+       http://127.0.0.1:8000/
+      </code>
+     </p>
+     <p>
+      如果想在部署到生产环境，
+      <a href="http://www.17python.com/blog/67">
+       请点此查看详细教程
+      </a>
+     </p>
+     <p>
+      欢迎有识之士参与提交代码，大家共同学习共同进步！
+     </p>
+     <p>
+      开心Python Django 学习交流q群：217840699
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/www.17python.com">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Git多人协作（码云）中的一些操作简单记录
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-10-28 14:24:15
+      </span>
+      <span class="tag">
+       Git
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。
+     </p>
+     <p>
+      我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:
+     </p>
+     <h2>
+      创建远程代码仓库和本地仓库。
+     </h2>
+     <ul>
+      <li>
+       选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。
+      </li>
+      <li>
+       创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。
+      </li>
+      <li>
+       但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.
+       <pre><code>➜  test git:(master) git branch 
 * master
 ➜  test git:(master) git checkout -b dev
 Switched to a new branch 'dev'
@@ -179,21 +383,21 @@ Already up-to-date.
 * dev
 master
 </code></pre>
-  </li>
- </ul>
- <p>
-  这样的话我们的本地库与远程代码仓库相关联了。
- </p>
- <h2>
-  如何协作更新代码？
- </h2>
- <p>
-  远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
+      </li>
+     </ul>
+     <p>
+      这样的话我们的本地库与远程代码仓库相关联了。
+     </p>
+     <h2>
+      如何协作更新代码？
+     </h2>
+     <p>
+      远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
 模拟一次git协作：
 假设需要研发一个人工智能编码器，我和我的小伙们都在进行编码，我在分支aicode仓库中ai.py编写了大量的代码并完成需要上传远程仓库dev。
 首先我把aicode分支全并到本地的dev,然后上传到远程dev仓库。
- </p>
- <pre><code>➜  test git:(dev) git checkout -b aicode
+     </p>
+     <pre><code>➜  test git:(dev) git checkout -b aicode
 Switched to a new branch 'aicode'
 ➜  test git:(aicode) touch ai.py
 ➜  test git:(aicode) ✗ vi ai.py 
@@ -220,16 +424,16 @@ remote: Powered by Gitee.com
 To https://gitee.com/bosichong/test.git
 8fcac3b..a1e0b50  dev -&gt; dev
 </code></pre>
- <p>
-  这样我就完成了一次更新，其实挺简单的。
- </p>
- <h2>
-  发生冲突怎么办？
- </h2>
- <p>
-  有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：
- </p>
- <pre><code>To https://gitee.com/bosichong/test.git
+     <p>
+      这样我就完成了一次更新，其实挺简单的。
+     </p>
+     <h2>
+      发生冲突怎么办？
+     </h2>
+     <p>
+      有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：
+     </p>
+     <pre><code>To https://gitee.com/bosichong/test.git
 ! [rejected]        dev -&gt; dev (fetch first)
 error: failed to push some refs to 'https://gitee.com/bosichong/test.git'
 hint: Updates were rejected because the remote contains work that you do
@@ -238,75 +442,75 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 </code></pre>
- <p>
-  大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
+     <p>
+      大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
 然后再pull的时候提示如下：
- </p>
- <pre><code>* branch            dev        -&gt; FETCH_HEAD
+     </p>
+     <pre><code>* branch            dev        -&gt; FETCH_HEAD
 99ccc9c..4c49e33  dev        -&gt; origin/dev
 Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 </code></pre>
- <p>
-  大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
+     <p>
+      大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
 我们解决一下文件中的冲突内容：
- </p>
- <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+     </p>
+     <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 我更新的下半部分啊
 =======
 小伙伴更新的上半部分
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 4c49e33af00dd498b2d4761d3fc607ee29afbdf4
 </code></pre>
- <p>
-  这里我这样的修改的：
- </p>
- <pre><code>小伙伴更新的上半部分
+     <p>
+      这里我这样的修改的：
+     </p>
+     <pre><code>小伙伴更新的上半部分
 我更新的下半部分啊
 </code></pre>
- <p>
-  处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。
- </p>
- <p>
-  遇到问题：
+     <p>
+      处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。
+     </p>
+     <p>
+      遇到问题：
 1.今天小伙伴更新dev分支，但我怎么也pull不来，提示如下：
- </p>
- <pre><code>Updating e32f487..204c0a1
+     </p>
+     <pre><code>Updating e32f487..204c0a1
 error: Your local changes to the following files would be overwritten by merge:
     Psmrcddup.py
 Please commit your changes or stash them before you merge.
 </code></pre>
- <p>
-  解决方法：
- </p>
- <pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
+     <p>
+      解决方法：
+     </p>
+     <pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
 ➜  PrimarySchoolMath git:(dev) git pull gitee dev
 </code></pre>
- <h2>
-  分支策略
- </h2>
- <p>
-  在实际开发中，我们应该按照几个基本原则进行分支管理：
- </p>
- <p>
-  首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
- </p>
- <p>
-  那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。
- </p>
- <p>
-  你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
- </p>
- <p>
-  所以，团队合作的分支看起来就像这样：
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png"/>
- </p>
- <p>
-  一些常用协作git命令：
- </p>
- <pre><code>查看分支：git branch
+     <h2>
+      分支策略
+     </h2>
+     <p>
+      在实际开发中，我们应该按照几个基本原则进行分支管理：
+     </p>
+     <p>
+      首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+     </p>
+     <p>
+      那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。
+     </p>
+     <p>
+      你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+     </p>
+     <p>
+      所以，团队合作的分支看起来就像这样：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png"/>
+     </p>
+     <p>
+      一些常用协作git命令：
+     </p>
+     <pre><code>查看分支：git branch
 创建分支：git branch &lt;name&gt;
 切换分支：git checkout &lt;name&gt;
 创建+切换分支：git checkout -b &lt;name&gt;
@@ -315,199 +519,199 @@ Please commit your changes or stash them before you merge.
 git remote 显示 远程仓库的分支
 git remote -v 显示更详细的信息：
 </code></pre>
- <h2>
-  相关文章
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PrimarySchoolMathematics">
-    廖雪峰：git多人协作
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   利用Python自动生成小学生加减乘除口算考试题卷。
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-10-24 10:50:04
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
- <p>
-  孩子上小学一年级了，加减乘除的口算就要开始练习了，估计老师肯定会让家长出题，所以提前准备一下，利用Python开发了一套自动生成小学生口算题的小应用。而且今天是程序员节，撸200行代码庆祝一下。：）
- </p>
- <p>
-  为了让程序员老爹解放抄题的双手，让你拥有更多的时间去写代码而不用去手写几道口算题而伤神伤脑。所以有没有娃子的程序员爹爹加入一起来继续优化个开源小程序的？有什么点子，发现什么BUG，欢迎留言。
- </p>
- <p>
-  仅以此软件，献给那些热爱
-  <code>
-   Python
-  </code>
-  的程序员老爹们！
- </p>
- <p>
-  程序核心功能：
- </p>
- <p>
-  1.可以设置各算数项和结果的取值范围及多步算数符号的选择，可以生成求结果、求算数项、带括号的算式，最多支持3步算式题
- </p>
- <p>
-  2.可以简单设置文档标题，小标题。设置生成的口算题文档个数
- </p>
- <p>
-  使用方法：
- </p>
- <p>
-  1 确定本机支持python3.6.1以上版本
- </p>
- <p>
-  2 安装.docx模块,安装wxPython模块 安装方法：
- </p>
- <p>
-  <code>
-   pip3 install python-docx
-  </code>
- </p>
- <p>
-  <code>
-   pip3 install wxpython
-  </code>
- </p>
- <p>
-  3 下载程序进入主目录，终端下运行
-  <code>
-   python App.py
-  </code>
- </p>
- <p>
-  4 修改运算项和结果范围里的数值,多步运算请添加修改需要的运算符号:
- </p>
- <p>
-  5 添加口算题到列表中，然后生成口算题,生成的口算题文件都在docx文件目录下，打开后连接打印机就可以开印了。
- </p>
- <h2>
-  源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/PrimarySchoolMathematics">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   有时人生需要做出选择
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-06-12 10:05:40
-  </span>
-  <span class="tag">
-   站长吐槽
-  </span>
- </div>
- <p>
- </p>
- <p>
-  好久没有更新自己的博客了，最近经历了很多变动，所以人生的规划也发生了一些微妙的变化。
- </p>
- <p>
-  这段日子没怎么看编程相关的书，今天随便看了一下，python已经是3.6.5，django也是2.0.6的版本了，想想自己前一阵学习py及django的时候，机器上的环境还是3.61和1.1X版.。。。
- </p>
- <p>
-  更新了一下站点的头部图片，上次更新时还是冬天的。。。。
- </p>
- <p>
-  可能暂时要放下编程了，是放下不是放弃，不久的以后我还会捡起来，因为我还有一个做游戏的梦想还未实现。想起30岁的时候开始学习编程，40而终，这些年没做成什么太出色的软件，但也因为代码养家糊了口饭，想想也算是值了，人生总是再变动，曾经看到过一篇文章介绍过，程序员黑客和画家很相似，所以那天拿起笔来就画了几个月感觉还不错，我能否再用10年成就一个插画师的梦想？
- </p>
- <p>
-  为自己加油！
- </p>
- <p>
-  感谢曾经路过17python网友，这个站点暂时还不会关闭，但内容也许有些改变，python还会继续，但可能会慢了一些，但我还会在学习python的路上前进的。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python中的递归与快速排序那点事
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-30 14:38:39
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
- </p>
- <h2>
-  在Python中递归
- </h2>
- <p>
-  递归比较简单的例子就是阶乘，看下递归的必要条件：
- </p>
- <ul>
-  <li>
-   边界条件：确定递归到何时终止，也称为递归出口。
-  </li>
-  <li>
-   递归模式：大问题是如何分解为小问题的，也称为递归体。
-  </li>
- </ul>
- <p>
-  阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
- </p>
- <pre><code>def f(n):
+     <h2>
+      相关文章
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PrimarySchoolMathematics">
+        廖雪峰：git多人协作
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       利用Python自动生成小学生加减乘除口算考试题卷。
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-10-24 10:50:04
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      孩子上小学一年级了，加减乘除的口算就要开始练习了，估计老师肯定会让家长出题，所以提前准备一下，利用Python开发了一套自动生成小学生口算题的小应用。而且今天是程序员节，撸200行代码庆祝一下。：）
+     </p>
+     <p>
+      为了让程序员老爹解放抄题的双手，让你拥有更多的时间去写代码而不用去手写几道口算题而伤神伤脑。所以有没有娃子的程序员爹爹加入一起来继续优化个开源小程序的？有什么点子，发现什么BUG，欢迎留言。
+     </p>
+     <p>
+      仅以此软件，献给那些热爱
+      <code>
+       Python
+      </code>
+      的程序员老爹们！
+     </p>
+     <p>
+      程序核心功能：
+     </p>
+     <p>
+      1.可以设置各算数项和结果的取值范围及多步算数符号的选择，可以生成求结果、求算数项、带括号的算式，最多支持3步算式题
+     </p>
+     <p>
+      2.可以简单设置文档标题，小标题。设置生成的口算题文档个数
+     </p>
+     <p>
+      使用方法：
+     </p>
+     <p>
+      1 确定本机支持python3.6.1以上版本
+     </p>
+     <p>
+      2 安装.docx模块,安装wxPython模块 安装方法：
+     </p>
+     <p>
+      <code>
+       pip3 install python-docx
+      </code>
+     </p>
+     <p>
+      <code>
+       pip3 install wxpython
+      </code>
+     </p>
+     <p>
+      3 下载程序进入主目录，终端下运行
+      <code>
+       python App.py
+      </code>
+     </p>
+     <p>
+      4 修改运算项和结果范围里的数值,多步运算请添加修改需要的运算符号:
+     </p>
+     <p>
+      5 添加口算题到列表中，然后生成口算题,生成的口算题文件都在docx文件目录下，打开后连接打印机就可以开印了。
+     </p>
+     <h2>
+      源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PrimarySchoolMathematics">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       有时人生需要做出选择
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-06-12 10:05:40
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      好久没有更新自己的博客了，最近经历了很多变动，所以人生的规划也发生了一些微妙的变化。
+     </p>
+     <p>
+      这段日子没怎么看编程相关的书，今天随便看了一下，python已经是3.6.5，django也是2.0.6的版本了，想想自己前一阵学习py及django的时候，机器上的环境还是3.61和1.1X版.。。。
+     </p>
+     <p>
+      更新了一下站点的头部图片，上次更新时还是冬天的。。。。
+     </p>
+     <p>
+      可能暂时要放下编程了，是放下不是放弃，不久的以后我还会捡起来，因为我还有一个做游戏的梦想还未实现。想起30岁的时候开始学习编程，40而终，这些年没做成什么太出色的软件，但也因为代码养家糊了口饭，想想也算是值了，人生总是再变动，曾经看到过一篇文章介绍过，程序员黑客和画家很相似，所以那天拿起笔来就画了几个月感觉还不错，我能否再用10年成就一个插画师的梦想？
+     </p>
+     <p>
+      为自己加油！
+     </p>
+     <p>
+      感谢曾经路过17python网友，这个站点暂时还不会关闭，但内容也许有些改变，python还会继续，但可能会慢了一些，但我还会在学习python的路上前进的。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
+       聊聊Python中的递归与快速排序那点事
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-30 14:38:39
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
+     </p>
+     <h2>
+      在Python中递归
+     </h2>
+     <p>
+      递归比较简单的例子就是阶乘，看下递归的必要条件：
+     </p>
+     <ul>
+      <li>
+       边界条件：确定递归到何时终止，也称为递归出口。
+      </li>
+      <li>
+       递归模式：大问题是如何分解为小问题的，也称为递归体。
+      </li>
+     </ul>
+     <p>
+      阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
+     </p>
+     <pre><code>def f(n):
     if n == 1: return 1
     return n * f(n - 1)
 print(f(5))
 </code></pre>
- <p>
-  上边就是一个简单的递归阶乘函数，很简单喽，不过在
-  <code>
-   Python
-  </code>
-  中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
- </p>
- <pre><code>import sys
+     <p>
+      上边就是一个简单的递归阶乘函数，很简单喽，不过在
+      <code>
+       Python
+      </code>
+      中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
+     </p>
+     <pre><code>import sys
 sys.setrecursionlimit(5000)  # 设置递归层数
 print(sys.getrecursionlimit())  # 查看
 </code></pre>
- <h2>
-  Python中的快速排序
- </h2>
- <p>
-  快速排序法是一个非常精典的递归例子，C语言标准库中的
-  <code>
-   qsort
-  </code>
-  函数的实现主是采用的快速排序法。
+     <h2>
+      Python中的快速排序
+     </h2>
+     <p>
+      快速排序法是一个非常精典的递归例子，C语言标准库中的
+      <code>
+       qsort
+      </code>
+      函数的实现主是采用的快速排序法。
 快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
 具体看代码：
- </p>
- <pre><code>def q_sort(arr):
+     </p>
+     <pre><code>def q_sort(arr):
     if len(arr) &lt; 2 :
         return arr
     else:
@@ -520,205 +724,205 @@ print(sys.getrecursionlimit())  # 查看
         return q_sort(l) + temp  + q_sort(g)
 print(q_sort([2,44,3,77,6,5,888,999]))
 </code></pre>
- <p>
-  上边代码如果直接
-  <code>
-   return q_sort(l) + p  + q_sort(g)
-  </code>
-  是会报错的，所以修改了使用list相加。
+     <p>
+      上边代码如果直接
+      <code>
+       return q_sort(l) + p  + q_sort(g)
+      </code>
+      是会报错的，所以修改了使用list相加。
 算法其实很有意思，程序都是有算法组成的，以后得多看看了。
- </p>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-16 10:25:21
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif"/>
- </p>
- <h2>
-  Matrix的构思
- </h2>
- <p>
-  我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-16 10:25:21
+      </span>
+      <span class="tag">
+       pygame
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif"/>
+     </p>
+     <h2>
+      Matrix的构思
+     </h2>
+     <p>
+      我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
 Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。
- </p>
- <h2>
-  Matrix代码编写调试过程
- </h2>
- <p>
-  刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
+     </p>
+     <h2>
+      Matrix代码编写调试过程
+     </h2>
+     <p>
+      刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
 当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。
- </p>
- <pre><code>c = random.randint(33, 127)
+     </p>
+     <pre><code>c = random.randint(33, 127)
 chr(c)
 </code></pre>
- <p>
-  对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
- </p>
- <h2>
-  让Matrix动起来
- </h2>
- <p>
-  场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
+     <p>
+      对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
+     </p>
+     <h2>
+      让Matrix动起来
+     </h2>
+     <p>
+      场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
 add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。
- </p>
- <h2>
-  Matrix代码缩写总结
- </h2>
- <p>
-  感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png"/>
- </p>
- <p>
-  本文源码下载
- </p>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-13 16:00:40
-  </span>
-  <span class="tag">
-   pygame
-  </span>
- </div>
- <p>
- </p>
- <p>
-  记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
+     </p>
+     <h2>
+      Matrix代码缩写总结
+     </h2>
+     <p>
+      感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png"/>
+     </p>
+     <p>
+      本文源码下载
+     </p>
+     <p>
+      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-13 16:00:40
+      </span>
+      <span class="tag">
+       pygame
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
 如果你感兴趣， Follow me, please.
- </p>
- <p>
-  无图无真相，先上图：
- </p>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png"/>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png"/>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png"/>
- </p>
- <h2>
-  Tetromino游戏构思
- </h2>
- <p>
-  很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
- </p>
- <p>
-  Tetromino如果我们从逻辑上拆分，我这里能想到三点：
- </p>
- <ul>
-  <li>
-   一个长方形的场景
-  </li>
-  <li>
-   下落的方块
-  </li>
-  <li>
-   游戏中的逻辑
-  </li>
- </ul>
- <p>
-  当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
+     </p>
+     <p>
+      无图无真相，先上图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png"/>
+     </p>
+     <h2>
+      Tetromino游戏构思
+     </h2>
+     <p>
+      很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
+     </p>
+     <p>
+      Tetromino如果我们从逻辑上拆分，我这里能想到三点：
+     </p>
+     <ul>
+      <li>
+       一个长方形的场景
+      </li>
+      <li>
+       下落的方块
+      </li>
+      <li>
+       游戏中的逻辑
+      </li>
+     </ul>
+     <p>
+      当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
 游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？
- </p>
- <p>
-  <strong>
-   友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
-  </strong>
- </p>
- <h2>
-  Tetromino中的游戏板
- </h2>
- <p>
-  Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
+     </p>
+     <p>
+      <strong>
+       友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
+      </strong>
+     </p>
+     <h2>
+      Tetromino中的游戏板
+     </h2>
+     <p>
+      Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
 首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
 其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
 设置Tetromino类中的self.start = True，这样方便调试游戏。
- </p>
- <h2>
-  绘制board游戏板
- </h2>
- <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
+     </p>
+     <h2>
+      绘制board游戏板
+     </h2>
+     <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
 </code></pre>
- <p>
-  通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
+     <p>
+      通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
 在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
 有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。
- </p>
- <h2>
-  下落的方块
- </h2>
- <p>
-  下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
+     </p>
+     <h2>
+      下落的方块
+     </h2>
+     <p>
+      下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
 具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
 Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
 这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。
- </p>
- <h2>
-  游戏中的逻辑
- </h2>
- <p>
-  这个游戏的核心逻辑个人觉得就是：
-  <strong>
-   判断当前下落方块所处的位置是否合法
-  </strong>
-  ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
+     </p>
+     <h2>
+      游戏中的逻辑
+     </h2>
+     <p>
+      这个游戏的核心逻辑个人觉得就是：
+      <strong>
+       判断当前下落方块所处的位置是否合法
+      </strong>
+      ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
 我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
 一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
 就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
 伪代码：
- </p>
- <pre><code>    for a in range(w):
+     </p>
+     <pre><code>    for a in range(w):
         for b in range(h):
             if (shapes[type][direction][b][a] == 1 and board[x + b][
                 y + a] == 2) or (
@@ -727,324 +931,51 @@ Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的
                 return 0
     return 1
 </code></pre>
- <p>
-  原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
+     <p>
+      原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
 有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
 实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！
- </p>
- <h2>
-  本文源码下载
- </h2>
- <p>
-  请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
+     </p>
+     <h2>
+      本文源码下载
+     </h2>
+     <p>
+      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
 本例源文件：
-  <code>
-   PY_RPG.Tetromino.py
-  </code>
- </p>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="blog-article">
-  <h1 class="title">
-   极速学习C++之基础篇
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-11 09:07:47
-  </span>
-  <span class="tag">
-   C/C++
-  </span>
- </div>
- <p>
- </p>
- <p>
-  极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
-假设你和笔者有相同的经历，曾经接触过php java js python，并且和每个语言有过一段还不算太短的"恋情"，那么我开始极速极速学习C++。
- </p>
- <h2>
-  万年不变的HelloWorld
- </h2>
- <p>
-  C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
-打开CLion,new一个C++ Project，输入以下代码：
- </p>
- <h1>
-  include "iostream"
- </h1>
- <pre><code>using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World!" &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
- <p>
-  好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。
- </p>
- <h2>
-  常量变量及运算
- </h2>
- <p>
-  常量定义的二种方法：
- </p>
- <pre><code>#define COOL 18
-const int COOLA = 19;
-cout &lt;&lt; "COOL : " &lt;&lt; COOL &lt;&lt; "  COOLA : " &lt;&lt; COOLA &lt;&lt; endl;
-</code></pre>
- <p>
-  这样就可以打印常量了。
- </p>
- <p>
-  定义变量和运算符也是如此简单上手：
- </p>
- <pre><code>int a,b,c;
-float d = 23.99;
-double e = 1.9876;
-char s[] = "hellp";
-string str = "world";
-a = 10,b=21,c=43;
-</code></pre>
- <p>
-  cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;
- </p>
- <p>
-  当然运算符远远不指这些，还有很多，具体可以查阅相关资料。
- </p>
- <h2>
-  条件与循环
- </h2>
- <p>
-  条件判断：
- </p>
- <pre><code>int a = 10;
-int b = 20;
-if(a &lt; b){
-    cout &lt;&lt; "a &lt; b" &lt;&lt;endl;
-}
-</code></pre>
- <p>
-  循环输出九九乘法口决：
- </p>
- <pre><code>for (int i = 1; i &lt; 10; ++i) {
-    for (int j = 1; j &lt;= i; ++j) {
-        cout &lt;&lt; j &lt;&lt; "*" &lt;&lt; i &lt;&lt; "=" &lt;&lt; i * j &lt;&lt; "   ";
-    }
-    cout &lt;&lt; endl;
-}
-</code></pre>
- <h2>
-  函数声明及使用
- </h2>
- <p>
-  要使用一个函数，需要先在源文件的顶部声明：
- </p>
- <pre><code>int add (int a,intb)
-</code></pre>
- <p>
-  然后再源文件中编写代码：
- </p>
- <pre><code>int add(int a, int b) {
-    return a + b;
-}
-</code></pre>
- <p>
-  然后就可以调用了：
- </p>
- <pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
-</code></pre>
- <h2>
-  C++中的指针
- </h2>
- <pre><code>int var = 9;
-int *ip = &amp;var;
-
-cout &lt;&lt; "ip " &lt;&lt; ip &lt;&lt; endl;
-cout &lt;&lt; "*ip " &lt;&lt; *ip &lt;&lt; endl;
-</code></pre>
- <p>
-  是不是理解了？一个输出内存的地址，一个输出地址中的值。
- </p>
- <h2>
-  结构体与枚举
- </h2>
- <p>
-  结构体与类很相似，结构体是C中的数据结构。
-枚举用起来很方便，有枚举常量和枚举变量，注意区分。
- </p>
- <pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-struct Books {
-    char title[20];
-    char author[50];
-    int book_id;
-//    结构体中的函数
-    void prt(){
-        printf("book_id:%d",book_id);
-    }
-};
-
-//定义枚举常量
-enum Direction{up,left,down,right};
-
-int main() {
-
-    Books book1;
-    book1 = {"booka","ba",1};
-    cout &lt;&lt; "book1.title:" &lt;&lt; book1.title &lt;&lt; endl;
-    printf("sdfsdfsdf %s \n",book1.author);
-    book1.prt();
-    cout &lt;&lt; endl
-//打印枚举
-    printf("up:%d down:%d",up,down);
-
-    return 0;
-}
-</code></pre>
- <p>
-  基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。
- </p>
- <div class="blog-article">
-  <h1 class="title">
-   妙用IPython学习Python--IPython快速上手
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-07 10:16:11
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
- <p>
-  在学习Python的时候，有时我们只是想了解一下模块或是函数，或是测试一些小小代码片段，或是在shell中结合Python一起使用，有没有简便的工具或方法呢？有的，你可以试试IPython.
- </p>
- <h2>
-  IPython的安装
- </h2>
- <pre><code>pip3 install ipython
-</code></pre>
- <p>
-  然后，在终端中输入
-  <code>
-   ipython
-  </code>
-  验证一下
- </p>
- <pre><code>➜  ~ ipython
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)
-Type 'copyright', 'credits' or 'license' for more information
-IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:
-</code></pre>
- <p>
-  如果出现以上提示，即是安装成功
- </p>
- <h2>
-  IPython的用处
- </h2>
- <p>
-  IPython的使用妙法很多，这里我只介绍一些超级常用的方法，如有不足，欢迎回复本博文进行补充。
- </p>
- <ul>
-  <li>
-   代码提示
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_19.png"/>
- </p>
- <ul>
-  <li>
-   问号？妙用
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_20.png"/>
- </p>
- <p>
-  这样可以直接查看到对象的一些属性介绍。
- </p>
- <ul>
-  <li>
-   直接使用shell命令
-  </li>
- </ul>
- <p>
-  <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_21.png"/>
- </p>
- <p>
-  这个是不是很方便有没有？
- </p>
- <p>
-  IPython确实是Python学习中的好帮手，在熟悉某些模块的时候，用IPythong先来探个明白是个不错的方法。
- </p>
- <h2>
-  相关参考
- </h2>
- <ul>
-  <li>
-   <a href="https://www.cnblogs.com/zzhzhao/p/5295476.html">
-    IPython使用学习笔记
-   </a>
-  </li>
-  <li>
-   <a href="https://www.zhihu.com/question/51467397?from=profile_question_card">
-    使用IPython有哪些好处？
-   </a>
-  </li>
- </ul>
- <h2>
-  本文源码下载：
- </h2>
- <ul>
-  <li>
-   <a href="https://github.com/bosichong/17python.com/">
-    github
-   </a>
-  </li>
-  <li>
-   <a href="https://gitee.com/J_Sky/17python.com/">
-    开源中国码云镜像gitee
-   </a>
-  </li>
- </ul>
- <div class="spage">
-  <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-   <a href="list_4.html">
-    <button class="prev btn btn-primary" type="button">
-     Previous
-    </button>
-   </a>
-   <button class="page btn btn-primary" type="button">
-    5 / 14
-   </button>
-   <a href="list_6.html">
-    <button class="next btn btn-primary" type="button">
-     Next
-    </button>
-   </a>
-  </div>
- </div>
-</div>
+      <code>
+       PY_RPG.Tetromino.py
+      </code>
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_4.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        5 / 14
+       </button>
+       <a href="list_6.html">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
+       </a>
+      </div>
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

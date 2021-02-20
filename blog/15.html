@@ -132,33 +132,32 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   python3函数学习笔记简单总结
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-09 09:27:49
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <em>
-  python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路
- </em>
-</p>
-<h2>
- 函数的定义，Python 定义函数使用 def 关键字
-</h2>
-<pre><code class="python">def hello():
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       python3函数学习笔记简单总结
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-09 09:27:49
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路
+      </em>
+     </p>
+     <h2>
+      函数的定义，Python 定义函数使用 def 关键字
+     </h2>
+     <pre><code class="python">def hello():
     '''定义一个hello打印的函数'''
     return 'hello world'
 
@@ -166,44 +165,44 @@
 
 print(hello())
 </code></pre>
-<h2>
- 有参数并有返回值的函数
-</h2>
-<pre><code class="python">def add(x, y):
+     <h2>
+      有参数并有返回值的函数
+     </h2>
+     <pre><code class="python">def add(x, y):
     return x+y
 print(add(2,5))
 </code></pre>
-<h2>
- 任意参数有返回值
- <em>
-  为tuple
- </em>
- *为list
-</h2>
-<pre><code class="python">def rst_a(*k, **s):
+     <h2>
+      任意参数有返回值
+      <em>
+       为tuple
+      </em>
+      *为list
+     </h2>
+     <pre><code class="python">def rst_a(*k, **s):
     rst = 0
     for v in k :
         rst += v
     return rst,s
 print(rst_a(1,2,3,4,aa='aa',bb='bb'))
 </code></pre>
-<h2>
- 有意思的lambda
-</h2>
-<pre><code>l = lambda x, y : x + y
+     <h2>
+      有意思的lambda
+     </h2>
+     <pre><code>l = lambda x, y : x + y
 print(l(2,8))
 </code></pre>
-<h2>
- 装饰器语法糖
-</h2>
-<p>
- 在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(
- <em>
-  args,
- </em>
- *kwargs)可变参数。
-</p>
-<pre><code class="python">import time
+     <h2>
+      装饰器语法糖
+     </h2>
+     <p>
+      在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(
+      <em>
+       args,
+      </em>
+      *kwargs)可变参数。
+     </p>
+     <pre><code class="python">import time
 
 def t(func):
     '''定义一个程序运行时间计算函数'''
@@ -232,57 +231,58 @@ def myfunc(x,y):
 myfunc(3,6)
 
 </code></pre>
-<h2>
- 相关参考
-</h2>
-<ul>
- <li>
-  <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">
-   Python 函数
-  </a>
- </li>
- <li>
-  <a href="http://python.jobbole.com/82344/">
-   Python 装饰器
-  </a>
- </li>
- <li>
-  <a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">
-   理解Python中的装饰器
-  </a>
- </li>
-</ul>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/15.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      相关参考
+     </h2>
+     <ul>
+      <li>
+       <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">
+        Python 函数
+       </a>
+      </li>
+      <li>
+       <a href="http://python.jobbole.com/82344/">
+        Python 装饰器
+       </a>
+      </li>
+      <li>
+       <a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">
+        理解Python中的装饰器
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/15.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

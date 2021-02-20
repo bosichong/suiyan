@@ -132,73 +132,72 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   聊聊Python中的递归与快速排序那点事
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2018-01-30 14:38:39
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
-</p>
-<h2>
- 在Python中递归
-</h2>
-<p>
- 递归比较简单的例子就是阶乘，看下递归的必要条件：
-</p>
-<ul>
- <li>
-  边界条件：确定递归到何时终止，也称为递归出口。
- </li>
- <li>
-  递归模式：大问题是如何分解为小问题的，也称为递归体。
- </li>
-</ul>
-<p>
- 阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
-</p>
-<pre><code>def f(n):
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       聊聊Python中的递归与快速排序那点事
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-30 14:38:39
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
+     </p>
+     <h2>
+      在Python中递归
+     </h2>
+     <p>
+      递归比较简单的例子就是阶乘，看下递归的必要条件：
+     </p>
+     <ul>
+      <li>
+       边界条件：确定递归到何时终止，也称为递归出口。
+      </li>
+      <li>
+       递归模式：大问题是如何分解为小问题的，也称为递归体。
+      </li>
+     </ul>
+     <p>
+      阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
+     </p>
+     <pre><code>def f(n):
     if n == 1: return 1
     return n * f(n - 1)
 print(f(5))
 </code></pre>
-<p>
- 上边就是一个简单的递归阶乘函数，很简单喽，不过在
- <code>
-  Python
- </code>
- 中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
-</p>
-<pre><code>import sys
+     <p>
+      上边就是一个简单的递归阶乘函数，很简单喽，不过在
+      <code>
+       Python
+      </code>
+      中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
+     </p>
+     <pre><code>import sys
 sys.setrecursionlimit(5000)  # 设置递归层数
 print(sys.getrecursionlimit())  # 查看
 </code></pre>
-<h2>
- Python中的快速排序
-</h2>
-<p>
- 快速排序法是一个非常精典的递归例子，C语言标准库中的
- <code>
-  qsort
- </code>
- 函数的实现主是采用的快速排序法。
+     <h2>
+      Python中的快速排序
+     </h2>
+     <p>
+      快速排序法是一个非常精典的递归例子，C语言标准库中的
+      <code>
+       qsort
+      </code>
+      函数的实现主是采用的快速排序法。
 快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
 具体看代码：
-</p>
-<pre><code>def q_sort(arr):
+     </p>
+     <pre><code>def q_sort(arr):
     if len(arr) &lt; 2 :
         return arr
     else:
@@ -211,45 +210,46 @@ print(sys.getrecursionlimit())  # 查看
         return q_sort(l) + temp  + q_sort(g)
 print(q_sort([2,44,3,77,6,5,888,999]))
 </code></pre>
-<p>
- 上边代码如果直接
- <code>
-  return q_sort(l) + p  + q_sort(g)
- </code>
- 是会报错的，所以修改了使用list相加。
+     <p>
+      上边代码如果直接
+      <code>
+       return q_sort(l) + p  + q_sort(g)
+      </code>
+      是会报错的，所以修改了使用list相加。
 算法其实很有意思，程序都是有算法组成的，以后得多看看了。
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/79.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/79.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

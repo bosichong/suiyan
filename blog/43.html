@@ -132,34 +132,33 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   浅谈Python中的协程及利用协程代替多线程及多进程并发编程
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-15 15:52:46
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。
-</p>
-<h2>
- 生成器如何演变成协程？
-</h2>
-<p>
- 乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？
-</p>
-<pre><code>def cd(n):
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       浅谈Python中的协程及利用协程代替多线程及多进程并发编程
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-15 15:52:46
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。
+     </p>
+     <h2>
+      生成器如何演变成协程？
+     </h2>
+     <p>
+      乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？
+     </p>
+     <pre><code>def cd(n):
     print("Counting down from %s" % n)
     while n &gt; 0:
         yield n
@@ -169,10 +168,10 @@ next(c)
 for i in c :
     print(i,end=' ')
 </code></pre>
-<p>
- 上边是一个典型的生成器函数，我们稍加变化使之成为协程。
-</p>
-<pre><code>def cd1():
+     <p>
+      上边是一个典型的生成器函数，我们稍加变化使之成为协程。
+     </p>
+     <pre><code>def cd1():
     n = yield
     while n &gt; 0:
         print("Counting down from %s" % n)
@@ -183,25 +182,25 @@ next(c1)
 c1.send(10)
 #运行到这里应该抛出一个异常
 </code></pre>
-<p>
- 生成器和协程的不同有没有看出来？很明显的有两处：
-</p>
-<ul>
- <li>
-  yield的位置
- </li>
- <li>
-  next()和send()函数的用法
- </li>
-</ul>
-<p>
- 通过运行结果我们可以到最后抛出了一个异常
- <code>
-  StopIteration
- </code>
- ,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。
-</p>
-<pre><code>from functools import wraps
+     <p>
+      生成器和协程的不同有没有看出来？很明显的有两处：
+     </p>
+     <ul>
+      <li>
+       yield的位置
+      </li>
+      <li>
+       next()和send()函数的用法
+      </li>
+     </ul>
+     <p>
+      通过运行结果我们可以到最后抛出了一个异常
+      <code>
+       StopIteration
+      </code>
+      ,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。
+     </p>
+     <pre><code>from functools import wraps
 def coroutine(func):
     @wraps(func)
     def primer(*args, **kwargs):
@@ -220,17 +219,17 @@ try:
 except Exception as e:
     print('协程任务终止')
 </code></pre>
-<p>
- 带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。
-</p>
-<h2>
- 利用协程代替线程或进程进行并发编程
-</h2>
-<p>
- 我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
+     <p>
+      带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。
+     </p>
+     <h2>
+      利用协程代替线程或进程进行并发编程
+     </h2>
+     <p>
+      我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
 这里的协程用到了asyncio模块，利用asyncio模块实现了一个协程的并发。关于asyncio的实现原理，稍后再研究一下。
-</p>
-<pre><code>import asyncio
+     </p>
+     <pre><code>import asyncio
 import time
 import threading
 def tn(func):
@@ -285,38 +284,39 @@ def main():
 if __name__ == '__main__':
     main()
 </code></pre>
-<p>
- 上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
+     <p>
+      上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
 这就是协程的魅力所在，一条线程搞定多线程任务。
-</p>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/43.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/43.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

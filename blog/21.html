@@ -132,205 +132,204 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-09-22 09:10:27
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <code>
-  Python
- </code>
- 编程中有时我们需要一些可视化的操作，如果功能相对很简单，可以使用
- <code>
-  Python
- </code>
- 内置的GUI模块：
- <code>
-  tkinter
- </code>
- 这个模块所提供的功能及部件不是很多，如果你用过java，和Swing、AWT相比，tk的所提供的确实是要少很多了。但是如果只是简单的显示或是数据展示，基本上还是够用的。
-</p>
-<h2>
- tk的组件不是很多，包括以下：
-</h2>
-<ul>
- <li>
-  Button    按钮控件；在程序中显示按钮。
- </li>
- <li>
-  Canvas    画布控件；显示图形元素如线条或文本
- </li>
- <li>
-  Checkbutton   多选框控件；用于在程序中提供多项选择框
- </li>
- <li>
-  Entry 输入控件；用于显示简单的文本内容
- </li>
- <li>
-  Frame 框架控件；在屏幕上显示一个矩形区域，多用来作为容器
- </li>
- <li>
-  Label 标签控件；可以显示文本和位图
- </li>
- <li>
-  Listbox   列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户
- </li>
- <li>
-  Menubutton    菜单按钮控件，由于显示菜单项。
- </li>
- <li>
-  Menu  菜单控件；显示菜单栏,下拉菜单和弹出菜单
- </li>
- <li>
-  Message   消息控件；用来显示多行文本，与label比较类似
- </li>
- <li>
-  Radiobutton   单选按钮控件；显示一个单选的按钮状态
- </li>
- <li>
-  Scale 范围控件；显示一个数值刻度，为输出限定范围的数字区间
- </li>
- <li>
-  Scrollbar 滚动条控件，当内容超过可视化区域时使用，如列表框。.
- </li>
- <li>
-  Text  文本控件；用于显示多行文本
- </li>
- <li>
-  Toplevel  容器控件；用来提供一个单独的对话框，和Frame比较类似
- </li>
- <li>
-  Spinbox   输入控件；与Entry类似，但是可以指定输入范围值
- </li>
- <li>
-  PanedWindow   PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。
- </li>
- <li>
-  LabelFrame    labelframe 是一个简单的容器控件。常用与复杂的窗口布局。
- </li>
- <li>
-  tkMessageBox  用于显示你应用程序的消息框。
- </li>
-</ul>
-<p>
- 之前在网上搜过，相关的教程不是很多，而且文档也写的算是很烂了，当然如果你英文不错，直接看源文件里的注释基本上就够用了，不过有的时候看py源文件还真是有点不太习惯，如果有示例或文档还好。最近搜集了一下相关的文档及教程，虽然不是很多，希望通过几篇简单的教程示例，帮助大家了解一下tk的用法，已来解决一些
- <code>
-  python
- </code>
- 编程中简单的GUI需求。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-22 09:10:27
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <code>
+       Python
+      </code>
+      编程中有时我们需要一些可视化的操作，如果功能相对很简单，可以使用
+      <code>
+       Python
+      </code>
+      内置的GUI模块：
+      <code>
+       tkinter
+      </code>
+      这个模块所提供的功能及部件不是很多，如果你用过java，和Swing、AWT相比，tk的所提供的确实是要少很多了。但是如果只是简单的显示或是数据展示，基本上还是够用的。
+     </p>
+     <h2>
+      tk的组件不是很多，包括以下：
+     </h2>
+     <ul>
+      <li>
+       Button    按钮控件；在程序中显示按钮。
+      </li>
+      <li>
+       Canvas    画布控件；显示图形元素如线条或文本
+      </li>
+      <li>
+       Checkbutton   多选框控件；用于在程序中提供多项选择框
+      </li>
+      <li>
+       Entry 输入控件；用于显示简单的文本内容
+      </li>
+      <li>
+       Frame 框架控件；在屏幕上显示一个矩形区域，多用来作为容器
+      </li>
+      <li>
+       Label 标签控件；可以显示文本和位图
+      </li>
+      <li>
+       Listbox   列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户
+      </li>
+      <li>
+       Menubutton    菜单按钮控件，由于显示菜单项。
+      </li>
+      <li>
+       Menu  菜单控件；显示菜单栏,下拉菜单和弹出菜单
+      </li>
+      <li>
+       Message   消息控件；用来显示多行文本，与label比较类似
+      </li>
+      <li>
+       Radiobutton   单选按钮控件；显示一个单选的按钮状态
+      </li>
+      <li>
+       Scale 范围控件；显示一个数值刻度，为输出限定范围的数字区间
+      </li>
+      <li>
+       Scrollbar 滚动条控件，当内容超过可视化区域时使用，如列表框。.
+      </li>
+      <li>
+       Text  文本控件；用于显示多行文本
+      </li>
+      <li>
+       Toplevel  容器控件；用来提供一个单独的对话框，和Frame比较类似
+      </li>
+      <li>
+       Spinbox   输入控件；与Entry类似，但是可以指定输入范围值
+      </li>
+      <li>
+       PanedWindow   PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。
+      </li>
+      <li>
+       LabelFrame    labelframe 是一个简单的容器控件。常用与复杂的窗口布局。
+      </li>
+      <li>
+       tkMessageBox  用于显示你应用程序的消息框。
+      </li>
+     </ul>
+     <p>
+      之前在网上搜过，相关的教程不是很多，而且文档也写的算是很烂了，当然如果你英文不错，直接看源文件里的注释基本上就够用了，不过有的时候看py源文件还真是有点不太习惯，如果有示例或文档还好。最近搜集了一下相关的文档及教程，虽然不是很多，希望通过几篇简单的教程示例，帮助大家了解一下tk的用法，已来解决一些
+      <code>
+       python
+      </code>
+      编程中简单的GUI需求。
 当然这些内容并不完整，我会在日常的应用中随时进行补充，也欢迎各位在评论中补充。
-</p>
-<h2>
- 窗口
-</h2>
-<p>
- root = tkinter.Tk() 这里创建一个root窗口，可以看成是一个APP的最顶层。
+     </p>
+     <h2>
+      窗口
+     </h2>
+     <p>
+      root = tkinter.Tk() 这里创建一个root窗口，可以看成是一个APP的最顶层。
 顶层Tk对象一些方法，这里说一些实用的：
-</p>
-<ul>
- <li>
-  title() 这个用来设置窗口的标题
- </li>
- <li>
-  geometry('500x300+300+300') 设置窗口的大小及位置，如果省去后边的+300+300位置，只控制窗口的大小。
- </li>
-</ul>
-<h2>
- Frame
-</h2>
-<p>
- 可以看成是一个可以装着众多部件的容器，他本身也可以容纳自己，嵌套自己。
-</p>
-<ul>
- <li>
-  fill=NONE or X or Y or BOTH - fill widget if widget grows 填充设置选项，可以设置无，x，y 或是都二者皆填充.
- </li>
- <li>
-  side=TOP or BOTTOM or LEFT or RIGHT 这里一共有四个选项，可以控制容器位置
- </li>
-</ul>
-<h2>
- Label
-</h2>
-<p>
- 我觉得label中比较重要的就是内容字符串的修改，默认使用
- <code>
-  text="str"
- </code>
- 设置label的显示文字，但是如果程序中需要动态的修改，就需要另外一个属性方法了，
- <code>
-  var = tkinter.StringVar()
- </code>
- 会生成一个对象，用来存放label要显示的文字，然后可以通过函数动态的修改这个字符串，其使只需要在
- <code>
-  label
- </code>
- 创建的时候，为
- <code>
-  textvariable=var
- </code>
- 设置一个属性值，
+     </p>
+     <ul>
+      <li>
+       title() 这个用来设置窗口的标题
+      </li>
+      <li>
+       geometry('500x300+300+300') 设置窗口的大小及位置，如果省去后边的+300+300位置，只控制窗口的大小。
+      </li>
+     </ul>
+     <h2>
+      Frame
+     </h2>
+     <p>
+      可以看成是一个可以装着众多部件的容器，他本身也可以容纳自己，嵌套自己。
+     </p>
+     <ul>
+      <li>
+       fill=NONE or X or Y or BOTH - fill widget if widget grows 填充设置选项，可以设置无，x，y 或是都二者皆填充.
+      </li>
+      <li>
+       side=TOP or BOTTOM or LEFT or RIGHT 这里一共有四个选项，可以控制容器位置
+      </li>
+     </ul>
+     <h2>
+      Label
+     </h2>
+     <p>
+      我觉得label中比较重要的就是内容字符串的修改，默认使用
+      <code>
+       text="str"
+      </code>
+      设置label的显示文字，但是如果程序中需要动态的修改，就需要另外一个属性方法了，
+      <code>
+       var = tkinter.StringVar()
+      </code>
+      会生成一个对象，用来存放label要显示的文字，然后可以通过函数动态的修改这个字符串，其使只需要在
+      <code>
+       label
+      </code>
+      创建的时候，为
+      <code>
+       textvariable=var
+      </code>
+      设置一个属性值，
 这样就可以在程序中通过修改var来进行修改
- <code>
-  label
- </code>
- 显示的字符了。
+      <code>
+       label
+      </code>
+      显示的字符了。
 其它比较常用的属性还用，
- <code>
-  fg="#c00"
- </code>
- ，字体颜色，
- <code>
-  bg="red"
- </code>
- ，背景颜色设置，当然还有很多属性，可以通过文档查看。
-</p>
-<h2>
- Buttom
-</h2>
-<p>
- 按钮，可以说是程序中最常用的部件了，其属性和
- <code>
-  labe
- </code>
- l部分有些相似，比如动态修改按钮上的文字也是使用
- <code>
-  StringVar()
- </code>
- 。
+      <code>
+       fg="#c00"
+      </code>
+      ，字体颜色，
+      <code>
+       bg="red"
+      </code>
+      ，背景颜色设置，当然还有很多属性，可以通过文档查看。
+     </p>
+     <h2>
+      Buttom
+     </h2>
+     <p>
+      按钮，可以说是程序中最常用的部件了，其属性和
+      <code>
+       labe
+      </code>
+      l部分有些相似，比如动态修改按钮上的文字也是使用
+      <code>
+       StringVar()
+      </code>
+      。
 按键程序员最关心的莫过于是按键的点击事件，Tk的按键点击事件通过
- <code>
-  command=def
- </code>
- 来进行设置，其中def为函数名称，如果设置关联了函数，点击按键就会运行相关的函数了。
-</p>
-<p>
- <code>
-  mainloop()
- </code>
- 个人理解为循环刷新渲染当前GUI窗口中的内容，如果没有这个函数，窗口是无法显示的。
-</p>
-<h2>
- 参考源码
-</h2>
-<p>
- <img alt="" src="assets/images/media/upload/2017/09/guia_xA7j7KG.png"/>
-</p>
-<pre><code class="python">import tkinter #导入支持库
+      <code>
+       command=def
+      </code>
+      来进行设置，其中def为函数名称，如果设置关联了函数，点击按键就会运行相关的函数了。
+     </p>
+     <p>
+      <code>
+       mainloop()
+      </code>
+      个人理解为循环刷新渲染当前GUI窗口中的内容，如果没有这个函数，窗口是无法显示的。
+     </p>
+     <h2>
+      参考源码
+     </h2>
+     <p>
+      <img alt="" src="assets/images/media/upload/2017/09/guia_xA7j7KG.png"/>
+     </p>
+     <pre><code class="python">import tkinter #导入支持库
 def def1():
     """按钮1"""
     var1.set('看，我变啦！')
@@ -373,52 +372,53 @@ b3 = Buttom(buttom_line, text="点我试试3", width=18, command=def3).pack(side
 root.mainloop() 
 
 </code></pre>
-<h2>
- 相关参考
-</h2>
-<ul>
- <li>
-  <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-   可爱的 Python：Python 中的 TK编程
-  </a>
- </li>
- <li>
-  <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-   An Introduction To Tkinter
-  </a>
- </li>
-</ul>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/21.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      相关参考
+     </h2>
+     <ul>
+      <li>
+       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+        可爱的 Python：Python 中的 TK编程
+       </a>
+      </li>
+      <li>
+       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+        An Introduction To Tkinter
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/21.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

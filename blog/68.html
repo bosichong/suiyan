@@ -132,57 +132,56 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python生成器yield应用实例——监控日志
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-22 09:19:40
-  </span>
-  <span class="tag">
-   Python基础
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <code>
-  Python
- </code>
- 生成器
- <code>
-  yield
- </code>
- 是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。
-</p>
-<h2>
- 需要分析
-</h2>
-<p>
- 假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：
- <code>
-  2017-12-21 14:07:26.471691 99123
- </code>
- 数据被写入日志。
- <strong>
-  我们的目的是分析日志中的数字如果大于5000就要打印出来。
- </strong>
- 这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。
-</p>
-<h2>
- 模拟日志写入
-</h2>
-<p>
- <code>
-  server_log.py:
- </code>
-</p>
-<pre><code>import random
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python生成器yield应用实例——监控日志
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-12-22 09:19:40
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <code>
+       Python
+      </code>
+      生成器
+      <code>
+       yield
+      </code>
+      是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。
+     </p>
+     <h2>
+      需要分析
+     </h2>
+     <p>
+      假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：
+      <code>
+       2017-12-21 14:07:26.471691 99123
+      </code>
+      数据被写入日志。
+      <strong>
+       我们的目的是分析日志中的数字如果大于5000就要打印出来。
+      </strong>
+      这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。
+     </p>
+     <h2>
+      模拟日志写入
+     </h2>
+     <p>
+      <code>
+       server_log.py:
+      </code>
+     </p>
+     <pre><code>import random
 from datetime import *
 import os
 import time
@@ -204,22 +203,22 @@ while True:
         f.write(s + '\n')
     time.sleep(1)
 </code></pre>
-<p>
- 上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。
-</p>
-<h2>
- 利用生成器yield解析日志
-</h2>
-<p>
- 生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂
-</p>
-<p>
- <code>
-  tail.py
- </code>
- 代码如下：
-</p>
-<pre><code>import time
+     <p>
+      上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。
+     </p>
+     <h2>
+      利用生成器yield解析日志
+     </h2>
+     <p>
+      生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂
+     </p>
+     <p>
+      <code>
+       tail.py
+      </code>
+      代码如下：
+     </p>
+     <pre><code>import time
 
 def tail(f):
     f.seek(0,2)#移动到文件尾部。
@@ -242,46 +241,47 @@ lines = grep(serverlog)
 for line in lines:
     print(line)
 </code></pre>
-<p>
- 我们运行两个文件看下效果：
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif"/>
-</p>
-<p>
- 代码虽然简单，但值得细细品味，感受python的简约与强大吧。
-</p>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/tree/master/deftest">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/68.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      我们运行两个文件看下效果：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif"/>
+     </p>
+     <p>
+      代码虽然简单，但值得细细品味，感受python的简约与强大吧。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/deftest">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/68.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

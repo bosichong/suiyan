@@ -132,38 +132,37 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-12-24 19:21:04
-  </span>
-  <span class="tag">
-   Python GUI
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png"/>
-</p>
-<p>
- python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。
-</p>
-<h2>
- tkinter.filedialog的测试
-</h2>
-<p>
- 创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-12-24 19:21:04
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png"/>
+     </p>
+     <p>
+      python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。
+     </p>
+     <h2>
+      tkinter.filedialog的测试
+     </h2>
+     <p>
+      创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
 测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：
-</p>
-<pre><code>'askdirectory',
+     </p>
+     <pre><code>'askdirectory',
 'askopenfile',
 'askopenfilename',
 'askopenfilenames',
@@ -171,16 +170,16 @@
 'asksaveasfile',
 'asksaveasfilename'
 </code></pre>
-<p>
- 以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。
-</p>
-<p>
- 好了，具体测试源码如下：
-</p>
-<p>
- '''
-</p>
-<pre><code>import tkinter.filedialog as filedialog
+     <p>
+      以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。
+     </p>
+     <p>
+      好了，具体测试源码如下：
+     </p>
+     <p>
+      '''
+     </p>
+     <pre><code>import tkinter.filedialog as filedialog
 from tkinter import *
 import os
 
@@ -216,52 +215,53 @@ var.set((''))
 listbox = Listbox(listframe,width=60,listvariable = var).pack()
 root.mainloop()
 </code></pre>
-<h2>
- 相关参考
-</h2>
-<ul>
- <li>
-  <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-   可爱的 Python：Python 中的 TK编程
-  </a>
- </li>
- <li>
-  <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-   An Introduction To Tkinter
-  </a>
- </li>
-</ul>
-<h2>
- 本文源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/69.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <h2>
+      相关参考
+     </h2>
+     <ul>
+      <li>
+       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+        可爱的 Python：Python 中的 TK编程
+       </a>
+      </li>
+      <li>
+       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+        An Introduction To Tkinter
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/69.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

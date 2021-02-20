@@ -132,297 +132,297 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   Vue快速学习笔记(8)webpack4.X配置Vue开发打包环境
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2020-03-05 15:16:08
-  </span>
-  <span class="tag">
-   webpack
-  </span>
- </div>
- <p>
- </p>
-</div>
-<h2>
- webpack 简介
-</h2>
-<p>
- webpack是前端的一个项目构建工具，它是基于
- <code>
-  Node.js
- </code>
- 开发出来的一个前端工具.
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Vue快速学习笔记(8)webpack4.X配置Vue开发打包环境
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-05 15:16:08
+      </span>
+      <span class="tag">
+       webpack
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      webpack 简介
+     </h2>
+     <p>
+      webpack是前端的一个项目构建工具，它是基于
+      <code>
+       Node.js
+      </code>
+      开发出来的一个前端工具.
 webpack可以完美实现资源的合并、打包、压缩、混淆等诸多功能。
-</p>
-<h3>
- npm修改下载源
-</h3>
-<ul>
- <li>
-  先安装
-  <code>
-   node.js
-  </code>
-  ，这个大家百度一下，介绍的太多了，这里不敷衍了。安装了
-  <code>
-   node.js
-  </code>
-  后就集成了npm *
-  <code>
-   npm
-  </code>
-  如果不修改下载源，下载会很慢的，所以推荐修改为淘宝的源。修改方式推荐使用
-  <code>
-   nrm
-  </code>
-  。
- </li>
-</ul>
-<p>
- 安装：
-</p>
-<pre><code>npm install -g nrm //全局安装
+     </p>
+     <h3>
+      npm修改下载源
+     </h3>
+     <ul>
+      <li>
+       先安装
+       <code>
+        node.js
+       </code>
+       ，这个大家百度一下，介绍的太多了，这里不敷衍了。安装了
+       <code>
+        node.js
+       </code>
+       后就集成了npm *
+       <code>
+        npm
+       </code>
+       如果不修改下载源，下载会很慢的，所以推荐修改为淘宝的源。修改方式推荐使用
+       <code>
+        nrm
+       </code>
+       。
+      </li>
+     </ul>
+     <p>
+      安装：
+     </p>
+     <pre><code>npm install -g nrm //全局安装
 </code></pre>
-<p>
- <code>
-  nrm ls
- </code>
- 列出所有源，
- <code>
-  nrm use taobao
- </code>
- 切换淘宝源，至此我们可以无忧的下载了。
-</p>
-<p>
- 另外，也有可能出现在没有切换源的时候，连
- <code>
-  nrm
- </code>
- 都下载不下来的时候，比如我。
+     <p>
+      <code>
+       nrm ls
+      </code>
+      列出所有源，
+      <code>
+       nrm use taobao
+      </code>
+      切换淘宝源，至此我们可以无忧的下载了。
+     </p>
+     <p>
+      另外，也有可能出现在没有切换源的时候，连
+      <code>
+       nrm
+      </code>
+      都下载不下来的时候，比如我。
 那么我们先临时切换npm的下载源：
-</p>
-<pre><code>npm config set registry https://registry.npm.taobao.org
+     </p>
+     <pre><code>npm config set registry https://registry.npm.taobao.org
 </code></pre>
-<p>
- 测试是否改变了源。
-</p>
-<pre><code>npm config get registry
+     <p>
+      测试是否改变了源。
+     </p>
+     <pre><code>npm config get registry
 </code></pre>
-<h3>
- 安装及初始化webpack
-</h3>
-<pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
+     <h3>
+      安装及初始化webpack
+     </h3>
+     <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
 npm init -y
 npm install webpack webpack-cli --save-dev
 </code></pre>
-<h3>
- 一些npm的安装命令
-</h3>
-<p>
- npm i module_name 　　　　　　　　     # 安装模块到项目目录下
+     <h3>
+      一些npm的安装命令
+     </h3>
+     <p>
+      npm i module_name 　　　　　　　　     # 安装模块到项目目录下
 npm i module_name -g 　　　　　　     # -g 的意思是将模块安装到全局，具体安装到磁盘哪个位置，要看 npm config prefix 的位置。 
 npm i module_name -S(-save) 　　　 　# --save 的意思是将模块安装到项目目录下，并在package文件的dependencies节点写入依赖。 
 npm i module_name -D(--save-dev)　  # --save-dev 的意思是将模块安装到项目目录下，并在package文件的devDependencies节点写入依赖。
-</p>
-<h2>
- 初始化webpack
-</h2>
-<pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
+     </p>
+     <h2>
+      初始化webpack
+     </h2>
+     <pre><code>mkdir webpack-demo &amp;&amp; cd webpack-demo
 npm init -y
 npm install webpack webpack-cli --save-dev
 </code></pre>
-<p>
- 通过上边的终端魔法，我们成功的初始化了一个前端项目。
+     <p>
+      通过上边的终端魔法，我们成功的初始化了一个前端项目。
 我们现在的目的是配置webpack成为一个模块化的
- <code>
-  Vue
- </code>
- 前端开发项目，来看看我们需要做哪些事情。
-</p>
-<p>
- webpack打包这里总结为：
-</p>
-<ol>
- <li>
-  配置文件
-  <code>
-   config.js
-  </code>
-  用来管理配置：开发环境，loader模块，插件，打包等。
- </li>
- <li>
-  <code>
-   package.json
-  </code>
-  ,管理各种包依赖插件，还有添加脚本命令。
- </li>
- <li>
-  添加并配置各种loader，使webpack能有处理更多文件的能力。
- </li>
- <li>
-  添加并配置各种插件，可以处理生产打包中的一些额外功能。
- </li>
-</ol>
-<h2>
- webpack的配置文件
-</h2>
-<p>
- 关于webpack的配置文件修改，我推荐安装
- <code>
-  webpack-merge
- </code>
- 实现配置文件合并.
-</p>
-<p>
- 假设：
-</p>
-<p>
- webpack.common.js 公共部分文件
+      <code>
+       Vue
+      </code>
+      前端开发项目，来看看我们需要做哪些事情。
+     </p>
+     <p>
+      webpack打包这里总结为：
+     </p>
+     <ol>
+      <li>
+       配置文件
+       <code>
+        config.js
+       </code>
+       用来管理配置：开发环境，loader模块，插件，打包等。
+      </li>
+      <li>
+       <code>
+        package.json
+       </code>
+       ,管理各种包依赖插件，还有添加脚本命令。
+      </li>
+      <li>
+       添加并配置各种loader，使webpack能有处理更多文件的能力。
+      </li>
+      <li>
+       添加并配置各种插件，可以处理生产打包中的一些额外功能。
+      </li>
+     </ol>
+     <h2>
+      webpack的配置文件
+     </h2>
+     <p>
+      关于webpack的配置文件修改，我推荐安装
+      <code>
+       webpack-merge
+      </code>
+      实现配置文件合并.
+     </p>
+     <p>
+      假设：
+     </p>
+     <p>
+      webpack.common.js 公共部分文件
 webpack.dev.js 开发环境
 webpack.prod.js 生产环境
-</p>
-<pre><code>const merge = require('webpack-merge');//导入包
+     </p>
+     <pre><code>const merge = require('webpack-merge');//导入包
 const common = require('./webpack.common');//导入公共配置文件
 。。。。。。config
 module.exports=merge(common,devConfig);//合并配置文件
 </code></pre>
-<p>
- 使用起来很方便，这样就可以方便的配置多种开发调试及生产环境。
-</p>
-<p>
- 配置文件的结构目前来说分为四大部分：
-</p>
-<ol>
- <li>
-  入口entry
- </li>
- <li>
-  出口output
- </li>
- <li>
-  模块module
- </li>
- <li>
-  插件plugins
- </li>
-</ol>
-<p>
- 配置文件结构展示图：
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/blog/Snip20200306_2.png"/>
-</p>
-<p>
- 如果详细讲解webpack的各种配置讲个几天几夜也是说不完的，还是看代码研究吧。
+     <p>
+      使用起来很方便，这样就可以方便的配置多种开发调试及生产环境。
+     </p>
+     <p>
+      配置文件的结构目前来说分为四大部分：
+     </p>
+     <ol>
+      <li>
+       入口entry
+      </li>
+      <li>
+       出口output
+      </li>
+      <li>
+       模块module
+      </li>
+      <li>
+       插件plugins
+      </li>
+     </ol>
+     <p>
+      配置文件结构展示图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/blog/Snip20200306_2.png"/>
+     </p>
+     <p>
+      如果详细讲解webpack的各种配置讲个几天几夜也是说不完的，还是看代码研究吧。
 配置的重点在于模块和插件的选项，这我就不贴代码了，如果你有兴趣可以clone仓库里的代码研究一下。
 本仓库集成了最基础的模块和插件，包括处理：js es6 css less sass 图片 Vue vue-router，配置文件设置了公共文件，打包在此基础上做了开发和生产两种打包模式。
-</p>
-<p>
- 基于webpack4.X创建的Vue开发环境基础搭建的项目，地址如下：
-</p>
-<h2>
- 仓库源码下载：
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/webpack4.X_vue_demo.git">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/webpack4.X_vue_demo.git">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<h2>
- 一些其他注意事项
-</h2>
-<p>
- 由于现在新版本的 clean-webpack-plugin 插件引入已经改为:
+     </p>
+     <p>
+      基于webpack4.X创建的Vue开发环境基础搭建的项目，地址如下：
+     </p>
+     <h2>
+      仓库源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/webpack4.X_vue_demo.git">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/webpack4.X_vue_demo.git">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <h2>
+      一些其他注意事项
+     </h2>
+     <p>
+      由于现在新版本的 clean-webpack-plugin 插件引入已经改为:
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 new CleanWebpackPlugin(),//清理目录 而且不用加入目录数组['dist']
-</p>
-<h3>
- 使用 webpack-dev-server
-</h3>
-<pre><code>npm install --save-dev webpack-dev-server
+     </p>
+     <h3>
+      使用 webpack-dev-server
+     </h3>
+     <pre><code>npm install --save-dev webpack-dev-server
 </code></pre>
-<p>
- 如果报错 
+     <p>
+      如果报错 
     npm ERR! Failed at the webpack-demo@1.0.0 start script.
     npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-</p>
-<h2>
- 使用babel处理高级JS语法
-</h2>
-<p>
- npm i -D babel-core@6.26.3 babel-loader@7.1.4 babel-preset-env@1.6.1
-</p>
-<ol>
- <li>
-  在
-  <code>
-   webpack.config.js
-  </code>
-  中添加相关loader模块，其中需要注意的是，一定要把
-  <code>
-   node_modules
-  </code>
-  文件夹添加到排除项：
-  <code>
-   { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
-  </code>
- </li>
- <li>
-  在项目根目录中添加
-  <code>
-   .babelrc
-  </code>
-  文件，并修改这个配置文件如下：
-  <code>
-   {
+     </p>
+     <h2>
+      使用babel处理高级JS语法
+     </h2>
+     <p>
+      npm i -D babel-core@6.26.3 babel-loader@7.1.4 babel-preset-env@1.6.1
+     </p>
+     <ol>
+      <li>
+       在
+       <code>
+        webpack.config.js
+       </code>
+       中添加相关loader模块，其中需要注意的是，一定要把
+       <code>
+        node_modules
+       </code>
+       文件夹添加到排除项：
+       <code>
+        { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
+       </code>
+      </li>
+      <li>
+       在项目根目录中添加
+       <code>
+        .babelrc
+       </code>
+       文件，并修改这个配置文件如下：
+       <code>
+        {
     "presets": ["env"]
 }
-  </code>
- </li>
- <li>
-  <strong>
-   注意：语法插件
-   <code>
-    babel-preset-es2015
-   </code>
-   可以更新为
-   <code>
-    babel-preset-env
-   </code>
-   ，它包含了所有的ES相关的语法；
-  </strong>
- </li>
-</ol>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20200305151608.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+       </code>
+      </li>
+      <li>
+       <strong>
+        注意：语法插件
+        <code>
+         babel-preset-es2015
+        </code>
+        可以更新为
+        <code>
+         babel-preset-env
+        </code>
+        ，它包含了所有的ES相关的语法；
+       </strong>
+      </li>
+     </ol>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20200305151608.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

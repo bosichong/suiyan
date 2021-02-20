@@ -132,37 +132,37 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   这是一个快速学习JavaScript的学习笔记2
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2019-12-22 10:55:19
-  </span>
-  <span class="tag">
-   JavaScript
-  </span>
- </div>
- <h2>
-  JavaScript语句
- </h2>
- <p>
-  var和function是用来声明变量和语句的。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       这是一个快速学习JavaScript的学习笔记2
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2019-12-22 10:55:19
+      </span>
+      <span class="tag">
+       JavaScript
+      </span>
+     </div>
+     <h2>
+      JavaScript语句
+     </h2>
+     <p>
+      var和function是用来声明变量和语句的。
 ```JavaScript
 var a,b,c=88;
- </p>
- <p>
-  ```
- </p>
- <h3>
-  条件语句
- </h3>
- <p>
-  ```JavaScript
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      条件语句
+     </h3>
+     <p>
+      ```JavaScript
 //if else
 var n = 2;
 if (n == 1) {
@@ -170,9 +170,9 @@ if (n == 1) {
 } else {
     lert('no')
 }
- </p>
- <p>
-  //switch
+     </p>
+     <p>
+      //switch
 var m = 4;
 switch (m) {
     case 1:
@@ -183,112 +183,112 @@ switch (m) {
     default: //如果条件都不符合执行
         break;
 }
- </p>
- <p>
-  ```
- </p>
- <h3>
-  循环语句
- </h3>
- <ul>
-  <li>
-   for - 多次遍历代码块
-  </li>
-  <li>
-   for/in - 遍历对象属性
-  </li>
-  <li>
-   while - 当指定条件为 true 时循环一段代码块
-  </li>
-  <li>
-   <p>
-    do/while - 当指定条件为 true 时循环一段代码块
-   </p>
-  </li>
-  <li>
-   <p>
-    break 语句“跳出”循环。
-   </p>
-  </li>
-  <li>
-   continue 语句“跳过”循环中的一个迭代。
-  </li>
- </ul>
- <p>
-  ```JavaScript
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      循环语句
+     </h3>
+     <ul>
+      <li>
+       for - 多次遍历代码块
+      </li>
+      <li>
+       for/in - 遍历对象属性
+      </li>
+      <li>
+       while - 当指定条件为 true 时循环一段代码块
+      </li>
+      <li>
+       <p>
+        do/while - 当指定条件为 true 时循环一段代码块
+       </p>
+      </li>
+      <li>
+       <p>
+        break 语句“跳出”循环。
+       </p>
+      </li>
+      <li>
+       continue 语句“跳过”循环中的一个迭代。
+      </li>
+     </ul>
+     <p>
+      ```JavaScript
 //while 略
 //do while 略
- </p>
- <p>
-  // for
+     </p>
+     <p>
+      // for
 var i = 0, j = 10;
 for (i; i&lt;j; i++) {
     console.log(i)
- </p>
- <p>
-  }
- </p>
- <p>
-  ```
- </p>
- <h3>
-  function
- </h3>
- <p>
-  function用来声明一个函数。
- </p>
- <p>
-  ```JavaScript
+     </p>
+     <p>
+      }
+     </p>
+     <p>
+      ```
+     </p>
+     <h3>
+      function
+     </h3>
+     <p>
+      function用来声明一个函数。
+     </p>
+     <p>
+      ```JavaScript
 function myFunction(p1, p2) {
     return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
 }
- </p>
- <p>
-  var mf = myFunction(p1, p2) {
+     </p>
+     <p>
+      var mf = myFunction(p1, p2) {
     return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
 }
- </p>
- <p>
-  //见 test.js
+     </p>
+     <p>
+      //见 test.js
 var mf = function myFunction(p1, p2) {
     return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
 }
 document.querySelector("div").textContent = mf(6,2);//12
- </p>
- <p>
-  ```
- </p>
- <h2>
-  <p id="m1">
-   匿名函数与闭包
-  </p>
- </h2>
- <p>
-  ```JavaScript
- </p>
- <p>
-  //这是一个匿名函数
+     </p>
+     <p>
+      ```
+     </p>
+     <h2>
+      <p id="m1">
+       匿名函数与闭包
+      </p>
+     </h2>
+     <p>
+      ```JavaScript
+     </p>
+     <p>
+      //这是一个匿名函数
 //匿名函数可以用来命名空间，且立即执行，避免变量污染。
 (function(){console.log('匿名函数写法1')}());
 //推荐第二种方法。
 (function(s){console.log(s)})('匿名函数写法2');
- </p>
- <p>
-  //简书上一篇不错的JavaScript闭包的文章
+     </p>
+     <p>
+      //简书上一篇不错的JavaScript闭包的文章
 //https://www.jianshu.com/p/80fb145d57d7
 //闭包1
 var add = (function () {
     var counter = 0;
     return function () {return counter += 1;}
 })();
- </p>
- <p>
-  add();
+     </p>
+     <p>
+      add();
 add();
 console.log(add());//=&gt;3
- </p>
- <p>
-  //闭包2
+     </p>
+     <p>
+      //闭包2
 ;(function(){
     var a=1;
     var addOne=function(x){
@@ -297,27 +297,27 @@ console.log(add());//=&gt;3
     window.addOne=addOne;
 })()
 console.log(addOne(2));  // 3
- </p>
- <p>
-  ```
- </p>
- <section class="blog-p text-center">
-  <div class="gitedit">
-   发现错误？想参与编辑？
-   <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/suiyan2.md" target="_blank">
-    在 GitHub 上编辑此页！
-   </a>
-  </div>
-  <p class="qqqun">
-   如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
-  </p>
-  <p class="qqqun">
-   Python/Javascript学习QQ群号：217840699
-  </p>
- </section>
- <div class="blog-article">
- </div>
-</div>
+     </p>
+     <p>
+      ```
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/suiyan2.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>

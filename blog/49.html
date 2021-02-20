@@ -132,113 +132,113 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-<div class="container-fluid" id="rt">
- <div class="blog-article">
-  <h1 class="title">
-   基于Python、Tk构建的可视化目录文件同步助手
-  </h1>
-  <span class="author">
-   J.sky
-  </span>
-  <span class="time">
-   2017-10-26 15:04:15
-  </span>
-  <span class="tag">
-   站长源创
-  </span>
- </div>
- <p>
- </p>
-</div>
-<p>
- 之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
-</p>
-<p>
- <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png"/>
-</p>
-<h2>
- 功能需求
-</h2>
-<p>
- 之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       基于Python、Tk构建的可视化目录文件同步助手
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-26 15:04:15
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png"/>
+     </p>
+     <h2>
+      功能需求
+     </h2>
+     <p>
+      之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
 之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
 并且能把比较后的结果复制到备份目录中进行备份。
-</p>
-<h2>
- 需求分析
-</h2>
-<p>
- 从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
+     </p>
+     <h2>
+      需求分析
+     </h2>
+     <p>
+      从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
 技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
-</p>
-<h2>
- 逻辑分析
-</h2>
-<p>
- 通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
+     </p>
+     <h2>
+      逻辑分析
+     </h2>
+     <p>
+      通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
 为此，我创建了一个目录比较类，专门负责比较目录与文件。
 此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
 其实本程序中，目录与文件的分析是重要部分：
-</p>
-<ul>
- <li>
-  先判断根目录中不相同的目录与文件，然后分别记录。
- </li>
- <li>
-  如果有相同的目录，使用递归比较这二个相同的目录。
- </li>
- <li>
-  最后分别创建目录，复制文件到目标目录中。
- </li>
-</ul>
-<h2>
- Tk Button传参方法
-</h2>
-<p>
- 在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
-</p>
-<pre><code>command=lambda: def(参数1, 参数2)
+     </p>
+     <ul>
+      <li>
+       先判断根目录中不相同的目录与文件，然后分别记录。
+      </li>
+      <li>
+       如果有相同的目录，使用递归比较这二个相同的目录。
+      </li>
+      <li>
+       最后分别创建目录，复制文件到目标目录中。
+      </li>
+     </ul>
+     <h2>
+      Tk Button传参方法
+     </h2>
+     <p>
+      在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
+     </p>
+     <pre><code>command=lambda: def(参数1, 参数2)
 </code></pre>
-<p>
- 这样即可达到函数传参的实现。
-</p>
-<h2>
- 目录与文件的操作
-</h2>
-<p>
- 通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
-</p>
-<h2>
- 本文源码下载
-</h2>
-<ul>
- <li>
-  <a href="https://github.com/bosichong/PyDirectoryComparison">
-   github
-  </a>
- </li>
- <li>
-  <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
-   开源中国码云镜像gitee
-  </a>
- </li>
-</ul>
-<section class="blog-p text-center">
- <div class="gitedit">
-  发现错误？想参与编辑？
-  <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/49.md" target="_blank">
-   在 GitHub 上编辑此页！
-  </a>
- </div>
- <p class="qqqun">
-  如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
- </p>
- <p class="qqqun">
-  Python/Javascript学习QQ群号：217840699
- </p>
-</section>
-<div class="blog-article">
-</div>
+     <p>
+      这样即可达到函数传参的实现。
+     </p>
+     <h2>
+      目录与文件的操作
+     </h2>
+     <p>
+      通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
+     </p>
+     <h2>
+      本文源码下载
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PyDirectoryComparison">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/49.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
    </section>
    <script src="./assets/plugins/jquery-3.3.1.min.js">
    </script>
