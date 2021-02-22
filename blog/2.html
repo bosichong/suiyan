@@ -170,6 +170,16 @@ django1.9
      <pre><code>deactivate
 </code></pre>
      <p>
+      生成依赖列表：
+     </p>
+     <pre><code>pip freeze &gt; requirements.txt
+</code></pre>
+     <p>
+      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
+     </p>
+     <pre><code>pip install -r requirements.txt
+</code></pre>
+     <p>
       参考文献：
 http://blog.csdn.net/geekun/article/details/51325383
      </p>

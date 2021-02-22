@@ -260,6 +260,43 @@ python_version = "3.8"
        pipenv官方文档
       </a>
      </p>
+     <h2>
+      写在最后
+     </h2>
+     <p>
+      如果讨厌
+      <code>
+       lock
+      </code>
+      的生成速度，可以在安装依赖的时候使用
+      <code>
+       pip
+      </code>
+      ，然后生成依赖列表：
+     </p>
+     <pre><code>pip freeze &gt; requirements.txt
+</code></pre>
+     <p>
+      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
+     </p>
+     <pre><code>pip install -r requirements.txt
+</code></pre>
+     <p>
+      虽然这用法有点另类，我只是喜欢
+      <code>
+       pipenv
+      </code>
+      的创建、启用和退出的命令，很方便。哈哈哈，实在不行咱就用回
+      <code>
+       venv
+      </code>
+      吧，可以参考下文
+     </p>
+     <p>
+      <a href="http://2vv.net/blog/2.html">
+       创建python 虚拟环境 venv
+      </a>
+     </p>
      <section class="blog-p text-center">
       <div class="gitedit">
        发现错误？想参与编辑？
