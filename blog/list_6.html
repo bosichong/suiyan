@@ -135,6 +135,217 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-16 10:25:21
+      </span>
+      <span class="tag">
+       pygame
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif"/>
+     </p>
+     <h2>
+      Matrix的构思
+     </h2>
+     <p>
+      我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
+Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。
+     </p>
+     <h2>
+      Matrix代码编写调试过程
+     </h2>
+     <p>
+      刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
+当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。
+     </p>
+     <pre><code>c = random.randint(33, 127)
+chr(c)
+</code></pre>
+     <p>
+      对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
+     </p>
+     <h2>
+      让Matrix动起来
+     </h2>
+     <p>
+      场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
+add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。
+     </p>
+     <h2>
+      Matrix代码缩写总结
+     </h2>
+     <p>
+      感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png"/>
+     </p>
+     <p>
+      本文源码下载
+     </p>
+     <p>
+      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-13 16:00:40
+      </span>
+      <span class="tag">
+       pygame
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
+如果你感兴趣， Follow me, please.
+     </p>
+     <p>
+      无图无真相，先上图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png"/>
+     </p>
+     <h2>
+      Tetromino游戏构思
+     </h2>
+     <p>
+      很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
+     </p>
+     <p>
+      Tetromino如果我们从逻辑上拆分，我这里能想到三点：
+     </p>
+     <ul>
+      <li>
+       一个长方形的场景
+      </li>
+      <li>
+       下落的方块
+      </li>
+      <li>
+       游戏中的逻辑
+      </li>
+     </ul>
+     <p>
+      当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
+游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？
+     </p>
+     <p>
+      <strong>
+       友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
+      </strong>
+     </p>
+     <h2>
+      Tetromino中的游戏板
+     </h2>
+     <p>
+      Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
+首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
+其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
+设置Tetromino类中的self.start = True，这样方便调试游戏。
+     </p>
+     <h2>
+      绘制board游戏板
+     </h2>
+     <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
+</code></pre>
+     <p>
+      通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
+在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
+有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。
+     </p>
+     <h2>
+      下落的方块
+     </h2>
+     <p>
+      下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
+具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
+Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
+这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。
+     </p>
+     <h2>
+      游戏中的逻辑
+     </h2>
+     <p>
+      这个游戏的核心逻辑个人觉得就是：
+      <strong>
+       判断当前下落方块所处的位置是否合法
+      </strong>
+      ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
+我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
+一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
+就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
+伪代码：
+     </p>
+     <pre><code>    for a in range(w):
+        for b in range(h):
+            if (shapes[type][direction][b][a] == 1 and board[x + b][
+                y + a] == 2) or (
+                    shapes[type][direction][b][a] == 1 and board[x + b][
+                y + a] == 1):
+                return 0
+    return 1
+</code></pre>
+     <p>
+      原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
+有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
+实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！
+     </p>
+     <h2>
+      本文源码下载
+     </h2>
+     <p>
+      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
+本例源文件：
+      <code>
+       PY_RPG.Tetromino.py
+      </code>
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        极速学习C++之基础篇
       </h1>
       <span class="author">
@@ -974,250 +1185,6 @@ app.run() #游戏开始
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/My_pygame/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-12-24 19:21:04
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png"/>
-     </p>
-     <p>
-      python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。
-     </p>
-     <h2>
-      tkinter.filedialog的测试
-     </h2>
-     <p>
-      创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
-测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：
-     </p>
-     <pre><code>'askdirectory',
-'askopenfile',
-'askopenfilename',
-'askopenfilenames',
-'askopenfiles',
-'asksaveasfile',
-'asksaveasfilename'
-</code></pre>
-     <p>
-      以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。
-     </p>
-     <p>
-      好了，具体测试源码如下：
-     </p>
-     <p>
-      '''
-     </p>
-     <pre><code>import tkinter.filedialog as filedialog
-from tkinter import *
-import os
-
-def filedir():
-    print('按键已被点击')
-    v.set('')#清空文本框里内容
-    var.set((('')))
-    path = filedialog.askdirectory()
-    print(dir(filedialog))
-    if path :
-        v.set(path)
-    getdir(path)
-
-def getdir(p):
-    #把目录中遍历出来的文件目录显示到列表框中
-    fp = os.listdir(p)
-    var.set(fp)
-
-root = Tk()
-root.title('文件目录选择对话框测试')
-frame = Frame(root)
-frame.pack(fill=X,side=TOP)
-#加入一个文本框显示目录地址
-v = StringVar()#绑定文本框的变量
-ent = Entry(frame, width=50,textvariable = v).pack(fill=X,side=LEFT)
-#加入一个按键，点击后弹出文件目录选择对话框
-button = Button(frame, text='选择文件夹', command=filedir).pack(fill=X,side= LEFT)
-#加入一个列表框，显示目录中的文件列表
-listframe = Frame(root)
-listframe.pack(fill=X,side=LEFT)
-var = StringVar()#绑定listbox的列表值
-var.set((''))
-listbox = Listbox(listframe,width=60,listvariable = var).pack()
-root.mainloop()
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-        可爱的 Python：Python 中的 TK编程
-       </a>
-      </li>
-      <li>
-       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-        An Introduction To Tkinter
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python生成器yield应用实例——监控日志
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-12-22 09:19:40
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <code>
-       Python
-      </code>
-      生成器
-      <code>
-       yield
-      </code>
-      是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。
-     </p>
-     <h2>
-      需要分析
-     </h2>
-     <p>
-      假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：
-      <code>
-       2017-12-21 14:07:26.471691 99123
-      </code>
-      数据被写入日志。
-      <strong>
-       我们的目的是分析日志中的数字如果大于5000就要打印出来。
-      </strong>
-      这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。
-     </p>
-     <h2>
-      模拟日志写入
-     </h2>
-     <p>
-      <code>
-       server_log.py:
-      </code>
-     </p>
-     <pre><code>import random
-from datetime import *
-import os
-import time
-
-
-def server_log():
-    # 生成模拟的日志数据
-    server_int = random.randint(1,99999)#生成需要的随机数
-    server_date = datetime.now()#获取当前系统时间
-    return str(server_date) + ' ' + str(server_int)#拼装日志字符串
-
-
-while True:
-    #模拟系统写入日志
-    #打开日志文件并写入日志
-    with open(os.path.join(os.path.dirname(__file__),'server_log.log'),'at') as f :
-        s = server_log()
-        print(s)
-        f.write(s + '\n')
-    time.sleep(1)
-</code></pre>
-     <p>
-      上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。
-     </p>
-     <h2>
-      利用生成器yield解析日志
-     </h2>
-     <p>
-      生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂
-     </p>
-     <p>
-      <code>
-       tail.py
-      </code>
-      代码如下：
-     </p>
-     <pre><code>import time
-
-def tail(f):
-    f.seek(0,2)#移动到文件尾部。
-    while True:
-        line = f.readline()
-        if not line :
-            time.sleep(1)
-            continue
-        yield line
-
-def grep(lines):
-    for l in lines:
-        k = int(l.split()[2])
-        if k &gt;50000:
-            yield l
-
-serverlog = tail(open('server_log.log'))
-lines = grep(serverlog)
-
-for line in lines:
-    print(line)
-</code></pre>
-     <p>
-      我们运行两个文件看下效果：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif"/>
-     </p>
-     <p>
-      代码虽然简单，但值得细细品味，感受python的简约与强大吧。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/deftest">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">
         开源中国码云镜像gitee
        </a>
       </li>

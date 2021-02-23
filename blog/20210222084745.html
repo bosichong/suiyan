@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   pipenv 简化的虚拟环境、项目依赖管理工具  碎言博客
+   Flask项目配置(config)经验  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -135,13 +135,13 @@
     <div class="container-fluid" id="rt">
      <div class="blog-article">
       <h1 class="title">
-       pipenv 简化的虚拟环境、项目依赖管理工具
+       Flask项目配置(config)经验
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2021-02-20 15:38:15
+       2021-02-22 08:47:45
       </span>
       <span class="tag">
        Flask
@@ -150,157 +150,31 @@
      <p>
      </p>
      <p>
-      最近学习flask，由于flask框架本身非常极简，功能上需要很多的扩展包，所以项目需要在Python的虚拟环境下来安装管理这些扩展，这样才会方便项目在其他地方进行扩展包的安装。这里推荐
-      <code>
-       pipenv
-      </code>
-      来管理虚拟环境和扩展。
+      Flask项目配置在程序中的配置及读取：
      </p>
-     <p>
-      ## 安装并激活虚拟环境
-     </p>
-     <pre><code>pip install pipenv
+     <pre><code>app.config['SECRET_KEY'] = 'secret string'
 </code></pre>
      <p>
-      终端进入项目目录，
-      <code>
-       pipenv shell
-      </code>
-      激活并初始化虚拟环境，
+      项目的配置类似字典,但是每次都如上边的方法配置可能有些麻烦，可以创建单独配置文件通过导入：
      </p>
-     <pre><code>(base) （￣︶￣）↗ pipenv shell
-Launching subshell in virtual environment...
-bash-3.2$  . /Users/mac/.local/share/virtualenvs/Flask-BabyLog-cH2fMiTs/bin/activate
-(Flask-BabyLog) bash-3.2$
+     <pre><code>app.config.from_pyfile('settings.py')
 </code></pre>
      <p>
-      我们可以看到环境配置文件的目录，以及终端的提示符的变化。
+      配置文件里的配置项可以写成如下格式：
      </p>
-     <p>
-      使用
-      <code>
-       exit
-      </code>
-      退出虚拟环境。
-     </p>
-     <h2>
-      安装项目依赖
-     </h2>
-     <p>
-      把平时的
-      <code>
-       pip
-      </code>
-      换成
-      <code>
-       pipenv
-      </code>
-     </p>
-     <pre><code>pipenv install requests
+     <pre><code>UPLOAD_PATH = os.path.join(app.root_path, 'uploads')
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 </code></pre>
      <p>
-      <img alt="" src="assets/images/2021/2021-02-20 16_07_18.gif"/>
-     </p>
-     <p>
-      打开项目目录中的
-      <code>
-       Pipfile
-      </code>
-     </p>
-     <pre><code>[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-name = "pypi"
-
-[packages]
-requests = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.8"
-</code></pre>
-     <p>
-      <code>
-       url
-      </code>
-      那里可以修改pip的镜像地址，如果下载太慢，可以换成国内的镜像地址。
-      <code>
-       [packages]
-      </code>
-      是虚拟环境中安装过的扩展包
-     </p>
-     <p>
-      假设换了一台机器，我们从GitHub上clone下来项目，当然项目中的包含
-      <code>
-       Pipfile
-      </code>
-      <code>
-       Pipfile.lock
-      </code>
-      二个文件。
-     </p>
-     <p>
-      终端运行:
-     </p>
-     <pre><code>pipenv install
-</code></pre>
-     <p>
-      即可安装项目的所有依赖。
-     </p>
-     <p>
-      以上为
-      <code>
-       pipenv
-      </code>
-      的一些简单操作，更多请参考官方文档。
-     </p>
-     <p>
-      <a href="https://pipenv.pypa.io/en/latest/?badge=latest#">
-       pipenv官方文档
-      </a>
-     </p>
-     <h2>
-      写在最后
-     </h2>
-     <p>
-      如果讨厌
-      <code>
-       lock
-      </code>
-      的生成速度，可以在安装依赖的时候使用
-      <code>
-       pip
-      </code>
-      ，然后生成依赖列表：
-     </p>
-     <pre><code>pip freeze &gt; requirements.txt
-</code></pre>
-     <p>
-      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
-     </p>
-     <pre><code>pip install -r requirements.txt
-</code></pre>
-     <p>
-      虽然这用法有点另类，我只是喜欢
-      <code>
-       pipenv
-      </code>
-      的创建、启用和退出的命令，很方便。哈哈哈，实在不行咱就用回
-      <code>
-       venv
-      </code>
-      吧，可以参考下文
-     </p>
-     <p>
-      <a href="http://2vv.net/blog/2.html">
-       创建python 虚拟环境 venv
+      参考文献
+      <a href="https://zhuanlan.zhihu.com/p/24055329">
+       Flask项目配置（Configuration）
       </a>
      </p>
      <section class="blog-p text-center">
       <div class="gitedit">
        发现错误？想参与编辑？
-       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210220153815.md" target="_blank">
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210222084745.md" target="_blank">
         在 GitHub 上编辑此页！
        </a>
       </div>

@@ -135,6 +135,376 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python多线程编程（上）多线程创建的几种方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-03 13:01:21
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python多线程
+     </h2>
+     <p>
+      在编程的日常中，如果遇到大量相同并且重复的计算任务时，我们考虑使用多线程，多线程可以并发的执行程序中的函数，这样就可以更快的利用CPU计算结果，结省时间成本。
+      <code>
+       Python
+      </code>
+      中创建线程的方法有很多，可以通过
+      <code>
+       thread threading.Thread
+      </code>
+      或是线程池提供的方法来创建线程,这节我们主要讨论如何创建线程。
+     </p>
+     <h2>
+      单线程时的操作
+     </h2>
+     <p>
+      我们定义一些操作，先用单线顺序操作。
+     </p>
+     <pre><code class="python">import time
+def loop():
+    print("循环loop1打印时间======",time.ctime())
+    time.sleep(3)   
+loop()
+loop()
+print("loop1打印结束时间======",time.ctime())
+</code></pre>
+     <p>
+      程序执行结果：
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 07:59:17 2017
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 07:59:20 2017
+     </p>
+     <p>
+      loop1打印结束时间====== Mon Oct  2 07:59:23 2017
+     </p>
+     <p>
+      顺序执行程序后，共花掉6秒时间，如果我们可以并发执行这个打印，或许我们能节约一些时间。
+     </p>
+     <h2>
+      thread
+     </h2>
+     <p>
+      <code>
+       thread
+      </code>
+      提供了一些线程创建与操作的方法，但官方文档及各类参考书中均有提到，
+      <code>
+       _thread
+      </code>
+      是一个比较低级的线程操作模块不建使用，这里我们也只是带过。
+     </p>
+     <pre><code class="python">import _thread
+from utils import tn # 导入工具类中计算程序执行时间的函数
+def loop():
+    print("循环loop1打印时间======",time.ctime())
+    time.sleep(3)  
+@tn
+def main():
+    _thread.start_new_thread(loop, ())
+    _thread.start_new_thread(loop, ())
+    time.sleep(3)
+    print("如果上边没有sleep()，程序会没有运行完打印直接退出")
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <p>
+      程序执行结果：
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
+     </p>
+     <p>
+      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
+     </p>
+     <p>
+      如果上边没有sleep()，程序会没有运行完打印直接退出
+     </p>
+     <p>
+      程序运行时间:3.01ms
+     </p>
+     <p>
+      这次程序的运行我节省了3秒钟的宝贵时间！但也发现了
+      <code>
+       thread
+      </code>
+      模块的一些缺点，比如主线程结束时不会等待其它线程，这将导致程序没有打印结果直接退出了，这是我们不想看到的。
+所以，由于
+      <code>
+       thread
+      </code>
+      模块的功能缺陷，通常不推荐使用
+      <code>
+       thread
+      </code>
+      ,我们将继续讨论更高级的线程模块
+      <code>
+       threading
+      </code>
+      和其它线程相关模块。
+     </p>
+     <h2>
+      threading模块 Thread类
+     </h2>
+     <p>
+      创建一个
+      <code>
+       Thread
+      </code>
+      实例，其中
+      <code>
+       target
+      </code>
+      这个参数可以接受一个函数.
+我们先来试试，代码如下：
+     </p>
+     <pre><code class="python">import time
+import threading
+from utils import tn # 导入工具类中计算程序执行时间的函数
+def loop1(tname):
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    time.sleep(2)
+@tn
+def main():
+    print('程序开始执行，耐心等待几秒。')
+    threads = []#定义一个线程队列
+    for i in range(5):
+        t = threading.Thread(target=loop1, args=("thread"+str(i),))
+        threads.append(t)
+    for i in range(5):
+        threads[i].start()
+    for i in range(5):
+        threads[i].join()
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <p>
+      通过继承
+      <code>
+       Thread
+      </code>
+      类派生子类并创建线程的对象，是创建线程的另一种方法：
+     </p>
+     <pre><code class="python">
+import time
+import threading
+from utils import tn # 导入工具类中计算程序执行时间的函数
+class MyThread(threading.Thread):
+    def __init__(self, func, name=''):
+        threading.Thread.__init__(self) # 这里必须添加父类的构器方法
+        self.func = func
+        self.name = name
+    #此方法必须实现
+    def run(self):
+        self.func(self.name)
+
+def loop1(tname):
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    time.sleep(2)
+@tn
+def main():
+    print('程序开始执行，耐心等待几秒。')
+    threads = [] #定义一个线程队列
+    for i in range(5):
+        t = MyThread(loop1, "thread"+str(i))
+        threads.append(t)
+    for i in range(5):
+        threads[i].start()
+    for i in range(5):
+        threads[i].join()
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <p>
+      注意：
+      <code>
+       run()
+      </code>
+      此方法必须实现;
+      <code>
+       threading.Thread.__init__(self)
+      </code>
+      必须添加父类的构器方法
+     </p>
+     <p>
+      二种方法相比较起来，通过继承
+      <code>
+       Thread
+      </code>
+      类来创建线程的实例更直观灵活一些，通过以上例子的对比来看，多线程并发执行程序要比单线程执行节约很多时间。
+关于多线程实例的创建还有其它方法，比如
+      <code>
+       Thread
+      </code>
+      构建方法中target参数也可以传入一个实例，不过个人感觉没有继承
+      <code>
+       Thread
+      </code>
+      类创建的实例更直观些，这里也就不举例了，
+另外还可以通过线程池创建一组线程用来执行任务。
+     </p>
+     <h2>
+      threadpool Python线程池
+     </h2>
+     <p>
+      <code>
+       Python3
+      </code>
+      下载安装模块
+     </p>
+     <pre><code>pip3 install threadpool
+</code></pre>
+     <p>
+      用线程池测试一下刚才的打印，代码如下：
+     </p>
+     <pre><code class="python">import time
+import threadpool
+from utils import tn # 导入工具类中计算程序执行时间的函数
+def loop1(tname):
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    time.sleep(2)
+@tn
+def main():
+    l = ['11111','22222','33333','44444','55555']
+    pool = threadpool.ThreadPool(5)# 创建一个线程池
+    requests = threadpool.makeRequests(loop1, l) #传入函数 及函数需要的参数
+    [pool.putRequest(req) for req in requests]# 不理角这段代码，猜测是循环创建线程 分配任务。
+    pool.wait()#设置池内所有线程等待。
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <p>
+      <code>
+       Python
+      </code>
+      线程的创建方法应该还有很多种，这里就不在介绍了，博主感觉继承
+      <code>
+       Thread
+      </code>
+      类创建实例的方法比较经典可行，代码直观，其次是创建
+      <code>
+       Thread
+      </code>
+      对象传参进去也是简单到家了。
+有关
+      <code>
+       Python
+      </code>
+      线程的创建就先聊到这里，稍后再研究一下线程锁，这几天正值国庆节，祝大家玩的开心！
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       python 类的静态方法和类方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-30 09:31:31
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      静态方法和类方法的定义
+     </h2>
+     <p>
+      <code>
+       Python
+      </code>
+      中类的静态方法使用
+      <code>
+       @staticmethod
+      </code>
+      装饰器来定义
+      <code>
+       Python
+      </code>
+      中类方法使用
+      <code>
+       @classmethod
+      </code>
+      装饰器来定义
+     </p>
+     <pre><code class="python">
+class Hello:
+    k = 2
+    #定义一个类的静态方法
+    @staticmethod
+    def add(x,y):
+        return x + y
+    #定义一个类方法
+    @classmethod
+    def mul(cls,x):
+        return cls.k * x
+
+print(Hello.add(999,1))#使用静态方法 结果为1000
+print(Hello.mul(2))#使用类方法 结果为4
+</code></pre>
+     <p>
+      类的静态方法使用和使用普通函数一样简单，但类方法确有些不同，她只能用于类本身，把自身做为对象进行操作。
+我们继承一下
+      <code>
+       Hello
+      </code>
+      这个类，看看静态方法和类方法是不是能被继承？
+     </p>
+     <pre><code class="python">class World(Hello):
+    k = 4
+
+print(World.add(1,999))
+print(World.mul(2))
+</code></pre>
+     <p>
+      通过上边的例子，我们可以发现子类可以继承使用父类方法和父类的静态方法，如果类变量值有所变化，结果也会有所不同。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classstatictest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classstatictest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python面向对象编程（OOP）初探
       </h1>
       <span class="author">
@@ -988,236 +1358,6 @@ bt6 = tk.Button(asky_frame,text=str1[5],command=lambda showMsg = showMsg : showM
 bt7 = tk.Button(asky_frame,text=str1[6],command=lambda showMsg = showMsg : showMsg(str1[6]) ).pack(side=tk.LEFT)
 root.mainloop()
 </code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-        可爱的 Python：Python 中的 TK编程
-       </a>
-      </li>
-      <li>
-       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-        An Introduction To Tkinter
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-26 10:26:15
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      Tk的功能不多，但应付一般应用还是足够了，Entry和Text是Tk下边显示及处理文本的小部件。
-涉及到文本，从使用角度来说，有几个功能是必须的：
-     </p>
-     <ul>
-      <li>
-       设置文本框的内容
-       <code>
-        insert()
-       </code>
-      </li>
-      <li>
-       删除文本框的内容
-       <code>
-        delete()
-       </code>
-      </li>
-      <li>
-       获得文本框的内容
-       <code>
-        get()
-       </code>
-      </li>
-      <li>
-       <code>
-        show="*"
-       </code>
-       这个可以设置密码框用***来显示密码
-      </li>
-     </ul>
-     <p>
-      关于布局，和其它部件基本上是一样的，前边的章节有过介绍。
-     </p>
-     <p>
-      本次使用tk制作了一个用户登陆验证用户名和密码的小例子。
-     </p>
-     <p>
-      演示图如下：
-     </p>
-     <p>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_4.png"/>
-     </p>
-     <pre><code class="python">import tkinter as tk
-def isLogin(uname,pword):
-    """验证用户登陆函数"""
-    if uname == "17python" and pword == "17python":
-        print("登陆成功！")
-        out.insert(tk.END,"登陆成功！\n")
-    else:
-        print("用户名或密码错误！")
-        out.insert(tk.END,"用户名或密码错误！ \n")
-
-root = tk.Tk()
-root.title('文本框的测试')
-userinfo_frame = tk.Frame(root)
-userinfo_frame.pack(fill=tk.X, side=tk.TOP)
-########
-user_frame = tk.Frame(userinfo_frame, )
-user_frame.pack(fill=tk.X, side=tk.TOP)
-user_label = tk.Label(user_frame, text="username:",font=("Symbol", 14)).pack(side=tk.LEFT)
-username = tk.Entry(user_frame, width=40)
-username.pack(fill=tk.X, side= tk.LEFT)
-
-#######
-pass_frame = tk.Frame(userinfo_frame)
-pass_frame.pack(fill=tk.X, side=tk.TOP)
-pass_label = tk.Label(pass_frame, text="password:",font=("Symbol", 14)).pack(side=tk.LEFT)
-password = tk.Entry(pass_frame, width=40, show="*")
-password.pack(fill=tk.X, side= tk.LEFT)
-########
-btn_frame = tk.Frame(userinfo_frame)
-btn_frame.pack(fill=tk.X, side=tk.TOP)
-btn = tk.Button(btn_frame, text='登陆', command= lambda isLogin = isLogin : isLogin(username.get(), password.get())).pack(fill=tk.X)
-out = tk.Text(btn_frame,width=40,font=("Symbol", 14))
-out.insert(tk.END, "world \n")
-out.pack(fill=tk.X)
-
-root.mainloop()
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-        可爱的 Python：Python 中的 TK编程
-       </a>
-      </li>
-      <li>
-       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-        An Introduction To Tkinter
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python TK和Tkinter的GUI编程(3) 列表框 Listbox
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-23 13:40:35
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      listbox 列表框
-     </h2>
-     <p>
-      列表框的日常使用的场景：
-     </p>
-     <ul>
-      <li>
-       获取列表项中的内容lb.curselection()
-      </li>
-      <li>
-       selectmode=tk.EXTENDED 这个属性设置listbox可以选择多个选项
-      </li>
-      <li>
-       添加列表项 lb.insert(tk.END,v.get()) END代表最后一个位置，第二个参数是要添加的字符串值。
-      </li>
-      <li>
-       删除列表中选中的项 command = lambda lb=lb:lb.delete(tk.ANCHOR)
-      </li>
-      <li>
-       lb.bind() 用来绑定列表的事件，比如删除列表中选中的项。
-      </li>
-     </ul>
-     <h2>
-      源码
-     </h2>
-     <p>
-      <img alt="" src="assets/images/media/upload/2017/09/QQ20170923-134123.png"/>
-     </p>
-     <pre><code class="python">import tkinter as tk
-root = tk.Tk()
-root.title("Listbox 测试。")
-# 存放list的容器
-list_frame = tk.Frame(root)
-list_frame.pack(fill=tk.X, side=tk.TOP)
-#存放按钮文本框的容器
-button_frame = tk.Frame(root)
-button_frame.pack(fill=tk.X, side=tk.TOP)
-# 获取当前listbox中item值，并在控制台打印值
-def print_item(event):
-    items = lb.curselection()
-    for k in items:
-        print(lb.get(k))
-var = tk.StringVar()#绑定listbox的列表值
-var.set(('aa','bb','cc','dd','ee'))
-lb = tk.Listbox(list_frame, listvariable = var, selectmode=tk.EXTENDED)#创建一个listbox
-lb.bind('<buttonrelease-1>',print_item)#绑定鼠标左键点击事件。
-lb.pack(fill=tk.X)
-# 添加listbox item的方法
-def additem():
-    lb.insert(tk.END,v.get())
-    v.set('')
-v = tk.StringVar()#绑定文本框的变量
-en = tk.Entry(button_frame, textvariable = v).pack()
-b1 = tk.Button(button_frame, text="添加", command=additem).pack(side=tk.LEFT)#添加一个item
-b2 = tk.Button(button_frame, text="删除", command= lambda lb=lb:lb.delete(tk.ANCHOR)).pack(side=tk.LEFT)#删除一个listbox中选中的item
-root.mainloop()
-</buttonrelease-1></code></pre>
      <h2>
       相关参考
      </h2>

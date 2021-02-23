@@ -135,6 +135,327 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       wxPython编程学习笔记(02)wxPython的布局
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-19 20:22:01
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png"/>
+     </p>
+     <h2>
+      wxPython的布局
+     </h2>
+     <p>
+      窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，
+     </p>
+     <p>
+      我们可以选择下列sizers：
+     </p>
+     <p>
+      1.wx.BoxSizer
+     </p>
+     <p>
+      2.wx.StaticBoxSizer
+     </p>
+     <p>
+      3.wx.GridSizer
+     </p>
+     <p>
+      4.wx.FlexGridSizer
+     </p>
+     <p>
+      5.wx.GridBagSizer
+     </p>
+     <p>
+      这里我介绍一下
+      <code>
+       wx.BoxSizer
+      </code>
+      ，灵活应用它基本上可以满足大部分窗口中的布局。
+     </p>
+     <h2>
+      wx.BoxSizer
+     </h2>
+     <p>
+      <code>
+       wx.BoxSizer
+      </code>
+      有
+      <code>
+       wx.VERTICAL
+      </code>
+      或
+      <code>
+       wx.HORIZONTAL
+      </code>
+      两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。
+     </p>
+     <p>
+      如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。
+     </p>
+     <p>
+      列举一些属性：
+     </p>
+     <p>
+      1.wx.LEFT
+     </p>
+     <p>
+      2.wx.RIGHT
+     </p>
+     <p>
+      3.wx.BOTTOM
+     </p>
+     <p>
+      4.wx.TOP
+     </p>
+     <p>
+      5.wx.ALL
+     </p>
+     <p>
+      以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：
+     </p>
+     <pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
+</code></pre>
+     <p>
+      我们还可以通过以下属性定义我们的部件对齐：：
+     </p>
+     <p>
+      1.wx.ALIGN_LEFT
+2.wx.ALIGN_RIGHT
+3.wx.ALIGN_TOP
+4.wx.ALIGN_BOTTOM
+5.wx.ALIGN_CENTER_VERTICAL
+6.wx.ALIGN_CENTER_HORIZONTAL
+7.wx.ALIGN_CENTER
+     </p>
+     <p>
+      好了，下边列举了一下小例子：
+     </p>
+     <pre><code>import wx
+
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        # 调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
+
+        st = wx.TextCtrl(pl)
+        hbox1.Add(st, proportion=1, )
+
+        bt1 = wx.Button(pl, label="hello world")
+        hbox1.Add(bt1, )
+
+        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
+
+        bt2 = wx.Button(pl, label="hello world")
+        bt3 = wx.Button(pl, label="hello world")
+        bt4 = wx.Button(pl, label="hello world")
+        hbox2.Add(bt2, wx.EXPAND)
+        hbox2.Add(bt3, )
+        hbox2.Add(bt4, wx.EXPAND)
+        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        sb = wx.StaticBox(pl, label="test")
+        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
+        bt5 = wx.Button(pl, label="yes")
+        bt6 = wx.Button(pl, label="no")
+        hbox3.Add(bt5, )
+        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
+        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
+
+        pl.SetSizer(vbox)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython 布局练习')
+    frm.Show()  # 显示窗口
+    app.MainLoop()  # 持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       wxPython编程学习笔记(01)Frame程序的窗口
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-18 19:42:47
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      简介
+     </h2>
+     <p>
+      之前的一些小应用都是用的
+      <code>
+       python tk
+      </code>
+      来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下
+      <code>
+       wxPython
+      </code>
+      <code>
+       wxPython
+      </code>
+      是一个
+      <code>
+       Python
+      </code>
+      包装
+      <code>
+       wxWidgets
+      </code>
+      （这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
+      <code>
+       wxPython
+      </code>
+      是作为一个
+      <code>
+       Python
+      </code>
+      扩展模块。
+     </p>
+     <h2>
+      wxPython的安装
+     </h2>
+     <pre><code>pip3 install wxPython
+</code></pre>
+     <p>
+      如果网络不太好，可以到官网下载进行安装，官方网址：
+      <code>
+       https://wxpython.org/
+      </code>
+     </p>
+     <h2>
+      Frame 窗口
+     </h2>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png"/>
+     </p>
+     <p>
+      如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个
+      <code>
+       Frame
+      </code>
+      .
+     </p>
+     <p>
+      <code>
+       Wx.Frame (parent, id, title, pos, size, style, name)
+      </code>
+     </p>
+     <p>
+      其中的参数含意如下：
+     </p>
+     <p>
+      Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
+id 窗口标识。通常-1为了让标识符自动生成
+Title 标题出现在标题栏
+Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
+Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
+style 窗口的外观按样式风格常数控制
+name 对象的内部名称
+     </p>
+     <h2>
+      wxPython hello world
+     </h2>
+     <p>
+      我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法
+      <code>
+       __init__
+      </code>
+      中创建窗口中的部件。
+      <code>
+       main()
+      </code>
+      方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。
+     </p>
+     <p>
+      怎么样，很简单吧？
+     </p>
+     <pre><code>import wx
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        #创建一个静态文本
+        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
+        font = st.GetFont()
+        font.PointSize += 20
+        font = font.Bold()
+        st.SetFont(font)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python os.path.dirname(__file__) 在终端命令行下报错
       </h1>
       <span class="author">
@@ -743,217 +1064,6 @@ print(q_sort([2,44,3,77,6,5,888,999]))
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/17python.com/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-16 10:25:21
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif"/>
-     </p>
-     <h2>
-      Matrix的构思
-     </h2>
-     <p>
-      我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
-Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。
-     </p>
-     <h2>
-      Matrix代码编写调试过程
-     </h2>
-     <p>
-      刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
-当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。
-     </p>
-     <pre><code>c = random.randint(33, 127)
-chr(c)
-</code></pre>
-     <p>
-      对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
-     </p>
-     <h2>
-      让Matrix动起来
-     </h2>
-     <p>
-      场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
-add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。
-     </p>
-     <h2>
-      Matrix代码缩写总结
-     </h2>
-     <p>
-      感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png"/>
-     </p>
-     <p>
-      本文源码下载
-     </p>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-13 16:00:40
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
-如果你感兴趣， Follow me, please.
-     </p>
-     <p>
-      无图无真相，先上图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png"/>
-     </p>
-     <h2>
-      Tetromino游戏构思
-     </h2>
-     <p>
-      很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
-     </p>
-     <p>
-      Tetromino如果我们从逻辑上拆分，我这里能想到三点：
-     </p>
-     <ul>
-      <li>
-       一个长方形的场景
-      </li>
-      <li>
-       下落的方块
-      </li>
-      <li>
-       游戏中的逻辑
-      </li>
-     </ul>
-     <p>
-      当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
-游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？
-     </p>
-     <p>
-      <strong>
-       友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
-      </strong>
-     </p>
-     <h2>
-      Tetromino中的游戏板
-     </h2>
-     <p>
-      Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
-首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
-其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
-设置Tetromino类中的self.start = True，这样方便调试游戏。
-     </p>
-     <h2>
-      绘制board游戏板
-     </h2>
-     <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
-</code></pre>
-     <p>
-      通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
-在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
-有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。
-     </p>
-     <h2>
-      下落的方块
-     </h2>
-     <p>
-      下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
-具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
-Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
-这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。
-     </p>
-     <h2>
-      游戏中的逻辑
-     </h2>
-     <p>
-      这个游戏的核心逻辑个人觉得就是：
-      <strong>
-       判断当前下落方块所处的位置是否合法
-      </strong>
-      ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
-我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
-一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
-就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
-伪代码：
-     </p>
-     <pre><code>    for a in range(w):
-        for b in range(h):
-            if (shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 2) or (
-                    shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 1):
-                return 0
-    return 1
-</code></pre>
-     <p>
-      原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
-有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
-实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
-本例源文件：
-      <code>
-       PY_RPG.Tetromino.py
-      </code>
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
         开源中国码云镜像gitee
        </a>
       </li>

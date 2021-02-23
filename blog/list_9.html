@@ -135,6 +135,349 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python中创建TCP服务器与客户端进行通信（上）
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-12 10:14:40
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171012_19.png"/>
+     </p>
+     <h2>
+      前言
+     </h2>
+     <p>
+      学习套接字编程最好的方法就是从实际应用的开发中边学边用，这样对TCP服务器及客户端通信中遇到的知识点才会更加了解。
+开发一个拥有服务器并且可以处理多客户端的聊天室应用程序，服务器有一定的管理权限，比如：群发消息，管理客户端可以限制连接及断开客户端连接等。
+客户端可以在聊天室里群聊，私聊。
+     </p>
+     <p>
+      好吧，为了保证这个小小的应用开发跨度不会太大，我们采用循序渐进的方式，从基础代码上迭代开发，这里会用到的知识点有：
+     </p>
+     <ul>
+      <li>
+       <code>
+        Python
+       </code>
+       的socket套接字模块
+      </li>
+      <li>
+       <code>
+        Python
+       </code>
+       的多线程模块
+      </li>
+      <li>
+       <code>
+        Python Tk GUI
+       </code>
+       模块，后边有可能考虑做成可视化的聊天室。
+      </li>
+     </ul>
+     <h2>
+      socket模块
+     </h2>
+     <p>
+      关于套接字网络编程的理论知识，这里就不在重复了，网上有很多，大家自己搜索一下好了。
+要创建套接字，使用
+      <code>
+       Python socket.socket()
+      </code>
+      函数即可，他有一些固定的方式：
+     </p>
+     <pre><code>s = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字对象
+</code></pre>
+     <p>
+      获得了套接字对象后，就可以使用套接字对象的方法进行交互了。
+     </p>
+     <h2>
+      <code>
+       socket
+      </code>
+      中一些常用方法
+     </h2>
+     <p>
+      服务器套接字方法：
+     </p>
+     <ul>
+      <li>
+       <code>
+        s.bind()
+       </code>
+       这个方法，绑定服务器的IP及端口
+      </li>
+      <li>
+       <code>
+        s.listen(int)
+       </code>
+       监听，可以设置一个整数限制客户端的连接。
+      </li>
+      <li>
+       <code>
+        s.accpt()
+       </code>
+       被动接受TCP客户端的连接（阻塞）
+      </li>
+     </ul>
+     <p>
+      客户端套接字方法：
+     </p>
+     <ul>
+      <li>
+       <code>
+        s.connect()
+       </code>
+       连接服务器
+      </li>
+     </ul>
+     <p>
+      其它方法：
+     </p>
+     <ul>
+      <li>
+       <code>
+        s.recv()
+       </code>
+       接收TCP消息
+      </li>
+      <li>
+       <code>
+        s.send()
+       </code>
+       发送TCP消息
+      </li>
+      <li>
+       <code>
+        s.close()
+       </code>
+       关闭套接字。
+      </li>
+     </ul>
+     <h2>
+      关于消息
+     </h2>
+     <p>
+      发送和接收消息时需要进行编码和解码，这里使用
+      <code>
+       data.encode('utf-8')
+      </code>
+      和
+      <code>
+       data.decode()
+      </code>
+      保证通信消息的正常发送，如果不使用会报错。
+     </p>
+     <p>
+      好了，先来个简单的例子，下边是代码，建议代码运行的时候不要在IDE里运行，请在终端中运行。
+     </p>
+     <h2>
+      服务器端
+     </h2>
+     <pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字服务器
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        data = "{0}".format(ctime())+" "+data.decode()
+        tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+     <h2>
+      客户端
+     </h2>
+     <pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("&gt; ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    data = tcpCliSock.recv(BUFSIZ)
+    print(data.decode())
+tcpCliSock.close()</code></pre>
+     <p>
+      就目前这个聊天室只是完成了通信的最基本功能，只能由客户端发送一条消息，服务器端自动回应消息。之后的继续都是建立在这个基础模型之上了。
+     </p>
+     <h2>
+      半双工的聊天室
+     </h2>
+     <p>
+      如果稍加修改，我们就可以使这个服务器和客户端进行一对一的聊天了。
+     </p>
+     <ul>
+      <li>
+       服务器端添加判断，如果客户端发来的数据有内容，就进行输入，然后把数据发送给客户端。
+      </li>
+      <li>
+       客户端连接后，先进行消息的发送，然后就一直等待服务器的消息回送，然后循环。
+      </li>
+     </ul>
+     <p>
+      现在的这个聊天系统缺点就是，必须等待另一方发来消息，才能回复消息，稍后我们继续改进。
+     </p>
+     <p>
+      相关代码如下：
+     </p>
+     <h2>
+      半双工服务器
+     </h2>
+     <pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        if data:
+            data = input("&gt; ")
+            data = "{0}".format(ctime())+" "+data
+            tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+     <h2>
+      半双式的客户端
+     </h2>
+     <pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("&gt; ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)
+        if data:
+            print(data.decode())
+            break
+tcpCliSock.close()</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/TCP">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
+       Python程序在Windows10终端运行中文乱码解决方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-10 21:03:34
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      今天发布了一段代码，微博上有朋友在win10下边测试报错，看错误应该是中文编码问题，然后自己试了下，总结了一下原因：
+     </p>
+     <h2>
+      测试中文打印print()
+     </h2>
+     <p>
+      在win10中新建记事本文档， 敲入代码：
+     </p>
+     <pre><code>print("我来试试哈")
+</code></pre>
+     <p>
+      保存test.py，运行，果然报错，如下图：
+     </p>
+     <pre><code>SyntaxError: Non-UTF-8 code starting with '\xce' in file i:/python3/te
+st.py on line 1, but no encoding declared; see http://python.org/dev/p
+eps/pep-0263/ for details</code></pre>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_14.png"/>
+     </p>
+     <h2>
+      为什么呢？
+     </h2>
+     <p>
+      因为win10下边新建记事本文件是ANSIX编码的
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_15.png"/>
+     </p>
+     <h2>
+      解决方法
+     </h2>
+     <p>
+      把文件另存，在编码中选择utf8。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_16.png"/>
+     </p>
+     <p>
+      然后运行，完美解决！
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_17.png"/>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        你与黑客之间差了多少行Python代码？
       </h1>
       <span class="author">
@@ -1045,376 +1388,6 @@ if __name__ == '__main__':
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python多线程编程（上）多线程创建的几种方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-03 13:01:21
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      Python多线程
-     </h2>
-     <p>
-      在编程的日常中，如果遇到大量相同并且重复的计算任务时，我们考虑使用多线程，多线程可以并发的执行程序中的函数，这样就可以更快的利用CPU计算结果，结省时间成本。
-      <code>
-       Python
-      </code>
-      中创建线程的方法有很多，可以通过
-      <code>
-       thread threading.Thread
-      </code>
-      或是线程池提供的方法来创建线程,这节我们主要讨论如何创建线程。
-     </p>
-     <h2>
-      单线程时的操作
-     </h2>
-     <p>
-      我们定义一些操作，先用单线顺序操作。
-     </p>
-     <pre><code class="python">import time
-def loop():
-    print("循环loop1打印时间======",time.ctime())
-    time.sleep(3)   
-loop()
-loop()
-print("loop1打印结束时间======",time.ctime())
-</code></pre>
-     <p>
-      程序执行结果：
-     </p>
-     <p>
-      循环loop1打印时间====== Mon Oct  2 07:59:17 2017
-     </p>
-     <p>
-      循环loop1打印时间====== Mon Oct  2 07:59:20 2017
-     </p>
-     <p>
-      loop1打印结束时间====== Mon Oct  2 07:59:23 2017
-     </p>
-     <p>
-      顺序执行程序后，共花掉6秒时间，如果我们可以并发执行这个打印，或许我们能节约一些时间。
-     </p>
-     <h2>
-      thread
-     </h2>
-     <p>
-      <code>
-       thread
-      </code>
-      提供了一些线程创建与操作的方法，但官方文档及各类参考书中均有提到，
-      <code>
-       _thread
-      </code>
-      是一个比较低级的线程操作模块不建使用，这里我们也只是带过。
-     </p>
-     <pre><code class="python">import _thread
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop():
-    print("循环loop1打印时间======",time.ctime())
-    time.sleep(3)  
-@tn
-def main():
-    _thread.start_new_thread(loop, ())
-    _thread.start_new_thread(loop, ())
-    time.sleep(3)
-    print("如果上边没有sleep()，程序会没有运行完打印直接退出")
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <p>
-      程序执行结果：
-     </p>
-     <p>
-      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
-     </p>
-     <p>
-      循环loop1打印时间====== Mon Oct  2 14:24:49 2017
-     </p>
-     <p>
-      如果上边没有sleep()，程序会没有运行完打印直接退出
-     </p>
-     <p>
-      程序运行时间:3.01ms
-     </p>
-     <p>
-      这次程序的运行我节省了3秒钟的宝贵时间！但也发现了
-      <code>
-       thread
-      </code>
-      模块的一些缺点，比如主线程结束时不会等待其它线程，这将导致程序没有打印结果直接退出了，这是我们不想看到的。
-所以，由于
-      <code>
-       thread
-      </code>
-      模块的功能缺陷，通常不推荐使用
-      <code>
-       thread
-      </code>
-      ,我们将继续讨论更高级的线程模块
-      <code>
-       threading
-      </code>
-      和其它线程相关模块。
-     </p>
-     <h2>
-      threading模块 Thread类
-     </h2>
-     <p>
-      创建一个
-      <code>
-       Thread
-      </code>
-      实例，其中
-      <code>
-       target
-      </code>
-      这个参数可以接受一个函数.
-我们先来试试，代码如下：
-     </p>
-     <pre><code class="python">import time
-import threading
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    print('程序开始执行，耐心等待几秒。')
-    threads = []#定义一个线程队列
-    for i in range(5):
-        t = threading.Thread(target=loop1, args=("thread"+str(i),))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <p>
-      通过继承
-      <code>
-       Thread
-      </code>
-      类派生子类并创建线程的对象，是创建线程的另一种方法：
-     </p>
-     <pre><code class="python">
-import time
-import threading
-from utils import tn # 导入工具类中计算程序执行时间的函数
-class MyThread(threading.Thread):
-    def __init__(self, func, name=''):
-        threading.Thread.__init__(self) # 这里必须添加父类的构器方法
-        self.func = func
-        self.name = name
-    #此方法必须实现
-    def run(self):
-        self.func(self.name)
-
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    print('程序开始执行，耐心等待几秒。')
-    threads = [] #定义一个线程队列
-    for i in range(5):
-        t = MyThread(loop1, "thread"+str(i))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <p>
-      注意：
-      <code>
-       run()
-      </code>
-      此方法必须实现;
-      <code>
-       threading.Thread.__init__(self)
-      </code>
-      必须添加父类的构器方法
-     </p>
-     <p>
-      二种方法相比较起来，通过继承
-      <code>
-       Thread
-      </code>
-      类来创建线程的实例更直观灵活一些，通过以上例子的对比来看，多线程并发执行程序要比单线程执行节约很多时间。
-关于多线程实例的创建还有其它方法，比如
-      <code>
-       Thread
-      </code>
-      构建方法中target参数也可以传入一个实例，不过个人感觉没有继承
-      <code>
-       Thread
-      </code>
-      类创建的实例更直观些，这里也就不举例了，
-另外还可以通过线程池创建一组线程用来执行任务。
-     </p>
-     <h2>
-      threadpool Python线程池
-     </h2>
-     <p>
-      <code>
-       Python3
-      </code>
-      下载安装模块
-     </p>
-     <pre><code>pip3 install threadpool
-</code></pre>
-     <p>
-      用线程池测试一下刚才的打印，代码如下：
-     </p>
-     <pre><code class="python">import time
-import threadpool
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    l = ['11111','22222','33333','44444','55555']
-    pool = threadpool.ThreadPool(5)# 创建一个线程池
-    requests = threadpool.makeRequests(loop1, l) #传入函数 及函数需要的参数
-    [pool.putRequest(req) for req in requests]# 不理角这段代码，猜测是循环创建线程 分配任务。
-    pool.wait()#设置池内所有线程等待。
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <p>
-      <code>
-       Python
-      </code>
-      线程的创建方法应该还有很多种，这里就不在介绍了，博主感觉继承
-      <code>
-       Thread
-      </code>
-      类创建实例的方法比较经典可行，代码直观，其次是创建
-      <code>
-       Thread
-      </code>
-      对象传参进去也是简单到家了。
-有关
-      <code>
-       Python
-      </code>
-      线程的创建就先聊到这里，稍后再研究一下线程锁，这几天正值国庆节，祝大家玩的开心！
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       python 类的静态方法和类方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-30 09:31:31
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      静态方法和类方法的定义
-     </h2>
-     <p>
-      <code>
-       Python
-      </code>
-      中类的静态方法使用
-      <code>
-       @staticmethod
-      </code>
-      装饰器来定义
-      <code>
-       Python
-      </code>
-      中类方法使用
-      <code>
-       @classmethod
-      </code>
-      装饰器来定义
-     </p>
-     <pre><code class="python">
-class Hello:
-    k = 2
-    #定义一个类的静态方法
-    @staticmethod
-    def add(x,y):
-        return x + y
-    #定义一个类方法
-    @classmethod
-    def mul(cls,x):
-        return cls.k * x
-
-print(Hello.add(999,1))#使用静态方法 结果为1000
-print(Hello.mul(2))#使用类方法 结果为4
-</code></pre>
-     <p>
-      类的静态方法使用和使用普通函数一样简单，但类方法确有些不同，她只能用于类本身，把自身做为对象进行操作。
-我们继承一下
-      <code>
-       Hello
-      </code>
-      这个类，看看静态方法和类方法是不是能被继承？
-     </p>
-     <pre><code class="python">class World(Hello):
-    k = 4
-
-print(World.add(1,999))
-print(World.mul(2))
-</code></pre>
-     <p>
-      通过上边的例子，我们可以发现子类可以继承使用父类方法和父类的静态方法，如果类变量值有所变化，结果也会有所不同。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/OOP/classstatictest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classstatictest.py">
         开源中国码云镜像gitee
        </a>
       </li>

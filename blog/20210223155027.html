@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   pipenv 简化的虚拟环境、项目依赖管理工具  碎言博客
+   Flask-SQLAlchemy 使用学习笔记  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -135,13 +135,13 @@
     <div class="container-fluid" id="rt">
      <div class="blog-article">
       <h1 class="title">
-       pipenv 简化的虚拟环境、项目依赖管理工具
+       Flask-SQLAlchemy 使用学习笔记
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2021-02-20 15:38:15
+       2021-02-23 15:50:27
       </span>
       <span class="tag">
        Flask
@@ -150,157 +150,174 @@
      <p>
      </p>
      <p>
-      最近学习flask，由于flask框架本身非常极简，功能上需要很多的扩展包，所以项目需要在Python的虚拟环境下来安装管理这些扩展，这样才会方便项目在其他地方进行扩展包的安装。这里推荐
-      <code>
-       pipenv
-      </code>
-      来管理虚拟环境和扩展。
+      ## 安装和配置
      </p>
-     <p>
-      ## 安装并激活虚拟环境
-     </p>
-     <pre><code>pip install pipenv
+     <pre><code>pip install Flask-SQLAlchemy
 </code></pre>
      <p>
-      终端进入项目目录，
+      在
       <code>
-       pipenv shell
+       Flask
       </code>
-      激活并初始化虚拟环境，
-     </p>
-     <pre><code>(base) （￣︶￣）↗ pipenv shell
-Launching subshell in virtual environment...
-bash-3.2$  . /Users/mac/.local/share/virtualenvs/Flask-BabyLog-cH2fMiTs/bin/activate
-(Flask-BabyLog) bash-3.2$
-</code></pre>
-     <p>
-      我们可以看到环境配置文件的目录，以及终端的提示符的变化。
+      中简单配置:
      </p>
      <p>
-      使用
-      <code>
-       exit
-      </code>
-      退出虚拟环境。
+      from flask import Flask
+from flask_sqlalchemy import SQLAlchemy #数据库依赖
      </p>
-     <h2>
-      安装项目依赖
-     </h2>
-     <p>
-      把平时的
-      <code>
-       pip
-      </code>
-      换成
-      <code>
-       pipenv
-      </code>
-     </p>
-     <pre><code>pipenv install requests
-</code></pre>
-     <p>
-      <img alt="" src="assets/images/2021/2021-02-20 16_07_18.gif"/>
-     </p>
-     <p>
-      打开项目目录中的
-      <code>
-       Pipfile
-      </code>
-     </p>
-     <pre><code>[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-name = "pypi"
+     <pre><code>app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
 
-[packages]
-requests = "*"
 
-[dev-packages]
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
 
-[requires]
-python_version = "3.8"
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
+
+    def __repr__(self):
+        return '&lt;User %r&gt;' % self.username
+</code></pre>
+     <p>
+      如上就是官方提供的一个简单的案例。
+     </p>
+     <p>
+      <code>
+       Flask-SQLAlchemy
+      </code>
+      扩展能够识别的配置键常用的有：
+     </p>
+     <p>
+      SQLALCHEMY_DATABASE_URI 用于连接数据库
+     </p>
+     <p>
+      Postgres:
+     </p>
+     <pre><code>postgresql://scott:tiger@localhost/mydatabase
+</code></pre>
+     <p>
+      MySQL:
+     </p>
+     <pre><code>mysql://scott:tiger@localhost/mydatabase
+</code></pre>
+     <p>
+      Oracle:
+     </p>
+     <pre><code>oracle://scott:tiger@127.0.0.1:1521/sidname
+</code></pre>
+     <p>
+      SQLite (注意开头的四个斜线):
+     </p>
+     <pre><code>sqlite:////absolute/path/to/foo.db
 </code></pre>
      <p>
       <code>
-       url
+       SQLALCHEMY_ECHO
       </code>
-      那里可以修改pip的镜像地址，如果下载太慢，可以换成国内的镜像地址。
+      如果设置成
       <code>
-       [packages]
+       True
       </code>
-      是虚拟环境中安装过的扩展包
-     </p>
-     <p>
-      假设换了一台机器，我们从GitHub上clone下来项目，当然项目中的包含
+      ，
       <code>
-       Pipfile
+       SQLAlchemy
       </code>
-      <code>
-       Pipfile.lock
-      </code>
-      二个文件。
+      将会记录所有 发到标准输出(stderr)的语句，这对调试很有帮助。
      </p>
      <p>
-      终端运行:
-     </p>
-     <pre><code>pipenv install
-</code></pre>
-     <p>
-      即可安装项目的所有依赖。
-     </p>
-     <p>
-      以上为
-      <code>
-       pipenv
-      </code>
-      的一些简单操作，更多请参考官方文档。
-     </p>
-     <p>
-      <a href="https://pipenv.pypa.io/en/latest/?badge=latest#">
-       pipenv官方文档
+      <a href="http://www.pythondoc.com/flask-sqlalchemy/config.html">
+       Flask-SQLAlchemy 扩展能够识别的配置键的清单
       </a>
      </p>
      <h2>
-      写在最后
+      声明模型
      </h2>
      <p>
-      如果讨厌
-      <code>
-       lock
-      </code>
-      的生成速度，可以在安装依赖的时候使用
-      <code>
-       pip
-      </code>
-      ，然后生成依赖列表：
+      一个简单的例子：
      </p>
-     <pre><code>pip freeze &gt; requirements.txt
+     <pre><code>class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
+
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
+
+    def __repr__(self):
+        return '&lt;User %r&gt;' % self.username
 </code></pre>
      <p>
-      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
+      最常用的
+      <code>
+       Column
+      </code>
+      类型:
      </p>
-     <pre><code>pip install -r requirements.txt
+     <pre><code>Integer 一个整数
+String (size)   有长度限制的字符串
+Text    一些较长的 unicode 文本
+DateTime    表示为 Python datetime 对象的 时间和日期
+Float   存储浮点值
+Boolean 存储布尔值
+PickleType  存储为一个持久化的 Python 对象
+LargeBinary 存储一个任意大的二进制数据
+</code></pre>
+     <h2>
+      数据的增删改查
+     </h2>
+     <p>
+      插入记录：
+     </p>
+     <pre><code>user = User('jack',''jack@qq.com')
+db.session.add(user)
+db.session.commit()
 </code></pre>
      <p>
-      虽然这用法有点另类，我只是喜欢
+      删除记录：
+     </p>
+     <pre><code>db.session.delete(user)
+db.session.commit()
+</code></pre>
+     <p>
+      查询记录:
+     </p>
+     <pre><code>user = User.query.filter_by('jack').first()
+user.email # 输出 jack@qq.com
+</code></pre>
+     <p>
+      主键查询
       <code>
-       pipenv
+       get()
       </code>
-      的创建、启用和退出的命令，很方便。哈哈哈，实在不行咱就用回
+      ，返回所有数据
       <code>
-       venv
+       all()
       </code>
-      吧，可以参考下文
+      。
      </p>
      <p>
-      <a href="http://2vv.net/blog/2.html">
-       创建python 虚拟环境 venv
+      更新记录和添加记录类似：
+     </p>
+     <pre><code>user = User.query.get(1)
+user.email = 'haha@qq.com'
+db.session.delete(user)
+db.session.commit()
+</code></pre>
+     <p>
+      更多请参考
+      <a href="http://www.pythondoc.com/flask-sqlalchemy/index.html">
+       官方文档
       </a>
      </p>
      <section class="blog-p text-center">
       <div class="gitedit">
        发现错误？想参与编辑？
-       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210220153815.md" target="_blank">
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210223155027.md" target="_blank">
         在 GitHub 上编辑此页！
        </a>
       </div>
