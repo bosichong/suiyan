@@ -197,7 +197,7 @@ def create_blog(title='', author='', tag='', dir='', pagename=''):
     # print(blogpath)
     bloghtml = '<div class="blog-article">\n<h1 class="title">' + title + '</h1>\n<span class="author">' + author + '</span>\n\
 <span class="time">' + create_time + '</span>\n<span class="tag">' + tag + '</span>\n</div>\n\
-</br>\n\n ## 可以开始写blog啦(*￣︶￣)'
+</br>\n\n## 可以开始写blog啦(*￣︶￣)'
 
     if os.path.isfile(blogfile):
         print('文件存在相同名称，创建失败。')
