@@ -1,2 +1,2 @@
-Markdown==2.6.8
-beautifulsoup4==4.9.1
+Markdown==3.3.4
+beautifulsoup4==4.9.3

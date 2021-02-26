@@ -239,7 +239,7 @@ def create_sitemap():
     tmpstr = ""
     blogdata = load_blogdatajson()  # 获得blog的博文数据
     for ar in blogdata:
-        if "/" in ar["url"]:
+        if os.sep in ar["url"]:
             ar["url"] = xurl(ar["url"])
 
         tmpstr += '<url>\

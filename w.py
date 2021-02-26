@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import z
 import tkinter as tk
 
