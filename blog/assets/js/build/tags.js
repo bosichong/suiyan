@@ -52,6 +52,10 @@ $(document).ready(function () {
                     if (el.url.indexOf("/")){
                         el.url = el.url.split("/").pop();
                     }
+                    // 处理win路径
+                    if (el.url.indexOf("\\")){
+                        el.url = el.url.split("\\").pop();
+                    }
 
                     shtmlstr += '<li class="list-group-item"><a href="./' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
                 }

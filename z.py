@@ -47,7 +47,7 @@ DIVRE = '<div class="blog-article">?([\s\S]*?)</div>'
 
 def xurl(url):
     '''去掉目录直接取文件名'''
-    return url.split("/")[-1]  # 去掉目录，直接取文件名。
+    return url.split(os.sep)[-1]  # 去掉目录，直接取文件名。
 
 
 def rmblog():
@@ -570,7 +570,7 @@ def create_archives_html():
         lihtmlstr = ''
         for j in l["data"]:
             burl = j["url"]
-            if "/" in burl:
+            if os.sep in burl:
                 burl = xurl(burl)
             lihtmlstr += '<li class="list-group-item"><a href="' + burl + '.html" target="_blank">' + \
                 j["title"] + '</a> <span title="发布日期">' + \
@@ -624,7 +624,7 @@ def create_tags_html():
         tmpcad = ''
         for i in item["data"]:
             burl = i["url"]
-            if "/" in burl:
+            if os.sep in burl:
                 burl = xurl(burl)
             tmpcad += '<li class="list-group-item"><a target="_blank" href="' + burl + '.html">' + i["title"] + '</a> \
             <span class="meta" title="发布日期">' + i["time"] + '</span></li>'
@@ -683,7 +683,7 @@ def create_blog_html(mainhtml, blog):
     md_html_code = loadcode(md_path)
     mdbfs = markdown(md_html_code)  # 博文
     burl = blog["url"]
-    if "/" in burl:
+    if os.sep in burl:
         burl = xurl(burl)
 
     githtml = '<section class="blog-p text-center">\
