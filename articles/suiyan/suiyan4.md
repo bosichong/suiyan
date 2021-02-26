@@ -18,8 +18,8 @@ HTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的�
 jQuery 是一个 JavaScript 库。
 jQuery 极大地简化了 JavaScript 编程。
 
-<div class="table-responsive">
-<table class="table">
+
+<table class="table" style="color:#9B9C9D;">
         <thead class="">
             <tr>
                 <th scope="col">描述</th>
@@ -242,5 +242,4 @@ jQuery 极大地简化了 JavaScript 编程。
     </tbody>
 
 </table>
-</div>
 

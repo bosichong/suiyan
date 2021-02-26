@@ -27,13 +27,17 @@ BLOGLIST = os.path.join(BASE_DIR, "list")
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 
-JSBUILD = os.path.join(BLOGPAGES, 'assets/js/build')
-JSSRC = os.path.join(BLOGPAGES, 'assets/js/src')
-JSUTIL = os.path.join(BLOGPAGES, 'assets/js/src/util.js')
-JSMAIN = os.path.join(BLOGPAGES, 'assets/js/src/main.js')
+ASSETS_DIR = os.path.join(BLOGPAGES, 'assets')
+JS_DIR = os.path.join(ASSETS_DIR,'js')
+
+JSBUILD = os.path.join(JS_DIR, 'build')
+JSSRC = os.path.join(JS_DIR, 'src')
+JSUTIL = os.path.join(JSSRC, 'util.js')
+JSMAIN = os.path.join(JSSRC, 'main.js')
+TEMPLATES = os.path.join(ASSETS_DIR, 'templates')  # 网页模板目录
 NN = '\n\n'
 
-TEMPLATES = os.path.join(BLOGPAGES, 'assets/templates')  # 网页模板目录
+
 
 
 SUIYANVERSION = "2.0.2"  # 程序版本
@@ -113,7 +117,7 @@ def load_blogdatajson():
 
 
 
-def create_blog_data_Json(adir, bdir):
+def create_blog_data_Json(adir):
     '''
     递归获得当前目录及其子目录中所有的.md文件列表。
     并创建blog的data索引JSON
@@ -132,7 +136,7 @@ def create_blog_data_Json(adir, bdir):
             # 值读取.md
             if name.endswith('.md'):
                 url = os.path.join(root, name).replace(
-                    adir + '/', '').replace('.md', '')  # 最后需要组装的相对目录
+                    adir + os.sep, '').replace('.md', '')  # 最后需要组装的相对目录
                 furl = os.path.join(root, name)  # 当前文件的绝对目录
                 if getmd(furl):
                     datahtml = getmd(furl)  # 取回当前.md文件的HTML头部信息
@@ -153,7 +157,7 @@ def write_data_json():
     :param json_str: json 字符串
     :return:
     '''
-    json_str=create_blog_data_Json(ARTICLES_DIR, BASE_DIR)
+    json_str=create_blog_data_Json(ARTICLES_DIR)
     with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
     # print("写入blog数据索引完毕！")
@@ -235,6 +239,9 @@ def create_sitemap():
     tmpstr = ""
     blogdata = load_blogdatajson()  # 获得blog的博文数据
     for ar in blogdata:
+        if "/" in ar["url"]:
+            ar["url"] = xurl(ar["url"])
+
         tmpstr += '<url>\
         <loc>' + siteurl + ar["url"] + '.html</loc>\
         <lastmod>' + ar["time"] + '</lastmod>\

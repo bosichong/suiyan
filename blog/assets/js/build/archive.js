@@ -48,6 +48,11 @@ $(document).ready(function () {
                 shtmlstr += '<ul class="car-list navbar-nav">'
                 for (let index = 0; index < sdata.length; index++) {
                     const el = sdata[index];
+                    // 处理路径，是结果保证为blog的根目录
+                    if (el.url.indexOf("/")){
+                        el.url = el.url.split("/").pop();
+                    }
+
                     shtmlstr += '<li class="list-group-item"><a href="./' + el.url + '.html">' + el.title + '</a> <span title="发布日期">' + el.time + '</span></li>';
                 }
                 shtmlstr += '</ul>'
