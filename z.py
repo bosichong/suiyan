@@ -8,6 +8,8 @@ import json
 import datetime
 import random
 import time
+import asyncio
+import aiofiles
 
 
 # 线程池
@@ -28,7 +30,7 @@ CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 
 ASSETS_DIR = os.path.join(BLOGPAGES, 'assets')
-JS_DIR = os.path.join(ASSETS_DIR,'js')
+JS_DIR = os.path.join(ASSETS_DIR, 'js')
 
 JSBUILD = os.path.join(JS_DIR, 'build')
 JSSRC = os.path.join(JS_DIR, 'src')
@@ -36,8 +38,6 @@ JSUTIL = os.path.join(JSSRC, 'util.js')
 JSMAIN = os.path.join(JSSRC, 'main.js')
 TEMPLATES = os.path.join(ASSETS_DIR, 'templates')  # 网页模板目录
 NN = '\n\n'
-
-
 
 
 SUIYANVERSION = "2.0.2"  # 程序版本
@@ -114,9 +114,6 @@ def load_blogdatajson():
     return blog
 
 
-
-
-
 def create_blog_data_Json(adir):
     '''
     递归获得当前目录及其子目录中所有的.md文件列表。
@@ -157,7 +154,7 @@ def write_data_json():
     :param json_str: json 字符串
     :return:
     '''
-    json_str=create_blog_data_Json(ARTICLES_DIR)
+    json_str = create_blog_data_Json(ARTICLES_DIR)
     with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
     # print("写入blog数据索引完毕！")
@@ -416,15 +413,22 @@ def create_index_html():
     # for i in range(ps):
     #     create_list_html(indexhtml,i,ps,cs)
 
-    with ThreadPoolExecutor(max_workers=5) as ex:
-        for i in range(ps):
-            # 单线程
-            # create_list_html(indexhtml,i,ps,cs)
-            # #多线程创建
-            ex.submit(create_list_html, indexhtml, i, ps, cs)
+    # 多线程
+    # with ThreadPoolExecutor(max_workers=5) as ex:
+    #     for i in range(ps):
+    #         # 单线程
+    #         # create_list_html(indexhtml,i,ps,cs)
+    #         # #多线程创建
+    #         ex.submit(create_list_html, indexhtml, i, ps, cs)
+
+    # 异步
+    ct = [create_list_html(indexhtml, i, ps, cs) for i in range(ps)]  # 列表生成式
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(ct))
+    # loop.close()
 
 
-def create_list_html(indexhtml, i, ps, cs):
+async def create_list_html(indexhtml, i, ps, cs):
     '''生成列表单页HTML'''
     blogdata = load_blogdatajson()  # 获得blog的博文数据
     indexbfs = BeautifulSoup(indexhtml, 'html.parser')
@@ -477,17 +481,17 @@ def create_list_html(indexhtml, i, ps, cs):
         if i == 0:
             # 输出最终的listHTML
             indexhtmlpath = os.path.join(BLOGPAGES, 'index.html')  # 首页HTML
-            with open(indexhtmlpath, mode='w', encoding='utf-8') as f:
-                f.write(indexbfs.prettify())
+            async with aiofiles.open(indexhtmlpath, mode='w', encoding='utf-8') as f:
+                await f.write(indexbfs.prettify())
                 print('合并生成环境index.html成功！')
 
-            with open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
-                f.write(indexbfs.prettify())
+            async with aiofiles.open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
+                await f.write(indexbfs.prettify())
                 print('合并生成环境list_' + str(i) + '.html 成功！')
 
         else:
-            with open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
-                f.write(indexbfs.prettify())
+            async with aiofiles.open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
+                await f.write(indexbfs.prettify())
                 print('合并生成环境list_' + str(i) + '.html 成功！')
 
         bloglist.string = ''
@@ -665,15 +669,21 @@ def create_allblog():
     #     create_blog_html(mainhtml,blog)
 
     # #多线程创建
-    with ThreadPoolExecutor(max_workers=5) as ex:
-        for blog in blogdata:
-            ex.submit(create_blog_html, mainhtml, blog)
+    # with ThreadPoolExecutor(max_workers=5) as ex:
+    #     for blog in blogdata:
+    #         ex.submit(create_blog_html, mainhtml, blog)
+
+    ct = [create_blog_html(mainhtml, blog) for blog in blogdata]  # 列表生成式
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(ct))
+    loop.close()
 
 
-def create_blog_html(mainhtml, blog):
+async def create_blog_html(mainhtml, blog):
     '''
     创建blog页面
     '''
+
     configdata = load_configjson()  # 得到blog的配置Python字典
     mainbfs = BeautifulSoup(mainhtml, 'html.parser')
     bloglist = mainbfs.find(name='section', attrs={"class": "blog-list"})
@@ -706,10 +716,17 @@ def create_blog_html(mainhtml, blog):
     if not os.path.isdir(file_dir):
         os.makedirs(file_dir)
 
-    print(blogurl)
-    with open(blogurl, mode='w', encoding='utf-8') as f:
-        f.write(mainbfs.prettify())
+    # print(blogurl)
+
+    async with aiofiles.open(blogurl, mode='w', encoding='utf-8') as f:
+        await f.write(mainbfs.prettify())
         print('生成' + blog["title"] + '页面成功！')
+
+    # f = open(blogurl, mode='w', encoding='utf-8')
+    # f.write(mainbfs.prettify())
+    # print('生成' + blog["title"] + '页面成功！')
+    # f.close()
+
     bloglist.string = ''
 
 
