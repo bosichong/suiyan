@@ -676,7 +676,7 @@ def create_allblog():
     ct = [create_blog_html(mainhtml, blog) for blog in blogdata]  # 列表生成式
     loop = asyncio.get_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
-    loop.close()
+    # loop.close()
 
 
 async def create_blog_html(mainhtml, blog):
