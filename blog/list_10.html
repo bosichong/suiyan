@@ -132,6 +132,106 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python多线程编程（下）多线程锁 threading.Lock
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-04 14:49:34
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      在多线程任务中，线程对数据的操作是随机的，这个先后次序无法预测，如果利用多线程修改唯一数据，由于对数据操作的随机性，必会影响到数据结果的准确性，所以在多线程的任务的编码中，我们必须使用线程锁。
+     </p>
+     <h2>
+      Python的多线程锁 threading.Lock
+     </h2>
+     <p>
+      通过下边的例子，我们来看看多线程锁的重要性，定义两个数据，同时利用多线程对其+ -相同的数值，
+如果操作次序是正常的，一加一减，那个数据应该是没有变化的，但是因为多线程操作没有加锁时对数据的操作是随机争抢资源的，
+多线程操作时会发生，多加或是多减的结果，我们看下边的例子：
+     </p>
+     <pre><code class="python">import threading
+
+data = 0
+lock_data = 0
+lock = threading.Lock()#创建一把线程锁
+
+lock.acquire()
+lock.release()
+
+def change_d(n):
+    '''修改无锁数据的函数'''
+    global data
+    data += n
+    data -= n
+
+def change_l_d(n):
+    '''修改有锁数据的函数'''
+    global lock_data
+    lock_data += n
+    lock_data -= n
+
+def myfun(n):
+    for i in range(500000):
+        change_d(n)
+        #lock.acquire()
+        #change_l_d(n)
+        #lock.release()
+        #与下边的with语句处相同
+        with lock:
+            change_l_d(n)
+
+def main():
+    threads = []
+    k = 5
+    for i in range(k):
+        t = threading.Thread(target=myfun, args=(10,))
+        threads.append(t)
+    for i in range(k):
+        threads[i].start()
+    for i in range(k):
+        threads[i].join()
+    print("无锁数据最终结果=={0}".format(data))
+    print("有锁数据最终结果=={0}".format(lock_data))
+
+if __name__ == '__main__':
+    main()
+
+</code></pre>
+     <p>
+      多次运行后我们会发现，无锁数据的最终结果会出现不同，因为可以证明，无锁的时候多线程操作是随机性的。所以在多线程操作中，如果存在多线程操作唯一数据时，一定要加锁保证每次只有一个线程对基进行操作。
+     </p>
+     <p>
+      除了对多唯一数据进行加锁这种方法以外，在
+      <code>
+       Python
+      </code>
+      中还可以使用信号量或是事件对线程进行控制，但笔者认为，还是使用Lock对象比较方便。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python多线程编程（上）多线程创建的几种方法
       </h1>
       <span class="author">
@@ -1268,123 +1368,6 @@ root.mainloop()
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-26 16:48:51
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      messagebox 弹出提示框 一共有七种常用方法，基本上可以应付一般简单的程序需求了：
-showinfo, showwarning, showerror, askquestion, askokcancel, askyesno, or askretrycancel.
-其中askquestion, askokcancel, askyesno, or askretrycancel这4个方法，应该注意一下点击按钮的返回值。
-     </p>
-     <p>
-      演示图如下：
-     </p>
-     <p>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_5.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_6.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_7.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_8.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_9.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_10.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_11.png"/>
-      ![演示图](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_12.png"/>
-     </p>
-     <pre><code class="python">import tkinter as tk
-from tkinter import messagebox  # 导入提示窗口包
-
-str1=("showinfo","showwarning","showerror","askquestion","askokcancel","askyesno","askretrycancel")
-def showMsg(str):
-    """弹出窗口设置函数"""
-    print(str)
-    if str == str1[0]:
-        messagebox.showinfo("showinfo","信息提示框！")
-    elif str == str1[1]:
-        messagebox.showwarning("showwarning","警告框！")
-    elif str == str1[2]:
-        messagebox.showerror("showerror","错误信息框！")
-    elif str == str1[3]:
-        if messagebox.askquestion("askquestion","askquestion提示框") == messagebox.YES:
-            messagebox.showinfo("yes","你点了yes!")
-        else:
-            messagebox.showinfo("no","你点了no")
-    elif str == str1[4]:
-        if messagebox.askokcancel("askokcancel","askokcancel提示框"):
-            messagebox.showinfo("OK","你点Ok")
-        else:
-            messagebox.showwarning("cancel","你点了cancel")
-    elif str == str1[5]:    
-        print(messagebox.askyesno("askyesno","askyesno提示框"))
-    elif str == str1[6]:    
-        print(messagebox.askretrycancel("askretrycancel","askretrycancel提示框"))
-
-root = tk.Tk()
-root.title("messagebox 弹出对话框使用例子")
-
-show_frame = tk.Frame(root)
-show_frame.pack(fill=tk.X, side=tk.TOP)
-btn1= tk.Button(show_frame, text=str1[0],command=lambda showMsg = showMsg : showMsg(str1[0]) ).pack(side=tk.LEFT)
-btn2= tk.Button(show_frame, text=str1[1],command=lambda showMsg = showMsg : showMsg(str1[1]) ).pack(side=tk.LEFT)
-btn3= tk.Button(show_frame, text=str1[2],command=lambda showMsg = showMsg : showMsg(str1[2]) ).pack(side=tk.LEFT)
-
-asky_frame = tk.Frame(root)
-asky_frame.pack(fill=tk.X,side=tk.TOP)
-bt4 = tk.Button(asky_frame,text=str1[3],command=lambda showMsg = showMsg : showMsg(str1[3]) ).pack(side=tk.LEFT)
-bt5 = tk.Button(asky_frame,text=str1[4],command=lambda showMsg = showMsg : showMsg(str1[4]) ).pack(side=tk.LEFT)
-bt6 = tk.Button(asky_frame,text=str1[5],command=lambda showMsg = showMsg : showMsg(str1[5]) ).pack(side=tk.LEFT)
-bt7 = tk.Button(asky_frame,text=str1[6],command=lambda showMsg = showMsg : showMsg(str1[6]) ).pack(side=tk.LEFT)
-root.mainloop()
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-        可爱的 Python：Python 中的 TK编程
-       </a>
-      </li>
-      <li>
-       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-        An Introduction To Tkinter
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_9.html">
@@ -1393,7 +1376,7 @@ root.mainloop()
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        10 / 14
+        10 / 15
        </button>
        <a href="list_11.html">
         <button class="next btn btn-primary" type="button">

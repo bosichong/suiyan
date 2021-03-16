@@ -132,6 +132,95 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       基于Python、Tk构建的可视化目录文件同步助手
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-26 15:04:15
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png"/>
+     </p>
+     <h2>
+      功能需求
+     </h2>
+     <p>
+      之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
+之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
+并且能把比较后的结果复制到备份目录中进行备份。
+     </p>
+     <h2>
+      需求分析
+     </h2>
+     <p>
+      从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
+技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
+     </p>
+     <h2>
+      逻辑分析
+     </h2>
+     <p>
+      通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
+为此，我创建了一个目录比较类，专门负责比较目录与文件。
+此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
+其实本程序中，目录与文件的分析是重要部分：
+     </p>
+     <ul>
+      <li>
+       先判断根目录中不相同的目录与文件，然后分别记录。
+      </li>
+      <li>
+       如果有相同的目录，使用递归比较这二个相同的目录。
+      </li>
+      <li>
+       最后分别创建目录，复制文件到目标目录中。
+      </li>
+     </ul>
+     <h2>
+      Tk Button传参方法
+     </h2>
+     <p>
+      在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
+     </p>
+     <pre><code>command=lambda: def(参数1, 参数2)
+</code></pre>
+     <p>
+      这样即可达到函数传参的实现。
+     </p>
+     <h2>
+      目录与文件的操作
+     </h2>
+     <p>
+      通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
+     </p>
+     <h2>
+      本文源码下载
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/PyDirectoryComparison">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
       </h1>
       <span class="author">
@@ -1202,77 +1291,6 @@ for i in b :
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-13 10:57:48
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_1.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_3.png"/>
-     </p>
-     <h2>
-      Tk多线程中的坑
-     </h2>
-     <ul>
-      <li>
-       在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！
-      </li>
-      <li>
-       客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。
-      </li>
-     </ul>
-     <h2>
-      多用户服务器端
-     </h2>
-     <p>
-      每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
-这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。
-     </p>
-     <p>
-      关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。
-     </p>
-     <h2>
-      客户端
-     </h2>
-     <p>
-      客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。
-     </p>
-     <p>
-      具体代码就不贴了，到git下载吧。
-     </p>
-     <p>
-      代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_7.html">
@@ -1281,7 +1299,7 @@ for i in b :
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        8 / 14
+        8 / 15
        </button>
        <a href="list_9.html">
         <button class="next btn btn-primary" type="button">

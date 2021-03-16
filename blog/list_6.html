@@ -132,6 +132,106 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       聊聊Python中的递归与快速排序那点事
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-30 14:38:39
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
+     </p>
+     <h2>
+      在Python中递归
+     </h2>
+     <p>
+      递归比较简单的例子就是阶乘，看下递归的必要条件：
+     </p>
+     <ul>
+      <li>
+       边界条件：确定递归到何时终止，也称为递归出口。
+      </li>
+      <li>
+       递归模式：大问题是如何分解为小问题的，也称为递归体。
+      </li>
+     </ul>
+     <p>
+      阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
+     </p>
+     <pre><code>def f(n):
+    if n == 1: return 1
+    return n * f(n - 1)
+print(f(5))
+</code></pre>
+     <p>
+      上边就是一个简单的递归阶乘函数，很简单喽，不过在
+      <code>
+       Python
+      </code>
+      中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
+     </p>
+     <pre><code>import sys
+sys.setrecursionlimit(5000)  # 设置递归层数
+print(sys.getrecursionlimit())  # 查看
+</code></pre>
+     <h2>
+      Python中的快速排序
+     </h2>
+     <p>
+      快速排序法是一个非常精典的递归例子，C语言标准库中的
+      <code>
+       qsort
+      </code>
+      函数的实现主是采用的快速排序法。
+快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
+具体看代码：
+     </p>
+     <pre><code>def q_sort(arr):
+    if len(arr) &lt; 2 :
+        return arr
+    else:
+        p = arr[0]
+        print(p)
+        l = [i for i in arr[1:] if i &lt;= p]
+        g = [i for i in arr[1:] if i &gt; p]
+        temp = list()
+        temp.append(p)
+        return q_sort(l) + temp  + q_sort(g)
+print(q_sort([2,44,3,77,6,5,888,999]))
+</code></pre>
+     <p>
+      上边代码如果直接
+      <code>
+       return q_sort(l) + p  + q_sort(g)
+      </code>
+      是会报错的，所以修改了使用list相加。
+算法其实很有意思，程序都是有算法组成的，以后得多看看了。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
       </h1>
       <span class="author">
@@ -1062,130 +1162,6 @@ for i in range(0,4):
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-12-28 21:41:37
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      为什么要封装？
-     </h2>
-     <p>
-      pygame写起游戏都是函数式编写，对于一些简单的小游戏或许可以应付，随着游戏内容的增加，我们不可能只在一个.py文件中写下所有的游戏代码，这个时候，我们应该考虑对游戏中组件及对象进行封装，用面向对象的方式来进行游戏代码的编写。
-     </p>
-     <h2>
-      一些具体的封装内容
-     </h2>
-     <p>
-      游戏中的关键词，假设游戏没有条件判断，那么游戏从头运行到尾就是一部电影。
-这样的话，我们定义一些游戏的基本对象：
-     </p>
-     <ul>
-      <li>
-       渲染器（APP）--只负责渲染游戏场景中存在的游戏片段，属性有：一个游戏片段容器及一些游戏窗口常用设置，并初始化游戏设置。
-      </li>
-      <li>
-       游戏片段(scene)--可能是游戏中的一个片段，一个情节，一节过场，片头，片尾等，游戏片段中包含一个开关属性，用来控制是否可以渲染此游戏片段。
-      </li>
-      <li>
-       游戏逻辑判断器--游戏中的裁判，负责判断修改游戏中的执行条件。
-      </li>
-      <li>
-       精灵--游戏中的角色，他可以是游戏中的场景，主角，配角，怪物，子弹，文字对白。
-      </li>
-      <li>
-       工具类包括：场景中文字渲染工具，游戏中的素材目录的定制，方便调用。一些其它可能需要重复使用的工具。
-      </li>
-     </ul>
-     <h2>
-      定义渲染器
-     </h2>
-     <p>
-      渲染器定义为一个游戏的APP，他应该是这个游戏的最外层，可以定义他的，分辨率，标题，刷新频率。
-如果游戏中有精灵贯穿全局（比如RPG游戏中的主要角色），这种精灵角色他不属于某个游戏片段，这样他应该存在于这个游戏app中。
-     </p>
-     <h2>
-      定义游戏片段
-     </h2>
-     <p>
-      一个gameApp中，至少得有一个游戏片段，游戏片段包括三个主要方法：
-     </p>
-     <pre><code>draw() update() handle_event()
-</code></pre>
-     <p>
-      这三个方法分别对应:
-     </p>
-     <ul>
-      <li>
-       渲染场景
-      </li>
-      <li>
-       更新数据
-      </li>
-      <li>
-       事件处理
-      </li>
-     </ul>
-     <p>
-      当我们继承新建游戏片段类的时候，需要根据自己的需求重写这三个方法。
-     </p>
-     <h2>
-      如何使用PY_RPG？
-     </h2>
-     <pre><code>app = GameApp()#创建游戏
-appscreen = app.screen#获取渲染器
-app.scenes.append(MainScene(appscreen))#创建游戏菜单
-app.scenes.append(TestScene(appscreen))#创建游戏内容
-app.scenes.append(GameOverScene(appscreen))#游戏结束画面
-app.run() #游戏开始
-</code></pre>
-     <p>
-      根据需要创建并重写上边的三个类，然后创建游戏就可以了，现在这样看来，游戏的创建是不是很有层次了？
-     </p>
-     <p>
-      这个框架还没有封装完毕，我还会继续的，之后的游戏制作都要从这个框架上弄起了，初步还要写几个完整的小游戏例子。
-     </p>
-     <p>
-      以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_5.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_6.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_7.png"/>
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件在PY_RPG目录下
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_5.html">
@@ -1194,7 +1170,7 @@ app.run() #游戏开始
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        6 / 14
+        6 / 15
        </button>
        <a href="list_7.html">
         <button class="next btn btn-primary" type="button">

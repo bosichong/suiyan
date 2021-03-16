@@ -132,6 +132,130 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       “编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-12-28 21:41:37
+      </span>
+      <span class="tag">
+       pygame
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      为什么要封装？
+     </h2>
+     <p>
+      pygame写起游戏都是函数式编写，对于一些简单的小游戏或许可以应付，随着游戏内容的增加，我们不可能只在一个.py文件中写下所有的游戏代码，这个时候，我们应该考虑对游戏中组件及对象进行封装，用面向对象的方式来进行游戏代码的编写。
+     </p>
+     <h2>
+      一些具体的封装内容
+     </h2>
+     <p>
+      游戏中的关键词，假设游戏没有条件判断，那么游戏从头运行到尾就是一部电影。
+这样的话，我们定义一些游戏的基本对象：
+     </p>
+     <ul>
+      <li>
+       渲染器（APP）--只负责渲染游戏场景中存在的游戏片段，属性有：一个游戏片段容器及一些游戏窗口常用设置，并初始化游戏设置。
+      </li>
+      <li>
+       游戏片段(scene)--可能是游戏中的一个片段，一个情节，一节过场，片头，片尾等，游戏片段中包含一个开关属性，用来控制是否可以渲染此游戏片段。
+      </li>
+      <li>
+       游戏逻辑判断器--游戏中的裁判，负责判断修改游戏中的执行条件。
+      </li>
+      <li>
+       精灵--游戏中的角色，他可以是游戏中的场景，主角，配角，怪物，子弹，文字对白。
+      </li>
+      <li>
+       工具类包括：场景中文字渲染工具，游戏中的素材目录的定制，方便调用。一些其它可能需要重复使用的工具。
+      </li>
+     </ul>
+     <h2>
+      定义渲染器
+     </h2>
+     <p>
+      渲染器定义为一个游戏的APP，他应该是这个游戏的最外层，可以定义他的，分辨率，标题，刷新频率。
+如果游戏中有精灵贯穿全局（比如RPG游戏中的主要角色），这种精灵角色他不属于某个游戏片段，这样他应该存在于这个游戏app中。
+     </p>
+     <h2>
+      定义游戏片段
+     </h2>
+     <p>
+      一个gameApp中，至少得有一个游戏片段，游戏片段包括三个主要方法：
+     </p>
+     <pre><code>draw() update() handle_event()
+</code></pre>
+     <p>
+      这三个方法分别对应:
+     </p>
+     <ul>
+      <li>
+       渲染场景
+      </li>
+      <li>
+       更新数据
+      </li>
+      <li>
+       事件处理
+      </li>
+     </ul>
+     <p>
+      当我们继承新建游戏片段类的时候，需要根据自己的需求重写这三个方法。
+     </p>
+     <h2>
+      如何使用PY_RPG？
+     </h2>
+     <pre><code>app = GameApp()#创建游戏
+appscreen = app.screen#获取渲染器
+app.scenes.append(MainScene(appscreen))#创建游戏菜单
+app.scenes.append(TestScene(appscreen))#创建游戏内容
+app.scenes.append(GameOverScene(appscreen))#游戏结束画面
+app.run() #游戏开始
+</code></pre>
+     <p>
+      根据需要创建并重写上边的三个类，然后创建游戏就可以了，现在这样看来，游戏的创建是不是很有层次了？
+     </p>
+     <p>
+      这个框架还没有封装完毕，我还会继续的，之后的游戏制作都要从这个框架上弄起了，初步还要写几个完整的小游戏例子。
+     </p>
+     <p>
+      以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_5.png"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_6.png"/>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_7.png"/>
+     </p>
+     <h2>
+      本文源码下载
+     </h2>
+     <p>
+      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件在PY_RPG目录下
+     </p>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/My_pygame/">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/My_pygame/">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
       </h1>
       <span class="author">
@@ -1089,95 +1213,6 @@ a.print_text()
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       基于Python、Tk构建的可视化目录文件同步助手
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-26 15:04:15
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png"/>
-     </p>
-     <h2>
-      功能需求
-     </h2>
-     <p>
-      之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
-之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
-并且能把比较后的结果复制到备份目录中进行备份。
-     </p>
-     <h2>
-      需求分析
-     </h2>
-     <p>
-      从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
-技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
-     </p>
-     <h2>
-      逻辑分析
-     </h2>
-     <p>
-      通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
-为此，我创建了一个目录比较类，专门负责比较目录与文件。
-此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
-其实本程序中，目录与文件的分析是重要部分：
-     </p>
-     <ul>
-      <li>
-       先判断根目录中不相同的目录与文件，然后分别记录。
-      </li>
-      <li>
-       如果有相同的目录，使用递归比较这二个相同的目录。
-      </li>
-      <li>
-       最后分别创建目录，复制文件到目标目录中。
-      </li>
-     </ul>
-     <h2>
-      Tk Button传参方法
-     </h2>
-     <p>
-      在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
-     </p>
-     <pre><code>command=lambda: def(参数1, 参数2)
-</code></pre>
-     <p>
-      这样即可达到函数传参的实现。
-     </p>
-     <h2>
-      目录与文件的操作
-     </h2>
-     <p>
-      通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PyDirectoryComparison">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_6.html">
@@ -1186,7 +1221,7 @@ a.print_text()
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        7 / 14
+        7 / 15
        </button>
        <a href="list_8.html">
         <button class="next btn btn-primary" type="button">

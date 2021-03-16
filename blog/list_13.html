@@ -132,6 +132,238 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python 采集数据三步曲之[正则表达式 re.py]
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-01 13:09:49
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <em>
+       越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器
+      </em>
+     </p>
+     <h2>
+      如何用
+      <code>
+       Python
+      </code>
+      开始一个简单的正则表达式？
+     </h2>
+     <p>
+      其实很简单，从
+     </p>
+     <pre><code>import re
+</code></pre>
+     <p>
+      引入
+      <code>
+       Python
+      </code>
+      的正则表达式支持模块开始。
+     </p>
+     <h2>
+      开始使用
+      <code>
+       re
+      </code>
+      模块
+     </h2>
+     <pre><code class="python">#codeing=utf-8
+import re
+p = re.compile(r'17python')#创建Pattern对象
+m = p.match('17python.com')
+if m :
+    print(m.group())
+# 输出结果为：17python
+</code></pre>
+     <p>
+      另一种方式：
+     </p>
+     <pre><code class="python">#使用re模块方法代替实例方法
+print(re.match('17python', '17python.com').group())
+# 输出结果为：17python
+</code></pre>
+     <h2>
+      re模块及正则实例常用方法演示
+     </h2>
+     <pre><code class="python">p = re.compile(r'17python')
+s1 = '17python.com'
+s2 = 'www.17python.com'
+s3 = '17python.com17python.com'
+s4 = 'abc.com'
+p4 = re.compile('abc')
+print(p.match(s1).group())
+print(p.search(s2).group())
+print(p.findall(s3))
+print(p4.sub('17python', s4))
+</code></pre>
+     <p>
+      以上只是
+      <code>
+       Python
+      </code>
+      re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考
+      <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+       <code>
+        Python
+       </code>
+       文档 re模块详解
+      </a>
+     </p>
+     <h2>
+      元字符 （参见 python 模块 re 文档）
+     </h2>
+     <ul>
+      <li>
+       .                    匹配任意字符（不包括换行符）
+      </li>
+      <li>
+       ^                    匹配开始位置，多行模式下匹配每一行的开始
+      </li>
+      <li>
+       $                    匹配结束位置，多行模式下匹配每一行的结束
+      </li>
+      <li>
+       *                    匹配前一个元字符0到多次
+      </li>
+      <li>
+       +                    匹配前一个元字符1到多次
+      </li>
+      <li>
+       ?                    匹配前一个元字符0到1次
+      </li>
+      <li>
+       {m,n}                匹配前一个元字符m到n次
+      </li>
+      <li>
+       \                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符
+      </li>
+      <li>
+       []                   字符集，一个字符的集合，可匹配其中任意一个字符
+      </li>
+      <li>
+       |                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b
+      </li>
+      <li>
+       (...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值
+      </li>
+      <li>
+       (?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I
+      </li>
+      <li>
+       (?:...)              分组的不捕获模式，计算索引时会跳过这个分组
+      </li>
+      <li>
+       (?P
+       <name>
+        ...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name
+       </name>
+      </li>
+      <li>
+       (?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则
+      </li>
+      <li>
+       (?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I
+      </li>
+      <li>
+       (?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则
+      </li>
+      <li>
+       (?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则
+      </li>
+      <li>
+       (?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则
+      </li>
+      <li>
+       (?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则
+      </li>
+      <li>
+       (?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则
+      </li>
+      <li>
+       \number              匹配和前面索引为number的分组捕获到的内容一样的字符串
+      </li>
+      <li>
+       \A                   匹配字符串开始位置，忽略多行模式
+      </li>
+      <li>
+       \Z                   匹配字符串结束位置，忽略多行模式
+      </li>
+      <li>
+       \b                   匹配位于单词开始或结束位置的空字符串
+      </li>
+      <li>
+       \B                   匹配不位于单词开始或结束位置的空字符串
+      </li>
+      <li>
+       \d                   匹配一个数字， 相当于 [0-9]
+      </li>
+      <li>
+       \D                   匹配非数字,相当于 [^0-9]
+      </li>
+      <li>
+       \s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]
+      </li>
+      <li>
+       \S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]
+      </li>
+      <li>
+       \w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]
+      </li>
+      <li>
+       \W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]
+      </li>
+     </ul>
+     <h2>
+      更详细的
+      <code>
+       Python
+      </code>
+      re正则表达式教程
+     </h2>
+     <ul>
+      <li>
+       <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
+        Python正则表达式指南
+       </a>
+      </li>
+      <li>
+       <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
+        python正则表达式详解
+       </a>
+      </li>
+      <li>
+       <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
+        Python文档 re模块详解
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/re">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python学习资料教程汇总
       </h1>
       <span class="author">
@@ -1351,91 +1583,6 @@ django1.9
       参考文献：
 http://blog.csdn.net/geekun/article/details/51325383
      </p>
-     <div class="blog-article">
-      <h1 class="title">
-       关于17python.com关于我
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-19 16:51:30
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
-      </em>
-     </p>
-     <h2>
-      为什么要做这个blog？
-     </h2>
-     <p>
-      其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
-      <code>
-       Python Django
-      </code>
-      学习的一个总结。
-     </p>
-     <h2>
-      关于17python
-     </h2>
-     <p>
-      17Python注册域名的时候就是想，人生苦短，何不一起
-      <code>
-       Python
-      </code>
-      ？任何一个热爱
-      <code>
-       Python
-      </code>
-      的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
-      <code>
-       Python
-      </code>
-      这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
-     </p>
-     <h2>
-      blog存在的意义
-     </h2>
-     <p>
-      希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
-      <code>
-       python
-      </code>
-     </p>
-     <h2>
-      网站备案成功
-     </h2>
-     <p>
-      今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
-     </p>
-     <h2>
-      网站改版
-     </h2>
-     <p>
-      今天折腾了一天把网站换成了自己开发的
-      <code>
-       碎言静态博客
-      </code>
-      <a href="https://gitee.com/J_Sky/suiyan.git">
-       Gitee
-      </a>
-      生命在于折腾。
-     </p>
-     <h2>
-      联系我
-     </h2>
-     <p>
-      <em>
-       email bosichong@qq.com
-      </em>
-     </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_12.html">
@@ -1444,9 +1591,9 @@ http://blog.csdn.net/geekun/article/details/51325383
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        13 / 14
+        13 / 15
        </button>
-       <a href="#">
+       <a href="list_14.html">
         <button class="next btn btn-primary" type="button">
          Next
         </button>

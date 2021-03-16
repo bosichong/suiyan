@@ -132,6 +132,77 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-13 10:57:48
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_1.png"/>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_3.png"/>
+     </p>
+     <h2>
+      Tk多线程中的坑
+     </h2>
+     <ul>
+      <li>
+       在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！
+      </li>
+      <li>
+       客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。
+      </li>
+     </ul>
+     <h2>
+      多用户服务器端
+     </h2>
+     <p>
+      每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
+这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。
+     </p>
+     <p>
+      关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。
+     </p>
+     <h2>
+      客户端
+     </h2>
+     <p>
+      客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。
+     </p>
+     <p>
+      具体代码就不贴了，到git下载吧。
+     </p>
+     <p>
+      代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python中创建TCP服务器与客户端进行通信（上）
       </h1>
       <span class="author">
@@ -1289,106 +1360,6 @@ if __name__ == '__main__':
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python多线程编程（下）多线程锁 threading.Lock
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-04 14:49:34
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      在多线程任务中，线程对数据的操作是随机的，这个先后次序无法预测，如果利用多线程修改唯一数据，由于对数据操作的随机性，必会影响到数据结果的准确性，所以在多线程的任务的编码中，我们必须使用线程锁。
-     </p>
-     <h2>
-      Python的多线程锁 threading.Lock
-     </h2>
-     <p>
-      通过下边的例子，我们来看看多线程锁的重要性，定义两个数据，同时利用多线程对其+ -相同的数值，
-如果操作次序是正常的，一加一减，那个数据应该是没有变化的，但是因为多线程操作没有加锁时对数据的操作是随机争抢资源的，
-多线程操作时会发生，多加或是多减的结果，我们看下边的例子：
-     </p>
-     <pre><code class="python">import threading
-
-data = 0
-lock_data = 0
-lock = threading.Lock()#创建一把线程锁
-
-lock.acquire()
-lock.release()
-
-def change_d(n):
-    '''修改无锁数据的函数'''
-    global data
-    data += n
-    data -= n
-
-def change_l_d(n):
-    '''修改有锁数据的函数'''
-    global lock_data
-    lock_data += n
-    lock_data -= n
-
-def myfun(n):
-    for i in range(500000):
-        change_d(n)
-        #lock.acquire()
-        #change_l_d(n)
-        #lock.release()
-        #与下边的with语句处相同
-        with lock:
-            change_l_d(n)
-
-def main():
-    threads = []
-    k = 5
-    for i in range(k):
-        t = threading.Thread(target=myfun, args=(10,))
-        threads.append(t)
-    for i in range(k):
-        threads[i].start()
-    for i in range(k):
-        threads[i].join()
-    print("无锁数据最终结果=={0}".format(data))
-    print("有锁数据最终结果=={0}".format(lock_data))
-
-if __name__ == '__main__':
-    main()
-
-</code></pre>
-     <p>
-      多次运行后我们会发现，无锁数据的最终结果会出现不同，因为可以证明，无锁的时候多线程操作是随机性的。所以在多线程操作中，如果存在多线程操作唯一数据时，一定要加锁保证每次只有一个线程对基进行操作。
-     </p>
-     <p>
-      除了对多唯一数据进行加锁这种方法以外，在
-      <code>
-       Python
-      </code>
-      中还可以使用信号量或是事件对线程进行控制，但笔者认为，还是使用Lock对象比较方便。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/thread">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_8.html">
@@ -1397,7 +1368,7 @@ if __name__ == '__main__':
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        9 / 14
+        9 / 15
        </button>
        <a href="list_10.html">
         <button class="next btn btn-primary" type="button">

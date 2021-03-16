@@ -132,6 +132,123 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-26 16:48:51
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      messagebox 弹出提示框 一共有七种常用方法，基本上可以应付一般简单的程序需求了：
+showinfo, showwarning, showerror, askquestion, askokcancel, askyesno, or askretrycancel.
+其中askquestion, askokcancel, askyesno, or askretrycancel这4个方法，应该注意一下点击按钮的返回值。
+     </p>
+     <p>
+      演示图如下：
+     </p>
+     <p>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_5.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_6.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_7.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_8.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_9.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_10.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_11.png"/>
+      ![演示图](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_12.png"/>
+     </p>
+     <pre><code class="python">import tkinter as tk
+from tkinter import messagebox  # 导入提示窗口包
+
+str1=("showinfo","showwarning","showerror","askquestion","askokcancel","askyesno","askretrycancel")
+def showMsg(str):
+    """弹出窗口设置函数"""
+    print(str)
+    if str == str1[0]:
+        messagebox.showinfo("showinfo","信息提示框！")
+    elif str == str1[1]:
+        messagebox.showwarning("showwarning","警告框！")
+    elif str == str1[2]:
+        messagebox.showerror("showerror","错误信息框！")
+    elif str == str1[3]:
+        if messagebox.askquestion("askquestion","askquestion提示框") == messagebox.YES:
+            messagebox.showinfo("yes","你点了yes!")
+        else:
+            messagebox.showinfo("no","你点了no")
+    elif str == str1[4]:
+        if messagebox.askokcancel("askokcancel","askokcancel提示框"):
+            messagebox.showinfo("OK","你点Ok")
+        else:
+            messagebox.showwarning("cancel","你点了cancel")
+    elif str == str1[5]:    
+        print(messagebox.askyesno("askyesno","askyesno提示框"))
+    elif str == str1[6]:    
+        print(messagebox.askretrycancel("askretrycancel","askretrycancel提示框"))
+
+root = tk.Tk()
+root.title("messagebox 弹出对话框使用例子")
+
+show_frame = tk.Frame(root)
+show_frame.pack(fill=tk.X, side=tk.TOP)
+btn1= tk.Button(show_frame, text=str1[0],command=lambda showMsg = showMsg : showMsg(str1[0]) ).pack(side=tk.LEFT)
+btn2= tk.Button(show_frame, text=str1[1],command=lambda showMsg = showMsg : showMsg(str1[1]) ).pack(side=tk.LEFT)
+btn3= tk.Button(show_frame, text=str1[2],command=lambda showMsg = showMsg : showMsg(str1[2]) ).pack(side=tk.LEFT)
+
+asky_frame = tk.Frame(root)
+asky_frame.pack(fill=tk.X,side=tk.TOP)
+bt4 = tk.Button(asky_frame,text=str1[3],command=lambda showMsg = showMsg : showMsg(str1[3]) ).pack(side=tk.LEFT)
+bt5 = tk.Button(asky_frame,text=str1[4],command=lambda showMsg = showMsg : showMsg(str1[4]) ).pack(side=tk.LEFT)
+bt6 = tk.Button(asky_frame,text=str1[5],command=lambda showMsg = showMsg : showMsg(str1[5]) ).pack(side=tk.LEFT)
+bt7 = tk.Button(asky_frame,text=str1[6],command=lambda showMsg = showMsg : showMsg(str1[6]) ).pack(side=tk.LEFT)
+root.mainloop()
+</code></pre>
+     <h2>
+      相关参考
+     </h2>
+     <ul>
+      <li>
+       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+        可爱的 Python：Python 中的 TK编程
+       </a>
+      </li>
+      <li>
+       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+        An Introduction To Tkinter
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件
       </h1>
       <span class="author">
@@ -985,84 +1102,6 @@ print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
        </a>
       </li>
      </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       关于本站封面头部大图
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-18 14:19:35
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       看到喜欢的图片就会换上，不知道为什么会喜欢这些偏暖的色调，记得很久以前的有段时间，也曾偏爱冷色调调，可能偏暖色调更LOMO些。
-      </em>
-     </p>
-     <h2>
-      2017/09/18
-     </h2>
-     <p>
-      本图来自bing每日壁纸
-     </p>
-     <p>
-      戈尔代小镇是普罗旺斯地区最美丽的小镇之一，依山头而建，是众多被日光洗的发白的石头建筑与深深浅浅的绿色植物相拼而成的村庄。每年那里都会入选法国最美丽的小镇之一。从外到内小镇戈尔代给人的印象就是石头建筑，围墙，房子，教堂几乎都是石头堆砌而成，壮观而真实！
-     </p>
-     <p>
-      <img alt="戈尔代小镇是普罗旺斯地区最美丽的小镇之一" src="assets/images/media/upload/2017/09/BingWallpaper-2017-09-17.jpg"/>
-     </p>
-     <h2>
-      2017/10/09
-     </h2>
-     <p>
-      windows10美丽的海边风景
-     </p>
-     <p>
-      先前的顶部大图太闪眼睛了。。。换个清爽些的。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/6fb13e4db9f043b276e06f340cbdff6d.jpg"/>
-     </p>
-     <h2>
-      2017/11/07
-     </h2>
-     <p>
-      windows10 秋天
-     </p>
-     <p>
-      这个秋天真的很无聊，是个多事之秋。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/11/bing-021.jpg"/>
-     </p>
-     <h2>
-      2017/11/25
-     </h2>
-     <p>
-      网上搜索来的图片
-     </p>
-     <p>
-      冬天来了，我们期待着下雪。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/11/timg.jpg"/>
-     </p>
-     <h2>
-      2017/11/25
-     </h2>
-     <p>
-      《星月夜》（The Starry Night）是荷兰后印象派画家文森特·梵·高于1889年在法国圣雷米的一家精神病院里创作的一幅油画，是梵高的代表作之一，现藏纽约现代艺术博物馆。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/11/1432084191361509.jpeg"/>
-     </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_10.html">
@@ -1071,7 +1110,7 @@ print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
         </button>
        </a>
        <button class="page btn btn-primary" type="button">
-        11 / 14
+        11 / 15
        </button>
        <a href="list_12.html">
         <button class="next btn btn-primary" type="button">

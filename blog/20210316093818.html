@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <!-- Meta -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Flask-SQLAlchemy 使用学习笔记(下):一对一、一对多、多对多关系  碎言博客
+  </title>
+  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
+  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
+  <meta content="J.sky" name="author"/>
+  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
+  <!-- CSS -->
+  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
+  <!-- highlight.js Markdown代码美化 -->
+  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="header text-center">
+   <h1 class="blog-name pt-lg-4 mb-0 hide">
+    <a href="index.html">
+     碎言博客
+    </a>
+   </h1>
+   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
+    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
+     <i aria-hidden="true" class="fa fa-bars fa-lg">
+     </i>
+    </button>
+    <div class="collapse navbar-collapse flex-column" id="navigation">
+     <div class="profile-section pt-3 pt-lg-0">
+      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
+      <div class="blog-description mb-3 hide">
+       You see see you , This one day day di.
+      </div>
+      <!--//sns-->
+      <ul class="social-list list-inline py-3 mx-auto">
+       <li>
+        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
+         <i class="fa fa-github fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
+         <i class="fa fa-git fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
+         <i class="fa fa-weibo fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
+         <i class="fa fa-qq fa-lg">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
+         <i class="fa fa-book fa-lg">
+         </i>
+        </a>
+       </li>
+      </ul>
+      <!--//social-list-->
+      <hr/>
+     </div>
+     <!--//profile-section-->
+     <ul class="blog-nav navbar-nav flex-column text-left">
+      <li class="nav-item hide">
+       <a class="nav-link" href="./index.html">
+        <span>
+         <i class="fa fa-home fa-lg">
+         </i>
+         Blog Home
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="./archives.html">
+        <span>
+         <i class="fa fa-archive fa-lg">
+         </i>
+         Blog Archive
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="./tags.html">
+        <span>
+         <i class="fa fa-tags fa-lg">
+         </i>
+         Blog Tag
+        </span>
+       </a>
+      </li>
+      <li class="nav-item hide">
+       <a class="nav-link" href="./aboutme.html">
+        <span>
+         <i class="fa fa-user fa-lg">
+         </i>
+         About Me
+        </span>
+       </a>
+      </li>
+     </ul>
+     <form class="sform hide">
+      <div class="form-row">
+       <div class="form-group col-md-8">
+        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
+       </div>
+       <div class="form-group col-md-3">
+        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
+         Search
+        </button>
+       </div>
+      </div>
+     </form>
+    </div>
+   </nav>
+  </header>
+  <div class="main-wrapper">
+   <section class="blog-list px-3 py-5 p-md-5">
+    <div class="container-fluid" id="rt">
+     <div class="blog-article">
+      <h1 class="title">
+       Flask-SQLAlchemy 使用学习笔记(下):一对一、一对多、多对多关系
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2021-03-16 09:38:18
+      </span>
+      <span class="tag">
+       未分类
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      搭建Flask-SQLAlchemy运行的基本环境
+     </h2>
+     <pre><code>import os
+import sys
+import click
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy  # 数据库依赖
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__)
+# SQLite URI compatible
+WIN = sys.platform.startswith('win')
+if WIN:
+    prefix = 'sqlite:///'
+else:
+    prefix = 'sqlite:////'
+# 数据库设置
+dev_db = prefix + os.path.join(basedir, 'data.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_ECHO'] = True # 输出SQL语句到控制台
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', dev_db)
+db = SQLAlchemy(app)
+
+@app.route('/')
+def hello():
+u = User.query.get(1)
+print(u)
+return 'Welcome to hello Hi!'
+</code></pre>
+     <p>
+      然后运行
+      <code>
+       flask run
+      </code>
+      如果能正常打开，说明你的运行环境已经可以了，若是缺少
+      <code>
+       Flask-SQLAlchemy
+      </code>
+      依赖包，请自行安装。
+代码编辑好后，我们使用
+      <code>
+       flask shell
+      </code>
+      命令来调试 例如
+      <code>
+       flask dbinit
+      </code>
+      ,每次运行都会删除并创建新的数据库和表，
+      <code>
+       @app.cli.command()
+      </code>
+      装饰器表明这是一个
+      <code>
+       flask shell
+      </code>
+      的命令行。
+     </p>
+     <pre><code>@app.cli.command()
+def dbinit():
+    '''删除并重新构建数据库'''
+    click.echo('删除数据库和表')
+    db.drop_all()
+    click.echo("创建数据库！")
+    db.create_all()
+    click.echo("数据库创建成功！")
+</code></pre>
+     <p>
+      做好了以上的准备，就可以开始编写
+      <code>
+       Model
+      </code>
+      代码了。
+     </p>
+     <h2>
+      一对一关系
+     </h2>
+     <p>
+      关系使用
+      <code>
+       relationship()
+      </code>
+      函数表示。然而外键必须用类
+      <code>
+       sqlalchemy.schema.ForeignKey
+      </code>
+      来单独声明.
+这里的一对一关系使用User(用户基本资料)和UserData(用户的拓展资料),如果需要给用户的基本资料添加一写拓展资料，这种关系必须是一对一的关系。这里我们假设需要为用户添加一个邮件的拓展资料，分别定义用户User和UserData模型，并使用关系方法定义他们之间的一对一关系：
+     </p>
+     <pre><code>class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True)
+    userdata = db.relationship(
+        'UserData', uselist=False, back_populates='user')
+
+
+class UserData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(200))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', back_populates=('userdata'))
+</code></pre>
+     <p>
+      <code>
+       uselist=False
+      </code>
+      标志指示在关系的“多”端放置标量属性而不是集合。将一对多转换为一对一,
+      <code>
+       back_populates()
+      </code>
+      显示表明双方的对应关系，这种方法比较简单。编写测试代码：
+     </p>
+     <pre><code>@app.cli.command()
+def test1to1():
+    '''一对一测试'''
+    print("开始测试")
+    user = User()
+    user.name = 'baby'
+    db.session.add(user)
+    db.session.commit()
+    userdata = UserData()
+    userdata.email = 'bosi@qq.com'
+    # userdata.user_id = user.id #建立关系方法1
+    userdata.user = user  # 建立关系方法2
+    db.session.add(userdata)
+    db.session.commit()
+    print("添加{}成功！".format(user.userdata.email))
+</code></pre>
+     <p>
+      添加数据的代码很简单就不解释了。
+      <code>
+       userdata.user_id = user.id
+      </code>
+      和
+      <code>
+       userdata.user = user
+      </code>
+      是两种定义关系的添加数据的方法。
+     </p>
+     <p>
+      终端下运行：
+    (base) （￣︶￣）↗ flask dbinit
+    删除数据库和表
+    创建数据库！
+    数据库创建成功！
+    (base) （￣︶￣）↗ flask test1to1
+    开始测试
+    添加bosi@qq.com成功！
+    (base) （￣︶￣）↗
+     </p>
+     <p>
+      我们可以看到上边的运行结果，在DBeaver中打开数据库，可以看到ER图如下：
+     </p>
+     <p>
+      <img alt="" src="assets/images/2021/Snip20210316_2.png"/>
+     </p>
+     <h2>
+      一对多关系
+     </h2>
+     <p>
+      一对多和一对一关系基本相似，去掉
+      <code>
+       uselist=False
+      </code>
+      就可以了，这里使用了作者和文章的一对多关系，一个作者可以发表多篇文章。先定义模型和关系：
+     </p>
+     <pre><code>class Author(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True)
+    articles = db.relationship(
+        'Article', back_populates='author')
+
+class Article(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), unique=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    author = db.relationship('Author', back_populates='articles')
+</code></pre>
+     <p>
+      <code>
+       back_populates
+      </code>
+      ,这个属性非常好用哈，显示的定义了一对多关系。另外记得
+      <code>
+       db.ForeignKey
+      </code>
+      绑定主键。我们编写代码测试一下：
+     </p>
+     <pre><code>@app.cli.command()
+def test1tomore():
+    author = Author()
+    author.name = 'J.sky'
+    db.session.add(author)
+    db.session.commit()
+
+    ac1 = Article()
+    ac1.title = '一对一关系'
+    ac1.author_id = author.id  # 建立关系方法1
+    ac2 = Article()
+    ac2.title = '多对多关系'
+    ac2.author = author  # 建立关系方法2
+    ac3 = Article()
+    ac3.title = '添加append测试'
+    author.articles.append(ac3)  # 建立关系方法3
+    db.session.add(ac1)
+    db.session.add(ac2)
+    db.session.commit()
+
+    for ar in author.articles:
+        print(ar.title)
+</code></pre>
+     <p>
+      运行代码测试：
+     </p>
+     <pre><code>(base) （￣︶￣）↗ flask dbinit
+删除数据库和表
+创建数据库！
+数据库创建成功！
+(base) （￣︶￣）↗ flask test1tomore
+多对多关系
+添加append测试
+一对一关系
+</code></pre>
+     <p>
+      一对多有三种添加数据和定义关系的方法：
+     </p>
+     <pre><code>ac1.author_id = author.id  # 建立关系方法1
+ac2.author = author  # 建立关系方法2
+author.articles.append(ac3)  # 建立关系方法3
+</code></pre>
+     <h2>
+      多对多关系
+     </h2>
+     <p>
+      如果您想要用多对多关系，您需要定义一个用于关系的辅助表。对于这个辅助表， 强烈建议 不 使用模型，而是采用一个实际的表。这里使用了
+      <code>
+       Article
+      </code>
+      和
+      <code>
+       Tag
+      </code>
+      之间的多对多关系，一个文章可以有多个标签，一个标签下也可以有多个文章。关系辅助表一定要在模型表之前定义，不然创建表的时候容易报错。先定义关系辅助表：
+     </p>
+     <pre><code>#关系表要放到表的前边建立
+tags = db.Table('tags',
+                db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
+                db.Column('article_id', db.Integer,
+                        db.ForeignKey('article.id'))
+</code></pre>
+     <p>
+      接着
+      <code>
+       Article
+      </code>
+      添加关系，定义
+      <code>
+       tag
+      </code>
+      :
+     </p>
+     <pre><code>class Article(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), unique=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    author = db.relationship('Author', back_populates='articles')
+    # 建立多对多关系
+    tags = db.relationship('Tag', secondary=tags, back_populates='articles')
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True)
+    articles = db.relationship(
+        'Article', secondary=tags, back_populates='tags')
+</code></pre>
+     <p>
+      编写代码测试：
+     </p>
+     <pre><code>@app.cli.command()
+def testmtom():
+    art1 = Article(title='我是王大锤')
+    art2 = Article(title='小狗露西很可爱')
+    art3 = Article(title='快乐的写代码')
+
+    tag1 = Tag(name='分类1')
+    tag2 = Tag(name='分类2')
+
+    tag1.articles.append(art1)
+    tag1.articles.append(art2)
+    tag2.articles.append(art2)
+    tag2.articles.append(art3)
+
+    db.session.add(art1)
+    db.session.add(art2)
+    db.session.add(art3)
+    db.session.add(tag1)
+    db.session.add(tag2)
+    db.session.commit()
+
+    for a in tag1.articles:
+        print(a.title)
+
+    for t in art2.tags:
+        print(t.name)
+</code></pre>
+     <p>
+      运行代码：
+     </p>
+     <pre><code>(base) （￣︶￣）↗ flask dbinit
+删除数据库和表
+创建数据库！
+数据库创建成功！
+(base) （￣︶￣）↗ flask testmtom
+我是王大锤
+小狗露西很可爱
+分类1
+分类2
+</code></pre>
+     <p>
+      完整代码请参考仓库里：
+     </p>
+     <p>
+      <a href="https://github.com/bosichong/flask-sqlalchemy-test">
+       github
+      </a>
+     </p>
+     <p>
+      <a href="https://gitee.com/J_Sky/flask-sqlalchemy-test">
+       国内码云镜像
+      </a>
+     </p>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210316093818.md" target="_blank">
+        在 GitHub 上编辑此页！
+       </a>
+      </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
+     </div>
+    </div>
+   </section>
+   <script src="./assets/plugins/jquery-3.3.1.min.js">
+   </script>
+   <!-- Javascript -->
+   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
+   </script>
+   <footer class="footer text-center py-2 theme-bg-dark">
+    <div class="card text-center">
+     <div class="card-body">
+      <p>
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
+       </a>
+      </p>
+      <p class="am-text-sm am-text-center">
+       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
+        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
+       </a>
+      </p>
+      <p>
+       Powered by
+       <a href="https://gitee.com/J_Sky/suiyan">
+        SuiYan
+       </a>
+       | J.sky
+       <small>
+        Copyright
+        <i aria-hidden="true" class="fa fa-copyright">
+        </i>
+        2017-2020 碎言博客
+       </small>
+      </p>
+     </div>
+    </div>
+    <!-- Scroll to Top button selector -->
+    <a class="to-top">
+     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
+     </i>
+    </a>
+    <script src="./assets/plugins/jquery.toTop.min.js">
+    </script>
+    <script>
+     jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+    </script>
+    <!-- 搜索模态对话框。 -->
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+         搜索结果
+        </h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+         <span aria-hidden="true">
+          ×
+         </span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <ul class="search-list car-list navbar-nav">
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- 站点自定义JS -->
+    <script src="./assets/js/build/p.js">
+    </script>
+    <!-- highlight.js Markdown代码美化 -->
+    <script src="./assets/plugins/highlight/highlight.pack.js">
+    </script>
+    <script>
+     hljs.initHighlightingOnLoad();
+    </script>
+   </footer>
+  </div>
+  <!--//main-wrapper-->
+ </body>
+</html>

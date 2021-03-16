@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Flask-SQLAlchemy 使用学习笔记(上):简单的配置及使用  碎言博客
+   碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -129,203 +129,108 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-    <div class="container-fluid" id="rt">
+    <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
-       Flask-SQLAlchemy 使用学习笔记(上):简单的配置及使用
+       关于17python.com关于我
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2021-02-23 15:50:27
+       2017-08-19 16:51:30
       </span>
       <span class="tag">
-       Flask
+       站长吐槽
       </span>
      </div>
      <p>
      </p>
+     <p>
+      <em>
+       非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
+      </em>
+     </p>
      <h2>
-      安装和配置
+      为什么要做这个blog？
      </h2>
-     <pre><code>pip install Flask-SQLAlchemy
-</code></pre>
      <p>
-      在
+      其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
       <code>
-       Flask
+       Python Django
       </code>
-      中简单配置:
+      学习的一个总结。
      </p>
+     <h2>
+      关于17python
+     </h2>
      <p>
-      from flask import Flask
-from flask_sqlalchemy import SQLAlchemy #数据库依赖
-     </p>
-     <pre><code>app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-db = SQLAlchemy(app)
-
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
-
-    def __repr__(self):
-        return '&lt;User %r&gt;' % self.username
-</code></pre>
-     <p>
-      如上就是官方提供的一个简单的案例。
-     </p>
-     <p>
+      17Python注册域名的时候就是想，人生苦短，何不一起
       <code>
-       Flask-SQLAlchemy
+       Python
       </code>
-      扩展能够识别的配置键常用的有：
-     </p>
-     <p>
-      SQLALCHEMY_DATABASE_URI 用于连接数据库
-     </p>
-     <p>
-      Postgres:
-     </p>
-     <pre><code>postgresql://scott:tiger@localhost/mydatabase
-</code></pre>
-     <p>
-      MySQL:
-     </p>
-     <pre><code>mysql://scott:tiger@localhost/mydatabase
-</code></pre>
-     <p>
-      Oracle:
-     </p>
-     <pre><code>oracle://scott:tiger@127.0.0.1:1521/sidname
-</code></pre>
-     <p>
-      SQLite (注意开头的四个斜线):
-     </p>
-     <pre><code>sqlite:////absolute/path/to/foo.db
-</code></pre>
-     <p>
+      ？任何一个热爱
       <code>
-       SQLALCHEMY_ECHO
+       Python
       </code>
-      如果设置成
+      的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
       <code>
-       True
+       Python
       </code>
-      ，
-      <code>
-       SQLAlchemy
-      </code>
-      将会记录所有 发到标准输出(stderr)的语句，这对调试很有帮助。
+      这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
      </p>
+     <h2>
+      blog存在的意义
+     </h2>
      <p>
-      <a href="http://www.pythondoc.com/flask-sqlalchemy/config.html">
-       Flask-SQLAlchemy 扩展能够识别的配置键的清单
+      希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
+      <code>
+       python
+      </code>
+     </p>
+     <h2>
+      网站备案成功
+     </h2>
+     <p>
+      今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
+     </p>
+     <h2>
+      网站改版
+     </h2>
+     <p>
+      今天折腾了一天把网站换成了自己开发的
+      <code>
+       碎言静态博客
+      </code>
+      <a href="https://gitee.com/J_Sky/suiyan.git">
+       Gitee
       </a>
+      生命在于折腾。
      </p>
      <h2>
-      声明模型
+      联系我
      </h2>
      <p>
-      一个简单的例子：
+      <em>
+       email bosichong@qq.com
+      </em>
      </p>
-     <pre><code>class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
-
-    def __repr__(self):
-        return '&lt;User %r&gt;' % self.username
-</code></pre>
-     <p>
-      最常用的
-      <code>
-       Column
-      </code>
-      类型:
-     </p>
-     <pre><code>Integer 一个整数
-String (size)   有长度限制的字符串
-Text    一些较长的 unicode 文本
-DateTime    表示为 Python datetime 对象的 时间和日期
-Float   存储浮点值
-Boolean 存储布尔值
-PickleType  存储为一个持久化的 Python 对象
-LargeBinary 存储一个任意大的二进制数据
-</code></pre>
-     <h2>
-      数据的增删改查
-     </h2>
-     <p>
-      插入记录：
-     </p>
-     <pre><code>user = User('jack',''jack@qq.com')
-db.session.add(user)
-db.session.commit()
-</code></pre>
-     <p>
-      删除记录：
-     </p>
-     <pre><code>db.session.delete(user)
-db.session.commit()
-</code></pre>
-     <p>
-      查询记录:
-     </p>
-     <pre><code>user = User.query.filter_by('jack').first()
-user.email # 输出 jack@qq.com
-</code></pre>
-     <p>
-      主键查询
-      <code>
-       get()
-      </code>
-      ，返回所有数据
-      <code>
-       all()
-      </code>
-      。
-     </p>
-     <p>
-      更新记录和添加记录类似：
-     </p>
-     <pre><code>user = User.query.get(1)
-user.email = 'haha@qq.com'
-db.session.delete(user)
-db.session.commit()
-</code></pre>
-     <p>
-      更多请参考
-      <a href="http://www.pythondoc.com/flask-sqlalchemy/index.html">
-       官方文档
-      </a>
-     </p>
-     <section class="blog-p text-center">
-      <div class="gitedit">
-       发现错误？想参与编辑？
-       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210223155027.md" target="_blank">
-        在 GitHub 上编辑此页！
+     <div class="spage">
+      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
+       <a href="list_13.html">
+        <button class="prev btn btn-primary" type="button">
+         Previous
+        </button>
+       </a>
+       <button class="page btn btn-primary" type="button">
+        14 / 15
+       </button>
+       <a href="#">
+        <button class="next btn btn-primary" type="button">
+         Next
+        </button>
        </a>
       </div>
-      <p class="qqqun">
-       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
-      </p>
-      <p class="qqqun">
-       Python/Javascript学习QQ群号：217840699
-      </p>
-     </section>
-     <div class="blog-article">
      </div>
     </div>
    </section>
@@ -408,7 +313,7 @@ db.session.commit()
      </div>
     </div>
     <!-- 站点自定义JS -->
-    <script src="./assets/js/build/p.js">
+    <script src="./assets/js/build/index.js">
     </script>
     <!-- highlight.js Markdown代码美化 -->
     <script src="./assets/plugins/highlight/highlight.pack.js">
