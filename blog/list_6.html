@@ -132,6 +132,40 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       有时人生需要做出选择
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-06-12 10:05:40
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      好久没有更新自己的博客了，最近经历了很多变动，所以人生的规划也发生了一些微妙的变化。
+     </p>
+     <p>
+      这段日子没怎么看编程相关的书，今天随便看了一下，python已经是3.6.5，django也是2.0.6的版本了，想想自己前一阵学习py及django的时候，机器上的环境还是3.61和1.1X版.。。。
+     </p>
+     <p>
+      更新了一下站点的头部图片，上次更新时还是冬天的。。。。
+     </p>
+     <p>
+      可能暂时要放下编程了，是放下不是放弃，不久的以后我还会捡起来，因为我还有一个做游戏的梦想还未实现。想起30岁的时候开始学习编程，40而终，这些年没做成什么太出色的软件，但也因为代码养家糊了口饭，想想也算是值了，人生总是再变动，曾经看到过一篇文章介绍过，程序员黑客和画家很相似，所以那天拿起笔来就画了几个月感觉还不错，我能否再用10年成就一个插画师的梦想？
+     </p>
+     <p>
+      为自己加油！
+     </p>
+     <p>
+      感谢曾经路过17python网友，这个站点暂时还不会关闭，但内容也许有些改变，python还会继续，但可能会慢了一些，但我还会在学习python的路上前进的。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        聊聊Python中的递归与快速排序那点事
       </h1>
       <span class="author">
@@ -988,180 +1022,6 @@ for i in range(0,4):
        相信我，多读书，不会错的。
       </strong>
      </p>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-12-29 20:18:35
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      以前学java的时候用java做了一个简单弹球小游戏，觉得还是蛮有意思的，这次用
-      <code>
-       pygame
-      </code>
-      重写一下试试，以前觉得游戏编程很简单，可能是考虑的太简单了，游戏的编写是步步为营，逻辑紧扣，错一点游戏都无法运行的，所以学习用面向对象方式编写游戏，是对python编程学习的强化练习，大家可以多试试。
-     </p>
-     <h2>
-      Pingball游戏的设计
-     </h2>
-     <p>
-      游戏很小，场景中的精灵有两个：球拍和一个小球。游戏的顺序包括：游戏开始画面，游戏主场景，游戏结束画面。
-游戏逻辑：判断小球的Y坐标低于球拍的Y坐标值即为游戏结束，球拍和小球都有自己的运动逻辑。这么简单的游戏我们从哪里入手呢？
-肯定是先创建一个游戏窗口啦：）
-     </p>
-     <h2>
-      设定一些游戏的基本数据
-     </h2>
-     <p>
-      游戏包括的主要数据有：
-     </p>
-     <ul>
-      <li>
-       游戏场景（宽+高）
-      </li>
-      <li>
-       球拍，（宽，高，位置，移动速度）
-      </li>
-      <li>
-       小球，（宽，高，位置，移动速度）
-      </li>
-      <li>
-       游戏逻辑，判断游戏是否结束，暂停游戏，重新开始游戏，及一些文字的打印。
-      </li>
-     </ul>
-     <p>
-      有了这些构思，我们一样一样的通过我们之前封装的PY_RPG及pygame提供的一些功能来实现这个小游戏。
-     </p>
-     <h2>
-      创建场景
-     </h2>
-     <p>
-      一共有三个场景，分别为游戏开始画面
-      <code>
-       MainScene
-      </code>
-      游戏主场景
-      <code>
-       Pingball
-      </code>
-      游戏结束画面
-      <code>
-       GameOverScene
-      </code>
-     </p>
-     <p>
-      先创建三个场景的类，通过继承
-      <code>
-       PY_RPG.Scene
-      </code>
-      ，会很方便的创建出三个类，分别修改三个场景的一些参数，然后设置键盘判断，进行游戏场景的跳转。
-因为
-      <code>
-       Scene
-      </code>
-      中的三个方法分工非常明确，我们可以很好的控制游戏场景，这样我们可以先把三个场景制作出来，然后进行测试，虽然游戏主场景没有任何精灵，
-但游戏场景整体是可以切换的。
-     </p>
-     <h2>
-      创建球拍与球
-     </h2>
-     <p>
-      <code>
-       Racket
-      </code>
-      和
-      <code>
-       Ball
-      </code>
-      分别进行一些属性设置，其中
-      <code>
-       Racket
-      </code>
-      相对来说比较简单，只需要左右移动，做一个场景边界判断即可。
-      <code>
-       Ball
-      </code>
-      的属性多了一些，需要有移动速度，需要通过
-      <code>
-       update
-      </code>
-      方法进移动的控制。
-     </p>
-     <h2>
-      游戏逻辑判断
-     </h2>
-     <p>
-      在游戏主场景中的
-      <code>
-       Pingball.update
-      </code>
-      方法中进行了一些游戏逻辑判断，包括：球遇到边界反弹，小球遇到球拍反弹后增加速度，和游戏结束的判断。
-这个方法中还需要添加球与球拍自己的
-      <code>
-       update
-      </code>
-      方法,用来更新自己的坐标变化。
-     </p>
-     <h2>
-      游戏结束
-     </h2>
-     <p>
-      游戏结束后，还可以通过按键重新开始，在
-      <code>
-       Pingball
-      </code>
-      中有个
-      <code>
-       replay
-      </code>
-      的函数，是用来控制重新开始后球体的位置.
-     </p>
-     <h2>
-      功能扩展
-     </h2>
-     <p>
-      这个弹球游戏只完成了最最最基本的功能，扩展性很强，比如添加关卡，打印得分，增加一些特效，只要你想修改，弹球也一样可以玩的很嗨。
-     </p>
-     <p>
-      以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_8.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_9.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_10.png"/>
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：PY_RPG.pingball.py
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_5.html">

@@ -132,6 +132,85 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python 字符串格式化(%操作符)及format函数的使用
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-19 15:12:22
+      </span>
+      <span class="tag">
+       读书笔记
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <strong>
+       Python 字符串格式化（%操作符）及format函数的使用,Python参考手册，字符串格式化章读书笔记。
+      </strong>
+      ![Python参考手册](
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg"/>
+     </p>
+     <p>
+      python的字符串操作是程序员编码中频繁使用的技巧，所以熟练掌握是可以影响到你的编码效率地。
+目前比较流行的字符串打印有两种方式（据笔者所知，当然如果还有其它方法，请不吝赐教）：
+     </p>
+     <ul>
+      <li>
+       一种是%符号操作，
+      </li>
+      <li>
+       一种是format函数高级字符串格式化，
+      </li>
+     </ul>
+     <p>
+      两种各有特点，据说format的性能更好。
+     </p>
+     <h2>
+      %操作符的使用
+     </h2>
+     <pre><code class="python">
+a = 'hello'
+b = 588
+c = 12.7896
+d = {'x':98, 'y':235.4444, 'z':'world',}
+print("a:%s" % a)
+# 10 和 2 是间隔的空格长度,小数点后的数字可以用来设置浮点数显示的精度，四舍五入，—号表示左对齐，+号是右对齐。
+print("%-10d %2.3f" % (b, c)) 
+print("%(x)-5d %(y).2f %(z).4s" % d)#打印字典中的值,.4s 表示要打印四个字符
+#vars() 函数，它将返回当前定义的所有变量的字典
+print ("%(a)s %(b)d %(c).2f %(d)s)" % vars())
+</code></pre>
+     <h2>
+      format函数高级字符串格式化
+     </h2>
+     <pre><code class="python">print("{0} {1} {2}".format(a,b,c))
+print("{0},{b},{c}".format(a,b=b,c=c))
+print("{0[x]} {0[y]} {0[z]}".format(d))
+
+print("{0:&gt;10.4s} {1:d}".format(a,b))# &lt;&gt;^ 这几个符号用来设置排版间隔
+print("{0:10b}".format(b))#二进制整数
+print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/str/formatstr.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/str/formatstr.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        关于本站封面头部大图
       </h1>
       <span class="author">
@@ -923,152 +1002,6 @@ print(ls)
      <p>
       得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。
      </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/re">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python 采集数据三步曲之[Requests开源协议的HTTP 库]
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-02 09:01:48
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <blockquote>
-      <p>
-       Requests 是以 PEP 20 的箴言为中心开发的
-      </p>
-     </blockquote>
-     <ul>
-      <li>
-       Beautiful is better than ugly.(美丽优于丑陋)
-      </li>
-      <li>
-       Explicit is better than implicit.(直白优于含蓄)
-      </li>
-      <li>
-       Simple is better than complex.(简单优于复杂)
-      </li>
-      <li>
-       Complex is better than complicated.(复杂优于繁琐)
-      </li>
-      <li>
-       Readability counts.(可读性很重要)
-      </li>
-      <li>
-       对于 Requests 所有的贡献都应牢记这些重要的准则。
-       <img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;"/>
-      </li>
-     </ul>
-     <h2>
-      Requests install
-     </h2>
-     <pre><code>pip3 install requests
-</code></pre>
-     <p>
-      下载安装
-     </p>
-     <pre><code>git clone git://github.com/kennethreitz/requests.git
-cd requests
-python setup.py install
-</code></pre>
-     <h2>
-      一分钟上手
-     </h2>
-     <pre><code class="python">import requests
-r = requests.get('http://www.baidu.com')
-print(r.status_code)# 返回状态码
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
-</code></pre>
-     <p>
-      如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）
-     </p>
-     <h2>
-      带参数的请求
-     </h2>
-     <pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
-</code></pre>
-     <blockquote>
-      <ul>
-       <li>
-        r.status_code #响应状态码
-       </li>
-       <li>
-        r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取
-       </li>
-       <li>
-        r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩
-       </li>
-       <li>
-        r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码
-       </li>
-       <li>
-        r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None
-       </li>
-       <li>
-        r.json() #Requests中内置的JSON解码器
-       </li>
-       <li>
-        r.raise_for_status() #失败请求(非200响应)抛出异常
-       </li>
-      </ul>
-     </blockquote>
-     <h2>
-      这只是一个简单的入门引导
-     </h2>
-     <p>
-      Requests 是一个简单强大的
-      <code>
-       HTTP
-      </code>
-      库，是我用过的最简单实用的
-      <code>
-       python
-      </code>
-      库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，
-      <code>
-       pythoner
-      </code>
-      居家旅游必备之良品。
-     </p>
-     <p>
-      一些Requests的参考
-     </p>
-     <ul>
-      <li>
-       <a href="http://cn.python-requests.org/zh_CN/latest/index.html">
-        Requests: 让 HTTP 服务人类 官方文档
-       </a>
-      </li>
-      <li>
-       <a href="http://blog.csdn.net/shanzhizi/article/details/50903748">
-        Python-第三方库requests详解
-       </a>
-      </li>
-     </ul>
      <h2>
       本文源码下载：
      </h2>

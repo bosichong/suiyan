@@ -132,6 +132,52 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       npm更换源与nrm安装与配置
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-03-30 19:43:28
+      </span>
+      <span class="tag">
+       webpack
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      nrm
+     </h2>
+     <p>
+      安装nrm
+     </p>
+     <p>
+      在命令行执行命令，
+      <code>
+       npm install -g nrm
+      </code>
+      ，全局安装nrm。
+     </p>
+     <p>
+      执行命令
+      <code>
+       nrm ls
+      </code>
+      查看可选的源。
+     </p>
+     <p>
+      如果要切换到taobao源，执行命令
+      <code>
+       nrm use taobao
+      </code>
+      。
+     </p>
+     <p>
+      很简单吧？
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        pip临时修改下载源
       </h1>
       <span class="author">
@@ -940,109 +986,6 @@ new CleanWebpackPlugin(),//清理目录 而且不用加入目录数组['dist']
 </code></pre>
      <p>
       感觉计算属性要比监听简单直观些。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       Vue快速学习笔记(1)Vue实例基础
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2020-01-10 21:18:43
-      </span>
-      <span class="tag">
-       Vue
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      Vue.js 简介
-     </h2>
-     <p>
-      Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
-     </p>
-     <p>
-      Vue 只关注视图层， 采用自底向上增量开发的设计。
-     </p>
-     <p>
-      Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。
-     </p>
-     <h2>
-      第一个Vue实例
-     </h2>
-     <pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
-&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
-
-&lt;div id="v1" v-bind:title="title"&gt;
-{{ msg }}
-&lt;p v-text="vtext"&gt;&lt;/p&gt;
-&lt;div v-html="vhtml"  v-on:click="alt"&gt;&lt;/div&gt;
-
-&lt;input type="text" v-model="tx"&gt;
-&lt;p v-text="tx"&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    var v = new Vue({
-        el: "#v1",
-        data:{
-            msg:"Hello Vue!",
-            title:"试试把鼠标放上去。",
-            vtext:"我是通过v-text绑定的数据",
-            vhtml:"&lt;h1&gt;哈哈哈字是不是好大？",
-            tx:"v-model绑定数据，修改试试吧"
-        },
-        methods:{
-            alt :function(){
-                alert("是不是有提示了？")
-            }
-        }
-    })
-&lt;/script&gt;
-</code></pre>
-     <p>
-      这是一个声明式渲染
-      <code>
-       {{ msg  }}
-      </code>
-      类似于模板便签被插在HTML中。
-      <code>
-       v-text,v-html
-      </code>
-      是另外两种数据绑定方式。
-     </p>
-     <p>
-      <code>
-       v-bind:title
-      </code>
-      Vue中的特殊指令，可以简写为
-      <code>
-       :title
-      </code>
-      ,
-     </p>
-     <p>
-      <code>
-       v-on:click
-      </code>
-      绑定点击事件
-     </p>
-     <p>
-      <code>
-       v-model
-      </code>
-      可以双向绑定数据，试试修改程序中的数据。
-     </p>
-     <h2>
-      MVVM
-     </h2>
-     <p>
-      MVVM是一种架构模式，并非一种框架，是一种思想，一种组织和管理代码的艺术。它利用数据绑定、属性依赖、路由事件、命令等特性实现高效灵活的架构。
-     </p>
-     <p>
-      在MVVM中，View和View Controller是联系在一起，可以把它们视为一个组件，View和View Controller都不能直接引用Model，而是通过引用视图模型（ViewModel），ViewModel是存放View Controller所需要数据的地方（View Controller敢要，ViewModel就敢给），使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性、耦合性。
      </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">

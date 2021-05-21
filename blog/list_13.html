@@ -132,6 +132,152 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python 采集数据三步曲之[Requests开源协议的HTTP 库]
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-02 09:01:48
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <blockquote>
+      <p>
+       Requests 是以 PEP 20 的箴言为中心开发的
+      </p>
+     </blockquote>
+     <ul>
+      <li>
+       Beautiful is better than ugly.(美丽优于丑陋)
+      </li>
+      <li>
+       Explicit is better than implicit.(直白优于含蓄)
+      </li>
+      <li>
+       Simple is better than complex.(简单优于复杂)
+      </li>
+      <li>
+       Complex is better than complicated.(复杂优于繁琐)
+      </li>
+      <li>
+       Readability counts.(可读性很重要)
+      </li>
+      <li>
+       对于 Requests 所有的贡献都应牢记这些重要的准则。
+       <img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;"/>
+      </li>
+     </ul>
+     <h2>
+      Requests install
+     </h2>
+     <pre><code>pip3 install requests
+</code></pre>
+     <p>
+      下载安装
+     </p>
+     <pre><code>git clone git://github.com/kennethreitz/requests.git
+cd requests
+python setup.py install
+</code></pre>
+     <h2>
+      一分钟上手
+     </h2>
+     <pre><code class="python">import requests
+r = requests.get('http://www.baidu.com')
+print(r.status_code)# 返回状态码
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+     <p>
+      如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）
+     </p>
+     <h2>
+      带参数的请求
+     </h2>
+     <pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+     <blockquote>
+      <ul>
+       <li>
+        r.status_code #响应状态码
+       </li>
+       <li>
+        r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取
+       </li>
+       <li>
+        r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩
+       </li>
+       <li>
+        r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码
+       </li>
+       <li>
+        r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None
+       </li>
+       <li>
+        r.json() #Requests中内置的JSON解码器
+       </li>
+       <li>
+        r.raise_for_status() #失败请求(非200响应)抛出异常
+       </li>
+      </ul>
+     </blockquote>
+     <h2>
+      这只是一个简单的入门引导
+     </h2>
+     <p>
+      Requests 是一个简单强大的
+      <code>
+       HTTP
+      </code>
+      库，是我用过的最简单实用的
+      <code>
+       python
+      </code>
+      库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，
+      <code>
+       pythoner
+      </code>
+      居家旅游必备之良品。
+     </p>
+     <p>
+      一些Requests的参考
+     </p>
+     <ul>
+      <li>
+       <a href="http://cn.python-requests.org/zh_CN/latest/index.html">
+        Requests: 让 HTTP 服务人类 官方文档
+       </a>
+      </li>
+      <li>
+       <a href="http://blog.csdn.net/shanzhizi/article/details/50903748">
+        Python-第三方库requests详解
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/re">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python 采集数据三步曲之[正则表达式 re.py]
       </h1>
       <span class="author">
@@ -1533,56 +1679,6 @@ s = '###这里是标题'
 m = markdown(s)#解析markdown文件
 print(m)
 </code></pre>
-     <div class="blog-article">
-      <h1 class="title">
-       创建python 虚拟环境 venv
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-19 19:53:29
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h3>
-      创建python 虚拟环境
-     </h3>
-     <p>
-      最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
-     </p>
-     <pre><code>
-➜  ~ mkdir pywork
-➜  ~ cd pywork/
-➜  ~ python3 -m venv django1.9
-➜  pywork ls
-django1.9
-➜  pywork source django1.9/bin/activate #运行虚拟环境
-(django1.9) ➜  pywork pip list
-</code></pre>
-     <p>
-      退出虚拟环境
-     </p>
-     <pre><code>deactivate
-</code></pre>
-     <p>
-      生成依赖列表：
-     </p>
-     <pre><code>pip freeze &gt; requirements.txt
-</code></pre>
-     <p>
-      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
-     </p>
-     <pre><code>pip install -r requirements.txt
-</code></pre>
-     <p>
-      参考文献：
-http://blog.csdn.net/geekun/article/details/51325383
-     </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
        <a href="list_12.html">

@@ -132,6 +132,186 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python并发编程（上）进程模块multiprocessing模块和Process类
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-06 09:43:48
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <h2>
+      Python中为什么要用多进程编程？
+     </h2>
+     <p>
+      由于
+      <code>
+       Python
+      </code>
+      解释器中使用了内部的GIL全局解释器锁，使得
+      <code>
+       Python
+      </code>
+      多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。
+当程序是在I/O密集时，CPU可能会有更多的空闲处理多线程的并发，这种情况下一般是没有问题的。如果是大量计算密集型的应用，如果使用多线程来并发，性能会大大降低，这个时候，我们就得考虑使用进程
+      <code>
+       Process
+      </code>
+      来进行编程及通信了。
+     </p>
+     <h2>
+      创建进程Process(方法1)
+     </h2>
+     <pre><code class="python">import time, os
+from multiprocessing import Process
+def clock(x,y):
+    for i in range(x):
+        print('当前时间=={0}'.format(time.ctime()))
+        time.sleep(y)
+if __name__ == '__main__':
+    p = Process(target=clock,args=(5,1))
+    p.start()
+    p.join()
+</code></pre>
+     <h2>
+      创建进程Process(方法2)
+     </h2>
+     <pre><code class="python">import time, os
+from multiprocessing import Process
+class ClockProcess(Process):
+    def __init__(self,x,y):
+        Process.__init__(self)
+        self.x=x
+        self.y=y
+
+    def run(self):
+        for i in range(self.x):
+            print('{0}=={1}'.format(os.getpid(),time.ctime()))
+            time.sleep(self.y)
+if __name__ == '__main__':
+    p = ClockProcess(5,1)
+    p1= ClockProcess(5,1)
+    p.start()
+    p1.start()
+    p.join()
+    p1.join()
+</code></pre>
+     <p>
+      通过
+      <code>
+       Process
+      </code>
+      类创建实例，然后传函数创建进程，另一种是继承
+      <code>
+       Process
+      </code>
+      类，然后重写
+      <code>
+       run()
+      </code>
+      方法创建要执行的任务。
+     </p>
+     <h2>
+      进程池 Pool(方法3)
+     </h2>
+     <pre><code class="python">from multiprocessing import Pool
+import os
+
+def clock(k):
+    for i in range(k):
+        print('{0}当前时间=={1}'.format(os.getpid(),time.ctime()))
+        time.sleep(k)
+if __name__ == '__main__':
+    l = [1 for i in range(20)]# 列表推导出一个列表对象
+    with Pool(5) as p:
+        p.map(clock,l)
+</code></pre>
+     <p>
+      进程池方便创建多进程进行操作，创建使用也是比较简单的，使用时可以根据应用场景对线程的控制要求来选择线程的创建方式。
+     </p>
+     <h2>
+      线程间的通信
+     </h2>
+     <p>
+      <code>
+       Python
+      </code>
+      为线程提供了
+      <code>
+       Queue、Pipes
+      </code>
+      等多种方式来交换数据，我们以
+      <code>
+       Queue
+      </code>
+      为例来演示学习一下进程间的通信及协作，稍后我们还要做分布式多进程的演示。
+     </p>
+     <p>
+      <code>
+       Queue
+      </code>
+      进程间通信演示：
+     </p>
+     <pre><code class="python">import multiprocessing as mp
+import time, os
+from queue import Queue
+
+def prt_q(q):
+    '''消费者打印数据'''
+    while True:
+        v = q.get()
+        print(v)
+        time.sleep(0.1)
+def wrt_q(q):
+    '''生产者添加数据'''
+    for k in ['aa','bb','cc','dd','ee','ff','gg']:
+        print("{0}已经加入到队列中".format(k))
+        q.put(k)
+        time.sleep(0.2)
+if __name__ == '__main__':
+    q = Queue()
+    wrt_q(q)
+    p = mp.Process(target=prt_q, args=(q,))
+    p.start()
+    p.join()
+</code></pre>
+     <p>
+      <code>
+       Queue
+      </code>
+      的使用其实就是生产者与消费者的模式，上边的代码运行后会有死锁，请按
+      <code>
+       ctrl+c
+      </code>
+      强制停止程序运行。
+      <code>
+       Python
+      </code>
+      的进程有个很强大的地方，就是通过简单的配置就可以进行分布式多进程，这点是很吸引人的，稍后我会有一个篇幅来介绍一下分布式多进程。
+     </p>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python多线程编程（下）多线程锁 threading.Lock
       </h1>
       <span class="author">
@@ -1198,143 +1378,6 @@ t.insert(tk.END,s)
 #为滚动条添加对应的函数，添加后，滚动条才会有效滚动
 ybar.config(command=t.yview)
 xbar.config(command=t.xview)
-
-root.mainloop()
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
-        可爱的 Python：Python 中的 TK编程
-       </a>
-      </li>
-      <li>
-       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
-        An Introduction To Tkinter
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-27 13:10:36
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      Checkbutton和Radiobutton单选和多选按钮在GUI编程中是经常使用的选项选择方法，tk提供的单选与多选按钮功能虽然简约，但功能上也是足够应付日常应用了。
-     </p>
-     <h2>
-      Checkbutton
-     </h2>
-     <p>
-      多选按钮，因为是选择按钮，所以我们需要判断当这个按钮被点击后，应该属于选择状态，然后根据状态的选择状态返回值进行相关操作。
-      <code>
-       variable
-      </code>
-      是多选按钮的一个属性，这个属性的值用来显示当前多选择按钮的状态，1时为选中，2时为释放。
-      <code>
-       select() deselect() toggle()
-      </code>
-      这三个方法用来切换多选择按钮的选择状态。
-     </p>
-     <h2>
-      Radiobutton
-     </h2>
-     <p>
-      单选选按钮一般都是二个以上成组显示，一般最需要的就是获取单选按钮的返回值，程序中先设置一组包括属性及显示字符串的list，然后用for循环来创建多选按钮。
-      <code>
-       variable=v, value=mode,
-      </code>
-      这二个属性配合使用，当使用
-      <code>
-       get()
-      </code>
-      方法返回值的时候，返回的是value上的这个值（这里的原因我也没明白，希望高人指点一下。），所以设置单选按钮值的时候，记得设置value。
-     </p>
-     <h2>
-      LabelFrame
-     </h2>
-     <p>
-      LabelFrame 是一个带线的部件容器，具体效果请看下边的截图：
-     </p>
-     <h2>
-      源码
-     </h2>
-     <p>
-      <img alt="" src="assets/images/media/upload/2017/09/Snip20170927_13.png"/>
-     </p>
-     <pre><code class="python">import tkinter as tk
-
-def cdef():
-    if var.get():
-        strvar.set("看，我改变了！")
-    else:
-        strvar.set("有种你点我试试")
-
-def rdoprt():
-    print(v.get())
-    r_frame['bg']=v.get()
-root = tk.Tk()
-root.title("Checkbutton和Radiobutton")
-
-c_frame = tk.LabelFrame(root,text="Checkbutton", padx=5, pady=5)
-c_frame.pack(fill=tk.X, side=tk.TOP)
-
-var = tk.IntVar()
-strvar = tk.StringVar()
-strvar.set("有种你点我试试")
-cbt = tk.Checkbutton(c_frame,textvariable=strvar, variable = var,command= cdef,)
-# cbt.select()#选中
-# print(var.get())
-# cbt.deselect()#取消选中
-# print(var.get())
-# cbt.toggle()#切换选中开关
-# print(var.get())
-cbt.pack(side=tk.LEFT)
-cbt1 = tk.Checkbutton(c_frame,text="Checkbutton", variable = var, command=cdef)
-cbt1.pack(side=tk.LEFT)
-
-r_frame = tk.LabelFrame(root,text="Radiobutton", padx=5, pady=5)
-r_frame.pack(fill=tk.X, side=tk.TOP)
-v = tk.StringVar()
-v.set("L") # initialize
-MODES = [
-        ("#c00", "#c00"),
-        ("#fff", "#fff"),
-        ("#000", "#000"),
-        ("#ccc", "#ccc"),
-    ]
-
-for text, mode in MODES:
-        b = tk.Radiobutton(r_frame, text=text,variable=v, value=mode,command=rdoprt)
-        b.pack(anchor=tk.W)
 
 root.mainloop()
 </code></pre>

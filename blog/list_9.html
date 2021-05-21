@@ -132,6 +132,125 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       聊聊Python中晦涩的生成器（yield）与生成器表达式
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-14 08:21:49
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171014_4.png"/>
+     </p>
+     <h2>
+      晦涩的生成器yield
+     </h2>
+     <p>
+      刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。
+     </p>
+     <h2>
+      什么是生成器？
+     </h2>
+     <p>
+      书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，
+      <code>
+       __next__()
+      </code>
+      #python3中的特殊方法，应该避免使用特殊方法，
+      <code>
+       next(c)
+      </code>
+      使用内置函数next()即可。
+     </p>
+     <pre><code>def countdown(n):
+    print("Counting down from %s" % n)
+    while n &gt; 0:
+        yield n
+        n -= 1
+    return
+
+c = countdown(10)
+print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
+print(next(c))#使用内置函数next()
+for i in c :
+    print(i,end=' ')
+</code></pre>
+     <p>
+      函数对象调用
+      <code>
+       .__next__()
+      </code>
+      函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
+调用
+      <code>
+       close()
+      </code>
+      方法关闭未使用完的生成器。
+那么问题来了，yield到底是什么？
+     </p>
+     <p>
+      我们把上边的代码稍加变化:
+     </p>
+     <pre><code>def countdown1(n):
+    print("Counting down from %s" % n)
+    while n &gt; 0:
+        yield n*n
+        n -= 1
+    return
+
+c = countdown1(10)
+print(next(c))
+print(next(c))
+print(next(c))
+for i in c :
+    print(i,end=' ')
+</code></pre>
+     <p>
+      运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。
+     </p>
+     <h2>
+      生成器表达式
+     </h2>
+     <p>
+      如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
+因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。
+     </p>
+     <p>
+      代码如下：
+     </p>
+     <pre><code>print('')
+print("生成器表达式:")
+b = (x*x for x in range(10) if (x % 2 ==0))
+print(next(b))
+print(next(b))
+for i in b :
+    print(i, end=' ')
+
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。
       </h1>
       <span class="author">
@@ -1165,186 +1284,6 @@ while True:
        </a>
       </li>
      </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python并发编程（上）进程模块multiprocessing模块和Process类
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-06 09:43:48
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      Python中为什么要用多进程编程？
-     </h2>
-     <p>
-      由于
-      <code>
-       Python
-      </code>
-      解释器中使用了内部的GIL全局解释器锁，使得
-      <code>
-       Python
-      </code>
-      多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。
-当程序是在I/O密集时，CPU可能会有更多的空闲处理多线程的并发，这种情况下一般是没有问题的。如果是大量计算密集型的应用，如果使用多线程来并发，性能会大大降低，这个时候，我们就得考虑使用进程
-      <code>
-       Process
-      </code>
-      来进行编程及通信了。
-     </p>
-     <h2>
-      创建进程Process(方法1)
-     </h2>
-     <pre><code class="python">import time, os
-from multiprocessing import Process
-def clock(x,y):
-    for i in range(x):
-        print('当前时间=={0}'.format(time.ctime()))
-        time.sleep(y)
-if __name__ == '__main__':
-    p = Process(target=clock,args=(5,1))
-    p.start()
-    p.join()
-</code></pre>
-     <h2>
-      创建进程Process(方法2)
-     </h2>
-     <pre><code class="python">import time, os
-from multiprocessing import Process
-class ClockProcess(Process):
-    def __init__(self,x,y):
-        Process.__init__(self)
-        self.x=x
-        self.y=y
-
-    def run(self):
-        for i in range(self.x):
-            print('{0}=={1}'.format(os.getpid(),time.ctime()))
-            time.sleep(self.y)
-if __name__ == '__main__':
-    p = ClockProcess(5,1)
-    p1= ClockProcess(5,1)
-    p.start()
-    p1.start()
-    p.join()
-    p1.join()
-</code></pre>
-     <p>
-      通过
-      <code>
-       Process
-      </code>
-      类创建实例，然后传函数创建进程，另一种是继承
-      <code>
-       Process
-      </code>
-      类，然后重写
-      <code>
-       run()
-      </code>
-      方法创建要执行的任务。
-     </p>
-     <h2>
-      进程池 Pool(方法3)
-     </h2>
-     <pre><code class="python">from multiprocessing import Pool
-import os
-
-def clock(k):
-    for i in range(k):
-        print('{0}当前时间=={1}'.format(os.getpid(),time.ctime()))
-        time.sleep(k)
-if __name__ == '__main__':
-    l = [1 for i in range(20)]# 列表推导出一个列表对象
-    with Pool(5) as p:
-        p.map(clock,l)
-</code></pre>
-     <p>
-      进程池方便创建多进程进行操作，创建使用也是比较简单的，使用时可以根据应用场景对线程的控制要求来选择线程的创建方式。
-     </p>
-     <h2>
-      线程间的通信
-     </h2>
-     <p>
-      <code>
-       Python
-      </code>
-      为线程提供了
-      <code>
-       Queue、Pipes
-      </code>
-      等多种方式来交换数据，我们以
-      <code>
-       Queue
-      </code>
-      为例来演示学习一下进程间的通信及协作，稍后我们还要做分布式多进程的演示。
-     </p>
-     <p>
-      <code>
-       Queue
-      </code>
-      进程间通信演示：
-     </p>
-     <pre><code class="python">import multiprocessing as mp
-import time, os
-from queue import Queue
-
-def prt_q(q):
-    '''消费者打印数据'''
-    while True:
-        v = q.get()
-        print(v)
-        time.sleep(0.1)
-def wrt_q(q):
-    '''生产者添加数据'''
-    for k in ['aa','bb','cc','dd','ee','ff','gg']:
-        print("{0}已经加入到队列中".format(k))
-        q.put(k)
-        time.sleep(0.2)
-if __name__ == '__main__':
-    q = Queue()
-    wrt_q(q)
-    p = mp.Process(target=prt_q, args=(q,))
-    p.start()
-    p.join()
-</code></pre>
-     <p>
-      <code>
-       Queue
-      </code>
-      的使用其实就是生产者与消费者的模式，上边的代码运行后会有死锁，请按
-      <code>
-       ctrl+c
-      </code>
-      强制停止程序运行。
-      <code>
-       Python
-      </code>
-      的进程有个很强大的地方，就是通过简单的配置就可以进行分布式多进程，这点是很吸引人的，稍后我会有一个篇幅来介绍一下分布式多进程。
-     </p>
      <h2>
       本文源码下载：
      </h2>

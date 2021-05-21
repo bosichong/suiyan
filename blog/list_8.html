@@ -132,6 +132,150 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       python中导入不同目录中的自定义模块/class/函数/方法
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-10-27 10:37:17
+      </span>
+      <span class="tag">
+       Python基础
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      前几天在封装
+      <code>
+       PY_RPG
+      </code>
+      框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。
+     </p>
+     <h2>
+      包和模块导入的需求
+     </h2>
+     <p>
+      假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。
+     </p>
+     <pre><code>M_TEST = 888
+def print_text():
+    print('这a.py下的一个打印文字函数')
+</code></pre>
+     <p>
+      现在我们引入测试
+     </p>
+     <pre><code>import a.a
+a.print_text()
+</code></pre>
+     <p>
+      ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
+如果是在同一目录，我们直接
+      <code>
+       import a
+      </code>
+      就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到
+      <code>
+       sys.path.append()
+      </code>
+     </p>
+     <pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
+</code></pre>
+     <p>
+      打印后，我们会发现很多目录，
+      <code>
+       python
+      </code>
+      加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
+那么我们如何把自己的文件加到上边的目录里？有几种方法：
+     </p>
+     <ul>
+      <li>
+       通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。
+      </li>
+      <li>
+       复制文件到上边的目录中，有些不方便，不推荐
+      </li>
+      <li>
+       <code>
+        sys.path.append()
+       </code>
+       把目录加进索引，方便python搜索，推荐
+      </li>
+     </ul>
+     <p>
+      那么我们来试试吧
+     </p>
+     <h2>
+      如何优雅的获得目录地址？
+     </h2>
+     <p>
+      如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
+这时我想到了
+      <code>
+       Django
+      </code>
+      配置文件中有一段代码
+     </p>
+     <pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+</code></pre>
+     <p>
+      我们理解一下这段代码，
+      <code>
+       __file__
+      </code>
+      表示当前.py文件，
+      <code>
+       os.path.abspath(__file__)
+      </code>
+      表示当前.py文件的绝对地址，
+      <code>
+       dirname
+      </code>
+      获得上一层目录地址，
+那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试
+     </p>
+     <pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
+/Users/mac/PycharmProjects/PythonStudy/b
+/Users/mac/PycharmProjects/PythonStudy
+</code></pre>
+     <p>
+      可以看到根目录地址已经得到了，然后通过
+      <code>
+       os.path.join()
+      </code>
+      就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。
+     </p>
+     <pre><code>import os 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
+T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
+print(T_DIR)
+sys.path.append(T_DIR)
+import a
+print(a.M_TEST)
+a.print_text()
+</code></pre>
+     <h2>
+      本文源码下载： a b 两个目录下为相关源文件
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        基于Python、Tk构建的可视化目录文件同步助手
       </h1>
       <span class="author">
@@ -1168,125 +1312,6 @@ if __name__ == '__main__':
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       聊聊Python中晦涩的生成器（yield）与生成器表达式
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-14 08:21:49
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171014_4.png"/>
-     </p>
-     <h2>
-      晦涩的生成器yield
-     </h2>
-     <p>
-      刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。
-     </p>
-     <h2>
-      什么是生成器？
-     </h2>
-     <p>
-      书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，
-      <code>
-       __next__()
-      </code>
-      #python3中的特殊方法，应该避免使用特殊方法，
-      <code>
-       next(c)
-      </code>
-      使用内置函数next()即可。
-     </p>
-     <pre><code>def countdown(n):
-    print("Counting down from %s" % n)
-    while n &gt; 0:
-        yield n
-        n -= 1
-    return
-
-c = countdown(10)
-print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
-print(next(c))#使用内置函数next()
-for i in c :
-    print(i,end=' ')
-</code></pre>
-     <p>
-      函数对象调用
-      <code>
-       .__next__()
-      </code>
-      函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
-调用
-      <code>
-       close()
-      </code>
-      方法关闭未使用完的生成器。
-那么问题来了，yield到底是什么？
-     </p>
-     <p>
-      我们把上边的代码稍加变化:
-     </p>
-     <pre><code>def countdown1(n):
-    print("Counting down from %s" % n)
-    while n &gt; 0:
-        yield n*n
-        n -= 1
-    return
-
-c = countdown1(10)
-print(next(c))
-print(next(c))
-print(next(c))
-for i in c :
-    print(i,end=' ')
-</code></pre>
-     <p>
-      运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。
-     </p>
-     <h2>
-      生成器表达式
-     </h2>
-     <p>
-      如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
-因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。
-     </p>
-     <p>
-      代码如下：
-     </p>
-     <pre><code>print('')
-print("生成器表达式:")
-b = (x*x for x in range(10) if (x % 2 ==0))
-print(next(b))
-print(next(b))
-for i in b :
-    print(i, end=' ')
-
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">
         开源中国码云镜像gitee
        </a>
       </li>

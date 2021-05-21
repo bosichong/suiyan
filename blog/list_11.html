@@ -132,6 +132,143 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2017-09-27 13:10:36
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      Checkbutton和Radiobutton单选和多选按钮在GUI编程中是经常使用的选项选择方法，tk提供的单选与多选按钮功能虽然简约，但功能上也是足够应付日常应用了。
+     </p>
+     <h2>
+      Checkbutton
+     </h2>
+     <p>
+      多选按钮，因为是选择按钮，所以我们需要判断当这个按钮被点击后，应该属于选择状态，然后根据状态的选择状态返回值进行相关操作。
+      <code>
+       variable
+      </code>
+      是多选按钮的一个属性，这个属性的值用来显示当前多选择按钮的状态，1时为选中，2时为释放。
+      <code>
+       select() deselect() toggle()
+      </code>
+      这三个方法用来切换多选择按钮的选择状态。
+     </p>
+     <h2>
+      Radiobutton
+     </h2>
+     <p>
+      单选选按钮一般都是二个以上成组显示，一般最需要的就是获取单选按钮的返回值，程序中先设置一组包括属性及显示字符串的list，然后用for循环来创建多选按钮。
+      <code>
+       variable=v, value=mode,
+      </code>
+      这二个属性配合使用，当使用
+      <code>
+       get()
+      </code>
+      方法返回值的时候，返回的是value上的这个值（这里的原因我也没明白，希望高人指点一下。），所以设置单选按钮值的时候，记得设置value。
+     </p>
+     <h2>
+      LabelFrame
+     </h2>
+     <p>
+      LabelFrame 是一个带线的部件容器，具体效果请看下边的截图：
+     </p>
+     <h2>
+      源码
+     </h2>
+     <p>
+      <img alt="" src="assets/images/media/upload/2017/09/Snip20170927_13.png"/>
+     </p>
+     <pre><code class="python">import tkinter as tk
+
+def cdef():
+    if var.get():
+        strvar.set("看，我改变了！")
+    else:
+        strvar.set("有种你点我试试")
+
+def rdoprt():
+    print(v.get())
+    r_frame['bg']=v.get()
+root = tk.Tk()
+root.title("Checkbutton和Radiobutton")
+
+c_frame = tk.LabelFrame(root,text="Checkbutton", padx=5, pady=5)
+c_frame.pack(fill=tk.X, side=tk.TOP)
+
+var = tk.IntVar()
+strvar = tk.StringVar()
+strvar.set("有种你点我试试")
+cbt = tk.Checkbutton(c_frame,textvariable=strvar, variable = var,command= cdef,)
+# cbt.select()#选中
+# print(var.get())
+# cbt.deselect()#取消选中
+# print(var.get())
+# cbt.toggle()#切换选中开关
+# print(var.get())
+cbt.pack(side=tk.LEFT)
+cbt1 = tk.Checkbutton(c_frame,text="Checkbutton", variable = var, command=cdef)
+cbt1.pack(side=tk.LEFT)
+
+r_frame = tk.LabelFrame(root,text="Radiobutton", padx=5, pady=5)
+r_frame.pack(fill=tk.X, side=tk.TOP)
+v = tk.StringVar()
+v.set("L") # initialize
+MODES = [
+        ("#c00", "#c00"),
+        ("#fff", "#fff"),
+        ("#000", "#000"),
+        ("#ccc", "#ccc"),
+    ]
+
+for text, mode in MODES:
+        b = tk.Radiobutton(r_frame, text=text,variable=v, value=mode,command=rdoprt)
+        b.pack(anchor=tk.W)
+
+root.mainloop()
+</code></pre>
+     <h2>
+      相关参考
+     </h2>
+     <ul>
+      <li>
+       <a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">
+        可爱的 Python：Python 中的 TK编程
+       </a>
+      </li>
+      <li>
+       <a href="http://effbot.org/tkinterbook/tkinter-index.htm">
+        An Introduction To Tkinter
+       </a>
+      </li>
+     </ul>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/17python.com/tree/master/gui">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框
       </h1>
       <span class="author">
@@ -1019,85 +1156,6 @@ print(f)
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/17python.com/blob/master/copy/copytest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python 字符串格式化(%操作符)及format函数的使用
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-19 15:12:22
-      </span>
-      <span class="tag">
-       读书笔记
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <strong>
-       Python 字符串格式化（%操作符）及format函数的使用,Python参考手册，字符串格式化章读书笔记。
-      </strong>
-      ![Python参考手册](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg"/>
-     </p>
-     <p>
-      python的字符串操作是程序员编码中频繁使用的技巧，所以熟练掌握是可以影响到你的编码效率地。
-目前比较流行的字符串打印有两种方式（据笔者所知，当然如果还有其它方法，请不吝赐教）：
-     </p>
-     <ul>
-      <li>
-       一种是%符号操作，
-      </li>
-      <li>
-       一种是format函数高级字符串格式化，
-      </li>
-     </ul>
-     <p>
-      两种各有特点，据说format的性能更好。
-     </p>
-     <h2>
-      %操作符的使用
-     </h2>
-     <pre><code class="python">
-a = 'hello'
-b = 588
-c = 12.7896
-d = {'x':98, 'y':235.4444, 'z':'world',}
-print("a:%s" % a)
-# 10 和 2 是间隔的空格长度,小数点后的数字可以用来设置浮点数显示的精度，四舍五入，—号表示左对齐，+号是右对齐。
-print("%-10d %2.3f" % (b, c)) 
-print("%(x)-5d %(y).2f %(z).4s" % d)#打印字典中的值,.4s 表示要打印四个字符
-#vars() 函数，它将返回当前定义的所有变量的字典
-print ("%(a)s %(b)d %(c).2f %(d)s)" % vars())
-</code></pre>
-     <h2>
-      format函数高级字符串格式化
-     </h2>
-     <pre><code class="python">print("{0} {1} {2}".format(a,b,c))
-print("{0},{b},{c}".format(a,b=b,c=c))
-print("{0[x]} {0[y]} {0[z]}".format(d))
-
-print("{0:&gt;10.4s} {1:d}".format(a,b))# &lt;&gt;^ 这几个符号用来设置排版间隔
-print("{0:10b}".format(b))#二进制整数
-print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/str/formatstr.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/str/formatstr.py">
         开源中国码云镜像gitee
        </a>
       </li>

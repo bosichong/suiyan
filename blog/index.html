@@ -132,6 +132,217 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       PyKeyBoardFairy可以替代你游戏中的卡键盘和鼠标宏
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2021-05-21 15:54:50
+      </span>
+      <span class="tag">
+       站长源创
+      </span>
+     </div>
+     <p>
+     </p>
+     <h1>
+      PyKeyBoardFairy
+     </h1>
+     <h4>
+      介绍
+     </h4>
+     <p>
+      Python编写的简单版键盘精灵
+     </p>
+     <p>
+      可以替代你游戏中的卡键盘和鼠标宏。
+     </p>
+     <h4>
+      软件架构
+     </h4>
+     <p>
+      程序唯一依赖外部库:
+      <code>
+       pynput 1.7.3
+      </code>
+     </p>
+     <h4>
+      安装教程
+     </h4>
+     <ol>
+      <li>
+       下载程序，
+       <code>
+        git clone https://gitee.com/J_Sky/py-key-board-fairy.git
+       </code>
+       或是下载压缩包也可以
+      </li>
+      <li>
+       确定系统安装Python，安装依赖： 'pip install pynput'
+      </li>
+      <li>
+       修改程序配置文件：
+       <code>
+        main.py
+       </code>
+       的
+       <code>
+        keyList
+       </code>
+       中的配置参数，使之符合模拟按键的需求。
+      </li>
+      <li>
+       终端下运行:
+       <code>
+        python main.py
+       </code>
+       ,然后按程序中的启动开关键，系统开始模拟按键。
+      </li>
+     </ol>
+     <h4>
+      使用说明
+     </h4>
+     <ol>
+      <li>
+       配置参数：
+      </li>
+     </ol>
+     <p>
+      程序的所有参数都在集中在
+      <code>
+       main.py
+      </code>
+      的
+      <code>
+       keyList
+      </code>
+      ，修改这个列表的配置可以实现多重按键模拟。
+按键配置说明：
+"key_type": "interval",
+     </p>
+     <p>
+      按键种类：
+interval：魔法辅助技能键，间隔一定时间按一次
+combination：组合技能，一组按键按照一定顺序和间隔时间的模拟按下(每个技能键只按一次)
+always：一直按着不放开的键，中间可以有少量的时间暂停
+当'key_type'=always 是 会多处一个时间参数"t1",具体看先边的解释
+     </p>
+     <p>
+      "key_switch": Key.ctrl,#开关控制键，负责控制模拟这个技能键的开关，按下ctrl才会启动按年模拟，再次按下ctrl模拟暂停
+"key": 'b',#需要模拟按下的技能键
+"is_start": 0,#开关，确定当前技能键在程序开启时，默认是关闭的，一般为0及可。
+"t": 0.5,#当前按键模拟按下离开的间隔时间，以秒为单位
+"t1": 5, #当'key_type'=always此属性有效，表示为按键一直按着不松开5秒。
+     </p>
+     <ol>
+      <li>
+       参数示例：
+      </li>
+     </ol>
+     <p>
+      需求1：假设有一组技能键：b,c,d 每个技能大约10几秒或几十秒需要按一次，因为时间不确定，所以设置为每0.5秒按一下，启动开关为：左'alt'键。
+'keyList'配置如下：
+     </p>
+     <pre><code>keyList = [
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'd',
+        "is_start": 0,
+        "t": 0.5,
+    },
+]
+</code></pre>
+     <p>
+      需求2：假设有一组技能键：b,c b技能大约10几秒或几十秒需要按一次，因为时间不确定，所以设置为每0.5秒按一下;
+c技能为需要一直按着5秒，中间停顿0.5秒，启动开关为：左'alt'键。
+'keyList'配置如下：
+     </p>
+     <pre><code>keyList = [
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "always",
+        "key_switch": 'alt',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+        "t1":5
+    },
+]
+</code></pre>
+     <p>
+      需求3：假设有一组组合技能键：b,c,d 我想按下控制键z键后，先模拟按下b,0.5秒后按下c，1秒后按下d。
+'keyList'配置如下：
+     </p>
+     <pre><code>keyList = [
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0,
+    },
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'd',
+        "is_start": 0,
+        "t": 1,
+    },
+]
+</code></pre>
+     <p>
+      以上为常见的一些组合，"key_type": "combination"时候，要注意同一控制键的技能键排列顺序和时间。
+     </p>
+     <h4>
+      参与贡献
+     </h4>
+     <p>
+      暂时没有考虑制作GUI界面，如果有大佬可以试试做个GUI界面来配置keyList，可能会更好些。
+     </p>
+     <p>
+      仓库地址：
+     </p>
+     <p>
+      <a href="https://gitee.com/J_Sky/py-key-board-fairy" title="码云仓库">
+       码云仓库：PyKeyBoardFairy
+      </a>
+     </p>
+     <p>
+      <a href="https://github.com/bosichong/PyKeyBoardFairy" title="PyKeyBoardFairy">
+       github：PyKeyBoardFairy
+      </a>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        Flask-SQLAlchemy 使用学习笔记(下):一对一、一对多、多对多关系
       </h1>
       <span class="author">
@@ -1270,52 +1481,6 @@ Enter your password:
      </p>
      <p>
       functools这个库里有很多关于函数的功能模块，后续我们在继续研究。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       npm更换源与nrm安装与配置
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2020-03-30 19:43:28
-      </span>
-      <span class="tag">
-       webpack
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      nrm
-     </h2>
-     <p>
-      安装nrm
-     </p>
-     <p>
-      在命令行执行命令，
-      <code>
-       npm install -g nrm
-      </code>
-      ，全局安装nrm。
-     </p>
-     <p>
-      执行命令
-      <code>
-       nrm ls
-      </code>
-      查看可选的源。
-     </p>
-     <p>
-      如果要切换到taobao源，执行命令
-      <code>
-       nrm use taobao
-      </code>
-      。
-     </p>
-     <p>
-      很简单吧？
      </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">

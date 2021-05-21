@@ -6,7 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   碎言博客
+   PyKeyBoardFairy可以替代你游戏中的卡键盘和鼠标宏  碎言博客
   </title>
   <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
   <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
@@ -129,158 +129,233 @@
   </header>
   <div class="main-wrapper">
    <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
+    <div class="container-fluid" id="rt">
      <div class="blog-article">
       <h1 class="title">
-       创建python 虚拟环境 venv
+       PyKeyBoardFairy可以替代你游戏中的卡键盘和鼠标宏
       </h1>
       <span class="author">
        J.sky
       </span>
       <span class="time">
-       2017-08-19 19:53:29
+       2021-05-21 15:54:50
       </span>
       <span class="tag">
-       Python基础
+       站长源创
       </span>
      </div>
      <p>
      </p>
-     <h3>
-      创建python 虚拟环境
-     </h3>
+     <h1>
+      PyKeyBoardFairy
+     </h1>
+     <h4>
+      介绍
+     </h4>
      <p>
-      最近需要调试各个版本的折腾，所以虚拟环境是必须走起的。。。
+      Python编写的简单版键盘精灵
      </p>
-     <pre><code>
-➜  ~ mkdir pywork
-➜  ~ cd pywork/
-➜  ~ python3 -m venv django1.9
-➜  pywork ls
-django1.9
-➜  pywork source django1.9/bin/activate #运行虚拟环境
-(django1.9) ➜  pywork pip list
+     <p>
+      可以替代你游戏中的卡键盘和鼠标宏。
+     </p>
+     <h4>
+      软件架构
+     </h4>
+     <p>
+      程序唯一依赖外部库:
+      <code>
+       pynput 1.7.3
+      </code>
+     </p>
+     <h4>
+      安装教程
+     </h4>
+     <ol>
+      <li>
+       下载程序，
+       <code>
+        git clone https://gitee.com/J_Sky/py-key-board-fairy.git
+       </code>
+       或是下载压缩包也可以
+      </li>
+      <li>
+       确定系统安装Python，安装依赖： 'pip install pynput'
+      </li>
+      <li>
+       修改程序配置文件：
+       <code>
+        main.py
+       </code>
+       的
+       <code>
+        keyList
+       </code>
+       中的配置参数，使之符合模拟按键的需求。
+      </li>
+      <li>
+       终端下运行:
+       <code>
+        python main.py
+       </code>
+       ,然后按程序中的启动开关键，系统开始模拟按键。
+      </li>
+     </ol>
+     <h4>
+      使用说明
+     </h4>
+     <ol>
+      <li>
+       配置参数：
+      </li>
+     </ol>
+     <p>
+      程序的所有参数都在集中在
+      <code>
+       main.py
+      </code>
+      的
+      <code>
+       keyList
+      </code>
+      ，修改这个列表的配置可以实现多重按键模拟。
+按键配置说明：
+"key_type": "interval",
+     </p>
+     <p>
+      按键种类：
+interval：魔法辅助技能键，间隔一定时间按一次
+combination：组合技能，一组按键按照一定顺序和间隔时间的模拟按下(每个技能键只按一次)
+always：一直按着不放开的键，中间可以有少量的时间暂停
+当'key_type'=always 是 会多处一个时间参数"t1",具体看先边的解释
+     </p>
+     <p>
+      "key_switch": Key.ctrl,#开关控制键，负责控制模拟这个技能键的开关，按下ctrl才会启动按年模拟，再次按下ctrl模拟暂停
+"key": 'b',#需要模拟按下的技能键
+"is_start": 0,#开关，确定当前技能键在程序开启时，默认是关闭的，一般为0及可。
+"t": 0.5,#当前按键模拟按下离开的间隔时间，以秒为单位
+"t1": 5, #当'key_type'=always此属性有效，表示为按键一直按着不松开5秒。
+     </p>
+     <ol>
+      <li>
+       参数示例：
+      </li>
+     </ol>
+     <p>
+      需求1：假设有一组技能键：b,c,d 每个技能大约10几秒或几十秒需要按一次，因为时间不确定，所以设置为每0.5秒按一下，启动开关为：左'alt'键。
+'keyList'配置如下：
+     </p>
+     <pre><code>keyList = [
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'd',
+        "is_start": 0,
+        "t": 0.5,
+    },
+]
 </code></pre>
      <p>
-      退出虚拟环境
+      需求2：假设有一组技能键：b,c b技能大约10几秒或几十秒需要按一次，因为时间不确定，所以设置为每0.5秒按一下;
+c技能为需要一直按着5秒，中间停顿0.5秒，启动开关为：左'alt'键。
+'keyList'配置如下：
      </p>
-     <pre><code>deactivate
+     <pre><code>keyList = [
+    {
+        "key_type": "interval",
+        "key_switch": 'alt',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "always",
+        "key_switch": 'alt',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+        "t1":5
+    },
+]
 </code></pre>
      <p>
-      生成依赖列表：
+      需求3：假设有一组组合技能键：b,c,d 我想按下控制键z键后，先模拟按下b,0.5秒后按下c，1秒后按下d。
+'keyList'配置如下：
      </p>
-     <pre><code>pip freeze &gt; requirements.txt
+     <pre><code>keyList = [
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'b',
+        "is_start": 0,
+        "t": 0,
+    },
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'c',
+        "is_start": 0,
+        "t": 0.5,
+    },
+    {
+        "key_type": "combination",
+        "key_switch": 'z',
+        "key": 'd',
+        "is_start": 0,
+        "t": 1,
+    },
+]
 </code></pre>
      <p>
-      这样在其他地方创建虚拟环境开荒的时候，可以使用下边的命令安装所有依赖。
+      以上为常见的一些组合，"key_type": "combination"时候，要注意同一控制键的技能键排列顺序和时间。
      </p>
-     <pre><code>pip install -r requirements.txt
-</code></pre>
+     <h4>
+      参与贡献
+     </h4>
      <p>
-      参考文献：
-http://blog.csdn.net/geekun/article/details/51325383
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       关于17python.com关于我
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-19 16:51:30
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
+      暂时没有考虑制作GUI界面，如果有大佬可以试试做个GUI界面来配置keyList，可能会更好些。
      </p>
      <p>
-      <em>
-       非常感谢！如果你能点到这里， 说明你已经注意到17python以及帅(zhong)气(du)聪(zhai)明(nan)的站长了
-      </em>
+      仓库地址：
      </p>
-     <h2>
-      为什么要做这个blog？
-     </h2>
      <p>
-      其实有很多想法，简单说想把学到的东西实践一下，也算是对这阵子
-      <code>
-       Python Django
-      </code>
-      学习的一个总结。
-     </p>
-     <h2>
-      关于17python
-     </h2>
-     <p>
-      17Python注册域名的时候就是想，人生苦短，何不一起
-      <code>
-       Python
-      </code>
-      ？任何一个热爱
-      <code>
-       Python
-      </code>
-      的朋友都是纯粹的，用更少的代码去实现自己构想的需求和功能。
-      <code>
-       Python
-      </code>
-      这门高级语言，有着众多成熟的库类，使我们能节省更多的时间和减少学习成本，使我们有更多的时间来陪家人和孩子。
-     </p>
-     <h2>
-      blog存在的意义
-     </h2>
-     <p>
-      希望记录自己的学习笔记以及一些心得经验，算是帮助自己；如果，我是说如果可能帮到你了，那么这篇blog和这个网站就有了新的意义。本人也只是菜鸟一只，希望大家互相学习，一起
-      <code>
-       python
-      </code>
-     </p>
-     <h2>
-      网站备案成功
-     </h2>
-     <p>
-      今天下午收到工信部的短信通知，网站备案成功了，小小的开心了一下，想想这次网站备案的经历也不是很难，小马过河一般，经历过才知道深浅。后继将定期更新博客，发表一些优质的原创博文。
-     </p>
-     <h2>
-      网站改版
-     </h2>
-     <p>
-      今天折腾了一天把网站换成了自己开发的
-      <code>
-       碎言静态博客
-      </code>
-      <a href="https://gitee.com/J_Sky/suiyan.git">
-       Gitee
+      <a href="https://gitee.com/J_Sky/py-key-board-fairy" title="码云仓库">
+       码云仓库：PyKeyBoardFairy
       </a>
-      生命在于折腾。
      </p>
-     <h2>
-      联系我
-     </h2>
      <p>
-      <em>
-       email bosichong@qq.com
-      </em>
+      <a href="https://github.com/bosichong/PyKeyBoardFairy" title="PyKeyBoardFairy">
+       github：PyKeyBoardFairy
+      </a>
      </p>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_13.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        14 / 15
-       </button>
-       <a href="#">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
+     <section class="blog-p text-center">
+      <div class="gitedit">
+       发现错误？想参与编辑？
+       <a class="giturl" href="https://github.com/Jsky2020/suiyan/blob/suiyan/articles/20210521155450.md" target="_blank">
+        在 GitHub 上编辑此页！
        </a>
       </div>
+      <p class="qqqun">
+       如果您有什么问题，欢迎加入Python/Javascript学习讨论群询问
+      </p>
+      <p class="qqqun">
+       Python/Javascript学习QQ群号：217840699
+      </p>
+     </section>
+     <div class="blog-article">
      </div>
     </div>
    </section>
@@ -363,7 +438,7 @@ http://blog.csdn.net/geekun/article/details/51325383
      </div>
     </div>
     <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
+    <script src="./assets/js/build/p.js">
     </script>
     <!-- highlight.js Markdown代码美化 -->
     <script src="./assets/plugins/highlight/highlight.pack.js">
