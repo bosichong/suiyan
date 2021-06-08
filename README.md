@@ -5,9 +5,8 @@
 ### 介绍
 碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
 
-演示(码云)： [碎言博客](https://j_sky.gitee.io/suiyan/blog)
 
-演示(github)： [碎言博客](https://bosichong.github.io/suiyan/blog)
+演示(github)： [碎言博客](https://2vv.net)
 
 
 ![](blog/assets/images/fabu.png)
@@ -63,7 +62,7 @@
 这个时候就会在`articles`目录下创建一篇文章,并且使用`vscode`直接打开。
 
 
-[更多终端操作](https://j_sky.gitee.io/suiyan/blog/20191230155649.html)
+[更多终端操作](https://www.2vv.net/blog/20191230155649.html)
 
 ### 创建索引
 
@@ -75,7 +74,7 @@
 
 `config.json`里存放着一些站点的资料，上传前建议先修改成自己的资料。
 
-[`config`配置详解点击查看](https://j_sky.gitee.io/suiyan/blog/20191231133518.html)
+[`config`配置详解点击查看](https://www.2vv.net/blog/20191231133518.html)
 
 ### 运行站点
 
@@ -85,7 +84,7 @@
 
 碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。
 
-具体修改方法请点击查看： [细说修改碎言博客站点的样式](https://j_sky.gitee.io/suiyan/blog/20191230201529.html)
+具体修改方法请点击查看： [细说修改碎言博客站点的样式](https://www.2vv.net/blog/20191230201529.html)
 
 ### 部署
 
