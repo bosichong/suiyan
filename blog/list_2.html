@@ -132,6 +132,104 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       Vue快速学习笔记(2)Vue中的监听与计算属性
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2020-02-01 10:31:26
+      </span>
+      <span class="tag">
+       Vue
+      </span>
+     </div>
+     <p>
+     </p>
+     <h3>
+      Vue中的监听
+     </h3>
+     <p>
+      <code>
+       watch
+      </code>
+      用来监听
+      <code>
+       Vue
+      </code>
+      实例中数据的变化，然后可以出发一个事件。
+例如，反转字符串：
+     </p>
+     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+     <pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;div id="app"&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="nvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+   var vm = new Vue({
+        el:"#app",
+        data:{
+            vt:"",
+            nvt:""
+        },
+        watch: {
+            vt:function(val){
+                this.nvt=this.vt.split('').reverse().join('')
+
+            }
+        },
+    })
+
+&lt;/script&gt;
+</code></pre>
+     <p>
+      除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。
+     </p>
+     <h3>
+      Vue中的计算属性
+     </h3>
+     <p>
+      计算属性和监听有些相似，有的时候作用都差不多吧。
+     </p>
+     <p>
+      下边的例子就是采用Vue的计算属性，
+     </p>
+     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+     <pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="app1"&gt;
+    &lt;p&gt;计算属性&lt;/p&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+
+
+    var vm1 = new Vue({
+        el :"#app1",
+        data:{
+            vt:""
+        },
+        computed: {
+            rtvt:function(){
+                return this.vt.split("").reverse().join("")
+            }
+        },
+
+    })
+
+&lt;/script&gt;
+</code></pre>
+     <p>
+      感觉计算属性要比监听简单直观些。
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        Vue快速学习笔记(1)Vue实例基础
       </h1>
       <span class="author">
@@ -848,51 +946,6 @@ $ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
        jQuery
       </code>
       在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       关于站长
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-30 16:25:07
-      </span>
-      <span class="tag">
-       未分类
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      About Me
-     </h2>
-     <p>
-      一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。
-     </p>
-     <h2>
-      关于碎言博客
-     </h2>
-     <p>
-      本来用
-      <code>
-       Python Django
-      </code>
-      开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。
-     </p>
-     <p>
-      索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习
-      <code>
-       JavaScript jQuery
-      </code>
-      ，
-     </p>
-     <p>
-      索性撸一个静态博客，发现自己就是爱重复造轮子。
-     </p>
-     <p>
-      欢迎进群讨论学习Q群:217840699
      </p>
      <div class="spage">
       <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">

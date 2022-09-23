@@ -132,6 +132,141 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       wxPython编程学习笔记(05)单选及多选按钮
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-12-23 18:49:39
+      </span>
+      <span class="tag">
+       Python GUI
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png"/>
+     </p>
+     <h2>
+      wxPython单选及多选按钮
+     </h2>
+     <p>
+      单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
+通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。
+     </p>
+     <h2>
+      多选按钮wx.CheckBox
+     </h2>
+     <p>
+      创建及绑定事件
+     </p>
+     <pre><code>cb1=wx.CheckBox(pnl, label='hello', )
+self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
+</code></pre>
+     <p>
+      这里的
+      <code>
+       self.Bind
+      </code>
+      是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。
+     </p>
+     <h2>
+      单选按钮组wx.RadioBox
+     </h2>
+     <p>
+      这里我直接介绍
+      <code>
+       wx.RadioBox
+      </code>
+      ，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。
+     </p>
+     <p>
+      创建及绑定
+     </p>
+     <pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                              style=wx.RA_SPECIFY_ROWS)
+self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
+</code></pre>
+     <p>
+      代码很直观，
+      <code>
+       majorDimension
+      </code>
+      表示单选钮的排列方式：0横向，1竖向。
+     </p>
+     <p>
+      好了，完整的代码在下边，可以跑跑看。
+     </p>
+     <pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        pnl = wx.Panel(self)
+
+
+        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
+        cb1=wx.CheckBox(pnl, label='hello', )
+        cb2=wx.CheckBox(pnl, label='world', )
+        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
+        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                                  style=wx.RA_SPECIFY_ROWS)
+        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
+
+        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
+
+        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
+
+        btn.Bind(wx.EVT_BUTTON, self.OnClose)
+
+        pnl.SetSizer(hbox3)
+
+
+    def onRadiobox(self,e):
+        rb = e.GetEventObject()
+        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
+
+    def onCheckBox(self,e):
+        cb = e.GetEventObject()
+        if cb.GetValue():
+            print(cb.GetLabel())
+
+    def OnClose(self, e):
+        self.Close(True)
+
+
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
+</code></pre>
+     <h2>
+      本文源码下载：
+     </h2>
+     <ul>
+      <li>
+       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">
+        github
+       </a>
+      </li>
+      <li>
+       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">
+        开源中国码云镜像gitee
+       </a>
+      </li>
+     </ul>
+     <div class="blog-article">
+      <h1 class="title">
        wxPython编程学习笔记(04)wx.Butoon的应用
       </h1>
       <span class="author">
@@ -1088,90 +1223,6 @@ git remote -v 显示更详细的信息：
       <li>
        <a href="https://github.com/bosichong/PrimarySchoolMathematics">
         廖雪峰：git多人协作
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       利用Python自动生成小学生加减乘除口算考试题卷。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-10-24 10:50:04
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      孩子上小学一年级了，加减乘除的口算就要开始练习了，估计老师肯定会让家长出题，所以提前准备一下，利用Python开发了一套自动生成小学生口算题的小应用。而且今天是程序员节，撸200行代码庆祝一下。：）
-     </p>
-     <p>
-      为了让程序员老爹解放抄题的双手，让你拥有更多的时间去写代码而不用去手写几道口算题而伤神伤脑。所以有没有娃子的程序员爹爹加入一起来继续优化个开源小程序的？有什么点子，发现什么BUG，欢迎留言。
-     </p>
-     <p>
-      仅以此软件，献给那些热爱
-      <code>
-       Python
-      </code>
-      的程序员老爹们！
-     </p>
-     <p>
-      程序核心功能：
-     </p>
-     <p>
-      1.可以设置各算数项和结果的取值范围及多步算数符号的选择，可以生成求结果、求算数项、带括号的算式，最多支持3步算式题
-     </p>
-     <p>
-      2.可以简单设置文档标题，小标题。设置生成的口算题文档个数
-     </p>
-     <p>
-      使用方法：
-     </p>
-     <p>
-      1 确定本机支持python3.6.1以上版本
-     </p>
-     <p>
-      2 安装.docx模块,安装wxPython模块 安装方法：
-     </p>
-     <p>
-      <code>
-       pip3 install python-docx
-      </code>
-     </p>
-     <p>
-      <code>
-       pip3 install wxpython
-      </code>
-     </p>
-     <p>
-      3 下载程序进入主目录，终端下运行
-      <code>
-       python App.py
-      </code>
-     </p>
-     <p>
-      4 修改运算项和结果范围里的数值,多步运算请添加修改需要的运算符号:
-     </p>
-     <p>
-      5 添加口算题到列表中，然后生成口算题,生成的口算题文件都在docx文件目录下，打开后连接打印机就可以开印了。
-     </p>
-     <h2>
-      源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PrimarySchoolMathematics">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics">
-        开源中国码云镜像gitee
        </a>
       </li>
      </ul>

@@ -132,6 +132,88 @@
     <div class="data-list list-group">
      <div class="blog-article">
       <h1 class="title">
+       2018 新年快乐！希望在coding中找到自己的快乐与希望
+      </h1>
+      <span class="author">
+       J.sky
+      </span>
+      <span class="time">
+       2018-01-01 17:40:57
+      </span>
+      <span class="tag">
+       站长吐槽
+      </span>
+     </div>
+     <p>
+     </p>
+     <p>
+      转眼间时光匆匆流过，稀里糊涂的又过去了一年，大约2017年6月时我开始了博客的搭建与设计，8月份上线运营维护，这期间又草草聊聊的写了71篇技术相关的博文。。。这一深一浅的一路走来，希望自己在编程的路上走得更坚实更努力一些！
+     </p>
+     <h2>
+      编程之路
+     </h2>
+     <p>
+      断断续续的自学编程有10年多了，其中有苦有乐，成绩自我评价也就是接近及格那种。期间接触过好多种编程语言，就像打游戏一样，要把所有的职业都玩一遍，每个职业都练了几个月最后都放弃了，其中拿捏时间比较长的有：
+      <code>
+       php js java
+      </code>
+      和现在正在深度学习的
+      <code>
+       Python
+      </code>
+      。其实一开始学习
+      <code>
+       Coding
+      </code>
+      的时候也是没有什么目标的，只是有一次在论坛做版主的时候被安排了一个任务，任务中需要用到
+      <code>
+       html+css
+      </code>
+      排版，然后自己就去百度搜索了一下相关知识，然后就一发不可收拾的迷上了编码。虽然最开始的时候学的是易语言，而且竟然学用了近二年之久，最后才因为某种原因不得不放弃它。之后就是各种语言职业的轮番试玩了。。。一直到14年左右，才开始稳定到java，16年弃坑
+      <code>
+       java
+      </code>
+      转而
+      <code>
+       Python
+      </code>
+      。
+     </p>
+     <h2>
+      2018的书单
+     </h2>
+     <p>
+      今年有一些目标和计划，除了努力工作之外，还是要继续学习
+      <code>
+       Python
+      </code>
+      ，然后继续学习一门新的编程语言，感觉这门语言非
+      <code>
+       C++
+      </code>
+      莫属了，天下武功（编码）少林正宗（C++）。
+然后计划读30本书，其中10本编程专业书籍，20本兴趣书籍。写50篇或更多的专业博文，用来记录自己的学习历程，巩固学习进度，加深学习印象。
+     </p>
+     <h2>
+      编程计划
+     </h2>
+     <p>
+      计划写一个学习
+      <code>
+       Python
+      </code>
+      编程的RPG游戏及开发一个
+      <code>
+       Django
+      </code>
+      开源blog。我会为此而努力。2018，新的一年，希望大家更加努力，早日实现自己的梦想。
+最后，我告诉你：
+      <strong>
+       相信我，多读书，不会错的。
+      </strong>
+     </p>
+     <div class="blog-article">
+      <h1 class="title">
        “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏
       </h1>
       <span class="author">
@@ -1118,127 +1200,6 @@ conn.close
       </li>
       <li>
        <a href="https://gitee.com/J_Sky/17python.com/tree/master/sqlite3">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       如何快速的复习学习过的Python
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-11-07 16:19:22
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的
-      <code>
-       python
-      </code>
-      呢？
-     </p>
-     <h2>
-      语法/变量/表达式
-     </h2>
-     <p>
-      也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。
-     </p>
-     <h2>
-      九九乘法表
-     </h2>
-     <p>
-      快速复习
-      <code>
-       for
-      </code>
-      及
-      <code>
-       print format
-      </code>
-      等函数的用法。
-     </p>
-     <pre><code>for i in range(1,10):
-    for j in range(1,i+1):
-        print("{}X{}={}".format(i,j,i*j), end=' ')
-    print()
-</code></pre>
-     <h2>
-      一摞
-      <code>
-       Python
-      </code>
-      风格的纸牌
-     </h2>
-     <p>
-      在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
-Python3 扑克牌
-      <code>
-       collections.namedtuple
-      </code>
-      这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色
-     </p>
-     <pre><code>import collections
-from random import choice
-Card = collections.namedtuple('Card',['rank','suit'])
-#创建一副扑克牌的类
-class Cards:
-    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
-    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
-
-    def __init__(self):
-        '''创建一副扑克牌'''
-        self._cards = [Card(rank,suit) for suit in self.suits
-                                       for rank in self.ranks] + ['King','Queen']
-    def __len__(self):
-        return len(self._cards)
-    def __getitem__(self,position):
-        return self._cards[position]
-
-deck = Cards()#创建一副扑克牌
-print(len(deck))#打印有多少张
-#打印所有纸牌
-for i in range(len(deck)):
-    print(deck[i])
-print(choice(deck))#随机抽取一张纸牌
-</code></pre>
-     <p>
-      我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子
-     </p>
-     <h2>
-      简单的复利计算
-     </h2>
-     <pre><code>p = 10000 #初始金额
-rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
-days = 100
-
-day = 1
-while day &lt;= days :
-    p = p * (1+rate)#复利，余额宝是每天的利滚利
-    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
-    day += 1
-</code></pre>
-     <p>
-      通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">
         开源中国码云镜像gitee
        </a>
       </li>
