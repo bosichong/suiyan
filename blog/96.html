@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 wxPython编程学习笔记(09)wx.Python Menu 菜单</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(09)wx.Python Menu 菜单</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-01-03 18:08:40</small> Tag:
+        
+        
+        <small>Python GUI</small>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190103_12.png" /></p>
+<h2>Menu 菜单</h2>
+<p>菜单是程序经常用到的小部件，我们来看看如何创建。</p>
+<pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
+    self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+    self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+    self.fileMenu.Append(self.new)#添加菜单项
+</code></pre>
+<p>以上这几个操作就可以创建一个菜单及菜单项了</p>
+<h2>wxPython 右键菜单</h2>
+<p>创建方法，可以先创建一个菜单类<code>class MyPopupMenu(wx.Menu)</code>
+然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：<code>self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)</code>
+然后事件函数中生成这个菜单<code>self.PopupMenu(MyPopupMenu(self), e.GetPosition())</code>
+这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试</p>
+<pre><code>import wx
+
+class MyPopupMenu(wx.Menu):
+
+    def __init__(self, parent):
+        super(MyPopupMenu, self).__init__()
+
+        self.parent = parent
+
+        mmi = wx.MenuItem(self, wx.NewId(), 'Minimize')
+        self.Append(mmi)
+        self.Bind(wx.EVT_MENU, self.OnMinimize, mmi)
+
+        cmi = wx.MenuItem(self, wx.NewId(), 'Close')
+        self.Append(cmi)
+        self.Bind(wx.EVT_MENU, self.OnClose, cmi)
+
+
+    def OnMinimize(self, e):
+        self.parent.Iconize()
+
+    def OnClose(self, e):
+        self.parent.Close()
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+        self.menubar = wx.MenuBar()#创建一个程序菜单
+        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+        self.fileMenu.Append(self.new)#添加菜单项
+
+        self.editMenu = wx.Menu()
+        self.copyItem = wx.MenuItem(self.editMenu, 100, text="copy", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.copyItem)
+        self.cutItem = wx.MenuItem(self.editMenu, 101, text="cut", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.cutItem)
+        self.pasteItem = wx.MenuItem(self.editMenu, 102, text="paste", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.pasteItem)
+
+        self.fileMenu.Append(22, "Edit", self.editMenu)
+        self.fileMenu.AppendSeparator()
+        self.fileMenu.AppendSeparator()#分隔线
+        self.qmi = wx.MenuItem(self.fileMenu, 1, '&amp;Quit\tCtrl+Q')
+        self.fileMenu.Append(self.qmi)
+
+        self.Bind(wx.EVT_MENU, self.OnQuit, id=1)
+
+        self.menubar.Append(self.fileMenu, '&amp;File')
+        self.SetMenuBar(self.menubar)
+
+        self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+    def OnRightDown(self, e):
+        self.PopupMenu(MyPopupMenu(self), e.GetPosition())
+
+    def OnQuit(self, e):
+        self.Close()
+
+def main():
+    app = wx.App(False)
+    frm = HelloFrame(None, title='wx.MenuBar 菜单',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

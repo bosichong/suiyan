@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block article %}
+
+
+
+<hgroup>
+    <h2>{{ blog.title }}</h2>
+    <h3> 作者:<a href="#">{{ blog.author }}</a> <small>发布时间:{{ blog.time }}</small> Tag:
+        {% set tags = blog.tag.split(",") %}
+        {% for tag in tags %}
+        <small>{{ tag }}</small>
+        {% endfor %}
+    </h3>
+</hgroup>
+<p>{{ data }}</p>
+
+
+{% endblock %}

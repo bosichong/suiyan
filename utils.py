@@ -11,7 +11,73 @@
 
 """
 
-import os
+import os, json
+
+
+def loadcode(path):
+    """载入文件中的代码"""
+    try:
+        with open(os.path.join(path), encoding='utf-8') as f:
+            code = f.read()
+    except FileNotFoundError:
+        print(f"文件{path}不存在")
+        code = ''
+    return code
+
+
+def load_configjson(jsonpath):
+    '''载入blog配置文件config.json'''
+    config_code = loadcode(jsonpath)
+    config = json.loads(config_code)
+    return config
+
+
+def load_blogdatajson(jsonpath):
+    '''载入blog数据blog_data.json'''
+    blogdata = loadcode(jsonpath)
+    blog = json.loads(blogdata)
+    return blog
+
+
+def create_blog_data_Json(adir):
+    '''
+    递归获得当前目录及其子目录中所有的.md文件列表。
+    并创建blog的data索引JSON
+    :param adir: 文章日志所在目录
+    :param bdir: 站点根目录
+    :return: json字符串
+    '''
+    data_json = []
+    # 当前目录下所有的文件、子目录、子目录下的文件。
+    for root, dirs, files in os.walk(adir):
+        for name in files:
+            # 值读取.md
+            if name.endswith('.md'):
+                url = os.path.join(root, name).replace(
+                    adir + os.sep, '').replace('.md', '')  # 最后需要组装的相对目录
+                furl = os.path.join(root, name)  # 当前文件的绝对目录
+                f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
+                f_data["url"] = url
+                # print(f_data)
+                data_json.append(f_data)  # 添加到需要返回的数据数组中
+
+    data_json.sort(key=lambda x: x["time"], reverse=True)  # 对数组进行降序排序
+    data_json_str = json.dumps(data_json, ensure_ascii=False)  # 转化为json字符串
+    # print(data_json_str)
+    return data_json_str
+
+
+def create_data_json(articles_path, file_path):
+    '''
+    创建blog索引.json
+    @param articles_path md文档目录地址
+    @param file_path 索引保存的地址
+    @return:
+    '''
+    json_str = create_blog_data_Json(articles_path)
+    with open(file_path, mode='w', encoding='utf-8') as f:
+        f.write(json_str)
+    print("blog数据索引更新完毕！")
 
 
 def extract_md_header(file_path):
@@ -83,7 +149,7 @@ def calculate_page_num(cs, num):
 
 def read_file_without_header(file_path):
     """
-    读取一个文件的数据，去除其头部由"---"包围的内容包括"---"，返回其余所有文本内容。
+    读取一个.md的博文的数据，去除其头部由"---"包围的内容包括"---"，返回其余所有文本内容。
     @param file_path: 文件路径
     @return: 文件内容
     """
@@ -145,6 +211,16 @@ def tagsdata(blogdata):
                 tmplist.append(tmpobj)
     # print(tmplist)
     return tmplist
+
+
+def create_dir(blogurl):
+    '''
+    将文件路径从一个文件地址中分割出来
+    判断文件路径是否存在，如果不存在，则创建，此处是创建多级目录
+    '''
+    file_dir = os.path.split(blogurl)[0]
+    if not os.path.isdir(file_dir):
+        os.makedirs(file_dir)
 
 
 if __name__ == "__main__":

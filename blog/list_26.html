@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客  List Pages 第26页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>Python 采集数据三步曲之[Requests + re.py模块进行数据采集]</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-02 12:41:30</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p><em>当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。</em></p>
+<h3>数据采集第一步，加载数据源。</h3>
+<p>这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。</p>
+<pre><code class="python">import re, requests # 加载所需模块
+r = requests.get('http://hq.sinajs.cn/list=s_sh000001') #互联网上市公司股票价格
+r.encoding = 'gbk'# 设置编码 解决乱码问题
+print(r.text) #返回html代码（数据）
+</code></pre>
+
+<p>通过上边的代码运行之后我们会得到一组数据：</p>
+<pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
+</code></pre>
+<p>数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；</p>
+<p>这样我们只要提示自己需要的<code>上证指数,3367.1194,6.3091,0.19,2824975,31372209</code>这段数据后，就可以把它转换成自己需要的对象，然后处理打印。</p>
+<h3>数据采集第二步，解析数据，提取我们自己需要的。</h3>
+<pre><code class="python">s = r.text # 获取数据
+p = r'"(.+)"' #设置正则表达式
+r = re.search(p, s).group(1) #匹配并获取结果字符串
+print(r)
+ls = r.split(',')
+print(ls)
+</code></pre>
+
+<h3>数据采集第三步，处理最后的打印</h3>
+<pre><code class="python">print('''{}:{}
+当前价格:{}
+涨跌率:{}
+成交量（手）:{}
+成交额（万元）:{}'''.format(ls[0],ls[1],ls[2],ls[3],ls[4],ls[5])
+)
+
+#最后输出：
+#上证指数:3367.1194
+#当前价格:6.3091
+#涨跌率:0.19
+#成交量（手）:2824975
+#成交额（万元）:31372209
+</code></pre>
+
+<p>得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。</p>
+<h3>本文源码下载：</h3>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python 采集数据三步曲之[Requests开源协议的HTTP 库]</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-02 09:01:48</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><blockquote>
+<p>Requests 是以 PEP 20 的箴言为中心开发的</p>
+</blockquote>
+<ul>
+<li>Beautiful is better than ugly.(美丽优于丑陋)</li>
+<li>Explicit is better than implicit.(直白优于含蓄)</li>
+<li>Simple is better than complex.(简单优于复杂)</li>
+<li>Complex is better than complicated.(复杂优于繁琐)</li>
+<li>Readability counts.(可读性很重要)</li>
+<li>对于 Requests 所有的贡献都应牢记这些重要的准则。
+<img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;" /></li>
+</ul>
+<h3>Requests install</h3>
+<pre><code>pip3 install requests
+</code></pre>
+<p>下载安装</p>
+<pre><code>git clone git://github.com/kennethreitz/requests.git
+cd requests
+python setup.py install
+</code></pre>
+<h3>一分钟上手</h3>
+<pre><code class="python">import requests
+r = requests.get('http://www.baidu.com')
+print(r.status_code)# 返回状态码
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+
+<p>如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）</p>
+<h3>带参数的请求</h3>
+<pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
+r.encoding = 'utf-8'# 设置编码
+print(r.text) #返回html代码
+</code></pre>
+
+<blockquote>
+<ul>
+<li>r.status_code #响应状态码</li>
+<li>r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取</li>
+<li>r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩</li>
+<li>r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码</li>
+<li>r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None</li>
+<li>r.json() #Requests中内置的JSON解码器</li>
+<li>r.raise_for_status() #失败请求(非200响应)抛出异常</li>
+</ul>
+</blockquote>
+<h3>这只是一个简单的入门引导</h3>
+<p>Requests 是一个简单强大的<code>HTTP</code>库，是我用过的最简单实用的<code>python</code>库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，<code>pythoner</code>居家旅游必备之良品。</p>
+<p>一些Requests的参考</p>
+<ul>
+<li><a href="http://cn.python-requests.org/zh_CN/latest/index.html">Requests: 让 HTTP 服务人类 官方文档</a></li>
+<li><a href="http://blog.csdn.net/shanzhizi/article/details/50903748">Python-第三方库requests详解</a></li>
+</ul>
+<h3>本文源码下载：</h3>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python 采集数据三步曲之[正则表达式 re.py]</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-01 13:09:49</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p><em>越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器</em></p>
+<h3>如何用<code>Python</code>开始一个简单的正则表达式？</h3>
+<p>其实很简单，从</p>
+<pre><code>import re
+</code></pre>
+<p>引入<code>Python</code>的正则表达式支持模块开始。</p>
+<h3>开始使用<code>re</code>模块</h3>
+<pre><code class="python">#codeing=utf-8
+import re
+p = re.compile(r'17python')#创建Pattern对象
+m = p.match('17python.com')
+if m :
+    print(m.group())
+# 输出结果为：17python
+</code></pre>
+
+<p>另一种方式：</p>
+<pre><code class="python">#使用re模块方法代替实例方法
+print(re.match('17python', '17python.com').group())
+# 输出结果为：17python
+</code></pre>
+
+<h3>re模块及正则实例常用方法演示</h3>
+<pre><code class="python">p = re.compile(r'17python')
+s1 = '17python.com'
+s2 = 'www.17python.com'
+s3 = '17python.com17python.com'
+s4 = 'abc.com'
+p4 = re.compile('abc')
+print(p.match(s1).group())
+print(p.search(s2).group())
+print(p.findall(s3))
+print(p4.sub('17python', s4))
+</code></pre>
+
+<p>以上只是<code>Python</code>re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考<a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re"><code>Python</code>文档 re模块详解</a></p>
+<h3>元字符 （参见 python 模块 re 文档）</h3>
+<ul>
+<li>.                    匹配任意字符（不包括换行符）</li>
+<li>^                    匹配开始位置，多行模式下匹配每一行的开始</li>
+<li>$                    匹配结束位置，多行模式下匹配每一行的结束</li>
+<li>*                    匹配前一个元字符0到多次</li>
+<li>+                    匹配前一个元字符1到多次</li>
+<li>?                    匹配前一个元字符0到1次</li>
+<li>{m,n}                匹配前一个元字符m到n次</li>
+<li>\                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符</li>
+<li>[]                   字符集，一个字符的集合，可匹配其中任意一个字符</li>
+<li>|                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b</li>
+<li>(...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值</li>
+<li>(?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I</li>
+<li>(?:...)              分组的不捕获模式，计算索引时会跳过这个分组</li>
+<li>(?P<name>...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name</li>
+<li>(?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则</li>
+<li>(?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I</li>
+<li>(?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则</li>
+<li>(?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则</li>
+<li>(?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则</li>
+<li>(?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则</li>
+<li>(?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则</li>
+<li>\number              匹配和前面索引为number的分组捕获到的内容一样的字符串</li>
+<li>\A                   匹配字符串开始位置，忽略多行模式</li>
+<li>\Z                   匹配字符串结束位置，忽略多行模式</li>
+<li>\b                   匹配位于单词开始或结束位置的空字符串</li>
+<li>\B                   匹配不位于单词开始或结束位置的空字符串</li>
+<li>\d                   匹配一个数字， 相当于 [0-9]</li>
+<li>\D                   匹配非数字,相当于 [^0-9]</li>
+<li>\s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]</li>
+<li>\S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]</li>
+<li>\w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]</li>
+<li>\W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]</li>
+</ul>
+<h3>更详细的<code>Python</code>re正则表达式教程</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a></li>
+<li><a href="http://www.cnblogs.com/dyfblog/p/5880728.html">python正则表达式详解</a></li>
+<li><a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">Python文档 re模块详解</a></li>
+</ul>
+<h3>本文源码下载：</h3>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python学习资料教程汇总</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-08-31 13:29:13</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><h3>我们为什么用Python编程？</h3>
+<p>曾经有一段时间一直在考虑一件事，就是想好好学习一下编程，然后靠着一台电脑和海量搜索结果的百度（或是google）精通一门或几门编程语言，然后成为一个黑客，随便都能开发出一个牛逼的软件或网站，然后马上就打开浏览器，搜：XXX语言精通、入门、速成。怀着一份热忱和充满美好希望的决心在互联网上寻找着答案。。。。。。</p>
+<p>。。。。。。</p>
+<p>十分钟之后。。去特么蛋的。。。还是打会游戏吧。。。。</p>
+<h3>好吧 我们继续</h3>
+<p>经历过痛苦与折磨后，终于明白了编程的意义，那就是先做点正常人做的事吧！说到<code>Python</code>的相关资料教程很多了，整理一下，排名不分前后，评价均人个人观点，不代表教程本身的好坏。</p>
+<p>其实本想写写基础<code>Python</code>教程，但是网上太多了，不乏众多优秀的教程，就不重复造轮子了，分享出来大家共同学习进步。</p>
+<h3>Python 基础教程</h3>
+<p>首先推荐廖雪峰老师的 <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">中文，免费，零起点，完整示例，基于最新的Python 3版本教程</a>，这篇教程无论是学习Python还是了解编程基础来说，都是一篇不错的教程。另外还有<a href="http://vdisk.weibo.com/s/BE2Z8B94-5w97">python简明教程中文.pdf</a></p>
+<p>有过编程基础的可以看看这二个：</p>
+<ul>
+<li><a href="http://www.code123.cc/1049.html">分分钟学会一门语言之Python篇</a></li>
+<li><a href="http://www.jianshu.com/p/36ae91c38279">十五分钟让你了解Python套路</a></li>
+</ul>
+<p>当然 还有<a href="http://python.usyiyi.cn/translate/python_352/index.html"><code>Python</code>官方文档--中文汉化版</a>，算是最全面的教材了！</p>
+<p><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a>，个人认为是不一篇不错的python正则教程。</p>
+<h3>基础学习（本站原创）</h3>
+<ul>
+<li><a href="http://www.17python.com/blog/12">Python os.path模块中一些常用方法的整理总结</a></li>
+<li><a href="http://www.17python.com/blog/13">Python open()函数文件打开、读、写操作总结</a></li>
+<li><a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a></li>
+<li><a href="http://www.17python.com/blog/15">python3函数学习笔记简单总结</a></li>
+<li><a href="http://www.17python.com/blog/16">Python3 datetime模块的时间操作</a></li>
+<li>
+<p><a href="http://www.17python.com/blog/30">Python面向对象编程（OOP）初探</a></p>
+</li>
+<li>
+<p><a href="http://www.17python.com/blog/74">妙用IPython学习Python--IPython快速上手</a></p>
+</li>
+<li><a href="http://www.17python.com/blog/68">Python生成器yield应用实例——监控日志</a></li>
+<li><a href="http://www.17python.com/blog/55">听说存储数据Python与SQLite3更配哦！</a></li>
+</ul>
+<h3>Python GUI tk tkinter 编程（本站原创）</h3>
+<ul>
+<li><a href="http://www.17python.com/blog/21">Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button</a></li>
+<li><a href="http://www.17python.com/blog/22">Python TK和Tkinter的GUI编程(2)菜单Menu</a></li>
+<li><a href="http://www.17python.com/blog/23">Python TK和Tkinter的GUI编程(3) 列表框 Listbox</a></li>
+<li><a href="http://www.17python.com/blog/24">Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件</a></li>
+<li><a href="http://www.17python.com/blog/25">Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框</a></li>
+<li><a href="http://www.17python.com/blog/26">Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton</a></li>
+<li><a href="http://www.17python.com/blog/27">Python TK和Tkinter的GUI编程(7) Scrollbar的使用</a></li>
+<li><a href="http://www.17python.com/blog/28">Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用</a></li>
+<li><a href="http://www.17python.com/blog/29">Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件</a></li>
+<li><a href="http://www.17python.com/blog/49">基于Python、Tk构建的可视化目录文件同步助手</a></li>
+<li><a href="http://www.17python.com/blog/69"> Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框</a></li>
+</ul>
+<h3>扩展学习</h3>
+<p>学习了<code>Python</code>教程后，就可以继续深入学习了，根据自己学习方向可以选择很多，比如：机器学人工智能，web全栈，系统运维等，本人学习主要方向是web，所以目前只能推荐一些WEB相关的教程</p>
+<h3>有关正则表达式</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a></li>
+<li><a href="http://www.cnblogs.com/dyfblog/p/5880728.html">python正则表达式详解</a></li>
+<li><a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re"><code>Python</code>文档 re模块详解</a></li>
+</ul>
+<h3>WEB框架</h3>
+<ul>
+<li>Django</li>
+</ul>
+<p>本站原创教程：</p>
+<ul>
+<li><a href="http://www.17python.com/blog/52">实战：利用Django开发部署自己的个人博客（1）创建项目</a></li>
+<li><a href="http://www.17python.com/blog/53">实战：利用Django开发部署自己的个人博客（2）视图/路由</a></li>
+<li><a href="http://www.17python.com/blog/54">实战：利用Django开发部署自己的个人博客（3）Template: Django模板</a></li>
+<li><a href="http://www.17python.com/blog/56">实战：利用Django开发部署自己的个人博客（4）Models 数据模型</a></li>
+<li><a href="http://www.17python.com/blog/57">实战：利用Django开发部署自己的个人博客（5）Django admin后台管理</a></li>
+<li><a href="http://www.17python.com/blog/58">实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI</a></li>
+<li><a href="http://www.17python.com/blog/59">实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。</a></li>
+<li><a href="http://www.17python.com/blog/60">实战：利用Django开发部署自己的个人博客（8）构建Blog首页</a></li>
+<li><a href="http://www.17python.com/blog/61">实战：利用Django开发部署自己的个人博客（9）Django模板的继承</a></li>
+<li><a href="http://www.17python.com/blog/62">实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据</a></li>
+<li><a href="http://www.17python.com/blog/63">实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现</a></li>
+<li><a href="http://www.17python.com/blog/64">实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页</a></li>
+<li><a href="http://www.17python.com/blog/65">实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码</a></li>
+<li><a href="http://www.17python.com/blog/66">实战：利用Django开发部署自己的个人博客（14）Django实现图片的上传和引用</a></li>
+<li><a href="http://www.17python.com/blog/67">实战：利用Django开发部署自己的个人博客（15）Ubuntu+apache部署Django</a></li>
+</ul>
+<p>自强学堂，是我认为网上中文比较不错的<code>Django</code>教程，本站就是通过这篇教程学习后设计制作的。
+<a href="http://code.ziqiangxuetang.com/django/django-tutorial.html">Django 基础教程</a></p>
+<p><a href="http://djangobook.py3k.cn/2.0/">Django book 2.0 的中文翻译。</a> 这个是比较详细的<code>Django</code>教程了，看了都说好。</p>
+<p>然后就是<code>Django</code><a href="https://docs.djangoproject.com/en/1.11/">官方文档</a>，这个不用解释了吧？</p>
+<h2>“编学编玩”用Pygame写游戏</h2>
+<ul>
+<li><a href="http://www.17python.com/blog/44">“编学编玩”用Pygame写游戏（1）初识pygame</a></li>
+<li><a href="http://www.17python.com/blog/45">“编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画</a></li>
+<li><a href="http://www.17python.com/blog/46">“编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测</a></li>
+<li><a href="http://www.17python.com/blog/47">“编学编玩”用Pygame写游戏（4）一个python问答游戏</a></li>
+<li><a href="http://www.17python.com/blog/48">“编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表</a></li>
+<li><a href="http://www.17python.com/blog/70">“编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。</a></li>
+<li><a href="http://www.17python.com/blog/71"> “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏</a></li>
+<li><a href="http://www.17python.com/blog/73">“编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏</a></li>
+<li><a href="http://www.17python.com/blog/76"> “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏</a></li>
+<li><a href="http://www.17python.com/blog/77">“编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)</a></li>
+</ul>
+<p><strong>本文会不定期更新作者推荐的好教程及连接</strong></p></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_25.html" role="button" class="outline">Prev</a></li>
+    <li><small>26 / 28</small></li>
+    <li><a href="list_27.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

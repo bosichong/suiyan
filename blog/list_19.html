@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第19页</title>
+    <title>SuiYan 碎言博客  List Pages 第19页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,54 +81,88 @@
 
 
 <hgroup>
-    <h2>Python random 随机数模块操作总结</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-20 13:28:23</small> 标签:
+    <h2>Python程序在Windows10终端运行中文乱码解决方法</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-10 21:03:34</small> Tag:
         
         
-        <mark>Python基础</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p>random，是Python中用于生成随机数模块，我们来了解一下这修模中几个常用的函数，这些随机函数可以应付一些日常应用了。</p>
-<h2>使用random</h2>
-<pre><code>import random
+<p><p>今天发布了一段代码，微博上有朋友在win10下边测试报错，看错误应该是中文编码问题，然后自己试了下，总结了一下原因：</p>
+<h2>测试中文打印print()</h2>
+<p>在win10中新建记事本文档， 敲入代码：</p>
+<pre><code>print("我来试试哈")
 </code></pre>
-<p>random.random()用于生成一个0到1的随机符点数: 0 &lt;= n &lt; 1.0</p>
-<pre><code>print(random.random())
+<p>保存test.py，运行，果然报错，如下图：</p>
+<pre><code>SyntaxError: Non-UTF-8 code starting with '\xce' in file i:/python3/te
+st.py on line 1, but no encoding declared; see http://python.org/dev/p
+eps/pep-0263/ for details</code></pre>
+
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_14.png" /></p>
+<h2>为什么呢？</h2>
+<p>因为win10下边新建记事本文件是ANSIX编码的</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_15.png" /></p>
+<h2>解决方法</h2>
+<p>把文件另存，在编码中选择utf8。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_16.png" /></p>
+<p>然后运行，完美解决！</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_17.png" /></p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>你与黑客之间差了多少行Python代码？</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-10 15:23:17</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_11.png" /></p>
+<p>雷布斯曾说过：“必须写够十万行代码，不要心存侥幸。没有写过足够代码量的，想成为高手是不可能的，只能纸上谈兵！”，看来要成一名黑客10万代码量也许只是个起步。那么自己与黑客差了多少呢，要不咱统计一下吧。</p>
+<h2>编写思路</h2>
+<p>程序的编写思路其实很简单：统计自己编写过的.py文件，然后统计文件行数累加到一起就ok。</p>
+<p><code>os.walk</code>这个方法可以统计当前目录下所有的文件、子目录、子目录下的文件，有了这个数据，我们只需要排除掉不需要的，统计以.py为结尾的文件目录地址加入一个列表即可。</p>
+<p>有了所有.py文件的列表，循环迭代出每个文件的行数，加到一起总数据就出来了。具体实现请看代码：</p>
+<pre><code class="python">import os
+def getpys(dir):
+    '''
+    递归获得当前目录及其子目录中所有的.py文件列表。
+    '''
+    pys = []
+    # 当前目录下所有的文件、子目录、子目录下的文件。
+    for root, dirs, files in os.walk(dir):
+        for name in files:
+            #排除掉git目录中的备份的文件，只保留.py文件
+            if '.git' not in root and name.endswith('.py'):
+                pys.append(os.path.join(root, name))
+        #下边是拼装所有目录
+        # for name in dirs:
+        #     print(os.path.join(root, name))
+    return pys
+pys = getpys(os.path.dirname(__file__))
+# print(pys)
+hacker=100000#假设黑客需要10万行代码才能练成
+lines = 0
+for file in pys:
+    with open(file, mode='r', encoding='utf8') as f:
+        lines = lines + len(f.readlines())#统计每个文件的行数。
+print("累计编写了源文件{0}个,手打{1}行Python代码，完成度{2:.2f}%".format(len(pys),lines,lines/hacker*100))
+print("距离成为一名黑客还差{0}行代码".format(hacker-lines))
 </code></pre>
-<p>random.uniform(a,b) 用于生成 a-b 之间的随机浮点数。</p>
-<pre><code>print(random.uniform(1,5))
-</code></pre>
-<p>random.randint(10,20) 生成随机整数</p>
-<pre><code>print(random.randint(10,20))
-</code></pre>
-<p>生成0-100之间的偶数。</p>
-<pre><code>print(random.randrange(0,100,2))
-</code></pre>
-<p>choice()用来生成随机字符串，</p>
-<pre><code>print(random.choice(("a","b","c","d")))
-print(random.choice(['ee','ff','gg','hh']))
-</code></pre>
-<p>shuffle() 类似洗牌，每次刷新都会不一样的。</p>
-<pre><code>p = ['a','b','c','d']
-random.shuffle(p)
-print(p)
-</code></pre>
-<p>从一个列表中取出一个随机切片数据，原数据不变，结果刷新可见</p>
-<pre><code>l = [1,2,3,4,5,6,7,8,9]
-sl = random.sample(l,3)
-print(sl)
-print(l)
-</code></pre>
-<h2>相关参考</h2>
-<ul>
-<li><a href="http://python.usyiyi.cn/translate/python_352/library/random.html">官方文档：random - 生成伪随机数字</a></li>
-<li><a href="http://www.cnblogs.com/yd1227/archive/2011/03/18/1988015.html">Python中的random模块</a></li>
-</ul>
+
+<p>累计编写了源文件32个,手打2133行Python代码，完成度2.13%
+距离成为一名黑客还差97867行代码</p>
+<p>这个数量有点惨。。。不过我会努力的。</p>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/random/randomtest.py">github</a></li>
-<li>[开源中国码云镜像gitee](https://gitee.com/J_Sky/17python.com/blob/master/random/randomtest.py</li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/counttest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/counttest.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -137,50 +171,51 @@ print(l)
 
 
 <hgroup>
-    <h2>Python 对象引用与复制 (Python参考手册读书笔记)</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-19 15:51:04</small> 标签:
+    <h2>一些站长常用的搜索收录、访问统计平台</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-09 20:45:57</small> Tag:
         
         
-        <mark>读书笔记</mark>
+        <samll>站长吐槽</samll>
         
     </h3>
 </hgroup>
-<p><p>Python 对象引用与复制 (Python参考手册读书笔记)
-![Python参考手册读书笔记](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg" /></p>
-<h2>通过赋值创建一个副本</h2>
-<pre><code>a = [1,2,3,4,5]
-b = a
-print(b is a )
-b[2] = -99
-print(a)
-</code></pre>
-<p>通过控制台打印，我们修改list b中的值，打印a发现值也跟着变化了，说明a与b的引用是同一个对象</p>
-<h2>浅复制 通过结果可以发现一些不同</h2>
-<pre><code class="python">c = [11,22,]
-d = list(c)
-print(c is d)
-d.append(33)
-print(c)
-print(d)
-d[1] = 00
-print(c)
-print(d)
-</code></pre>
-
-<h2>深复制</h2>
-<pre><code class="python">import copy
-e = [11,12,13]
-f = copy.deepcopy(e)
-print(e is f)
-f[1] = 78
-print(e)
-print(f)
-</code></pre>
-
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/copy/copytest.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/copy/copytest.py">开源中国码云镜像gitee</a></li>
+<p><ul>
+<li>
+<p><a href="http://ziyuan.baidu.com">百度搜索资源平台</a></p>
+</li>
+<li>
+<p><a href="http://union.baidu.com">百度联盟</a></p>
+</li>
+<li>
+<p><a href="http://zhanzhang.so.com/">360站长平台</a></p>
+</li>
+<li>
+<p><a href="http://ce.baidu.com/">百度云观测</a></p>
+</li>
+<li>
+<p><a href="http://ziyuan.baidu.com">百度搜索资源平台</a></p>
+</li>
+<li>
+<p><a href="http://www.jiathis.com/">JiaThis社会化分享按钮</a></p>
+</li>
+<li>
+<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) </a></p>
+</li>
+<li>
+<p><a href="http://changyan.kuaizhan.com/">畅言网站评论系统</a></p>
+</li>
+<li>
+<p><a href="http://zhanzhang.sogou.com">搜狗站长平台</a></p>
+</li>
+<li>
+<p><a href="https://web.umeng.com/main.php?c=site&amp;a=add">CNZZ站长统计数据专家</a></p>
+</li>
+<li>
+<p><a href="http://www.miitbeian.gov.cn/">工信部ICP备案查询</a></p>
+</li>
+<li>
+<p><a href="http://www.beian.gov.cn/">全国公安机关互联网安全服务备案</a></p>
+</li>
 </ul></p>
 
 
@@ -189,171 +224,82 @@ print(f)
 
 
 <hgroup>
-    <h2>Python 字符串格式化(%操作符)及format函数的使用</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-19 15:12:22</small> 标签:
+    <h2>聊聊Python闭包（Closure）的那点事。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-09 15:36:19</small> Tag:
         
         
-        <mark>读书笔记</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p><strong>Python 字符串格式化（%操作符）及format函数的使用,Python参考手册，字符串格式化章读书笔记。</strong>
-![Python参考手册](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg" /></p>
-<p>python的字符串操作是程序员编码中频繁使用的技巧，所以熟练掌握是可以影响到你的编码效率地。
-目前比较流行的字符串打印有两种方式（据笔者所知，当然如果还有其它方法，请不吝赐教）：</p>
+<p><p>记得当年学<code>JavaScript</code>时，对闭包的认识那真是朦朦胧胧，后来接触到<code>jQuery</code>之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言<code>java</code>给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题</p>
+<h2>Pythib闭包</h2>
+<p>先来一个栗子，我们慢慢理顺一下：</p>
+<pre><code class="python">def callf():
+    def hello():
+        return "hello world"
+    return hello
+
+cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
+print(type(cf)) # 查看cf类型，证实上边的结论。
+print(cf()) #打印最终结果。
+</code></pre>
+
+<p>在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
+上边就算是闭包最简单的例子，多看几次应该就理解了。</p>
+<p>再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？</p>
+<pre><code class="python">def countdown(n):
+    def next():
+        nonlocal n 
+        r = n 
+        n -= 1
+        return r
+    return next
+
+nt = countdown(5)
+while True:
+    v = nt()
+    print(v)
+    if not v :break
+</code></pre>
+
+<p>这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉<code>nonlocal n</code>，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量<code>n</code>的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。</p>
+<h1>再看循环中的闭包：</h1>
+<pre><code class="python">def loop():
+    fs = []
+    for i in range(1,4):
+        def f():
+            return i*i
+        fs.append(f)
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+</code></pre>
+
+<p><code>f1()</code>的打印竟然9，这个有点出乎意料！我们修改一下这个函数</p>
+<pre><code class="python">def loop(): 
+    def f(j):
+        return lambda: j*j
+    fs = []
+    for i in range(1,4):
+        fs.append(f(i))       
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+print(f2())
+print(f3())
+</code></pre>
+
+<p>对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了<code>f()</code>函数<code>return</code>所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
+有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用<code>Python</code>函数的高级应用，不妨仔细的了解一下闭包吧。</p>
+<h2>参考文档</h2>
 <ul>
-<li>一种是%符号操作，</li>
-<li>一种是format函数高级字符串格式化，</li>
+<li><a href="https://zhuanlan.zhihu.com/p/22229197">深入浅出python闭包</a></li>
 </ul>
-<p>两种各有特点，据说format的性能更好。</p>
-<h2>%操作符的使用</h2>
-<pre><code class="python">
-a = 'hello'
-b = 588
-c = 12.7896
-d = {'x':98, 'y':235.4444, 'z':'world',}
-print("a:%s" % a)
-# 10 和 2 是间隔的空格长度,小数点后的数字可以用来设置浮点数显示的精度，四舍五入，—号表示左对齐，+号是右对齐。
-print("%-10d %2.3f" % (b, c)) 
-print("%(x)-5d %(y).2f %(z).4s" % d)#打印字典中的值,.4s 表示要打印四个字符
-#vars() 函数，它将返回当前定义的所有变量的字典
-print ("%(a)s %(b)d %(c).2f %(d)s)" % vars())
-</code></pre>
-
-<h2>format函数高级字符串格式化</h2>
-<pre><code class="python">print("{0} {1} {2}".format(a,b,c))
-print("{0},{b},{c}".format(a,b=b,c=c))
-print("{0[x]} {0[y]} {0[z]}".format(d))
-
-print("{0:>10.4s} {1:d}".format(a,b))# <>^ 这几个符号用来设置排版间隔
-print("{0:10b}".format(b))#二进制整数
-print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
-</code></pre>
-
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/str/formatstr.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/str/formatstr.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>关于本站封面头部大图</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-18 14:19:35</small> 标签:
-        
-        
-        <mark>站长吐槽</mark>
-        
-    </h3>
-</hgroup>
-<p><p><em>看到喜欢的图片就会换上，不知道为什么会喜欢这些偏暖的色调，记得很久以前的有段时间，也曾偏爱冷色调调，可能偏暖色调更LOMO些。</em></p>
-<h2>2017/09/18</h2>
-<p>本图来自bing每日壁纸</p>
-<p>戈尔代小镇是普罗旺斯地区最美丽的小镇之一，依山头而建，是众多被日光洗的发白的石头建筑与深深浅浅的绿色植物相拼而成的村庄。每年那里都会入选法国最美丽的小镇之一。从外到内小镇戈尔代给人的印象就是石头建筑，围墙，房子，教堂几乎都是石头堆砌而成，壮观而真实！</p>
-<p><img alt="戈尔代小镇是普罗旺斯地区最美丽的小镇之一" src="assets/images/media/upload/2017/09/BingWallpaper-2017-09-17.jpg" /></p>
-<h2>2017/10/09</h2>
-<p>windows10美丽的海边风景</p>
-<p>先前的顶部大图太闪眼睛了。。。换个清爽些的。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/6fb13e4db9f043b276e06f340cbdff6d.jpg" /></p>
-<h2>2017/11/07</h2>
-<p>windows10 秋天</p>
-<p>这个秋天真的很无聊，是个多事之秋。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/11/bing-021.jpg" /></p>
-<h2>2017/11/25</h2>
-<p>网上搜索来的图片</p>
-<p>冬天来了，我们期待着下雪。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/11/timg.jpg" /></p>
-<h2>2017/11/25</h2>
-<p>《星月夜》（The Starry Night）是荷兰后印象派画家文森特·梵·高于1889年在法国圣雷米的一家精神病院里创作的一幅油画，是梵高的代表作之一，现藏纽约现代艺术博物馆。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/11/1432084191361509.jpeg" /></p></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>Python3 datetime模块的时间操作</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-18 13:23:43</small> 标签:
-        
-        
-        <mark>Python基础</mark>
-        
-    </h3>
-</hgroup>
-<p><p><em>出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作</em></p>
-<h2>datetime 模块</h2>
-<p>导入模块</p>
-<pre><code>from datetime import *
-</code></pre>
-<p>获取当前时间:</p>
-<pre><code>now = datetime.now()
-td = datetime.today()
-</code></pre>
-<p>格式化打印时间 格式字符串参见后边的附录。</p>
-<pre><code>format = "%Y-%m-%d %H:%M:%S"
-print('今天的日期：'+ now.strftime(format))
-</code></pre>
-<p>根据字符串返回datetime对象
-格式化的字符串应与前边的时间对应。比如："2017-09-18 13:02:34", "%Y-%m-%d %H:%M:%S"</p>
-<pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
-</code></pre>
-<p>时间对象转换成时间戮</p>
-<pre><code>tmp = td.timestamp()
-print('timestamp: {}'.format(tmp))
-</code></pre>
-<p>根据时间戮转换成datetime对象</p>
-<pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
-</code></pre>
-<p>星期几？0是星期一</p>
-<pre><code>print(now.weekday()+1)
-</code></pre>
-<p>datetime 支持的最大及最小时间单位</p>
-<pre><code>print(datetime.max)
-print(datetime.min)
-</code></pre>
-<p>打印datetime对象包含的一个tuple</p>
-<pre><code>for it in now.timetuple():
-    print(it)
-</code></pre>
-<h2>附录：格式字符串</h2>
-<ul>
-<li>datetime. strftime (format)  </li>
-<li>%a 星期的简写。如 星期三为Web  </li>
-<li>%A 星期的全写。如 星期三为Wednesday  </li>
-<li>%b 月份的简写。如4月份为Apr  </li>
-<li>%B月份的全写。如4月份为April   </li>
-<li>%c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）  </li>
-<li>%d:  日在这个月中的天数（是这个月的第几天）  </li>
-<li>%f:  微秒（范围[0,999999]）  </li>
-<li>%H:  小时（24小时制，[0, 23]）  </li>
-<li>%I:  小时（12小时制，[0, 11]）  </li>
-<li>%j:  日在年中的天数 [001,366]（是当年的第几天）  </li>
-<li>%m:  月份（[01,12]）  </li>
-<li>%M:  分钟（[00,59]）  </li>
-<li>%p:  AM或者PM  </li>
-<li>%S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）  </li>
-<li>%U:  周在当年的周数当年的第几周），星期天作为周的第一天  </li>
-<li>%w:  今天在这周的天数，范围为[0, 6]，6表示星期天  </li>
-<li>%W:  周在当年的周数（是当年的第几周），星期一作为周的第一天  </li>
-<li>%x:  日期字符串（如：04/07/10）  </li>
-<li>%X:  时间字符串（如：10:43:39）  </li>
-<li>%y:  2个数字表示的年份  </li>
-<li>%Y:  4个数字表示的年份  </li>
-<li>%z:  与utc时间的间隔 （如果是本地时间，返回空字符串）  </li>
-<li>%Z:  时区名称（如果是本地时间，返回空字符串）  </li>
-<li>%%:  %% =&gt; %</li>
-</ul>
-<h2>相关参考</h2>
-<p><a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">官方文档：datetime — 基本日期和时间类型</a></p>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -364,12 +310,23 @@ print(datetime.min)
 
 <nav>
     <li><a href="list_18.html" role="button" class="outline">Prev</a></li>
-    <li><small>19 / 23</small></li>
+    <li><small>19 / 28</small></li>
     <li><a href="list_20.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -408,19 +365,7 @@ print(datetime.min)
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

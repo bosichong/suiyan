@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第8页</title>
+    <title>SuiYan 碎言博客  List Pages 第8页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,77 +81,328 @@
 
 
 <hgroup>
-    <h2>wxPython编程学习笔记(05)单选及多选按钮</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-23 18:49:39</small> 标签:
+    <h2>如何在Python程序中使用配置文件.ini(ConfigParser)</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-06-18 15:29:01</small> Tag:
         
         
-        <mark>Python GUI</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png" /></p>
-<h2>wxPython单选及多选按钮</h2>
-<p>单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
-通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。</p>
-<h2>多选按钮wx.CheckBox</h2>
-<p>创建及绑定事件</p>
-<pre><code>cb1=wx.CheckBox(pnl, label='hello', )
-self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
+<p><h2>引言</h2>
+<p>在<code>Python</code>程序的编写中，我们经常要为程序配置一个<code>配置文件</code>，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+那么如何为自己的<code>Python</code>应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。</p>
+<p><strong>本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。</strong></p>
+<p>相关链接：
+<a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a></p>
+<p>本文重点讨论如何在程序中使用配置文件，<code>ConfigParser</code>类的具体使用，请参考上文。</p>
+<h2>需求</h2>
+<p>前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+具体需求如下：</p>
+<ol>
+<li>保存程序设置参数</li>
+<li>功能使用配置文件的参数</li>
+<li>组织以上功能封装成为一个类，方便以后功能的扩展。</li>
+</ol>
+<h2>分析</h2>
+<p>先上一个配置文件的工作流程图</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png" /></p>
+<p>通过流程图我们可以总结出配置文件类中需要的方法：</p>
+<ol>
+<li>创建(若ini文件不存在)及加载本地配置文件</li>
+<li>程序加载配置项参数</li>
+<li>修改参数的时候保存配置项到ini文件</li>
+<li>整理配置项参数为程序功能所用。</li>
+</ol>
+<h2>构建APPconfig类</h2>
+<p>首先导入必须的包：</p>
+<pre><code>import os
+from configparser import ConfigParser
 </code></pre>
-<p>这里的<code>self.Bind</code>是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。</p>
-<h2>单选按钮组wx.RadioBox</h2>
-<p>这里我直接介绍<code>wx.RadioBox</code>，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。</p>
-<p>创建及绑定</p>
-<pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                              style=wx.RA_SPECIFY_ROWS)
-self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
+<p>然后确定ini配置文件的物理位置，这里可以引用<code>Django</code>配置文件加载的方法。</p>
+<pre><code>    #ini程序所在目录，也是当前程序的根目录
+   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+   #INI文件地址
+  INI_PATH = os.path.join(BASE_DIR, 'config.ini')
 </code></pre>
-<p>代码很直观，<code>majorDimension</code>表示单选钮的排列方式：0横向，1竖向。</p>
-<p>好了，完整的代码在下边，可以跑跑看。</p>
+<h2>创建INI文件</h2>
+<p>若程序是首次启动，可以判断配置文件ini是否存在，<strong>若不存在可以创建一个带有默认数据参数的配置文件。</strong>
+为类添加一个方法<code>def create_ini(self)</code>，此方法用来创建配置文件ini。
+当在类启动方法中创建了<code>ConfigParser</code>对象后，就可以利用这个对象来编辑修改配置文件了。</p>
+<h2>加载及保存配置文件</h2>
+<p>若文件存在，即可直接加载了。</p>
+<pre><code>    def readINI(self):
+        """ ini文件读取，返回一个INI配置对象
+         或是用来更新内存中的配置文件数据
+         """
+         self.c.read(self.INI_PATH, encoding='utf-8')
+</code></pre>
+<p>创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。</p>
+<p>有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：</p>
+<pre><code>def saveINI(self):
+    '''保存或是更新ini文件'''
+    with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
+        self.c.write(ini)
+</code></pre>
+<p>这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。</p>
+<h2>修改并保存配置文件参数</h2>
+<p>为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。</p>
+<p>范例：</p>
+<pre><code>def saveNumber(self,number):
+    '''保存口算题个数设置数据'''
+    self.c.set('config','number',number)
+    self.saveINI()
+</code></pre>
+<h2>读取参数</h2>
+<p>当创建完<code>ConfigParser</code>对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考<a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a>
+也可以单独建立一个方法，用来返回一组数据供程序的功能使用。</p>
+<p>有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>写在我的博客PV10万时：聊聊编程与画画</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-05-14 09:11:29</small> Tag:
+        
+        
+        <samll>站长吐槽</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/Snip20190514_1.png" /></p>
+<p>转眼间我的<code>blog</code>PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此<code>blog</code>运行已有快二年了，没想到PV会达到10万。</p>
+<p>回想学习<code>Python</code>大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。</p>
+<p>贴几张近作，显吧一下吧</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg" /></p>
+<p>为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。</p>
+<p>编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。<strong>有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣</strong>。</p>
+<p>自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。</p>
+<p>未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。</p>
+<p>还有三年的时候<code>blog</code>PV达到百万（是不是有点飘了？），下半年继续更新<code>blog</code>，继续学习<code>Python Django PYgame</code>等。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(10)wx.FileDialog文件选择框</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-01-05 14:41:02</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png" /></p>
+<h2>wx.FileDialog文件选择框</h2>
+<p>'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。</p>
+<h2>创建</h2>
+<pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
+dlg.GetPath()#返回文件地址字符串
+</code></pre>
+<p>其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。</p>
+<p>我做了一个测试，代码下边跑跑看吧，希望能帮助到你。</p>
+<pre><code>import wx
+import os
+import time
+
+class MyFrame(wx.Frame):
+    def __init__(self, *args, **kwds):
+
+        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
+        wx.Frame.__init__(self, *args, **kwds)
+        self.SetSize((400, 300))
+        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.button_1 = wx.Button(self, wx.ID_ANY, u"选择文件")
+        self.text_ctrl_2 = wx.TextCtrl(self, wx.ID_ANY, "")
+
+        self.__set_properties()
+        self.__do_layout()
+
+
+    def __set_properties(self):
+
+        self.SetTitle("frame")
+        self.button_1.Bind(wx.EVT_BUTTON,self.onButton_1)
+
+    def __do_layout(self):
+
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(self.text_ctrl_1, 1, wx.ALL, 0)
+        sizer_2.Add(self.button_1, 0, 0, 0)
+        sizer_1.Add(sizer_2, 0, wx.ALL | wx.EXPAND, 0)
+        sizer_3.Add(self.text_ctrl_2, 1, wx.ALL | wx.EXPAND, 0)
+        sizer_1.Add(sizer_3, 1, wx.ALL | wx.EXPAND, 0)
+        self.SetSizer(sizer_1)
+        self.Layout()
+
+    def onButton_1(self,e):
+        print("按钮事件")
+        dlg = wx.FileDialog(self, message="选择一个文件", defaultDir=os.getcwd(), style=wx.FD_OPEN)
+        ret = dlg.ShowModal()
+        if ret == wx.ID_OK:
+            print(dlg.GetPath())  # 文件地址
+            self.text_ctrl_1.SetValue(dlg.GetPath())
+
+            fp = os.path.join(dlg.GetPath())  # 组装文件地址
+            ###输出到弹出信息窗口的字符拼装。
+            retstr = str(self.get_FileSize(fp)) + "\n" + self.get_FileAccessTime(fp) + "\n" + self.get_FileCreateTime(
+                fp) + "\n" + self.get_FileModifyTime(fp)
+            self.text_ctrl_2.SetValue(retstr)
+
+        dlg.Destroy()
+
+
+    # 把时间戳转化为时间: 1479264792 to 2016-11-16 10:53:12
+    def TimeStampToTime(self, timestamp):
+        timeStruct = time.localtime(timestamp)
+        return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
+
+    # 获取文件的大小,结果保留两位小数，单位为MB
+    def get_FileSize(self, filePath):
+        fsize = os.path.getsize(filePath)
+        return fsize
+
+    # 获取文件的访问时间
+    def get_FileAccessTime(self, filePath):
+        t = os.path.getatime(filePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的创建时间
+    def get_FileCreateTime(self, ilePath):
+        t = os.path.getctime(ilePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的修改时间
+    def get_FileModifyTime(self, filePath):
+        t = os.path.getmtime(filePath)
+        return self.TimeStampToTime(t)
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(None, wx.ID_ANY, "")
+        self.SetTopWindow(self.frame)
+        self.frame.Show()
+        return True
+
+
+if __name__ == "__main__":
+    app = MyApp(0)
+    app.MainLoop()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(09)wx.Python Menu 菜单</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-01-03 18:08:40</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190103_12.png" /></p>
+<h2>Menu 菜单</h2>
+<p>菜单是程序经常用到的小部件，我们来看看如何创建。</p>
+<pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
+    self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+    self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+    self.fileMenu.Append(self.new)#添加菜单项
+</code></pre>
+<p>以上这几个操作就可以创建一个菜单及菜单项了</p>
+<h2>wxPython 右键菜单</h2>
+<p>创建方法，可以先创建一个菜单类<code>class MyPopupMenu(wx.Menu)</code>
+然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：<code>self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)</code>
+然后事件函数中生成这个菜单<code>self.PopupMenu(MyPopupMenu(self), e.GetPosition())</code>
+这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试</p>
 <pre><code>import wx
 
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        pnl = wx.Panel(self)
+class MyPopupMenu(wx.Menu):
+
+    def __init__(self, parent):
+        super(MyPopupMenu, self).__init__()
+
+        self.parent = parent
+
+        mmi = wx.MenuItem(self, wx.NewId(), 'Minimize')
+        self.Append(mmi)
+        self.Bind(wx.EVT_MENU, self.OnMinimize, mmi)
+
+        cmi = wx.MenuItem(self, wx.NewId(), 'Close')
+        self.Append(cmi)
+        self.Bind(wx.EVT_MENU, self.OnClose, cmi)
 
 
-        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
-        cb1=wx.CheckBox(pnl, label='hello', )
-        cb2=wx.CheckBox(pnl, label='world', )
-        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
-        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                                  style=wx.RA_SPECIFY_ROWS)
-        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
-
-        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
-
-        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
-
-        btn.Bind(wx.EVT_BUTTON, self.OnClose)
-
-        pnl.SetSizer(hbox3)
-
-
-    def onRadiobox(self,e):
-        rb = e.GetEventObject()
-        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
-
-    def onCheckBox(self,e):
-        cb = e.GetEventObject()
-        if cb.GetValue():
-            print(cb.GetLabel())
+    def OnMinimize(self, e):
+        self.parent.Iconize()
 
     def OnClose(self, e):
-        self.Close(True)
+        self.parent.Close()
 
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
 
+        self.menubar = wx.MenuBar()#创建一个程序菜单
+        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+        self.fileMenu.Append(self.new)#添加菜单项
 
+        self.editMenu = wx.Menu()
+        self.copyItem = wx.MenuItem(self.editMenu, 100, text="copy", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.copyItem)
+        self.cutItem = wx.MenuItem(self.editMenu, 101, text="cut", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.cutItem)
+        self.pasteItem = wx.MenuItem(self.editMenu, 102, text="paste", kind=wx.ITEM_NORMAL)
+        self.editMenu.Append(self.pasteItem)
+
+        self.fileMenu.Append(22, "Edit", self.editMenu)
+        self.fileMenu.AppendSeparator()
+        self.fileMenu.AppendSeparator()#分隔线
+        self.qmi = wx.MenuItem(self.fileMenu, 1, '&amp;Quit\tCtrl+Q')
+        self.fileMenu.Append(self.qmi)
+
+        self.Bind(wx.EVT_MENU, self.OnQuit, id=1)
+
+        self.menubar.Append(self.fileMenu, '&amp;File')
+        self.SetMenuBar(self.menubar)
+
+        self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+    def OnRightDown(self, e):
+        self.PopupMenu(MyPopupMenu(self), e.GetPosition())
+
+    def OnQuit(self, e):
+        self.Close()
 
 def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
+    app = wx.App(False)
+    frm = HelloFrame(None, title='wx.MenuBar 菜单',)
     frm.Show()#显示窗口
     app.MainLoop()#持续更新窗口
 
@@ -161,342 +412,8 @@ if __name__ == '__main__':
 </code></pre>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>wxPython编程学习笔记(04)wx.Butoon的应用</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-22 20:26:29</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png" /></p>
-<h2>wx.Butoon</h2>
-<p>按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。<code>wx.Button</code>使用起来操作简单。
-wx中开关按钮<code>ToggleButton</code>，类似于电灯开关，绑定事件后可以通过</p>
-<pre><code>obj = e.GetEventObject()
-isPressed = obj.GetValue()
-</code></pre>
-<p>来获取对象的属性，这样就可以知道开关按钮的状态了。</p>
-<h2>Button的创建与使用</h2>
-<p>创建</p>
-<pre><code>bt = wx.Button(self,label="关闭窗口",)
-</code></pre>
-<p>绑定事件</p>
-<pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
-</code></pre>
-<p>然后编写绑定事件的函数方法，这样就可以调用此方法了。</p>
-<p>具体代码如下，希望这些短小的代码，能给您带来帮助。</p>
-<pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-        box = wx.BoxSizer(wx.VERTICAL)
-        bt1 = wx.Button(self,label="关闭窗口",)
-        bt1.Bind(wx.EVT_BUTTON, self.onCloseWindow)
-
-
-        self.bt2 = wx.ToggleButton(self,label='开关')
-        self.bt2.Bind(wx.EVT_TOGGLEBUTTON,self.showFlash)
-        st = wx.TextCtrl(self,value='helloworld',)
-
-
-        box.AddMany([(bt1,0, wx.ALL | wx.EXPAND, 0),(self.bt2,0, wx.ALL | wx.EXPAND, 0),(st,0, wx.ALL | wx.EXPAND | wx.SHAPED, 0)])
-
-
-        self.SetSizer(box)
-
-
-    def onCloseWindow(self,e):
-        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-        ret = dl.ShowModal()
-
-        if ret == wx.ID_YES:
-            self.Destroy()
-        else:
-            pass
-
-    def showFlash(self,e):
-        obj = e.GetEventObject()
-        isPressed = obj.GetValue()
-
-        if isPressed:
-            self.bt2.SetLabel("关闭")
-        else:
-            self.bt2.SetLabel("打开")
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>wxPython编程学习笔记(03)wxPython中的事件</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-21 19:11:40</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png" /></p>
-<h2>wxPython中的事件</h2>
-<p>和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。</p>
-<p>wxPython中的事件绑定很简单：</p>
-<pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
-</code></pre>
-<p>上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，<code>self.onMove</code>就是这个事件处发时要执行的方法函数。
-我们只要在<code>class</code>中定义<code>self.onMove</code>方法的代码，然后当事件触发时，就可以执行<code>onMove</code>方法了。</p>
-<p><code>wx.EVT_XXXXX</code>这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。</p>
-<p>好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。</p>
-<pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-
-        #创建一组文本用来显示数值
-        wx.StaticText(self,label="x:",pos=(10,10))
-        wx.StaticText(self, label="y:", pos=(10, 30))
-
-        self.st1 = wx.StaticText(self, label='', pos=(30, 10))
-        self.st2 = wx.StaticText(self, label='', pos=(30, 30))
-        #绑定窗口移动事件
-        self.Bind(wx.EVT_MOVE,self.onMove)
-        #绑定窗口关闭事件
-        self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
-
-    def onMove(self,e):
-        x,y = e.GetPosition()
-        self.st1.SetLabel(str(x))
-        self.st2.SetLabel(str(y))
-
-    def onCloseWindow(self,e):
-        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-        ret = dl.ShowModal()
-
-        if ret == wx.ID_YES:
-            self.Destroy()
-        else:
-            pass
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>wxPython编程学习笔记(02)wxPython的布局</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-19 20:22:01</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png" /></p>
-<h2>wxPython的布局</h2>
-<p>窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，</p>
-<p>我们可以选择下列sizers：</p>
-<p>1.wx.BoxSizer</p>
-<p>2.wx.StaticBoxSizer</p>
-<p>3.wx.GridSizer</p>
-<p>4.wx.FlexGridSizer</p>
-<p>5.wx.GridBagSizer</p>
-<p>这里我介绍一下<code>wx.BoxSizer</code>，灵活应用它基本上可以满足大部分窗口中的布局。</p>
-<h2>wx.BoxSizer</h2>
-<p><code>wx.BoxSizer</code>有<code>wx.VERTICAL</code>或<code>wx.HORIZONTAL</code>两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。</p>
-<p>如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。</p>
-<p>列举一些属性：</p>
-<p>1.wx.LEFT</p>
-<p>2.wx.RIGHT</p>
-<p>3.wx.BOTTOM</p>
-<p>4.wx.TOP</p>
-<p>5.wx.ALL</p>
-<p>以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：</p>
-<pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
-</code></pre>
-<p>我们还可以通过以下属性定义我们的部件对齐：：</p>
-<p>1.wx.ALIGN_LEFT
-2.wx.ALIGN_RIGHT
-3.wx.ALIGN_TOP
-4.wx.ALIGN_BOTTOM
-5.wx.ALIGN_CENTER_VERTICAL
-6.wx.ALIGN_CENTER_HORIZONTAL
-7.wx.ALIGN_CENTER</p>
-<p>好了，下边列举了一下小例子：</p>
-<pre><code>import wx
-
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        # 调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
-
-        st = wx.TextCtrl(pl)
-        hbox1.Add(st, proportion=1, )
-
-        bt1 = wx.Button(pl, label="hello world")
-        hbox1.Add(bt1, )
-
-        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
-
-        bt2 = wx.Button(pl, label="hello world")
-        bt3 = wx.Button(pl, label="hello world")
-        bt4 = wx.Button(pl, label="hello world")
-        hbox2.Add(bt2, wx.EXPAND)
-        hbox2.Add(bt3, )
-        hbox2.Add(bt4, wx.EXPAND)
-        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        sb = wx.StaticBox(pl, label="test")
-        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
-        bt5 = wx.Button(pl, label="yes")
-        bt6 = wx.Button(pl, label="no")
-        hbox3.Add(bt5, )
-        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
-        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
-
-        pl.SetSizer(vbox)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython 布局练习')
-    frm.Show()  # 显示窗口
-    app.MainLoop()  # 持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>wxPython编程学习笔记(01)Frame程序的窗口</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-18 19:42:47</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>简介</h2>
-<p>之前的一些小应用都是用的<code>python tk</code>来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下<code>wxPython</code>
-<code>wxPython</code>是一个<code>Python</code>包装<code>wxWidgets</code>（这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
-<code>wxPython</code>是作为一个<code>Python</code>扩展模块。</p>
-<h2>wxPython的安装</h2>
-<pre><code>pip3 install wxPython
-</code></pre>
-<p>如果网络不太好，可以到官网下载进行安装，官方网址：<code>https://wxpython.org/</code></p>
-<h2>Frame 窗口</h2>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png" /></p>
-<p>如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个<code>Frame</code>.</p>
-<p><code>Wx.Frame (parent, id, title, pos, size, style, name)</code></p>
-<p>其中的参数含意如下：</p>
-<p>Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
-id 窗口标识。通常-1为了让标识符自动生成
-Title 标题出现在标题栏
-Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
-Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
-style 窗口的外观按样式风格常数控制
-name 对象的内部名称</p>
-<h2>wxPython hello world</h2>
-<p>我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法<code>__init__</code>中创建窗口中的部件。
-<code>main()</code>方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。</p>
-<p>怎么样，很简单吧？</p>
-<pre><code>import wx
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        #创建一个静态文本
-        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
-        font = st.GetFont()
-        font.PointSize += 20
-        font = font.Bold()
-        st.SetFont(font)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -507,12 +424,23 @@ if __name__ == '__main__':
 
 <nav>
     <li><a href="list_7.html" role="button" class="outline">Prev</a></li>
-    <li><small>8 / 23</small></li>
+    <li><small>8 / 28</small></li>
     <li><a href="list_9.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -551,19 +479,7 @@ if __name__ == '__main__':
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

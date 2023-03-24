@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第14页</title>
+    <title>SuiYan 碎言博客  List Pages 第14页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,67 +81,23 @@
 
 
 <hgroup>
-    <h2>“编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-19 14:03:46</small> 标签:
+    <h2>2018 新年快乐！希望在coding中找到自己的快乐与希望</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-01 17:40:57</small> Tag:
         
         
-        <mark>pygame</mark>
+        <samll>站长吐槽</samll>
         
     </h3>
 </hgroup>
-<p><p><code>pygame</code>的框架使用起来很简单，但这个框架功能也还算可以的，虽然网上对<code>pygame</code>评价褒贬不一，但对于其的存在必有其的存在意义，功能上虽然不能说是十分的完美，但对于新手来说，在使用和学习中还是很有价值的。</p>
-<h2><code>pygame</code> 图形绘制</h2>
-<p>rect    绘制矩形
-polygon 绘制多边形（三个及三个以上的边）
-circle  绘制圆
-ellipse 绘制椭圆
-arc 绘制圆弧
-line    绘制线
-lines   绘制一系列的线
-aaline  绘制一根平滑的线
-aalines 绘制一系列平滑的线</p>
-<p>上边列举了一些图形绘制的方法，第一结中的代码我们只是给出pygame中最简约的实现代码，我们在上节代码的基础之上继续添加一下，试试画出各种图形。</p>
-<pre><code>pygame.draw.polygon(screen, RED, ((146,0),(290,100),(36,277),(55,200),(0,106)),2)
-pygame.draw.line(screen, BLUE, (11,33), (55,300), 1)
-pygame.draw.circle(screen, GREEN, (300,50), 100, 0)
-pygame.draw.ellipse(screen, RED, (300,250,180,80), 1)
-pygame.draw.rect(screen, RED, (200,150,100,100), 1)
-</code></pre>
-<p>以上为各种图形绘制的方法演示，关于这些方法的参数，我们可以参考官方的文档，其实都是挺简单的。</p>
-<h2>在场景中绘制图片</h2>
-<p>游戏中的角色不可能只是一些简单的图形，大多数时应该都是一张张图片，我们看下图片的绘制方法</p>
-<pre><code>bosiImg = pygame.image.load('./images/bosi.png')
-screen.blit(bosiImg,(bosix,bosiy))
-</code></pre>
-<p>通过<code>pygame.image.load()</code>加载图片后，在场景中使用<code>screen.blit</code>绘制，两个参数：图片对象和一个坐标元组。</p>
-<h2>在场景中写字</h2>
-<p>pygame中的文字绘制稍稍有一点麻烦，我们看代码：</p>
-<pre><code>fobj = pygame.font.Font('./font/3.ttf', 40)
-textobj = fobj.render('Hello World', True, GREEN,)
-text = textobj.get_rect()
-text.center = (400, 400)
-screen.blit(textobj, text)#文字显示
-</code></pre>
-<p>看代码行数是五步：</p>
-<ol>
-<li>通过<code>pygame.font.Font()</code>加载字体，创建一个font对象，设置文字的大小</li>
-<li>通过<code>render('Hello World', True, GREEN,)</code>设置文字的内容，颜色。</li>
-<li><code>get_rect()</code>或得一个rect对象，之后就有些象绘制图象了。</li>
-<li>设置绘制图像的坐标</li>
-<li><code>blit()</code>方法绘制文字到场景</li>
-</ol>
-<h2>让图片动起来</h2>
-<p>如何在场景中绘制动画？动画其实就是角色坐标值的修改，</p>
-<pre><code>bosix = 100
-bosiy = 100
-</code></pre>
-<p>在代码中我定义了二个变量，然后我在游戏场景的循环输出中，不断的修改角色的坐标值即可达到需要的动画效果了。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_3.png" /></p>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">开源中国码云镜像gitee</a></li>
-</ul></p>
+<p><p>转眼间时光匆匆流过，稀里糊涂的又过去了一年，大约2017年6月时我开始了博客的搭建与设计，8月份上线运营维护，这期间又草草聊聊的写了71篇技术相关的博文。。。这一深一浅的一路走来，希望自己在编程的路上走得更坚实更努力一些！</p>
+<h2>编程之路</h2>
+<p>断断续续的自学编程有10年多了，其中有苦有乐，成绩自我评价也就是接近及格那种。期间接触过好多种编程语言，就像打游戏一样，要把所有的职业都玩一遍，每个职业都练了几个月最后都放弃了，其中拿捏时间比较长的有：<code>php js java</code> 和现在正在深度学习的<code>Python</code>。其实一开始学习<code>Coding</code>的时候也是没有什么目标的，只是有一次在论坛做版主的时候被安排了一个任务，任务中需要用到<code>html+css</code>排版，然后自己就去百度搜索了一下相关知识，然后就一发不可收拾的迷上了编码。虽然最开始的时候学的是易语言，而且竟然学用了近二年之久，最后才因为某种原因不得不放弃它。之后就是各种语言职业的轮番试玩了。。。一直到14年左右，才开始稳定到java，16年弃坑<code>java</code>转而<code>Python</code>。</p>
+<h2>2018的书单</h2>
+<p>今年有一些目标和计划，除了努力工作之外，还是要继续学习<code>Python</code>，然后继续学习一门新的编程语言，感觉这门语言非<code>C++</code>莫属了，天下武功（编码）少林正宗（C++）。
+然后计划读30本书，其中10本编程专业书籍，20本兴趣书籍。写50篇或更多的专业博文，用来记录自己的学习历程，巩固学习进度，加深学习印象。</p>
+<h2>编程计划</h2>
+<p>计划写一个学习<code>Python</code>编程的RPG游戏及开发一个<code>Django</code>开源blog。我会为此而努力。2018，新的一年，希望大家更加努力，早日实现自己的梦想。
+最后，我告诉你：<strong>相信我，多读书，不会错的。</strong></p></p>
 
 
 <hr>
@@ -149,187 +105,52 @@ bosiy = 100
 
 
 <hgroup>
-    <h2>“编学编玩”用Pygame写游戏（1）初识pygame</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-19 11:00:31</small> 标签:
+    <h2>“编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-29 20:18:35</small> Tag:
         
         
-        <mark>pygame</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/timg.jpeg" /></p>
-<h2>啰嗦几句</h2>
-<p>这阵子一直在看有关<code>Python</code>相关的书，<code>Python</code>上手确实很简单，但这并不意味着<code>Python</code>是一门浅显的编程语言，语法简练确实让我们节省了大量的时间。不过当你深入的学习<code>Python</code>的时候，比如：装饰器，推导，多线程及多进程，协程，高阶函数，元编程等等等等很多，你会发现，<code>Python</code>的深入学习并不是很简单。会写代<code>Python</code>和会优雅的编写<code>Python</code>代码是两回事，出来混的，坑迟早还是要挖的，这不前几天协程的深入学习，搞的我很不爽，到现在还是一头雾水。</p>
-<p>为了让自己换换心情，前几天想到用<code>python</code>写写小游戏玩玩吧，想到自己以前用<code>java</code>还编写了一个小小的2D游戏引擎半路就放弃了（java就是不爽），这次来试试用<code>Python</code>写些小游戏试试。其实写游戏练习编程确实是一个比较好的方法，几百行的工程量也不算大，游戏设计的逻辑比较紧密，比较适合新手养成编程思维，不过如果是刚刚学习编程，可能还是会觉得游戏中大段的代码，摸不清逻辑，所以通过阅读代码了解游戏的设计意图也算是对编程能力很好的锻炼。</p>
-<p>好了，啰嗦了半天，我们开始pygame的学习之旅吧。</p>
-<h2>pygame 安装</h2>
-<pre><code>pip3 install pygame
-</code></pre>
-<p>就是这么简单，然后我们可以在python3的终端环境下测试一下</p>
-<pre><code>import pygame
-</code></pre>
-<p>如果没有报错，那么恭喜你安装成功了。</p>
-<h2>pygame的 Hello World</h2>
-<p>导入pygame模块及常用变量，如果还需要其它模块，可以一并导入，比如sys,os,time random等。</p>
-<pre><code>import pygame
-from pygame.locals import *
-</code></pre>
-<p>这里是一个游戏初始化的设置，他应该在游戏代码编写的最前边，不要忘记哦。</p>
-<pre><code>pygame.init()
-</code></pre>
-<p>SCREEN 定义了一个游戏的屏幕，我觉得管它叫做画布更形象些，因为后续游戏场景中的游戏对象，都要在这个screen上绘制。</p>
-<pre><code>SCREEN = pygame.display.set_mode((640, 480))
-</code></pre>
-<p>设置当前游戏窗口的标题</p>
-<pre><code>pygame.display.set_caption("Hello World!")
-</code></pre>
-<p>这里有个死循环，这是游戏的主要逻辑处理及场景渲染器，for循环是处理游戏中的事件触发，其中QUIT表示触发了游戏离开件事，然后调用<code>pygame.quit()</code>函数。<code>pygame.display.updae()</code>这个函数表示更新当前screen的画面。</p>
-<pre><code>while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-    pygame.display.update()
-</code></pre>
-<h2>效果如图：</h2>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_2.png" /></p>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>浅谈Python中的协程及利用协程代替多线程及多进程并发编程</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-15 15:52:46</small> 标签:
-        
-        
-        <mark>Python基础</mark>
+        <samll>pygame</samll>
         
     </h3>
 </hgroup>
-<p><p>协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。</p>
-<h2>生成器如何演变成协程？</h2>
-<p>乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？</p>
-<pre><code>def cd(n):
-    print("Counting down from %s" % n)
-    while n > 0:
-        yield n
-        n -= 1
-c = cd(10)
-next(c)
-for i in c :
-    print(i,end=' ')
-</code></pre>
-
-<p>上边是一个典型的生成器函数，我们稍加变化使之成为协程。</p>
-<pre><code>def cd1():
-    n = yield
-    while n > 0:
-        print("Counting down from %s" % n)
-        n -= 1
-
-c1 = cd1()
-next(c1)
-c1.send(10)
-#运行到这里应该抛出一个异常
-</code></pre>
-
-<p>生成器和协程的不同有没有看出来？很明显的有两处：</p>
+<p><p>以前学java的时候用java做了一个简单弹球小游戏，觉得还是蛮有意思的，这次用<code>pygame</code>重写一下试试，以前觉得游戏编程很简单，可能是考虑的太简单了，游戏的编写是步步为营，逻辑紧扣，错一点游戏都无法运行的，所以学习用面向对象方式编写游戏，是对python编程学习的强化练习，大家可以多试试。</p>
+<h2>Pingball游戏的设计</h2>
+<p>游戏很小，场景中的精灵有两个：球拍和一个小球。游戏的顺序包括：游戏开始画面，游戏主场景，游戏结束画面。
+游戏逻辑：判断小球的Y坐标低于球拍的Y坐标值即为游戏结束，球拍和小球都有自己的运动逻辑。这么简单的游戏我们从哪里入手呢？
+肯定是先创建一个游戏窗口啦：）</p>
+<h2>设定一些游戏的基本数据</h2>
+<p>游戏包括的主要数据有：</p>
 <ul>
-<li>yield的位置</li>
-<li>next()和send()函数的用法</li>
+<li>游戏场景（宽+高）</li>
+<li>球拍，（宽，高，位置，移动速度）</li>
+<li>小球，（宽，高，位置，移动速度）</li>
+<li>游戏逻辑，判断游戏是否结束，暂停游戏，重新开始游戏，及一些文字的打印。</li>
 </ul>
-<p>通过运行结果我们可以到最后抛出了一个异常<code>StopIteration</code>,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。</p>
-<pre><code>from functools import wraps
-def coroutine(func):
-    @wraps(func)
-    def primer(*args, **kwargs):
-        gen = func(*args,**kwargs)
-        next(gen)
-        return gen
-    return primer
-@coroutine
-def cd2():
-    n = yield
-    while n > 0:
-        print("Counting down from %s" % n)
-        n -= 1
-try:
-    cd2().send(10)
-except Exception as e:
-    print('协程任务终止')
-</code></pre>
-
-<p>带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。</p>
-<h2>利用协程代替线程或进程进行并发编程</h2>
-<p>我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
-这里的协程用到了asyncio模块，利用asyncio模块实现了一个协程的并发。关于asyncio的实现原理，稍后再研究一下。</p>
-<pre><code>import asyncio
-import time
-import threading
-def tn(func):
-    '''定义一个程序运行时间计算函数'''
-    def wrapper(*args, **kwargs):
-        start = time.time() # 起始时间
-        func(*args, **kwargs) # 要执行的函数
-        end = time.time() # 结束时间
-        print('程序运行时间:{:.2f}ms'.format((end-start)))
-    return wrapper
-
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(1)
-
-# @asyncio.coroutine
-async def loop2(tname):# async等同于@asyncio.coroutine
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    # yield from asyncio.sleep(1)
-    await asyncio.sleep(1)  # 等同于yield from
-
-@asyncio.coroutine
-def loop3(tname):# async等同于@asyncio.coroutine
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    yield from asyncio.sleep(1)
-    # await asyncio.sleep(1)  # 等同于yield from
-
-@tn
-def main():
-    print('多线程任务开始执行=====')
-    threads = []#定义一个线程队列
-    for i in range(5):
-        t = threading.Thread(target=loop1, args=("thread"+str(i),))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-
-    #协程并发测试
-    print('协程并发测试开始======')
-    loop = asyncio.get_event_loop()# 获取一个event_loop
-    #任务列表
-    tasks = [
-        asyncio.ensure_future(loop2('11111')),
-        asyncio.ensure_future(loop2('22222')),
-        asyncio.ensure_future(loop2('33333')),
-        asyncio.ensure_future(loop3('44444')),#loop3
-        asyncio.ensure_future(loop3('55555'))]#loop3
-    loop.run_until_complete(asyncio.wait(tasks))
-    loop.close()
-if __name__ == '__main__':
-    main()
-</code></pre>
-
-<p>上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
-这就是协程的魅力所在，一条线程搞定多线程任务。</p>
+<p>有了这些构思，我们一样一样的通过我们之前封装的PY_RPG及pygame提供的一些功能来实现这个小游戏。</p>
+<h2>创建场景</h2>
+<p>一共有三个场景，分别为游戏开始画面<code>MainScene</code>游戏主场景<code>Pingball</code>游戏结束画面<code>GameOverScene</code></p>
+<p>先创建三个场景的类，通过继承<code>PY_RPG.Scene</code>，会很方便的创建出三个类，分别修改三个场景的一些参数，然后设置键盘判断，进行游戏场景的跳转。
+因为<code>Scene</code>中的三个方法分工非常明确，我们可以很好的控制游戏场景，这样我们可以先把三个场景制作出来，然后进行测试，虽然游戏主场景没有任何精灵，
+但游戏场景整体是可以切换的。</p>
+<h2>创建球拍与球</h2>
+<p><code>Racket</code>和<code>Ball</code>分别进行一些属性设置，其中<code>Racket</code>相对来说比较简单，只需要左右移动，做一个场景边界判断即可。
+<code>Ball</code>的属性多了一些，需要有移动速度，需要通过<code>update</code>方法进移动的控制。</p>
+<h2>游戏逻辑判断</h2>
+<p>在游戏主场景中的<code>Pingball.update</code>方法中进行了一些游戏逻辑判断，包括：球遇到边界反弹，小球遇到球拍反弹后增加速度，和游戏结束的判断。
+这个方法中还需要添加球与球拍自己的<code>update</code>方法,用来更新自己的坐标变化。</p>
+<h2>游戏结束</h2>
+<p>游戏结束后，还可以通过按键重新开始，在<code>Pingball</code>中有个<code>replay</code>的函数，是用来控制重新开始后球体的位置.</p>
+<h2>功能扩展</h2>
+<p>这个弹球游戏只完成了最最最基本的功能，扩展性很强，比如添加关卡，打印得分，增加一些特效，只要你想修改，弹球也一样可以玩的很嗨。</p>
+<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_8.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_9.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_10.png" /></p>
+<h2>本文源码下载</h2>
+<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：PY_RPG.pingball.py</p>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -338,107 +159,136 @@ if __name__ == '__main__':
 
 
 <hgroup>
-    <h2>聊聊Python中晦涩的生成器（yield）与生成器表达式</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-14 08:21:49</small> 标签:
+    <h2>“编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-28 21:41:37</small> Tag:
         
         
-        <mark>Python基础</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171014_4.png" /></p>
-<h2>晦涩的生成器yield</h2>
-<p>刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。</p>
-<h2>什么是生成器？</h2>
-<p>书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，<code>__next__()</code>#python3中的特殊方法，应该避免使用特殊方法，<code>next(c)</code>使用内置函数next()即可。</p>
-<pre><code>def countdown(n):
-    print("Counting down from %s" % n)
-    while n > 0:
-        yield n
-        n -= 1
-    return
-
-c = countdown(10)
-print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
-print(next(c))#使用内置函数next()
-for i in c :
-    print(i,end=' ')
-</code></pre>
-
-<p>函数对象调用<code>.__next__()</code>函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
-调用<code>close()</code>方法关闭未使用完的生成器。
-那么问题来了，yield到底是什么？</p>
-<p>我们把上边的代码稍加变化:</p>
-<pre><code>def countdown1(n):
-    print("Counting down from %s" % n)
-    while n > 0:
-        yield n*n
-        n -= 1
-    return
-
-c = countdown1(10)
-print(next(c))
-print(next(c))
-print(next(c))
-for i in c :
-    print(i,end=' ')
-</code></pre>
-
-<p>运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。</p>
-<h2>生成器表达式</h2>
-<p>如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
-因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。</p>
-<p>代码如下：</p>
-<pre><code>print('')
-print("生成器表达式:")
-b = (x*x for x in range(10) if (x % 2 ==0))
-print(next(b))
-print(next(b))
-for i in b :
-    print(i, end=' ')
-
-</code></pre>
-
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-13 10:57:48</small> 标签:
-        
-        
-        <mark>Python基础</mark>
+        <samll>pygame</samll>
         
     </h3>
 </hgroup>
-<p><p>先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_1.png" />
-<img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_3.png" /></p>
-<h2>Tk多线程中的坑</h2>
+<p><h2>为什么要封装？</h2>
+<p>pygame写起游戏都是函数式编写，对于一些简单的小游戏或许可以应付，随着游戏内容的增加，我们不可能只在一个.py文件中写下所有的游戏代码，这个时候，我们应该考虑对游戏中组件及对象进行封装，用面向对象的方式来进行游戏代码的编写。</p>
+<h2>一些具体的封装内容</h2>
+<p>游戏中的关键词，假设游戏没有条件判断，那么游戏从头运行到尾就是一部电影。
+这样的话，我们定义一些游戏的基本对象：</p>
 <ul>
-<li>在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！</li>
-<li>客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。</li>
+<li>渲染器（APP）--只负责渲染游戏场景中存在的游戏片段，属性有：一个游戏片段容器及一些游戏窗口常用设置，并初始化游戏设置。</li>
+<li>游戏片段(scene)--可能是游戏中的一个片段，一个情节，一节过场，片头，片尾等，游戏片段中包含一个开关属性，用来控制是否可以渲染此游戏片段。</li>
+<li>游戏逻辑判断器--游戏中的裁判，负责判断修改游戏中的执行条件。</li>
+<li>精灵--游戏中的角色，他可以是游戏中的场景，主角，配角，怪物，子弹，文字对白。</li>
+<li>工具类包括：场景中文字渲染工具，游戏中的素材目录的定制，方便调用。一些其它可能需要重复使用的工具。</li>
 </ul>
-<h2>多用户服务器端</h2>
-<p>每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
-这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。</p>
-<p>关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。</p>
-<h2>客户端</h2>
-<p>客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。</p>
-<p>具体代码就不贴了，到git下载吧。</p>
-<p>代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。</p>
+<h2>定义渲染器</h2>
+<p>渲染器定义为一个游戏的APP，他应该是这个游戏的最外层，可以定义他的，分辨率，标题，刷新频率。
+如果游戏中有精灵贯穿全局（比如RPG游戏中的主要角色），这种精灵角色他不属于某个游戏片段，这样他应该存在于这个游戏app中。</p>
+<h2>定义游戏片段</h2>
+<p>一个gameApp中，至少得有一个游戏片段，游戏片段包括三个主要方法：</p>
+<pre><code>draw() update() handle_event()
+</code></pre>
+<p>这三个方法分别对应:</p>
+<ul>
+<li>渲染场景</li>
+<li>更新数据 </li>
+<li>事件处理</li>
+</ul>
+<p>当我们继承新建游戏片段类的时候，需要根据自己的需求重写这三个方法。</p>
+<h2>如何使用PY_RPG？</h2>
+<pre><code>app = GameApp()#创建游戏
+appscreen = app.screen#获取渲染器
+app.scenes.append(MainScene(appscreen))#创建游戏菜单
+app.scenes.append(TestScene(appscreen))#创建游戏内容
+app.scenes.append(GameOverScene(appscreen))#游戏结束画面
+app.run() #游戏开始
+</code></pre>
+<p>根据需要创建并重写上边的三个类，然后创建游戏就可以了，现在这样看来，游戏的创建是不是很有层次了？</p>
+<p>这个框架还没有封装完毕，我还会继续的，之后的游戏制作都要从这个框架上弄起了，初步还要写几个完整的小游戏例子。</p>
+<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_5.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_6.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_7.png" /></p>
+<h2>本文源码下载</h2>
+<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件在PY_RPG目录下</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-24 19:21:04</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png" /></p>
+<p>python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。</p>
+<h2>tkinter.filedialog的测试</h2>
+<p>创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
+测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：</p>
+<pre><code>'askdirectory',
+'askopenfile',
+'askopenfilename',
+'askopenfilenames',
+'askopenfiles',
+'asksaveasfile',
+'asksaveasfilename'
+</code></pre>
+<p>以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。</p>
+<p>好了，具体测试源码如下：</p>
+<p>'''</p>
+<pre><code>import tkinter.filedialog as filedialog
+from tkinter import *
+import os
+
+def filedir():
+    print('按键已被点击')
+    v.set('')#清空文本框里内容
+    var.set((('')))
+    path = filedialog.askdirectory()
+    print(dir(filedialog))
+    if path :
+        v.set(path)
+    getdir(path)
+
+def getdir(p):
+    #把目录中遍历出来的文件目录显示到列表框中
+    fp = os.listdir(p)
+    var.set(fp)
+
+root = Tk()
+root.title('文件目录选择对话框测试')
+frame = Frame(root)
+frame.pack(fill=X,side=TOP)
+#加入一个文本框显示目录地址
+v = StringVar()#绑定文本框的变量
+ent = Entry(frame, width=50,textvariable = v).pack(fill=X,side=LEFT)
+#加入一个按键，点击后弹出文件目录选择对话框
+button = Button(frame, text='选择文件夹', command=filedir).pack(fill=X,side= LEFT)
+#加入一个列表框，显示目录中的文件列表
+listframe = Frame(root)
+listframe.pack(fill=X,side=LEFT)
+var = StringVar()#绑定listbox的列表值
+var.set((''))
+listbox = Listbox(listframe,width=60,listvariable = var).pack()
+root.mainloop()
+</code></pre>
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -449,12 +299,23 @@ for i in b :
 
 <nav>
     <li><a href="list_13.html" role="button" class="outline">Prev</a></li>
-    <li><small>14 / 23</small></li>
+    <li><small>14 / 28</small></li>
     <li><a href="list_15.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -493,19 +354,7 @@ for i in b :
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

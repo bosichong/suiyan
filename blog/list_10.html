@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第10页</title>
+    <title>SuiYan 碎言博客  List Pages 第10页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,55 +81,88 @@
 
 
 <hgroup>
-    <h2>聊聊Python中的递归与快速排序那点事</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-30 14:38:39</small> 标签:
+    <h2>wxPython编程学习笔记(05)单选及多选按钮</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-23 18:49:39</small> Tag:
         
         
-        <mark>Python基础</mark>
+        <samll>Python GUI</samll>
         
     </h3>
 </hgroup>
-<p><p>最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。</p>
-<h2>在Python中递归</h2>
-<p>递归比较简单的例子就是阶乘，看下递归的必要条件：</p>
-<ul>
-<li>边界条件：确定递归到何时终止，也称为递归出口。</li>
-<li>递归模式：大问题是如何分解为小问题的，也称为递归体。</li>
-</ul>
-<p>阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：</p>
-<pre><code>def f(n):
-    if n == 1: return 1
-    return n * f(n - 1)
-print(f(5))
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png" /></p>
+<h2>wxPython单选及多选按钮</h2>
+<p>单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
+通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。</p>
+<h2>多选按钮wx.CheckBox</h2>
+<p>创建及绑定事件</p>
+<pre><code>cb1=wx.CheckBox(pnl, label='hello', )
+self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
 </code></pre>
-<p>上边就是一个简单的递归阶乘函数，很简单喽，不过在<code>Python</code>中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:</p>
-<pre><code>import sys
-sys.setrecursionlimit(5000)  # 设置递归层数
-print(sys.getrecursionlimit())  # 查看
+<p>这里的<code>self.Bind</code>是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。</p>
+<h2>单选按钮组wx.RadioBox</h2>
+<p>这里我直接介绍<code>wx.RadioBox</code>，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。</p>
+<p>创建及绑定</p>
+<pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                              style=wx.RA_SPECIFY_ROWS)
+self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
 </code></pre>
-<h2>Python中的快速排序</h2>
-<p>快速排序法是一个非常精典的递归例子，C语言标准库中的<code>qsort</code>函数的实现主是采用的快速排序法。
-快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
-具体看代码：</p>
-<pre><code>def q_sort(arr):
-    if len(arr) &lt; 2 :
-        return arr
-    else:
-        p = arr[0]
-        print(p)
-        l = [i for i in arr[1:] if i &lt;= p]
-        g = [i for i in arr[1:] if i &gt; p]
-        temp = list()
-        temp.append(p)
-        return q_sort(l) + temp  + q_sort(g)
-print(q_sort([2,44,3,77,6,5,888,999]))
+<p>代码很直观，<code>majorDimension</code>表示单选钮的排列方式：0横向，1竖向。</p>
+<p>好了，完整的代码在下边，可以跑跑看。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        pnl = wx.Panel(self)
+
+
+        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
+        cb1=wx.CheckBox(pnl, label='hello', )
+        cb2=wx.CheckBox(pnl, label='world', )
+        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
+        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                                  style=wx.RA_SPECIFY_ROWS)
+        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
+
+        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
+
+        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
+
+        btn.Bind(wx.EVT_BUTTON, self.OnClose)
+
+        pnl.SetSizer(hbox3)
+
+
+    def onRadiobox(self,e):
+        rb = e.GetEventObject()
+        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
+
+    def onCheckBox(self,e):
+        cb = e.GetEventObject()
+        if cb.GetValue():
+            print(cb.GetLabel())
+
+    def OnClose(self, e):
+        self.Close(True)
+
+
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
 </code></pre>
-<p>上边代码如果直接<code>return q_sort(l) + p  + q_sort(g)</code>是会报错的，所以修改了使用list相加。
-算法其实很有意思，程序都是有算法组成的，以后得多看看了。</p>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -138,281 +171,263 @@ print(q_sort([2,44,3,77,6,5,888,999]))
 
 
 <hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-16 10:25:21</small> 标签:
+    <h2>wxPython编程学习笔记(04)wx.Butoon的应用</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-22 20:26:29</small> Tag:
         
         
-        <mark>pygame</mark>
-        
-    </h3>
-</hgroup>
-<p><p>当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif" /></p>
-<h2>Matrix的构思</h2>
-<p>我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
-Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。</p>
-<h2>Matrix代码编写调试过程</h2>
-<p>刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
-当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。</p>
-<pre><code>c = random.randint(33, 127)
-chr(c)
-</code></pre>
-<p>对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。</p>
-<h2>让Matrix动起来</h2>
-<p>场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
-add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。</p>
-<h2>Matrix代码缩写总结</h2>
-<p>感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png" /></p>
-<p>本文源码下载</p>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py</p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-13 16:00:40</small> 标签:
-        
-        
-        <mark>pygame</mark>
+        <samll>Python GUI</samll>
         
     </h3>
 </hgroup>
-<p><p>记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
-如果你感兴趣， Follow me, please.</p>
-<p>无图无真相，先上图：</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png" />
-<img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png" />
-<img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png" /></p>
-<h2>Tetromino游戏构思</h2>
-<p>很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！</p>
-<p>Tetromino如果我们从逻辑上拆分，我这里能想到三点：</p>
-<ul>
-<li>一个长方形的场景</li>
-<li>下落的方块</li>
-<li>游戏中的逻辑</li>
-</ul>
-<p>当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
-游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？</p>
-<p><strong>友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程</strong></p>
-<h2>Tetromino中的游戏板</h2>
-<p>Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
-首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
-其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
-设置Tetromino类中的self.start = True，这样方便调试游戏。</p>
-<h2>绘制board游戏板</h2>
-<pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png" /></p>
+<h2>wx.Butoon</h2>
+<p>按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。<code>wx.Button</code>使用起来操作简单。
+wx中开关按钮<code>ToggleButton</code>，类似于电灯开关，绑定事件后可以通过</p>
+<pre><code>obj = e.GetEventObject()
+isPressed = obj.GetValue()
 </code></pre>
-<p>通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
-在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
-有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。</p>
-<h2>下落的方块</h2>
-<p>下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
-具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
-Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
-这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。</p>
-<h2>游戏中的逻辑</h2>
-<p>这个游戏的核心逻辑个人觉得就是：<strong>判断当前下落方块所处的位置是否合法</strong>，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
-我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
-一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
-就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
-伪代码：</p>
-<pre><code>    for a in range(w):
-        for b in range(h):
-            if (shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 2) or (
-                    shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 1):
-                return 0
-    return 1
+<p>来获取对象的属性，这样就可以知道开关按钮的状态了。</p>
+<h2>Button的创建与使用</h2>
+<p>创建</p>
+<pre><code>bt = wx.Button(self,label="关闭窗口",)
 </code></pre>
-<p>原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
-有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
-实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！</p>
-<h2>本文源码下载</h2>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
-本例源文件：<code>PY_RPG.Tetromino.py</code></p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>极速学习C++之基础篇</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-11 09:07:47</small> 标签:
-        
-        
-        <mark>C/C++</mark>
-        
-    </h3>
-</hgroup>
-<p><p>极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
-假设你和笔者有相同的经历，曾经接触过php java js python，并且和每个语言有过一段还不算太短的"恋情"，那么我开始极速极速学习C++。</p>
-<h2>万年不变的HelloWorld</h2>
-<p>C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
-打开CLion,new一个C++ Project，输入以下代码：</p>
-<h1>include "iostream"</h1>
-<pre><code>using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World!" &lt;&lt; endl;
-    return 0;
-}
+<p>绑定事件</p>
+<pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
 </code></pre>
-<p>好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。</p>
-<h2>常量变量及运算</h2>
-<p>常量定义的二种方法：</p>
-<pre><code>#define COOL 18
-const int COOLA = 19;
-cout &lt;&lt; "COOL : " &lt;&lt; COOL &lt;&lt; "  COOLA : " &lt;&lt; COOLA &lt;&lt; endl;
-</code></pre>
-<p>这样就可以打印常量了。</p>
-<p>定义变量和运算符也是如此简单上手：</p>
-<pre><code>int a,b,c;
-float d = 23.99;
-double e = 1.9876;
-char s[] = "hellp";
-string str = "world";
-a = 10,b=21,c=43;
-</code></pre>
-<p>cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;</p>
-<p>当然运算符远远不指这些，还有很多，具体可以查阅相关资料。</p>
-<h2>条件与循环</h2>
-<p>条件判断：</p>
-<pre><code>int a = 10;
-int b = 20;
-if(a &lt; b){
-    cout &lt;&lt; "a &lt; b" &lt;&lt;endl;
-}
-</code></pre>
-<p>循环输出九九乘法口决：</p>
-<pre><code>for (int i = 1; i &lt; 10; ++i) {
-    for (int j = 1; j &lt;= i; ++j) {
-        cout &lt;&lt; j &lt;&lt; "*" &lt;&lt; i &lt;&lt; "=" &lt;&lt; i * j &lt;&lt; "   ";
-    }
-    cout &lt;&lt; endl;
-}
-</code></pre>
-<h2>函数声明及使用</h2>
-<p>要使用一个函数，需要先在源文件的顶部声明：</p>
-<pre><code>int add (int a,intb)
-</code></pre>
-<p>然后再源文件中编写代码：</p>
-<pre><code>int add(int a, int b) {
-    return a + b;
-}
-</code></pre>
-<p>然后就可以调用了：</p>
-<pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
-</code></pre>
-<h2>C++中的指针</h2>
-<pre><code>int var = 9;
-int *ip = &amp;var;
+<p>然后编写绑定事件的函数方法，这样就可以调用此方法了。</p>
+<p>具体代码如下，希望这些短小的代码，能给您带来帮助。</p>
+<pre><code>import wx
 
-cout &lt;&lt; "ip " &lt;&lt; ip &lt;&lt; endl;
-cout &lt;&lt; "*ip " &lt;&lt; *ip &lt;&lt; endl;
-</code></pre>
-<p>是不是理解了？一个输出内存的地址，一个输出地址中的值。</p>
-<h2>结构体与枚举</h2>
-<p>结构体与类很相似，结构体是C中的数据结构。
-枚举用起来很方便，有枚举常量和枚举变量，注意区分。</p>
-<pre><code>#include &lt;iostream&gt;
-using namespace std;
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
 
-struct Books {
-    char title[20];
-    char author[50];
-    int book_id;
-//    结构体中的函数
-    void prt(){
-        printf("book_id:%d",book_id);
-    }
-};
-
-//定义枚举常量
-enum Direction{up,left,down,right};
-
-int main() {
-
-    Books book1;
-    book1 = {"booka","ba",1};
-    cout &lt;&lt; "book1.title:" &lt;&lt; book1.title &lt;&lt; endl;
-    printf("sdfsdfsdf %s \n",book1.author);
-    book1.prt();
-    cout &lt;&lt; endl
-//打印枚举
-    printf("up:%d down:%d",up,down);
-
-    return 0;
-}
-</code></pre>
-<p>基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。</p></p>
+        box = wx.BoxSizer(wx.VERTICAL)
+        bt1 = wx.Button(self,label="关闭窗口",)
+        bt1.Bind(wx.EVT_BUTTON, self.onCloseWindow)
 
 
-<hr>
-<br>
+        self.bt2 = wx.ToggleButton(self,label='开关')
+        self.bt2.Bind(wx.EVT_TOGGLEBUTTON,self.showFlash)
+        st = wx.TextCtrl(self,value='helloworld',)
 
 
-<hgroup>
-    <h2>妙用IPython学习Python--IPython快速上手</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-07 10:16:11</small> 标签:
-        
-        
-        <mark>Python基础</mark>
-        
-    </h3>
-</hgroup>
-<p><p>在学习Python的时候，有时我们只是想了解一下模块或是函数，或是测试一些小小代码片段，或是在shell中结合Python一起使用，有没有简便的工具或方法呢？有的，你可以试试IPython.</p>
-<h2>IPython的安装</h2>
-<pre><code>pip3 install ipython
+        box.AddMany([(bt1,0, wx.ALL | wx.EXPAND, 0),(self.bt2,0, wx.ALL | wx.EXPAND, 0),(st,0, wx.ALL | wx.EXPAND | wx.SHAPED, 0)])
+
+
+        self.SetSizer(box)
+
+
+    def onCloseWindow(self,e):
+        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        ret = dl.ShowModal()
+
+        if ret == wx.ID_YES:
+            self.Destroy()
+        else:
+            pass
+
+    def showFlash(self,e):
+        obj = e.GetEventObject()
+        isPressed = obj.GetValue()
+
+        if isPressed:
+            self.bt2.SetLabel("关闭")
+        else:
+            self.bt2.SetLabel("打开")
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
 </code></pre>
-<p>然后，在终端中输入 <code>ipython</code>验证一下</p>
-<pre><code>➜  ~ ipython
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)
-Type 'copyright', 'credits' or 'license' for more information
-IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:
-</code></pre>
-<p>如果出现以上提示，即是安装成功</p>
-<h2>IPython的用处</h2>
-<p>IPython的使用妙法很多，这里我只介绍一些超级常用的方法，如有不足，欢迎回复本博文进行补充。</p>
-<ul>
-<li>代码提示</li>
-</ul>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_19.png" /></p>
-<ul>
-<li>问号？妙用</li>
-</ul>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_20.png" /></p>
-<p>这样可以直接查看到对象的一些属性介绍。</p>
-<ul>
-<li>直接使用shell命令</li>
-</ul>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_21.png" /></p>
-<p>这个是不是很方便有没有？</p>
-<p>IPython确实是Python学习中的好帮手，在熟悉某些模块的时候，用IPythong先来探个明白是个不错的方法。</p>
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.cnblogs.com/zzhzhao/p/5295476.html">IPython使用学习笔记</a></li>
-<li><a href="https://www.zhihu.com/question/51467397?from=profile_question_card">使用IPython有哪些好处？</a></li>
-</ul>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(03)wxPython中的事件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-21 19:11:40</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png" /></p>
+<h2>wxPython中的事件</h2>
+<p>和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。</p>
+<p>wxPython中的事件绑定很简单：</p>
+<pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
+</code></pre>
+<p>上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，<code>self.onMove</code>就是这个事件处发时要执行的方法函数。
+我们只要在<code>class</code>中定义<code>self.onMove</code>方法的代码，然后当事件触发时，就可以执行<code>onMove</code>方法了。</p>
+<p><code>wx.EVT_XXXXX</code>这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。</p>
+<p>好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+
+        #创建一组文本用来显示数值
+        wx.StaticText(self,label="x:",pos=(10,10))
+        wx.StaticText(self, label="y:", pos=(10, 30))
+
+        self.st1 = wx.StaticText(self, label='', pos=(30, 10))
+        self.st2 = wx.StaticText(self, label='', pos=(30, 30))
+        #绑定窗口移动事件
+        self.Bind(wx.EVT_MOVE,self.onMove)
+        #绑定窗口关闭事件
+        self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
+
+    def onMove(self,e):
+        x,y = e.GetPosition()
+        self.st1.SetLabel(str(x))
+        self.st2.SetLabel(str(y))
+
+    def onCloseWindow(self,e):
+        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        ret = dl.ShowModal()
+
+        if ret == wx.ID_YES:
+            self.Destroy()
+        else:
+            pass
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(02)wxPython的布局</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-19 20:22:01</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png" /></p>
+<h2>wxPython的布局</h2>
+<p>窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，</p>
+<p>我们可以选择下列sizers：</p>
+<p>1.wx.BoxSizer</p>
+<p>2.wx.StaticBoxSizer</p>
+<p>3.wx.GridSizer</p>
+<p>4.wx.FlexGridSizer</p>
+<p>5.wx.GridBagSizer</p>
+<p>这里我介绍一下<code>wx.BoxSizer</code>，灵活应用它基本上可以满足大部分窗口中的布局。</p>
+<h2>wx.BoxSizer</h2>
+<p><code>wx.BoxSizer</code>有<code>wx.VERTICAL</code>或<code>wx.HORIZONTAL</code>两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。</p>
+<p>如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。</p>
+<p>列举一些属性：</p>
+<p>1.wx.LEFT</p>
+<p>2.wx.RIGHT</p>
+<p>3.wx.BOTTOM</p>
+<p>4.wx.TOP</p>
+<p>5.wx.ALL</p>
+<p>以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：</p>
+<pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
+</code></pre>
+<p>我们还可以通过以下属性定义我们的部件对齐：：</p>
+<p>1.wx.ALIGN_LEFT
+2.wx.ALIGN_RIGHT
+3.wx.ALIGN_TOP
+4.wx.ALIGN_BOTTOM
+5.wx.ALIGN_CENTER_VERTICAL
+6.wx.ALIGN_CENTER_HORIZONTAL
+7.wx.ALIGN_CENTER</p>
+<p>好了，下边列举了一下小例子：</p>
+<pre><code>import wx
+
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        # 调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
+
+        st = wx.TextCtrl(pl)
+        hbox1.Add(st, proportion=1, )
+
+        bt1 = wx.Button(pl, label="hello world")
+        hbox1.Add(bt1, )
+
+        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
+
+        bt2 = wx.Button(pl, label="hello world")
+        bt3 = wx.Button(pl, label="hello world")
+        bt4 = wx.Button(pl, label="hello world")
+        hbox2.Add(bt2, wx.EXPAND)
+        hbox2.Add(bt3, )
+        hbox2.Add(bt4, wx.EXPAND)
+        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        sb = wx.StaticBox(pl, label="test")
+        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
+        bt5 = wx.Button(pl, label="yes")
+        bt6 = wx.Button(pl, label="no")
+        hbox3.Add(bt5, )
+        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
+        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
+
+        pl.SetSizer(vbox)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython 布局练习')
+    frm.Show()  # 显示窗口
+    app.MainLoop()  # 持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -423,12 +438,23 @@ In [1]:
 
 <nav>
     <li><a href="list_9.html" role="button" class="outline">Prev</a></li>
-    <li><small>10 / 23</small></li>
+    <li><small>10 / 28</small></li>
     <li><a href="list_11.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -467,19 +493,7 @@ In [1]:
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

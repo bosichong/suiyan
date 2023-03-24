@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第4页</title>
+    <title>SuiYan 碎言博客  List Pages 第4页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,28 +81,75 @@
 
 
 <hgroup>
-    <h2>前端项目构建打包的一些学习笔记</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-01 21:09:54</small> 标签:
+    <h2>Vue快速学习笔记(2)Vue中的监听与计算属性</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-02-01 10:31:26</small> Tag:
         
         
-        <mark>JavaScript</mark>
+        <samll>Vue</samll>
         
     </h3>
 </hgroup>
-<p><h2>遇到的问题</h2>
-<p>由于项目总是有一些小BUG，回想了一下项目中的JS文件的组织问题，估计应该是JS文件分散造成的加载不稳定，有时会造成一些变量莫名的未定义，事已至此，只有将这些文件打包到一个文件中就可以很好的解决这个问题，但是今天在网上搜了一些都是最近流行的打包工具，感觉功能过于丰富，以当前的项目来说用这些流行的打包工具有些大材小用了，而且学习成本高了一些，后来看了一下手头上的两JavaScript本书都推荐<code>Ant</code>打包，所以决定按书上的来吧，省时省力。</p>
-<h2>项目目录结构</h2>
-<p>书上说项目主要有三个目录：</p>
-<ul>
-<li><code>bulid</code>用来放置最终构建的文件，理想情况下这个目录不应该提交</li>
-<li><code>src</code>用来存放所有的源文件，包括用来进行文件分组的子目录</li>
-<li><code>test</code> 测试文件。</li>
-</ul>
-<h2>Ant打包</h2>
-<p>ant的安装教程很多，这里就不在重复了。</p>
-<p>前端构建需要明白自己要做的是什么，其实打包构建的工具很多的，但是有些打包工具的功能太多了，学习成本很大的，所以选择适合的工具也是很重要的。</p>
-<p>ant通过配置<code>build.xml</code>来执行一系列<code>target</code>,任务的类型选择很多，依据目前项目的选择，有打包，校验，压缩等。</p>
-<p>这里就不在贴代码了，具体可以查看<code>suiyan</code>根目录下的<code>build.xml</code>参考，网上的教程也很多的。</p></p>
+<p><h3>Vue中的监听</h3>
+<p><code>watch</code>用来监听<code>Vue</code>实例中数据的变化，然后可以出发一个事件。
+例如，反转字符串：</p>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;div id="app"&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="nvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+   var vm = new Vue({
+        el:"#app",
+        data:{
+            vt:"",
+            nvt:""
+        },
+        watch: {
+            vt:function(val){
+                this.nvt=this.vt.split('').reverse().join('')
+
+            }
+        },
+    })
+
+&lt;/script&gt;
+</code></pre>
+<p>除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。</p>
+<h3>Vue中的计算属性</h3>
+<p>计算属性和监听有些相似，有的时候作用都差不多吧。</p>
+<p>下边的例子就是采用Vue的计算属性，</p>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="app1"&gt;
+    &lt;p&gt;计算属性&lt;/p&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+
+
+    var vm1 = new Vue({
+        el :"#app1",
+        data:{
+            vt:""
+        },
+        computed: {
+            rtvt:function(){
+                return this.vt.split("").reverse().join("")
+            }
+        },
+
+    })
+
+&lt;/script&gt;
+</code></pre>
+<p>感觉计算属性要比监听简单直观些。</p></p>
 
 
 <hr>
@@ -110,27 +157,57 @@
 
 
 <hgroup>
-    <h2>config.json详细说明</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-31 13:35:18</small> 标签:
+    <h2>Vue快速学习笔记(1)Vue实例基础</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-10 21:18:43</small> Tag:
         
         
-        <mark>碎言博客</mark>
+        <samll>Vue</samll>
         
     </h3>
 </hgroup>
-<p><h2>config.json 详解</h2>
-<ul>
-<li>blog_name : 博客名称</li>
-<li>blog_author : 站长昵称</li>
-<li>blog_description : 站长简介</li>
-<li>meta_description : meta</li>
-<li>meta_keywords : meta keys</li>
-<li>profile_image : 站长头像</li>
-<li>blog_sns : SNS分享</li>
-<li>nav : 博客导航</li>
-<li>blog_list : 首页加载博文篇数</li>
-</ul>
-<p>SNS中的ico图标采用的<code>font-awesome-4.07</code>，图标搜索地址如下：<a href="http://www.fontawesome.com.cn/faicons/">http://www.fontawesome.com.cn/faicons/</a>,只需填写图标名称即可。</p></p>
+<p><h2>Vue.js 简介</h2>
+<p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。</p>
+<p>Vue 只关注视图层， 采用自底向上增量开发的设计。</p>
+<p>Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</p>
+<h2>第一个Vue实例</h2>
+<pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
+&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="v1" v-bind:title="title"&gt;
+{{ msg }}
+&lt;p v-text="vtext"&gt;&lt;/p&gt;
+&lt;div v-html="vhtml"  v-on:click="alt"&gt;&lt;/div&gt;
+
+&lt;input type="text" v-model="tx"&gt;
+&lt;p v-text="tx"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    var v = new Vue({
+        el: "#v1",
+        data:{
+            msg:"Hello Vue!",
+            title:"试试把鼠标放上去。",
+            vtext:"我是通过v-text绑定的数据",
+            vhtml:"&lt;h1&gt;哈哈哈字是不是好大？",
+            tx:"v-model绑定数据，修改试试吧"
+        },
+        methods:{
+            alt :function(){
+                alert("是不是有提示了？")
+            }
+        }
+    })
+&lt;/script&gt;
+</code></pre>
+<p>这是一个声明式渲染 <code>{{ msg  }}</code>类似于模板便签被插在HTML中。
+<code>v-text,v-html</code>是另外两种数据绑定方式。</p>
+<p><code>v-bind:title</code>Vue中的特殊指令，可以简写为<code>:title</code>,</p>
+<p><code>v-on:click</code>绑定点击事件</p>
+<p><code>v-model</code> 可以双向绑定数据，试试修改程序中的数据。</p>
+<h2>MVVM</h2>
+<p>MVVM是一种架构模式，并非一种框架，是一种思想，一种组织和管理代码的艺术。它利用数据绑定、属性依赖、路由事件、命令等特性实现高效灵活的架构。</p>
+<p>在MVVM中，View和View Controller是联系在一起，可以把它们视为一个组件，View和View Controller都不能直接引用Model，而是通过引用视图模型（ViewModel），ViewModel是存放View Controller所需要数据的地方（View Controller敢要，ViewModel就敢给），使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性、耦合性。</p></p>
 
 
 <hr>
@@ -138,107 +215,49 @@
 
 
 <hgroup>
-    <h2>碎言静态博客</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-31 10:26:39</small> 标签:
+    <h2>使用碎言静态博客依托码云Pages搭建自己的免费博客</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-08 19:17:37</small> Tag:
         
         
-        <mark>站长源创</mark>
+        <samll>碎言博客</samll>
         
     </h3>
 </hgroup>
-<p><h1>碎言静态博客</h1>
-<p><a href='https://gitee.com/J_Sky/suiyan/stargazers'><img src='https://gitee.com/J_Sky/suiyan/badge/star.svg?theme=dark' alt='star'></img></a></p>
-<h3>介绍</h3>
-<p>碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。</p>
-<p>演示(码云)： <a href="https://j_sky.gitee.io/suiyan/blog">碎言博客</a></p>
-<p>演示(github)： <a href="https://bosichong.github.io/suiyan/blog">碎言博客</a></p>
+<p><p><a href='https://gitee.com/J_Sky/suiyan/stargazers'><img src='https://gitee.com/J_Sky/suiyan/badge/star.svg?theme=dark' alt='star'></img></a></p>
+<h2>介绍</h2>
+<p>碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
+演示： <a href="http://j_sky.gitee.io/suiyan">碎言博客</a></p>
 <p><img alt="" src="assets/images/fabu.png" /></p>
-<h3>软件架构</h3>
-<p>前端使用了<code>jQuery，bootstrap4,font-awesome-4.07,highlight.js,less,jQuery.toTop等技术框架。</code></p>
-<p>本地构建博客索引使用了<code>Python</code>的相关技术,实现了全站静态页面，并可以通过标题进行全站搜索。</p>
-<p>博客文章写作采用Markdown技术支持，让你专注写作更流畅。</p>
-<p>博客的管理支持终端和图形界面：</p>
-<p>图形界面：</p>
-<pre><code>python3 w.py
-</code></pre>
-<p><img alt="" src="assets/images/bloggui.png" /></p>
-<p>终端：</p>
-<p><img alt="" src="assets/images/zhongduan.png" /></p>
-<p>可以根据自己的喜好进行选择。</p>
-<h3>安装教程</h3>
-<p>首先克隆下载碎言静态博客，
-* <a href="https://gitee.com/J_Sky/suiyan">Gitee</a>
-* <a href="https://github.com/Jsky2020/suiyan">GitHub</a></p>
-<p>终端运行:</p>
-<pre><code>pip install -r requirements.txt
-</code></pre>
-<p>安装相关依赖</p>
-<p>安装完成。</p>
-<h3>创建文章</h3>
-<pre><code>python z.py -n 此处写文章标题
-</code></pre>
-<p>这个时候就会在<code>articles</code>目录下创建一篇文章。<a href="https://j_sky.gitee.io/suiyan/20191230155649.html">更多终端操作</a></p>
-<h3>创建索引</h3>
-<p>博客的文章排序及搜索以来此索引<code>blog_data.json</code>，每次创建文章的时候回自动更新索引，但是如果你修改了头部的一些索引信息，则需要运行命令来更新索引。</p>
-<pre><code>python z.py -i
-</code></pre>
-<h3>修改博客及站长资料</h3>
-<p><code>config.json</code>里存放着一些站点的资料，上传前建议先修改成自己的资料。</p>
-<p><a href="https://j_sky.gitee.io/suiyan/20191231133518.html"><code>config</code>配置详解点击查看</a></p>
-<h3>运行站点</h3>
-<p>推荐使用<code>Live Server</code>这个vscode得插件，非常方便。</p>
-<h3>修改站点样式</h3>
-<p>碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。</p>
-<p>具体修改方法请点击查看： <a href="https://j_sky.gitee.io/suiyan/20191230201529.html">细说修改碎言博客站点的样式</a></p>
-<h3>部署</h3>
-<pre><code>git push origin master
-</code></pre>
-<p>提交所有文件到git仓库即可。</p>
-<h4>参与贡献</h4>
-<ol>
-<li>Fork 本仓库</li>
-<li>新建 Feat_xxx 分支</li>
-<li>提交代码</li>
-<li>新建 Pull Request</li>
-</ol>
-<h2>源码下载：</h2>
+<h2>安装</h2>
+<p>首先克隆下载碎言静态博客</p>
 <ul>
-<li><a href="https://gitee.com/J_Sky/suiyan">Gitee</a></li>
-<li><a href="https://github.com/Jsky2020/suiyan">GitHub</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>细说修改碎言博客站点的样式</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-30 20:15:29</small> 标签:
-        
-        
-        <mark>碎言博客</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>碎言博客HTML结构</h2>
-<p>博客HTML只有4个：</p>
-<ul>
-<li>index.html  博客首页</li>
-<li>archives.html 归档</li>
-<li>tags.html 标签页</li>
-<li>p.html 博文详情页</li>
+<li><a href="https://gitee.com/J_Sky/suiyan.git">Gitee</a></li>
+<li><a href="https://github.com/bosichong/suiyan.git">GitHub</a></li>
 </ul>
-<h2>CSS修改</h2>
-<p>碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:<code>Easy LESS</code></p>
-<p><img alt="" src="assets/images/blog/Snip20191231_2.png" /></p>
-<p>这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合<code>less</code>的引用命令<code>@import "theme-dark-1.less";</code>使用起来很方便的。</p>
-<h2>博客的样式修改</h2>
-<p>碎言博客的样式主要集中在<code>&lt;link id="blogcss"&gt;</code>标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。</p>
-<h2>Markdown代码样式</h2>
-<p>Markdown代码样式通过修改<code>&lt;link id="highlight"&gt;</code>标签连接的highlightCSS来修改，在<code>assets/plugins/highlight/styles</code>下可以选择自己喜欢的样式。</p>
-<h2>进阶修改</h2>
-<p>觉得手动修改站点样式太麻烦？可以利用<code>jQuery</code>在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。</p></p>
+<p>可以通过<code>git clone https://gitee.com/J_Sky/suiyan.git</code>下载，也可以通过下载.zip压缩包下载后解压缩即可。</p>
+<h2>创建码云代码仓库</h2>
+<p>登录码云注册账号，然后开始创建自己的代码仓库用来存放博客的页面。</p>
+<h3>1. 创建</h3>
+<p><img alt="" src="assets/images/blog/Snip20200108_1.png" /></p>
+<p>填写相关选项创建一个新的代码仓库</p>
+<p><img alt="" src="assets/images/blog/Snip20200108_3.png" /></p>
+<h3>2.关联本地代码仓库</h3>
+<p>如果你对<code>Git</code>操作非常了解，可以跳过此步骤。</p>
+<p>进入你本地博客的根目录：
+先配置<code>Git</code>的基本信息</p>
+<pre><code>$ git config --global user.name "你的名字或昵称"
+$ git config --global user.email "你的邮箱"
+</code></pre>
+<p>然后绑定远程代码仓库下边的仓库地址换成你刚刚建好的代码仓库的远程地址</p>
+<pre><code>$ git init 
+$ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
+</code></pre>
+<h3>3.创建你的第一篇博客</h3>
+<p>在终端进入你的本地博客目录运行</p>
+<pre><code>python z.py
+</code></pre>
+<p>这个时候会打印一些关于<code>z.py</code>命令行的一些帮助信息，仔细看看可以了解一些基本操作。</p>
+<p>未完待续</p></p>
 
 
 <hr>
@@ -246,21 +265,26 @@
 
 
 <hgroup>
-    <h2>关于站长</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-30 16:25:07</small> 标签:
+    <h2>今天是个好日子发行了碎言静态博客的功能完整版</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-08 16:10:47</small> Tag:
         
         
-        <mark>未分类</mark>
+        <samll>碎言博客</samll>
         
     </h3>
 </hgroup>
-<p><h2>About Me</h2>
-<p>一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。</p>
-<h2>关于碎言博客</h2>
-<p>本来用<code>Python Django</code>开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。</p>
-<p>索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习<code>JavaScript jQuery</code>，</p>
-<p>索性撸一个静态博客，发现自己就是爱重复造轮子。</p>
-<p>欢迎进群讨论学习Q群:217840699</p></p>
+<p><h2>发布了碎言静态博客的功能完整第一个版本</h2>
+<p>经过这段时间的努力，终于把博客成功的更换成了自己开发的碎言静态博客，也算是对这段时间学习JavaScript的一个总结。
+后续还要继续开发维护，添加一些使用的功能，目前来说，对这个版本最大的满意就是界面的美化和网站的加载速度。
+后续还会继续优化。</p>
+<h2>未来需要添加的功能</h2>
+<ul>
+<li>支持在线一件换肤。</li>
+<li>更好的拓展功能。</li>
+<li>更实用的功能。</li>
+<li>吸引更多的程序员兄弟前来提交代码。</li>
+</ul>
+<p>加油2020！！</p></p>
 
 
 <hr>
@@ -270,12 +294,23 @@
 
 <nav>
     <li><a href="list_3.html" role="button" class="outline">Prev</a></li>
-    <li><small>4 / 23</small></li>
+    <li><small>4 / 28</small></li>
     <li><a href="list_5.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -314,19 +349,7 @@
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

@@ -1,3 +1,2 @@
-Markdown==3.3.4
-beautifulsoup4==4.9.3
-aiofiles==0.6.0
+markdown==3.4.3
+aiofiles==23.1.0

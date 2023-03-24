@@ -27,7 +27,7 @@ ARTICLES_DIR = os.path.join(BASE_DIR, "articles")  # 博文目录
 BLOGLIST = os.path.join(BASE_DIR, "list")
 
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
-BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
+BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog/blog_data.json')
 
 ASSETS_DIR = os.path.join(BLOGPAGES, 'assets')
 JS_DIR = os.path.join(ASSETS_DIR, 'js')
@@ -155,7 +155,7 @@ def write_data_json():
     :return:
     '''
     json_str = create_blog_data_Json(ARTICLES_DIR)
-    with open(os.path.join(BLOGPAGES, 'blog_data.json'), mode='w', encoding='utf-8') as f:
+    with open(os.path.join(BLOGPAGES, 'blog/blog_data.json'), mode='w', encoding='utf-8') as f:
         f.write(json_str)
     # print("写入blog数据索引完毕！")
 

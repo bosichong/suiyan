@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 Python并发编程（上）进程模块multiprocessing模块和Process类</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>Python并发编程（上）进程模块multiprocessing模块和Process类</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-06 09:43:48</small> Tag:
+        
+        
+        <small>Python基础</small>
+        
+    </h3>
+</hgroup>
+<p><h2>Python中为什么要用多进程编程？</h2>
+<p>由于<code>Python</code>解释器中使用了内部的GIL全局解释器锁，使得<code>Python</code>多线程的并发在任意时刻只允许单个CPU来运行，这样的运行方式会影响程序的并发。
+当程序是在I/O密集时，CPU可能会有更多的空闲处理多线程的并发，这种情况下一般是没有问题的。如果是大量计算密集型的应用，如果使用多线程来并发，性能会大大降低，这个时候，我们就得考虑使用进程<code>Process</code>来进行编程及通信了。</p>
+<h2>创建进程Process(方法1)</h2>
+<pre><code class="python">import time, os
+from multiprocessing import Process
+def clock(x,y):
+    for i in range(x):
+        print('当前时间=={0}'.format(time.ctime()))
+        time.sleep(y)
+if __name__ == '__main__':
+    p = Process(target=clock,args=(5,1))
+    p.start()
+    p.join()
+</code></pre>
+
+<h2>创建进程Process(方法2)</h2>
+<pre><code class="python">import time, os
+from multiprocessing import Process
+class ClockProcess(Process):
+    def __init__(self,x,y):
+        Process.__init__(self)
+        self.x=x
+        self.y=y
+
+    def run(self):
+        for i in range(self.x):
+            print('{0}=={1}'.format(os.getpid(),time.ctime()))
+            time.sleep(self.y)
+if __name__ == '__main__':
+    p = ClockProcess(5,1)
+    p1= ClockProcess(5,1)
+    p.start()
+    p1.start()
+    p.join()
+    p1.join()
+</code></pre>
+
+<p>通过<code>Process</code>类创建实例，然后传函数创建进程，另一种是继承<code>Process</code>类，然后重写<code>run()</code>方法创建要执行的任务。</p>
+<h2>进程池 Pool(方法3)</h2>
+<pre><code class="python">from multiprocessing import Pool
+import os
+
+def clock(k):
+    for i in range(k):
+        print('{0}当前时间=={1}'.format(os.getpid(),time.ctime()))
+        time.sleep(k)
+if __name__ == '__main__':
+    l = [1 for i in range(20)]# 列表推导出一个列表对象
+    with Pool(5) as p:
+        p.map(clock,l)
+</code></pre>
+
+<p>进程池方便创建多进程进行操作，创建使用也是比较简单的，使用时可以根据应用场景对线程的控制要求来选择线程的创建方式。</p>
+<h2>线程间的通信</h2>
+<p><code>Python</code>为线程提供了<code>Queue、Pipes</code>等多种方式来交换数据，我们以<code>Queue</code>为例来演示学习一下进程间的通信及协作，稍后我们还要做分布式多进程的演示。</p>
+<p><code>Queue</code>进程间通信演示：</p>
+<pre><code class="python">import multiprocessing as mp
+import time, os
+from queue import Queue
+
+def prt_q(q):
+    '''消费者打印数据'''
+    while True:
+        v = q.get()
+        print(v)
+        time.sleep(0.1)
+def wrt_q(q):
+    '''生产者添加数据'''
+    for k in ['aa','bb','cc','dd','ee','ff','gg']:
+        print("{0}已经加入到队列中".format(k))
+        q.put(k)
+        time.sleep(0.2)
+if __name__ == '__main__':
+    q = Queue()
+    wrt_q(q)
+    p = mp.Process(target=prt_q, args=(q,))
+    p.start()
+    p.join()
+</code></pre>
+
+<p><code>Queue</code>的使用其实就是生产者与消费者的模式，上边的代码运行后会有死锁，请按<code>ctrl+c</code>强制停止程序运行。
+<code>Python</code>的进程有个很强大的地方，就是通过简单的配置就可以进行分布式多进程，这点是很吸引人的，稍后我会有一个篇幅来介绍一下分布式多进程。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/multiprocessingtest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/multiprocessingtest.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

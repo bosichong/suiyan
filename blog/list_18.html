@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第18页</title>
+    <title>SuiYan 碎言博客  List Pages 第18页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,81 +81,132 @@
 
 
 <hgroup>
-    <h2>Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-26 16:48:51</small> 标签:
+    <h2>浅谈Python中的协程及利用协程代替多线程及多进程并发编程</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-15 15:52:46</small> Tag:
         
         
-        <mark>Python GUI</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p>messagebox 弹出提示框 一共有七种常用方法，基本上可以应付一般简单的程序需求了：
-showinfo, showwarning, showerror, askquestion, askokcancel, askyesno, or askretrycancel.
-其中askquestion, askokcancel, askyesno, or askretrycancel这4个方法，应该注意一下点击按钮的返回值。</p>
-<p>演示图如下：</p>
-<p>![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_5.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_6.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_7.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_8.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_9.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_10.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_11.png" />
-![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_12.png" /></p>
-<pre><code class="python">import tkinter as tk
-from tkinter import messagebox  # 导入提示窗口包
-
-str1=("showinfo","showwarning","showerror","askquestion","askokcancel","askyesno","askretrycancel")
-def showMsg(str):
-    """弹出窗口设置函数"""
-    print(str)
-    if str == str1[0]:
-        messagebox.showinfo("showinfo","信息提示框！")
-    elif str == str1[1]:
-        messagebox.showwarning("showwarning","警告框！")
-    elif str == str1[2]:
-        messagebox.showerror("showerror","错误信息框！")
-    elif str == str1[3]:
-        if messagebox.askquestion("askquestion","askquestion提示框") == messagebox.YES:
-            messagebox.showinfo("yes","你点了yes!")
-        else:
-            messagebox.showinfo("no","你点了no")
-    elif str == str1[4]:
-        if messagebox.askokcancel("askokcancel","askokcancel提示框"):
-            messagebox.showinfo("OK","你点Ok")
-        else:
-            messagebox.showwarning("cancel","你点了cancel")
-    elif str == str1[5]:    
-        print(messagebox.askyesno("askyesno","askyesno提示框"))
-    elif str == str1[6]:    
-        print(messagebox.askretrycancel("askretrycancel","askretrycancel提示框"))
-
-root = tk.Tk()
-root.title("messagebox 弹出对话框使用例子")
-
-show_frame = tk.Frame(root)
-show_frame.pack(fill=tk.X, side=tk.TOP)
-btn1= tk.Button(show_frame, text=str1[0],command=lambda showMsg = showMsg : showMsg(str1[0]) ).pack(side=tk.LEFT)
-btn2= tk.Button(show_frame, text=str1[1],command=lambda showMsg = showMsg : showMsg(str1[1]) ).pack(side=tk.LEFT)
-btn3= tk.Button(show_frame, text=str1[2],command=lambda showMsg = showMsg : showMsg(str1[2]) ).pack(side=tk.LEFT)
-
-asky_frame = tk.Frame(root)
-asky_frame.pack(fill=tk.X,side=tk.TOP)
-bt4 = tk.Button(asky_frame,text=str1[3],command=lambda showMsg = showMsg : showMsg(str1[3]) ).pack(side=tk.LEFT)
-bt5 = tk.Button(asky_frame,text=str1[4],command=lambda showMsg = showMsg : showMsg(str1[4]) ).pack(side=tk.LEFT)
-bt6 = tk.Button(asky_frame,text=str1[5],command=lambda showMsg = showMsg : showMsg(str1[5]) ).pack(side=tk.LEFT)
-bt7 = tk.Button(asky_frame,text=str1[6],command=lambda showMsg = showMsg : showMsg(str1[6]) ).pack(side=tk.LEFT)
-root.mainloop()
+<p><p>协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。</p>
+<h2>生成器如何演变成协程？</h2>
+<p>乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？</p>
+<pre><code>def cd(n):
+    print("Counting down from %s" % n)
+    while n > 0:
+        yield n
+        n -= 1
+c = cd(10)
+next(c)
+for i in c :
+    print(i,end=' ')
 </code></pre>
 
-<h2>相关参考</h2>
+<p>上边是一个典型的生成器函数，我们稍加变化使之成为协程。</p>
+<pre><code>def cd1():
+    n = yield
+    while n > 0:
+        print("Counting down from %s" % n)
+        n -= 1
+
+c1 = cd1()
+next(c1)
+c1.send(10)
+#运行到这里应该抛出一个异常
+</code></pre>
+
+<p>生成器和协程的不同有没有看出来？很明显的有两处：</p>
 <ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+<li>yield的位置</li>
+<li>next()和send()函数的用法</li>
 </ul>
-<h2>本文源码下载：</h2>
+<p>通过运行结果我们可以到最后抛出了一个异常<code>StopIteration</code>,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。</p>
+<pre><code>from functools import wraps
+def coroutine(func):
+    @wraps(func)
+    def primer(*args, **kwargs):
+        gen = func(*args,**kwargs)
+        next(gen)
+        return gen
+    return primer
+@coroutine
+def cd2():
+    n = yield
+    while n > 0:
+        print("Counting down from %s" % n)
+        n -= 1
+try:
+    cd2().send(10)
+except Exception as e:
+    print('协程任务终止')
+</code></pre>
+
+<p>带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。</p>
+<h2>利用协程代替线程或进程进行并发编程</h2>
+<p>我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
+这里的协程用到了asyncio模块，利用asyncio模块实现了一个协程的并发。关于asyncio的实现原理，稍后再研究一下。</p>
+<pre><code>import asyncio
+import time
+import threading
+def tn(func):
+    '''定义一个程序运行时间计算函数'''
+    def wrapper(*args, **kwargs):
+        start = time.time() # 起始时间
+        func(*args, **kwargs) # 要执行的函数
+        end = time.time() # 结束时间
+        print('程序运行时间:{:.2f}ms'.format((end-start)))
+    return wrapper
+
+def loop1(tname):
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    time.sleep(1)
+
+# @asyncio.coroutine
+async def loop2(tname):# async等同于@asyncio.coroutine
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    # yield from asyncio.sleep(1)
+    await asyncio.sleep(1)  # 等同于yield from
+
+@asyncio.coroutine
+def loop3(tname):# async等同于@asyncio.coroutine
+    print(tname+"循环loop1打印时间======" + time.ctime())
+    yield from asyncio.sleep(1)
+    # await asyncio.sleep(1)  # 等同于yield from
+
+@tn
+def main():
+    print('多线程任务开始执行=====')
+    threads = []#定义一个线程队列
+    for i in range(5):
+        t = threading.Thread(target=loop1, args=("thread"+str(i),))
+        threads.append(t)
+    for i in range(5):
+        threads[i].start()
+    for i in range(5):
+        threads[i].join()
+
+    #协程并发测试
+    print('协程并发测试开始======')
+    loop = asyncio.get_event_loop()# 获取一个event_loop
+    #任务列表
+    tasks = [
+        asyncio.ensure_future(loop2('11111')),
+        asyncio.ensure_future(loop2('22222')),
+        asyncio.ensure_future(loop2('33333')),
+        asyncio.ensure_future(loop3('44444')),#loop3
+        asyncio.ensure_future(loop3('55555'))]#loop3
+    loop.run_until_complete(asyncio.wait(tasks))
+    loop.close()
+if __name__ == '__main__':
+    main()
+</code></pre>
+
+<p>上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
+这就是协程的魅力所在，一条线程搞定多线程任务。</p>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -164,73 +215,71 @@ root.mainloop()
 
 
 <hgroup>
-    <h2>Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-26 10:26:15</small> 标签:
+    <h2>聊聊Python中晦涩的生成器（yield）与生成器表达式</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-14 08:21:49</small> Tag:
         
         
-        <mark>Python GUI</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p>Tk的功能不多，但应付一般应用还是足够了，Entry和Text是Tk下边显示及处理文本的小部件。
-涉及到文本，从使用角度来说，有几个功能是必须的：</p>
-<ul>
-<li>设置文本框的内容<code>insert()</code></li>
-<li>删除文本框的内容<code>delete()</code></li>
-<li>获得文本框的内容<code>get()</code></li>
-<li><code>show="*"</code>这个可以设置密码框用***来显示密码</li>
-</ul>
-<p>关于布局，和其它部件基本上是一样的，前边的章节有过介绍。</p>
-<p>本次使用tk制作了一个用户登陆验证用户名和密码的小例子。</p>
-<p>演示图如下：</p>
-<p>![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_4.png" /></p>
-<pre><code class="python">import tkinter as tk
-def isLogin(uname,pword):
-    """验证用户登陆函数"""
-    if uname == "17python" and pword == "17python":
-        print("登陆成功！")
-        out.insert(tk.END,"登陆成功！\n")
-    else:
-        print("用户名或密码错误！")
-        out.insert(tk.END,"用户名或密码错误！ \n")
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171014_4.png" /></p>
+<h2>晦涩的生成器yield</h2>
+<p>刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。</p>
+<h2>什么是生成器？</h2>
+<p>书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，<code>__next__()</code>#python3中的特殊方法，应该避免使用特殊方法，<code>next(c)</code>使用内置函数next()即可。</p>
+<pre><code>def countdown(n):
+    print("Counting down from %s" % n)
+    while n > 0:
+        yield n
+        n -= 1
+    return
 
-root = tk.Tk()
-root.title('文本框的测试')
-userinfo_frame = tk.Frame(root)
-userinfo_frame.pack(fill=tk.X, side=tk.TOP)
-########
-user_frame = tk.Frame(userinfo_frame, )
-user_frame.pack(fill=tk.X, side=tk.TOP)
-user_label = tk.Label(user_frame, text="username:",font=("Symbol", 14)).pack(side=tk.LEFT)
-username = tk.Entry(user_frame, width=40)
-username.pack(fill=tk.X, side= tk.LEFT)
-
-#######
-pass_frame = tk.Frame(userinfo_frame)
-pass_frame.pack(fill=tk.X, side=tk.TOP)
-pass_label = tk.Label(pass_frame, text="password:",font=("Symbol", 14)).pack(side=tk.LEFT)
-password = tk.Entry(pass_frame, width=40, show="*")
-password.pack(fill=tk.X, side= tk.LEFT)
-########
-btn_frame = tk.Frame(userinfo_frame)
-btn_frame.pack(fill=tk.X, side=tk.TOP)
-btn = tk.Button(btn_frame, text='登陆', command= lambda isLogin = isLogin : isLogin(username.get(), password.get())).pack(fill=tk.X)
-out = tk.Text(btn_frame,width=40,font=("Symbol", 14))
-out.insert(tk.END, "world \n")
-out.pack(fill=tk.X)
-
-root.mainloop()
+c = countdown(10)
+print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
+print(next(c))#使用内置函数next()
+for i in c :
+    print(i,end=' ')
 </code></pre>
 
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
-</ul>
+<p>函数对象调用<code>.__next__()</code>函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
+调用<code>close()</code>方法关闭未使用完的生成器。
+那么问题来了，yield到底是什么？</p>
+<p>我们把上边的代码稍加变化:</p>
+<pre><code>def countdown1(n):
+    print("Counting down from %s" % n)
+    while n > 0:
+        yield n*n
+        n -= 1
+    return
+
+c = countdown1(10)
+print(next(c))
+print(next(c))
+print(next(c))
+for i in c :
+    print(i,end=' ')
+</code></pre>
+
+<p>运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。</p>
+<h2>生成器表达式</h2>
+<p>如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
+因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。</p>
+<p>代码如下：</p>
+<pre><code>print('')
+print("生成器表达式:")
+b = (x*x for x in range(10) if (x % 2 ==0))
+print(next(b))
+print(next(b))
+for i in b :
+    print(i, end=' ')
+
+</code></pre>
+
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -239,64 +288,34 @@ root.mainloop()
 
 
 <hgroup>
-    <h2>Python TK和Tkinter的GUI编程(3) 列表框 Listbox</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-23 13:40:35</small> 标签:
+    <h2>Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-13 10:57:48</small> Tag:
         
         
-        <mark>Python GUI</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><h2>listbox 列表框</h2>
-<p>列表框的日常使用的场景：</p>
+<p><p>先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_1.png" />
+<img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_3.png" /></p>
+<h2>Tk多线程中的坑</h2>
 <ul>
-<li>获取列表项中的内容lb.curselection()</li>
-<li>selectmode=tk.EXTENDED 这个属性设置listbox可以选择多个选项</li>
-<li>添加列表项 lb.insert(tk.END,v.get()) END代表最后一个位置，第二个参数是要添加的字符串值。</li>
-<li>删除列表中选中的项 command = lambda lb=lb:lb.delete(tk.ANCHOR)</li>
-<li>lb.bind() 用来绑定列表的事件，比如删除列表中选中的项。</li>
+<li>在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！</li>
+<li>客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。</li>
 </ul>
-<h2>源码</h2>
-<p><img alt="" src="assets/images/media/upload/2017/09/QQ20170923-134123.png" /></p>
-<pre><code class="python">import tkinter as tk
-root = tk.Tk()
-root.title("Listbox 测试。")
-# 存放list的容器
-list_frame = tk.Frame(root)
-list_frame.pack(fill=tk.X, side=tk.TOP)
-#存放按钮文本框的容器
-button_frame = tk.Frame(root)
-button_frame.pack(fill=tk.X, side=tk.TOP)
-# 获取当前listbox中item值，并在控制台打印值
-def print_item(event):
-    items = lb.curselection()
-    for k in items:
-        print(lb.get(k))
-var = tk.StringVar()#绑定listbox的列表值
-var.set(('aa','bb','cc','dd','ee'))
-lb = tk.Listbox(list_frame, listvariable = var, selectmode=tk.EXTENDED)#创建一个listbox
-lb.bind('<ButtonRelease-1>',print_item)#绑定鼠标左键点击事件。
-lb.pack(fill=tk.X)
-# 添加listbox item的方法
-def additem():
-    lb.insert(tk.END,v.get())
-    v.set('')
-v = tk.StringVar()#绑定文本框的变量
-en = tk.Entry(button_frame, textvariable = v).pack()
-b1 = tk.Button(button_frame, text="添加", command=additem).pack(side=tk.LEFT)#添加一个item
-b2 = tk.Button(button_frame, text="删除", command= lambda lb=lb:lb.delete(tk.ANCHOR)).pack(side=tk.LEFT)#删除一个listbox中选中的item
-root.mainloop()
-</code></pre>
-
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
-</ul>
+<h2>多用户服务器端</h2>
+<p>每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
+这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。</p>
+<p>关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。</p>
+<h2>客户端</h2>
+<p>客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。</p>
+<p>具体代码就不贴了，到git下载吧。</p>
+<p>代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。</p>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -305,188 +324,159 @@ root.mainloop()
 
 
 <hgroup>
-    <h2>Python TK和Tkinter的GUI编程(2)菜单Menu</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-22 11:02:33</small> 标签:
+    <h2>Python中创建TCP服务器与客户端进行通信（上）</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-12 10:14:40</small> Tag:
         
         
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>Menu</h2>
-<p>菜单的创建是很简单的，先创建一个顶层的菜单加入顶层窗口root中，然后分别创建二级菜单就可以了。
-几个比较重要的方法函数：</p>
-<ul>
-<li>tkinter.Menu(root) 创建顶层菜单，root是你的顶层窗口。</li>
-<li>root.config(menu=menu) 然后加入顶层窗口</li>
-<li>menu.add_cascade() 添加二级菜单，label设置二级菜单名称，menu设置二级菜单对象。</li>
-<li>filemenu.add_command() 添加一个普通的菜单项，label设置显示字符串，command设置回调函数</li>
-<li>关于右键菜单的实现，可以参考源码中的注释处。</li>
-</ul>
-<p>还有很多功能，建议参考一下文档了了解，以上几个功能一般简单应用可以应付了。</p>
-<h2>参考源码</h2>
-<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170922_3.png" /></p>
-<pre><code class="python">import tkinter #导入支持库
-def callback():
-    """一个简单的回调测试"""
-    print ("called the callback!")
-
-root = tkinter.Tk()#创建一个root窗口
-root.title('我只是一个测试的窗口')#设置窗口标题
-root.geometry('500x300+300+300')#设置窗口的大小及位置
-
-# 创建菜单
-menu = tkinter.Menu(root)#顶层菜单
-root.config(menu=menu)#加入窗口
-filemenu = tkinter.Menu(menu)#创建二级菜单File
-menu.add_cascade(label="File", menu=filemenu)#加入menu
-# 创建二级菜单下的功能键
-filemenu.add_command(label="New", command=callback)#按钮
-filemenu.add_command(label="Open...", command=callback)
-filemenu.add_checkbutton(label="checkbutton",)#选择框，选中后会画一个对号。
-filemenu.add_separator()#分隔线
-filemenu.add_radiobutton(label="radiobutton",)#一旦勾选，无法取消
-filemenu.add_separator()#分隔线
-filemenu.add_command(label="Exit", command=callback)
-
-helpmenu = tkinter.Menu(menu)
-menu.add_cascade(label="Help", menu=helpmenu)
-helpmenu.add_command(label="About...", command=callback)
-
-#####实现右键弹出菜单####
-def popup(event):
-    menu.post(event.x_root, event.y_root)
-root.bind("<Button-2>", popup)
-root.mainloop() 
-</code></pre>
-
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
-</ul>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-22 09:10:27</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p><code>Python</code>编程中有时我们需要一些可视化的操作，如果功能相对很简单，可以使用<code>Python</code>内置的GUI模块：<code>tkinter</code>这个模块所提供的功能及部件不是很多，如果你用过java，和Swing、AWT相比，tk的所提供的确实是要少很多了。但是如果只是简单的显示或是数据展示，基本上还是够用的。</p>
-<h2>tk的组件不是很多，包括以下：</h2>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171012_19.png" /></p>
+<h2>前言</h2>
+<p>学习套接字编程最好的方法就是从实际应用的开发中边学边用，这样对TCP服务器及客户端通信中遇到的知识点才会更加了解。
+开发一个拥有服务器并且可以处理多客户端的聊天室应用程序，服务器有一定的管理权限，比如：群发消息，管理客户端可以限制连接及断开客户端连接等。
+客户端可以在聊天室里群聊，私聊。</p>
+<p>好吧，为了保证这个小小的应用开发跨度不会太大，我们采用循序渐进的方式，从基础代码上迭代开发，这里会用到的知识点有：</p>
 <ul>
-<li>Button    按钮控件；在程序中显示按钮。</li>
-<li>Canvas    画布控件；显示图形元素如线条或文本</li>
-<li>Checkbutton   多选框控件；用于在程序中提供多项选择框</li>
-<li>Entry 输入控件；用于显示简单的文本内容</li>
-<li>Frame 框架控件；在屏幕上显示一个矩形区域，多用来作为容器</li>
-<li>Label 标签控件；可以显示文本和位图</li>
-<li>Listbox   列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户</li>
-<li>Menubutton    菜单按钮控件，由于显示菜单项。</li>
-<li>Menu  菜单控件；显示菜单栏,下拉菜单和弹出菜单</li>
-<li>Message   消息控件；用来显示多行文本，与label比较类似</li>
-<li>Radiobutton   单选按钮控件；显示一个单选的按钮状态</li>
-<li>Scale 范围控件；显示一个数值刻度，为输出限定范围的数字区间</li>
-<li>Scrollbar 滚动条控件，当内容超过可视化区域时使用，如列表框。.</li>
-<li>Text  文本控件；用于显示多行文本</li>
-<li>Toplevel  容器控件；用来提供一个单独的对话框，和Frame比较类似</li>
-<li>Spinbox   输入控件；与Entry类似，但是可以指定输入范围值</li>
-<li>PanedWindow   PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。</li>
-<li>LabelFrame    labelframe 是一个简单的容器控件。常用与复杂的窗口布局。</li>
-<li>tkMessageBox  用于显示你应用程序的消息框。</li>
+<li><code>Python</code>的socket套接字模块</li>
+<li><code>Python</code>的多线程模块</li>
+<li><code>Python Tk GUI</code>模块，后边有可能考虑做成可视化的聊天室。</li>
 </ul>
-<p>之前在网上搜过，相关的教程不是很多，而且文档也写的算是很烂了，当然如果你英文不错，直接看源文件里的注释基本上就够用了，不过有的时候看py源文件还真是有点不太习惯，如果有示例或文档还好。最近搜集了一下相关的文档及教程，虽然不是很多，希望通过几篇简单的教程示例，帮助大家了解一下tk的用法，已来解决一些<code>python</code>编程中简单的GUI需求。
-当然这些内容并不完整，我会在日常的应用中随时进行补充，也欢迎各位在评论中补充。</p>
-<h2>窗口</h2>
-<p>root = tkinter.Tk() 这里创建一个root窗口，可以看成是一个APP的最顶层。
-顶层Tk对象一些方法，这里说一些实用的：</p>
-<ul>
-<li>title() 这个用来设置窗口的标题</li>
-<li>geometry('500x300+300+300') 设置窗口的大小及位置，如果省去后边的+300+300位置，只控制窗口的大小。</li>
-</ul>
-<h2>Frame</h2>
-<p>可以看成是一个可以装着众多部件的容器，他本身也可以容纳自己，嵌套自己。</p>
-<ul>
-<li>fill=NONE or X or Y or BOTH - fill widget if widget grows 填充设置选项，可以设置无，x，y 或是都二者皆填充.</li>
-<li>side=TOP or BOTTOM or LEFT or RIGHT 这里一共有四个选项，可以控制容器位置 </li>
-</ul>
-<h2>Label</h2>
-<p>我觉得label中比较重要的就是内容字符串的修改，默认使用<code>text="str"</code>设置label的显示文字，但是如果程序中需要动态的修改，就需要另外一个属性方法了，
-<code>var = tkinter.StringVar()</code>会生成一个对象，用来存放label要显示的文字，然后可以通过函数动态的修改这个字符串，其使只需要在<code>label</code>创建的时候，为<code>textvariable=var</code>设置一个属性值，
-这样就可以在程序中通过修改var来进行修改<code>label</code>显示的字符了。
-其它比较常用的属性还用，<code>fg="#c00"</code>，字体颜色，<code>bg="red"</code>，背景颜色设置，当然还有很多属性，可以通过文档查看。</p>
-<h2>Buttom</h2>
-<p>按钮，可以说是程序中最常用的部件了，其属性和<code>labe</code>l部分有些相似，比如动态修改按钮上的文字也是使用<code>StringVar()</code>。
-按键程序员最关心的莫过于是按键的点击事件，Tk的按键点击事件通过<code>command=def</code>来进行设置，其中def为函数名称，如果设置关联了函数，点击按键就会运行相关的函数了。</p>
-<p><code>mainloop()</code> 个人理解为循环刷新渲染当前GUI窗口中的内容，如果没有这个函数，窗口是无法显示的。</p>
-<h2>参考源码</h2>
-<p><img alt="" src="assets/images/media/upload/2017/09/guia_xA7j7KG.png" /></p>
-<pre><code class="python">import tkinter #导入支持库
-def def1():
-    """按钮1"""
-    var1.set('看，我变啦！')
-
-def def2():
-    '''按钮2'''
-    var2.set("百叶窗折射的光影")
-
-def def3():
-    '''按钮3'''
-    var3.set('因为中间空白的时光 如果还能分享 也是一种浪漫')
-
-root = tkinter.Tk()#创建一个root窗口
-root.title('我只是一个测试的窗口')#设置窗口标题
-bt = tkinter.Button(root, text="我是来占位的").pack(fill=tkinter.X, side=tkinter.TOP)
-# root.geometry('500x300+300+300')#设置窗口的大小及位置
-m_frame = tkinter.Frame(root)# 一个部件容器
-m_frame.pack(fill=tkinter.X, side=tkinter.TOP)
-# 创建一个快捷方式,用来生成小部件。
-LEFT, Label, Buttom = tkinter.LEFT, tkinter.Label, tkinter.Button
-label_line = tkinter.Frame(m_frame, relief=tkinter.RAISED, borderwidth=1)# 创建一个容器放入info_frame中
-label_line.pack(side=tkinter.TOP, padx=2, pady=2)
-var1 = tkinter.StringVar()
-var1.set('默认文字')
-var2 = tkinter.StringVar()
-var2.set('听见下雨的声音')
-var3 = tkinter.StringVar()
-var3.set("#眼角的泪这不是错觉")
-# fg="red" 文字颜色,颜色可以接受"cc0000" WEB颜色值等。
-l1 = Label(label_line, width=20, textvariable=var1, fg="#c00").pack(side=LEFT)
-l2 = Label(label_line, width=20, textvariable=var2, bg="#c00").pack(side=LEFT)
-# show='*' 可以使文本框内容显示为*****
-e3 = tkinter.Entry(label_line, textvariable=var3).pack(side=LEFT)
-
-buttom_line = tkinter.Frame(m_frame)
-buttom_line.pack(side=tkinter.BOTTOM, padx=2, pady=1)
-b1 = Buttom(buttom_line, text="点我试试1", width=18, command=def1).pack(side=LEFT)
-b2 = Buttom(buttom_line, width=18, textvariable=var2, command=def2).pack(side=LEFT)
-b3 = Buttom(buttom_line, text="点我试试3", width=18, command=def3).pack(side=LEFT)
-root.mainloop() 
-
+<h2>socket模块</h2>
+<p>关于套接字网络编程的理论知识，这里就不在重复了，网上有很多，大家自己搜索一下好了。
+要创建套接字，使用<code>Python socket.socket()</code>函数即可，他有一些固定的方式：</p>
+<pre><code>s = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字对象
 </code></pre>
-
-<h2>相关参考</h2>
+<p>获得了套接字对象后，就可以使用套接字对象的方法进行交互了。</p>
+<h2><code>socket</code>中一些常用方法</h2>
+<p>服务器套接字方法：</p>
 <ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+<li><code>s.bind()</code>这个方法，绑定服务器的IP及端口</li>
+<li><code>s.listen(int)</code>监听，可以设置一个整数限制客户端的连接。</li>
+<li><code>s.accpt()</code>被动接受TCP客户端的连接（阻塞）</li>
 </ul>
+<p>客户端套接字方法：</p>
+<ul>
+<li><code>s.connect()</code> 连接服务器</li>
+</ul>
+<p>其它方法：</p>
+<ul>
+<li><code>s.recv()</code> 接收TCP消息</li>
+<li><code>s.send()</code> 发送TCP消息</li>
+<li><code>s.close()</code> 关闭套接字。</li>
+</ul>
+<h2>关于消息</h2>
+<p>发送和接收消息时需要进行编码和解码，这里使用<code>data.encode('utf-8')</code>和<code>data.decode()</code>保证通信消息的正常发送，如果不使用会报错。</p>
+<p>好了，先来个简单的例子，下边是代码，建议代码运行的时候不要在IDE里运行，请在终端中运行。</p>
+<h2>服务器端</h2>
+<pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字服务器
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        data = "{0}".format(ctime())+" "+data.decode()
+        tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+
+<h2>客户端</h2>
+<pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("> ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    data = tcpCliSock.recv(BUFSIZ)
+    print(data.decode())
+tcpCliSock.close()</code></pre>
+
+<p>就目前这个聊天室只是完成了通信的最基本功能，只能由客户端发送一条消息，服务器端自动回应消息。之后的继续都是建立在这个基础模型之上了。</p>
+<h2>半双工的聊天室</h2>
+<p>如果稍加修改，我们就可以使这个服务器和客户端进行一对一的聊天了。</p>
+<ul>
+<li>服务器端添加判断，如果客户端发来的数据有内容，就进行输入，然后把数据发送给客户端。</li>
+<li>客户端连接后，先进行消息的发送，然后就一直等待服务器的消息回送，然后循环。</li>
+</ul>
+<p>现在的这个聊天系统缺点就是，必须等待另一方发来消息，才能回复消息，稍后我们继续改进。</p>
+<p>相关代码如下：</p>
+<h2>半双工服务器</h2>
+<pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        if data:
+            data = input("> ")
+            data = "{0}".format(ctime())+" "+data
+            tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+
+<h2>半双式的客户端</h2>
+<pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("> ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)
+        if data:
+            print(data.decode())
+            break
+tcpCliSock.close()</code></pre>
+
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/TCP">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -497,12 +487,23 @@ root.mainloop()
 
 <nav>
     <li><a href="list_17.html" role="button" class="outline">Prev</a></li>
-    <li><small>18 / 23</small></li>
+    <li><small>18 / 28</small></li>
     <li><a href="list_19.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -541,19 +542,7 @@ root.mainloop()
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

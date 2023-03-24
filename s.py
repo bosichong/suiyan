@@ -8,16 +8,12 @@
 @time     :2023/03/21
 
 """
+import datetime
+import random
+
 # 导入相关模块
 from jinja2 import FileSystemLoader, Environment
 import argparse
-import os
-import shutil
-import re
-import json
-import datetime
-import random
-import time
 import asyncio
 import aiofiles
 # 导入markdown模块
@@ -28,85 +24,19 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 BLOGPAGES = os.path.join(BASE_DIR, "blog")  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, "articles")  # 博文目录
 
-CONFIGJSON = os.path.join('config.json')
-BLOGDATAJSON = os.path.join('blog_data.json')
+CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
+BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 # 匹配文章数据的正则
 
 SUIYANVERSION = "2.0.2"  # 程序版本
 
 
-def loadcode(path):
-    """载入文件中的代码"""
-    try:
-        with open(os.path.join(path), encoding='utf-8') as f:
-            code = f.read()
-    except FileNotFoundError:
-        print(f"文件{path}不存在")
-        code = ''
-
-    return code
-
-
-def load_configjson():
-    '''载入blog配置文件config.json'''
-    config_code = loadcode(CONFIGJSON)
-    config = json.loads(config_code)
-    return config
-
-
-def load_blogdatajson():
-    '''载入blog数据blog_data.json'''
-    blogdata = loadcode(BLOGDATAJSON)
-    blog = json.loads(blogdata)
-    return blog
-
-
-def create_blog_data_Json(adir):
-    '''
-    递归获得当前目录及其子目录中所有的.md文件列表。
-    并创建blog的data索引JSON
-    :param adir: 文章日志所在目录
-    :param bdir: 站点根目录
-    :return: json字符串
-    '''
-    data_json = []
-    # 当前目录下所有的文件、子目录、子目录下的文件。
-    for root, dirs, files in os.walk(adir):
-        for name in files:
-            # 值读取.md
-            if name.endswith('.md'):
-                url = os.path.join(root, name).replace(
-                    adir + os.sep, '').replace('.md', '')  # 最后需要组装的相对目录
-                furl = os.path.join(root, name)  # 当前文件的绝对目录
-                f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
-                f_data["url"] = url
-                # print(f_data)
-                data_json.append(f_data)  # 添加到需要返回的数据数组中
-
-    data_json.sort(key=lambda x: x["time"], reverse=True)  # 对数组进行降序排序
-    data_json_str = json.dumps(data_json, ensure_ascii=False)  # 转化为json字符串
-    # print(data_json_str)
-    return data_json_str
-
-
-def create_data_json():
-    '''
-    创建blog索引.json
-    @param json_str: json 字符串
-    @return:
-    '''
-    json_str = create_blog_data_Json(ARTICLES_DIR)
-    with open(os.path.join(BASE_DIR, 'blog_data.json'), mode='w', encoding='utf-8') as f:
-        f.write(json_str)
-    print("blog数据索引更新完毕！")
-
-
 def create_sitemap():
     '''创建网站地图'''
-    config = load_configjson()  # 得到blog的配置Python字典
+    config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
     siteurl = config["site_url"]
     tmpstr = ""
-    blogdata = load_blogdatajson()  # 获得blog的博文数据
+    blogdata = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
     for ar in blogdata:
         if os.sep in ar["url"]:
             ar["url"] = xurl(ar["url"])
@@ -125,26 +55,32 @@ def create_sitemap():
     print("sitemap.xml更新完毕！")
 
 
-def jinja_test(template, context, file_path):
-    """
-    把字符串保存到./templates/XXX.html 用来预览页面
-    """
-    with open(file_path, 'w') as f:
-        f.write(template.render(**context))
-
-
-# 上下文
-
 def create_context():
     """
     创建模板的上下文
     """
 
     context = {
-        "config": load_configjson(),
+        "config": load_configjson(CONFIGJSON),
         "title":  "Home"
     }
     return context
+
+
+def create_index_html():
+    """
+    批量生成首页和列表页
+    """
+    blog_data = load_blogdatajson(BLOGDATAJSON)
+    # 根据博文数量推导列表页数
+    config = load_configjson(CONFIGJSON)
+    ps = calculate_page_num(config["blog_page_num"], len(blog_data))
+    # 获取上下文
+
+    # 异步
+    ct = [create_list_html(i, ps) for i in range(ps)]  # 列表生成式
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(ct))
 
 
 async def create_list_html(i, ps):
@@ -154,8 +90,8 @@ async def create_list_html(i, ps):
     @ps 总页数
     """
     articles = []
-    blog_data = load_blogdatajson()
-    config = load_configjson()
+    blog_data = load_blogdatajson(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader('./templates'))
     context = create_context()
@@ -165,7 +101,7 @@ async def create_list_html(i, ps):
     if i < ps:
         maxp = cs * i + cs  # 末尾文章数。
         # 若是最后一页，且文章有剩余，则添加余下的博文到最后一页
-        if i == ps - 1 and len(load_blogdatajson()) % cs > 0:
+        if i == ps - 1 and len(load_blogdatajson(BLOGDATAJSON)) % cs > 0:
             maxp = cs * i + (len(blog_data) % cs)
         for p in range(cs * i, maxp):
             article = blog_data[p]
@@ -177,7 +113,7 @@ async def create_list_html(i, ps):
         # 组装分页加入上下文
         context["prevurl"] = 'list_' + str(i - 1) + '.html'
         context["nexturl"] = 'list_' + str(i + 1) + '.html'
-        context["page_num"] = str(i) + ' / ' + str(ps)
+        context["page_num"] = str(i) + ' / ' + str(ps - 1)
         if i == 0:
             context["prevurl"] = '#'
         if i == ps - 1:
@@ -192,32 +128,16 @@ async def create_list_html(i, ps):
                 await f.write(tmp.render(**context))
                 print('生成list_' + str(i) + '.html 成功！')
         else:
-            context["title"] = "List Pages" + " 第"+str(i)+"页"
+            context["title"] = "List Pages" + " 第" + str(i) + "页"
             async with aiofiles.open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
                 await f.write(tmp.render(**context))
                 print('生成list_' + str(i) + '.html 成功！')
 
 
-def create_index_html():
-    """
-    批量生成首页和列表页
-    """
-    blog_data = load_blogdatajson()
-    # 根据博文数量推导列表页数
-    config = load_configjson()
-    ps = calculate_page_num(config["blog_page_num"], len(blog_data))
-    # 获取上下文
-
-    # 异步
-    ct = [create_list_html(i, ps) for i in range(ps)]  # 列表生成式
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(asyncio.wait(ct))
-
-
 def create_archives_html():
     """生成archives.html"""
-    blog_data = load_blogdatajson()
-    config = load_configjson()
+    blog_data = load_blogdatajson(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader('./templates'))
     context = create_context()
@@ -230,9 +150,122 @@ def create_archives_html():
     context["pages_num"] = len(blog_data)
     context["update"] = blog_data[0]["time"]
     context["archives"] = data
+    context["title"] = "Archives"
     with open(archives_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
         print('生成archives.html成功！')
+
+
+def create_tags_html():
+    """生成archives.html"""
+    blog_data = load_blogdatajson(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader('./templates'))
+    context = create_context()
+    tmp = env.get_template("tags.html")  # 模板
+    tags_html_path = os.path.join(BLOGPAGES, 'tags.html')  # 首页HTML
+    # 组装archives页面的上下文数据。
+    data = tagsdata(blog_data)
+    for item in data:
+        item["sum"] = len(item["data"])
+    context["tags"] = data
+    context["title"] = "Tags"
+
+    with open(tags_html_path, mode='w', encoding='utf-8') as f:
+        f.write(tmp.render(**context))
+        print('生成tags.html成功！')
+
+
+def create_allblog():
+    '''创建所有blog静态页面'''
+    blogdata = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
+
+    # #单线程创建blogHTML
+    # for blog in blogdata:
+    #     create_blog_html(mainhtml,blog)
+
+    # #多线程创建
+    # with ThreadPoolExecutor(max_workers=5) as ex:
+    #     for blog in blogdata:
+    #         ex.submit(create_blog_html, mainhtml, blog)
+
+    ct = [create_blog_html(blog) for blog in blogdata]  # 列表生成式
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(ct))
+    # loop.close()
+
+
+async def create_blog_html(blog):
+    '''
+    创建blog页面
+    '''
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader('./templates'))
+    tmp = env.get_template("blog.html")  # 模板
+    blog_path = os.path.join(BLOGPAGES, blog["url"] + '.html')  # 首页HTML
+    create_dir(blog_path)
+    context = create_context()
+    context["blog"] = blog
+    context["data"] = markdown(read_file_without_header(os.path.join(ARTICLES_DIR, blog["url"] + ".md")))
+    async with aiofiles.open(blog_path, mode='w', encoding='utf-8') as f:
+        await f.write(tmp.render(**context))
+        print('生成' + blog["title"] + '博文成功！')
+
+
+def create_blog(title='', author='', tag='', dir='', pagename=''):
+    '''
+    创建一篇空白的新blog
+    :param title: blog标题
+    :param author: blog作者默认为空的话前段渲染为站长昵称，转载可以添加佚名或是原作者。
+    :param tag: 标签 默认为为分类
+    :param dir 存放目录
+    :param pagename: 当前页面的name 例如"hello188.md",如果为空默认为年月日时间字符串
+    :return:
+    '''
+    # 文章创建时间
+    create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    if pagename == '':
+        pagename = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    if tag == '':
+        tag = "未分类"
+    if author == '':
+        # 从配置文件里加载站长为作者
+        config = load_configjson(CONFIGJSON)
+        author = config['blog_author']
+    blogfile = os.path.join(ARTICLES_DIR, os.path.join(dir, pagename + '.md'))
+    create_dir(blogfile)  # 如果有不存在的目录则创建
+    bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\n\
+time:' + create_time + '\ntag:' + tag + '\n+' - --'+\n\
+</br>\n\n## 可以开始写blog啦(*￣︶￣)'
+
+    if os.path.isfile(blogfile):
+        print('文件存在相同名称，创建失败。')
+    else:
+        with open(blogfile, mode='w', encoding='utf-8') as f:
+            f.write(bloghtml)
+        print('blog文章.md创建成功！')
+        os.system('code ' + blogfile)  # 使用VS Code打开文件
+
+
+def create_test(con):
+    '''
+    生成测试blog默认1000篇，放在目录suiyantest下。
+    获取.md的文章信息HTML转化成数组
+    :param con: 需要生成的文章数。
+    :return: void
+    '''
+    dir = "suiyantest"
+    for i in range(con):
+        # 随机生成一些文章数据填充，用来测试
+        title = random.choice(
+            ("打法撒发射点发斯蒂芬", "斯蒂芬阿斯蒂芬斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬斯蒂芬阿斯蒂芬3",))
+        tag = random.choice(("Java", "JavaScript", "Python", "C++", "程序员",))
+        pagename = str(random.randint(99999, 99999999))
+        create_blog(title=title, tag=tag, dir=dir,
+                    author='', pagename=pagename)
+    print("测试文件创建完毕！")
 
 
 def main():
@@ -255,24 +288,22 @@ def main():
     if args.version:
         print(SUIYANVERSION)
     elif args.newblog:
-        print("新文章.md创建完毕！")
+        create_blog(title=args.newblog, author=args.author,
+                    tag=args.tag, dir=args.dir, pagename=args.pagename, )
     elif args.suiyantest:
-        print("测试文件创建完毕！")
+        create_test()
     elif args.index:
         create_data_json()
         create_sitemap()
         delete_html_files()
-
-        print("首页及blog列表页更新完毕！")
-
-        print("文章归档页更新完毕！")
-
-        print("标签页更新完毕！")
-
-        print("所有blog文章页更新完毕！")
+        create_data_json(ARTICLES_DIR, BLOGDATAJSON)
+        create_sitemap()
+        create_index_html()
+        create_archives_html()
+        create_tags_html()
+        create_allblog()
     elif args.sitemap:
-
-        print("sitemap.xml更新完毕！")
+        create_sitemap()
     else:
         print(parser.print_help())  # 默认打印帮助
 
@@ -280,7 +311,10 @@ def main():
 if __name__ == "__main__":
     create_blog_dir(BLOGPAGES)  # 所有blog目录，存放blog中的所有静态资源。
     # main()
-    create_data_json()
+    delete_html_files(BLOGPAGES)
+    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
     create_sitemap()
     create_index_html()
     create_archives_html()
+    create_tags_html()
+    create_allblog()

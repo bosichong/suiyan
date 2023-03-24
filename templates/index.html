@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %} {{ title }}{% endblock %}
 {% block article %}
 
 
 {% for a in articles %}
 <hgroup>
     <h2>{{ a.title }}</h2>
-    <h3> 作者:<a href="#">{{ a.author }}</a> <small>发布时间:{{ a.time }}</small> 标签:
+    <h3> 作者:<a href="#">{{ a.author }}</a> <small>发布时间:{{ a.time }}</small> Tag:
         {% set tags = a.tag.split(",") %}
         {% for tag in tags %}
-        <mark>{{ tag }}</mark>
+        <samll>{{ tag }}</samll>
         {% endfor %}
     </h3>
 </hgroup>

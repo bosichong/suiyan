@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 python3函数学习笔记简单总结</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>python3函数学习笔记简单总结</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-09 09:27:49</small> Tag:
+        
+        
+        <small>Python基础</small>
+        
+    </h3>
+</hgroup>
+<p><p><em>python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路</em></p>
+<h3>函数的定义，Python 定义函数使用 def 关键字</h3>
+<pre><code class="python">def hello():
+    '''定义一个hello打印的函数'''
+    return 'hello world'
+
+### 使用函数
+
+print(hello())
+</code></pre>
+
+<h3>有参数并有返回值的函数</h3>
+<pre><code class="python">def add(x, y):
+    return x+y
+print(add(2,5))
+</code></pre>
+
+<h3>任意参数有返回值 <em>为tuple </em>*为list</h3>
+<pre><code class="python">def rst_a(*k, **s):
+    rst = 0
+    for v in k :
+        rst += v
+    return rst,s
+print(rst_a(1,2,3,4,aa='aa',bb='bb'))
+</code></pre>
+
+<h3>有意思的lambda</h3>
+<pre><code>l = lambda x, y : x + y
+print(l(2,8))
+</code></pre>
+<h3>装饰器语法糖</h3>
+<p>在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(<em>args, </em>*kwargs)可变参数。</p>
+<pre><code class="python">import time
+
+def t(func):
+    '''定义一个程序运行时间计算函数'''
+    def wrapper(*args, **kwargs):
+        start = time.time()#起始时间
+        func(*args, **kwargs)#要执行的函数
+        end = time.time()#结束时间
+        print('程序运行时间:{:.2f}ms'.format((end-start)*1000))
+    return wrapper
+
+def log(func):
+    '''一个打印函数运行日志的方法'''
+    def wrapper(*args, **kwargs):
+        print('函数开始运行')
+        func(*args, **kwargs)
+        print('函数运行结束')
+    return wrapper
+
+@log #打印日志
+@t  #统计程序运行时间
+def myfunc(x,y):
+    '''打印从x到y的数值'''
+    for i in range(x,y):
+        print(i)
+
+myfunc(3,6)
+
+</code></pre>
+
+<h3>相关参考</h3>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">Python 函数</a></li>
+<li><a href="http://python.jobbole.com/82344/">Python 装饰器</a></li>
+<li><a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">理解Python中的装饰器</a></li>
+</ul>
+<h3>本文源码下载：</h3>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

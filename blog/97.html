@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 wxPython编程学习笔记(10)wx.FileDialog文件选择框</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(10)wx.FileDialog文件选择框</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-01-05 14:41:02</small> Tag:
+        
+        
+        <small>Python GUI</small>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png" /></p>
+<h2>wx.FileDialog文件选择框</h2>
+<p>'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。</p>
+<h2>创建</h2>
+<pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
+dlg.GetPath()#返回文件地址字符串
+</code></pre>
+<p>其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。</p>
+<p>我做了一个测试，代码下边跑跑看吧，希望能帮助到你。</p>
+<pre><code>import wx
+import os
+import time
+
+class MyFrame(wx.Frame):
+    def __init__(self, *args, **kwds):
+
+        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
+        wx.Frame.__init__(self, *args, **kwds)
+        self.SetSize((400, 300))
+        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.button_1 = wx.Button(self, wx.ID_ANY, u"选择文件")
+        self.text_ctrl_2 = wx.TextCtrl(self, wx.ID_ANY, "")
+
+        self.__set_properties()
+        self.__do_layout()
+
+
+    def __set_properties(self):
+
+        self.SetTitle("frame")
+        self.button_1.Bind(wx.EVT_BUTTON,self.onButton_1)
+
+    def __do_layout(self):
+
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(self.text_ctrl_1, 1, wx.ALL, 0)
+        sizer_2.Add(self.button_1, 0, 0, 0)
+        sizer_1.Add(sizer_2, 0, wx.ALL | wx.EXPAND, 0)
+        sizer_3.Add(self.text_ctrl_2, 1, wx.ALL | wx.EXPAND, 0)
+        sizer_1.Add(sizer_3, 1, wx.ALL | wx.EXPAND, 0)
+        self.SetSizer(sizer_1)
+        self.Layout()
+
+    def onButton_1(self,e):
+        print("按钮事件")
+        dlg = wx.FileDialog(self, message="选择一个文件", defaultDir=os.getcwd(), style=wx.FD_OPEN)
+        ret = dlg.ShowModal()
+        if ret == wx.ID_OK:
+            print(dlg.GetPath())  # 文件地址
+            self.text_ctrl_1.SetValue(dlg.GetPath())
+
+            fp = os.path.join(dlg.GetPath())  # 组装文件地址
+            ###输出到弹出信息窗口的字符拼装。
+            retstr = str(self.get_FileSize(fp)) + "\n" + self.get_FileAccessTime(fp) + "\n" + self.get_FileCreateTime(
+                fp) + "\n" + self.get_FileModifyTime(fp)
+            self.text_ctrl_2.SetValue(retstr)
+
+        dlg.Destroy()
+
+
+    # 把时间戳转化为时间: 1479264792 to 2016-11-16 10:53:12
+    def TimeStampToTime(self, timestamp):
+        timeStruct = time.localtime(timestamp)
+        return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
+
+    # 获取文件的大小,结果保留两位小数，单位为MB
+    def get_FileSize(self, filePath):
+        fsize = os.path.getsize(filePath)
+        return fsize
+
+    # 获取文件的访问时间
+    def get_FileAccessTime(self, filePath):
+        t = os.path.getatime(filePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的创建时间
+    def get_FileCreateTime(self, ilePath):
+        t = os.path.getctime(ilePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的修改时间
+    def get_FileModifyTime(self, filePath):
+        t = os.path.getmtime(filePath)
+        return self.TimeStampToTime(t)
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(None, wx.ID_ANY, "")
+        self.SetTopWindow(self.frame)
+        self.frame.Show()
+        return True
+
+
+if __name__ == "__main__":
+    app = MyApp(0)
+    app.MainLoop()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}{{ config.blog_name }} {{ title }}{% endblock %}
+{% block article %}
+
+    <header class="entry-header">
+     <h1 class="single-title">
+      TAGS
+     </h1>
+    </header>
+
+{% for tag in tags  %}
+<details>
+  <summary>{{ tag.tag }}</summary>
+  <ul>
+      {% for blog in tag.data %}
+      <li>
+          <a href="{{ blog.url }}.html" target="_blank">
+         {{ blog.title }}
+        </a>
+          <span>
+         {{ blog.time }}
+        </span>
+      </li>
+      {% endfor %}
+  </ul>
+</details>
+{% endfor %}
+
+{% endblock %}

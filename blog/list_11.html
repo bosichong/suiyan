@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第11页</title>
+    <title>SuiYan 碎言博客  List Pages 第11页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,295 +81,283 @@
 
 
 <hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-05 09:41:22</small> 标签:
+    <h2>wxPython编程学习笔记(01)Frame程序的窗口</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-18 19:42:47</small> Tag:
         
         
-        <mark>pygame</mark>
-        
-    </h3>
-</hgroup>
-<p><p>在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_16.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_17.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_18.png" /></p>
-<h2>GreedSnake贪食蛇设计思路</h2>
-<p>游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
-这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_13.png" /></p>
-<p>除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：</p>
-<ul>
-<li>游戏的背景渲染</li>
-<li>蛇的运动</li>
-<li>食物的生成</li>
-<li>游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？</li>
-</ul>
-<p>当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用<code>PY_RPG+pygame</code>来实现这个简单的小游戏吧。</p>
-<h2>游戏背景渲染</h2>
-<p>分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
-对于<code>GreedSnake</code>来说，我们需要有一组是浅色网格组成的背景，
-对于游戏背景，我单独创建了一个class <code>GameBackground</code>,背景绘制的核心逻辑代码如下：</p>
-<pre><code>self.screen.fill((221, 221, 221))
-for i in range(0, 10):
-    for j in range(0,10):
-         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
-</code></pre>
-<p>在场景中创建对象后，进行渲染，效果如下：</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_12.png" /></p>
-<h2>绘制蛇并让它动起来</h2>
-<p>默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
-这样我们在游戏场景中创建一个list用来表示蛇的身体：</p>
-<pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
-for i in range(0,4):
-    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
-</code></pre>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_14.png" /></p>
-<p>蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:</p>
-<pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
-    for i in range(0, 5):
-        if i == 0:
-            color = RED
-        else:
-            color = BLACK
-        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
-</code></pre>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_15.png" /></p>
-<p>这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
-关于蛇的移动逻辑：</p>
-<ul>
-<li>蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在<code>GreedSnake.update()</code>中，我们通过判断来更新蛇的位置。</li>
-<li><code>GreedSnake.handle_event()</code>中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向</li>
-</ul>
-<p>具体代码就不贴了，可以参考源文件代码。</p>
-<h2>生成食物与吃掉食物。</h2>
-<p>关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。</p>
-<h2>游戏结束</h2>
-<p>游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。</p>
-<h2>游戏暂停</h2>
-<p>在游戏场景类中加入了一个<code>pause</code>的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在<code>update</code>中控制整个游戏的更新，这样就可以达到控制游戏暂停了。</p>
-<h2>总结</h2>
-<p>教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。</p>
-<h2>本文源码下载</h2>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：<code>PY_RPG.GreedSnake.py</code></p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>2018 新年快乐！希望在coding中找到自己的快乐与希望</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-01 17:40:57</small> 标签:
-        
-        
-        <mark>站长吐槽</mark>
+        <samll>Python GUI</samll>
         
     </h3>
 </hgroup>
-<p><p>转眼间时光匆匆流过，稀里糊涂的又过去了一年，大约2017年6月时我开始了博客的搭建与设计，8月份上线运营维护，这期间又草草聊聊的写了71篇技术相关的博文。。。这一深一浅的一路走来，希望自己在编程的路上走得更坚实更努力一些！</p>
-<h2>编程之路</h2>
-<p>断断续续的自学编程有10年多了，其中有苦有乐，成绩自我评价也就是接近及格那种。期间接触过好多种编程语言，就像打游戏一样，要把所有的职业都玩一遍，每个职业都练了几个月最后都放弃了，其中拿捏时间比较长的有：<code>php js java</code> 和现在正在深度学习的<code>Python</code>。其实一开始学习<code>Coding</code>的时候也是没有什么目标的，只是有一次在论坛做版主的时候被安排了一个任务，任务中需要用到<code>html+css</code>排版，然后自己就去百度搜索了一下相关知识，然后就一发不可收拾的迷上了编码。虽然最开始的时候学的是易语言，而且竟然学用了近二年之久，最后才因为某种原因不得不放弃它。之后就是各种语言职业的轮番试玩了。。。一直到14年左右，才开始稳定到java，16年弃坑<code>java</code>转而<code>Python</code>。</p>
-<h2>2018的书单</h2>
-<p>今年有一些目标和计划，除了努力工作之外，还是要继续学习<code>Python</code>，然后继续学习一门新的编程语言，感觉这门语言非<code>C++</code>莫属了，天下武功（编码）少林正宗（C++）。
-然后计划读30本书，其中10本编程专业书籍，20本兴趣书籍。写50篇或更多的专业博文，用来记录自己的学习历程，巩固学习进度，加深学习印象。</p>
-<h2>编程计划</h2>
-<p>计划写一个学习<code>Python</code>编程的RPG游戏及开发一个<code>Django</code>开源blog。我会为此而努力。2018，新的一年，希望大家更加努力，早日实现自己的梦想。
-最后，我告诉你：<strong>相信我，多读书，不会错的。</strong></p></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-29 20:18:35</small> 标签:
-        
-        
-        <mark>pygame</mark>
-        
-    </h3>
-</hgroup>
-<p><p>以前学java的时候用java做了一个简单弹球小游戏，觉得还是蛮有意思的，这次用<code>pygame</code>重写一下试试，以前觉得游戏编程很简单，可能是考虑的太简单了，游戏的编写是步步为营，逻辑紧扣，错一点游戏都无法运行的，所以学习用面向对象方式编写游戏，是对python编程学习的强化练习，大家可以多试试。</p>
-<h2>Pingball游戏的设计</h2>
-<p>游戏很小，场景中的精灵有两个：球拍和一个小球。游戏的顺序包括：游戏开始画面，游戏主场景，游戏结束画面。
-游戏逻辑：判断小球的Y坐标低于球拍的Y坐标值即为游戏结束，球拍和小球都有自己的运动逻辑。这么简单的游戏我们从哪里入手呢？
-肯定是先创建一个游戏窗口啦：）</p>
-<h2>设定一些游戏的基本数据</h2>
-<p>游戏包括的主要数据有：</p>
-<ul>
-<li>游戏场景（宽+高）</li>
-<li>球拍，（宽，高，位置，移动速度）</li>
-<li>小球，（宽，高，位置，移动速度）</li>
-<li>游戏逻辑，判断游戏是否结束，暂停游戏，重新开始游戏，及一些文字的打印。</li>
-</ul>
-<p>有了这些构思，我们一样一样的通过我们之前封装的PY_RPG及pygame提供的一些功能来实现这个小游戏。</p>
-<h2>创建场景</h2>
-<p>一共有三个场景，分别为游戏开始画面<code>MainScene</code>游戏主场景<code>Pingball</code>游戏结束画面<code>GameOverScene</code></p>
-<p>先创建三个场景的类，通过继承<code>PY_RPG.Scene</code>，会很方便的创建出三个类，分别修改三个场景的一些参数，然后设置键盘判断，进行游戏场景的跳转。
-因为<code>Scene</code>中的三个方法分工非常明确，我们可以很好的控制游戏场景，这样我们可以先把三个场景制作出来，然后进行测试，虽然游戏主场景没有任何精灵，
-但游戏场景整体是可以切换的。</p>
-<h2>创建球拍与球</h2>
-<p><code>Racket</code>和<code>Ball</code>分别进行一些属性设置，其中<code>Racket</code>相对来说比较简单，只需要左右移动，做一个场景边界判断即可。
-<code>Ball</code>的属性多了一些，需要有移动速度，需要通过<code>update</code>方法进移动的控制。</p>
-<h2>游戏逻辑判断</h2>
-<p>在游戏主场景中的<code>Pingball.update</code>方法中进行了一些游戏逻辑判断，包括：球遇到边界反弹，小球遇到球拍反弹后增加速度，和游戏结束的判断。
-这个方法中还需要添加球与球拍自己的<code>update</code>方法,用来更新自己的坐标变化。</p>
-<h2>游戏结束</h2>
-<p>游戏结束后，还可以通过按键重新开始，在<code>Pingball</code>中有个<code>replay</code>的函数，是用来控制重新开始后球体的位置.</p>
-<h2>功能扩展</h2>
-<p>这个弹球游戏只完成了最最最基本的功能，扩展性很强，比如添加关卡，打印得分，增加一些特效，只要你想修改，弹球也一样可以玩的很嗨。</p>
-<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_8.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_9.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171229_10.png" /></p>
-<h2>本文源码下载</h2>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：PY_RPG.pingball.py</p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-28 21:41:37</small> 标签:
-        
-        
-        <mark>pygame</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>为什么要封装？</h2>
-<p>pygame写起游戏都是函数式编写，对于一些简单的小游戏或许可以应付，随着游戏内容的增加，我们不可能只在一个.py文件中写下所有的游戏代码，这个时候，我们应该考虑对游戏中组件及对象进行封装，用面向对象的方式来进行游戏代码的编写。</p>
-<h2>一些具体的封装内容</h2>
-<p>游戏中的关键词，假设游戏没有条件判断，那么游戏从头运行到尾就是一部电影。
-这样的话，我们定义一些游戏的基本对象：</p>
-<ul>
-<li>渲染器（APP）--只负责渲染游戏场景中存在的游戏片段，属性有：一个游戏片段容器及一些游戏窗口常用设置，并初始化游戏设置。</li>
-<li>游戏片段(scene)--可能是游戏中的一个片段，一个情节，一节过场，片头，片尾等，游戏片段中包含一个开关属性，用来控制是否可以渲染此游戏片段。</li>
-<li>游戏逻辑判断器--游戏中的裁判，负责判断修改游戏中的执行条件。</li>
-<li>精灵--游戏中的角色，他可以是游戏中的场景，主角，配角，怪物，子弹，文字对白。</li>
-<li>工具类包括：场景中文字渲染工具，游戏中的素材目录的定制，方便调用。一些其它可能需要重复使用的工具。</li>
-</ul>
-<h2>定义渲染器</h2>
-<p>渲染器定义为一个游戏的APP，他应该是这个游戏的最外层，可以定义他的，分辨率，标题，刷新频率。
-如果游戏中有精灵贯穿全局（比如RPG游戏中的主要角色），这种精灵角色他不属于某个游戏片段，这样他应该存在于这个游戏app中。</p>
-<h2>定义游戏片段</h2>
-<p>一个gameApp中，至少得有一个游戏片段，游戏片段包括三个主要方法：</p>
-<pre><code>draw() update() handle_event()
+<p><h2>简介</h2>
+<p>之前的一些小应用都是用的<code>python tk</code>来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下<code>wxPython</code>
+<code>wxPython</code>是一个<code>Python</code>包装<code>wxWidgets</code>（这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
+<code>wxPython</code>是作为一个<code>Python</code>扩展模块。</p>
+<h2>wxPython的安装</h2>
+<pre><code>pip3 install wxPython
 </code></pre>
-<p>这三个方法分别对应:</p>
-<ul>
-<li>渲染场景</li>
-<li>更新数据 </li>
-<li>事件处理</li>
-</ul>
-<p>当我们继承新建游戏片段类的时候，需要根据自己的需求重写这三个方法。</p>
-<h2>如何使用PY_RPG？</h2>
-<pre><code>app = GameApp()#创建游戏
-appscreen = app.screen#获取渲染器
-app.scenes.append(MainScene(appscreen))#创建游戏菜单
-app.scenes.append(TestScene(appscreen))#创建游戏内容
-app.scenes.append(GameOverScene(appscreen))#游戏结束画面
-app.run() #游戏开始
+<p>如果网络不太好，可以到官网下载进行安装，官方网址：<code>https://wxpython.org/</code></p>
+<h2>Frame 窗口</h2>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png" /></p>
+<p>如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个<code>Frame</code>.</p>
+<p><code>Wx.Frame (parent, id, title, pos, size, style, name)</code></p>
+<p>其中的参数含意如下：</p>
+<p>Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
+id 窗口标识。通常-1为了让标识符自动生成
+Title 标题出现在标题栏
+Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
+Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
+style 窗口的外观按样式风格常数控制
+name 对象的内部名称</p>
+<h2>wxPython hello world</h2>
+<p>我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法<code>__init__</code>中创建窗口中的部件。
+<code>main()</code>方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。</p>
+<p>怎么样，很简单吧？</p>
+<pre><code>import wx
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        #创建一个静态文本
+        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
+        font = st.GetFont()
+        font.PointSize += 20
+        font = font.Bold()
+        st.SetFont(font)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
 </code></pre>
-<p>根据需要创建并重写上边的三个类，然后创建游戏就可以了，现在这样看来，游戏的创建是不是很有层次了？</p>
-<p>这个框架还没有封装完毕，我还会继续的，之后的游戏制作都要从这个框架上弄起了，初步还要写几个完整的小游戏例子。</p>
-<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_5.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_6.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171228_7.png" /></p>
-<h2>本文源码下载</h2>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件在PY_RPG目录下</p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-24 19:21:04</small> 标签:
-        
-        
-        <mark>Python GUI</mark>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png" /></p>
-<p>python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。</p>
-<h2>tkinter.filedialog的测试</h2>
-<p>创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
-测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：</p>
-<pre><code>'askdirectory',
-'askopenfile',
-'askopenfilename',
-'askopenfilenames',
-'askopenfiles',
-'asksaveasfile',
-'asksaveasfilename'
-</code></pre>
-<p>以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。</p>
-<p>好了，具体测试源码如下：</p>
-<p>'''</p>
-<pre><code>import tkinter.filedialog as filedialog
-from tkinter import *
-import os
-
-def filedir():
-    print('按键已被点击')
-    v.set('')#清空文本框里内容
-    var.set((('')))
-    path = filedialog.askdirectory()
-    print(dir(filedialog))
-    if path :
-        v.set(path)
-    getdir(path)
-
-def getdir(p):
-    #把目录中遍历出来的文件目录显示到列表框中
-    fp = os.listdir(p)
-    var.set(fp)
-
-root = Tk()
-root.title('文件目录选择对话框测试')
-frame = Frame(root)
-frame.pack(fill=X,side=TOP)
-#加入一个文本框显示目录地址
-v = StringVar()#绑定文本框的变量
-ent = Entry(frame, width=50,textvariable = v).pack(fill=X,side=LEFT)
-#加入一个按键，点击后弹出文件目录选择对话框
-button = Button(frame, text='选择文件夹', command=filedir).pack(fill=X,side= LEFT)
-#加入一个列表框，显示目录中的文件列表
-listframe = Frame(root)
-listframe.pack(fill=X,side=LEFT)
-var = StringVar()#绑定listbox的列表值
-var.set((''))
-listbox = Listbox(listframe,width=60,listvariable = var).pack()
-root.mainloop()
-</code></pre>
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
-</ul>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python os.path.dirname(__file__) 在终端命令行下报错</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-11-21 22:16:58</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p>最近在写程序中用到了<code>os.path.dirname(__file__)</code>，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错</p>
+<pre><code>FileNotFoundError: [Errno 2] No such file or directory
+</code></pre>
+<p>我们先来测试一下，看看报错是什么样的？</p>
+<pre><code>print(os.path.dirname(__file__))
+</code></pre>
+<p>如果在终端运行当前程序就会报错：</p>
+<pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'os' is not defined
+</code></pre>
+<p>如何使之正确运行呢？如果你用过<code>Django</code>，就会想到<code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</code>,
+这个是<code>Django</code>里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中<code>os.path.abspath(__file__)</code>这条是返回当前文件的绝对地址，
+而<code>os.path.dirname(os.path.abspath(__file__))</code>就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
+困扰人生的小问题就这样绝对喽！</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>MyDjangoBlog是基于Django搭建的个人blog</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-11-20 08:55:16</small> Tag:
+        
+        
+        <samll>站长源创</samll>
+        
+    </h3>
+</hgroup>
+<p><p>开心Python Django 学习交流q群：217840699</p>
+<p>一个简易易用的blog，基于以下技术构建</p>
+<ul>
+<li>Python </li>
+<li>Django </li>
+<li>Amaze UI </li>
+<li>SQLite3 </li>
+<li>highlight.js </li>
+</ul>
+<p>后台基于Django admin搭建。</p>
+<p>展示如下图，<a href="http://www.17python.com">点击博客</a>查看在线演示效果</p>
+<p><img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/201630_6f5d34a4_125848.png" title="001.png" /></p>
+<p><img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/204359_4d1b64ee_125848.png" title="002.png" /></p>
+<h1>本地调试</h1>
+<p>环境需求：</p>
+<p>python (3.6.1)
+Django (1.11.3)
+Markdown (2.6.8)
+Pillow (4.2.1)</p>
+<p>进入程序目录后，运行<code>python3 manage.py runserver</code></p>
+<p>后台管理地址<code>http://127.0.0.1:8000/admin/</code></p>
+<p>管理员登陆:</p>
+<p>用户名：<code>admin</code>   密码：<code>17python.com</code></p>
+<p>前台地址<code>http://127.0.0.1:8000/</code></p>
+<p>如果想在部署到生产环境，<a href="http://www.17python.com/blog/67">请点此查看详细教程</a></p>
+<p>欢迎有识之士参与提交代码，大家共同学习共同进步！</p>
+<p>开心Python Django 学习交流q群：217840699</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/www.17python.com">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Git多人协作（码云）中的一些操作简单记录</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-10-28 14:24:15</small> Tag:
+        
+        
+        <samll>Git</samll>
+        
+    </h3>
+</hgroup>
+<p><p>最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。</p>
+<p>我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:</p>
+<h2>创建远程代码仓库和本地仓库。</h2>
+<ul>
+<li>选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。</li>
+<li>创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。</li>
+<li>但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.<pre><code>➜  test git:(master) git branch 
+* master
+➜  test git:(master) git checkout -b dev
+Switched to a new branch 'dev'
+➜  test git:(dev) git pull origin dev   
+From https://gitee.com/bosichong/test
+* branch            dev        -&gt; FETCH_HEAD
+Already up-to-date.
+➜  test git:(dev) git branch 
+* dev
+master
+</code></pre>
+</li>
+</ul>
+<p>这样的话我们的本地库与远程代码仓库相关联了。</p>
+<h2>如何协作更新代码？</h2>
+<p>远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
+模拟一次git协作：
+假设需要研发一个人工智能编码器，我和我的小伙们都在进行编码，我在分支aicode仓库中ai.py编写了大量的代码并完成需要上传远程仓库dev。
+首先我把aicode分支全并到本地的dev,然后上传到远程dev仓库。</p>
+<pre><code>➜  test git:(dev) git checkout -b aicode
+Switched to a new branch 'aicode'
+➜  test git:(aicode) touch ai.py
+➜  test git:(aicode) ✗ vi ai.py 
+➜  test git:(aicode) ✗ git add .
+➜  test git:(aicode) ✗ git commit -m 'aicode功能更新'
+[aicode a1e0b50] aicode功能更新
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(aicode) git checkout dev 
+Switched to branch 'dev'
+➜  test git:(dev) git merge aicode 
+Updating 8fcac3b..a1e0b50
+Fast-forward
+ai.py | 2 ++
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(dev) git push origin dev  
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 298.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: Powered by Gitee.com
+To https://gitee.com/bosichong/test.git
+8fcac3b..a1e0b50  dev -&gt; dev
+</code></pre>
+<p>这样我就完成了一次更新，其实挺简单的。</p>
+<h2>发生冲突怎么办？</h2>
+<p>有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：</p>
+<pre><code>To https://gitee.com/bosichong/test.git
+! [rejected]        dev -&gt; dev (fetch first)
+error: failed to push some refs to 'https://gitee.com/bosichong/test.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+<p>大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
+然后再pull的时候提示如下：</p>
+<pre><code>* branch            dev        -&gt; FETCH_HEAD
+99ccc9c..4c49e33  dev        -&gt; origin/dev
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
+我们解决一下文件中的冲突内容：</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+我更新的下半部分啊
+=======
+小伙伴更新的上半部分
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 4c49e33af00dd498b2d4761d3fc607ee29afbdf4
+</code></pre>
+<p>这里我这样的修改的：</p>
+<pre><code>小伙伴更新的上半部分
+我更新的下半部分啊
+</code></pre>
+<p>处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。</p>
+<p>遇到问题：
+1.今天小伙伴更新dev分支，但我怎么也pull不来，提示如下：</p>
+<pre><code>Updating e32f487..204c0a1
+error: Your local changes to the following files would be overwritten by merge:
+    Psmrcddup.py
+Please commit your changes or stash them before you merge.
+</code></pre>
+<p>解决方法：</p>
+<pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
+➜  PrimarySchoolMath git:(dev) git pull gitee dev
+</code></pre>
+<h2>分支策略</h2>
+<p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
+<p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p>那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。</p>
+<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。</p>
+<p>所以，团队合作的分支看起来就像这样：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png" /></p>
+<p>一些常用协作git命令：</p>
+<pre><code>查看分支：git branch
+创建分支：git branch &lt;name&gt;
+切换分支：git checkout &lt;name&gt;
+创建+切换分支：git checkout -b &lt;name&gt;
+合并某分支到当前分支：git merge &lt;name&gt;
+删除分支：git branch -d &lt;name&gt;
+git remote 显示 远程仓库的分支
+git remote -v 显示更详细的信息：
+</code></pre>
+<h2>相关文章</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PrimarySchoolMathematics">廖雪峰：git多人协作</a></li>
 </ul></p>
 
 
@@ -380,12 +368,23 @@ root.mainloop()
 
 <nav>
     <li><a href="list_10.html" role="button" class="outline">Prev</a></li>
-    <li><small>11 / 23</small></li>
+    <li><small>11 / 28</small></li>
     <li><a href="list_12.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -424,19 +423,7 @@ root.mainloop()
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

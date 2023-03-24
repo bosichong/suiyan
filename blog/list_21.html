@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第21页</title>
+    <title>SuiYan 碎言博客  List Pages 第21页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,71 +81,47 @@
 
 
 <hgroup>
-    <h2>Python 采集数据三步曲之[Requests开源协议的HTTP 库]</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-02 09:01:48</small> 标签:
+    <h2>python 类的静态方法和类方法</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-30 09:31:31</small> Tag:
         
         
-        <mark>Python基础</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><blockquote>
-<p>Requests 是以 PEP 20 的箴言为中心开发的</p>
-</blockquote>
-<ul>
-<li>Beautiful is better than ugly.(美丽优于丑陋)</li>
-<li>Explicit is better than implicit.(直白优于含蓄)</li>
-<li>Simple is better than complex.(简单优于复杂)</li>
-<li>Complex is better than complicated.(复杂优于繁琐)</li>
-<li>Readability counts.(可读性很重要)</li>
-<li>对于 Requests 所有的贡献都应牢记这些重要的准则。
-<img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;" /></li>
-</ul>
-<h2>Requests install</h2>
-<pre><code>pip3 install requests
-</code></pre>
-<p>下载安装</p>
-<pre><code>git clone git://github.com/kennethreitz/requests.git
-cd requests
-python setup.py install
-</code></pre>
-<h2>一分钟上手</h2>
-<pre><code class="python">import requests
-r = requests.get('http://www.baidu.com')
-print(r.status_code)# 返回状态码
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
+<p><h2>静态方法和类方法的定义</h2>
+<p><code>Python</code>中类的静态方法使用<code>@staticmethod</code>装饰器来定义
+<code>Python</code>中类方法使用<code>@classmethod</code>装饰器来定义</p>
+<pre><code class="python">
+class Hello:
+    k = 2
+    #定义一个类的静态方法
+    @staticmethod
+    def add(x,y):
+        return x + y
+    #定义一个类方法
+    @classmethod
+    def mul(cls,x):
+        return cls.k * x
+
+print(Hello.add(999,1))#使用静态方法 结果为1000
+print(Hello.mul(2))#使用类方法 结果为4
 </code></pre>
 
-<p>如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）</p>
-<h2>带参数的请求</h2>
-<pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
+<p>类的静态方法使用和使用普通函数一样简单，但类方法确有些不同，她只能用于类本身，把自身做为对象进行操作。
+我们继承一下<code>Hello</code>这个类，看看静态方法和类方法是不是能被继承？</p>
+<pre><code class="python">class World(Hello):
+    k = 4
+
+print(World.add(1,999))
+print(World.mul(2))
 </code></pre>
 
-<blockquote>
-<ul>
-<li>r.status_code #响应状态码</li>
-<li>r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取</li>
-<li>r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩</li>
-<li>r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码</li>
-<li>r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None</li>
-<li>r.json() #Requests中内置的JSON解码器</li>
-<li>r.raise_for_status() #失败请求(非200响应)抛出异常</li>
-</ul>
-</blockquote>
-<h2>这只是一个简单的入门引导</h2>
-<p>Requests 是一个简单强大的<code>HTTP</code>库，是我用过的最简单实用的<code>python</code>库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，<code>pythoner</code>居家旅游必备之良品。</p>
-<p>一些Requests的参考</p>
-<ul>
-<li><a href="http://cn.python-requests.org/zh_CN/latest/index.html">Requests: 让 HTTP 服务人类 官方文档</a></li>
-<li><a href="http://blog.csdn.net/shanzhizi/article/details/50903748">Python-第三方库requests详解</a></li>
-</ul>
+<p>通过上边的例子，我们可以发现子类可以继承使用父类方法和父类的静态方法，如果类变量值有所变化，结果也会有所不同。</p>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/OOP/classstatictest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classstatictest.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -154,95 +130,118 @@ print(r.text) #返回html代码
 
 
 <hgroup>
-    <h2>Python 采集数据三步曲之[正则表达式 re.py]</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-01 13:09:49</small> 标签:
+    <h2>Python面向对象编程（OOP）初探</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-29 15:27:35</small> Tag:
         
         
-        <mark>Python基础</mark>
+        <samll>Python基础</samll>
         
     </h3>
 </hgroup>
-<p><p><em>越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器</em></p>
-<h2>如何用<code>Python</code>开始一个简单的正则表达式？</h2>
-<p>其实很简单，从</p>
-<pre><code>import re
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/09/44344855_33.jpeg" /></p>
+<h2>面向对象编程</h2>
+<p>说起面向对象编程，除了那些晦涩抽象的定义，我脑海中印象比较深的就是那张王宝强的表情图：程序员？面向对象编程？哈哈哈没有对象你编毛程？</p>
+<h2>三大特征</h2>
+<p>学过java的同学应该非常的了解这三个特征：<em>封装、继承、多态</em>
+在Python的世界中，一切都是对象，为什么要用面向对象模式来进行编程？因为这样更接近人类对自然的认识过程，更直观，如果对面向编程的理论不太了解，建议百度搜索相关知识了解一下。</p>
+<h2>Python中的Class</h2>
+<p>在Python中定义一个Class是非常简单的，语方法如下：</p>
+<pre><code>Class classname(object):
+    pass
 </code></pre>
-<p>引入<code>Python</code>的正则表达式支持模块开始。</p>
-<h2>开始使用<code>re</code>模块</h2>
-<pre><code class="python">#codeing=utf-8
-import re
-p = re.compile(r'17python')#创建Pattern对象
-m = p.match('17python.com')
-if m :
-    print(m.group())
-# 输出结果为：17python
+<p>其中（object）是用来定义需要继承的父类，Python中，可以继承多个类，这个与java的单继承不同。</p>
+<pre><code class="python">def run():
+    print("我会跑！")
+
+class Animal(object):
+    k = 0#类属性
+    def __init__(self,name):#类构造器
+        self.name = name#实例的属性
+    #实例的方法
+    def say(self):
+        Animal.k += 1
+        print("{0}:我会呼吸！".format(self.name))
+        print("Animal.k={0}".format(Animal.k))
+
+a = Animal("aaaa")
+a.say()#执行实例的方法
+print("Animal.k:{0}".format(Animal.k))#打印类属性
+print(Animal.__init__)
+print(Animal.say)
+Animal.m = 1
+a.color = "red" #动态的添加属性
+a.run = run()#动态的添加属性
+print("我的颜色是=%s" % a.color)
+print("Animal.m=%s" % Animal.m)
+print("a.m=%s" % a.m)
+# print("Animal.a：%s" % Animal.a)  这里会抛出错误
 </code></pre>
 
-<p>另一种方式：</p>
-<pre><code class="python">#使用re模块方法代替实例方法
-print(re.match('17python', '17python.com').group())
-# 输出结果为：17python
+<p>上边的实例不难发现，在类中，包括<code>k</code>类变量、<code>self.name</code>实例变量、<code>say</code>实例的方法，这些成员，都是类的的属性。
+Python中的实例对象可以动态的添加类变量及实例变量，只需要点一个<code>.</code>这和Java不同（当然Java也可以通过反射aop切面方式动态为对象添加功能方法）。</p>
+<h2>构造器和self</h2>
+<p><code>__init__(self)</code>类中的这个特殊方法就是类的构造器，<code>self</code>代表着这个类创建的对象。
+关于成员变量我们可以这样理解：对象和类说：<code>关于变量，你的就是我的，我的确只是我的。</code></p>
+<h2>Python的继承</h2>
+<p>Python中，类的继承很简单方便，看下下边的代码</p>
+<pre><code class="python">class Dog(Animal):
+    k = 999 #我们定义了一个与父类相同的类变量
+    def __init__(self,name):#同样定义了一个相同名称的实例变量
+        Animal.__init__(self,name)#注意这里没有:::::号
+
+    def say(self):
+        print(self.name+":我的叫声是：汪汪汪！")
+        print("Dog.k={0}".format(Dog.k)),
+
+dog = Dog("wangwang")
+dog.say()
+print("Animal.k:{0}".format(Animal.k))#打印父类属性
+print("Dog.k:{0}".format(Dog.k))#打印子类属性
+# dog.run #这个动态添加到父类创建的实例中的变量是无法继承过来的。 非得执行的话会报错。
 </code></pre>
 
-<h2>re模块及正则实例常用方法演示</h2>
-<pre><code class="python">p = re.compile(r'17python')
-s1 = '17python.com'
-s2 = 'www.17python.com'
-s3 = '17python.com17python.com'
-s4 = 'abc.com'
-p4 = re.compile('abc')
-print(p.match(s1).group())
-print(p.search(s2).group())
-print(p.findall(s3))
-print(p4.sub('17python', s4))
+<p>通过上边的例子，我们可以看出，类继承后，实例的变量是可以继承的，通过调用父类的<code>__init__()</code>方法来简化实例构造。
+但是父类的类属性是无法继承的，他们互相独立存在在内存中。
+<code>Dog</code>类中的也有一个<code>say()</code>的方法，象这样与父类拥有相同的方法名称而具有不相同的执行结果的行为叫做方法重写。</p>
+<h2>多态</h2>
+<p>我们在创建一个新类继承<code>Animal</code></p>
+<pre><code class="python">
+class Cat(Animal):
+    def __init__(self,name):
+        Animal.__init__(self,name)
+
+    def say(self):
+        print(self.name+":我的叫声是：喵喵喵")
+
+cat = Cat("Tom")
+cat.say()
 </code></pre>
 
-<p>以上只是<code>Python</code>re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考<a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re"><code>Python</code>文档 re模块详解</a></p>
-<h2>元字符 （参见 python 模块 re 文档）</h2>
-<ul>
-<li>.                    匹配任意字符（不包括换行符）</li>
-<li>^                    匹配开始位置，多行模式下匹配每一行的开始</li>
-<li>$                    匹配结束位置，多行模式下匹配每一行的结束</li>
-<li>*                    匹配前一个元字符0到多次</li>
-<li>+                    匹配前一个元字符1到多次</li>
-<li>?                    匹配前一个元字符0到1次</li>
-<li>{m,n}                匹配前一个元字符m到n次</li>
-<li>\                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符</li>
-<li>[]                   字符集，一个字符的集合，可匹配其中任意一个字符</li>
-<li>|                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b</li>
-<li>(...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值</li>
-<li>(?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I</li>
-<li>(?:...)              分组的不捕获模式，计算索引时会跳过这个分组</li>
-<li>(?P<name>...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name</li>
-<li>(?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则</li>
-<li>(?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I</li>
-<li>(?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则</li>
-<li>(?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则</li>
-<li>(?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则</li>
-<li>(?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则</li>
-<li>(?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则</li>
-<li>\number              匹配和前面索引为number的分组捕获到的内容一样的字符串</li>
-<li>\A                   匹配字符串开始位置，忽略多行模式</li>
-<li>\Z                   匹配字符串结束位置，忽略多行模式</li>
-<li>\b                   匹配位于单词开始或结束位置的空字符串</li>
-<li>\B                   匹配不位于单词开始或结束位置的空字符串</li>
-<li>\d                   匹配一个数字， 相当于 [0-9]</li>
-<li>\D                   匹配非数字,相当于 [^0-9]</li>
-<li>\s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]</li>
-<li>\S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]</li>
-<li>\w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]</li>
-<li>\W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]</li>
-</ul>
-<h2>更详细的<code>Python</code>re正则表达式教程</h2>
-<ul>
-<li><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a></li>
-<li><a href="http://www.cnblogs.com/dyfblog/p/5880728.html">python正则表达式详解</a></li>
-<li><a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">Python文档 re模块详解</a></li>
-</ul>
+<p><code>isinstance()</code>函数，可以用来判断一个变量是否是某个类，我们测试一下</p>
+<pre><code>print(isinstance(cat,Cat))#True
+print(isinstance(cat,Animal))#True
+print(isinstance(a,Animal))#True
+print(isinstance(a,Cat))#False
+</code></pre>
+<p>很明显，动物的对象不能说成是猫，但猫的对象可以是猫类，说猫是动物类也没什么错误。也就是说，继承是从上到下。
+那多态是什么？我们还需要一个函数，然后来看看。</p>
+<pre><code class="python">def isay(animal):
+    animal.say()
+
+isay(a)#aaaa:我会呼吸！
+isay(dog)#wangwang:我的叫声是：汪汪汪！
+isay(cat)#Tom:我的叫声是：喵喵喵
+</code></pre>
+
+<p>通过<code>isay()</code>方法的输出，我们多少对多态这个概念有那么一点了解了，回想当年学Java的多态的时候，和现在的情况大同小异乎？
+如果我们随便建一个类，包括<code>say()</code>方法，然后用<code>isay()</code>方法输出打印，会不会也是产生多态的效果呢？
+答案是：会的！在<code>Pyhong</code>中，这就是动态语言的“鸭子类型”，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+然在<code>Java</code>静态语言中，则会对父类进行检查，如果不是同一个父类，那么就会报错。</p>
+<p>好吧，有关Python类，对象相关先说到这里，希望大家国庆节快乐哦！</p>
 <h2>本文源码下载：</h2>
 <ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/OOP/classtest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classtest.py">开源中国码云镜像gitee</a></li>
 </ul></p>
 
 
@@ -251,108 +250,102 @@ print(p4.sub('17python', s4))
 
 
 <hgroup>
-    <h2>Python学习资料教程汇总</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-08-31 13:29:13</small> 标签:
+    <h2>Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-28 13:33:43</small> Tag:
         
         
-        <mark>Python基础</mark>
+        <samll>Python GUI</samll>
         
     </h3>
 </hgroup>
-<p><h2>我们为什么用Python编程？</h2>
-<p>曾经有一段时间一直在考虑一件事，就是想好好学习一下编程，然后靠着一台电脑和海量搜索结果的百度（或是google）精通一门或几门编程语言，然后成为一个黑客，随便都能开发出一个牛逼的软件或网站，然后马上就打开浏览器，搜：XXX语言精通、入门、速成。怀着一份热忱和充满美好希望的决心在互联网上寻找着答案。。。。。。</p>
-<p>。。。。。。</p>
-<p>十分钟之后。。去特么蛋的。。。还是打会游戏吧。。。。</p>
-<h2>好吧 我们继续</h2>
-<p>经历过痛苦与折磨后，终于明白了编程的意义，那就是先做点正常人做的事吧！说到<code>Python</code>的相关资料教程很多了，整理一下，排名不分前后，评价均人个人观点，不代表教程本身的好坏。</p>
-<p>其实本想写写基础<code>Python</code>教程，但是网上太多了，不乏众多优秀的教程，就不重复造轮子了，分享出来大家共同学习进步。</p>
-<h2>Python 基础教程</h2>
-<p>首先推荐廖雪峰老师的 <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">中文，免费，零起点，完整示例，基于最新的Python 3版本教程</a>，这篇教程无论是学习Python还是了解编程基础来说，都是一篇不错的教程。另外还有<a href="http://vdisk.weibo.com/s/BE2Z8B94-5w97">python简明教程中文.pdf</a></p>
-<p>有过编程基础的可以看看这二个：</p>
+<p><h2>Event鼠标事件</h2>
 <ul>
-<li><a href="http://www.code123.cc/1049.html">分分钟学会一门语言之Python篇</a></li>
-<li><a href="http://www.jianshu.com/p/36ae91c38279">十五分钟让你了解Python套路</a></li>
+<li><Button-1>：鼠标左击事件  </li>
+<li><Button-2>：鼠标右击事件  </li>
+<li><Button-3>：鼠标中击事件  </li>
+<li><Double-Button-1>：双击事件  </li>
+<li><Triple-Button-1>：三击事件  </li>
+<li><Bx-Motion>：鼠标移动事件,x=[1,2,3]分别表示左、中、右鼠标操作。  </li>
+<li><ButtonRelease-x>鼠标释放事件,x=[1,2,3],分别表示鼠标的左、中、右键操作  </li>
+<li><Leave>：鼠标离开时产生此事件  </li>
 </ul>
-<p>当然 还有<a href="http://python.usyiyi.cn/translate/python_352/index.html"><code>Python</code>官方文档--中文汉化版</a>，算是最全面的教材了！</p>
-<p><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a>，个人认为是不一篇不错的python正则教程。</p>
-<h2>基础学习（本站原创）</h2>
+<h2>Event键盘事件</h2>
+<p>bing<Key>和事件函数来触发，其中Key 可以换成对应的键值，也可以是组合键。</p>
+<h2>程序事件</h2>
+<p>程序退出<code>root.protocol('WM_DELETE_WINDOW', printProtocol)</code></p>
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170928_18.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+
+###################################
+# 鼠标事件
+###################################
+def printroot(event):
+    print(event.x,event.y)
+
+bt = tk.Button(root, text="<Double-Button-1>：双击事件 ")
+bt1 = tk.Button(root, text="<Triple-Button-1>：三击事件  ")
+bt2 = tk.Button(root, text="<Leave>：鼠标离开时产生此事件")
+bt3 = tk.Button(root, text="<Button-1>：鼠标左击事件")
+bt4 = tk.Button(root, text="<Button-2>：鼠标右击事件")
+bt5 = tk.Button(root, text="<Button-3>：鼠标中击事件")
+bt6 = tk.Button(root, text="<B1-Motion>：鼠标移动事件,x=[1,2,3]分别表示左、右、中鼠标操作。  ")
+bt7 = tk.Button(root, text="<ButtonRelease-2>鼠标释放事件,x=[1,2,3],分别表示鼠标的左、右、中键操作  ")
+bt.grid()
+bt1.grid()
+bt2.grid()
+bt3.grid()
+bt4.grid()
+bt5.grid()
+bt6.grid()
+bt7.grid()
+bt.bind("<Double-Button-1>",printroot)
+bt1.bind("<Triple-Button-1>",printroot)
+bt2.bind("<Leave>",printroot)
+bt3.bind("<Button-1>",printroot)
+bt4.bind("<Button-2>",printroot)
+bt5.bind("<Button-3>",printroot)
+bt6.bind("<B1-Motion>",printroot)
+bt7.bind("<ButtonRelease-2>",printroot)
+
+
+###################################
+# 键盘事件
+###################################
+def printkey(event):
+    print("event.char = " + event.char)
+    print('event.keycode = ', event.keycode)  
+
+
+root.bind("<Shift_R>",printkey)
+root.bind("<Shift_L>",printkey)
+root.bind("<Return>",printkey)
+root.bind("<Key>",printkey)
+
+
+###################################
+# 程序退出
+###################################
+def printProtocol():  
+    print('WM_DELETE_WINDOW')  
+    root.destroy() 
+
+root.protocol('WM_DELETE_WINDOW', printProtocol)  
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
 <ul>
-<li><a href="http://www.17python.com/blog/12">Python os.path模块中一些常用方法的整理总结</a></li>
-<li><a href="http://www.17python.com/blog/13">Python open()函数文件打开、读、写操作总结</a></li>
-<li><a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a></li>
-<li><a href="http://www.17python.com/blog/15">python3函数学习笔记简单总结</a></li>
-<li><a href="http://www.17python.com/blog/16">Python3 datetime模块的时间操作</a></li>
-<li>
-<p><a href="http://www.17python.com/blog/30">Python面向对象编程（OOP）初探</a></p>
-</li>
-<li>
-<p><a href="http://www.17python.com/blog/74">妙用IPython学习Python--IPython快速上手</a></p>
-</li>
-<li><a href="http://www.17python.com/blog/68">Python生成器yield应用实例——监控日志</a></li>
-<li><a href="http://www.17python.com/blog/55">听说存储数据Python与SQLite3更配哦！</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
 </ul>
-<h2>Python GUI tk tkinter 编程（本站原创）</h2>
+<h2>本文源码下载：</h2>
 <ul>
-<li><a href="http://www.17python.com/blog/21">Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button</a></li>
-<li><a href="http://www.17python.com/blog/22">Python TK和Tkinter的GUI编程(2)菜单Menu</a></li>
-<li><a href="http://www.17python.com/blog/23">Python TK和Tkinter的GUI编程(3) 列表框 Listbox</a></li>
-<li><a href="http://www.17python.com/blog/24">Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件</a></li>
-<li><a href="http://www.17python.com/blog/25">Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框</a></li>
-<li><a href="http://www.17python.com/blog/26">Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton</a></li>
-<li><a href="http://www.17python.com/blog/27">Python TK和Tkinter的GUI编程(7) Scrollbar的使用</a></li>
-<li><a href="http://www.17python.com/blog/28">Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用</a></li>
-<li><a href="http://www.17python.com/blog/29">Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件</a></li>
-<li><a href="http://www.17python.com/blog/49">基于Python、Tk构建的可视化目录文件同步助手</a></li>
-<li><a href="http://www.17python.com/blog/69"> Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框</a></li>
-</ul>
-<h2>扩展学习</h2>
-<p>学习了<code>Python</code>教程后，就可以继续深入学习了，根据自己学习方向可以选择很多，比如：机器学人工智能，web全栈，系统运维等，本人学习主要方向是web，所以目前只能推荐一些WEB相关的教程</p>
-<h2>有关正则表达式</h2>
-<ul>
-<li><a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">Python正则表达式指南</a></li>
-<li><a href="http://www.cnblogs.com/dyfblog/p/5880728.html">python正则表达式详解</a></li>
-<li><a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re"><code>Python</code>文档 re模块详解</a></li>
-</ul>
-<h2>WEB框架</h2>
-<ul>
-<li>Django</li>
-</ul>
-<p>本站原创教程：</p>
-<ul>
-<li><a href="http://www.17python.com/blog/52">实战：利用Django开发部署自己的个人博客（1）创建项目</a></li>
-<li><a href="http://www.17python.com/blog/53">实战：利用Django开发部署自己的个人博客（2）视图/路由</a></li>
-<li><a href="http://www.17python.com/blog/54">实战：利用Django开发部署自己的个人博客（3）Template: Django模板</a></li>
-<li><a href="http://www.17python.com/blog/56">实战：利用Django开发部署自己的个人博客（4）Models 数据模型</a></li>
-<li><a href="http://www.17python.com/blog/57">实战：利用Django开发部署自己的个人博客（5）Django admin后台管理</a></li>
-<li><a href="http://www.17python.com/blog/58">实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI</a></li>
-<li><a href="http://www.17python.com/blog/59">实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。</a></li>
-<li><a href="http://www.17python.com/blog/60">实战：利用Django开发部署自己的个人博客（8）构建Blog首页</a></li>
-<li><a href="http://www.17python.com/blog/61">实战：利用Django开发部署自己的个人博客（9）Django模板的继承</a></li>
-<li><a href="http://www.17python.com/blog/62">实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据</a></li>
-<li><a href="http://www.17python.com/blog/63">实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现</a></li>
-<li><a href="http://www.17python.com/blog/64">实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页</a></li>
-<li><a href="http://www.17python.com/blog/65">实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码</a></li>
-<li><a href="http://www.17python.com/blog/66">实战：利用Django开发部署自己的个人博客（14）Django实现图片的上传和引用</a></li>
-<li><a href="http://www.17python.com/blog/67">实战：利用Django开发部署自己的个人博客（15）Ubuntu+apache部署Django</a></li>
-</ul>
-<p>自强学堂，是我认为网上中文比较不错的<code>Django</code>教程，本站就是通过这篇教程学习后设计制作的。
-<a href="http://code.ziqiangxuetang.com/django/django-tutorial.html">Django 基础教程</a></p>
-<p><a href="http://djangobook.py3k.cn/2.0/">Django book 2.0 的中文翻译。</a> 这个是比较详细的<code>Django</code>教程了，看了都说好。</p>
-<p>然后就是<code>Django</code><a href="https://docs.djangoproject.com/en/1.11/">官方文档</a>，这个不用解释了吧？</p>
-<h2>“编学编玩”用Pygame写游戏</h2>
-<ul>
-<li><a href="http://www.17python.com/blog/44">“编学编玩”用Pygame写游戏（1）初识pygame</a></li>
-<li><a href="http://www.17python.com/blog/45">“编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画</a></li>
-<li><a href="http://www.17python.com/blog/46">“编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测</a></li>
-<li><a href="http://www.17python.com/blog/47">“编学编玩”用Pygame写游戏（4）一个python问答游戏</a></li>
-<li><a href="http://www.17python.com/blog/48">“编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表</a></li>
-<li><a href="http://www.17python.com/blog/70">“编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。</a></li>
-<li><a href="http://www.17python.com/blog/71"> “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏</a></li>
-<li><a href="http://www.17python.com/blog/73">“编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏</a></li>
-<li><a href="http://www.17python.com/blog/76"> “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏</a></li>
-<li><a href="http://www.17python.com/blog/77">“编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)</a></li>
-</ul>
-<p><strong>本文会不定期更新作者推荐的好教程及连接</strong></p></p>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
 
 
 <hr>
@@ -360,152 +353,64 @@ print(p4.sub('17python', s4))
 
 
 <hgroup>
-    <h2>Mac OS X gitk窗口打不开及Git的升级方法</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-08-26 16:36:30</small> 标签:
+    <h2>Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-28 09:50:15</small> Tag:
         
         
-        <mark>Git</mark>
-        
-    </h3>
-</hgroup>
-<p><p><em>今天随手在终端中敲了一下<code>Gitk</code>，就是想试试<code>Git GUI</code>，结果窗口一闪而过，然后看了一下版本，老掉牙的版本了，所以决定要升级一下<code>Git</code></em></p>
-<h2>下载Mac os X Git</h2>
-<ul>
-<li>Mac osx <a href="http://git-scm.com/download/mac">点此下载</a></li>
-</ul>
-<h2>安装</h2>
-<p>安装很简单了，直接下一步，然后安装完毕。</p>
-<h2>使用新版Git</h2>
-<p>终端输入<code>git --version</code>，发现还是原来的版本哇？<code>what?</code>，
-终端输入：</p>
-<pre><code>which git
-/usr/bin/git</code></pre>
-
-<p>发现<code>Git</code>还是以前目录里的，并不是新安装目录下的<code>/usr/local/bin/git</code></p>
-<h2>解决方法</h2>
-<p>很明显这是环境变量的问题.</p>
-<pre><code>cd ~
-vi .bash_profile</code></pre>
-
-<p>把<code>/usr/local/bin:</code>这个环境变量放到<code>/usr/bin/</code>前边</p>
-<p>我的环境变量最后输出如下：
-<code>export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:$PATH</code></p>
-<p>然后执行<code>source ~/.bash_profile</code>刷新一下环境变量。</p>
-<p>再次测试<code>git --version</code>或<code>gitk</code> 一切正常。</p>
-<h2>总结</h2>
-<p><code>Mac osX</code>安装完新版<code>Git</code>后，需要修改一下环境变量，使之指向新版的<code>Git</code>即可。</p></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>Git 版本控制常用命令 简明指南教程</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-08-26 13:03:59</small> 标签:
-        
-        
-        <mark>Git</mark>
+        <samll>Python GUI</samll>
         
     </h3>
 </hgroup>
-<p><p><em>最近使用<code>Django</code>设计自己的个人blog，免不了要对程序的版本进行备份，所以用到了<code>Git</code>。<code>Git</code>确实是程序员居家旅游，编程备份之良药哇，本文旨在对<code>Git</code>日常使用中，使用频率较高的命令进行了一个简单的总结</em></p>
-<h2>运行环境</h2>
+<p><p>Scalet和Spinbox 是tk中用来调节刻度的小部件。</p>
+<h2>Scalet 滑动模块部件</h2>
+<p>Scalet 在使用中有几个必要的地方：</p>
 <ul>
-<li>MacBookPro</li>
-<li>OS X 10.11.6</li>
+<li>设置刻度，<code>from_=0, to=1000,</code>还可以<code>from_=0, to=10,resolution=0.1</code>,设置每次调结刻度值</li>
+<li>滑块滑动事件，当滑动时，返回当前的刻度，有二种方法，无论哪种方法，需要先绑定回调函数<code>command=prtsa</code></li>
+<li>取回当前刻度值，回调函数包括一个text字符串参数，通过这个参数可以直接返回当前的刻度值，另外还可以通过绑定变量来返回刻度值。</li>
 </ul>
-<p>如果您使用windows操作系统，终端下的命令可能会与我提供的有些不同，但git命令是一样的。</p>
-<h2>安装新版Git</h2>
+<h2>Spinbox</h2>
 <ul>
-<li>Mac osx    <a href="http://git-scm.com/download/mac">点此下载</a></li>
-<li>Windows    <a href="http://git-scm.com/download/mac">点此下载</a></li>
-<li>Linux   <a href="http://git-scm.com/download/mac">点此下载</a></li>
+<li>绑定回调函数，然后通过<code>get()</code>方法返部件当前值。</li>
 </ul>
-<h2>开始Git之旅</h2>
-<p>我们可以从一个简单的<code>git</code>命令行开始,在终端下输入如下命令</p>
-<pre><code>mkdir gittest
-cd gittest/
-gittest git init 
-Initialized empty Git repository in /Users/mac/gittest/.git/
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170928_17.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+root.title("Scrollbar 测试")
+#分别创建一个横向，一个坚向的滚动条，
+ybar = tk.Scrollbar(root)
+ybar.pack(fill=tk.Y, side=tk.RIGHT)
+xbar = tk.Scrollbar(root,orient=tk.HORIZONTAL)#orient=tk.HORIZONTAL表示为坚向滚动
+xbar.pack(fill=tk.X, side=tk.BOTTOM,)
+# 创建文本框，并设置横向及坚向的滚动条，wrap='none'表示文本不换
+t = tk.Text(root,yscrollcommand=ybar.set,xscrollcommand=xbar.set, wrap='none')
+t.pack(fill=tk.BOTH)
+# 添加一些字符串
+s = ""
+for i in range(100):
+    for j in range(100):
+        s = s+str(i)+" "
+    s = s+"\n"
+t.insert(tk.END,s)
+#为滚动条添加对应的函数，添加后，滚动条才会有效滚动
+ybar.config(command=t.yview)
+xbar.config(command=t.xview)
+
+root.mainloop()
 </code></pre>
-<h2>取消目录的git版本控制</h2>
-<p>当然 如果我们想取消当前目录的git版本控制，可以进入当前目录后，使用<code>rm -rf .git</code>来删除git版本控制的文件取消当前目录的版本控制。</p>
-<h2>clone 项目</h2>
-<p>终端中输入代码，下载一个项目和它的整个代码历史。</p>
-<pre><code>mkdir gittest
-git clone 项目地址
-</code></pre>
-<p><strong>git四大域：工作目录，暂存区，仓库，远程仓库。</strong></p>
-<h2>配置Git</h2>
-<p>查看Git配置项</p>
-<pre><code>git config --list
-</code></pre>
-<p>设置提交代码时的用户信息，--global表示设置为全局。</p>
-<pre><code>git config [--global] user.name "[name]"
-git config [--global] user.email "[email address]"
-</code></pre>
-<h2>添加删除</h2>
-<p>添加文件、目录、当前所有文件及目录到暂存区。</p>
-<pre><code>git add [filename]
-git add [dir]
-git add .
-</code></pre>
-<h2>删除暂存区的文件及目录</h2>
-<p>删除工作区文件，并且将这次删除放入暂存区</p>
-<pre><code>git rm [file1] [file2] ...
-git rm --cached [file] #删除缓存
-</code></pre>
-<h2>提交</h2>
-<p>提交暂存区内容到本地仓库</p>
-<pre><code>git commit -m '修改提交消息'
-</code></pre>
-<p>提交到远程仓库，先绑定远程仓库，然后推送。</p>
-<pre><code>git remote add origin &lt;server&gt;
-git push origin master
-</code></pre>
-<h2>分支</h2>
-<p>避免错误，可以在其它分支上进行开发修改。</p>
-<pre><code>git branch [branch-name] #新建分支
-git checkout -b [branch] #新建并切换到新分支
-git checkout [branch-name] #切换到指定分支
-git branch -d [branch-name] # 删除分支
-</code></pre>
-<h2>更新与合并</h2>
-<pre><code>git cherry-pick [commit] # 选择一个commit，合并进当前分支
-git pull #要更新你的本地仓库至最新改动
-git merge &lt;branch&gt; #全并分支到当前分支
-</code></pre>
-<h2>标签</h2>
-<pre><code>git tag 1.0.0 7b8a9d199
-</code></pre>
-<h2>查询</h2>
-<pre><code>git log
-</code></pre>
-<h2>git提交到多个远程仓库</h2>
-<pre><code>git remote add github git@https://github.com/bosichong/17python.com.git
-git remote add gitee git@https://gitee.com/J_Sky/17python.com.git
-</code></pre>
-<p>这样就保存了两个远程仓库，然后分别提交</p>
-<pre><code>git push github master
-git push gitee master
-</code></pre>
-<h2>新建git远程仓库上传出错</h2>
-<p>在gitee仓库新建库的时候总有一些其它文件一起创建了，这样我们push的时候是传不上去的，需要先把没有的文件pull下来。</p>
-<pre><code>git pull
-</code></pre>
-<p>然后报错</p>
-<pre><code> * branch            master     -&gt; FETCH_HEAD
-fatal: refusing to merge unrelated histories
-</code></pre>
-<p>解决方法：</p>
-<pre><code>git pull osc master --allow-unrelated-histories
-</code></pre>
-<p><strong>osc 换成你自己的别名哦。</strong></p>
-<h2>相关参考文档及教程</h2>
-<p><a href="http://www.liuyunfei.cn/blog/detail/172">常用 Git 命令清单</a> 相对比较完整的常用命令</p>
-<p><a href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a> 初学者推荐，简单实用</p>
-<p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程！</a> 廖雪峰老师的Git教程。</p></p>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
 
 
 <hr>
@@ -515,12 +420,23 @@ fatal: refusing to merge unrelated histories
 
 <nav>
     <li><a href="list_20.html" role="button" class="outline">Prev</a></li>
-    <li><small>21 / 23</small></li>
+    <li><small>21 / 28</small></li>
     <li><a href="list_22.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -559,19 +475,7 @@ fatal: refusing to merge unrelated histories
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>

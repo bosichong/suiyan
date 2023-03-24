@@ -7,7 +7,7 @@
     <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
     <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
     <meta content="J.sky" name="author">
-    <title>SuiYan 碎言博客 List Pages 第1页</title>
+    <title>SuiYan 碎言博客  List Pages 第1页</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="./assets/css/pico.min.css">
     <!-- 引入 pico.css -->
@@ -81,11 +81,37 @@
 
 
 <hgroup>
+    <h2>Flask项目配置(config)经验</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2021-02-22 08:47:45</small> Tag:
+        
+        
+        <samll>Flask</samll>
+        
+    </h3>
+</hgroup>
+<p><p>Flask项目配置在程序中的配置及读取：</p>
+<pre><code>app.config['SECRET_KEY'] = 'secret string'
+</code></pre>
+<p>项目的配置类似字典,但是每次都如上边的方法配置可能有些麻烦，可以创建单独配置文件通过导入：</p>
+<pre><code>app.config.from_pyfile('settings.py')
+</code></pre>
+<p>配置文件里的配置项可以写成如下格式：</p>
+<pre><code>UPLOAD_PATH = os.path.join(app.root_path, 'uploads')
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
+</code></pre>
+<p>参考文献 <a href="https://zhuanlan.zhihu.com/p/24055329">Flask项目配置（Configuration）</a></p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
     <h2>pipenv 简化的虚拟环境、项目依赖管理工具</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2021-02-20 15:38:15</small> 标签:
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2021-02-20 15:38:15</small> Tag:
         
         
-        <mark>Flask</mark>
+        <samll>Flask</samll>
         
     </h3>
 </hgroup>
@@ -146,10 +172,10 @@ python_version = "3.8"
 
 <hgroup>
     <h2>Anaconda常用终端命令</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2021-02-12 00:20:01</small> 标签:
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2021-02-12 00:20:01</small> Tag:
         
         
-        <mark>Python</mark>
+        <samll>Python</samll>
         
     </h3>
 </hgroup>
@@ -179,10 +205,10 @@ python_version = "3.8"
 
 <hgroup>
     <h2>如何打包上传Python程序或模块包到PyPi供其他人使用pip下载？</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-12-07 20:30:45</small> 标签:
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-12-07 20:30:45</small> Tag:
         
         
-        <mark>Python</mark>
+        <samll>Python</samll>
         
     </h3>
 </hgroup>
@@ -263,132 +289,26 @@ Enter your password:
 <br>
 
 
-<hgroup>
-    <h2>聊聊Python中的装饰器</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-10-05 20:34:04</small> 标签:
-        
-        
-        <mark>Python</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>Python装饰器是什么？</h2>
-<p>在Django中曾经使用过<code>@fun</code>这种格式的语法，用在了定义视图的函数上，类似一种拦截器用来控制当前视图的访问权限。</p>
-<p>装饰器（decorator）是干嘛的？对于受到封装的原函数来说，装饰器能够在那个函数执行前或者执行后分别运行一些代码，使得可以再装饰器里面访问并修改原函数的参数以及返回值，以实现约束定义、调试程序、注册函数等目标。装饰器一般返回一个包装器（wrapper），而functools.wraps就是装饰包装器的装饰器。</p>
-<h2>定义一个Python的装饰器</h2>
-<p>我们定义一个计算Python程序运行时间的装饰器，在定义一个需要运行的韩式，代码如下：</p>
-<pre><code>    import time
-    import functools
-
-    def t(fun):
-    '''定义一个程序运行时间计算函数'''
-    @functools.wraps(fun)
-    def wrapper(*args, **kwargs):
-            start = time.time()  # 起始时间
-            fun(*args, **kwargs)  # 要执行的函数
-            end = time.time()  # 结束时间
-            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
-    return wrapper
-
-    @t
-    def myfunc(x, y):
-    '''打印从x到y的数值'''
-    for i in range(x, y):
-            print(i)
-
-    myfunc(0, 9)
-</code></pre>
-<p>运行结果：</p>
-<pre><code>    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    myfunc 程序运行时间:0.03ms
-    这样的话，我们就可以在不破坏原函数代码的情况下为函数添加了计算当前函数运行时间的功能。
-</code></pre>
-<h2>定义一个可以传参的装饰器</h2>
-<p>如果我们的装饰器需要传入参数该怎么写呢？只需要在<code>wrapper</code>外加一层包装即可。代码如下:</p>
-<pre><code>    import time
-    import functools
-
-    def t(str):
-    '''定义一个程序运行时间计算函数'''
-    def decorator(fun):
-            @functools.wraps(fun)
-            def wrapper(*args, **kwargs):
-            start = time.time()  # 起始时间
-            fun(*args, **kwargs)  # 要执行的函数
-            end = time.time()  # 结束时间
-            print('传入的字符串是:', str)
-            print(fun.__name__, '程序运行时间:{:.2f}ms'.format((end - start) * 1000))
-            return wrapper
-    return decorator
-
-    @t('hello world')
-    def myfunc(x, y):
-    '''打印从x到y的数值'''
-    for i in range(x, y):
-            print(i)
-
-    myfunc(0, 9)
-</code></pre>
-<p>运行结果：</p>
-<pre><code>    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    传入的字符串是: hello world
-    myfunc 程序运行时间:0.11ms
-    functools.wraps是什么？
-</code></pre>
-<p><code>functools.wraps</code>是为了保留原函数的属性不被装饰器破坏，这个时候就可以使用<code>functools.wraps</code>。</p>
-<p>functools这个库里有很多关于函数的功能模块，后续我们在继续研究。</p></p>
-
-
-<hr>
-<br>
-
-
-<hgroup>
-    <h2>npm更换源与nrm安装与配置</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-03-30 19:43:28</small> 标签:
-        
-        
-        <mark>webpack</mark>
-        
-    </h3>
-</hgroup>
-<p><h2>nrm</h2>
-<p>安装nrm</p>
-<p>在命令行执行命令，<code>npm install -g nrm</code>，全局安装nrm。</p>
-<p>执行命令<code>nrm ls</code>查看可选的源。</p>
-<p>如果要切换到taobao源，执行命令<code>nrm use taobao</code>。</p>
-<p>很简单吧？</p></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_0.html" role="button" class="outline">Prev</a></li>
-    <li><small>1 / 23</small></li>
+    <li><small>1 / 28</small></li>
     <li><a href="list_2.html" role="button" class="outline">Next</a></li>
 </nav>
 
 </section>
-        <aside>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search" name="search" placeholder="JavaScript">
+    <button>Search</button>
+
+</section>
+
 
 <nav>
     <ul>
@@ -427,19 +347,7 @@ Enter your password:
     </div>
 
 </main>
-<section><div class="container">
-    <article>
-        <hgroup>
-            <h2>Search</h2>
-            <h3>Search This SuiYan blog</h3>
-        </hgroup>
-
-            <!-- Search -->
-            <input type="text" id="search" name="search" placeholder="Search">
-            <button>Search</button>
-
-    </article>
-</div></section>
+<section></section>
 <footer><div class="container">
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     <p><small>
