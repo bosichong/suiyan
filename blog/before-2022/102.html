@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 PYBabyLog记录孩子成长过程的日记</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
+    <nav class="container-fluid"><ul>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>PYBabyLog记录孩子成长过程的日记</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-09-29 00:15:30</small> Tag:
+        
+        
+        <small>站长源创</small>
+        
+    </h3>
+</hgroup>
+<p><h3>前言</h3>
+<p>岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。 </p>
+<p>当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！</p>
+<p>做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。</p>
+<p>PYBabyLog的前身是 <a href="https://gitee.com/J_Sky/babylog">BabyLog(Java开发版)</a></p>
+<p>是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。</p>
+<h3>PYBabyLog</h3>
+<p>PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。</p>
+<p>采用Python+MySQL+argparse技术开发的全终端操作软件。</p>
+<p>可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。</p>
+<p>本程序数据库和<a href="https://gitee.com/J_Sky/babylog">BabyLog(Java开发版)</a>通用，可以用来展示数据。
+当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？</p>
+<h3>界面截图</h3>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png" /></p>
+<h3>安装方法</h3>
+<p>1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库<a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">数据库构建文件</a></p>
+<p>2.修改<code>DbHelp.py</code>中的MySQL的连接配置项即可</p>
+<h3>终端版操作命令简介</h3>
+<p><code>整理中。。。。。
+x.py -h 就都出来了。</code></p>
+<h3>写在结尾</h3>
+<p>其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。</p>
+<p>若给各位大虾能提交些代码或是有好的建议，非常欢迎！</p>
+<h2>程序源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PYBabyLog">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PYBabyLog">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="https://bosichong.github.io/index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

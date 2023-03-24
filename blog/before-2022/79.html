@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 聊聊Python中的递归与快速排序那点事</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
+    <nav class="container-fluid"><ul>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>聊聊Python中的递归与快速排序那点事</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-30 14:38:39</small> Tag:
+        
+        
+        <small>Python基础</small>
+        
+    </h3>
+</hgroup>
+<p><p>最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。</p>
+<h2>在Python中递归</h2>
+<p>递归比较简单的例子就是阶乘，看下递归的必要条件：</p>
+<ul>
+<li>边界条件：确定递归到何时终止，也称为递归出口。</li>
+<li>递归模式：大问题是如何分解为小问题的，也称为递归体。</li>
+</ul>
+<p>阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：</p>
+<pre><code>def f(n):
+    if n == 1: return 1
+    return n * f(n - 1)
+print(f(5))
+</code></pre>
+<p>上边就是一个简单的递归阶乘函数，很简单喽，不过在<code>Python</code>中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:</p>
+<pre><code>import sys
+sys.setrecursionlimit(5000)  # 设置递归层数
+print(sys.getrecursionlimit())  # 查看
+</code></pre>
+<h2>Python中的快速排序</h2>
+<p>快速排序法是一个非常精典的递归例子，C语言标准库中的<code>qsort</code>函数的实现主是采用的快速排序法。
+快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
+具体看代码：</p>
+<pre><code>def q_sort(arr):
+    if len(arr) &lt; 2 :
+        return arr
+    else:
+        p = arr[0]
+        print(p)
+        l = [i for i in arr[1:] if i &lt;= p]
+        g = [i for i in arr[1:] if i &gt; p]
+        temp = list()
+        temp.append(p)
+        return q_sort(l) + temp  + q_sort(g)
+print(q_sort([2,44,3,77,6,5,888,999]))
+</code></pre>
+<p>上边代码如果直接<code>return q_sort(l) + p  + q_sort(g)</code>是会报错的，所以修改了使用list相加。
+算法其实很有意思，程序都是有算法组成的，以后得多看看了。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="https://bosichong.github.io/index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

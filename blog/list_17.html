@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第17页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,50 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-23 15:51:11</small> Tag:
+        
+        
+        <samll>pygame</samll>
+        
+    </h3>
+</hgroup>
+<p><p>游戏中绘制圆及圆形的轨迹需求还是不少的，而且很多地方都需要用到圆及弧度的理论，如果想做些游戏的话，必须熟练掌握这些基本知识。</p>
+<h2>一些知识点</h2>
+<ul>
+<li>radius 圆的半径</li>
+<li>diameter 圆的直径</li>
+<li>angle 角度</li>
+<li>一个圆的完整的弧度 PI*2=6.28</li>
+<li>1弧度的角度值为 360/6.28=57.3248</li>
+<li>1度的弧度值为 6.28/360=0.0174</li>
+<li>math.degrees(x)将角度x从弧度转换为度。</li>
+<li>math.radians(x)将角度x从度转换为弧度。</li>
+<li>math.sin(x)返回x弧度的正弦值。</li>
+<li>math.cos(x)返回x弧度的余弦值。</li>
+</ul>
+<h2>圆周上点的坐标</h2>
+<pre><code>x = math.cos(math.radians(angle)) * (radius)
+y = math.sin(math.radians(angle)) * (radius）
+</code></pre>
+<p>如果不想深入了解的话，只需要记住，我们需要角度，即可求得圆周上的坐标值，对就上边的函数解释应该可以理解上边的python语句的含意。</p>
+<h2>实例</h2>
+<p>没有比绘制一个表盘更贴近实际需求的例子了，通过pythondatetime函数，我们可以很方便的获得时间，然后转换成相关数据。</p>
+<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171023_1.png" /></p>
+<h2>本文源码下载</h2>
+<p>请git clone 下所有代码，以免造成游戏跑不起来的情况。本例源文件pygame05.py</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -297,61 +341,6 @@ bosiy = 100
 <br>
 
 
-<hgroup>
-    <h2>“编学编玩”用Pygame写游戏（1）初识pygame</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-19 11:00:31</small> Tag:
-        
-        
-        <samll>pygame</samll>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/timg.jpeg" /></p>
-<h2>啰嗦几句</h2>
-<p>这阵子一直在看有关<code>Python</code>相关的书，<code>Python</code>上手确实很简单，但这并不意味着<code>Python</code>是一门浅显的编程语言，语法简练确实让我们节省了大量的时间。不过当你深入的学习<code>Python</code>的时候，比如：装饰器，推导，多线程及多进程，协程，高阶函数，元编程等等等等很多，你会发现，<code>Python</code>的深入学习并不是很简单。会写代<code>Python</code>和会优雅的编写<code>Python</code>代码是两回事，出来混的，坑迟早还是要挖的，这不前几天协程的深入学习，搞的我很不爽，到现在还是一头雾水。</p>
-<p>为了让自己换换心情，前几天想到用<code>python</code>写写小游戏玩玩吧，想到自己以前用<code>java</code>还编写了一个小小的2D游戏引擎半路就放弃了（java就是不爽），这次来试试用<code>Python</code>写些小游戏试试。其实写游戏练习编程确实是一个比较好的方法，几百行的工程量也不算大，游戏设计的逻辑比较紧密，比较适合新手养成编程思维，不过如果是刚刚学习编程，可能还是会觉得游戏中大段的代码，摸不清逻辑，所以通过阅读代码了解游戏的设计意图也算是对编程能力很好的锻炼。</p>
-<p>好了，啰嗦了半天，我们开始pygame的学习之旅吧。</p>
-<h2>pygame 安装</h2>
-<pre><code>pip3 install pygame
-</code></pre>
-<p>就是这么简单，然后我们可以在python3的终端环境下测试一下</p>
-<pre><code>import pygame
-</code></pre>
-<p>如果没有报错，那么恭喜你安装成功了。</p>
-<h2>pygame的 Hello World</h2>
-<p>导入pygame模块及常用变量，如果还需要其它模块，可以一并导入，比如sys,os,time random等。</p>
-<pre><code>import pygame
-from pygame.locals import *
-</code></pre>
-<p>这里是一个游戏初始化的设置，他应该在游戏代码编写的最前边，不要忘记哦。</p>
-<pre><code>pygame.init()
-</code></pre>
-<p>SCREEN 定义了一个游戏的屏幕，我觉得管它叫做画布更形象些，因为后续游戏场景中的游戏对象，都要在这个screen上绘制。</p>
-<pre><code>SCREEN = pygame.display.set_mode((640, 480))
-</code></pre>
-<p>设置当前游戏窗口的标题</p>
-<pre><code>pygame.display.set_caption("Hello World!")
-</code></pre>
-<p>这里有个死循环，这是游戏的主要逻辑处理及场景渲染器，for循环是处理游戏中的事件触发，其中QUIT表示触发了游戏离开件事，然后调用<code>pygame.quit()</code>函数。<code>pygame.display.updae()</code>这个函数表示更新当前screen的画面。</p>
-<pre><code>while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-    pygame.display.update()
-</code></pre>
-<h2>效果如图：</h2>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_2.png" /></p>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_16.html" role="button" class="outline">Prev</a></li>
@@ -367,8 +356,31 @@ from pygame.locals import *
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -377,28 +389,28 @@ from pygame.locals import *
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -416,10 +428,10 @@ from pygame.locals import *
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -431,10 +443,10 @@ from pygame.locals import *
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

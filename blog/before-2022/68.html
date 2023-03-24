@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 Python生成器yield应用实例——监控日志</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
+    <nav class="container-fluid"><ul>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>Python生成器yield应用实例——监控日志</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-22 09:19:40</small> Tag:
+        
+        
+        <small>Python基础</small>
+        
+    </h3>
+</hgroup>
+<p><p><code>Python</code>生成器<code>yield</code>是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。</p>
+<h2>需要分析</h2>
+<p>假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：<code>2017-12-21 14:07:26.471691 99123</code>数据被写入日志。
+<strong>我们的目的是分析日志中的数字如果大于5000就要打印出来。</strong>
+这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。</p>
+<h2>模拟日志写入</h2>
+<p><code>server_log.py:</code></p>
+<pre><code>import random
+from datetime import *
+import os
+import time
+
+
+def server_log():
+    # 生成模拟的日志数据
+    server_int = random.randint(1,99999)#生成需要的随机数
+    server_date = datetime.now()#获取当前系统时间
+    return str(server_date) + ' ' + str(server_int)#拼装日志字符串
+
+
+while True:
+    #模拟系统写入日志
+    #打开日志文件并写入日志
+    with open(os.path.join(os.path.dirname(__file__),'server_log.log'),'at') as f :
+        s = server_log()
+        print(s)
+        f.write(s + '\n')
+    time.sleep(1)
+</code></pre>
+<p>上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。</p>
+<h2>利用生成器yield解析日志</h2>
+<p>生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂</p>
+<p><code>tail.py</code> 代码如下：</p>
+<pre><code>import time
+
+def tail(f):
+    f.seek(0,2)#移动到文件尾部。
+    while True:
+        line = f.readline()
+        if not line :
+            time.sleep(1)
+            continue
+        yield line
+
+def grep(lines):
+    for l in lines:
+        k = int(l.split()[2])
+        if k &gt;50000:
+            yield l
+
+serverlog = tail(open('server_log.log'))
+lines = grep(serverlog)
+
+for line in lines:
+    print(line)
+</code></pre>
+<p>我们运行两个文件看下效果：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif" /></p>
+<p>代码虽然简单，但值得细细品味，感受python的简约与强大吧。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/deftest">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="https://bosichong.github.io/index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

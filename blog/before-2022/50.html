@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 python中导入不同目录中的自定义模块/class/函数/方法</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
+    <nav class="container-fluid"><ul>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>python中导入不同目录中的自定义模块/class/函数/方法</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-27 10:37:17</small> Tag:
+        
+        
+        <small>Python基础</small>
+        
+    </h3>
+</hgroup>
+<p><p>前几天在封装<code>PY_RPG</code>框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。</p>
+<h2>包和模块导入的需求</h2>
+<p>假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。</p>
+<pre><code>M_TEST = 888
+def print_text():
+    print('这a.py下的一个打印文字函数')
+</code></pre>
+<p>现在我们引入测试</p>
+<pre><code>import a.a
+a.print_text()
+</code></pre>
+<p>ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
+如果是在同一目录，我们直接<code>import a</code>就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到<code>sys.path.append()</code></p>
+<pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
+</code></pre>
+<p>打印后，我们会发现很多目录，<code>python</code>加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
+那么我们如何把自己的文件加到上边的目录里？有几种方法：</p>
+<ul>
+<li>通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。</li>
+<li>复制文件到上边的目录中，有些不方便，不推荐</li>
+<li><code>sys.path.append()</code>把目录加进索引，方便python搜索，推荐</li>
+</ul>
+<p>那么我们来试试吧</p>
+<h2>如何优雅的获得目录地址？</h2>
+<p>如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
+这时我想到了<code>Django</code>配置文件中有一段代码</p>
+<pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+</code></pre>
+<p>我们理解一下这段代码，<code>__file__</code>表示当前.py文件，<code>os.path.abspath(__file__)</code> 表示当前.py文件的绝对地址，<code>dirname</code>获得上一层目录地址，
+那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试</p>
+<pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
+/Users/mac/PycharmProjects/PythonStudy/b
+/Users/mac/PycharmProjects/PythonStudy
+</code></pre>
+<p>可以看到根目录地址已经得到了，然后通过<code>os.path.join()</code> 就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。</p>
+<pre><code>import os 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
+T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
+print(T_DIR)
+sys.path.append(T_DIR)
+import a
+print(a.M_TEST)
+a.print_text()
+</code></pre>
+<h2>本文源码下载： a b 两个目录下为相关源文件</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+</section>
+        <aside><section>
+    <hgroup>
+        <h2>Search</h2>
+        <h3>Search This SuiYan blog</h3>
+    </hgroup>
+
+    <!-- Search -->
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
+
+</section>
+
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="https://bosichong.github.io/index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bosichong.github.io/aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

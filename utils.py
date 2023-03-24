@@ -11,7 +11,9 @@
 
 """
 
-import os, json
+import os
+import json
+import datetime
 
 
 def loadcode(path):
@@ -223,5 +225,28 @@ def create_dir(blogurl):
         os.makedirs(file_dir)
 
 
+def create_blog_url_jsfile(path, str):
+    with open(path, mode='w', encoding='utf-8') as f:
+        f.write(str)
+
+def copy_file(src_file, dst_file):
+    """
+    读取一个文件的全部内容，保存到另一个目录，如果文件存在则覆盖
+    @param src_file: 源文件路径
+    @param dst_file: 目标文件路径
+    """
+    with open(src_file, 'rb') as f:
+        content = f.read()
+        with open(dst_file, 'wb') as f2:
+            f2.write(content)
+    print(f"文件{src_file}已复制到{dst_file}")
+
+
+
+
+def get_current_year():
+    return str(datetime.datetime.now().year)
+    
+
 if __name__ == "__main__":
-    print(read_file_without_header("articles/22.md"))
+    pass

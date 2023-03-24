@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第19页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,167 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>Python中创建TCP服务器与客户端进行通信（上）</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-12 10:14:40</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171012_19.png" /></p>
+<h2>前言</h2>
+<p>学习套接字编程最好的方法就是从实际应用的开发中边学边用，这样对TCP服务器及客户端通信中遇到的知识点才会更加了解。
+开发一个拥有服务器并且可以处理多客户端的聊天室应用程序，服务器有一定的管理权限，比如：群发消息，管理客户端可以限制连接及断开客户端连接等。
+客户端可以在聊天室里群聊，私聊。</p>
+<p>好吧，为了保证这个小小的应用开发跨度不会太大，我们采用循序渐进的方式，从基础代码上迭代开发，这里会用到的知识点有：</p>
+<ul>
+<li><code>Python</code>的socket套接字模块</li>
+<li><code>Python</code>的多线程模块</li>
+<li><code>Python Tk GUI</code>模块，后边有可能考虑做成可视化的聊天室。</li>
+</ul>
+<h2>socket模块</h2>
+<p>关于套接字网络编程的理论知识，这里就不在重复了，网上有很多，大家自己搜索一下好了。
+要创建套接字，使用<code>Python socket.socket()</code>函数即可，他有一些固定的方式：</p>
+<pre><code>s = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字对象
+</code></pre>
+<p>获得了套接字对象后，就可以使用套接字对象的方法进行交互了。</p>
+<h2><code>socket</code>中一些常用方法</h2>
+<p>服务器套接字方法：</p>
+<ul>
+<li><code>s.bind()</code>这个方法，绑定服务器的IP及端口</li>
+<li><code>s.listen(int)</code>监听，可以设置一个整数限制客户端的连接。</li>
+<li><code>s.accpt()</code>被动接受TCP客户端的连接（阻塞）</li>
+</ul>
+<p>客户端套接字方法：</p>
+<ul>
+<li><code>s.connect()</code> 连接服务器</li>
+</ul>
+<p>其它方法：</p>
+<ul>
+<li><code>s.recv()</code> 接收TCP消息</li>
+<li><code>s.send()</code> 发送TCP消息</li>
+<li><code>s.close()</code> 关闭套接字。</li>
+</ul>
+<h2>关于消息</h2>
+<p>发送和接收消息时需要进行编码和解码，这里使用<code>data.encode('utf-8')</code>和<code>data.decode()</code>保证通信消息的正常发送，如果不使用会报错。</p>
+<p>好了，先来个简单的例子，下边是代码，建议代码运行的时候不要在IDE里运行，请在终端中运行。</p>
+<h2>服务器端</h2>
+<pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字服务器
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        data = "{0}".format(ctime())+" "+data.decode()
+        tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+
+<h2>客户端</h2>
+<pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("> ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    data = tcpCliSock.recv(BUFSIZ)
+    print(data.decode())
+tcpCliSock.close()</code></pre>
+
+<p>就目前这个聊天室只是完成了通信的最基本功能，只能由客户端发送一条消息，服务器端自动回应消息。之后的继续都是建立在这个基础模型之上了。</p>
+<h2>半双工的聊天室</h2>
+<p>如果稍加修改，我们就可以使这个服务器和客户端进行一对一的聊天了。</p>
+<ul>
+<li>服务器端添加判断，如果客户端发来的数据有内容，就进行输入，然后把数据发送给客户端。</li>
+<li>客户端连接后，先进行消息的发送，然后就一直等待服务器的消息回送，然后循环。</li>
+</ul>
+<p>现在的这个聊天系统缺点就是，必须等待另一方发来消息，才能回复消息，稍后我们继续改进。</p>
+<p>相关代码如下：</p>
+<h2>半双工服务器</h2>
+<pre><code>from socket import *
+from time import ctime
+
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST, PORT)# IP 端口
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字
+tcpSerSock.bind(ADDR)#绑定IP及端口
+tcpSerSock.listen(5)
+
+while True:
+    print("等待客户端连接=======")
+    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
+    print("客户端已连接=====")
+
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
+        print(data.decode())
+        if 'exit' == data.decode():break
+        if data:
+            data = input("> ")
+            data = "{0}".format(ctime())+" "+data
+            tcpCliSock.send(data.encode('utf-8'))
+    tcpCliSock.close()
+tcpSerSock.close()</code></pre>
+
+<h2>半双式的客户端</h2>
+<pre><code>from socket import *
+HOST = '127.0.0.1'
+PORT = 6666
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+# 创建客户端，并连接服务器
+tcpCliSock = socket(AF_INET, SOCK_STREAM)
+tcpCliSock.connect(ADDR)
+
+while True:
+    data = input("> ")
+    tcpCliSock.send(data.encode('utf-8'))
+    if 'exit' == data :break
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)
+        if data:
+            print(data.decode())
+            break
+tcpCliSock.close()</code></pre>
+
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/TCP">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -223,90 +384,6 @@ print("距离成为一名黑客还差{0}行代码".format(hacker-lines))
 <br>
 
 
-<hgroup>
-    <h2>聊聊Python闭包（Closure）的那点事。</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-09 15:36:19</small> Tag:
-        
-        
-        <samll>Python基础</samll>
-        
-    </h3>
-</hgroup>
-<p><p>记得当年学<code>JavaScript</code>时，对闭包的认识那真是朦朦胧胧，后来接触到<code>jQuery</code>之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言<code>java</code>给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题</p>
-<h2>Pythib闭包</h2>
-<p>先来一个栗子，我们慢慢理顺一下：</p>
-<pre><code class="python">def callf():
-    def hello():
-        return "hello world"
-    return hello
-
-cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
-print(type(cf)) # 查看cf类型，证实上边的结论。
-print(cf()) #打印最终结果。
-</code></pre>
-
-<p>在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
-上边就算是闭包最简单的例子，多看几次应该就理解了。</p>
-<p>再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？</p>
-<pre><code class="python">def countdown(n):
-    def next():
-        nonlocal n 
-        r = n 
-        n -= 1
-        return r
-    return next
-
-nt = countdown(5)
-while True:
-    v = nt()
-    print(v)
-    if not v :break
-</code></pre>
-
-<p>这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉<code>nonlocal n</code>，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量<code>n</code>的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。</p>
-<h1>再看循环中的闭包：</h1>
-<pre><code class="python">def loop():
-    fs = []
-    for i in range(1,4):
-        def f():
-            return i*i
-        fs.append(f)
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-</code></pre>
-
-<p><code>f1()</code>的打印竟然9，这个有点出乎意料！我们修改一下这个函数</p>
-<pre><code class="python">def loop(): 
-    def f(j):
-        return lambda: j*j
-    fs = []
-    for i in range(1,4):
-        fs.append(f(i))       
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-print(f2())
-print(f3())
-</code></pre>
-
-<p>对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了<code>f()</code>函数<code>return</code>所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
-有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用<code>Python</code>函数的高级应用，不妨仔细的了解一下闭包吧。</p>
-<h2>参考文档</h2>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/22229197">深入浅出python闭包</a></li>
-</ul>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_18.html" role="button" class="outline">Prev</a></li>
@@ -322,8 +399,31 @@ print(f3())
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -332,28 +432,28 @@ print(f3())
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -371,10 +471,10 @@ print(f3())
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -386,10 +486,10 @@ print(f3())
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

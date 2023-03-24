@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第28页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,41 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>17python.com网站已经部署上线及后期更新记录</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-08-25 01:09:49</small> Tag:
+        
+        
+        <samll>站长吐槽</samll>
+        
+    </h3>
+</hgroup>
+<p><h3>今天是个好日子</h3>
+<p>折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学<code>Python Django</code>感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习<code>Python</code>的日子还长，学习还是要继续的，给自己打气加油！</p>
+<h3>耐心等待备案下来</h3>
+<p>希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次<code>blog</code>搭建的经验。</p>
+<h3>更新在2017-09-04</h3>
+<p>公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。</p>
+<h3>腾讯公益404</h3>
+<ul>
+<li>本站演示地址<a href="http://www.17python.com/404">404Not-Found</a><blockquote>
+<p>不解释，希望更多的站长加入吧<a href="http://www.qq.com/404/">传送门请点这里</a>
+希望走失的宝宝将来都能找到自己的亲人。</p>
+</blockquote>
+</li>
+</ul>
+<h3>2017-10-06更新博客功能</h3>
+<p>为博客添加了标签云，日志归档功能。</p>
+<h3>2017-12-22</h3>
+<p>添加原创及转载标识，添加站点统计、热门文章功能。</p>
+<h3>2020-01-07</h3>
+<p>把原来由<code>Django</code>构建的博客换成了自己的新开发的<code>碎言静态博客</code><a href="https://gitee.com/J_Sky/suiyan">下载地址</a></p></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -191,8 +226,31 @@ http://blog.csdn.net/geekun/article/details/51325383</p></p>
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -201,28 +259,28 @@ http://blog.csdn.net/geekun/article/details/51325383</p></p>
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -240,10 +298,10 @@ http://blog.csdn.net/geekun/article/details/51325383</p></p>
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -255,10 +313,10 @@ http://blog.csdn.net/geekun/article/details/51325383</p></p>
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

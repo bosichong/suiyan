@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第13页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,45 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-16 10:25:21</small> Tag:
+        
+        
+        <samll>pygame</samll>
+        
+    </h3>
+</hgroup>
+<p><p>当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif" /></p>
+<h2>Matrix的构思</h2>
+<p>我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
+Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。</p>
+<h2>Matrix代码编写调试过程</h2>
+<p>刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
+当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。</p>
+<pre><code>c = random.randint(33, 127)
+chr(c)
+</code></pre>
+<p>对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。</p>
+<h2>让Matrix动起来</h2>
+<p>场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
+add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。</p>
+<h2>Matrix代码缩写总结</h2>
+<p>感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png" /></p>
+<p>本文源码下载</p>
+<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -324,87 +363,6 @@ In [1]:
 <br>
 
 
-<hgroup>
-    <h2>“编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-05 09:41:22</small> Tag:
-        
-        
-        <samll>pygame</samll>
-        
-    </h3>
-</hgroup>
-<p><p>在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_16.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_17.png" /></p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_18.png" /></p>
-<h2>GreedSnake贪食蛇设计思路</h2>
-<p>游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
-这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_13.png" /></p>
-<p>除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：</p>
-<ul>
-<li>游戏的背景渲染</li>
-<li>蛇的运动</li>
-<li>食物的生成</li>
-<li>游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？</li>
-</ul>
-<p>当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用<code>PY_RPG+pygame</code>来实现这个简单的小游戏吧。</p>
-<h2>游戏背景渲染</h2>
-<p>分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
-对于<code>GreedSnake</code>来说，我们需要有一组是浅色网格组成的背景，
-对于游戏背景，我单独创建了一个class <code>GameBackground</code>,背景绘制的核心逻辑代码如下：</p>
-<pre><code>self.screen.fill((221, 221, 221))
-for i in range(0, 10):
-    for j in range(0,10):
-         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
-</code></pre>
-<p>在场景中创建对象后，进行渲染，效果如下：</p>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_12.png" /></p>
-<h2>绘制蛇并让它动起来</h2>
-<p>默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
-这样我们在游戏场景中创建一个list用来表示蛇的身体：</p>
-<pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
-for i in range(0,4):
-    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
-</code></pre>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_14.png" /></p>
-<p>蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:</p>
-<pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
-    for i in range(0, 5):
-        if i == 0:
-            color = RED
-        else:
-            color = BLACK
-        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
-</code></pre>
-<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_15.png" /></p>
-<p>这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
-关于蛇的移动逻辑：</p>
-<ul>
-<li>蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在<code>GreedSnake.update()</code>中，我们通过判断来更新蛇的位置。</li>
-<li><code>GreedSnake.handle_event()</code>中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向</li>
-</ul>
-<p>具体代码就不贴了，可以参考源文件代码。</p>
-<h2>生成食物与吃掉食物。</h2>
-<p>关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。</p>
-<h2>游戏结束</h2>
-<p>游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。</p>
-<h2>游戏暂停</h2>
-<p>在游戏场景类中加入了一个<code>pause</code>的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在<code>update</code>中控制整个游戏的更新，这样就可以达到控制游戏暂停了。</p>
-<h2>总结</h2>
-<p>教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。</p>
-<h2>本文源码下载</h2>
-<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：<code>PY_RPG.GreedSnake.py</code></p>
-<ul>
-<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
-<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_12.html" role="button" class="outline">Prev</a></li>
@@ -420,8 +378,31 @@ for i in range(0,4):
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -430,28 +411,28 @@ for i in range(0,4):
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -469,10 +450,10 @@ for i in range(0,4):
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -484,10 +465,10 @@ for i in range(0,4):
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

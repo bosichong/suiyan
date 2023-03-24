@@ -19,7 +19,6 @@ small {
 /* Header */
 .hero {
   background-color: #394046;
-  background-image: url("../../assets/sascha-eremin-DNQ-M93tHmA-unsplash-3000x1000.jpeg");
   background-position: center;
   background-size: cover;
 }
@@ -75,11 +74,11 @@ section {
 }
 
 .avatar{
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%
 }
 
-footer {
+footer,.hd {
   text-align: center;
 }

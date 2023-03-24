@@ -5,8 +5,31 @@
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="{{ site_url }}assets/js/url.js"></script>
+    <script src="{{ site_url }}assets/js/main.js"></script>
+    <script src="{{ site_url }}assets/js/modal.js"></script>
 
 </section>
 
@@ -15,7 +38,7 @@
     <ul>
         {% for nav in config.nav %}
         <li>
-            <a href="{{ nav.url }}">
+            <a href="{{ site_url }}{{ nav.url }}">
                 <i class="fa fa-{{ nav.ico }}"></i>
                 {{ nav.text }}
             </a>

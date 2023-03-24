@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第10页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,74 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(06)wx.ComboBox下拉列表框</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-24 14:24:56</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181224_2.png" /></p>
+<h2>wx.ComboBox下拉列表框</h2>
+<p>下拉列表框，可以通过下拉列表选择内容，在使用中可以为内容节省不少空间，是GUI中比较常用的小部件。</p>
+<h2>wx.ComboBox的创建与绑定</h2>
+<pre><code>    #创建ComboBox
+    l = ["Python","Django","Flask","wxPython","Java"]
+    cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
+    cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
+</code></pre>
+<p>通过以上方法即可简单的创建<code>ComboBox</code>与绑定事件.</p>
+<p>具体代码再下边，跑下即可了解。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        pnl = wx.Panel(self)
+        hbox = wx.BoxSizer(wx.VERTICAL)
+
+        #创建ComboBox
+        l = ["Python","Django","Flask","wxPython","Java"]
+        cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
+        cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
+        hbox.Add(cb,0,wx.CENTER|wx.EXPAND,20)
+
+        #创建一个静态文本用来显示上拉列表框选择的内容
+        self.st = wx.StaticText(pnl, label='请点选ComboBox')
+        hbox.Add(self.st,0,wx.CENTER|wx.TOP,20)
+
+
+        pnl.SetSizer(hbox)
+
+    def OnSelect(self,e):
+        s = e.GetString()
+        self.st.SetLabel(s)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy06.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -333,108 +401,6 @@ if __name__ == '__main__':
 <br>
 
 
-<hgroup>
-    <h2>wxPython编程学习笔记(02)wxPython的布局</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-19 20:22:01</small> Tag:
-        
-        
-        <samll>Python GUI</samll>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png" /></p>
-<h2>wxPython的布局</h2>
-<p>窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，</p>
-<p>我们可以选择下列sizers：</p>
-<p>1.wx.BoxSizer</p>
-<p>2.wx.StaticBoxSizer</p>
-<p>3.wx.GridSizer</p>
-<p>4.wx.FlexGridSizer</p>
-<p>5.wx.GridBagSizer</p>
-<p>这里我介绍一下<code>wx.BoxSizer</code>，灵活应用它基本上可以满足大部分窗口中的布局。</p>
-<h2>wx.BoxSizer</h2>
-<p><code>wx.BoxSizer</code>有<code>wx.VERTICAL</code>或<code>wx.HORIZONTAL</code>两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。</p>
-<p>如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。</p>
-<p>列举一些属性：</p>
-<p>1.wx.LEFT</p>
-<p>2.wx.RIGHT</p>
-<p>3.wx.BOTTOM</p>
-<p>4.wx.TOP</p>
-<p>5.wx.ALL</p>
-<p>以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：</p>
-<pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
-</code></pre>
-<p>我们还可以通过以下属性定义我们的部件对齐：：</p>
-<p>1.wx.ALIGN_LEFT
-2.wx.ALIGN_RIGHT
-3.wx.ALIGN_TOP
-4.wx.ALIGN_BOTTOM
-5.wx.ALIGN_CENTER_VERTICAL
-6.wx.ALIGN_CENTER_HORIZONTAL
-7.wx.ALIGN_CENTER</p>
-<p>好了，下边列举了一下小例子：</p>
-<pre><code>import wx
-
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        # 调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
-
-        st = wx.TextCtrl(pl)
-        hbox1.Add(st, proportion=1, )
-
-        bt1 = wx.Button(pl, label="hello world")
-        hbox1.Add(bt1, )
-
-        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
-
-        bt2 = wx.Button(pl, label="hello world")
-        bt3 = wx.Button(pl, label="hello world")
-        bt4 = wx.Button(pl, label="hello world")
-        hbox2.Add(bt2, wx.EXPAND)
-        hbox2.Add(bt3, )
-        hbox2.Add(bt4, wx.EXPAND)
-        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        sb = wx.StaticBox(pl, label="test")
-        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
-        bt5 = wx.Button(pl, label="yes")
-        bt6 = wx.Button(pl, label="no")
-        hbox3.Add(bt5, )
-        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
-        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
-
-        pl.SetSizer(vbox)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython 布局练习')
-    frm.Show()  # 显示窗口
-    app.MainLoop()  # 持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_9.html" role="button" class="outline">Prev</a></li>
@@ -450,8 +416,31 @@ if __name__ == '__main__':
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -460,28 +449,28 @@ if __name__ == '__main__':
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -499,10 +488,10 @@ if __name__ == '__main__':
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -514,10 +503,10 @@ if __name__ == '__main__':
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

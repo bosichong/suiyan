@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第20页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,90 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>聊聊Python闭包（Closure）的那点事。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-09 15:36:19</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p>记得当年学<code>JavaScript</code>时，对闭包的认识那真是朦朦胧胧，后来接触到<code>jQuery</code>之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言<code>java</code>给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题</p>
+<h2>Pythib闭包</h2>
+<p>先来一个栗子，我们慢慢理顺一下：</p>
+<pre><code class="python">def callf():
+    def hello():
+        return "hello world"
+    return hello
+
+cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
+print(type(cf)) # 查看cf类型，证实上边的结论。
+print(cf()) #打印最终结果。
+</code></pre>
+
+<p>在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
+上边就算是闭包最简单的例子，多看几次应该就理解了。</p>
+<p>再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？</p>
+<pre><code class="python">def countdown(n):
+    def next():
+        nonlocal n 
+        r = n 
+        n -= 1
+        return r
+    return next
+
+nt = countdown(5)
+while True:
+    v = nt()
+    print(v)
+    if not v :break
+</code></pre>
+
+<p>这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉<code>nonlocal n</code>，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量<code>n</code>的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。</p>
+<h1>再看循环中的闭包：</h1>
+<pre><code class="python">def loop():
+    fs = []
+    for i in range(1,4):
+        def f():
+            return i*i
+        fs.append(f)
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+</code></pre>
+
+<p><code>f1()</code>的打印竟然9，这个有点出乎意料！我们修改一下这个函数</p>
+<pre><code class="python">def loop(): 
+    def f(j):
+        return lambda: j*j
+    fs = []
+    for i in range(1,4):
+        fs.append(f(i))       
+    return fs
+f1,f2,f3 = loop()
+print(f1())
+print(f2())
+print(f3())
+</code></pre>
+
+<p>对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了<code>f()</code>函数<code>return</code>所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
+有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用<code>Python</code>函数的高级应用，不妨仔细的了解一下闭包吧。</p>
+<h2>参考文档</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22229197">深入浅出python闭包</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -407,154 +491,6 @@ if __name__ == '__main__':
 <br>
 
 
-<hgroup>
-    <h2>Python多线程编程（上）多线程创建的几种方法</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-03 13:01:21</small> Tag:
-        
-        
-        <samll>Python基础</samll>
-        
-    </h3>
-</hgroup>
-<p><h2>Python多线程</h2>
-<p>在编程的日常中，如果遇到大量相同并且重复的计算任务时，我们考虑使用多线程，多线程可以并发的执行程序中的函数，这样就可以更快的利用CPU计算结果，结省时间成本。
-<code>Python</code>中创建线程的方法有很多，可以通过<code>thread threading.Thread</code>或是线程池提供的方法来创建线程,这节我们主要讨论如何创建线程。</p>
-<h2>单线程时的操作</h2>
-<p>我们定义一些操作，先用单线顺序操作。</p>
-<pre><code class="python">import time
-def loop():
-    print("循环loop1打印时间======",time.ctime())
-    time.sleep(3)   
-loop()
-loop()
-print("loop1打印结束时间======",time.ctime())
-</code></pre>
-
-<p>程序执行结果：</p>
-<p>循环loop1打印时间====== Mon Oct  2 07:59:17 2017</p>
-<p>循环loop1打印时间====== Mon Oct  2 07:59:20 2017</p>
-<p>loop1打印结束时间====== Mon Oct  2 07:59:23 2017</p>
-<p>顺序执行程序后，共花掉6秒时间，如果我们可以并发执行这个打印，或许我们能节约一些时间。</p>
-<h2>thread</h2>
-<p><code>thread</code>提供了一些线程创建与操作的方法，但官方文档及各类参考书中均有提到，<code>_thread</code>是一个比较低级的线程操作模块不建使用，这里我们也只是带过。</p>
-<pre><code class="python">import _thread
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop():
-    print("循环loop1打印时间======",time.ctime())
-    time.sleep(3)  
-@tn
-def main():
-    _thread.start_new_thread(loop, ())
-    _thread.start_new_thread(loop, ())
-    time.sleep(3)
-    print("如果上边没有sleep()，程序会没有运行完打印直接退出")
-if __name__ == '__main__':
-    main()
-</code></pre>
-
-<p>程序执行结果：</p>
-<p>循环loop1打印时间====== Mon Oct  2 14:24:49 2017</p>
-<p>循环loop1打印时间====== Mon Oct  2 14:24:49 2017</p>
-<p>如果上边没有sleep()，程序会没有运行完打印直接退出</p>
-<p>程序运行时间:3.01ms</p>
-<p>这次程序的运行我节省了3秒钟的宝贵时间！但也发现了<code>thread</code>模块的一些缺点，比如主线程结束时不会等待其它线程，这将导致程序没有打印结果直接退出了，这是我们不想看到的。
-所以，由于<code>thread</code>模块的功能缺陷，通常不推荐使用<code>thread</code>,我们将继续讨论更高级的线程模块<code>threading</code>和其它线程相关模块。</p>
-<h2>threading模块 Thread类</h2>
-<p>创建一个<code>Thread</code>实例，其中<code>target</code>这个参数可以接受一个函数.
-我们先来试试，代码如下：</p>
-<pre><code class="python">import time
-import threading
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    print('程序开始执行，耐心等待几秒。')
-    threads = []#定义一个线程队列
-    for i in range(5):
-        t = threading.Thread(target=loop1, args=("thread"+str(i),))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-if __name__ == '__main__':
-    main()
-</code></pre>
-
-<p>通过继承<code>Thread</code>类派生子类并创建线程的对象，是创建线程的另一种方法：</p>
-<pre><code class="python">
-import time
-import threading
-from utils import tn # 导入工具类中计算程序执行时间的函数
-class MyThread(threading.Thread):
-    def __init__(self, func, name=''):
-        threading.Thread.__init__(self) # 这里必须添加父类的构器方法
-        self.func = func
-        self.name = name
-    #此方法必须实现
-    def run(self):
-        self.func(self.name)
-
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    print('程序开始执行，耐心等待几秒。')
-    threads = [] #定义一个线程队列
-    for i in range(5):
-        t = MyThread(loop1, "thread"+str(i))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-if __name__ == '__main__':
-    main()
-</code></pre>
-
-<p>注意：<code>run()</code>此方法必须实现;<code>threading.Thread.__init__(self)</code> 必须添加父类的构器方法</p>
-<p>二种方法相比较起来，通过继承<code>Thread</code>类来创建线程的实例更直观灵活一些，通过以上例子的对比来看，多线程并发执行程序要比单线程执行节约很多时间。
-关于多线程实例的创建还有其它方法，比如<code>Thread</code>构建方法中target参数也可以传入一个实例，不过个人感觉没有继承<code>Thread</code>类创建的实例更直观些，这里也就不举例了，
-另外还可以通过线程池创建一组线程用来执行任务。</p>
-<h2>threadpool Python线程池</h2>
-<p><code>Python3</code>下载安装模块</p>
-<pre><code>pip3 install threadpool
-</code></pre>
-<p>用线程池测试一下刚才的打印，代码如下：</p>
-<pre><code class="python">import time
-import threadpool
-from utils import tn # 导入工具类中计算程序执行时间的函数
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(2)
-@tn
-def main():
-    l = ['11111','22222','33333','44444','55555']
-    pool = threadpool.ThreadPool(5)# 创建一个线程池
-    requests = threadpool.makeRequests(loop1, l) #传入函数 及函数需要的参数
-    [pool.putRequest(req) for req in requests]# 不理角这段代码，猜测是循环创建线程 分配任务。
-    pool.wait()#设置池内所有线程等待。
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-
-<p><code>Python</code>线程的创建方法应该还有很多种，这里就不在介绍了，博主感觉继承<code>Thread</code>类创建实例的方法比较经典可行，代码直观，其次是创建<code>Thread</code>对象传参进去也是简单到家了。
-有关<code>Python</code>线程的创建就先聊到这里，稍后再研究一下线程锁，这几天正值国庆节，祝大家玩的开心！</p>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/thread">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/thread">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_19.html" role="button" class="outline">Prev</a></li>
@@ -570,8 +506,31 @@ if __name__ == '__main__':
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -580,28 +539,28 @@ if __name__ == '__main__':
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -619,10 +578,10 @@ if __name__ == '__main__':
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -634,10 +593,10 @@ if __name__ == '__main__':
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

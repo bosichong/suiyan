@@ -8,9 +8,7 @@
 @time     :2023/03/21
 
 """
-import datetime
 import random
-
 # 导入相关模块
 from jinja2 import FileSystemLoader, Environment
 import argparse
@@ -20,19 +18,23 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
+# DEV = 1 确定为本地开发环境，会调用config.json中site_test_url，方便本地调用。
+# DEV = 0 确定为线上生产模式，要把最终的网址换成线上的。
+# 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
+DEV = 0
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 BLOGPAGES = os.path.join(BASE_DIR, "blog")  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, "articles")  # 博文目录
-
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 # 匹配文章数据的正则
 
-SUIYANVERSION = "2.0.2"  # 程序版本
+SUIYANVERSION = "3.0.0"  # 程序版本
 
 
 def create_sitemap():
-    '''创建网站地图'''
+    """创建网站地图"""
     config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
     siteurl = config["site_url"]
     tmpstr = ""
@@ -59,10 +61,12 @@ def create_context():
     """
     创建模板的上下文
     """
-
+    config = load_configjson(CONFIGJSON)
     context = {
-        "config": load_configjson(CONFIGJSON),
-        "title":  "Home"
+        "config":   config,
+        "title":    "Home",
+        "site_url": config["site_url"],
+        "site_bg": config["site_bg"]
     }
     return context
 
@@ -137,7 +141,6 @@ async def create_list_html(i, ps):
 def create_archives_html():
     """生成archives.html"""
     blog_data = load_blogdatajson(BLOGDATAJSON)
-    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader('./templates'))
     context = create_context()
@@ -159,7 +162,6 @@ def create_archives_html():
 def create_tags_html():
     """生成archives.html"""
     blog_data = load_blogdatajson(BLOGDATAJSON)
-    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader('./templates'))
     context = create_context()
@@ -178,7 +180,7 @@ def create_tags_html():
 
 
 def create_allblog():
-    '''创建所有blog静态页面'''
+    """创建所有blog静态页面"""
     blogdata = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
 
     # #单线程创建blogHTML
@@ -197,9 +199,9 @@ def create_allblog():
 
 
 async def create_blog_html(blog):
-    '''
+    """
     创建blog页面
-    '''
+    """
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader('./templates'))
     tmp = env.get_template("blog.html")  # 模板
@@ -213,16 +215,16 @@ async def create_blog_html(blog):
         print('生成' + blog["title"] + '博文成功！')
 
 
-def create_blog(title='', author='', tag='', dir='', pagename=''):
-    '''
+def create_blog(title='', author='', tag='', filedir='', pagename=''):
+    """
     创建一篇空白的新blog
     :param title: blog标题
     :param author: blog作者默认为空的话前段渲染为站长昵称，转载可以添加佚名或是原作者。
     :param tag: 标签 默认为为分类
-    :param dir 存放目录
+    :param filedir 存放目录
     :param pagename: 当前页面的name 例如"hello188.md",如果为空默认为年月日时间字符串
     :return:
-    '''
+    """
     # 文章创建时间
     create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -234,11 +236,9 @@ def create_blog(title='', author='', tag='', dir='', pagename=''):
         # 从配置文件里加载站长为作者
         config = load_configjson(CONFIGJSON)
         author = config['blog_author']
-    blogfile = os.path.join(ARTICLES_DIR, os.path.join(dir, pagename + '.md'))
+    blogfile = os.path.join(ARTICLES_DIR, os.path.join(filedir, pagename + '.md'))
     create_dir(blogfile)  # 如果有不存在的目录则创建
-    bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\n\
-time:' + create_time + '\ntag:' + tag + '\n+' - --'+\n\
-</br>\n\n## 可以开始写blog啦(*￣︶￣)'
+    bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\ntime:' + create_time + '\ntag:' + tag + '\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
 
     if os.path.isfile(blogfile):
         print('文件存在相同名称，创建失败。')
@@ -249,13 +249,26 @@ time:' + create_time + '\ntag:' + tag + '\n+' - --'+\n\
         os.system('code ' + blogfile)  # 使用VS Code打开文件
 
 
+def create_blog_jsfile(dev):
+    """
+    从配置文件里更换前端JavaScript文件中的网站web地址。
+    """
+    config = load_configjson(CONFIGJSON)
+    if dev:
+        str = "var suiyan = { url : '" + config["site_test_url"] + "'}"
+    else:
+        str = "var suiyan = { url : '" + config["site_url"] + "'}"
+    create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), str)
+    print("url.js创建成功！")
+
+
 def create_test(con):
-    '''
+    """
     生成测试blog默认1000篇，放在目录suiyantest下。
     获取.md的文章信息HTML转化成数组
     :param con: 需要生成的文章数。
     :return: void
-    '''
+    """
     dir = "suiyantest"
     for i in range(con):
         # 随机生成一些文章数据填充，用来测试
@@ -263,9 +276,24 @@ def create_test(con):
             ("打法撒发射点发斯蒂芬", "斯蒂芬阿斯蒂芬斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬斯蒂芬阿斯蒂芬3",))
         tag = random.choice(("Java", "JavaScript", "Python", "C++", "程序员",))
         pagename = str(random.randint(99999, 99999999))
-        create_blog(title=title, tag=tag, dir=dir,
+        create_blog(title=title, tag=tag, filedir=dir,
                     author='', pagename=pagename)
     print("测试文件创建完毕！")
+
+
+def create_all():
+    """
+    一键生成所有静态文件。
+    """
+    copy_file(os.path.join(BASE_DIR,"config.json"),CONFIGJSON)
+    create_blog_jsfile(DEV)
+    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
+    create_sitemap()
+    delete_html_files(BLOGPAGES)
+    create_index_html()
+    create_archives_html()
+    create_tags_html()
+    create_allblog()
 
 
 def main():
@@ -279,7 +307,7 @@ def main():
     parser.add_argument("-t", "--tag", help="请输入blog的标签TAG", default='')
     parser.add_argument("-a", "--author", help="请输入文章作者，默认调用站长昵称", default='')
     parser.add_argument("-p", "--pagename", help="请输入文章地址页面名称", default='')
-    parser.add_argument("-d", "--dir", help="请输入文章地址所属目录", default='')
+    parser.add_argument("-d", "--filedir", help="请输入文章地址所属目录", default=get_current_year())
 
     parser.add_argument("-tt", "--suiyantest",
                         help="生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。", type=int, )
@@ -289,19 +317,11 @@ def main():
         print(SUIYANVERSION)
     elif args.newblog:
         create_blog(title=args.newblog, author=args.author,
-                    tag=args.tag, dir=args.dir, pagename=args.pagename, )
+                    tag=args.tag, filedir=args.filedir, pagename=args.pagename, )
     elif args.suiyantest:
         create_test()
     elif args.index:
-        create_data_json()
-        create_sitemap()
-        delete_html_files()
-        create_data_json(ARTICLES_DIR, BLOGDATAJSON)
-        create_sitemap()
-        create_index_html()
-        create_archives_html()
-        create_tags_html()
-        create_allblog()
+        create_all()
     elif args.sitemap:
         create_sitemap()
     else:
@@ -309,12 +329,5 @@ def main():
 
 
 if __name__ == "__main__":
-    create_blog_dir(BLOGPAGES)  # 所有blog目录，存放blog中的所有静态资源。
-    # main()
-    delete_html_files(BLOGPAGES)
-    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
-    create_sitemap()
-    create_index_html()
-    create_archives_html()
-    create_tags_html()
-    create_allblog()
+    create_blog_dir(BLOGPAGES)  # 创建blog目录
+    main()

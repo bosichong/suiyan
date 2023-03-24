@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第23页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,81 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-26 10:26:15</small> Tag:
+        
+        
+        <samll>Python GUI</samll>
+        
+    </h3>
+</hgroup>
+<p><p>Tk的功能不多，但应付一般应用还是足够了，Entry和Text是Tk下边显示及处理文本的小部件。
+涉及到文本，从使用角度来说，有几个功能是必须的：</p>
+<ul>
+<li>设置文本框的内容<code>insert()</code></li>
+<li>删除文本框的内容<code>delete()</code></li>
+<li>获得文本框的内容<code>get()</code></li>
+<li><code>show="*"</code>这个可以设置密码框用***来显示密码</li>
+</ul>
+<p>关于布局，和其它部件基本上是一样的，前边的章节有过介绍。</p>
+<p>本次使用tk制作了一个用户登陆验证用户名和密码的小例子。</p>
+<p>演示图如下：</p>
+<p>![演示图](<img alt="输入图片说明" src="assets/images/media/upload/2017/09/Snip20170926_4.png" /></p>
+<pre><code class="python">import tkinter as tk
+def isLogin(uname,pword):
+    """验证用户登陆函数"""
+    if uname == "17python" and pword == "17python":
+        print("登陆成功！")
+        out.insert(tk.END,"登陆成功！\n")
+    else:
+        print("用户名或密码错误！")
+        out.insert(tk.END,"用户名或密码错误！ \n")
+
+root = tk.Tk()
+root.title('文本框的测试')
+userinfo_frame = tk.Frame(root)
+userinfo_frame.pack(fill=tk.X, side=tk.TOP)
+########
+user_frame = tk.Frame(userinfo_frame, )
+user_frame.pack(fill=tk.X, side=tk.TOP)
+user_label = tk.Label(user_frame, text="username:",font=("Symbol", 14)).pack(side=tk.LEFT)
+username = tk.Entry(user_frame, width=40)
+username.pack(fill=tk.X, side= tk.LEFT)
+
+#######
+pass_frame = tk.Frame(userinfo_frame)
+pass_frame.pack(fill=tk.X, side=tk.TOP)
+pass_label = tk.Label(pass_frame, text="password:",font=("Symbol", 14)).pack(side=tk.LEFT)
+password = tk.Entry(pass_frame, width=40, show="*")
+password.pack(fill=tk.X, side= tk.LEFT)
+########
+btn_frame = tk.Frame(userinfo_frame)
+btn_frame.pack(fill=tk.X, side=tk.TOP)
+btn = tk.Button(btn_frame, text='登陆', command= lambda isLogin = isLogin : isLogin(username.get(), password.get())).pack(fill=tk.X)
+out = tk.Text(btn_frame,width=40,font=("Symbol", 14))
+out.insert(tk.END, "world \n")
+out.pack(fill=tk.X)
+
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -336,62 +411,6 @@ root.mainloop()
 <br>
 
 
-<hgroup>
-    <h2>Python random 随机数模块操作总结</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-20 13:28:23</small> Tag:
-        
-        
-        <samll>Python基础</samll>
-        
-    </h3>
-</hgroup>
-<p><p>random，是Python中用于生成随机数模块，我们来了解一下这修模中几个常用的函数，这些随机函数可以应付一些日常应用了。</p>
-<h2>使用random</h2>
-<pre><code>import random
-</code></pre>
-<p>random.random()用于生成一个0到1的随机符点数: 0 &lt;= n &lt; 1.0</p>
-<pre><code>print(random.random())
-</code></pre>
-<p>random.uniform(a,b) 用于生成 a-b 之间的随机浮点数。</p>
-<pre><code>print(random.uniform(1,5))
-</code></pre>
-<p>random.randint(10,20) 生成随机整数</p>
-<pre><code>print(random.randint(10,20))
-</code></pre>
-<p>生成0-100之间的偶数。</p>
-<pre><code>print(random.randrange(0,100,2))
-</code></pre>
-<p>choice()用来生成随机字符串，</p>
-<pre><code>print(random.choice(("a","b","c","d")))
-print(random.choice(['ee','ff','gg','hh']))
-</code></pre>
-<p>shuffle() 类似洗牌，每次刷新都会不一样的。</p>
-<pre><code>p = ['a','b','c','d']
-random.shuffle(p)
-print(p)
-</code></pre>
-<p>从一个列表中取出一个随机切片数据，原数据不变，结果刷新可见</p>
-<pre><code>l = [1,2,3,4,5,6,7,8,9]
-sl = random.sample(l,3)
-print(sl)
-print(l)
-</code></pre>
-<h2>相关参考</h2>
-<ul>
-<li><a href="http://python.usyiyi.cn/translate/python_352/library/random.html">官方文档：random - 生成伪随机数字</a></li>
-<li><a href="http://www.cnblogs.com/yd1227/archive/2011/03/18/1988015.html">Python中的random模块</a></li>
-</ul>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/random/randomtest.py">github</a></li>
-<li>[开源中国码云镜像gitee](https://gitee.com/J_Sky/17python.com/blob/master/random/randomtest.py</li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_22.html" role="button" class="outline">Prev</a></li>
@@ -407,8 +426,31 @@ print(l)
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -417,28 +459,28 @@ print(l)
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -456,10 +498,10 @@ print(l)
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -471,10 +513,10 @@ print(l)
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

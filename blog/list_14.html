@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第14页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,87 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-01-05 09:41:22</small> Tag:
+        
+        
+        <samll>pygame</samll>
+        
+    </h3>
+</hgroup>
+<p><p>在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_16.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_17.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_18.png" /></p>
+<h2>GreedSnake贪食蛇设计思路</h2>
+<p>游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
+这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_13.png" /></p>
+<p>除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：</p>
+<ul>
+<li>游戏的背景渲染</li>
+<li>蛇的运动</li>
+<li>食物的生成</li>
+<li>游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？</li>
+</ul>
+<p>当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用<code>PY_RPG+pygame</code>来实现这个简单的小游戏吧。</p>
+<h2>游戏背景渲染</h2>
+<p>分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
+对于<code>GreedSnake</code>来说，我们需要有一组是浅色网格组成的背景，
+对于游戏背景，我单独创建了一个class <code>GameBackground</code>,背景绘制的核心逻辑代码如下：</p>
+<pre><code>self.screen.fill((221, 221, 221))
+for i in range(0, 10):
+    for j in range(0,10):
+         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
+</code></pre>
+<p>在场景中创建对象后，进行渲染，效果如下：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_12.png" /></p>
+<h2>绘制蛇并让它动起来</h2>
+<p>默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
+这样我们在游戏场景中创建一个list用来表示蛇的身体：</p>
+<pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
+for i in range(0,4):
+    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
+</code></pre>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_14.png" /></p>
+<p>蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:</p>
+<pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
+    for i in range(0, 5):
+        if i == 0:
+            color = RED
+        else:
+            color = BLACK
+        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
+</code></pre>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_15.png" /></p>
+<p>这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
+关于蛇的移动逻辑：</p>
+<ul>
+<li>蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在<code>GreedSnake.update()</code>中，我们通过判断来更新蛇的位置。</li>
+<li><code>GreedSnake.handle_event()</code>中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向</li>
+</ul>
+<p>具体代码就不贴了，可以参考源文件代码。</p>
+<h2>生成食物与吃掉食物。</h2>
+<p>关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。</p>
+<h2>游戏结束</h2>
+<p>游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。</p>
+<h2>游戏暂停</h2>
+<p>在游戏场景类中加入了一个<code>pause</code>的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在<code>update</code>中控制整个游戏的更新，这样就可以达到控制游戏暂停了。</p>
+<h2>总结</h2>
+<p>教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。</p>
+<h2>本文源码下载</h2>
+<p>请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：<code>PY_RPG.GreedSnake.py</code></p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -219,83 +300,6 @@ app.run() #游戏开始
 <br>
 
 
-<hgroup>
-    <h2>Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-24 19:21:04</small> Tag:
-        
-        
-        <samll>Python GUI</samll>
-        
-    </h3>
-</hgroup>
-<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/Snip20171224_4.png" /></p>
-<p>python中有没有文件目录选择对话框？答案是肯定的，这个可以有。tkinter.filedialog这个模块就是负责选择文件及目录的。</p>
-<h2>tkinter.filedialog的测试</h2>
-<p>创建一个tk的窗口，包括一个文本框、按键及一个列表框，这些的创建都是很简单的，其中文本框及列表框中的关联数据我们采用tk中特有的绑定数据模式，具体可以查看代码。
-测试代码中有一个是按键回调方法filedir，主要是用来弹出目录选择对话框的,filedialog中有很多比较用用的对话框：</p>
-<pre><code>'askdirectory',
-'askopenfile',
-'askopenfilename',
-'askopenfilenames',
-'askopenfiles',
-'asksaveasfile',
-'asksaveasfilename'
-</code></pre>
-<p>以上是通过print(dir(filedialog))打印查看到的，也可以通过源码查看到，通过单词字面应该大体上可以了解到这些函数弹出的对话框是干什么用的。</p>
-<p>好了，具体测试源码如下：</p>
-<p>'''</p>
-<pre><code>import tkinter.filedialog as filedialog
-from tkinter import *
-import os
-
-def filedir():
-    print('按键已被点击')
-    v.set('')#清空文本框里内容
-    var.set((('')))
-    path = filedialog.askdirectory()
-    print(dir(filedialog))
-    if path :
-        v.set(path)
-    getdir(path)
-
-def getdir(p):
-    #把目录中遍历出来的文件目录显示到列表框中
-    fp = os.listdir(p)
-    var.set(fp)
-
-root = Tk()
-root.title('文件目录选择对话框测试')
-frame = Frame(root)
-frame.pack(fill=X,side=TOP)
-#加入一个文本框显示目录地址
-v = StringVar()#绑定文本框的变量
-ent = Entry(frame, width=50,textvariable = v).pack(fill=X,side=LEFT)
-#加入一个按键，点击后弹出文件目录选择对话框
-button = Button(frame, text='选择文件夹', command=filedir).pack(fill=X,side= LEFT)
-#加入一个列表框，显示目录中的文件列表
-listframe = Frame(root)
-listframe.pack(fill=X,side=LEFT)
-var = StringVar()#绑定listbox的列表值
-var.set((''))
-listbox = Listbox(listframe,width=60,listvariable = var).pack()
-root.mainloop()
-</code></pre>
-<h2>相关参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
-<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
-</ul>
-<h2>本文源码下载：</h2>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_13.html" role="button" class="outline">Prev</a></li>
@@ -311,8 +315,31 @@ root.mainloop()
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -321,28 +348,28 @@ root.mainloop()
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -360,10 +387,10 @@ root.mainloop()
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -375,10 +402,10 @@ root.mainloop()
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)

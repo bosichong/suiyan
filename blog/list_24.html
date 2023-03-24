@@ -9,18 +9,18 @@
     <meta content="J.sky" name="author">
     <title>SuiYan 碎言博客  List Pages 第24页</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://bosichong.github.io/assets/css/custom.css">
+    <script src="https://bosichong.github.io/assets/js/jquery-3.3.1.min.js"></script>
     
 </head>
 <body>
-<div class="hero" data-theme="dark">
+<div class="hero" data-theme="dark" style="background-image: url('https://bosichong.github.io/assets/images/bg.jpeg');">
     <nav class="container-fluid"><ul>
-    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+    <li><a href="https://bosichong.github.io/" class="contrast">SuiYan</a></li>
 </ul>
 <ul>
     <li>
@@ -35,8 +35,8 @@
     </li>
 </ul></nav>
     <head><header class="container">
-    <hgroup>
-        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+    <hgroup class="hd">
+        <img class="avatar" src="https://bosichong.github.io/assets/images/touxiang.jpg"/>
         <div>You see see you , This one day day di.</div>
         <ul class="sns-ul">
             
@@ -78,6 +78,62 @@
     <div class="grid">
         <section>
 
+
+
+<hgroup>
+    <h2>Python random 随机数模块操作总结</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-20 13:28:23</small> Tag:
+        
+        
+        <samll>Python基础</samll>
+        
+    </h3>
+</hgroup>
+<p><p>random，是Python中用于生成随机数模块，我们来了解一下这修模中几个常用的函数，这些随机函数可以应付一些日常应用了。</p>
+<h2>使用random</h2>
+<pre><code>import random
+</code></pre>
+<p>random.random()用于生成一个0到1的随机符点数: 0 &lt;= n &lt; 1.0</p>
+<pre><code>print(random.random())
+</code></pre>
+<p>random.uniform(a,b) 用于生成 a-b 之间的随机浮点数。</p>
+<pre><code>print(random.uniform(1,5))
+</code></pre>
+<p>random.randint(10,20) 生成随机整数</p>
+<pre><code>print(random.randint(10,20))
+</code></pre>
+<p>生成0-100之间的偶数。</p>
+<pre><code>print(random.randrange(0,100,2))
+</code></pre>
+<p>choice()用来生成随机字符串，</p>
+<pre><code>print(random.choice(("a","b","c","d")))
+print(random.choice(['ee','ff','gg','hh']))
+</code></pre>
+<p>shuffle() 类似洗牌，每次刷新都会不一样的。</p>
+<pre><code>p = ['a','b','c','d']
+random.shuffle(p)
+print(p)
+</code></pre>
+<p>从一个列表中取出一个随机切片数据，原数据不变，结果刷新可见</p>
+<pre><code>l = [1,2,3,4,5,6,7,8,9]
+sl = random.sample(l,3)
+print(sl)
+print(l)
+</code></pre>
+<h2>相关参考</h2>
+<ul>
+<li><a href="http://python.usyiyi.cn/translate/python_352/library/random.html">官方文档：random - 生成伪随机数字</a></li>
+<li><a href="http://www.cnblogs.com/yd1227/archive/2011/03/18/1988015.html">Python中的random模块</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/random/randomtest.py">github</a></li>
+<li>[开源中国码云镜像gitee](https://gitee.com/J_Sky/17python.com/blob/master/random/randomtest.py</li>
+</ul></p>
+
+
+<hr>
+<br>
 
 
 <hgroup>
@@ -220,91 +276,6 @@ print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
 <br>
 
 
-<hgroup>
-    <h2>Python3 datetime模块的时间操作</h2>
-    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-18 13:23:43</small> Tag:
-        
-        
-        <samll>Python基础</samll>
-        
-    </h3>
-</hgroup>
-<p><p><em>出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作</em></p>
-<h3>datetime 模块</h3>
-<p>导入模块</p>
-<pre><code>from datetime import *
-</code></pre>
-<p>获取当前时间:</p>
-<pre><code>now = datetime.now()
-td = datetime.today()
-</code></pre>
-<p>格式化打印时间 格式字符串参见后边的附录。</p>
-<pre><code>format = "%Y-%m-%d %H:%M:%S"
-print('今天的日期：'+ now.strftime(format))
-</code></pre>
-<p>根据字符串返回datetime对象
-格式化的字符串应与前边的时间对应。比如："2017-09-18 13:02:34", "%Y-%m-%d %H:%M:%S"</p>
-<pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
-</code></pre>
-<p>时间对象转换成时间戮</p>
-<pre><code>tmp = td.timestamp()
-print('timestamp: {}'.format(tmp))
-</code></pre>
-<p>根据时间戮转换成datetime对象</p>
-<pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
-</code></pre>
-<p>星期几？0是星期一</p>
-<pre><code>print(now.weekday()+1)
-</code></pre>
-<p>datetime 支持的最大及最小时间单位</p>
-<pre><code>print(datetime.max)
-print(datetime.min)
-</code></pre>
-<p>打印datetime对象包含的一个tuple</p>
-<pre><code>for it in now.timetuple():
-    print(it)
-</code></pre>
-<h3>附录：格式字符串</h3>
-<ul>
-<li>datetime. strftime (format)  </li>
-<li>%a 星期的简写。如 星期三为Web  </li>
-<li>%A 星期的全写。如 星期三为Wednesday  </li>
-<li>%b 月份的简写。如4月份为Apr  </li>
-<li>%B月份的全写。如4月份为April   </li>
-<li>%c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）  </li>
-<li>%d:  日在这个月中的天数（是这个月的第几天）  </li>
-<li>%f:  微秒（范围[0,999999]）  </li>
-<li>%H:  小时（24小时制，[0, 23]）  </li>
-<li>%I:  小时（12小时制，[0, 11]）  </li>
-<li>%j:  日在年中的天数 [001,366]（是当年的第几天）  </li>
-<li>%m:  月份（[01,12]）  </li>
-<li>%M:  分钟（[00,59]）  </li>
-<li>%p:  AM或者PM  </li>
-<li>%S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）  </li>
-<li>%U:  周在当年的周数当年的第几周），星期天作为周的第一天  </li>
-<li>%w:  今天在这周的天数，范围为[0, 6]，6表示星期天  </li>
-<li>%W:  周在当年的周数（是当年的第几周），星期一作为周的第一天  </li>
-<li>%x:  日期字符串（如：04/07/10）  </li>
-<li>%X:  时间字符串（如：10:43:39）  </li>
-<li>%y:  2个数字表示的年份  </li>
-<li>%Y:  4个数字表示的年份  </li>
-<li>%z:  与utc时间的间隔 （如果是本地时间，返回空字符串）  </li>
-<li>%Z:  时区名称（如果是本地时间，返回空字符串）  </li>
-<li>%%:  %% =&gt; %</li>
-</ul>
-<h3>相关参考</h3>
-<p><a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">官方文档：datetime — 基本日期和时间类型</a></p>
-<h3>本文源码下载：</h3>
-<ul>
-<li><a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">github</a></li>
-<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">开源中国码云镜像gitee</a></li>
-</ul></p>
-
-
-<hr>
-<br>
-
-
 
 <nav>
     <li><a href="list_23.html" role="button" class="outline">Prev</a></li>
@@ -320,8 +291,31 @@ print(datetime.min)
     </hgroup>
 
     <!-- Search -->
-    <input type="text" id="search" name="search" placeholder="JavaScript">
-    <button>Search</button>
+    <input type="text" id="search-input" name="search" placeholder="JavaScript">
+    <button id="search-btn" class="contrast"
+            data-target="modal-example"
+            onClick="toggleModal(event)">Search
+    </button>
+
+
+    <!-- Modal -->
+    <dialog id="modal-example">
+        <article>
+            <a href="#close"
+               aria-label="Close"
+               class="close"
+               data-target="modal-example"
+               onClick="toggleModal(event)">
+            </a>
+            <h3>搜索结果</h3>
+            <div id="modal" style="display: none;">
+                <ul id="result-list"></ul>
+            </div>
+        </article>
+    </dialog>
+    <script src="https://bosichong.github.io/assets/js/url.js"></script>
+    <script src="https://bosichong.github.io/assets/js/main.js"></script>
+    <script src="https://bosichong.github.io/assets/js/modal.js"></script>
 
 </section>
 
@@ -330,28 +324,28 @@ print(datetime.min)
     <ul>
         
         <li>
-            <a href="./index.html">
+            <a href="https://bosichong.github.io/index.html">
                 <i class="fa fa-home"></i>
                 Blog Home
             </a>
         </li>
         
         <li>
-            <a href="./archives.html">
+            <a href="https://bosichong.github.io/archives.html">
                 <i class="fa fa-archive"></i>
                 Blog Archive
             </a>
         </li>
         
         <li>
-            <a href="./tags.html">
+            <a href="https://bosichong.github.io/tags.html">
                 <i class="fa fa-tags"></i>
                 Blog Tag
             </a>
         </li>
         
         <li>
-            <a href="./aboutme.html">
+            <a href="https://bosichong.github.io/aboutme.html">
                 <i class="fa fa-user"></i>
                 About Me
             </a>
@@ -369,10 +363,10 @@ print(datetime.min)
     <p><small>
         Powered by
     </small>
-        <a href="https://github.com/Jsky2020/suiyan">
+        <a href="https://github.com/Jsky2020/suiyan" target="_blank">
             SuiYan
         </a>
-       <small> | </small><a href="https://github.com/bosichong">
+       <small> | </small><a href="https://github.com/bosichong" target="_blank">
             J.sky
         </a>
         <small>
@@ -384,10 +378,10 @@ print(datetime.min)
     </p>
 </div></footer>
 <!-- Minimal theme switcher -->
-<script src="./assets/js/minimal-theme-switcher.js"></script>
+<script src="https://bosichong.github.io/assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="./assets/js/jquery.toTop.min.js"></script>
+<script src="https://bosichong.github.io/assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)
