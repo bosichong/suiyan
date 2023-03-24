@@ -1,10 +1,9 @@
-<div class="blog-article">
-<h1 class="title">这是一个快速学习JavaScript的学习笔记0</h1>
-<span class="author">J.sky</span>
-<span class="time">2017-12-20 10:53:19</span>
-<span class="tag">JavaScript</span>
-</div>
-
+---
+title:这是一个快速学习JavaScript的学习笔记0
+author:J.sky
+time:2017-12-20 10:53:19
+tag:JavaScript
+---
 
 ## <span id="m1">JavaScript 是脚本语言</span>
 

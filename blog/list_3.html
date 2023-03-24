@@ -1,1516 +1,444 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
-    </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       关于站长
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-30 16:25:07
-      </span>
-      <span class="tag">
-       未分类
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      About Me
-     </h2>
-     <p>
-      一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。
-     </p>
-     <h2>
-      关于碎言博客
-     </h2>
-     <p>
-      本来用
-      <code>
-       Python Django
-      </code>
-      开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。
-     </p>
-     <p>
-      索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习
-      <code>
-       JavaScript jQuery
-      </code>
-      ，
-     </p>
-     <p>
-      索性撸一个静态博客，发现自己就是爱重复造轮子。
-     </p>
-     <p>
-      欢迎进群讨论学习Q群:217840699
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       碎言博客终端操作详解
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-30 15:56:49
-      </span>
-      <span class="tag">
-       碎言博客
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      关于z.py
-     </h2>
-     <p>
-      <code>
-       z.py
-      </code>
-      是碎言博客构建索引的关键程序，采用
-      <code>
-       Python3
-      </code>
-      相关技术开发。
-     </p>
-     <p>
-      终端运行：
-    python3 z.py
-     </p>
-     <p>
-      <img alt="" src="assets/images/blog/Snip20191230_4.png"/>
-     </p>
-     <p>
-      即可看到相关的命令帮助。
-     </p>
-     <h2>
-      -i
-     </h2>
-     <pre><code>python3 z.py -i
-</code></pre>
-     <p>
-      每次创建完新文章后都会自动创建索引，若是修改了文章的标题，作者，标签，时间等头部信息后，应该运行此命令进行索引更新。
-     </p>
-     <h2>
-      -n
-     </h2>
-     <pre><code>python3 z.py -n 这里写你的新文章的标题名称
-</code></pre>
-     <ul>
-      <li>
-       <code>
-        -n
-       </code>
-       用来创建新文章，其中还有几个选项可以使用，其中
-       <code>
-        -n
-       </code>
-       后边必须跟随一个新标题。
-      </li>
-      <li>
-       <p>
-        <code>
-         -d
-        </code>
-        用来创建一个存放的目录
-       </p>
-       <p>
-        python3 z.py -n blog_title -d blog
-       </p>
-      </li>
-     </ul>
-     <p>
-      会在默认
-      <code>
-       .md
-      </code>
-      存放目录
-      <code>
-       articles
-      </code>
-      下创建一个
-      <code>
-       blog
-      </code>
-      目录，新文章就创建在这里。
-     </p>
-     <ul>
-      <li>
-       <p>
-        <code>
-         -t -a -p
-        </code>
-        分别对应标签，作者和文章地址页面名称。作者留空默认填充为博客站长昵称。
-       </p>
-      </li>
-      <li>
-       <p>
-        <code>
-         -v
-        </code>
-        显示当前程序的版本。
-       </p>
-      </li>
-      <li>
-       <p>
-        <code>
-         -tt
-        </code>
-        参数为
-        <code>
-         int
-        </code>
-        ，此命令用来生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。
-       </p>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       碎言静态博客概述及快速开始
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-29 19:10:30
-      </span>
-      <span class="tag">
-       碎言博客
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      概述
-     </h2>
-     <p>
-      碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
-演示：
-      <a href="http://j_sky.gitee.io/suiyan">
-       碎言博客
-      </a>
-     </p>
-     <p>
-      <img alt="" src="assets/images/fabu.png"/>
-     </p>
-     <h2>
-      软件架构
-     </h2>
-     <p>
-      前端使用了
-      <code>
-       jQuery，bootstrap4,font-awesome-4.07,marked.js,highlight.js,jqPaginator,less,jQuery.toTop等技术框架。
-      </code>
-     </p>
-     <p>
-      本地构建博客索引使用了
-      <code>
-       Python
-      </code>
-      的相关技术。
-     </p>
-     <p>
-      博客文章写作采用Markdown技术支持，让你专注写作更流畅。
-     </p>
-     <h2>
-      快速开始
-     </h2>
-     <h3>
-      安装
-     </h3>
-     <p>
-      首先克隆下载碎言静态博客，
-*
-      <a href="https://gitee.com/J_Sky/suiyan.git">
-       Gitee
-      </a>
-      *
-      <a href="https://github.com/bosichong/suiyan.git">
-       GitHub
-      </a>
-     </p>
-     <p>
-      安装完成。
-     </p>
-     <h3>
-      创建文章
-     </h3>
-     <pre><code>python z.py -n 此处写文章标题
-</code></pre>
-     <p>
-      这个时候就会在
-      <code>
-       articles
-      </code>
-      目录下创建一篇文章。
-      <a href="p.html?p=suiyan_doc/20191230155649">
-       更多终端操作
-      </a>
-     </p>
-     <h3>
-      创建索引
-     </h3>
-     <p>
-      博客的文章排序及搜索以来此索引
-      <code>
-       blog_data.json
-      </code>
-      ，每次创建文章的时候回自动更新索引，但是如果你修改了头部的一些索引信息，则需要运行命令来更新索引。
-     </p>
-     <pre><code>python z.py -i
-</code></pre>
-     <h3>
-      修改博客及站长资料
-     </h3>
-     <p>
-      <code>
-       config.json
-      </code>
-      里存放着一些站点的资料，上传前建议先修改成自己的资料。
-     </p>
-     <p>
-      <a href="p.html?p=suiyan_doc/20191231133518">
-       <code>
-        config
-       </code>
-       配置详解点击查看
-      </a>
-     </p>
-     <h3>
-      运行站点
-     </h3>
-     <p>
-      推荐使用
-      <code>
-       Live Server
-      </code>
-      这个vscode得插件，非常方便。
-     </p>
-     <h3>
-      修改站点样式
-     </h3>
-     <p>
-      碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。
-     </p>
-     <p>
-      具体修改方法请点击查看：
-      <a href="p.html?p=suiyan_doc/20191230201529">
-       细说修改碎言博客站点的样式
-      </a>
-     </p>
-     <h3>
-      部署
-     </h3>
-     <pre><code>git push origin master
-</code></pre>
-     <p>
-      提交所有文件到git仓库即可。
-     </p>
-     <h3>
-      欢迎交流
-     </h3>
-     <p>
-      如果有什么问题，欢迎进群讨论学习Q群:217840699
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       这是一个快速学习JavaScript的学习笔记4
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-24 13:53:19
-      </span>
-      <span class="tag">
-       jQuery
-      </span>
-     </div>
-     <h2>
-      jQuery 和 HTML DOM
-     </h2>
-     <p>
-      DOM 是 Document Object Model（文档对象模型）的缩写。
-     </p>
-     <p>
-      HTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法。
-换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。
-     </p>
-     <p>
-      jQuery 是一个 JavaScript 库。
-jQuery 极大地简化了 JavaScript 编程。
-     </p>
-     <table class="table" style="color:#9B9C9D;">
-      <thead class="">
-       <tr>
-        <th scope="col">
-         描述
-        </th>
-        <th scope="col">
-         JQuery
-        </th>
-        <th scope="col">
-         JavaScript
-        </th>
-        <td scope="col">
-        </td>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         创建节点
-        </td>
-        <td>
-         $("&lt;div&gt;')
-        </td>
-        <td>
-         document.createElement("div“）
-        </td>
-       </tr>
-       <tr>
-        <td>
-         选择元素
-        </td>
-        <td>
-         $(CSS选择器）
-        </td>
-        <td>
-         querySelector(CSS选择器）；
-         <br/>
-         document.querySelectorAll(CSS选择器）；
-         <br/>
-         getElementById();
-         <br/>
-         getElementsByTagName();
-         <br/>
-         getElementsByClassName();
-        </td>
-       </tr>
-       <tr>
-        <td>
-         更改元素CSS
-        </td>
-        <td>
-         修改单个CSS:$("p").css("backgroundColor", "red")
-         <br/>
-         修改多个CSS：
-         <br/>
-         $("p").css({
-         <br/>
-         "color":"white",
-         <br/>
-         "background-color":"#98bf21",
-         <br/>
-         "font-family":"Arial",
-         <br/>
-         "font-size":"20px",
-         <br/>
-         "padding":"5px"
-         <br/>
-         });
-        </td>
-        <td>
-         元素.style.backgroundColor="red"
-        </td>
-       </tr>
-       <tr>
-        <td>
-         更改元素属性
-        </td>
-        <td>
-         元素.prop("disabled",true);
-         <br/>
-         元素.attr("disabled",true);
-        </td>
-        <td>
-         元素.disabled=true;
-         <br/>
-         元素.setAttribute("disabled",true);
-        </td>
-       </tr>
-       <tr>
-        <td>
-         获取元素属性
-        </td>
-        <td>
-         元素.prop("disabled");
-         <br/>
-         元素.attr("disabled");
-        </td>
-        <td>
-         元素.getAttribute(”disabled")
-        </td>
-       </tr>
-       <tr>
-        <td>
-         标签里添加 HTML 标签或文本
-        </td>
-        <td>
-         元素.html("&lt;em&gt;target4&lt;/em&gt;")
-        </td>
-        <td>
-         元素.innerHTML="&lt;em&gt;target4&lt;/em&gt;"
-        </td>
-       </tr>
-       <tr>
-        <td>
-         标签里只改变文本而不增加标签
-        </td>
-        <td>
-         元素.text()
-        </td>
-        <td>
-         元素.innerText或者元素.textContent(不同浏览器不同方法）;
-         <br/>
-         元素.文本子元素.nodeValue
-        </td>
-       </tr>
-       <tr>
-        <td>
-         设置或返回表单字段的值
-        </td>
-        <td>
-         元素.val()
-        </td>
-        <td>
-         value
-        </td>
-       </tr>
-       <tr>
-        <td>
-         删除元素
-        </td>
-        <td>
-         元素自身.remove()
-        </td>
-        <td>
-         父元素.removeChild(子元素）；
-         <br/>
-         子元素.parentNode.removeChild(子元素）；
-        </td>
-       </tr>
-       <tr>
-        <td>
-         末尾增加元素
-        </td>
-        <td>
-         <p>
-          新元素.appendTo(父元素）
-         </p>
-         <p>
-          父元素.append(新元素）
-         </p>
-        </td>
-        <td>
-         父元素.appendChild(新元素）
-        </td>
-       </tr>
-       <tr>
-        <td>
-         指定位置增加元素
-        </td>
-        <td>
-         父元素.insertBefore(插入元素,参照元素）
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         替换元素
-        </td>
-        <td>
-         父元素.replaceChild(插入元素,替换元素)
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         克隆元素
-        </td>
-        <td>
-         元素.clone();
-        </td>
-        <td>
-         元素.cloneNode(true):深克隆；
-         <br/>
-         元素.cloneNode(false):浅克隆；
-        </td>
-       </tr>
-       <tr>
-        <td>
-         父元素
-        </td>
-        <td>
-         元素.parent()
-        </td>
-        <td>
-         元素.parentNode
-        </td>
-       </tr>
-       <tr>
-        <td>
-         子元素
-        </td>
-        <td>
-         元素.children()
-         <br/>
-         元素.children("CSS选择器")
-        </td>
-        <td>
-         元素.childNodes（返回NodeList对象）
-         <br/>
-         元素.firstChild;
-         <br/>
-         元素.lastChild;
-        </td>
-       </tr>
-       <tr>
-        <td>
-         后代元素
-        </td>
-        <td>
-         元素.find("CSS选择器")
-         <br/>
-         示例:$('li.item-ii').find('li')，返回被选元素的后代元素，一路向下直到最后一个后代
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         兄弟元素
-        </td>
-        <td>
-         元素.next();
-         <br/>
-         元素.prev();
-        </td>
-        <td>
-         元素.nextSibling;
-         <br/>
-         元素.previousSibling;
-        </td>
-       </tr>
-       <tr>
-        <td>
-         伪类选择器选定子元素
-        </td>
-        <td>
-         $("button:nth-child(3)")
-         <br/>
-         选择属于其父元素的第3个子元素的每个&lt;button&gt; 元素。
-         <br/>
-         $(".target:odd")
-                选择奇数位置元素；
-         <br/>
-         $(".target:even") 选择偶数位置元素；
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         显示元素
-        </td>
-        <td>
-         元素.show()
-        </td>
-        <td>
-         元素.style.display=“block"
-        </td>
-       </tr>
-       <tr>
-        <td>
-         隐藏元素
-        </td>
-        <td>
-         元素.hide()
-        </td>
-        <td>
-         元素.style.display=“none"
-        </td>
-       </tr>
-       <tr>
-        <td>
-         页面资源全装载完成后触发
-        </td>
-        <td>
-         ${window}.on("load",function(){});
-        </td>
-        <td>
-         window.onload=function(){};
-        </td>
-       </tr>
-       <tr>
-        <td>
-         DOM加载完成后触发
-        </td>
-        <td>
-         ${document}.read(function(){});
-        </td>
-       </tr>
-       <tr>
-        <td>
-         对象定义
-        </td>
-        <td>
-         var $pin = $( "#main" );
-        </td>
-        <td>
-         var main=document.getElementById('main')
-        </td>
-       </tr>
-       <tr>
-        <td>
-         访问元素集合指定索引值
-        </td>
-        <td>
-         $('li').eq(2)  （第二个li元素）
-        </td>
-        <td>
-         nodeList[i]或nodeList.item(i)
-        </td>
-       </tr>
-       <tr>
-        <td>
-         集合中的第一个元素
-        </td>
-        <td>
-         .first()
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         集合中的最后一个元素
-        </td>
-        <td>
-         .last()
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         为数组每个匹配元素规定运行的函数
-        </td>
-        <td>
-         <p>
-          $(selector).each(function(index,value){})
-         </p>
-         <p>
-          $.each( object, function(index,value){})
-         </p>
-        </td>
-        <td>
-         for循环遍历执行
-        </td>
-       </tr>
-       <tr>
-        <td>
-         事件
-        </td>
-        <td>
-         元素.click（function(){...})
-        </td>
-        <td>
-         <p>
-          1、元素.onclick=function(){...}
-         </p>
-         <p>
-          2、元素.addClickListener('click',function(){...})
-         </p>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         设置或返回元素的宽度（不包括内边距、边框或外边距）
-        </td>
-        <td>
-         width()
-        </td>
-        <td>
-         width
-        </td>
-       </tr>
-       <tr>
-        <td>
-         设置或返回元素的高度（不包括内边距、边框或外边距）
-        </td>
-        <td>
-         height()
-        </td>
-        <td>
-         height
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回元素的宽度（包括内边距）
-        </td>
-        <td>
-         innerWidth()
-        </td>
-        <td>
-         clientWidth
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回元素的高度（包括内边距）
-        </td>
-        <td>
-         innerHeight()
-        </td>
-        <td>
-         clientHeight
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回元素的宽度（包括内边距和边框）
-        </td>
-        <td>
-         outerWidth()
-        </td>
-        <td>
-         offsetWidth
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回元素的g高度（包括内边距和边框）
-        </td>
-        <td>
-         outerHeight()
-        </td>
-        <td>
-         offsetHeight
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回视口宽度/高度
-        </td>
-        <td>
-         $(window).width()/$(window).height()
-        </td>
-        <td>
-         内边距=0情况下的document.documentElement.clientWidth
-        </td>
-       </tr>
-       <tr>
-        <td>
-         返回文档宽度/高度
-        </td>
-        <td>
-         $(document).width()/$(document).height()
-        </td>
-        <td>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         获取垂直滚动的距离
-        </td>
-        <td>
-         $(document).scrollTop()
-        </td>
-        <td>
-         document.documentElement.scrollTop
-        </td>
-       </tr>
-       <tr>
-        <td>
-         获取水平滚动的距离
-        </td>
-        <td>
-         $(document).scrollLeft()
-        </td>
-        <td>
-         document.documentElement.scrollLeft
-        </td>
-       </tr>
-       <tr>
-        <td>
-         被选元素相对于文档(document)的偏移坐标
-        </td>
-        <td>
-         <p>
-         </p>
-         <p>
-          offset().top,offset().left
-         </p>
-        </td>
-        <td>
-         offsetTop,offsetLeft(offsetParent是默认body时，或者是效果相当于body的定位元素时）
-        </td>
-       </tr>
-      </tbody>
-     </table>
-     <div class="blog-article">
-      <h1 class="title">
-       这是一个快速学习JavaScript的学习笔记3
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-23 11:53:19
-      </span>
-      <span class="tag">
-       JavaScript
-      </span>
-     </div>
-     <h2>
-      JavaScript中的对象
-     </h2>
-     <p>
-      JavaScript 定义了 5 种原始数据类型：
-     </p>
-     <pre><code>string
-number
-boolean
-null
-undefined
-</code></pre>
-     <p>
-      除了这些都是对象，对象是包含变量的变量。
-     </p>
-     <pre><code>//JavaScript对象
-//定义对象
-var p = {fname:"javascript",lname:"function"}
-p.oname = "java";//对象添加属性
-//forin 遍历对象属性。
-for (k in p ){console.log(p[k]);}
-delete p.oname;
-console.log(p.oname);//undefined
-p.f = function (s) { console.log(s)}//方法
-p.f('定义对象中的方法。')
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第3页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
 
-// 定义类
-function Person(name,age){
-    this.name = name;
-    this.age = age;
-}
+
+
+<hgroup>
+    <h2>Vue快速学习笔记(3)Vue的组件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-02-04 15:08:07</small> 标签:
+        
+        
+        <mark>Vue</mark>
+        
+    </h3>
+</hgroup>
+<p><h3>Vue中的组件</h3>
+<p>首先注册组件：</p>
+<pre><code>    Vue.component("my-btn", {
+        data:function() {
+            return {
+                count:0
+            }
+        },
+        template:"#mybtn"
+    });
 </code></pre>
-     <h2>
-      <p id="m1">
-       JavaScript 对象原型
-      </p>
-     </h2>
-     <p>
-      <strong>
-       所有 JavaScript 对象都从原型继承属性和方法。
-      </strong>
-     </p>
-     <p>
-      Object.prototype 位于原型继承链的顶端：
-     </p>
-     <p>
-      为对象添加属性和方法：
-     </p>
-     <pre><code>// 接上边的例子
-//通过prototype添加属性和方法。
-Person.prototype.where = 'china';
-Person.prototype.sayHello = function() {alert(this.name+" hello "+this.where)}
-p1.sayHello();
+<p>需要一个组件名称和组件的代码模板，组件中的数据和Vue实例的数据不同，一个组件的data选项必须是一个函数。</p>
+<p>定义模板</p>
+<pre><code>&lt;template id="mybtn"&gt;
+    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
+&lt;/template&gt;
 </code></pre>
-     <div class="blog-article">
-      <h1 class="title">
-       这是一个快速学习JavaScript的学习笔记2
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-12-22 10:55:19
-      </span>
-      <span class="tag">
-       JavaScript
-      </span>
-     </div>
-     <h2>
-      JavaScript语句
-     </h2>
-     <p>
-      var和function是用来声明变量和语句的。
-```JavaScript
-var a,b,c=88;
-     </p>
-     <p>
-      ```
-     </p>
-     <h3>
-      条件语句
-     </h3>
-     <p>
-      ```JavaScript
-//if else
-var n = 2;
-if (n == 1) {
-    alert('ok')
-} else {
-    lert('no')
-}
-     </p>
-     <p>
-      //switch
-var m = 4;
-switch (m) {
-    case 1:
-        alert('no')
-        break;
-    case 4:
-        alert('yes')
-    default: //如果条件都不符合执行
-        break;
-}
-     </p>
-     <p>
-      ```
-     </p>
-     <h3>
-      循环语句
-     </h3>
-     <ul>
-      <li>
-       for - 多次遍历代码块
-      </li>
-      <li>
-       for/in - 遍历对象属性
-      </li>
-      <li>
-       while - 当指定条件为 true 时循环一段代码块
-      </li>
-      <li>
-       <p>
-        do/while - 当指定条件为 true 时循环一段代码块
-       </p>
-      </li>
-      <li>
-       <p>
-        break 语句“跳出”循环。
-       </p>
-      </li>
-      <li>
-       continue 语句“跳过”循环中的一个迭代。
-      </li>
-     </ul>
-     <p>
-      ```JavaScript
-//while 略
-//do while 略
-     </p>
-     <p>
-      // for
-var i = 0, j = 10;
-for (i; i&lt;j; i++) {
-    console.log(i)
-     </p>
-     <p>
-      }
-     </p>
-     <p>
-      ```
-     </p>
-     <h3>
-      function
-     </h3>
-     <p>
-      function用来声明一个函数。
-     </p>
-     <p>
-      ```JavaScript
-function myFunction(p1, p2) {
-    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
-}
-     </p>
-     <p>
-      var mf = myFunction(p1, p2) {
-    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
-}
-     </p>
-     <p>
-      //见 test.js
-var mf = function myFunction(p1, p2) {
-    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
-}
-document.querySelector("div").textContent = mf(6,2);//12
-     </p>
-     <p>
-      ```
-     </p>
-     <h2>
-      <p id="m1">
-       匿名函数与闭包
-      </p>
-     </h2>
-     <p>
-      ```JavaScript
-     </p>
-     <p>
-      //这是一个匿名函数
-//匿名函数可以用来命名空间，且立即执行，避免变量污染。
-(function(){console.log('匿名函数写法1')}());
-//推荐第二种方法。
-(function(s){console.log(s)})('匿名函数写法2');
-     </p>
-     <p>
-      //简书上一篇不错的JavaScript闭包的文章
-//https://www.jianshu.com/p/80fb145d57d7
-//闭包1
-var add = (function () {
-    var counter = 0;
-    return function () {return counter += 1;}
-})();
-     </p>
-     <p>
-      add();
-add();
-console.log(add());//=&gt;3
-     </p>
-     <p>
-      //闭包2
-;(function(){
-    var a=1;
-    var addOne=function(x){
-        return x+a;
-    }
-    window.addOne=addOne;
-})()
-console.log(addOne(2));  // 3
-     </p>
-     <p>
-      ```
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       基于Django构建的小学生英文单词背写检测考试系统。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-11-07 16:10:19
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <h1>
-      PyWordTest
-     </h1>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/3tai.jpg"/>
-     </p>
-     <h4>
-      介绍
-     </h4>
-     <p>
-      孩子的学习总是让父母担忧，英语学习也是让家长的头疼之事，做为程序员老爸不能整天忙于编程而忽视了孩子的教育，我们也要搞点事情。孩子英文单词到底背的怎么样了？别怕，用PyWordTest,创建题库，轻松搞定孩子的英语单词拼写情况。
-     </p>
-     <p>
-      <strong>
-       <em>
-        &gt; 本软件非英语单词学习软件，只是通过在线答题来检测孩子对单词拼写的掌握。
-       </em>
-      </strong>
-     </p>
-     <p>
-      软件通过在线考试，记录考试结果及每个单词的拼写对错情况，最后通过一些算法分析孩子对单词拼写熟练度。
-     </p>
-     <p>
-      通过易错单词了解孩子哪些单词没有掌握，通过自建题库加强孩子对生疏单词的反复练习，更多功能还在研发中。
-     </p>
-     <p>
-      程序截图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/1.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/2.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/3.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/11/4.jpg"/>
-     </p>
-     <h4>
-      软件架构
-     </h4>
-     <p>
-      基于Django构建的小学生英文单词背写检测考试系统。
-     </p>
-     <p>
-      环境需求：
-python (3.6.1) 
-Django (2.2.7) 
-Pillow
-     </p>
-     <h4>
-      安装教程
-     </h4>
-     <p>
-      进入程序目录后，运行python3 manage.py runserver
-     </p>
-     <p>
-      后台管理地址http://127.0.0.1:8000/admin/
-     </p>
-     <p>
-      管理员登陆:
-     </p>
-     <p>
-      用户名：admin 密码：17python.com
-     </p>
-     <p>
-      前台地址http://127.0.0.1:8000/
-     </p>
-     <h4>
-      使用说明
-     </h4>
-     <p>
-      程序已经采集了近1000小学生常用单词，后台可以根据自己的需要进行添加题库进行测试。
-     </p>
-     <p>
-      建议新建一个帐号用来考试建题库使用。
-     </p>
-     <h4>
-      参与贡献
-     </h4>
-     <p>
-      非常欢迎有想法的程序员参与提交代码，程序还很不完善！希望大家多多参与！
-     </p>
-     <h2>
-      源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/WordTest">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/WordTest">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       PYBabyLog记录孩子成长过程的日记
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-09-29 00:15:30
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <h3>
-      前言
-     </h3>
-     <p>
-      岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。
-     </p>
-     <p>
-      当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！
-     </p>
-     <p>
-      做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。
-     </p>
-     <p>
-      PYBabyLog的前身是
-      <a href="https://gitee.com/J_Sky/babylog">
-       BabyLog(Java开发版)
-      </a>
-     </p>
-     <p>
-      是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。
-     </p>
-     <h3>
-      PYBabyLog
-     </h3>
-     <p>
-      PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。
-     </p>
-     <p>
-      采用Python+MySQL+argparse技术开发的全终端操作软件。
-     </p>
-     <p>
-      可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。
-     </p>
-     <p>
-      本程序数据库和
-      <a href="https://gitee.com/J_Sky/babylog">
-       BabyLog(Java开发版)
-      </a>
-      通用，可以用来展示数据。
-当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？
-     </p>
-     <h3>
-      界面截图
-     </h3>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png"/>
-     </p>
-     <h3>
-      安装方法
-     </h3>
-     <p>
-      1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库
-      <a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">
-       数据库构建文件
-      </a>
-     </p>
-     <p>
-      2.修改
-      <code>
-       DbHelp.py
-      </code>
-      中的MySQL的连接配置项即可
-     </p>
-     <h3>
-      终端版操作命令简介
-     </h3>
-     <p>
-      <code>
-       整理中。。。。。
-x.py -h 就都出来了。
-      </code>
-     </p>
-     <h3>
-      写在结尾
-     </h3>
-     <p>
-      其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。
-     </p>
-     <p>
-      若给各位大虾能提交些代码或是有好的建议，非常欢迎！
-     </p>
-     <h2>
-      程序源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PYBabyLog">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PYBabyLog">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_2.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        3 / 15
-       </button>
-       <a href="list_4.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
+<p>编写Vue实例，完整代码如下：</p>
+<pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
+&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;template id="mybtn"&gt;
+    &lt;button v-on:click="count++"&gt;已经点击了{{ count }}次！&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;div id="app"&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+    &lt;my-btn&gt;&lt;/my-btn&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    Vue.component("my-btn", {
+        data:function() {
+            return {
+                count:0
+            }
+        },
+        template:"#mybtn"
+    });
+
+    vm = new Vue({
+        el:'#app'
+    })
+
+&lt;/script&gt;
+</code></pre>
+<p>如上，就可以实现一个全局的组件注册，可以重复使用。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Vue快速学习笔记(2)Vue中的监听与计算属性</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-02-01 10:31:26</small> 标签:
+        
+        
+        <mark>Vue</mark>
+        
+    </h3>
+</hgroup>
+<p><h3>Vue中的监听</h3>
+<p><code>watch</code>用来监听<code>Vue</code>实例中数据的变化，然后可以出发一个事件。
+例如，反转字符串：</p>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+&lt;div id="app"&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="nvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+   var vm = new Vue({
+        el:"#app",
+        data:{
+            vt:"",
+            nvt:""
+        },
+        watch: {
+            vt:function(val){
+                this.nvt=this.vt.split('').reverse().join('')
+
+            }
+        },
+    })
+
+&lt;/script&gt;
+</code></pre>
+<p>除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。</p>
+<h3>Vue中的计算属性</h3>
+<p>计算属性和监听有些相似，有的时候作用都差不多吧。</p>
+<p>下边的例子就是采用Vue的计算属性，</p>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<pre><code>&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="app1"&gt;
+    &lt;p&gt;计算属性&lt;/p&gt;
+    &lt;input type="text" v-model="vt"&gt;
+    &lt;p v-text="rtvt"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+
+
+    var vm1 = new Vue({
+        el :"#app1",
+        data:{
+            vt:""
+        },
+        computed: {
+            rtvt:function(){
+                return this.vt.split("").reverse().join("")
+            }
+        },
+
+    })
+
+&lt;/script&gt;
+</code></pre>
+<p>感觉计算属性要比监听简单直观些。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Vue快速学习笔记(1)Vue实例基础</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-10 21:18:43</small> 标签:
+        
+        
+        <mark>Vue</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>Vue.js 简介</h2>
+<p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。</p>
+<p>Vue 只关注视图层， 采用自底向上增量开发的设计。</p>
+<p>Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</p>
+<h2>第一个Vue实例</h2>
+<pre><code>&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
+&lt;script src="assets/plugins/vue.js"&gt;&lt;/script&gt;
+
+&lt;div id="v1" v-bind:title="title"&gt;
+{{ msg }}
+&lt;p v-text="vtext"&gt;&lt;/p&gt;
+&lt;div v-html="vhtml"  v-on:click="alt"&gt;&lt;/div&gt;
+
+&lt;input type="text" v-model="tx"&gt;
+&lt;p v-text="tx"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    var v = new Vue({
+        el: "#v1",
+        data:{
+            msg:"Hello Vue!",
+            title:"试试把鼠标放上去。",
+            vtext:"我是通过v-text绑定的数据",
+            vhtml:"&lt;h1&gt;哈哈哈字是不是好大？",
+            tx:"v-model绑定数据，修改试试吧"
+        },
+        methods:{
+            alt :function(){
+                alert("是不是有提示了？")
+            }
+        }
+    })
+&lt;/script&gt;
+</code></pre>
+<p>这是一个声明式渲染 <code>{{ msg  }}</code>类似于模板便签被插在HTML中。
+<code>v-text,v-html</code>是另外两种数据绑定方式。</p>
+<p><code>v-bind:title</code>Vue中的特殊指令，可以简写为<code>:title</code>,</p>
+<p><code>v-on:click</code>绑定点击事件</p>
+<p><code>v-model</code> 可以双向绑定数据，试试修改程序中的数据。</p>
+<h2>MVVM</h2>
+<p>MVVM是一种架构模式，并非一种框架，是一种思想，一种组织和管理代码的艺术。它利用数据绑定、属性依赖、路由事件、命令等特性实现高效灵活的架构。</p>
+<p>在MVVM中，View和View Controller是联系在一起，可以把它们视为一个组件，View和View Controller都不能直接引用Model，而是通过引用视图模型（ViewModel），ViewModel是存放View Controller所需要数据的地方（View Controller敢要，ViewModel就敢给），使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性、耦合性。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>使用碎言静态博客依托码云Pages搭建自己的免费博客</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-08 19:17:37</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><p><a href='https://gitee.com/J_Sky/suiyan/stargazers'><img src='https://gitee.com/J_Sky/suiyan/badge/star.svg?theme=dark' alt='star'></img></a></p>
+<h2>介绍</h2>
+<p>碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
+演示： <a href="http://j_sky.gitee.io/suiyan">碎言博客</a></p>
+<p><img alt="" src="assets/images/fabu.png" /></p>
+<h2>安装</h2>
+<p>首先克隆下载碎言静态博客</p>
+<ul>
+<li><a href="https://gitee.com/J_Sky/suiyan.git">Gitee</a></li>
+<li><a href="https://github.com/bosichong/suiyan.git">GitHub</a></li>
+</ul>
+<p>可以通过<code>git clone https://gitee.com/J_Sky/suiyan.git</code>下载，也可以通过下载.zip压缩包下载后解压缩即可。</p>
+<h2>创建码云代码仓库</h2>
+<p>登录码云注册账号，然后开始创建自己的代码仓库用来存放博客的页面。</p>
+<h3>1. 创建</h3>
+<p><img alt="" src="assets/images/blog/Snip20200108_1.png" /></p>
+<p>填写相关选项创建一个新的代码仓库</p>
+<p><img alt="" src="assets/images/blog/Snip20200108_3.png" /></p>
+<h3>2.关联本地代码仓库</h3>
+<p>如果你对<code>Git</code>操作非常了解，可以跳过此步骤。</p>
+<p>进入你本地博客的根目录：
+先配置<code>Git</code>的基本信息</p>
+<pre><code>$ git config --global user.name "你的名字或昵称"
+$ git config --global user.email "你的邮箱"
+</code></pre>
+<p>然后绑定远程代码仓库下边的仓库地址换成你刚刚建好的代码仓库的远程地址</p>
+<pre><code>$ git init 
+$ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
+</code></pre>
+<h3>3.创建你的第一篇博客</h3>
+<p>在终端进入你的本地博客目录运行</p>
+<pre><code>python z.py
+</code></pre>
+<p>这个时候会打印一些关于<code>z.py</code>命令行的一些帮助信息，仔细看看可以了解一些基本操作。</p>
+<p>未完待续</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>今天是个好日子发行了碎言静态博客的功能完整版</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-08 16:10:47</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>发布了碎言静态博客的功能完整第一个版本</h2>
+<p>经过这段时间的努力，终于把博客成功的更换成了自己开发的碎言静态博客，也算是对这段时间学习JavaScript的一个总结。
+后续还要继续开发维护，添加一些使用的功能，目前来说，对这个版本最大的满意就是界面的美化和网站的加载速度。
+后续还会继续优化。</p>
+<h2>未来需要添加的功能</h2>
+<ul>
+<li>支持在线一件换肤。</li>
+<li>更好的拓展功能。</li>
+<li>更实用的功能。</li>
+<li>吸引更多的程序员兄弟前来提交代码。</li>
+</ul>
+<p>加油2020！！</p></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_2.html" role="button" class="outline">Prev</a></li>
+    <li><small>3 / 23</small></li>
+    <li><a href="list_4.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1525,39 +453,7 @@ x.py -h 就都出来了。
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

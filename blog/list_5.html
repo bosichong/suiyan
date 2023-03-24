@@ -1,1292 +1,669 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第5页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>碎言博客终端操作详解</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-30 15:56:49</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>关于z.py</h2>
+<p><code>z.py</code>是碎言博客构建索引的关键程序，采用<code>Python3</code>相关技术开发。</p>
+<p>终端运行：
+    python3 z.py</p>
+<p><img alt="" src="assets/images/blog/Snip20191230_4.png" /></p>
+<p>即可看到相关的命令帮助。</p>
+<h2>-i</h2>
+<pre><code>python3 z.py -i
+</code></pre>
+<p>每次创建完新文章后都会自动创建索引，若是修改了文章的标题，作者，标签，时间等头部信息后，应该运行此命令进行索引更新。</p>
+<h2>-n</h2>
+<pre><code>python3 z.py -n 这里写你的新文章的标题名称
+</code></pre>
+<ul>
+<li><code>-n</code>用来创建新文章，其中还有几个选项可以使用，其中<code>-n</code>后边必须跟随一个新标题。</li>
+<li>
+<p><code>-d</code>用来创建一个存放的目录</p>
+<p>python3 z.py -n blog_title -d blog</p>
+</li>
+</ul>
+<p>会在默认<code>.md</code>存放目录<code>articles</code>下创建一个<code>blog</code>目录，新文章就创建在这里。</p>
+<ul>
+<li>
+<p><code>-t -a -p</code>分别对应标签，作者和文章地址页面名称。作者留空默认填充为博客站长昵称。</p>
+</li>
+<li>
+<p><code>-v</code>显示当前程序的版本。</p>
+</li>
+<li>
+<p><code>-tt</code> 参数为<code>int</code>，此命令用来生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。</p>
+</li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>碎言静态博客概述及快速开始</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-29 19:10:30</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>概述</h2>
+<p>碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
+演示： <a href="http://j_sky.gitee.io/suiyan">碎言博客</a></p>
+<p><img alt="" src="assets/images/fabu.png" /></p>
+<h2>软件架构</h2>
+<p>前端使用了<code>jQuery，bootstrap4,font-awesome-4.07,marked.js,highlight.js,jqPaginator,less,jQuery.toTop等技术框架。</code></p>
+<p>本地构建博客索引使用了<code>Python</code>的相关技术。</p>
+<p>博客文章写作采用Markdown技术支持，让你专注写作更流畅。</p>
+<h2>快速开始</h2>
+<h3>安装</h3>
+<p>首先克隆下载碎言静态博客，
+* <a href="https://gitee.com/J_Sky/suiyan.git">Gitee</a>
+* <a href="https://github.com/bosichong/suiyan.git">GitHub</a></p>
+<p>安装完成。</p>
+<h3>创建文章</h3>
+<pre><code>python z.py -n 此处写文章标题
+</code></pre>
+<p>这个时候就会在<code>articles</code>目录下创建一篇文章。<a href="p.html?p=suiyan_doc/20191230155649">更多终端操作</a></p>
+<h3>创建索引</h3>
+<p>博客的文章排序及搜索以来此索引<code>blog_data.json</code>，每次创建文章的时候回自动更新索引，但是如果你修改了头部的一些索引信息，则需要运行命令来更新索引。</p>
+<pre><code>python z.py -i
+</code></pre>
+<h3>修改博客及站长资料</h3>
+<p><code>config.json</code>里存放着一些站点的资料，上传前建议先修改成自己的资料。</p>
+<p><a href="p.html?p=suiyan_doc/20191231133518"><code>config</code>配置详解点击查看</a></p>
+<h3>运行站点</h3>
+<p>推荐使用<code>Live Server</code>这个vscode得插件，非常方便。</p>
+<h3>修改站点样式</h3>
+<p>碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。</p>
+<p>具体修改方法请点击查看： <a href="p.html?p=suiyan_doc/20191230201529">细说修改碎言博客站点的样式</a></p>
+<h3>部署</h3>
+<pre><code>git push origin master
+</code></pre>
+<p>提交所有文件到git仓库即可。</p>
+<h3>欢迎交流</h3>
+<p>如果有什么问题，欢迎进群讨论学习Q群:217840699</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>这是一个快速学习JavaScript的学习笔记4</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-24 13:53:19</small> 标签:
+        
+        
+        <mark>jQuery</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>jQuery 和 HTML DOM</h2>
+<p>DOM 是 Document Object Model（文档对象模型）的缩写。</p>
+<p>HTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法。
+换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。</p>
+<p>jQuery 是一个 JavaScript 库。
+jQuery 极大地简化了 JavaScript 编程。</p>
+<table class="table" style="color:#9B9C9D;">
+        <thead class="">
+            <tr>
+                <th scope="col">描述</th>
+                <th scope="col">JQuery</th>
+                <th scope="col">JavaScript</th>
+                <td scope="col">&nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>创建节点</td>
+            <td>$("&lt;div&gt;')</td>
+            <td>document.createElement("div“）</td>
+        </tr>
+        <tr>
+            <td>选择元素</td>
+            <td>$(CSS选择器）</td>
+            <td>querySelector(CSS选择器）；<br>document.querySelectorAll(CSS选择器）；<br>getElementById();<br>getElementsByTagName();<br>getElementsByClassName();
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;更改元素CSS</td>
+            <td>修改单个CSS:$("p").css("backgroundColor", "red")<br>修改多个CSS：<br>$("p").css({<br>&nbsp;
+                "color":"white",<br>&nbsp; "background-color":"#98bf21",<br>&nbsp; "font-family":"Arial",<br>&nbsp;
+                "font-size":"20px",<br>&nbsp; "padding":"5px"<br>&nbsp; });</td>
+            <td>&nbsp;元素.style.backgroundColor="red"</td>
+        </tr>
+        <tr>
+            <td>&nbsp;更改元素属性</td>
+            <td>元素.prop("disabled",true);<br>元素.attr("disabled",true);</td>
+            <td>元素.disabled=true;<br>元素.setAttribute("disabled",true);</td>
+        </tr>
+        <tr>
+            <td>&nbsp;获取元素属性</td>
+            <td>元素.prop("disabled");<br>元素.attr("disabled");</td>
+            <td>&nbsp;元素.getAttribute(”disabled")</td>
+        </tr>
+        <tr>
+            <td>&nbsp;标签里添加 HTML 标签或文本</td>
+            <td>&nbsp;元素.html("&lt;em&gt;target4&lt;/em&gt;")</td>
+            <td>&nbsp;元素.innerHTML="&lt;em&gt;target4&lt;/em&gt;"</td>
+        </tr>
+        <tr>
+            <td>&nbsp;标签里只改变文本而不增加标签</td>
+            <td>&nbsp;元素.text()</td>
+            <td>&nbsp;元素.innerText或者元素.textContent(不同浏览器不同方法）;<br>元素.文本子元素.nodeValue</td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;设置或返回表单字段的值</td>
+            <td>&nbsp;元素.val()</td>
+            <td>&nbsp;value</td>
+        </tr>
+        <tr>
+            <td>&nbsp;删除元素</td>
+            <td>&nbsp;元素自身.remove()</td>
+            <td>&nbsp;父元素.removeChild(子元素）；<br>子元素.parentNode.removeChild(子元素）；</td>
+        </tr>
+        <tr>
+            <td>&nbsp;末尾增加元素</td>
+            <td>
+                <p>&nbsp;新元素.appendTo(父元素）</p>
+                <p>父元素.append(新元素）</p>
+            </td>
+            <td>&nbsp;父元素.appendChild(新元素）</td>
+        </tr>
+        <tr>
+            <td>&nbsp;指定位置增加元素</td>
+            <td>&nbsp;父元素.insertBefore(插入元素,参照元素）</td>
+            <td>
+        </tr>
+        <tr>
+            <td>&nbsp;替换元素</td>
+            <td>&nbsp;父元素.replaceChild(插入元素,替换元素)</td>
+            <td>
+        </tr>
+        <tr>
+            <td>&nbsp;克隆元素</td>
+            <td>&nbsp;元素.clone();</td>
+            <td>&nbsp;元素.cloneNode(true):深克隆；<br>元素.cloneNode(false):浅克隆；</td>
+        </tr>
+        <tr>
+            <td>&nbsp;父元素</td>
+            <td>&nbsp;元素.parent()</td>
+            <td>&nbsp;元素.parentNode</td>
+        </tr>
+        <tr>
+            <td>&nbsp;子元素</td>
+            <td>&nbsp;元素.children()<br>元素.children("CSS选择器")</td>
+            <td>&nbsp;元素.childNodes（返回NodeList对象）<br>元素.firstChild;<br>元素.lastChild;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;后代元素</td>
+            <td>&nbsp;元素.find("CSS选择器")<br>示例:$('li.item-ii').find('li')，返回被选元素的后代元素，一路向下直到最后一个后代</td>
+            <td>
+        </tr>
+        <tr>
+            <td>&nbsp;兄弟元素</td>
+            <td>&nbsp;元素.next();<br>元素.prev();</td>
+            <td>&nbsp;元素.nextSibling;<br>元素.previousSibling;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;伪类选择器选定子元素</td>
+            <td>&nbsp;$("button:nth-child(3)")<br>选择属于其父元素的第3个子元素的每个&lt;button&gt; 元素。<br>&nbsp;$(".target:odd")
+                选择奇数位置元素；<br>&nbsp;$(".target:even") 选择偶数位置元素；</td>
+                <td>
+        </tr>
+        <tr>
+            <td>&nbsp;显示元素</td>
+            <td>&nbsp;元素.show()</td>
+            <td>&nbsp;元素.style.display=“block"</td>
+        </tr>
+        <tr>
+            <td>&nbsp;隐藏元素</td>
+            <td>元素.hide()</td>
+            <td>元素.style.display=“none"</td>
+        </tr>
+        <tr>
+            <td>页面资源全装载完成后触发</td>
+            <td>${window}.on("load",function(){});</td>
+            <td>window.onload=function(){};</td>
+        </tr>
+        <tr>
+            <td>DOM加载完成后触发</td>
+            <td>${document}.read(function(){});</td>
+        </tr>
+        <tr>
+            <td>对象定义</td>
+            <td>var $pin = $( "#main" );</td>
+            <td>var main=document.getElementById('main')</td>
+        </tr>
+        <tr>
+            <td>访问元素集合指定索引值</td>
+            <td>$('li').eq(2)&nbsp; （第二个li元素）</td>
+            <td>nodeList[i]或nodeList.item(i)</td>
+        </tr>
+        <tr>
+            <td>集合中的第一个元素</td>
+            <td>.first()</td>
+            <td>
+        </tr>
+        <tr>
+            <td>集合中的最后一个元素</td>
+            <td>.last()</td>
+            <td>
+        </tr>
+        <tr>
+            <td>为数组每个匹配元素规定运行的函数</td>
+            <td>
+                <p>$(selector).each(function(index,value){})</p>
+                <p>$.each( object, function(index,value){})</p>
+            </td>
+            <td>for循环遍历执行</td>
+        </tr>
+        <tr>
+            <td>事件</td>
+            <td>元素.click（function(){...})</td>
+            <td>
+                <p>1、元素.onclick=function(){...}</p>
+                <p>2、元素.addClickListener('click',function(){...})</p>
+            </td>
+        </tr>
+        <tr>
+            <td>设置或返回元素的宽度（不包括内边距、边框或外边距）</td>
+            <td>width()</td>
+            <td>width</td>
+        </tr>
+        <tr>
+            <td>设置或返回元素的高度（不包括内边距、边框或外边距）</td>
+            <td>height()　　</td>
+            <td>height</td>
+        </tr>
+        <tr>
+            <td>返回元素的宽度（包括内边距）</td>
+            <td>innerWidth()</td>
+            <td>clientWidth</td>
+        </tr>
+        <tr>
+            <td>返回元素的高度（包括内边距）</td>
+            <td>innerHeight()</td>
+            <td>clientHeight</td>
+        </tr>
+        <tr>
+            <td>返回元素的宽度（包括内边距和边框）</td>
+            <td>outerWidth()</td>
+            <td>offsetWidth</td>
+        </tr>
+        <tr>
+            <td>返回元素的g高度（包括内边距和边框）</td>
+            <td>outerHeight()</td>
+            <td>offsetHeight</td>
+        </tr>
+        <tr>
+            <td>返回视口宽度/高度</td>
+            <td>$(window).width()/$(window).height()</td>
+            <td>内边距=0情况下的document.documentElement.clientWidth</td>
+        </tr>
+        <tr>
+            <td>返回文档宽度/高度</td>
+            <td>$(document).width()/$(document).height()</td>
+            <td>
+        </tr>
+        <tr>
+            <td>获取垂直滚动的距离</td>
+            <td>$(document).scrollTop()</td>
+            <td>document.documentElement.scrollTop</td>
+        </tr>
+        <tr>
+            <td>获取水平滚动的距离</td>
+            <td>$(document).scrollLeft()</td>
+            <td>document.documentElement.scrollLeft</td>
+        </tr>
+        <tr>
+            <td>被选元素相对于文档(document)的偏移坐标</td>
+            <td>
+                <p>&nbsp;</p>
+                <p>offset().top,offset().left</p>
+            </td>
+            <td>offsetTop,offsetLeft(offsetParent是默认body时，或者是效果相当于body的定位元素时）</td>
+        </tr>
+    </tbody>
+
+</table></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>这是一个快速学习JavaScript的学习笔记3</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-23 11:53:19</small> 标签:
+        
+        
+        <mark>JavaScript</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>JavaScript中的对象</h2>
+<p>JavaScript 定义了 5 种原始数据类型：</p>
+<pre><code>string
+number
+boolean
+null
+undefined
+</code></pre>
+<p>除了这些都是对象，对象是包含变量的变量。</p>
+<pre><code>//JavaScript对象
+//定义对象
+var p = {fname:"javascript",lname:"function"}
+p.oname = "java";//对象添加属性
+//forin 遍历对象属性。
+for (k in p ){console.log(p[k]);}
+delete p.oname;
+console.log(p.oname);//undefined
+p.f = function (s) { console.log(s)}//方法
+p.f('定义对象中的方法。')
+
+// 定义类
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+</code></pre>
+<h2><p id="m1">JavaScript 对象原型</p></h2>
+<p><strong>所有 JavaScript 对象都从原型继承属性和方法。</strong></p>
+<p>Object.prototype 位于原型继承链的顶端：</p>
+<p>为对象添加属性和方法：</p>
+<pre><code>// 接上边的例子
+//通过prototype添加属性和方法。
+Person.prototype.where = 'china';
+Person.prototype.sayHello = function() {alert(this.name+" hello "+this.where)}
+p1.sayHello();
+</code></pre></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>这是一个快速学习JavaScript的学习笔记2</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-22 10:55:19</small> 标签:
+        
+        
+        <mark>JavaScript</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>JavaScript语句</h2>
+<p>var和function是用来声明变量和语句的。
+```JavaScript
+var a,b,c=88;</p>
+<p>```</p>
+<h3>条件语句</h3>
+<p>```JavaScript
+//if else
+var n = 2;
+if (n == 1) {
+    alert('ok')
+} else {
+    lert('no')
+}</p>
+<p>//switch
+var m = 4;
+switch (m) {
+    case 1:
+        alert('no')
+        break;
+    case 4:
+        alert('yes')
+    default: //如果条件都不符合执行
+        break;
+}</p>
+<p>```</p>
+<h3>循环语句</h3>
+<ul>
+<li>for - 多次遍历代码块</li>
+<li>for/in - 遍历对象属性</li>
+<li>while - 当指定条件为 true 时循环一段代码块</li>
+<li>
+<p>do/while - 当指定条件为 true 时循环一段代码块</p>
+</li>
+<li>
+<p>break 语句“跳出”循环。</p>
+</li>
+<li>continue 语句“跳过”循环中的一个迭代。</li>
+</ul>
+<p>```JavaScript
+//while 略
+//do while 略</p>
+<p>// for
+var i = 0, j = 10;
+for (i; i&lt;j; i++) {
+    console.log(i)</p>
+<p>}</p>
+<p>```</p>
+<h3>function</h3>
+<p>function用来声明一个函数。</p>
+<p>```JavaScript
+function myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}</p>
+<p>var mf = myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}</p>
+<p>//见 test.js
+var mf = function myFunction(p1, p2) {
+    return p1 * p2;              // 该函数返回 p1 和 p2 的乘积
+}
+document.querySelector("div").textContent = mf(6,2);//12</p>
+<p>```</p>
+<h2><p id = 'm1'>匿名函数与闭包</p></h2>
+<p>```JavaScript</p>
+<p>//这是一个匿名函数
+//匿名函数可以用来命名空间，且立即执行，避免变量污染。
+(function(){console.log('匿名函数写法1')}());
+//推荐第二种方法。
+(function(s){console.log(s)})('匿名函数写法2');</p>
+<p>//简书上一篇不错的JavaScript闭包的文章
+//https://www.jianshu.com/p/80fb145d57d7
+//闭包1
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();</p>
+<p>add();
+add();
+console.log(add());//=&gt;3</p>
+<p>//闭包2
+;(function(){
+    var a=1;
+    var addOne=function(x){
+        return x+a;
+    }
+    window.addOne=addOne;
+})()
+console.log(addOne(2));  // 3</p>
+<p>```</p></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_4.html" role="button" class="outline">Prev</a></li>
+    <li><small>5 / 23</small></li>
+    <li><a href="list_6.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(05)单选及多选按钮
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-23 18:49:39
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png"/>
-     </p>
-     <h2>
-      wxPython单选及多选按钮
-     </h2>
-     <p>
-      单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
-通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。
-     </p>
-     <h2>
-      多选按钮wx.CheckBox
-     </h2>
-     <p>
-      创建及绑定事件
-     </p>
-     <pre><code>cb1=wx.CheckBox(pnl, label='hello', )
-self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
-</code></pre>
-     <p>
-      这里的
-      <code>
-       self.Bind
-      </code>
-      是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。
-     </p>
-     <h2>
-      单选按钮组wx.RadioBox
-     </h2>
-     <p>
-      这里我直接介绍
-      <code>
-       wx.RadioBox
-      </code>
-      ，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。
-     </p>
-     <p>
-      创建及绑定
-     </p>
-     <pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                              style=wx.RA_SPECIFY_ROWS)
-self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
-</code></pre>
-     <p>
-      代码很直观，
-      <code>
-       majorDimension
-      </code>
-      表示单选钮的排列方式：0横向，1竖向。
-     </p>
-     <p>
-      好了，完整的代码在下边，可以跑跑看。
-     </p>
-     <pre><code>import wx
 
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        pnl = wx.Panel(self)
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
 
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
 
-        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
-        cb1=wx.CheckBox(pnl, label='hello', )
-        cb2=wx.CheckBox(pnl, label='world', )
-        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
-        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
-                                  style=wx.RA_SPECIFY_ROWS)
-        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
-
-        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
-
-        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
-
-        btn.Bind(wx.EVT_BUTTON, self.OnClose)
-
-        pnl.SetSizer(hbox3)
-
-
-    def onRadiobox(self,e):
-        rb = e.GetEventObject()
-        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
-
-    def onCheckBox(self,e):
-        cb = e.GetEventObject()
-        if cb.GetValue():
-            print(cb.GetLabel())
-
-    def OnClose(self, e):
-        self.Close(True)
-
-
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(04)wx.Butoon的应用
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-22 20:26:29
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png"/>
-     </p>
-     <h2>
-      wx.Butoon
-     </h2>
-     <p>
-      按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。
-      <code>
-       wx.Button
-      </code>
-      使用起来操作简单。
-wx中开关按钮
-      <code>
-       ToggleButton
-      </code>
-      ，类似于电灯开关，绑定事件后可以通过
-     </p>
-     <pre><code>obj = e.GetEventObject()
-isPressed = obj.GetValue()
-</code></pre>
-     <p>
-      来获取对象的属性，这样就可以知道开关按钮的状态了。
-     </p>
-     <h2>
-      Button的创建与使用
-     </h2>
-     <p>
-      创建
-     </p>
-     <pre><code>bt = wx.Button(self,label="关闭窗口",)
-</code></pre>
-     <p>
-      绑定事件
-     </p>
-     <pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
-</code></pre>
-     <p>
-      然后编写绑定事件的函数方法，这样就可以调用此方法了。
-     </p>
-     <p>
-      具体代码如下，希望这些短小的代码，能给您带来帮助。
-     </p>
-     <pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-        box = wx.BoxSizer(wx.VERTICAL)
-        bt1 = wx.Button(self,label="关闭窗口",)
-        bt1.Bind(wx.EVT_BUTTON, self.onCloseWindow)
-
-
-        self.bt2 = wx.ToggleButton(self,label='开关')
-        self.bt2.Bind(wx.EVT_TOGGLEBUTTON,self.showFlash)
-        st = wx.TextCtrl(self,value='helloworld',)
-
-
-        box.AddMany([(bt1,0, wx.ALL | wx.EXPAND, 0),(self.bt2,0, wx.ALL | wx.EXPAND, 0),(st,0, wx.ALL | wx.EXPAND | wx.SHAPED, 0)])
-
-
-        self.SetSizer(box)
-
-
-    def onCloseWindow(self,e):
-        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-        ret = dl.ShowModal()
-
-        if ret == wx.ID_YES:
-            self.Destroy()
-        else:
-            pass
-
-    def showFlash(self,e):
-        obj = e.GetEventObject()
-        isPressed = obj.GetValue()
-
-        if isPressed:
-            self.bt2.SetLabel("关闭")
-        else:
-            self.bt2.SetLabel("打开")
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(03)wxPython中的事件
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-21 19:11:40
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png"/>
-     </p>
-     <h2>
-      wxPython中的事件
-     </h2>
-     <p>
-      和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。
-     </p>
-     <p>
-      wxPython中的事件绑定很简单：
-     </p>
-     <pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
-</code></pre>
-     <p>
-      上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，
-      <code>
-       self.onMove
-      </code>
-      就是这个事件处发时要执行的方法函数。
-我们只要在
-      <code>
-       class
-      </code>
-      中定义
-      <code>
-       self.onMove
-      </code>
-      方法的代码，然后当事件触发时，就可以执行
-      <code>
-       onMove
-      </code>
-      方法了。
-     </p>
-     <p>
-      <code>
-       wx.EVT_XXXXX
-      </code>
-      这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。
-     </p>
-     <p>
-      好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。
-     </p>
-     <pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-
-        #创建一组文本用来显示数值
-        wx.StaticText(self,label="x:",pos=(10,10))
-        wx.StaticText(self, label="y:", pos=(10, 30))
-
-        self.st1 = wx.StaticText(self, label='', pos=(30, 10))
-        self.st2 = wx.StaticText(self, label='', pos=(30, 30))
-        #绑定窗口移动事件
-        self.Bind(wx.EVT_MOVE,self.onMove)
-        #绑定窗口关闭事件
-        self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
-
-    def onMove(self,e):
-        x,y = e.GetPosition()
-        self.st1.SetLabel(str(x))
-        self.st2.SetLabel(str(y))
-
-    def onCloseWindow(self,e):
-        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-        ret = dl.ShowModal()
-
-        if ret == wx.ID_YES:
-            self.Destroy()
-        else:
-            pass
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(02)wxPython的布局
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-19 20:22:01
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png"/>
-     </p>
-     <h2>
-      wxPython的布局
-     </h2>
-     <p>
-      窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，
-     </p>
-     <p>
-      我们可以选择下列sizers：
-     </p>
-     <p>
-      1.wx.BoxSizer
-     </p>
-     <p>
-      2.wx.StaticBoxSizer
-     </p>
-     <p>
-      3.wx.GridSizer
-     </p>
-     <p>
-      4.wx.FlexGridSizer
-     </p>
-     <p>
-      5.wx.GridBagSizer
-     </p>
-     <p>
-      这里我介绍一下
-      <code>
-       wx.BoxSizer
-      </code>
-      ，灵活应用它基本上可以满足大部分窗口中的布局。
-     </p>
-     <h2>
-      wx.BoxSizer
-     </h2>
-     <p>
-      <code>
-       wx.BoxSizer
-      </code>
-      有
-      <code>
-       wx.VERTICAL
-      </code>
-      或
-      <code>
-       wx.HORIZONTAL
-      </code>
-      两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。
-     </p>
-     <p>
-      如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。
-     </p>
-     <p>
-      列举一些属性：
-     </p>
-     <p>
-      1.wx.LEFT
-     </p>
-     <p>
-      2.wx.RIGHT
-     </p>
-     <p>
-      3.wx.BOTTOM
-     </p>
-     <p>
-      4.wx.TOP
-     </p>
-     <p>
-      5.wx.ALL
-     </p>
-     <p>
-      以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：
-     </p>
-     <pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
-</code></pre>
-     <p>
-      我们还可以通过以下属性定义我们的部件对齐：：
-     </p>
-     <p>
-      1.wx.ALIGN_LEFT
-2.wx.ALIGN_RIGHT
-3.wx.ALIGN_TOP
-4.wx.ALIGN_BOTTOM
-5.wx.ALIGN_CENTER_VERTICAL
-6.wx.ALIGN_CENTER_HORIZONTAL
-7.wx.ALIGN_CENTER
-     </p>
-     <p>
-      好了，下边列举了一下小例子：
-     </p>
-     <pre><code>import wx
-
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        # 调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
-
-        st = wx.TextCtrl(pl)
-        hbox1.Add(st, proportion=1, )
-
-        bt1 = wx.Button(pl, label="hello world")
-        hbox1.Add(bt1, )
-
-        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
-
-        bt2 = wx.Button(pl, label="hello world")
-        bt3 = wx.Button(pl, label="hello world")
-        bt4 = wx.Button(pl, label="hello world")
-        hbox2.Add(bt2, wx.EXPAND)
-        hbox2.Add(bt3, )
-        hbox2.Add(bt4, wx.EXPAND)
-        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
-
-        sb = wx.StaticBox(pl, label="test")
-        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
-        bt5 = wx.Button(pl, label="yes")
-        bt6 = wx.Button(pl, label="no")
-        hbox3.Add(bt5, )
-        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
-        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
-
-        pl.SetSizer(vbox)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython 布局练习')
-    frm.Show()  # 显示窗口
-    app.MainLoop()  # 持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(01)Frame程序的窗口
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-18 19:42:47
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      简介
-     </h2>
-     <p>
-      之前的一些小应用都是用的
-      <code>
-       python tk
-      </code>
-      来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下
-      <code>
-       wxPython
-      </code>
-      <code>
-       wxPython
-      </code>
-      是一个
-      <code>
-       Python
-      </code>
-      包装
-      <code>
-       wxWidgets
-      </code>
-      （这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
-      <code>
-       wxPython
-      </code>
-      是作为一个
-      <code>
-       Python
-      </code>
-      扩展模块。
-     </p>
-     <h2>
-      wxPython的安装
-     </h2>
-     <pre><code>pip3 install wxPython
-</code></pre>
-     <p>
-      如果网络不太好，可以到官网下载进行安装，官方网址：
-      <code>
-       https://wxpython.org/
-      </code>
-     </p>
-     <h2>
-      Frame 窗口
-     </h2>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png"/>
-     </p>
-     <p>
-      如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个
-      <code>
-       Frame
-      </code>
-      .
-     </p>
-     <p>
-      <code>
-       Wx.Frame (parent, id, title, pos, size, style, name)
-      </code>
-     </p>
-     <p>
-      其中的参数含意如下：
-     </p>
-     <p>
-      Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
-id 窗口标识。通常-1为了让标识符自动生成
-Title 标题出现在标题栏
-Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
-Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
-style 窗口的外观按样式风格常数控制
-name 对象的内部名称
-     </p>
-     <h2>
-      wxPython hello world
-     </h2>
-     <p>
-      我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法
-      <code>
-       __init__
-      </code>
-      中创建窗口中的部件。
-      <code>
-       main()
-      </code>
-      方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。
-     </p>
-     <p>
-      怎么样，很简单吧？
-     </p>
-     <pre><code>import wx
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
-        pl = wx.Panel(self)
-        #创建一个静态文本
-        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
-        font = st.GetFont()
-        font.PointSize += 20
-        font = font.Bold()
-        st.SetFont(font)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python os.path.dirname(__file__) 在终端命令行下报错
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-11-21 22:16:58
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      最近在写程序中用到了
-      <code>
-       os.path.dirname(__file__)
-      </code>
-      ，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错
-     </p>
-     <pre><code>FileNotFoundError: [Errno 2] No such file or directory
-</code></pre>
-     <p>
-      我们先来测试一下，看看报错是什么样的？
-     </p>
-     <pre><code>print(os.path.dirname(__file__))
-</code></pre>
-     <p>
-      如果在终端运行当前程序就会报错：
-     </p>
-     <pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
-Traceback (most recent call last):
-File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-NameError: name 'os' is not defined
-</code></pre>
-     <p>
-      如何使之正确运行呢？如果你用过
-      <code>
-       Django
-      </code>
-      ，就会想到
-      <code>
-       BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-      </code>
-      ,
-这个是
-      <code>
-       Django
-      </code>
-      里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中
-      <code>
-       os.path.abspath(__file__)
-      </code>
-      这条是返回当前文件的绝对地址，
-而
-      <code>
-       os.path.dirname(os.path.abspath(__file__))
-      </code>
-      就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
-困扰人生的小问题就这样绝对喽！
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       MyDjangoBlog是基于Django搭建的个人blog
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-11-20 08:55:16
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      开心Python Django 学习交流q群：217840699
-     </p>
-     <p>
-      一个简易易用的blog，基于以下技术构建
-     </p>
-     <ul>
-      <li>
-       Python
-      </li>
-      <li>
-       Django
-      </li>
-      <li>
-       Amaze UI
-      </li>
-      <li>
-       SQLite3
-      </li>
-      <li>
-       highlight.js
-      </li>
-     </ul>
-     <p>
-      后台基于Django admin搭建。
-     </p>
-     <p>
-      展示如下图，
-      <a href="http://www.17python.com">
-       点击博客
-      </a>
-      查看在线演示效果
-     </p>
-     <p>
-      <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/201630_6f5d34a4_125848.png" title="001.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/204359_4d1b64ee_125848.png" title="002.png"/>
-     </p>
-     <h1>
-      本地调试
-     </h1>
-     <p>
-      环境需求：
-     </p>
-     <p>
-      python (3.6.1)
-Django (1.11.3)
-Markdown (2.6.8)
-Pillow (4.2.1)
-     </p>
-     <p>
-      进入程序目录后，运行
-      <code>
-       python3 manage.py runserver
-      </code>
-     </p>
-     <p>
-      后台管理地址
-      <code>
-       http://127.0.0.1:8000/admin/
-      </code>
-     </p>
-     <p>
-      管理员登陆:
-     </p>
-     <p>
-      用户名：
-      <code>
-       admin
-      </code>
-      密码：
-      <code>
-       17python.com
-      </code>
-     </p>
-     <p>
-      前台地址
-      <code>
-       http://127.0.0.1:8000/
-      </code>
-     </p>
-     <p>
-      如果想在部署到生产环境，
-      <a href="http://www.17python.com/blog/67">
-       请点此查看详细教程
-      </a>
-     </p>
-     <p>
-      欢迎有识之士参与提交代码，大家共同学习共同进步！
-     </p>
-     <p>
-      开心Python Django 学习交流q群：217840699
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/www.17python.com">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Git多人协作（码云）中的一些操作简单记录
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-10-28 14:24:15
-      </span>
-      <span class="tag">
-       Git
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。
-     </p>
-     <p>
-      我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:
-     </p>
-     <h2>
-      创建远程代码仓库和本地仓库。
-     </h2>
-     <ul>
-      <li>
-       选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。
-      </li>
-      <li>
-       创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。
-      </li>
-      <li>
-       但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.
-       <pre><code>➜  test git:(master) git branch 
-* master
-➜  test git:(master) git checkout -b dev
-Switched to a new branch 'dev'
-➜  test git:(dev) git pull origin dev   
-From https://gitee.com/bosichong/test
-* branch            dev        -&gt; FETCH_HEAD
-Already up-to-date.
-➜  test git:(dev) git branch 
-* dev
-master
-</code></pre>
-      </li>
-     </ul>
-     <p>
-      这样的话我们的本地库与远程代码仓库相关联了。
-     </p>
-     <h2>
-      如何协作更新代码？
-     </h2>
-     <p>
-      远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
-模拟一次git协作：
-假设需要研发一个人工智能编码器，我和我的小伙们都在进行编码，我在分支aicode仓库中ai.py编写了大量的代码并完成需要上传远程仓库dev。
-首先我把aicode分支全并到本地的dev,然后上传到远程dev仓库。
-     </p>
-     <pre><code>➜  test git:(dev) git checkout -b aicode
-Switched to a new branch 'aicode'
-➜  test git:(aicode) touch ai.py
-➜  test git:(aicode) ✗ vi ai.py 
-➜  test git:(aicode) ✗ git add .
-➜  test git:(aicode) ✗ git commit -m 'aicode功能更新'
-[aicode a1e0b50] aicode功能更新
-1 file changed, 2 insertions(+)
-create mode 100644 ai.py
-➜  test git:(aicode) git checkout dev 
-Switched to branch 'dev'
-➜  test git:(dev) git merge aicode 
-Updating 8fcac3b..a1e0b50
-Fast-forward
-ai.py | 2 ++
-1 file changed, 2 insertions(+)
-create mode 100644 ai.py
-➜  test git:(dev) git push origin dev  
-Counting objects: 3, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 298 bytes | 298.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
-remote: Powered by Gitee.com
-To https://gitee.com/bosichong/test.git
-8fcac3b..a1e0b50  dev -&gt; dev
-</code></pre>
-     <p>
-      这样我就完成了一次更新，其实挺简单的。
-     </p>
-     <h2>
-      发生冲突怎么办？
-     </h2>
-     <p>
-      有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：
-     </p>
-     <pre><code>To https://gitee.com/bosichong/test.git
-! [rejected]        dev -&gt; dev (fetch first)
-error: failed to push some refs to 'https://gitee.com/bosichong/test.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-</code></pre>
-     <p>
-      大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
-然后再pull的时候提示如下：
-     </p>
-     <pre><code>* branch            dev        -&gt; FETCH_HEAD
-99ccc9c..4c49e33  dev        -&gt; origin/dev
-Auto-merging README.md
-CONFLICT (content): Merge conflict in README.md
-Automatic merge failed; fix conflicts and then commit the result.
-</code></pre>
-     <p>
-      大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
-我们解决一下文件中的冲突内容：
-     </p>
-     <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-我更新的下半部分啊
-=======
-小伙伴更新的上半部分
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 4c49e33af00dd498b2d4761d3fc607ee29afbdf4
-</code></pre>
-     <p>
-      这里我这样的修改的：
-     </p>
-     <pre><code>小伙伴更新的上半部分
-我更新的下半部分啊
-</code></pre>
-     <p>
-      处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。
-     </p>
-     <p>
-      遇到问题：
-1.今天小伙伴更新dev分支，但我怎么也pull不来，提示如下：
-     </p>
-     <pre><code>Updating e32f487..204c0a1
-error: Your local changes to the following files would be overwritten by merge:
-    Psmrcddup.py
-Please commit your changes or stash them before you merge.
-</code></pre>
-     <p>
-      解决方法：
-     </p>
-     <pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
-➜  PrimarySchoolMath git:(dev) git pull gitee dev
-</code></pre>
-     <h2>
-      分支策略
-     </h2>
-     <p>
-      在实际开发中，我们应该按照几个基本原则进行分支管理：
-     </p>
-     <p>
-      首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
-     </p>
-     <p>
-      那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。
-     </p>
-     <p>
-      你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
-     </p>
-     <p>
-      所以，团队合作的分支看起来就像这样：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png"/>
-     </p>
-     <p>
-      一些常用协作git命令：
-     </p>
-     <pre><code>查看分支：git branch
-创建分支：git branch &lt;name&gt;
-切换分支：git checkout &lt;name&gt;
-创建+切换分支：git checkout -b &lt;name&gt;
-合并某分支到当前分支：git merge &lt;name&gt;
-删除分支：git branch -d &lt;name&gt;
-git remote 显示 远程仓库的分支
-git remote -v 显示更详细的信息：
-</code></pre>
-     <h2>
-      相关文章
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PrimarySchoolMathematics">
-        廖雪峰：git多人协作
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_4.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        5 / 15
-       </button>
-       <a href="list_6.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1301,39 +678,7 @@ git remote -v 显示更详细的信息：
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

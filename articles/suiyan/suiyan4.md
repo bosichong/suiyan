@@ -1,9 +1,9 @@
-<div class="blog-article">
-<h1 class="title">这是一个快速学习JavaScript的学习笔记4</h1>
-<span class="author">J.sky</span>
-<span class="time">2019-12-24 13:53:19</span>
-<span class="tag">jQuery</span>
-</div>
+---
+title:这是一个快速学习JavaScript的学习笔记4
+author:J.sky
+time:2019-12-24 13:53:19
+tag:jQuery
+---
 
 ## jQuery 和 HTML DOM 
 

@@ -1,9 +1,9 @@
-<div class="blog-article">
-<h1 class="title">这是一个快速学习JavaScript的学习笔记3</h1>
-<span class="author">J.sky</span>
-<span class="time">2019-12-23 11:53:19</span>
-<span class="tag">JavaScript</span>
-</div>
+---
+title:这是一个快速学习JavaScript的学习笔记3
+author:J.sky
+time:2019-12-23 11:53:19
+tag:JavaScript
+---
 
 ## JavaScript中的对象
 

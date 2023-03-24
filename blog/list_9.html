@@ -1,1233 +1,442 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第9页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>Python os.path.dirname(__file__) 在终端命令行下报错</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-11-21 22:16:58</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p>最近在写程序中用到了<code>os.path.dirname(__file__)</code>，在PyCharm中启动程序调试的时候，是没有问题的，但是如果在终端命令行下运行程序时就会报错</p>
+<pre><code>FileNotFoundError: [Errno 2] No such file or directory
+</code></pre>
+<p>我们先来测试一下，看看报错是什么样的？</p>
+<pre><code>print(os.path.dirname(__file__))
+</code></pre>
+<p>如果在终端运行当前程序就会报错：</p>
+<pre><code>&gt;&gt;&gt; print(os.path.dirname(__file__))
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'os' is not defined
+</code></pre>
+<p>如何使之正确运行呢？如果你用过<code>Django</code>，就会想到<code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</code>,
+这个是<code>Django</code>里用来定义当前文件所属目录的一行代码，后来我查询了一下，其中<code>os.path.abspath(__file__)</code>这条是返回当前文件的绝对地址，
+而<code>os.path.dirname(os.path.abspath(__file__))</code>就是返回当前文件所在的目录的绝对地址，这样我们就轻松的得到当前文件所属目录了。
+困扰人生的小问题就这样绝对喽！</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/io/ospathabspath.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathabspath.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>MyDjangoBlog是基于Django搭建的个人blog</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-11-20 08:55:16</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><p>开心Python Django 学习交流q群：217840699</p>
+<p>一个简易易用的blog，基于以下技术构建</p>
+<ul>
+<li>Python </li>
+<li>Django </li>
+<li>Amaze UI </li>
+<li>SQLite3 </li>
+<li>highlight.js </li>
+</ul>
+<p>后台基于Django admin搭建。</p>
+<p>展示如下图，<a href="http://www.17python.com">点击博客</a>查看在线演示效果</p>
+<p><img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/201630_6f5d34a4_125848.png" title="001.png" /></p>
+<p><img alt="输入图片说明" src="https://images.gitee.com/uploads/images/2018/1116/204359_4d1b64ee_125848.png" title="002.png" /></p>
+<h1>本地调试</h1>
+<p>环境需求：</p>
+<p>python (3.6.1)
+Django (1.11.3)
+Markdown (2.6.8)
+Pillow (4.2.1)</p>
+<p>进入程序目录后，运行<code>python3 manage.py runserver</code></p>
+<p>后台管理地址<code>http://127.0.0.1:8000/admin/</code></p>
+<p>管理员登陆:</p>
+<p>用户名：<code>admin</code>   密码：<code>17python.com</code></p>
+<p>前台地址<code>http://127.0.0.1:8000/</code></p>
+<p>如果想在部署到生产环境，<a href="http://www.17python.com/blog/67">请点此查看详细教程</a></p>
+<p>欢迎有识之士参与提交代码，大家共同学习共同进步！</p>
+<p>开心Python Django 学习交流q群：217840699</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/www.17python.com">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Git多人协作（码云）中的一些操作简单记录</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-10-28 14:24:15</small> 标签:
+        
+        
+        <mark>Git</mark>
+        
+    </h3>
+</hgroup>
+<p><p>最近和一个帅哥共同开发一个小项目，期间需要使用Git协作开发，之前是个人使用Git进行一些简单的提交，与他人Git协作算是头一回，记录下一些操作备查。</p>
+<p>我们模拟一个项目的多人Git协作，假设多人合作至少二人，并且添加合作人员进入项目为开发者以上权限。远程代码仓库以码云'gitee.com'为例:</p>
+<h2>创建远程代码仓库和本地仓库。</h2>
+<ul>
+<li>选择码云在线创建代码仓库很方便，我们直接在线创建一个master和dev两条分支（很简单，这里不截图了）。</li>
+<li>创建本地代码仓库与远程关联：1.利用'git clone XXXXXXX'下载到本地，即可关联仓库。</li>
+<li>但是远端的dev分支并没有下载来，我们新建本地分支dev并进入，然后pull远程分支.<pre><code>➜  test git:(master) git branch 
+* master
+➜  test git:(master) git checkout -b dev
+Switched to a new branch 'dev'
+➜  test git:(dev) git pull origin dev   
+From https://gitee.com/bosichong/test
+* branch            dev        -&gt; FETCH_HEAD
+Already up-to-date.
+➜  test git:(dev) git branch 
+* dev
+master
+</code></pre>
+</li>
+</ul>
+<p>这样的话我们的本地库与远程代码仓库相关联了。</p>
+<h2>如何协作更新代码？</h2>
+<p>远程master是主分支，一般由专人负责提交更新版本即可，我们主要是在dev这样的分支上进行更新操作，当程序更新到一定程序后，合并到master中发布一个版本。
+模拟一次git协作：
+假设需要研发一个人工智能编码器，我和我的小伙们都在进行编码，我在分支aicode仓库中ai.py编写了大量的代码并完成需要上传远程仓库dev。
+首先我把aicode分支全并到本地的dev,然后上传到远程dev仓库。</p>
+<pre><code>➜  test git:(dev) git checkout -b aicode
+Switched to a new branch 'aicode'
+➜  test git:(aicode) touch ai.py
+➜  test git:(aicode) ✗ vi ai.py 
+➜  test git:(aicode) ✗ git add .
+➜  test git:(aicode) ✗ git commit -m 'aicode功能更新'
+[aicode a1e0b50] aicode功能更新
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(aicode) git checkout dev 
+Switched to branch 'dev'
+➜  test git:(dev) git merge aicode 
+Updating 8fcac3b..a1e0b50
+Fast-forward
+ai.py | 2 ++
+1 file changed, 2 insertions(+)
+create mode 100644 ai.py
+➜  test git:(dev) git push origin dev  
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 298.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: Powered by Gitee.com
+To https://gitee.com/bosichong/test.git
+8fcac3b..a1e0b50  dev -&gt; dev
+</code></pre>
+<p>这样我就完成了一次更新，其实挺简单的。</p>
+<h2>发生冲突怎么办？</h2>
+<p>有一次我和我的小伙伴都在更新readme.md，他负责前半部我负责后半部分，但是他明显比我快，先进行了版本提交，而我刚刚弄完，现在要提交了，当我提交dev分支到远程的时候终端提示如下：</p>
+<pre><code>To https://gitee.com/bosichong/test.git
+! [rejected]        dev -&gt; dev (fetch first)
+error: failed to push some refs to 'https://gitee.com/bosichong/test.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+<p>大体意思是：远程的版本比你现在的要新，你需要先下载更新一下，然后再提交。好吧，我先更新一下dev版本，pull下来。
+然后再pull的时候提示如下：</p>
+<pre><code>* branch            dev        -&gt; FETCH_HEAD
+99ccc9c..4c49e33  dev        -&gt; origin/dev
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>大体意思是文件已经pull下来了，但是两个文件有冲突，必须先处理冲突，并告诉你冲突文件是readme.md。
+我们解决一下文件中的冲突内容：</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+我更新的下半部分啊
+=======
+小伙伴更新的上半部分
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 4c49e33af00dd498b2d4761d3fc607ee29afbdf4
+</code></pre>
+<p>这里我这样的修改的：</p>
+<pre><code>小伙伴更新的上半部分
+我更新的下半部分啊
+</code></pre>
+<p>处理解决后，就可以提交更新dev到远程的仓库了。从此以后就可以和小伙伴们开心的编码了。</p>
+<p>遇到问题：
+1.今天小伙伴更新dev分支，但我怎么也pull不来，提示如下：</p>
+<pre><code>Updating e32f487..204c0a1
+error: Your local changes to the following files would be overwritten by merge:
+    Psmrcddup.py
+Please commit your changes or stash them before you merge.
+</code></pre>
+<p>解决方法：</p>
+<pre><code>➜  PrimarySchoolMath git:(dev) ✗ git checkout -f
+➜  PrimarySchoolMath git:(dev) git pull gitee dev
+</code></pre>
+<h2>分支策略</h2>
+<p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
+<p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p>那在哪干活呢？干活都从dev分支再创建一条分支在开工，完成后，再合并到本地dev并更新到远端dev，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本。</p>
+<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。</p>
+<p>所以，团队合作的分支看起来就像这样：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/10/0.png" /></p>
+<p>一些常用协作git命令：</p>
+<pre><code>查看分支：git branch
+创建分支：git branch &lt;name&gt;
+切换分支：git checkout &lt;name&gt;
+创建+切换分支：git checkout -b &lt;name&gt;
+合并某分支到当前分支：git merge &lt;name&gt;
+删除分支：git branch -d &lt;name&gt;
+git remote 显示 远程仓库的分支
+git remote -v 显示更详细的信息：
+</code></pre>
+<h2>相关文章</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PrimarySchoolMathematics">廖雪峰：git多人协作</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>利用Python自动生成小学生加减乘除口算考试题卷。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-10-24 10:50:04</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><p>孩子上小学一年级了，加减乘除的口算就要开始练习了，估计老师肯定会让家长出题，所以提前准备一下，利用Python开发了一套自动生成小学生口算题的小应用。而且今天是程序员节，撸200行代码庆祝一下。：）</p>
+<p>为了让程序员老爹解放抄题的双手，让你拥有更多的时间去写代码而不用去手写几道口算题而伤神伤脑。所以有没有娃子的程序员爹爹加入一起来继续优化个开源小程序的？有什么点子，发现什么BUG，欢迎留言。</p>
+<p>仅以此软件，献给那些热爱<code>Python</code>的程序员老爹们！</p>
+<p>程序核心功能：</p>
+<p>1.可以设置各算数项和结果的取值范围及多步算数符号的选择，可以生成求结果、求算数项、带括号的算式，最多支持3步算式题</p>
+<p>2.可以简单设置文档标题，小标题。设置生成的口算题文档个数</p>
+<p>使用方法：</p>
+<p>1 确定本机支持python3.6.1以上版本</p>
+<p>2 安装.docx模块,安装wxPython模块 安装方法：</p>
+<p><code>pip3 install python-docx</code></p>
+<p><code>pip3 install wxpython</code></p>
+<p>3 下载程序进入主目录，终端下运行<code>python App.py</code></p>
+<p>4 修改运算项和结果范围里的数值,多步运算请添加修改需要的运算符号:</p>
+<p>5 添加口算题到列表中，然后生成口算题,生成的口算题文件都在docx文件目录下，打开后连接打印机就可以开印了。</p>
+<h2>源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PrimarySchoolMathematics">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PrimarySchoolMathematics">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>有时人生需要做出选择</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-06-12 10:05:40</small> 标签:
+        
+        
+        <mark>站长吐槽</mark>
+        
+    </h3>
+</hgroup>
+<p><p>好久没有更新自己的博客了，最近经历了很多变动，所以人生的规划也发生了一些微妙的变化。</p>
+<p>这段日子没怎么看编程相关的书，今天随便看了一下，python已经是3.6.5，django也是2.0.6的版本了，想想自己前一阵学习py及django的时候，机器上的环境还是3.61和1.1X版.。。。</p>
+<p>更新了一下站点的头部图片，上次更新时还是冬天的。。。。</p>
+<p>可能暂时要放下编程了，是放下不是放弃，不久的以后我还会捡起来，因为我还有一个做游戏的梦想还未实现。想起30岁的时候开始学习编程，40而终，这些年没做成什么太出色的软件，但也因为代码养家糊了口饭，想想也算是值了，人生总是再变动，曾经看到过一篇文章介绍过，程序员黑客和画家很相似，所以那天拿起笔来就画了几个月感觉还不错，我能否再用10年成就一个插画师的梦想？</p>
+<p>为自己加油！</p>
+<p>感谢曾经路过17python网友，这个站点暂时还不会关闭，但内容也许有些改变，python还会继续，但可能会慢了一些，但我还会在学习python的路上前进的。</p></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_8.html" role="button" class="outline">Prev</a></li>
+    <li><small>9 / 23</small></li>
+    <li><a href="list_10.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       浅谈Python中的协程及利用协程代替多线程及多进程并发编程
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-15 15:52:46
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      协程定义说的清楚明了的文章不是很多，手头上有几本Python相关的书籍，其中流畅的Python一书中解释协程的定义是我认为最简单明了的。
-     </p>
-     <h2>
-      生成器如何演变成协程？
-     </h2>
-     <p>
-      乍看生成器和协程长的可真象，因为都用到了yield关键字，那么问题来了，如何区分二者？
-     </p>
-     <pre><code>def cd(n):
-    print("Counting down from %s" % n)
-    while n &gt; 0:
-        yield n
-        n -= 1
-c = cd(10)
-next(c)
-for i in c :
-    print(i,end=' ')
-</code></pre>
-     <p>
-      上边是一个典型的生成器函数，我们稍加变化使之成为协程。
-     </p>
-     <pre><code>def cd1():
-    n = yield
-    while n &gt; 0:
-        print("Counting down from %s" % n)
-        n -= 1
 
-c1 = cd1()
-next(c1)
-c1.send(10)
-#运行到这里应该抛出一个异常
-</code></pre>
-     <p>
-      生成器和协程的不同有没有看出来？很明显的有两处：
-     </p>
-     <ul>
-      <li>
-       yield的位置
-      </li>
-      <li>
-       next()和send()函数的用法
-      </li>
-     </ul>
-     <p>
-      通过运行结果我们可以到最后抛出了一个异常
-      <code>
-       StopIteration
-      </code>
-      ,结束了这个协程。我们可以考虑一下：用装饰器省略掉next()这步，然后捕获抛出的异常，优雅的关闭掉协程函数。
-     </p>
-     <pre><code>from functools import wraps
-def coroutine(func):
-    @wraps(func)
-    def primer(*args, **kwargs):
-        gen = func(*args,**kwargs)
-        next(gen)
-        return gen
-    return primer
-@coroutine
-def cd2():
-    n = yield
-    while n &gt; 0:
-        print("Counting down from %s" % n)
-        n -= 1
-try:
-    cd2().send(10)
-except Exception as e:
-    print('协程任务终止')
-</code></pre>
-     <p>
-      带上了装饰器，就更简便一些了，最后捕获异常，就可以优雅的结束这个协程了。
-     </p>
-     <h2>
-      利用协程代替线程或进程进行并发编程
-     </h2>
-     <p>
-      我们想用生成器（协程）作为系统线程的替代方案来实现并发。协程有时也称为用户级线程或绿色线程。————引自《Python Cookbook》
-这里的协程用到了asyncio模块，利用asyncio模块实现了一个协程的并发。关于asyncio的实现原理，稍后再研究一下。
-     </p>
-     <pre><code>import asyncio
-import time
-import threading
-def tn(func):
-    '''定义一个程序运行时间计算函数'''
-    def wrapper(*args, **kwargs):
-        start = time.time() # 起始时间
-        func(*args, **kwargs) # 要执行的函数
-        end = time.time() # 结束时间
-        print('程序运行时间:{:.2f}ms'.format((end-start)))
-    return wrapper
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
 
-def loop1(tname):
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    time.sleep(1)
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
 
-# @asyncio.coroutine
-async def loop2(tname):# async等同于@asyncio.coroutine
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    # yield from asyncio.sleep(1)
-    await asyncio.sleep(1)  # 等同于yield from
-
-@asyncio.coroutine
-def loop3(tname):# async等同于@asyncio.coroutine
-    print(tname+"循环loop1打印时间======" + time.ctime())
-    yield from asyncio.sleep(1)
-    # await asyncio.sleep(1)  # 等同于yield from
-
-@tn
-def main():
-    print('多线程任务开始执行=====')
-    threads = []#定义一个线程队列
-    for i in range(5):
-        t = threading.Thread(target=loop1, args=("thread"+str(i),))
-        threads.append(t)
-    for i in range(5):
-        threads[i].start()
-    for i in range(5):
-        threads[i].join()
-
-    #协程并发测试
-    print('协程并发测试开始======')
-    loop = asyncio.get_event_loop()# 获取一个event_loop
-    #任务列表
-    tasks = [
-        asyncio.ensure_future(loop2('11111')),
-        asyncio.ensure_future(loop2('22222')),
-        asyncio.ensure_future(loop2('33333')),
-        asyncio.ensure_future(loop3('44444')),#loop3
-        asyncio.ensure_future(loop3('55555'))]#loop3
-    loop.run_until_complete(asyncio.wait(tasks))
-    loop.close()
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <p>
-      上边这组代码稍稍有点乱，可能你需要认真的理下思绪，对比一下结果，你会发现虽然后边执行的代码没有利用多线程，但打印结果上的时间和多线程的执行结果是一样的。
-这就是协程的魅力所在，一条线程搞定多线程任务。
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest2.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest2.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       聊聊Python中晦涩的生成器（yield）与生成器表达式
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-14 08:21:49
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171014_4.png"/>
-     </p>
-     <h2>
-      晦涩的生成器yield
-     </h2>
-     <p>
-      刚开始接触Python的时候感觉很清爽，入门很简单，但后边学到生成器和协程的时候就感觉有些吃力了，是时候深入的学习一下了。
-     </p>
-     <h2>
-      什么是生成器？
-     </h2>
-     <p>
-      书上说：函数使用yield可以定义生成器对象，那么包含yield的函数主是一个生成器函数，它可以生成一个序列，方便迭代中使用，
-      <code>
-       __next__()
-      </code>
-      #python3中的特殊方法，应该避免使用特殊方法，
-      <code>
-       next(c)
-      </code>
-      使用内置函数next()即可。
-     </p>
-     <pre><code>def countdown(n):
-    print("Counting down from %s" % n)
-    while n &gt; 0:
-        yield n
-        n -= 1
-    return
-
-c = countdown(10)
-print(c.__next__())#python3中的特殊方法，应该避免使用特殊方法
-print(next(c))#使用内置函数next()
-for i in c :
-    print(i,end=' ')
-</code></pre>
-     <p>
-      函数对象调用
-      <code>
-       .__next__()
-      </code>
-      函数时开始执行语句，遇到yield语句时停止。可以使用循环来操作生成器。
-调用
-      <code>
-       close()
-      </code>
-      方法关闭未使用完的生成器。
-那么问题来了，yield到底是什么？
-     </p>
-     <p>
-      我们把上边的代码稍加变化:
-     </p>
-     <pre><code>def countdown1(n):
-    print("Counting down from %s" % n)
-    while n &gt; 0:
-        yield n*n
-        n -= 1
-    return
-
-c = countdown1(10)
-print(next(c))
-print(next(c))
-print(next(c))
-for i in c :
-    print(i,end=' ')
-</code></pre>
-     <p>
-      运行之后我们可以发现程序运行到yield的时候返回了一个值，那么yield和return在功能上有些相似。
-     </p>
-     <h2>
-      生成器表达式
-     </h2>
-     <p>
-      如果你对列表推导有些了解，你会发现，生成器表达式只不过是把列表的[]换成了元组的()，但列表推导返回的是一个结果集，而生成器表达式返回的是一个生成器。
-因为这个特点，我们可以通过流方式访问一个巨大的文件而不必把它直接加载到内存，这样很大的提高了程序的性能。
-     </p>
-     <p>
-      代码如下：
-     </p>
-     <pre><code>print('')
-print("生成器表达式:")
-b = (x*x for x in range(10) if (x % 2 ==0))
-print(next(b))
-print(next(b))
-for i in b :
-    print(i, end=' ')
-
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/yieldtest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/yieldtest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python中创建TCP服务器与客户端进行通信(下)Tk、thread与socket组合。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-13 10:57:48
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      先这样吧，为了不耽误稍后的学习进程，这个聊天室先码到这里，不想继续填坑了。服务器端用TK实现了图形展示，客户端依然终端。具体如下图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_1.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171013_3.png"/>
-     </p>
-     <h2>
-      Tk多线程中的坑
-     </h2>
-     <ul>
-      <li>
-       在图形化后，主线程中开出一条线程，不要直接在主线程中进行通信，不然循环会卡死，专门处理创建socket线程的工作线程，记得self.t.setDaemon(True)#这里很重要，不加程序界面会卡死！
-      </li>
-      <li>
-       客户端没有实现图形化，完全不知道怎么弄，只要一启动，窗口就会被线程卡死，暂时先终端吧。
-      </li>
-     </ul>
-     <h2>
-      多用户服务器端
-     </h2>
-     <p>
-      每条连接都创建一个socket，这样每个线程处理自己的收发消息，但是这种架构如果在大量连接下会占用很多的系统资源，如果把socket放到一个容器里，然后使用生成器协程来轮循收发消息，
-这样的话只需要一个线程即可，性能必会提高不少，这正是稍后要学习的任务，也是python中的难点。
-     </p>
-     <p>
-      关于服务器的命令及私聊功能，这些应该都是通过消息来判断，所以后续一定会把消息进行封装发送，一条消息中应该包括命令及消息正文，这样就可以通过命令来判断用户的需求了。
-     </p>
-     <h2>
-      客户端
-     </h2>
-     <p>
-      客户端目前就是没有实现图形化，哪位大侠如果实现了，记得通知我，万分感谢，这个坑先放这里不踩了。
-     </p>
-     <p>
-      具体代码就不贴了，到git下载吧。
-     </p>
-     <p>
-      代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。代码运行，请在终端中，不要在IDE中启动。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/TCP/GUISocket">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP/GUISocket">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python中创建TCP服务器与客户端进行通信（上）
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-12 10:14:40
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171012_19.png"/>
-     </p>
-     <h2>
-      前言
-     </h2>
-     <p>
-      学习套接字编程最好的方法就是从实际应用的开发中边学边用，这样对TCP服务器及客户端通信中遇到的知识点才会更加了解。
-开发一个拥有服务器并且可以处理多客户端的聊天室应用程序，服务器有一定的管理权限，比如：群发消息，管理客户端可以限制连接及断开客户端连接等。
-客户端可以在聊天室里群聊，私聊。
-     </p>
-     <p>
-      好吧，为了保证这个小小的应用开发跨度不会太大，我们采用循序渐进的方式，从基础代码上迭代开发，这里会用到的知识点有：
-     </p>
-     <ul>
-      <li>
-       <code>
-        Python
-       </code>
-       的socket套接字模块
-      </li>
-      <li>
-       <code>
-        Python
-       </code>
-       的多线程模块
-      </li>
-      <li>
-       <code>
-        Python Tk GUI
-       </code>
-       模块，后边有可能考虑做成可视化的聊天室。
-      </li>
-     </ul>
-     <h2>
-      socket模块
-     </h2>
-     <p>
-      关于套接字网络编程的理论知识，这里就不在重复了，网上有很多，大家自己搜索一下好了。
-要创建套接字，使用
-      <code>
-       Python socket.socket()
-      </code>
-      函数即可，他有一些固定的方式：
-     </p>
-     <pre><code>s = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字对象
-</code></pre>
-     <p>
-      获得了套接字对象后，就可以使用套接字对象的方法进行交互了。
-     </p>
-     <h2>
-      <code>
-       socket
-      </code>
-      中一些常用方法
-     </h2>
-     <p>
-      服务器套接字方法：
-     </p>
-     <ul>
-      <li>
-       <code>
-        s.bind()
-       </code>
-       这个方法，绑定服务器的IP及端口
-      </li>
-      <li>
-       <code>
-        s.listen(int)
-       </code>
-       监听，可以设置一个整数限制客户端的连接。
-      </li>
-      <li>
-       <code>
-        s.accpt()
-       </code>
-       被动接受TCP客户端的连接（阻塞）
-      </li>
-     </ul>
-     <p>
-      客户端套接字方法：
-     </p>
-     <ul>
-      <li>
-       <code>
-        s.connect()
-       </code>
-       连接服务器
-      </li>
-     </ul>
-     <p>
-      其它方法：
-     </p>
-     <ul>
-      <li>
-       <code>
-        s.recv()
-       </code>
-       接收TCP消息
-      </li>
-      <li>
-       <code>
-        s.send()
-       </code>
-       发送TCP消息
-      </li>
-      <li>
-       <code>
-        s.close()
-       </code>
-       关闭套接字。
-      </li>
-     </ul>
-     <h2>
-      关于消息
-     </h2>
-     <p>
-      发送和接收消息时需要进行编码和解码，这里使用
-      <code>
-       data.encode('utf-8')
-      </code>
-      和
-      <code>
-       data.decode()
-      </code>
-      保证通信消息的正常发送，如果不使用会报错。
-     </p>
-     <p>
-      好了，先来个简单的例子，下边是代码，建议代码运行的时候不要在IDE里运行，请在终端中运行。
-     </p>
-     <h2>
-      服务器端
-     </h2>
-     <pre><code>from socket import *
-from time import ctime
-
-HOST = '127.0.0.1'
-PORT = 6666
-BUFSIZ = 1024
-ADDR = (HOST, PORT)# IP 端口
-
-tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字服务器
-tcpSerSock.bind(ADDR)#绑定IP及端口
-tcpSerSock.listen(5)
-
-while True:
-    print("等待客户端连接=======")
-    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
-    print("客户端已连接=====")
-
-    while True:
-        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
-        print(data.decode())
-        if 'exit' == data.decode():break
-        data = "{0}".format(ctime())+" "+data.decode()
-        tcpCliSock.send(data.encode('utf-8'))
-    tcpCliSock.close()
-tcpSerSock.close()</code></pre>
-     <h2>
-      客户端
-     </h2>
-     <pre><code>from socket import *
-HOST = '127.0.0.1'
-PORT = 6666
-BUFSIZ = 1024
-ADDR = (HOST,PORT)
-# 创建客户端，并连接服务器
-tcpCliSock = socket(AF_INET, SOCK_STREAM)
-tcpCliSock.connect(ADDR)
-
-while True:
-    data = input("&gt; ")
-    tcpCliSock.send(data.encode('utf-8'))
-    if 'exit' == data :break
-    data = tcpCliSock.recv(BUFSIZ)
-    print(data.decode())
-tcpCliSock.close()</code></pre>
-     <p>
-      就目前这个聊天室只是完成了通信的最基本功能，只能由客户端发送一条消息，服务器端自动回应消息。之后的继续都是建立在这个基础模型之上了。
-     </p>
-     <h2>
-      半双工的聊天室
-     </h2>
-     <p>
-      如果稍加修改，我们就可以使这个服务器和客户端进行一对一的聊天了。
-     </p>
-     <ul>
-      <li>
-       服务器端添加判断，如果客户端发来的数据有内容，就进行输入，然后把数据发送给客户端。
-      </li>
-      <li>
-       客户端连接后，先进行消息的发送，然后就一直等待服务器的消息回送，然后循环。
-      </li>
-     </ul>
-     <p>
-      现在的这个聊天系统缺点就是，必须等待另一方发来消息，才能回复消息，稍后我们继续改进。
-     </p>
-     <p>
-      相关代码如下：
-     </p>
-     <h2>
-      半双工服务器
-     </h2>
-     <pre><code>from socket import *
-from time import ctime
-
-HOST = '127.0.0.1'
-PORT = 6666
-BUFSIZ = 1024
-ADDR = (HOST, PORT)# IP 端口
-
-tcpSerSock = socket(AF_INET, SOCK_STREAM)# 创建TCP/IP套接字
-tcpSerSock.bind(ADDR)#绑定IP及端口
-tcpSerSock.listen(5)
-
-while True:
-    print("等待客户端连接=======")
-    tcpCliSock, addr = tcpSerSock.accept()#被动接受客户端连接
-    print("客户端已连接=====")
-
-    while True:
-        data = tcpCliSock.recv(BUFSIZ)#接收客户端发来的数据
-        print(data.decode())
-        if 'exit' == data.decode():break
-        if data:
-            data = input("&gt; ")
-            data = "{0}".format(ctime())+" "+data
-            tcpCliSock.send(data.encode('utf-8'))
-    tcpCliSock.close()
-tcpSerSock.close()</code></pre>
-     <h2>
-      半双式的客户端
-     </h2>
-     <pre><code>from socket import *
-HOST = '127.0.0.1'
-PORT = 6666
-BUFSIZ = 1024
-ADDR = (HOST,PORT)
-# 创建客户端，并连接服务器
-tcpCliSock = socket(AF_INET, SOCK_STREAM)
-tcpCliSock.connect(ADDR)
-
-while True:
-    data = input("&gt; ")
-    tcpCliSock.send(data.encode('utf-8'))
-    if 'exit' == data :break
-    while True:
-        data = tcpCliSock.recv(BUFSIZ)
-        if data:
-            print(data.decode())
-            break
-tcpCliSock.close()</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/TCP">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/TCP">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python程序在Windows10终端运行中文乱码解决方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-10 21:03:34
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      今天发布了一段代码，微博上有朋友在win10下边测试报错，看错误应该是中文编码问题，然后自己试了下，总结了一下原因：
-     </p>
-     <h2>
-      测试中文打印print()
-     </h2>
-     <p>
-      在win10中新建记事本文档， 敲入代码：
-     </p>
-     <pre><code>print("我来试试哈")
-</code></pre>
-     <p>
-      保存test.py，运行，果然报错，如下图：
-     </p>
-     <pre><code>SyntaxError: Non-UTF-8 code starting with '\xce' in file i:/python3/te
-st.py on line 1, but no encoding declared; see http://python.org/dev/p
-eps/pep-0263/ for details</code></pre>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_14.png"/>
-     </p>
-     <h2>
-      为什么呢？
-     </h2>
-     <p>
-      因为win10下边新建记事本文件是ANSIX编码的
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_15.png"/>
-     </p>
-     <h2>
-      解决方法
-     </h2>
-     <p>
-      把文件另存，在编码中选择utf8。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_16.png"/>
-     </p>
-     <p>
-      然后运行，完美解决！
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_17.png"/>
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       你与黑客之间差了多少行Python代码？
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-10 15:23:17
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171010_11.png"/>
-     </p>
-     <p>
-      雷布斯曾说过：“必须写够十万行代码，不要心存侥幸。没有写过足够代码量的，想成为高手是不可能的，只能纸上谈兵！”，看来要成一名黑客10万代码量也许只是个起步。那么自己与黑客差了多少呢，要不咱统计一下吧。
-     </p>
-     <h2>
-      编写思路
-     </h2>
-     <p>
-      程序的编写思路其实很简单：统计自己编写过的.py文件，然后统计文件行数累加到一起就ok。
-     </p>
-     <p>
-      <code>
-       os.walk
-      </code>
-      这个方法可以统计当前目录下所有的文件、子目录、子目录下的文件，有了这个数据，我们只需要排除掉不需要的，统计以.py为结尾的文件目录地址加入一个列表即可。
-     </p>
-     <p>
-      有了所有.py文件的列表，循环迭代出每个文件的行数，加到一起总数据就出来了。具体实现请看代码：
-     </p>
-     <pre><code class="python">import os
-def getpys(dir):
-    '''
-    递归获得当前目录及其子目录中所有的.py文件列表。
-    '''
-    pys = []
-    # 当前目录下所有的文件、子目录、子目录下的文件。
-    for root, dirs, files in os.walk(dir):
-        for name in files:
-            #排除掉git目录中的备份的文件，只保留.py文件
-            if '.git' not in root and name.endswith('.py'):
-                pys.append(os.path.join(root, name))
-        #下边是拼装所有目录
-        # for name in dirs:
-        #     print(os.path.join(root, name))
-    return pys
-pys = getpys(os.path.dirname(__file__))
-# print(pys)
-hacker=100000#假设黑客需要10万行代码才能练成
-lines = 0
-for file in pys:
-    with open(file, mode='r', encoding='utf8') as f:
-        lines = lines + len(f.readlines())#统计每个文件的行数。
-print("累计编写了源文件{0}个,手打{1}行Python代码，完成度{2:.2f}%".format(len(pys),lines,lines/hacker*100))
-print("距离成为一名黑客还差{0}行代码".format(hacker-lines))
-</code></pre>
-     <p>
-      累计编写了源文件32个,手打2133行Python代码，完成度2.13%
-距离成为一名黑客还差97867行代码
-     </p>
-     <p>
-      这个数量有点惨。。。不过我会努力的。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/counttest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/counttest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       一些站长常用的搜索收录、访问统计平台
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-09 20:45:57
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <ul>
-      <li>
-       <p>
-        <a href="http://ziyuan.baidu.com">
-         百度搜索资源平台
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
         </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://union.baidu.com">
-         百度联盟
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
         </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://zhanzhang.so.com/">
-         360站长平台
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://ce.baidu.com/">
-         百度云观测
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://ziyuan.baidu.com">
-         百度搜索资源平台
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://www.jiathis.com/">
-         JiaThis社会化分享按钮
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">
-         署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://changyan.kuaizhan.com/">
-         畅言网站评论系统
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://zhanzhang.sogou.com">
-         搜狗站长平台
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="https://web.umeng.com/main.php?c=site&amp;a=add">
-         CNZZ站长统计数据专家
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://www.miitbeian.gov.cn/">
-         工信部ICP备案查询
-        </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://www.beian.gov.cn/">
-         全国公安机关互联网安全服务备案
-        </a>
-       </p>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       聊聊Python闭包（Closure）的那点事。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-09 15:36:19
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      记得当年学
-      <code>
-       JavaScript
-      </code>
-      时，对闭包的认识那真是朦朦胧胧，后来接触到
-      <code>
-       jQuery
-      </code>
-      之后，对闭包的认识还是一知半解，可能被之前一直学习本分的静态语言
-      <code>
-       java
-      </code>
-      给耽误了。。。。。。好吧，闭包到是个什么？是一个让初学编程的人头疼的问题
-     </p>
-     <h2>
-      Pythib闭包
-     </h2>
-     <p>
-      先来一个栗子，我们慢慢理顺一下：
-     </p>
-     <pre><code class="python">def callf():
-    def hello():
-        return "hello world"
-    return hello
-
-cf = callf() #创建一个callf函数，这时把hello()赋值给了cf
-print(type(cf)) # 查看cf类型，证实上边的结论。
-print(cf()) #打印最终结果。
-</code></pre>
-     <p>
-      在一个函数中，把这个函数内部的一个函数做为返回值，那个这个被返回的函数就可以叫做闭包。（这条是本人自己写的，和网上其它处的理论会有些出入或是不同）
-上边就算是闭包最简单的例子，多看几次应该就理解了。
-     </p>
-     <p>
-      再看下边的例子,这是一个利用闭包设计的简单自减计数器，其实我第一眼看去的时候就觉得为什么要这么写？
-     </p>
-     <pre><code class="python">def countdown(n):
-    def next():
-        nonlocal n 
-        r = n 
-        n -= 1
-        return r
-    return next
-
-nt = countdown(5)
-while True:
-    v = nt()
-    print(v)
-    if not v :break
-</code></pre>
-     <p>
-      这个自减计数器的应该还有几种其它写法，而且加之使用nonlocal这个关键字，使人更加迷惑了，如果注释掉
-      <code>
-       nonlocal n
-      </code>
-      ，程序运行就会抛出错误，可见nonlocal的使用使next()函数内部变量
-      <code>
-       n
-      </code>
-      的值可以修改。 本人对此得的理解也不是很好，希望有大侠给与指点，也许这个例子不太理想。
-     </p>
-     <h1>
-      再看循环中的闭包：
-     </h1>
-     <pre><code class="python">def loop():
-    fs = []
-    for i in range(1,4):
-        def f():
-            return i*i
-        fs.append(f)
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-</code></pre>
-     <p>
-      <code>
-       f1()
-      </code>
-      的打印竟然9，这个有点出乎意料！我们修改一下这个函数
-     </p>
-     <pre><code class="python">def loop(): 
-    def f(j):
-        return lambda: j*j
-    fs = []
-    for i in range(1,4):
-        fs.append(f(i))       
-    return fs
-f1,f2,f3 = loop()
-print(f1())
-print(f2())
-print(f3())
-</code></pre>
-     <p>
-      对比上边的两段代码，第一段直接返回了三次循环的最终结果，而第二段代码，再循环中遇到了
-      <code>
-       f()
-      </code>
-      函数
-      <code>
-       return
-      </code>
-      所以暂停了程序的运行，直到第二个赋值时又循环了一次，然后继续，这也说明，闭包的函数不要放在循环体内，不然直接返回的是循环的最终结果。
-有的同学会问，了解闭包有什么用？闭包是装饰器和生成器的基础，如果你应用
-      <code>
-       Python
-      </code>
-      函数的高级应用，不妨仔细的了解一下闭包吧。
-     </p>
-     <h2>
-      参考文档
-     </h2>
-     <ul>
-      <li>
-       <a href="https://zhuanlan.zhihu.com/p/22229197">
-        深入浅出python闭包
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/closuretest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/closuretest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_8.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        9 / 15
-       </button>
-       <a href="list_10.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1242,39 +451,7 @@ print(f3())
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

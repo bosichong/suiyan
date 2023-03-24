@@ -1,1090 +1,500 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第6页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>基于Django构建的小学生英文单词背写检测考试系统。</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-11-07 16:10:19</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><h1>PyWordTest</h1>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/11/3tai.jpg" /></p>
+<h4>介绍</h4>
+<p>孩子的学习总是让父母担忧，英语学习也是让家长的头疼之事，做为程序员老爸不能整天忙于编程而忽视了孩子的教育，我们也要搞点事情。孩子英文单词到底背的怎么样了？别怕，用PyWordTest,创建题库，轻松搞定孩子的英语单词拼写情况。</p>
+<p><strong><em>&gt; 本软件非英语单词学习软件，只是通过在线答题来检测孩子对单词拼写的掌握。</em></strong> </p>
+<p>软件通过在线考试，记录考试结果及每个单词的拼写对错情况，最后通过一些算法分析孩子对单词拼写熟练度。</p>
+<p>通过易错单词了解孩子哪些单词没有掌握，通过自建题库加强孩子对生疏单词的反复练习，更多功能还在研发中。</p>
+<p>程序截图：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/11/1.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/11/2.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/11/3.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/11/4.jpg" /></p>
+<h4>软件架构</h4>
+<p>基于Django构建的小学生英文单词背写检测考试系统。</p>
+<p>环境需求：
+python (3.6.1) 
+Django (2.2.7) 
+Pillow </p>
+<h4>安装教程</h4>
+<p>进入程序目录后，运行python3 manage.py runserver</p>
+<p>后台管理地址http://127.0.0.1:8000/admin/</p>
+<p>管理员登陆:</p>
+<p>用户名：admin 密码：17python.com</p>
+<p>前台地址http://127.0.0.1:8000/</p>
+<h4>使用说明</h4>
+<p>程序已经采集了近1000小学生常用单词，后台可以根据自己的需要进行添加题库进行测试。</p>
+<p>建议新建一个帐号用来考试建题库使用。</p>
+<h4>参与贡献</h4>
+<p>非常欢迎有想法的程序员参与提交代码，程序还很不完善！希望大家多多参与！</p>
+<h2>源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/WordTest">github</a></li>
+<li><a href="https://gitee.com/J_Sky/WordTest">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>PYBabyLog记录孩子成长过程的日记</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-09-29 00:15:30</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><h3>前言</h3>
+<p>岁月如风，唯有此忆。 任凭时光匆匆，记录点点滴滴。 </p>
+<p>当爸爸了，就多陪陪孩子，有事没事的记些与孩子在一起的时光，不要总把心思放在程序编码上，也多陪陪孩子！</p>
+<p>做了那么多的程序，是时候为孩子做个数据库，也许将来某一天你也会翻翻看看。</p>
+<p>PYBabyLog的前身是 <a href="https://gitee.com/J_Sky/babylog">BabyLog(Java开发版)</a></p>
+<p>是用来记录孩子成长过程的日记，她包括：日记，语言，认知等，还包括身高，体重，并使用图表展示。</p>
+<h3>PYBabyLog</h3>
+<p>PYBabyLog使用Python开发的终端版本，其增删改查的操作都是在终端进行的，大大的节省了程序员老爹的宝贵时间。</p>
+<p>采用Python+MySQL+argparse技术开发的全终端操作软件。</p>
+<p>可以说编程新手下载随便看看都能看懂，软件功能非常简单，但意义非凡。</p>
+<p>本程序数据库和<a href="https://gitee.com/J_Sky/babylog">BabyLog(Java开发版)</a>通用，可以用来展示数据。
+当然牛逼的你可以自己制作更威猛的展示，最好能提交一份代码给我好吗？</p>
+<h3>界面截图</h3>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_2.png" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/09/Snip20190928_3.png" /></p>
+<h3>安装方法</h3>
+<p>1.下载程序所有文件，并建立mysql数据库，导入下边的sql文件构建数据库<a href="https://gitee.com/J_Sky/babylog/blob/master/doc/mybaby.sql">数据库构建文件</a></p>
+<p>2.修改<code>DbHelp.py</code>中的MySQL的连接配置项即可</p>
+<h3>终端版操作命令简介</h3>
+<p><code>整理中。。。。。
+x.py -h 就都出来了。</code></p>
+<h3>写在结尾</h3>
+<p>其实有很多话想说，估计很多程序员都有了自己的孩子，记录一些和孩子在一起的时光吧，那将是你自己最好的回忆。</p>
+<p>若给各位大虾能提交些代码或是有好的建议，非常欢迎！</p>
+<h2>程序源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PYBabyLog">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PYBabyLog">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>如何在Python程序中使用配置文件.ini(ConfigParser)</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-06-18 15:29:01</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>引言</h2>
+<p>在<code>Python</code>程序的编写中，我们经常要为程序配置一个<code>配置文件</code>，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
+那么如何为自己的<code>Python</code>应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。</p>
+<p><strong>本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。</strong></p>
+<p>相关链接：
+<a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a></p>
+<p>本文重点讨论如何在程序中使用配置文件，<code>ConfigParser</code>类的具体使用，请参考上文。</p>
+<h2>需求</h2>
+<p>前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
+具体需求如下：</p>
+<ol>
+<li>保存程序设置参数</li>
+<li>功能使用配置文件的参数</li>
+<li>组织以上功能封装成为一个类，方便以后功能的扩展。</li>
+</ol>
+<h2>分析</h2>
+<p>先上一个配置文件的工作流程图</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png" /></p>
+<p>通过流程图我们可以总结出配置文件类中需要的方法：</p>
+<ol>
+<li>创建(若ini文件不存在)及加载本地配置文件</li>
+<li>程序加载配置项参数</li>
+<li>修改参数的时候保存配置项到ini文件</li>
+<li>整理配置项参数为程序功能所用。</li>
+</ol>
+<h2>构建APPconfig类</h2>
+<p>首先导入必须的包：</p>
+<pre><code>import os
+from configparser import ConfigParser
+</code></pre>
+<p>然后确定ini配置文件的物理位置，这里可以引用<code>Django</code>配置文件加载的方法。</p>
+<pre><code>    #ini程序所在目录，也是当前程序的根目录
+   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+   #INI文件地址
+  INI_PATH = os.path.join(BASE_DIR, 'config.ini')
+</code></pre>
+<h2>创建INI文件</h2>
+<p>若程序是首次启动，可以判断配置文件ini是否存在，<strong>若不存在可以创建一个带有默认数据参数的配置文件。</strong>
+为类添加一个方法<code>def create_ini(self)</code>，此方法用来创建配置文件ini。
+当在类启动方法中创建了<code>ConfigParser</code>对象后，就可以利用这个对象来编辑修改配置文件了。</p>
+<h2>加载及保存配置文件</h2>
+<p>若文件存在，即可直接加载了。</p>
+<pre><code>    def readINI(self):
+        """ ini文件读取，返回一个INI配置对象
+         或是用来更新内存中的配置文件数据
+         """
+         self.c.read(self.INI_PATH, encoding='utf-8')
+</code></pre>
+<p>创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。</p>
+<p>有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：</p>
+<pre><code>def saveINI(self):
+    '''保存或是更新ini文件'''
+    with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
+        self.c.write(ini)
+</code></pre>
+<p>这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。</p>
+<h2>修改并保存配置文件参数</h2>
+<p>为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。</p>
+<p>范例：</p>
+<pre><code>def saveNumber(self,number):
+    '''保存口算题个数设置数据'''
+    self.c.set('config','number',number)
+    self.saveINI()
+</code></pre>
+<h2>读取参数</h2>
+<p>当创建完<code>ConfigParser</code>对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考<a href="http://www.17python.com/blog/14">PythonINI配置文件读写的简单方法</a>
+也可以单独建立一个方法，用来返回一组数据供程序的功能使用。</p>
+<p>有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>写在我的博客PV10万时：聊聊编程与画画</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-05-14 09:11:29</small> 标签:
+        
+        
+        <mark>站长吐槽</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/Snip20190514_1.png" /></p>
+<p>转眼间我的<code>blog</code>PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此<code>blog</code>运行已有快二年了，没想到PV会达到10万。</p>
+<p>回想学习<code>Python</code>大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。</p>
+<p>贴几张近作，显吧一下吧</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg" /></p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg" /></p>
+<p>为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。</p>
+<p>编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。<strong>有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣</strong>。</p>
+<p>自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。</p>
+<p>未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。</p>
+<p>还有三年的时候<code>blog</code>PV达到百万（是不是有点飘了？），下半年继续更新<code>blog</code>，继续学习<code>Python Django PYgame</code>等。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(10)wx.FileDialog文件选择框</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-01-05 14:41:02</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png" /></p>
+<h2>wx.FileDialog文件选择框</h2>
+<p>'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。</p>
+<h2>创建</h2>
+<pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
+dlg.GetPath()#返回文件地址字符串
+</code></pre>
+<p>其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。</p>
+<p>我做了一个测试，代码下边跑跑看吧，希望能帮助到你。</p>
+<pre><code>import wx
+import os
+import time
+
+class MyFrame(wx.Frame):
+    def __init__(self, *args, **kwds):
+
+        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
+        wx.Frame.__init__(self, *args, **kwds)
+        self.SetSize((400, 300))
+        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
+        self.button_1 = wx.Button(self, wx.ID_ANY, u"选择文件")
+        self.text_ctrl_2 = wx.TextCtrl(self, wx.ID_ANY, "")
+
+        self.__set_properties()
+        self.__do_layout()
+
+
+    def __set_properties(self):
+
+        self.SetTitle("frame")
+        self.button_1.Bind(wx.EVT_BUTTON,self.onButton_1)
+
+    def __do_layout(self):
+
+        sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_2.Add(self.text_ctrl_1, 1, wx.ALL, 0)
+        sizer_2.Add(self.button_1, 0, 0, 0)
+        sizer_1.Add(sizer_2, 0, wx.ALL | wx.EXPAND, 0)
+        sizer_3.Add(self.text_ctrl_2, 1, wx.ALL | wx.EXPAND, 0)
+        sizer_1.Add(sizer_3, 1, wx.ALL | wx.EXPAND, 0)
+        self.SetSizer(sizer_1)
+        self.Layout()
+
+    def onButton_1(self,e):
+        print("按钮事件")
+        dlg = wx.FileDialog(self, message="选择一个文件", defaultDir=os.getcwd(), style=wx.FD_OPEN)
+        ret = dlg.ShowModal()
+        if ret == wx.ID_OK:
+            print(dlg.GetPath())  # 文件地址
+            self.text_ctrl_1.SetValue(dlg.GetPath())
+
+            fp = os.path.join(dlg.GetPath())  # 组装文件地址
+            ###输出到弹出信息窗口的字符拼装。
+            retstr = str(self.get_FileSize(fp)) + "\n" + self.get_FileAccessTime(fp) + "\n" + self.get_FileCreateTime(
+                fp) + "\n" + self.get_FileModifyTime(fp)
+            self.text_ctrl_2.SetValue(retstr)
+
+        dlg.Destroy()
+
+
+    # 把时间戳转化为时间: 1479264792 to 2016-11-16 10:53:12
+    def TimeStampToTime(self, timestamp):
+        timeStruct = time.localtime(timestamp)
+        return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
+
+    # 获取文件的大小,结果保留两位小数，单位为MB
+    def get_FileSize(self, filePath):
+        fsize = os.path.getsize(filePath)
+        return fsize
+
+    # 获取文件的访问时间
+    def get_FileAccessTime(self, filePath):
+        t = os.path.getatime(filePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的创建时间
+    def get_FileCreateTime(self, ilePath):
+        t = os.path.getctime(ilePath)
+        return self.TimeStampToTime(t)
+
+    # 获取文件的修改时间
+    def get_FileModifyTime(self, filePath):
+        t = os.path.getmtime(filePath)
+        return self.TimeStampToTime(t)
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(None, wx.ID_ANY, "")
+        self.SetTopWindow(self.frame)
+        self.frame.Show()
+        return True
+
+
+if __name__ == "__main__":
+    app = MyApp(0)
+    app.MainLoop()
+</code></pre>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_5.html" role="button" class="outline">Prev</a></li>
+    <li><small>6 / 23</small></li>
+    <li><a href="list_7.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       利用Python自动生成小学生加减乘除口算考试题卷。
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-10-24 10:50:04
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      孩子上小学一年级了，加减乘除的口算就要开始练习了，估计老师肯定会让家长出题，所以提前准备一下，利用Python开发了一套自动生成小学生口算题的小应用。而且今天是程序员节，撸200行代码庆祝一下。：）
-     </p>
-     <p>
-      为了让程序员老爹解放抄题的双手，让你拥有更多的时间去写代码而不用去手写几道口算题而伤神伤脑。所以有没有娃子的程序员爹爹加入一起来继续优化个开源小程序的？有什么点子，发现什么BUG，欢迎留言。
-     </p>
-     <p>
-      仅以此软件，献给那些热爱
-      <code>
-       Python
-      </code>
-      的程序员老爹们！
-     </p>
-     <p>
-      程序核心功能：
-     </p>
-     <p>
-      1.可以设置各算数项和结果的取值范围及多步算数符号的选择，可以生成求结果、求算数项、带括号的算式，最多支持3步算式题
-     </p>
-     <p>
-      2.可以简单设置文档标题，小标题。设置生成的口算题文档个数
-     </p>
-     <p>
-      使用方法：
-     </p>
-     <p>
-      1 确定本机支持python3.6.1以上版本
-     </p>
-     <p>
-      2 安装.docx模块,安装wxPython模块 安装方法：
-     </p>
-     <p>
-      <code>
-       pip3 install python-docx
-      </code>
-     </p>
-     <p>
-      <code>
-       pip3 install wxpython
-      </code>
-     </p>
-     <p>
-      3 下载程序进入主目录，终端下运行
-      <code>
-       python App.py
-      </code>
-     </p>
-     <p>
-      4 修改运算项和结果范围里的数值,多步运算请添加修改需要的运算符号:
-     </p>
-     <p>
-      5 添加口算题到列表中，然后生成口算题,生成的口算题文件都在docx文件目录下，打开后连接打印机就可以开印了。
-     </p>
-     <h2>
-      源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PrimarySchoolMathematics">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       有时人生需要做出选择
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-06-12 10:05:40
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      好久没有更新自己的博客了，最近经历了很多变动，所以人生的规划也发生了一些微妙的变化。
-     </p>
-     <p>
-      这段日子没怎么看编程相关的书，今天随便看了一下，python已经是3.6.5，django也是2.0.6的版本了，想想自己前一阵学习py及django的时候，机器上的环境还是3.61和1.1X版.。。。
-     </p>
-     <p>
-      更新了一下站点的头部图片，上次更新时还是冬天的。。。。
-     </p>
-     <p>
-      可能暂时要放下编程了，是放下不是放弃，不久的以后我还会捡起来，因为我还有一个做游戏的梦想还未实现。想起30岁的时候开始学习编程，40而终，这些年没做成什么太出色的软件，但也因为代码养家糊了口饭，想想也算是值了，人生总是再变动，曾经看到过一篇文章介绍过，程序员黑客和画家很相似，所以那天拿起笔来就画了几个月感觉还不错，我能否再用10年成就一个插画师的梦想？
-     </p>
-     <p>
-      为自己加油！
-     </p>
-     <p>
-      感谢曾经路过17python网友，这个站点暂时还不会关闭，但内容也许有些改变，python还会继续，但可能会慢了一些，但我还会在学习python的路上前进的。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       聊聊Python中的递归与快速排序那点事
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-30 14:38:39
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      最近买了两本算法相关的书，快速了翻看了一下，原来算法真是编程解决问题的最基础要素，以前很少关注算法这块，以为学了基础了解了一些框架包模块等就是学会了编程，请原谅我。。。
-     </p>
-     <h2>
-      在Python中递归
-     </h2>
-     <p>
-      递归比较简单的例子就是阶乘，看下递归的必要条件：
-     </p>
-     <ul>
-      <li>
-       边界条件：确定递归到何时终止，也称为递归出口。
-      </li>
-      <li>
-       递归模式：大问题是如何分解为小问题的，也称为递归体。
-      </li>
-     </ul>
-     <p>
-      阶乘中如果n=1那么就达到了边界条件，递归结束，如果大于1那么进入递归模式调用本体，具体看下代码：
-     </p>
-     <pre><code>def f(n):
-    if n == 1: return 1
-    return n * f(n - 1)
-print(f(5))
-</code></pre>
-     <p>
-      上边就是一个简单的递归阶乘函数，很简单喽，不过在
-      <code>
-       Python
-      </code>
-      中，递归调用是有限制的，通过如下代码可以查看递归可以使用的层数:
-     </p>
-     <pre><code>import sys
-sys.setrecursionlimit(5000)  # 设置递归层数
-print(sys.getrecursionlimit())  # 查看
-</code></pre>
-     <h2>
-      Python中的快速排序
-     </h2>
-     <p>
-      快速排序法是一个非常精典的递归例子，C语言标准库中的
-      <code>
-       qsort
-      </code>
-      函数的实现主是采用的快速排序法。
-快速排序算法的边界条件是数组中只有一个成中了，即停止排序，否则继续递归模式。
-具体看代码：
-     </p>
-     <pre><code>def q_sort(arr):
-    if len(arr) &lt; 2 :
-        return arr
-    else:
-        p = arr[0]
-        print(p)
-        l = [i for i in arr[1:] if i &lt;= p]
-        g = [i for i in arr[1:] if i &gt; p]
-        temp = list()
-        temp.append(p)
-        return q_sort(l) + temp  + q_sort(g)
-print(q_sort([2,44,3,77,6,5,888,999]))
-</code></pre>
-     <p>
-      上边代码如果直接
-      <code>
-       return q_sort(l) + p  + q_sort(g)
-      </code>
-      是会报错的，所以修改了使用list相加。
-算法其实很有意思，程序都是有算法组成的，以后得多看看了。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-16 10:25:21
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      当年电影《黑客帝国》中下落的字符矩阵大家应该都会有很深的印象，即使今天重温一遍这部经典之作，仍然会觉这种电脑特效做的真帅啊，什么时候我也能做出这种效果来？想做就做，既然人家能做出来我们也能，好吧，先上图，最近不是流行什么开局一张图么？
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/111.gif"/>
-     </p>
-     <h2>
-      Matrix的构思
-     </h2>
-     <p>
-      我们把Matrix设计成矩阵下落的字符数组，整矩阵中有几十或上百条Matrix在下落，你可以想像一条条数组从天而降。。。。Matrix就是这其中的一条数组。
-Matrix中有很多属性，用来控制自己的字符组成，下落速度，颜色深浅，间隔距离等,通过这些，控制自己在场景中下落，当然你的参数控制的越详细，可变数越多。
-     </p>
-     <h2>
-      Matrix代码编写调试过程
-     </h2>
-     <p>
-      刚开始的时候总觉得满屏的字符，应该从何处下手呢？，不妨先从场景中打印一组字符开始吧，新建一个场景，然后创建一个Matrix对象，在场景中打印出来，
-当然这组字符是如何生成的呢？还要随机生成，好的，如果你想到这些了，那么你就去动手实践，随数机，字符，添加到数组。
-     </p>
-     <pre><code>c = random.randint(33, 127)
-chr(c)
-</code></pre>
-     <p>
-      对，字符就是这样生成的，有关char的基础理论，大家不太了解的可以自己去复习一下。把随机生成的字符在场景中竖排打印出来，你就成功了一半了。
-     </p>
-     <h2>
-      让Matrix动起来
-     </h2>
-     <p>
-      场景中已经打印出来一组Matrix了，接下来我们就可以在Matrix.update()中控制修改他的下落，这里我把Matrix设置成了一个比较自由的类，生成的对象自控度还是很高的。
-add()方法就是生成一个完整的自身，然后通过draw(）方法在场景中渲染，update()中判断整组字符下落超屏外，即重新生成一组新的字符串继续下落，即可达成循环动画了。
-     </p>
-     <h2>
-      Matrix代码缩写总结
-     </h2>
-     <p>
-      感觉Matrix的编写是一次对编程基础的复习，其中涉及了大量的编程基础操作，是Python及Pygame学习中不可多得的教材，最主要是最终结果很帅哈。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180116_2.png"/>
-     </p>
-     <p>
-      本文源码下载
-     </p>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。 本例源文件：PY_RPG.demo.Matrix.py
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-13 16:00:40
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      记得以前用java写过一个tetromino,这么多年了，回头想想，竟然什么都不记得了。。。愿码界的神们原谅我的无知与过错，如何用Python来写一个俄罗斯方块游戏呢？
-如果你感兴趣， Follow me, please.
-     </p>
-     <p>
-      无图无真相，先上图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_31.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_32.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180113_33.png"/>
-     </p>
-     <h2>
-      Tetromino游戏构思
-     </h2>
-     <p>
-      很多时候，我们编写一个游戏或是软件总是不知道从何入下手没有头绪，感觉思绪一阵乱麻，你没有？确定没有这种感觉吗？好吧，大神求带！！！
-     </p>
-     <p>
-      Tetromino如果我们从逻辑上拆分，我这里能想到三点：
-     </p>
-     <ul>
-      <li>
-       一个长方形的场景
-      </li>
-      <li>
-       下落的方块
-      </li>
-      <li>
-       游戏中的逻辑
-      </li>
-     </ul>
-     <p>
-      当然，你可以更详细的分出更多的逻辑，但我只想把这个游戏简化，这样我们可以有一处可以开始的入手的地方，其实每次编写游戏的时候，你有没有那种感觉？觉得自己就是上帝是神。
-游戏就是世界，你可以在游戏里创造出一切，当然你得有这个能力，好吧，万能的神，我们何不先创建一个游戏窗口，绘制好游戏中的场景先？
-     </p>
-     <p>
-      <strong>
-       友情提示，本系列教程已经进入实例开发，如果你对Pygame,PY_RPG框架不太了解的话，请翻看以前的教程
-      </strong>
-     </p>
-     <h2>
-      Tetromino中的游戏板
-     </h2>
-     <p>
-      Tetromino类是本游戏的重点及主要场景，除了游戏的开始与结束画面以外，所有的游戏逻辑都集中在这个class中。
-首先我们定义一下游戏场景中的尺寸，比如小方块的尺寸，这里我定义为20象素，场景中的游戏板是一个12X22的长方形，
-其中上下左右各留出一行或列做为边界，其它10X20做为游戏场景，这样的我们可以先定义出常量，以后就可以方便修改游戏场景属性。
-设置Tetromino类中的self.start = True，这样方便调试游戏。
-     </p>
-     <h2>
-      绘制board游戏板
-     </h2>
-     <pre><code>    self.board = [[0 for col in range(BOARDHEIGHT)] for row in range(BOARDWIDTH)]  # 场景中的board
-</code></pre>
-     <p>
-      通过上边列表推导，我们创建一个二维的list，用来存放游戏场景中的方块数据，方块有三种状态：0无方块，1被占用的方块，2围墙方块。
-在游戏开始时，我们初始化这个二维list，然后，在再游戏中修改这个list即可表示出游戏中的场景状态。
-有这个list，我们在draw()方法中通过循环迭代绘制游戏的背景色及游戏场景中的方块。当然，现在只能绘制出外围的方块。
-     </p>
-     <h2>
-      下落的方块
-     </h2>
-     <p>
-      下落的方块用多维数组的表达方式有很多种，数据结构直接影响到你在游戏中数据调用的方法，我这里采用了一个字典组合多维数组进行表示。
-具体的数值及属性你可以在Piece.shapes中找到，Piece表示一组4X4由0和1组成的下落的方块，当新建对象的时候会随机初始化其形状。
-Tetromino类中有两个Piece的属性对象，一个用来放置准备下落的方块，一个为当前正在下落的方块，有了方块我们就可以让他在场景中下落了。
-这样，我们场景中有了下落的方块了，你可以看到它在慢慢的下落，到此游戏场景中的主要元素我们已经搭建完毕，余下的就是逻辑判断了。
-     </p>
-     <h2>
-      游戏中的逻辑
-     </h2>
-     <p>
-      这个游戏的核心逻辑个人觉得就是：
-      <strong>
-       判断当前下落方块所处的位置是否合法
-      </strong>
-      ，稍后你就会知道，很多逻辑都依靠这个逻辑来进行判断，既然他这么重要，
-我们来看看怎么实现它。想想整个游戏场景就是一个二组的数组，那些下落的方块，变动的坐标，你首先要在脑海里形成这种数据模型，至少得有个大概，
-一个下落的方块中有16个小方块，通过循环迭代的方法我们就能获得到他们的坐标，并可以兑换成场景中board的索引，如果我们可以比较这两个值，
-就可以得到当前下落方块的位置是否合法，这个合法包括：下落到底，碰到已有的方块，遇到边界等。了解了原理，我们就来实现吧
-伪代码：
-     </p>
-     <pre><code>    for a in range(w):
-        for b in range(h):
-            if (shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 2) or (
-                    shapes[type][direction][b][a] == 1 and board[x + b][
-                y + a] == 1):
-                return 0
-    return 1
-</code></pre>
-     <p>
-      原理：利用当前下落方块中有方块那部分的坐标与索引出来的board的索引值是否有冲突来进行判断，当然在判断时需要超前一步，不然当前已经冲突的话就晚了。
-有了这个方法,我们就可以做一些其它判断，比如方块是否到底，添加方块到场景，方块是否可以旋转，消层等。
-实现了这些逻辑的判断，我们大体上就完成了游戏的编写，细节就在于你的探索了，加油！
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。
-本例源文件：
-      <code>
-       PY_RPG.Tetromino.py
-      </code>
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       极速学习C++之基础篇
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-11 09:07:47
-      </span>
-      <span class="tag">
-       C/C++
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      极速学习C++其实听起来很可笑，怎么可能呢？如果不巧你正好有其它编程语言多年的学习与实践经验，或许这个想法还真能实现。
-假设你和笔者有相同的经历，曾经接触过php java js python，并且和每个语言有过一段还不算太短的"恋情"，那么我开始极速极速学习C++。
-     </p>
-     <h2>
-      万年不变的HelloWorld
-     </h2>
-     <p>
-      C++运行环境及集成IDE各个平台都有很强大的IDE的，如果你正用MAC，我推荐你用Xcode或是CLion，这二个都是IDE中的战斗机。
-打开CLion,new一个C++ Project，输入以下代码：
-     </p>
-     <h1>
-      include "iostream"
-     </h1>
-     <pre><code>using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World!" &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
-     <p>
-      好啦，C++的入门级代码搞定了，其实我挺喜欢C++的输入输出的&lt;&lt;&gt;&gt;符号，简单省事灵活。
-     </p>
-     <h2>
-      常量变量及运算
-     </h2>
-     <p>
-      常量定义的二种方法：
-     </p>
-     <pre><code>#define COOL 18
-const int COOLA = 19;
-cout &lt;&lt; "COOL : " &lt;&lt; COOL &lt;&lt; "  COOLA : " &lt;&lt; COOLA &lt;&lt; endl;
-</code></pre>
-     <p>
-      这样就可以打印常量了。
-     </p>
-     <p>
-      定义变量和运算符也是如此简单上手：
-     </p>
-     <pre><code>int a,b,c;
-float d = 23.99;
-double e = 1.9876;
-char s[] = "hellp";
-string str = "world";
-a = 10,b=21,c=43;
-</code></pre>
-     <p>
-      cout &lt;&lt; b+a &lt;&lt; c-b &lt;&lt; b/a &lt;&lt; b%a &lt;&lt; endl;
-     </p>
-     <p>
-      当然运算符远远不指这些，还有很多，具体可以查阅相关资料。
-     </p>
-     <h2>
-      条件与循环
-     </h2>
-     <p>
-      条件判断：
-     </p>
-     <pre><code>int a = 10;
-int b = 20;
-if(a &lt; b){
-    cout &lt;&lt; "a &lt; b" &lt;&lt;endl;
-}
-</code></pre>
-     <p>
-      循环输出九九乘法口决：
-     </p>
-     <pre><code>for (int i = 1; i &lt; 10; ++i) {
-    for (int j = 1; j &lt;= i; ++j) {
-        cout &lt;&lt; j &lt;&lt; "*" &lt;&lt; i &lt;&lt; "=" &lt;&lt; i * j &lt;&lt; "   ";
-    }
-    cout &lt;&lt; endl;
-}
-</code></pre>
-     <h2>
-      函数声明及使用
-     </h2>
-     <p>
-      要使用一个函数，需要先在源文件的顶部声明：
-     </p>
-     <pre><code>int add (int a,intb)
-</code></pre>
-     <p>
-      然后再源文件中编写代码：
-     </p>
-     <pre><code>int add(int a, int b) {
-    return a + b;
-}
-</code></pre>
-     <p>
-      然后就可以调用了：
-     </p>
-     <pre><code>cout &lt;&lt; add(22, 33) &lt;&lt; endl;
-</code></pre>
-     <h2>
-      C++中的指针
-     </h2>
-     <pre><code>int var = 9;
-int *ip = &amp;var;
 
-cout &lt;&lt; "ip " &lt;&lt; ip &lt;&lt; endl;
-cout &lt;&lt; "*ip " &lt;&lt; *ip &lt;&lt; endl;
-</code></pre>
-     <p>
-      是不是理解了？一个输出内存的地址，一个输出地址中的值。
-     </p>
-     <h2>
-      结构体与枚举
-     </h2>
-     <p>
-      结构体与类很相似，结构体是C中的数据结构。
-枚举用起来很方便，有枚举常量和枚举变量，注意区分。
-     </p>
-     <pre><code>#include &lt;iostream&gt;
-using namespace std;
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
 
-struct Books {
-    char title[20];
-    char author[50];
-    int book_id;
-//    结构体中的函数
-    void prt(){
-        printf("book_id:%d",book_id);
-    }
-};
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
 
-//定义枚举常量
-enum Direction{up,left,down,right};
-
-int main() {
-
-    Books book1;
-    book1 = {"booka","ba",1};
-    cout &lt;&lt; "book1.title:" &lt;&lt; book1.title &lt;&lt; endl;
-    printf("sdfsdfsdf %s \n",book1.author);
-    book1.prt();
-    cout &lt;&lt; endl
-//打印枚举
-    printf("up:%d down:%d",up,down);
-
-    return 0;
-}
-</code></pre>
-     <p>
-      基础当然不是只有这些，以上只是简单快速的学习及入门级的了解C++,欢迎各位大侠补充。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       妙用IPython学习Python--IPython快速上手
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-07 10:16:11
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      在学习Python的时候，有时我们只是想了解一下模块或是函数，或是测试一些小小代码片段，或是在shell中结合Python一起使用，有没有简便的工具或方法呢？有的，你可以试试IPython.
-     </p>
-     <h2>
-      IPython的安装
-     </h2>
-     <pre><code>pip3 install ipython
-</code></pre>
-     <p>
-      然后，在终端中输入
-      <code>
-       ipython
-      </code>
-      验证一下
-     </p>
-     <pre><code>➜  ~ ipython
-Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)
-Type 'copyright', 'credits' or 'license' for more information
-IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:
-</code></pre>
-     <p>
-      如果出现以上提示，即是安装成功
-     </p>
-     <h2>
-      IPython的用处
-     </h2>
-     <p>
-      IPython的使用妙法很多，这里我只介绍一些超级常用的方法，如有不足，欢迎回复本博文进行补充。
-     </p>
-     <ul>
-      <li>
-       代码提示
-      </li>
-     </ul>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_19.png"/>
-     </p>
-     <ul>
-      <li>
-       问号？妙用
-      </li>
-     </ul>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_20.png"/>
-     </p>
-     <p>
-      这样可以直接查看到对象的一些属性介绍。
-     </p>
-     <ul>
-      <li>
-       直接使用shell命令
-      </li>
-     </ul>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180107_21.png"/>
-     </p>
-     <p>
-      这个是不是很方便有没有？
-     </p>
-     <p>
-      IPython确实是Python学习中的好帮手，在熟悉某些模块的时候，用IPythong先来探个明白是个不错的方法。
-     </p>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.cnblogs.com/zzhzhao/p/5295476.html">
-        IPython使用学习笔记
-       </a>
-      </li>
-      <li>
-       <a href="https://www.zhihu.com/question/51467397?from=profile_question_card">
-        使用IPython有哪些好处？
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-01-05 09:41:22
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      在编写游戏的时候常常不知道从何处入手，如果真的想不出从哪开始写，不妨从游戏的背景开始^o^.
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_16.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_17.png"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180105_18.png"/>
-     </p>
-     <h2>
-      GreedSnake贪食蛇设计思路
-     </h2>
-     <p>
-      游戏在设计前，可以使用一些做图软件先进行画面设计，至少需要有一个大体样式，对颜色做一些定义，我用fireworks简单的布局了一下，
-这样的好处是我们可以通过绘制先计算出来游戏中需要的一些数值，比如蛇身体及背景方格的大小。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_13.png"/>
-     </p>
-     <p>
-      除去游戏的开始和结束画面，整个游戏的核心逻辑很简单：
-     </p>
-     <ul>
-      <li>
-       游戏的背景渲染
-      </li>
-      <li>
-       蛇的运动
-      </li>
-      <li>
-       食物的生成
-      </li>
-      <li>
-       游戏逻辑判断：蛇吃食物后蛇身的变化及游戏是否结束？
-      </li>
-     </ul>
-     <p>
-      当然可能还会有其它不同事之处，但我们这里讨论的是游戏核心的逻辑，那么，我们现在开始用
-      <code>
-       PY_RPG+pygame
-      </code>
-      来实现这个简单的小游戏吧。
-     </p>
-     <h2>
-      游戏背景渲染
-     </h2>
-     <p>
-      分别创建三个游戏Scene,分别代表游戏的开始、进行、结束三个场景，然后在游戏进行的场景也就是主场景中进行游戏的内容绘制。
-对于
-      <code>
-       GreedSnake
-      </code>
-      来说，我们需要有一组是浅色网格组成的背景，
-对于游戏背景，我单独创建了一个class
-      <code>
-       GameBackground
-      </code>
-      ,背景绘制的核心逻辑代码如下：
-     </p>
-     <pre><code>self.screen.fill((221, 221, 221))
-for i in range(0, 10):
-    for j in range(0,10):
-         pygame.draw.rect(self.screen, (238,238,238), (i*40, j*40, 40, 40), 1)
-</code></pre>
-     <p>
-      在场景中创建对象后，进行渲染，效果如下：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_12.png"/>
-     </p>
-     <h2>
-      绘制蛇并让它动起来
-     </h2>
-     <p>
-      默认出场的蛇身体有五个节点，我们先在场景中绘制出这条蛇，而且先不必让蛇动起来。为此我创建了一个SnakeBody类，定义蛇的身体上的一节。
-这样我们在游戏场景中创建一个list用来表示蛇的身体：
-     </p>
-     <pre><code>self.bodys = []#创建一个精灵组，用来放置蛇的身体
-for i in range(0,4):
-    self.bodys.append(SnakeBody(self.screen,3*40,(3+i)*40))
-</code></pre>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_14.png"/>
-     </p>
-     <p>
-      蛇是出来了，不过没有蛇头哇，如果满屏都是蛇身的话，无法分辨哪个是头啦，所以我们得把头部变成其它颜色加以区分，看来还得加入颜色的参数:
-     </p>
-     <pre><code>    self.bodys = []  # 创建一个精灵组，用来放置蛇的身体
-    for i in range(0, 5):
-        if i == 0:
-            color = RED
-        else:
-            color = BLACK
-        self.bodys.append(SnakeBody(self.screen, 2 * 40, (6 - i) * 40, color))
-</code></pre>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180104_15.png"/>
-     </p>
-     <p>
-      这次蛇身与头区分开来了，接下来，我们让蛇动起来，可以根据键盘上的方向键来控制他的移动方向。
-关于蛇的移动逻辑：
-     </p>
-     <ul>
-      <li>
-       蛇身是一个list，每次移动list中最后一个蛇节点坐标修改成前一个即可，第一个通过移动方向来判断他的坐标。在
-       <code>
-        GreedSnake.update()
-       </code>
-       中，我们通过判断来更新蛇的位置。
-      </li>
-      <li>
-       <code>
-        GreedSnake.handle_event()
-       </code>
-       中，监控键盘事件，修改self.direction的属性值，以做到控制蛇的移动方向
-      </li>
-     </ul>
-     <p>
-      具体代码就不贴了，可以参考源文件代码。
-     </p>
-     <h2>
-      生成食物与吃掉食物。
-     </h2>
-     <p>
-      关于生成食物的逻辑主要是有一点，不在能生在蛇身上节点的位置，只要食物和蛇身的坐标没有重叠，那么这个位置即可生成食物。吃掉食物，先判断蛇的移动方向，然后取蛇身list[0]，根据移动的方向模拟增加一个移动位置，如果正好遇食物重叠，那么增加食物的坐标为当前蛇头的坐标即可，然后记得把之前的蛇头颜色换成蛇身的。
-     </p>
-     <h2>
-      游戏结束
-     </h2>
-     <p>
-      游戏结束的逻辑只有两点：蛇移动出场景外了，还有就是蛇头碰到蛇身了。
-     </p>
-     <h2>
-      游戏暂停
-     </h2>
-     <p>
-      在游戏场景类中加入了一个
-      <code>
-       pause
-      </code>
-      的属性，这样通过键盘监控来修改它的布尔值，然后利用这个布尔值在
-      <code>
-       update
-      </code>
-      中控制整个游戏的更新，这样就可以达到控制游戏暂停了。
-     </p>
-     <h2>
-      总结
-     </h2>
-     <p>
-      教程中只是重点的介绍了游戏的逻辑设计，这样的话即使你换成别的编程言也一样可以制作出来，另外这个游戏的食物生成与游戏结束的判断上有很多方法，你也可以尝试其它方法。
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone My_pygame下所有代码，以免造成游戏跑不起来的情况。本例源文件：
-      <code>
-       PY_RPG.GreedSnake.py
-      </code>
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/tree/master/PY_RPG/demo">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/tree/master/PY_RPG/demo">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_5.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        6 / 15
-       </button>
-       <a href="list_7.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1099,39 +509,7 @@ for i in range(0,4):
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

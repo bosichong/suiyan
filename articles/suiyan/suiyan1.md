@@ -1,9 +1,10 @@
-<div class="blog-article">
-<h1 class="title">这是一个快速学习JavaScript的学习笔记1</h1>
-<span class="author">J.sky</span>
-<span class="time">2017-12-21 10:54:19</span>
-<span class="tag">JavaScript</span>
-</div>
+---
+title:这是一个快速学习JavaScript的学习笔记1
+author:J.sky
+time:2017-12-21 10:54:19
+tag:JavaScript
+---
+
 
 ## JavaScript的代码写在哪里？
 

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第17页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>Python面向对象编程（OOP）初探</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-29 15:27:35</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/09/44344855_33.jpeg" /></p>
+<h2>面向对象编程</h2>
+<p>说起面向对象编程，除了那些晦涩抽象的定义，我脑海中印象比较深的就是那张王宝强的表情图：程序员？面向对象编程？哈哈哈没有对象你编毛程？</p>
+<h2>三大特征</h2>
+<p>学过java的同学应该非常的了解这三个特征：<em>封装、继承、多态</em>
+在Python的世界中，一切都是对象，为什么要用面向对象模式来进行编程？因为这样更接近人类对自然的认识过程，更直观，如果对面向编程的理论不太了解，建议百度搜索相关知识了解一下。</p>
+<h2>Python中的Class</h2>
+<p>在Python中定义一个Class是非常简单的，语方法如下：</p>
+<pre><code>Class classname(object):
+    pass
+</code></pre>
+<p>其中（object）是用来定义需要继承的父类，Python中，可以继承多个类，这个与java的单继承不同。</p>
+<pre><code class="python">def run():
+    print("我会跑！")
+
+class Animal(object):
+    k = 0#类属性
+    def __init__(self,name):#类构造器
+        self.name = name#实例的属性
+    #实例的方法
+    def say(self):
+        Animal.k += 1
+        print("{0}:我会呼吸！".format(self.name))
+        print("Animal.k={0}".format(Animal.k))
+
+a = Animal("aaaa")
+a.say()#执行实例的方法
+print("Animal.k:{0}".format(Animal.k))#打印类属性
+print(Animal.__init__)
+print(Animal.say)
+Animal.m = 1
+a.color = "red" #动态的添加属性
+a.run = run()#动态的添加属性
+print("我的颜色是=%s" % a.color)
+print("Animal.m=%s" % Animal.m)
+print("a.m=%s" % a.m)
+# print("Animal.a：%s" % Animal.a)  这里会抛出错误
+</code></pre>
+
+<p>上边的实例不难发现，在类中，包括<code>k</code>类变量、<code>self.name</code>实例变量、<code>say</code>实例的方法，这些成员，都是类的的属性。
+Python中的实例对象可以动态的添加类变量及实例变量，只需要点一个<code>.</code>这和Java不同（当然Java也可以通过反射aop切面方式动态为对象添加功能方法）。</p>
+<h2>构造器和self</h2>
+<p><code>__init__(self)</code>类中的这个特殊方法就是类的构造器，<code>self</code>代表着这个类创建的对象。
+关于成员变量我们可以这样理解：对象和类说：<code>关于变量，你的就是我的，我的确只是我的。</code></p>
+<h2>Python的继承</h2>
+<p>Python中，类的继承很简单方便，看下下边的代码</p>
+<pre><code class="python">class Dog(Animal):
+    k = 999 #我们定义了一个与父类相同的类变量
+    def __init__(self,name):#同样定义了一个相同名称的实例变量
+        Animal.__init__(self,name)#注意这里没有:::::号
+
+    def say(self):
+        print(self.name+":我的叫声是：汪汪汪！")
+        print("Dog.k={0}".format(Dog.k)),
+
+dog = Dog("wangwang")
+dog.say()
+print("Animal.k:{0}".format(Animal.k))#打印父类属性
+print("Dog.k:{0}".format(Dog.k))#打印子类属性
+# dog.run #这个动态添加到父类创建的实例中的变量是无法继承过来的。 非得执行的话会报错。
+</code></pre>
+
+<p>通过上边的例子，我们可以看出，类继承后，实例的变量是可以继承的，通过调用父类的<code>__init__()</code>方法来简化实例构造。
+但是父类的类属性是无法继承的，他们互相独立存在在内存中。
+<code>Dog</code>类中的也有一个<code>say()</code>的方法，象这样与父类拥有相同的方法名称而具有不相同的执行结果的行为叫做方法重写。</p>
+<h2>多态</h2>
+<p>我们在创建一个新类继承<code>Animal</code></p>
+<pre><code class="python">
+class Cat(Animal):
+    def __init__(self,name):
+        Animal.__init__(self,name)
+
+    def say(self):
+        print(self.name+":我的叫声是：喵喵喵")
+
+cat = Cat("Tom")
+cat.say()
+</code></pre>
+
+<p><code>isinstance()</code>函数，可以用来判断一个变量是否是某个类，我们测试一下</p>
+<pre><code>print(isinstance(cat,Cat))#True
+print(isinstance(cat,Animal))#True
+print(isinstance(a,Animal))#True
+print(isinstance(a,Cat))#False
+</code></pre>
+<p>很明显，动物的对象不能说成是猫，但猫的对象可以是猫类，说猫是动物类也没什么错误。也就是说，继承是从上到下。
+那多态是什么？我们还需要一个函数，然后来看看。</p>
+<pre><code class="python">def isay(animal):
+    animal.say()
+
+isay(a)#aaaa:我会呼吸！
+isay(dog)#wangwang:我的叫声是：汪汪汪！
+isay(cat)#Tom:我的叫声是：喵喵喵
+</code></pre>
+
+<p>通过<code>isay()</code>方法的输出，我们多少对多态这个概念有那么一点了解了，回想当年学Java的多态的时候，和现在的情况大同小异乎？
+如果我们随便建一个类，包括<code>say()</code>方法，然后用<code>isay()</code>方法输出打印，会不会也是产生多态的效果呢？
+答案是：会的！在<code>Pyhong</code>中，这就是动态语言的“鸭子类型”，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+然在<code>Java</code>静态语言中，则会对父类进行检查，如果不是同一个父类，那么就会报错。</p>
+<p>好吧，有关Python类，对象相关先说到这里，希望大家国庆节快乐哦！</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/OOP/classtest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/OOP/classtest.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-28 13:33:43</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>Event鼠标事件</h2>
+<ul>
+<li><Button-1>：鼠标左击事件  </li>
+<li><Button-2>：鼠标右击事件  </li>
+<li><Button-3>：鼠标中击事件  </li>
+<li><Double-Button-1>：双击事件  </li>
+<li><Triple-Button-1>：三击事件  </li>
+<li><Bx-Motion>：鼠标移动事件,x=[1,2,3]分别表示左、中、右鼠标操作。  </li>
+<li><ButtonRelease-x>鼠标释放事件,x=[1,2,3],分别表示鼠标的左、中、右键操作  </li>
+<li><Leave>：鼠标离开时产生此事件  </li>
+</ul>
+<h2>Event键盘事件</h2>
+<p>bing<Key>和事件函数来触发，其中Key 可以换成对应的键值，也可以是组合键。</p>
+<h2>程序事件</h2>
+<p>程序退出<code>root.protocol('WM_DELETE_WINDOW', printProtocol)</code></p>
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170928_18.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+
+###################################
+# 鼠标事件
+###################################
+def printroot(event):
+    print(event.x,event.y)
+
+bt = tk.Button(root, text="<Double-Button-1>：双击事件 ")
+bt1 = tk.Button(root, text="<Triple-Button-1>：三击事件  ")
+bt2 = tk.Button(root, text="<Leave>：鼠标离开时产生此事件")
+bt3 = tk.Button(root, text="<Button-1>：鼠标左击事件")
+bt4 = tk.Button(root, text="<Button-2>：鼠标右击事件")
+bt5 = tk.Button(root, text="<Button-3>：鼠标中击事件")
+bt6 = tk.Button(root, text="<B1-Motion>：鼠标移动事件,x=[1,2,3]分别表示左、右、中鼠标操作。  ")
+bt7 = tk.Button(root, text="<ButtonRelease-2>鼠标释放事件,x=[1,2,3],分别表示鼠标的左、右、中键操作  ")
+bt.grid()
+bt1.grid()
+bt2.grid()
+bt3.grid()
+bt4.grid()
+bt5.grid()
+bt6.grid()
+bt7.grid()
+bt.bind("<Double-Button-1>",printroot)
+bt1.bind("<Triple-Button-1>",printroot)
+bt2.bind("<Leave>",printroot)
+bt3.bind("<Button-1>",printroot)
+bt4.bind("<Button-2>",printroot)
+bt5.bind("<Button-3>",printroot)
+bt6.bind("<B1-Motion>",printroot)
+bt7.bind("<ButtonRelease-2>",printroot)
+
+
+###################################
+# 键盘事件
+###################################
+def printkey(event):
+    print("event.char = " + event.char)
+    print('event.keycode = ', event.keycode)  
+
+
+root.bind("<Shift_R>",printkey)
+root.bind("<Shift_L>",printkey)
+root.bind("<Return>",printkey)
+root.bind("<Key>",printkey)
+
+
+###################################
+# 程序退出
+###################################
+def printProtocol():  
+    print('WM_DELETE_WINDOW')  
+    root.destroy() 
+
+root.protocol('WM_DELETE_WINDOW', printProtocol)  
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-28 09:50:15</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p>Scalet和Spinbox 是tk中用来调节刻度的小部件。</p>
+<h2>Scalet 滑动模块部件</h2>
+<p>Scalet 在使用中有几个必要的地方：</p>
+<ul>
+<li>设置刻度，<code>from_=0, to=1000,</code>还可以<code>from_=0, to=10,resolution=0.1</code>,设置每次调结刻度值</li>
+<li>滑块滑动事件，当滑动时，返回当前的刻度，有二种方法，无论哪种方法，需要先绑定回调函数<code>command=prtsa</code></li>
+<li>取回当前刻度值，回调函数包括一个text字符串参数，通过这个参数可以直接返回当前的刻度值，另外还可以通过绑定变量来返回刻度值。</li>
+</ul>
+<h2>Spinbox</h2>
+<ul>
+<li>绑定回调函数，然后通过<code>get()</code>方法返部件当前值。</li>
+</ul>
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170928_17.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+root.title("Scrollbar 测试")
+#分别创建一个横向，一个坚向的滚动条，
+ybar = tk.Scrollbar(root)
+ybar.pack(fill=tk.Y, side=tk.RIGHT)
+xbar = tk.Scrollbar(root,orient=tk.HORIZONTAL)#orient=tk.HORIZONTAL表示为坚向滚动
+xbar.pack(fill=tk.X, side=tk.BOTTOM,)
+# 创建文本框，并设置横向及坚向的滚动条，wrap='none'表示文本不换
+t = tk.Text(root,yscrollcommand=ybar.set,xscrollcommand=xbar.set, wrap='none')
+t.pack(fill=tk.BOTH)
+# 添加一些字符串
+s = ""
+for i in range(100):
+    for j in range(100):
+        s = s+str(i)+" "
+    s = s+"\n"
+t.insert(tk.END,s)
+#为滚动条添加对应的函数，添加后，滚动条才会有效滚动
+ybar.config(command=t.yview)
+xbar.config(command=t.xview)
+
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(7) Scrollbar的使用</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-27 21:23:07</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>Scrollbar</h2>
+<p>Scrollbar就是窗口中的滚动条，一般应用在文本框和列表框的外围，如果内容显示超出范围之外，就会显示滚动条。</p>
+<h2>创建及使用</h2>
+<ul>
+<li>创建Scrollbar对象，通过orient设置他的滚动方向，HORIZONTAL or VERTICAL. 默认是VERTICAL。</li>
+<li>在部件中指定滚动条部件<code>yscrollcommand=ybar.set,xscrollcommand=xbar</code></li>
+<li><code>ybar.config(command=t.yview) xbar.config(command=t.xview)</code> 设置滚动条事件，使滚动条交互起来。</li>
+</ul>
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170927_16.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+root = tk.Tk()
+root.title("Scrollbar 测试")
+#分别创建一个横向，一个坚向的滚动条，
+ybar = tk.Scrollbar(root)
+ybar.pack(fill=tk.Y, side=tk.RIGHT)
+xbar = tk.Scrollbar(root,orient=tk.HORIZONTAL)#orient=tk.HORIZONTAL表示为坚向滚动
+xbar.pack(fill=tk.X, side=tk.BOTTOM,)
+# 创建文本框，并设置横向及坚向的滚动条，wrap='none'表示文本不换
+t = tk.Text(root,yscrollcommand=ybar.set,xscrollcommand=xbar.set, wrap='none')
+t.pack(fill=tk.BOTH)
+# 添加一些字符串
+s = ""
+for i in range(100):
+    for j in range(100):
+        s = s+str(i)+" "
+    s = s+"\n"
+t.insert(tk.END,s)
+#为滚动条添加对应的函数，添加后，滚动条才会有效滚动
+ybar.config(command=t.yview)
+xbar.config(command=t.xview)
+
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-27 13:10:36</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p>Checkbutton和Radiobutton单选和多选按钮在GUI编程中是经常使用的选项选择方法，tk提供的单选与多选按钮功能虽然简约，但功能上也是足够应付日常应用了。</p>
+<h2>Checkbutton</h2>
+<p>多选按钮，因为是选择按钮，所以我们需要判断当这个按钮被点击后，应该属于选择状态，然后根据状态的选择状态返回值进行相关操作。
+<code>variable</code>是多选按钮的一个属性，这个属性的值用来显示当前多选择按钮的状态，1时为选中，2时为释放。
+<code>select() deselect() toggle()</code>这三个方法用来切换多选择按钮的选择状态。</p>
+<h2>Radiobutton</h2>
+<p>单选选按钮一般都是二个以上成组显示，一般最需要的就是获取单选按钮的返回值，程序中先设置一组包括属性及显示字符串的list，然后用for循环来创建多选按钮。
+<code>variable=v, value=mode,</code>这二个属性配合使用，当使用<code>get()</code>方法返回值的时候，返回的是value上的这个值（这里的原因我也没明白，希望高人指点一下。），所以设置单选按钮值的时候，记得设置value。</p>
+<h2>LabelFrame</h2>
+<p>LabelFrame 是一个带线的部件容器，具体效果请看下边的截图：</p>
+<h2>源码</h2>
+<p><img alt="" src="assets/images/media/upload/2017/09/Snip20170927_13.png" /></p>
+<pre><code class="python">import tkinter as tk
+
+def cdef():
+    if var.get():
+        strvar.set("看，我改变了！")
+    else:
+        strvar.set("有种你点我试试")
+
+def rdoprt():
+    print(v.get())
+    r_frame['bg']=v.get()
+root = tk.Tk()
+root.title("Checkbutton和Radiobutton")
+
+c_frame = tk.LabelFrame(root,text="Checkbutton", padx=5, pady=5)
+c_frame.pack(fill=tk.X, side=tk.TOP)
+
+var = tk.IntVar()
+strvar = tk.StringVar()
+strvar.set("有种你点我试试")
+cbt = tk.Checkbutton(c_frame,textvariable=strvar, variable = var,command= cdef,)
+# cbt.select()#选中
+# print(var.get())
+# cbt.deselect()#取消选中
+# print(var.get())
+# cbt.toggle()#切换选中开关
+# print(var.get())
+cbt.pack(side=tk.LEFT)
+cbt1 = tk.Checkbutton(c_frame,text="Checkbutton", variable = var, command=cdef)
+cbt1.pack(side=tk.LEFT)
+
+r_frame = tk.LabelFrame(root,text="Radiobutton", padx=5, pady=5)
+r_frame.pack(fill=tk.X, side=tk.TOP)
+v = tk.StringVar()
+v.set("L") # initialize
+MODES = [
+        ("#c00", "#c00"),
+        ("#fff", "#fff"),
+        ("#000", "#000"),
+        ("#ccc", "#ccc"),
+    ]
+
+for text, mode in MODES:
+        b = tk.Radiobutton(r_frame, text=text,variable=v, value=mode,command=rdoprt)
+        b.pack(anchor=tk.W)
+
+root.mainloop()
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/sdk/python/charm-12/index.html">可爱的 Python：Python 中的 TK编程</a></li>
+<li><a href="http://effbot.org/tkinterbook/tkinter-index.htm">An Introduction To Tkinter</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/gui">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/gui">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_16.html" role="button" class="outline">Prev</a></li>
+    <li><small>17 / 23</small></li>
+    <li><a href="list_18.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

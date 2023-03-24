@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block article %}
+
+
+{% for a in articles %}
+<hgroup>
+    <h2>{{ a.title }}</h2>
+    <h3> 作者:<a href="#">{{ a.author }}</a> <small>发布时间:{{ a.time }}</small> 标签:
+        {% set tags = a.tag.split(",") %}
+        {% for tag in tags %}
+        <mark>{{ tag }}</mark>
+        {% endfor %}
+    </h3>
+</hgroup>
+<p>{{ a.blog }}</p>
+
+
+<hr>
+<br>
+
+{% endfor %}
+
+<nav>
+    <li><a href="{{ prevurl }}" role="button" class="outline">Prev</a></li>
+    <li><small>{{ page_num }}</small></li>
+    <li><a href="{{ nexturl }}" role="button" class="outline">Next</a></li>
+</nav>
+
+{% endblock %}

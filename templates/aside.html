@@ -1,0 +1,15 @@
+
+
+<nav>
+    <ul>
+        {% for nav in config.nav %}
+        <li>
+            <a href="{{ nav.url }}">
+                <i class="fa fa-{{ nav.ico }}"></i>
+                {{ nav.text }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+

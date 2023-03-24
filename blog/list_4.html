@@ -1,1190 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第4页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>前端项目构建打包的一些学习笔记</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2020-01-01 21:09:54</small> 标签:
+        
+        
+        <mark>JavaScript</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>遇到的问题</h2>
+<p>由于项目总是有一些小BUG，回想了一下项目中的JS文件的组织问题，估计应该是JS文件分散造成的加载不稳定，有时会造成一些变量莫名的未定义，事已至此，只有将这些文件打包到一个文件中就可以很好的解决这个问题，但是今天在网上搜了一些都是最近流行的打包工具，感觉功能过于丰富，以当前的项目来说用这些流行的打包工具有些大材小用了，而且学习成本高了一些，后来看了一下手头上的两JavaScript本书都推荐<code>Ant</code>打包，所以决定按书上的来吧，省时省力。</p>
+<h2>项目目录结构</h2>
+<p>书上说项目主要有三个目录：</p>
+<ul>
+<li><code>bulid</code>用来放置最终构建的文件，理想情况下这个目录不应该提交</li>
+<li><code>src</code>用来存放所有的源文件，包括用来进行文件分组的子目录</li>
+<li><code>test</code> 测试文件。</li>
+</ul>
+<h2>Ant打包</h2>
+<p>ant的安装教程很多，这里就不在重复了。</p>
+<p>前端构建需要明白自己要做的是什么，其实打包构建的工具很多的，但是有些打包工具的功能太多了，学习成本很大的，所以选择适合的工具也是很重要的。</p>
+<p>ant通过配置<code>build.xml</code>来执行一系列<code>target</code>,任务的类型选择很多，依据目前项目的选择，有打包，校验，压缩等。</p>
+<p>这里就不在贴代码了，具体可以查看<code>suiyan</code>根目录下的<code>build.xml</code>参考，网上的教程也很多的。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>config.json详细说明</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-31 13:35:18</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>config.json 详解</h2>
+<ul>
+<li>blog_name : 博客名称</li>
+<li>blog_author : 站长昵称</li>
+<li>blog_description : 站长简介</li>
+<li>meta_description : meta</li>
+<li>meta_keywords : meta keys</li>
+<li>profile_image : 站长头像</li>
+<li>blog_sns : SNS分享</li>
+<li>nav : 博客导航</li>
+<li>blog_list : 首页加载博文篇数</li>
+</ul>
+<p>SNS中的ico图标采用的<code>font-awesome-4.07</code>，图标搜索地址如下：<a href="http://www.fontawesome.com.cn/faicons/">http://www.fontawesome.com.cn/faicons/</a>,只需填写图标名称即可。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>碎言静态博客</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-31 10:26:39</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><h1>碎言静态博客</h1>
+<p><a href='https://gitee.com/J_Sky/suiyan/stargazers'><img src='https://gitee.com/J_Sky/suiyan/badge/star.svg?theme=dark' alt='star'></img></a></p>
+<h3>介绍</h3>
+<p>碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。</p>
+<p>演示(码云)： <a href="https://j_sky.gitee.io/suiyan/blog">碎言博客</a></p>
+<p>演示(github)： <a href="https://bosichong.github.io/suiyan/blog">碎言博客</a></p>
+<p><img alt="" src="assets/images/fabu.png" /></p>
+<h3>软件架构</h3>
+<p>前端使用了<code>jQuery，bootstrap4,font-awesome-4.07,highlight.js,less,jQuery.toTop等技术框架。</code></p>
+<p>本地构建博客索引使用了<code>Python</code>的相关技术,实现了全站静态页面，并可以通过标题进行全站搜索。</p>
+<p>博客文章写作采用Markdown技术支持，让你专注写作更流畅。</p>
+<p>博客的管理支持终端和图形界面：</p>
+<p>图形界面：</p>
+<pre><code>python3 w.py
+</code></pre>
+<p><img alt="" src="assets/images/bloggui.png" /></p>
+<p>终端：</p>
+<p><img alt="" src="assets/images/zhongduan.png" /></p>
+<p>可以根据自己的喜好进行选择。</p>
+<h3>安装教程</h3>
+<p>首先克隆下载碎言静态博客，
+* <a href="https://gitee.com/J_Sky/suiyan">Gitee</a>
+* <a href="https://github.com/Jsky2020/suiyan">GitHub</a></p>
+<p>终端运行:</p>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<p>安装相关依赖</p>
+<p>安装完成。</p>
+<h3>创建文章</h3>
+<pre><code>python z.py -n 此处写文章标题
+</code></pre>
+<p>这个时候就会在<code>articles</code>目录下创建一篇文章。<a href="https://j_sky.gitee.io/suiyan/20191230155649.html">更多终端操作</a></p>
+<h3>创建索引</h3>
+<p>博客的文章排序及搜索以来此索引<code>blog_data.json</code>，每次创建文章的时候回自动更新索引，但是如果你修改了头部的一些索引信息，则需要运行命令来更新索引。</p>
+<pre><code>python z.py -i
+</code></pre>
+<h3>修改博客及站长资料</h3>
+<p><code>config.json</code>里存放着一些站点的资料，上传前建议先修改成自己的资料。</p>
+<p><a href="https://j_sky.gitee.io/suiyan/20191231133518.html"><code>config</code>配置详解点击查看</a></p>
+<h3>运行站点</h3>
+<p>推荐使用<code>Live Server</code>这个vscode得插件，非常方便。</p>
+<h3>修改站点样式</h3>
+<p>碎言博客内置了八套网站样式，四套light四套dark，修改四个html页面的外链CSS连接即可。</p>
+<p>具体修改方法请点击查看： <a href="https://j_sky.gitee.io/suiyan/20191230201529.html">细说修改碎言博客站点的样式</a></p>
+<h3>部署</h3>
+<pre><code>git push origin master
+</code></pre>
+<p>提交所有文件到git仓库即可。</p>
+<h4>参与贡献</h4>
+<ol>
+<li>Fork 本仓库</li>
+<li>新建 Feat_xxx 分支</li>
+<li>提交代码</li>
+<li>新建 Pull Request</li>
+</ol>
+<h2>源码下载：</h2>
+<ul>
+<li><a href="https://gitee.com/J_Sky/suiyan">Gitee</a></li>
+<li><a href="https://github.com/Jsky2020/suiyan">GitHub</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>细说修改碎言博客站点的样式</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-30 20:15:29</small> 标签:
+        
+        
+        <mark>碎言博客</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>碎言博客HTML结构</h2>
+<p>博客HTML只有4个：</p>
+<ul>
+<li>index.html  博客首页</li>
+<li>archives.html 归档</li>
+<li>tags.html 标签页</li>
+<li>p.html 博文详情页</li>
+</ul>
+<h2>CSS修改</h2>
+<p>碎言博客CSS前端采用的bootstrap4框架，CSS样式修改采用了less本地修改生成的.css文件。这里推荐一个vscode插件:<code>Easy LESS</code></p>
+<p><img alt="" src="assets/images/blog/Snip20191231_2.png" /></p>
+<p>这个插件的特点就是在相同目录下可以生成一个同名的.CSS文件，配合<code>less</code>的引用命令<code>@import "theme-dark-1.less";</code>使用起来很方便的。</p>
+<h2>博客的样式修改</h2>
+<p>碎言博客的样式主要集中在<code>&lt;link id="blogcss"&gt;</code>标签连接的CSS，通过修改对应的LESS文件中对应的颜色变量，可以快速的修改博客的颜色及相关样式，变量我都有注释。</p>
+<h2>Markdown代码样式</h2>
+<p>Markdown代码样式通过修改<code>&lt;link id="highlight"&gt;</code>标签连接的highlightCSS来修改，在<code>assets/plugins/highlight/styles</code>下可以选择自己喜欢的样式。</p>
+<h2>进阶修改</h2>
+<p>觉得手动修改站点样式太麻烦？可以利用<code>jQuery</code>在站点上添加在线改变站点样式的浮动按钮，近期会考录添加的碎言博客的。</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>关于站长</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2019-12-30 16:25:07</small> 标签:
+        
+        
+        <mark>未分类</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>About Me</h2>
+<p>一个浪迹于互联网的编程爱好者且酷爱画画，希望能成为一名出色的插画师。</p>
+<h2>关于碎言博客</h2>
+<p>本来用<code>Python Django</code>开发了一套简易的博客系统，但是由于维护起来倍感吃力，而且云服务器也即将到期费用不菲。</p>
+<p>索性改成静态博客得了，试了几个静态博客程序，但是总觉得和别人一样太没意思，正好最近在学习<code>JavaScript jQuery</code>，</p>
+<p>索性撸一个静态博客，发现自己就是爱重复造轮子。</p>
+<p>欢迎进群讨论学习Q群:217840699</p></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_3.html" role="button" class="outline">Prev</a></li>
+    <li><small>4 / 23</small></li>
+    <li><a href="list_5.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       如何在Python程序中使用配置文件.ini(ConfigParser)
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-06-18 15:29:01
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      引言
-     </h2>
-     <p>
-      在
-      <code>
-       Python
-      </code>
-      程序的编写中，我们经常要为程序配置一个
-      <code>
-       配置文件
-      </code>
-      ，有了配置文件，可以记录一些应用的参数配置，方便下次使用时直接调用。
-那么如何为自己的
-      <code>
-       Python
-      </code>
-      应用制作一个配置文件并方便的使用呢？这篇博文就是用来讨论这个简单的问题的。
-     </p>
-     <p>
-      <strong>
-       本博文仅为作者对配置文件使用的一些见解，错误难免，如有问题请指教。
-      </strong>
-     </p>
-     <p>
-      相关链接：
-      <a href="http://www.17python.com/blog/14">
-       PythonINI配置文件读写的简单方法
-      </a>
-     </p>
-     <p>
-      本文重点讨论如何在程序中使用配置文件，
-      <code>
-       ConfigParser
-      </code>
-      类的具体使用，请参考上文。
-     </p>
-     <h2>
-      需求
-     </h2>
-     <p>
-      前一阵子做了个口算题的生成的应用，但是每次打开应用时都是加载的程序默认的参数，非常不方便，所以就要考虑为程序添加一个配置文件。
-具体需求如下：
-     </p>
-     <ol>
-      <li>
-       保存程序设置参数
-      </li>
-      <li>
-       功能使用配置文件的参数
-      </li>
-      <li>
-       组织以上功能封装成为一个类，方便以后功能的扩展。
-      </li>
-     </ol>
-     <h2>
-      分析
-     </h2>
-     <p>
-      先上一个配置文件的工作流程图
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/06/111.png"/>
-     </p>
-     <p>
-      通过流程图我们可以总结出配置文件类中需要的方法：
-     </p>
-     <ol>
-      <li>
-       创建(若ini文件不存在)及加载本地配置文件
-      </li>
-      <li>
-       程序加载配置项参数
-      </li>
-      <li>
-       修改参数的时候保存配置项到ini文件
-      </li>
-      <li>
-       整理配置项参数为程序功能所用。
-      </li>
-     </ol>
-     <h2>
-      构建APPconfig类
-     </h2>
-     <p>
-      首先导入必须的包：
-     </p>
-     <pre><code>import os
-from configparser import ConfigParser
-</code></pre>
-     <p>
-      然后确定ini配置文件的物理位置，这里可以引用
-      <code>
-       Django
-      </code>
-      配置文件加载的方法。
-     </p>
-     <pre><code>    #ini程序所在目录，也是当前程序的根目录
-   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-   #INI文件地址
-  INI_PATH = os.path.join(BASE_DIR, 'config.ini')
-</code></pre>
-     <h2>
-      创建INI文件
-     </h2>
-     <p>
-      若程序是首次启动，可以判断配置文件ini是否存在，
-      <strong>
-       若不存在可以创建一个带有默认数据参数的配置文件。
-      </strong>
-      为类添加一个方法
-      <code>
-       def create_ini(self)
-      </code>
-      ，此方法用来创建配置文件ini。
-当在类启动方法中创建了
-      <code>
-       ConfigParser
-      </code>
-      对象后，就可以利用这个对象来编辑修改配置文件了。
-     </p>
-     <h2>
-      加载及保存配置文件
-     </h2>
-     <p>
-      若文件存在，即可直接加载了。
-     </p>
-     <pre><code>    def readINI(self):
-        """ ini文件读取，返回一个INI配置对象
-         或是用来更新内存中的配置文件数据
-         """
-         self.c.read(self.INI_PATH, encoding='utf-8')
-</code></pre>
-     <p>
-      创建一个方法，用来读取配置文件，因为在程序运行中需要随时加载更新内存中的参数，所以弄个方法存在也是必要的。
-     </p>
-     <p>
-      有读取了，我们还需要保存参数到配置文件里，在建一个保存的方法：
-     </p>
-     <pre><code>def saveINI(self):
-    '''保存或是更新ini文件'''
-    with open(self.INI_PATH, mode='w', encoding='utf-8') as ini:
-        self.c.write(ini)
-</code></pre>
-     <p>
-      这样，只要修改了参数，结尾就可以调用这个方法来保存配置文件。
-     </p>
-     <h2>
-      修改并保存配置文件参数
-     </h2>
-     <p>
-      为每一个参数指定一个方法，用来修改并保存当前参数到配置文件，当触发需要修改参数的事件是，直接调用当前方法即可修改配置文件里对应的参数了。
-     </p>
-     <p>
-      范例：
-     </p>
-     <pre><code>def saveNumber(self,number):
-    '''保存口算题个数设置数据'''
-    self.c.set('config','number',number)
-    self.saveINI()
-</code></pre>
-     <h2>
-      读取参数
-     </h2>
-     <p>
-      当创建完
-      <code>
-       ConfigParser
-      </code>
-      对象后，就可以使用该对象方便的操作配置文件的读取和保存了，具体方法这里不再敷衍，可以参考
-      <a href="http://www.17python.com/blog/14">
-       PythonINI配置文件读写的简单方法
-      </a>
-      也可以单独建立一个方法，用来返回一组数据供程序的功能使用。
-     </p>
-     <p>
-      有关配置文件的讨论就到此为止，以上也只是自己的一些浅显理解，详细代码请参考以下源码。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PrimarySchoolMathematics/blob/master/APPconfig.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PrimarySchoolMathematics/blob/master/APPconfig.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       写在我的博客PV10万时：聊聊编程与画画
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-05-14 09:11:29
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Snip20190514_1.png"/>
-     </p>
-     <p>
-      转眼间我的
-      <code>
-       blog
-      </code>
-      PV流量已经达到10万+了，2017年8月25日 01:09，我发布了网站更新记录，至此
-      <code>
-       blog
-      </code>
-      运行已有快二年了，没想到PV会达到10万。
-     </p>
-     <p>
-      回想学习
-      <code>
-       Python
-      </code>
-      大约也有二年多了，这一路走来也是蛮辛苦的，自学需要自己填坑补洞修bug，痛苦与快乐并存吧。
-     </p>
-     <p>
-      贴几张近作，显吧一下吧
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/Cache_69e1f243303b4652..jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-03025e852e1db8f2f9cf69fbd946b69c_hd.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-608fc943d8709a1c640f02a8fc46fae6_hd.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-fa357d4314c4f66b46318982526ef88a_hd.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-9497459b80fafa67937c205e373c05f7_hd.jpg"/>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/05/v2-f27fcee295b83b010b1029a145dc1554_hd.jpg"/>
-     </p>
-     <p>
-      为什么要提到画画，去年的夏天给孩子报了美术班，然后自己也就随便画画，然后就一发不可收拾，坚持画画一直到现在，感触也是蛮多的。
-     </p>
-     <p>
-      编程和画画的思考方式在某些方面还是有相同点的，例如编程的架构就好比画画的草稿，草稿打好了才可以细致的刻画。若程序的需求本身是一幅画，那么打好草稿，细致刻画细节，就可以使程序本身更人性化，更符合预期的要求。
-      <strong>
-       有的时候我就觉得，程序员本身真的应该的体验一下绘画带来的乐趣
-      </strong>
-      。
-     </p>
-     <p>
-      自学画画一年感觉要比编程10年前的成就感强很多，这些年编程没写过多少像样的应用，五个手指都能算出来，或许编程要比绘画更严谨，更需要思考。
-     </p>
-     <p>
-      未来还有很多打算，包括编程初期的一些梦想都想去实现，比如开发一款游戏，自己原画角色，场景，并利用现有的游戏框架编写成型。完成现有的程序代码的编写，继续优化维护，继续坚持画画强化绘画技能，或许能力的提高会更加丰富原有的梦想。
-     </p>
-     <p>
-      还有三年的时候
-      <code>
-       blog
-      </code>
-      PV达到百万（是不是有点飘了？），下半年继续更新
-      <code>
-       blog
-      </code>
-      ，继续学习
-      <code>
-       Python Django PYgame
-      </code>
-      等。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(10)wx.FileDialog文件选择框
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-01-05 14:41:02
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190105_13.png"/>
-     </p>
-     <h2>
-      wx.FileDialog文件选择框
-     </h2>
-     <p>
-      'FileDialog'是一个文件选择框，我们可以根据弹出框选择文件，确定后返回该文件的地址。
-     </p>
-     <h2>
-      创建
-     </h2>
-     <pre><code>dlg = wx.FileDialog(parent, message=None, defaultDir=None, defaultFile=None, wildcard=None, style=None, pos=None, size=None, name=None)
-dlg.GetPath()#返回文件地址字符串
-</code></pre>
-     <p>
-      其打开方式和其它弹出窗口一样有模态和非模态，当按下确认按钮后，返回一个文件地址字符串。
-     </p>
-     <p>
-      我做了一个测试，代码下边跑跑看吧，希望能帮助到你。
-     </p>
-     <pre><code>import wx
-import os
-import time
 
-class MyFrame(wx.Frame):
-    def __init__(self, *args, **kwds):
-
-        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
-        wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((400, 300))
-        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
-        self.button_1 = wx.Button(self, wx.ID_ANY, u"选择文件")
-        self.text_ctrl_2 = wx.TextCtrl(self, wx.ID_ANY, "")
-
-        self.__set_properties()
-        self.__do_layout()
-
-
-    def __set_properties(self):
-
-        self.SetTitle("frame")
-        self.button_1.Bind(wx.EVT_BUTTON,self.onButton_1)
-
-    def __do_layout(self):
-
-        sizer_1 = wx.BoxSizer(wx.VERTICAL)
-        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
-        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
-        sizer_2.Add(self.text_ctrl_1, 1, wx.ALL, 0)
-        sizer_2.Add(self.button_1, 0, 0, 0)
-        sizer_1.Add(sizer_2, 0, wx.ALL | wx.EXPAND, 0)
-        sizer_3.Add(self.text_ctrl_2, 1, wx.ALL | wx.EXPAND, 0)
-        sizer_1.Add(sizer_3, 1, wx.ALL | wx.EXPAND, 0)
-        self.SetSizer(sizer_1)
-        self.Layout()
-
-    def onButton_1(self,e):
-        print("按钮事件")
-        dlg = wx.FileDialog(self, message="选择一个文件", defaultDir=os.getcwd(), style=wx.FD_OPEN)
-        ret = dlg.ShowModal()
-        if ret == wx.ID_OK:
-            print(dlg.GetPath())  # 文件地址
-            self.text_ctrl_1.SetValue(dlg.GetPath())
-
-            fp = os.path.join(dlg.GetPath())  # 组装文件地址
-            ###输出到弹出信息窗口的字符拼装。
-            retstr = str(self.get_FileSize(fp)) + "\n" + self.get_FileAccessTime(fp) + "\n" + self.get_FileCreateTime(
-                fp) + "\n" + self.get_FileModifyTime(fp)
-            self.text_ctrl_2.SetValue(retstr)
-
-        dlg.Destroy()
-
-
-    # 把时间戳转化为时间: 1479264792 to 2016-11-16 10:53:12
-    def TimeStampToTime(self, timestamp):
-        timeStruct = time.localtime(timestamp)
-        return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
-
-    # 获取文件的大小,结果保留两位小数，单位为MB
-    def get_FileSize(self, filePath):
-        fsize = os.path.getsize(filePath)
-        return fsize
-
-    # 获取文件的访问时间
-    def get_FileAccessTime(self, filePath):
-        t = os.path.getatime(filePath)
-        return self.TimeStampToTime(t)
-
-    # 获取文件的创建时间
-    def get_FileCreateTime(self, ilePath):
-        t = os.path.getctime(ilePath)
-        return self.TimeStampToTime(t)
-
-    # 获取文件的修改时间
-    def get_FileModifyTime(self, filePath):
-        t = os.path.getmtime(filePath)
-        return self.TimeStampToTime(t)
-class MyApp(wx.App):
-    def OnInit(self):
-        self.frame = MyFrame(None, wx.ID_ANY, "")
-        self.SetTopWindow(self.frame)
-        self.frame.Show()
-        return True
-
-
-if __name__ == "__main__":
-    app = MyApp(0)
-    app.MainLoop()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy10.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy10.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(09)wx.Python Menu 菜单
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2019-01-03 18:08:40
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2019/01/Snip20190103_12.png"/>
-     </p>
-     <h2>
-      Menu 菜单
-     </h2>
-     <p>
-      菜单是程序经常用到的小部件，我们来看看如何创建。
-     </p>
-     <pre><code>    self.menubar = wx.MenuBar()#创建一个程序菜单
-    self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
-    self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
-    self.fileMenu.Append(self.new)#添加菜单项
-</code></pre>
-     <p>
-      以上这几个操作就可以创建一个菜单及菜单项了
-     </p>
-     <h2>
-      wxPython 右键菜单
-     </h2>
-     <p>
-      创建方法，可以先创建一个菜单类
-      <code>
-       class MyPopupMenu(wx.Menu)
-      </code>
-      然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：
-      <code>
-       self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-      </code>
-      然后事件函数中生成这个菜单
-      <code>
-       self.PopupMenu(MyPopupMenu(self), e.GetPosition())
-      </code>
-      这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试
-     </p>
-     <pre><code>import wx
-
-class MyPopupMenu(wx.Menu):
-
-    def __init__(self, parent):
-        super(MyPopupMenu, self).__init__()
-
-        self.parent = parent
-
-        mmi = wx.MenuItem(self, wx.NewId(), 'Minimize')
-        self.Append(mmi)
-        self.Bind(wx.EVT_MENU, self.OnMinimize, mmi)
-
-        cmi = wx.MenuItem(self, wx.NewId(), 'Close')
-        self.Append(cmi)
-        self.Bind(wx.EVT_MENU, self.OnClose, cmi)
-
-
-    def OnMinimize(self, e):
-        self.parent.Iconize()
-
-    def OnClose(self, e):
-        self.parent.Close()
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-        self.menubar = wx.MenuBar()#创建一个程序菜单
-        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
-        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
-        self.fileMenu.Append(self.new)#添加菜单项
-
-        self.editMenu = wx.Menu()
-        self.copyItem = wx.MenuItem(self.editMenu, 100, text="copy", kind=wx.ITEM_NORMAL)
-        self.editMenu.Append(self.copyItem)
-        self.cutItem = wx.MenuItem(self.editMenu, 101, text="cut", kind=wx.ITEM_NORMAL)
-        self.editMenu.Append(self.cutItem)
-        self.pasteItem = wx.MenuItem(self.editMenu, 102, text="paste", kind=wx.ITEM_NORMAL)
-        self.editMenu.Append(self.pasteItem)
-
-        self.fileMenu.Append(22, "Edit", self.editMenu)
-        self.fileMenu.AppendSeparator()
-        self.fileMenu.AppendSeparator()#分隔线
-        self.qmi = wx.MenuItem(self.fileMenu, 1, '&amp;Quit\tCtrl+Q')
-        self.fileMenu.Append(self.qmi)
-
-        self.Bind(wx.EVT_MENU, self.OnQuit, id=1)
-
-        self.menubar.Append(self.fileMenu, '&amp;File')
-        self.SetMenuBar(self.menubar)
-
-        self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-
-    def OnRightDown(self, e):
-        self.PopupMenu(MyPopupMenu(self), e.GetPosition())
-
-    def OnQuit(self, e):
-        self.Close()
-
-def main():
-    app = wx.App(False)
-    frm = HelloFrame(None, title='wx.MenuBar 菜单',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy09.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy09.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python os.mknod 运行报错无法创建文件
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-27 10:47:01
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      import os
-    file = os.path.join(os.path.dirname(
-      <strong>
-       file
-      </strong>
-      ),'17python888.txt')
-    os.mknod(file)#运行到此处，就会报错
-     </p>
-     <pre><code># 解开注释，用下边的方法试试
-# with open(file, mode='a',encoding='utf-8') as f:
-#     pass
-</code></pre>
-     <p>
-      前几天因为要创建一个文件，但是osx下边却发生了错误，可以运行上边的代码试试
-     </p>
-     <pre><code>os.mknod(file)#运行到此处，就会报错
-PermissionError: [Errno 1] Operation not permitted
-</code></pre>
-     <p>
-      这个错误是由于linux系统权限不够，这可真是一个坑。
-     </p>
-     <p>
-      那么怎么办?
-     </p>
-     <p>
-      网上查了一下，可以用
-      <code>
-       open()
-      </code>
-      方法，咱试试。
-     </p>
-     <p>
-      通过测试，使用
-      <code>
-       open()
-      </code>
-      方法
-      <code>
-       mode="a"
-      </code>
-      即可搞定文件的创建。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(08)wx.ListBox 下拉列表框
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-27 09:51:07
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      wx.ListBox 下拉列表框
-     </h2>
-     <p>
-      wx.ListBox是以中数据展示的小部件，使用方便简单，可以用来展示比较单一的数据，例如：各种地址，名称列表等。
-这次准备了一个基于wx.ListBox构建的小小通讯录，实现了增删改但是木有查，为什么没有查？因为我没写，就这样了。
-具体效果展示如下：
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181227_7.png"/>
-     </p>
-     <h2>
-      wx.ListBox的创建及一些方法
-     </h2>
-     <p>
-      创建
-     </p>
-     <pre><code>listbox = wx.ListBox(panel,choices=ls)
-</code></pre>
-     <p>
-      ListBox 有些常用的方法，用来处理列表中的数据
-     </p>
-     <pre><code>listbox.Append(text) 添加
-listbox.GetSelection() 获取索引
-listbox.GetString(sel) 通过索引获取字符串
-listbox.Delete(sel) 删除当前索引
-listbox.Insert(renamed, sel) 在当前索引处添加新的值，返回当前索引
-listbox.SetSelection(item_id) 根据索引值选择项
-listbox.Clear() 清空当前列表
-</code></pre>
-     <h2>
-      通讯录的数据保存
-     </h2>
-     <p>
-      作为一个简单的通讯录应该能保存数据，处于简单化处理，我只保存一个文本到目录下，若是需要可以使用数据库。
-通讯录在操作的同时我们要更新保存数据，所以，我建了三个方法，分别处理新建数据文本，打开读取，保存数据。
-分别对应：newFile openFile saveFile,这样配合这几个方法就可以实现一个简单的通讯录了。
-     </p>
-     <p>
-      具体代码如下，可以跑跑看啦：
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy08.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy08.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(07)wxPython Dialog 弹出对话
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-25 13:17:28
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181225_6.png"/>
-     </p>
-     <h2>
-      wxPython dialogs 弹出对话框
-     </h2>
-     <p>
-      程序中经常会遇到弹出对话框询问操作的场景，wxPython dialogs为此提供了应用的支持，
-wxPython dialogs有几种，常用的比如：wx.MessageBox wx.MessageDialog wx.Dialog wx.adv.AboutBox等。
-     </p>
-     <h2>
-      dialog的创建
-     </h2>
-     <p>
-      一般dialog都会配合Button使用，当按钮绑定事件后，在绑定事件的函数中创建应用即可，代码如下：
-     </p>
-     <pre><code>wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
-</code></pre>
-     <p>
-      其它类型的Dialog创建也类似如下代码，其中风格参数如下：
-     </p>
-     <pre><code>flag    meaning
-wx.OK   show OK button
-wx.CANCEL   show Cancel button
-wx.YES_NO   show Yes, No buttons
-wx.YES_DEFAULT  make Yes button the default
-wx.NO_DEFAULT   make No button the default
-wx.ICON_EXCLAMATION show an alert icon
-wx.ICON_ERROR   show an error icon
-wx.ICON_HAND    same as wx.ICON_ERROR
-wx.ICON_INFORMATION show an info icon
-wx.ICON_QUESTION    show a question icon
-</code></pre>
-     <p>
-      可以根据自己的需要进行组合，例如组合YES和NO，yes默认选择，并且加带图标的代码：wx.YES_NO|wx.YES_DEFAULT | wx.ICON_INFORMATION
-     </p>
-     <h2>
-      MessageDialog 获取返回值
-     </h2>
-     <p>
-      当点击对话框上的按钮后窗口就会关闭，我们需要获得关闭后的返回值，可以通过如下代码获得：
-     </p>
-     <pre><code>    dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
-        wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
-    ret = dial.ShowModal()
-    if ret == wx.ID_YES:
-        print("YES")
-    else:
-        print("NO")
-</code></pre>
-     <p>
-      好啦，完整的代码在下边，大家可以跑跑看看。
-     </p>
-     <h2>
-      Dialog和窗口间传递数据
-     </h2>
-     <p>
-      遇到过一个在主窗口弹出Dialog的需求，因为是第一次用wxPython，所以不知道数据如何传送给主窗口，后来网上扒了扒发现了一些答案。
-我这里的解决方案：
-     </p>
-     <ol>
-      <li>
-       先在Dialog窗口中创建类属性，然后通过类属性传递给主窗口
-      </li>
-      <li>
-       Dialog中创建一个属性self.ret=0，当点击按钮的时候设置其值为1，这样判断一下这个值，用来接收数据，如果为0就不接收。
-      </li>
-     </ol>
-     <p>
-      具体可以参考下边的代码
-     </p>
-     <pre><code>import wx
-
-
-class MyDialog(wx.Dialog):
-    def __init__(self, *args, **kw):
-        super(MyDialog, self).__init__(*args, **kw)
-        self.ret = 0
-        hbox = wx.BoxSizer(wx.HORIZONTAL)
-        self.st = wx.TextCtrl(self, wx.ID_ANY, "111")
-        self.bt = wx.Button(self, wx.ID_ANY, "提交数据")
-        self.bt.Bind(wx.EVT_BUTTON,self.onButton)
-        hbox.AddMany([(self.st),(self.bt)])
-        self.SetSizer(hbox)
-
-    def onButton(self,e):
-        self.ret=1
-        self.EndModal(1)
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        # 调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-
-        hbox = wx.BoxSizer(wx.VERTICAL)
-        bt0 = wx.Button(self, 1, "wx.Dialog")
-        bt1 = wx.Button(self, 1, "wx.Dialog")
-        bt2 = wx.Button(self, 1, 'Error')
-        bt3 = wx.Button(self, 1, 'Question')
-        bt4 = wx.Button(self, 1, 'Alert')
-
-        bt0.Bind(wx.EVT_BUTTON, self.onModal0)
-        bt1.Bind(wx.EVT_BUTTON, self.onModal1)
-        bt2.Bind(wx.EVT_BUTTON, self.showMessage1)
-        bt3.Bind(wx.EVT_BUTTON, self.showMessage2)
-        bt4.Bind(wx.EVT_BUTTON, self.showMessage3)
-
-        hbox.AddMany([(bt0, 1, wx.EXPAND | wx.ALIGN_TOP), (bt1, 1, wx.EXPAND), (bt2, 1, wx.EXPAND), (bt3, 1, wx.EXPAND),
-                      (bt4, 1, wx.EXPAND), ])
-        self.SetSizer(hbox)
-
-    def onModal0(self, event):
-        '''模态'''
-        myDialog= MyDialog(None, 22, title="Dialog")
-        myDialog.ShowModal()
-        if myDialog.ret == 1:
-            print(myDialog.st.GetValue())
-        else:
-            print("888888")
-        myDialog.Destroy()
-
-    def onModal1(self, event):
-        '''无模态'''
-        wx.Dialog(self, 1, "Dialog", pos=(100, 100)).Show()
-
-    def showMessage(self, e):
-        smd = wx.MessageDialog(None, "This is a Message Box", "Message",
-                               wx.YES_NO | wx.YES_DEFAULT | wx.ICON_INFORMATION)
-        smd.ShowModal()
-
-    def showMessage1(self, event):
-        dial = wx.MessageDialog(None, 'Download completed', 'Info', wx.OK)
-        ret = dial.ShowModal()
-        if ret == wx.OK:
-            print("OK")
-
-    def showMessage2(self, event):
-        dial = wx.MessageDialog(None, 'Are you sure to quit?', 'Question',
-                                wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
-        ret = dial.ShowModal()
-        if ret == wx.ID_YES:
-            print("YES")
-        else:
-            print("NO")
-
-    def showMessage3(self, event):
-        dial = wx.MessageBox('Download completed', 'Info',
-                             wx.OK | wx.ICON_INFORMATION)
-        ret = dial
-        if ret == wx.OK:
-            print("OK")
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button', )
-    frm.Show()  # 显示窗口
-    app.MainLoop()  # 持续更新窗口
-
-
-if __name__ == '__main__':
-    main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy07.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy07.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       wxPython编程学习笔记(06)wx.ComboBox下拉列表框
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2018-12-24 14:24:56
-      </span>
-      <span class="tag">
-       Python GUI
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181224_2.png"/>
-     </p>
-     <h2>
-      wx.ComboBox下拉列表框
-     </h2>
-     <p>
-      下拉列表框，可以通过下拉列表选择内容，在使用中可以为内容节省不少空间，是GUI中比较常用的小部件。
-     </p>
-     <h2>
-      wx.ComboBox的创建与绑定
-     </h2>
-     <pre><code>    #创建ComboBox
-    l = ["Python","Django","Flask","wxPython","Java"]
-    cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
-    cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
-</code></pre>
-     <p>
-      通过以上方法即可简单的创建
-      <code>
-       ComboBox
-      </code>
-      与绑定事件.
-     </p>
-     <p>
-      具体代码再下边，跑下即可了解。
-     </p>
-     <pre><code>import wx
-
-class HelloFrame(wx.Frame):
-    def __init__(self, *args, **kw):
-        #调用父类的创建方法
-        super(HelloFrame, self).__init__(*args, **kw)
-        pnl = wx.Panel(self)
-        hbox = wx.BoxSizer(wx.VERTICAL)
-
-        #创建ComboBox
-        l = ["Python","Django","Flask","wxPython","Java"]
-        cb = wx.ComboBox(pnl, pos=(20, 20), choices=l,style=wx.CB_READONLY)
-        cb.Bind(wx.EVT_COMBOBOX, self.OnSelect)
-        hbox.Add(cb,0,wx.CENTER|wx.EXPAND,20)
-
-        #创建一个静态文本用来显示上拉列表框选择的内容
-        self.st = wx.StaticText(pnl, label='请点选ComboBox')
-        hbox.Add(self.st,0,wx.CENTER|wx.TOP,20)
-
-
-        pnl.SetSizer(hbox)
-
-    def OnSelect(self,e):
-        s = e.GetString()
-        self.st.SetLabel(s)
-
-
-def main():
-    app = wx.App()
-    frm = HelloFrame(None, title='wxPython Button',)
-    frm.Show()#显示窗口
-    app.MainLoop()#持续更新窗口
-
-
-if __name__ == '__main__':
-        main()
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy06.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy06.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_3.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        4 / 15
-       </button>
-       <a href="list_5.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1199,39 +367,7 @@ if __name__ == '__main__':
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

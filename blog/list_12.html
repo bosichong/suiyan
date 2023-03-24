@@ -1,1063 +1,552 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
-    </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       Python 对象引用与复制 (Python参考手册读书笔记)
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-19 15:51:04
-      </span>
-      <span class="tag">
-       读书笔记
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      Python 对象引用与复制 (Python参考手册读书笔记)
-![Python参考手册读书笔记](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg"/>
-     </p>
-     <h2>
-      通过赋值创建一个副本
-     </h2>
-     <pre><code>a = [1,2,3,4,5]
-b = a
-print(b is a )
-b[2] = -99
-print(a)
-</code></pre>
-     <p>
-      通过控制台打印，我们修改list b中的值，打印a发现值也跟着变化了，说明a与b的引用是同一个对象
-     </p>
-     <h2>
-      浅复制 通过结果可以发现一些不同
-     </h2>
-     <pre><code class="python">c = [11,22,]
-d = list(c)
-print(c is d)
-d.append(33)
-print(c)
-print(d)
-d[1] = 00
-print(c)
-print(d)
-</code></pre>
-     <h2>
-      深复制
-     </h2>
-     <pre><code class="python">import copy
-e = [11,12,13]
-f = copy.deepcopy(e)
-print(e is f)
-f[1] = 78
-print(e)
-print(f)
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/copy/copytest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/copy/copytest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python 字符串格式化(%操作符)及format函数的使用
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-19 15:12:22
-      </span>
-      <span class="tag">
-       读书笔记
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <strong>
-       Python 字符串格式化（%操作符）及format函数的使用,Python参考手册，字符串格式化章读书笔记。
-      </strong>
-      ![Python参考手册](
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/09/timg.jpeg"/>
-     </p>
-     <p>
-      python的字符串操作是程序员编码中频繁使用的技巧，所以熟练掌握是可以影响到你的编码效率地。
-目前比较流行的字符串打印有两种方式（据笔者所知，当然如果还有其它方法，请不吝赐教）：
-     </p>
-     <ul>
-      <li>
-       一种是%符号操作，
-      </li>
-      <li>
-       一种是format函数高级字符串格式化，
-      </li>
-     </ul>
-     <p>
-      两种各有特点，据说format的性能更好。
-     </p>
-     <h2>
-      %操作符的使用
-     </h2>
-     <pre><code class="python">
-a = 'hello'
-b = 588
-c = 12.7896
-d = {'x':98, 'y':235.4444, 'z':'world',}
-print("a:%s" % a)
-# 10 和 2 是间隔的空格长度,小数点后的数字可以用来设置浮点数显示的精度，四舍五入，—号表示左对齐，+号是右对齐。
-print("%-10d %2.3f" % (b, c)) 
-print("%(x)-5d %(y).2f %(z).4s" % d)#打印字典中的值,.4s 表示要打印四个字符
-#vars() 函数，它将返回当前定义的所有变量的字典
-print ("%(a)s %(b)d %(c).2f %(d)s)" % vars())
-</code></pre>
-     <h2>
-      format函数高级字符串格式化
-     </h2>
-     <pre><code class="python">print("{0} {1} {2}".format(a,b,c))
-print("{0},{b},{c}".format(a,b=b,c=c))
-print("{0[x]} {0[y]} {0[z]}".format(d))
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第12页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
 
-print("{0:&gt;10.4s} {1:d}".format(a,b))# &lt;&gt;^ 这几个符号用来设置排版间隔
-print("{0:10b}".format(b))#二进制整数
-print("{0:,}".format(123456789))#,号用来做金额的千位分隔符。
-</code></pre>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/str/formatstr.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/str/formatstr.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       关于本站封面头部大图
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-18 14:19:35
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       看到喜欢的图片就会换上，不知道为什么会喜欢这些偏暖的色调，记得很久以前的有段时间，也曾偏爱冷色调调，可能偏暖色调更LOMO些。
-      </em>
-     </p>
-     <h2>
-      2017/09/18
-     </h2>
-     <p>
-      本图来自bing每日壁纸
-     </p>
-     <p>
-      戈尔代小镇是普罗旺斯地区最美丽的小镇之一，依山头而建，是众多被日光洗的发白的石头建筑与深深浅浅的绿色植物相拼而成的村庄。每年那里都会入选法国最美丽的小镇之一。从外到内小镇戈尔代给人的印象就是石头建筑，围墙，房子，教堂几乎都是石头堆砌而成，壮观而真实！
-     </p>
-     <p>
-      <img alt="戈尔代小镇是普罗旺斯地区最美丽的小镇之一" src="assets/images/media/upload/2017/09/BingWallpaper-2017-09-17.jpg"/>
-     </p>
-     <h2>
-      2017/10/09
-     </h2>
-     <p>
-      windows10美丽的海边风景
-     </p>
-     <p>
-      先前的顶部大图太闪眼睛了。。。换个清爽些的。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/6fb13e4db9f043b276e06f340cbdff6d.jpg"/>
-     </p>
-     <h2>
-      2017/11/07
-     </h2>
-     <p>
-      windows10 秋天
-     </p>
-     <p>
-      这个秋天真的很无聊，是个多事之秋。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/11/bing-021.jpg"/>
-     </p>
-     <h2>
-      2017/11/25
-     </h2>
-     <p>
-      网上搜索来的图片
-     </p>
-     <p>
-      冬天来了，我们期待着下雪。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/11/timg.jpg"/>
-     </p>
-     <h2>
-      2017/11/25
-     </h2>
-     <p>
-      《星月夜》（The Starry Night）是荷兰后印象派画家文森特·梵·高于1889年在法国圣雷米的一家精神病院里创作的一幅油画，是梵高的代表作之一，现藏纽约现代艺术博物馆。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/11/1432084191361509.jpeg"/>
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       Python3 datetime模块的时间操作
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-18 13:23:43
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       出去旅游一个星期刚刚回来，上周是什么也没有更新，当我们要去做一件自己非常喜欢而又美好的事，就得去做更多不喜欢不美好的事来换取这个机会。时间是有限的，所以应当珍惜当下！今天就来复习一下Python 中有关时间的操作
-      </em>
-     </p>
-     <h2>
-      datetime 模块
-     </h2>
-     <p>
-      导入模块
-     </p>
-     <pre><code>from datetime import *
-</code></pre>
-     <p>
-      获取当前时间:
-     </p>
-     <pre><code>now = datetime.now()
-td = datetime.today()
-</code></pre>
-     <p>
-      格式化打印时间 格式字符串参见后边的附录。
-     </p>
-     <pre><code>format = "%Y-%m-%d %H:%M:%S"
-print('今天的日期：'+ now.strftime(format))
-</code></pre>
-     <p>
-      根据字符串返回datetime对象
-格式化的字符串应与前边的时间对应。比如："2017-09-18 13:02:34", "%Y-%m-%d %H:%M:%S"
-     </p>
-     <pre><code>print('strptime:{}'.format(datetime.strptime("2017-09-18", "%Y-%m-%d")))
-</code></pre>
-     <p>
-      时间对象转换成时间戮
-     </p>
-     <pre><code>tmp = td.timestamp()
-print('timestamp: {}'.format(tmp))
-</code></pre>
-     <p>
-      根据时间戮转换成datetime对象
-     </p>
-     <pre><code>print('fromtimestamp:{}'.format(datetime.fromtimestamp(tmp)))
-</code></pre>
-     <p>
-      星期几？0是星期一
-     </p>
-     <pre><code>print(now.weekday()+1)
-</code></pre>
-     <p>
-      datetime 支持的最大及最小时间单位
-     </p>
-     <pre><code>print(datetime.max)
-print(datetime.min)
-</code></pre>
-     <p>
-      打印datetime对象包含的一个tuple
-     </p>
-     <pre><code>for it in now.timetuple():
-    print(it)
-</code></pre>
-     <h2>
-      附录：格式字符串
-     </h2>
-     <ul>
-      <li>
-       datetime. strftime (format)
-      </li>
-      <li>
-       %a 星期的简写。如 星期三为Web
-      </li>
-      <li>
-       %A 星期的全写。如 星期三为Wednesday
-      </li>
-      <li>
-       %b 月份的简写。如4月份为Apr
-      </li>
-      <li>
-       %B月份的全写。如4月份为April
-      </li>
-      <li>
-       %c:  日期时间的字符串表示。（如： 04/07/10 10:43:39）
-      </li>
-      <li>
-       %d:  日在这个月中的天数（是这个月的第几天）
-      </li>
-      <li>
-       %f:  微秒（范围[0,999999]）
-      </li>
-      <li>
-       %H:  小时（24小时制，[0, 23]）
-      </li>
-      <li>
-       %I:  小时（12小时制，[0, 11]）
-      </li>
-      <li>
-       %j:  日在年中的天数 [001,366]（是当年的第几天）
-      </li>
-      <li>
-       %m:  月份（[01,12]）
-      </li>
-      <li>
-       %M:  分钟（[00,59]）
-      </li>
-      <li>
-       %p:  AM或者PM
-      </li>
-      <li>
-       %S:  秒（范围为[00,61]，为什么不是[00, 59]，参考python手册~_~）
-      </li>
-      <li>
-       %U:  周在当年的周数当年的第几周），星期天作为周的第一天
-      </li>
-      <li>
-       %w:  今天在这周的天数，范围为[0, 6]，6表示星期天
-      </li>
-      <li>
-       %W:  周在当年的周数（是当年的第几周），星期一作为周的第一天
-      </li>
-      <li>
-       %x:  日期字符串（如：04/07/10）
-      </li>
-      <li>
-       %X:  时间字符串（如：10:43:39）
-      </li>
-      <li>
-       %y:  2个数字表示的年份
-      </li>
-      <li>
-       %Y:  4个数字表示的年份
-      </li>
-      <li>
-       %z:  与utc时间的间隔 （如果是本地时间，返回空字符串）
-      </li>
-      <li>
-       %Z:  时区名称（如果是本地时间，返回空字符串）
-      </li>
-      <li>
-       %%:  %% =&gt; %
-      </li>
-     </ul>
-     <h2>
-      相关参考
-     </h2>
-     <p>
-      <a href="http://python.usyiyi.cn/documents/python_352/library/datetime.html#strftime-strptime-behavior">
-       官方文档：datetime — 基本日期和时间类型
-      </a>
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/datetime/datetimetest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/datetime/datetimetest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       python3函数学习笔记简单总结
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-09 09:27:49
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路
-      </em>
-     </p>
-     <h2>
-      函数的定义，Python 定义函数使用 def 关键字
-     </h2>
-     <pre><code class="python">def hello():
-    '''定义一个hello打印的函数'''
-    return 'hello world'
 
-## 使用函数
 
-print(hello())
-</code></pre>
-     <h2>
-      有参数并有返回值的函数
-     </h2>
-     <pre><code class="python">def add(x, y):
-    return x+y
-print(add(2,5))
-</code></pre>
-     <h2>
-      任意参数有返回值
-      <em>
-       为tuple
-      </em>
-      *为list
-     </h2>
-     <pre><code class="python">def rst_a(*k, **s):
-    rst = 0
-    for v in k :
-        rst += v
-    return rst,s
-print(rst_a(1,2,3,4,aa='aa',bb='bb'))
-</code></pre>
-     <h2>
-      有意思的lambda
-     </h2>
-     <pre><code>l = lambda x, y : x + y
-print(l(2,8))
-</code></pre>
-     <h2>
-      装饰器语法糖
-     </h2>
-     <p>
-      在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(
-      <em>
-       args,
-      </em>
-      *kwargs)可变参数。
-     </p>
-     <pre><code class="python">import time
-
-def t(func):
-    '''定义一个程序运行时间计算函数'''
-    def wrapper(*args, **kwargs):
-        start = time.time()#起始时间
-        func(*args, **kwargs)#要执行的函数
-        end = time.time()#结束时间
-        print('程序运行时间:{:.2f}ms'.format((end-start)*1000))
-    return wrapper
-
-def log(func):
-    '''一个打印函数运行日志的方法'''
-    def wrapper(*args, **kwargs):
-        print('函数开始运行')
-        func(*args, **kwargs)
-        print('函数运行结束')
-    return wrapper
-
-@log #打印日志
-@t  #统计程序运行时间
-def myfunc(x,y):
-    '''打印从x到y的数值'''
-    for i in range(x,y):
-        print(i)
-
-myfunc(3,6)
-
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">
-        Python 函数
-       </a>
-      </li>
-      <li>
-       <a href="http://python.jobbole.com/82344/">
-        Python 装饰器
-       </a>
-      </li>
-      <li>
-       <a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">
-        理解Python中的装饰器
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       PythonINI配置文件读写的简单方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-06 10:19:07
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       .ini 文件是Initialization File的缩写，即初始化文件，是windows的系统配置文件所采用的存储格式，统管windows的各项配置，一般用户就用windows提供的各项图形化管理界面就可实现相同的配置了。但在某些情况，还是要直接编辑ini才方便，一般只有很熟悉windows才能去直接编辑。
-      </em>
-     </p>
-     <p>
-      我们来看下python3中如何读取和保存ini文件:
-     </p>
-     <h2>
-      引入模块
-     </h2>
-     <pre><code>import os
-from configparser import ConfigParser
-</code></pre>
-     <p>
-      os模块不解释，读取和保存文件及文件目录操作必须。ConfigParser 是操作ini文件的必须模块。
-     </p>
-     <h2>
-      返回一个ini文件对象
-     </h2>
-     <pre><code class="python">def readINI(file_path):
-    """ ini文件读取，返回一个INI配置对象 """
-    cfg = ConfigParser()
-    cfg.read(file_path, encoding='utf-8')
-    return cfg
-</code></pre>
-     <p>
-      我们读取一个ini文件的内容，创建一个ConfigParser对象来进行对其操作。
-     </p>
-     <pre><code class="python">def main():
-    ini_file=os.path.join(os.path.dirname(__file__),'config.ini')#拼装配置文件目录
-    c = readINI(ini_file)#读取加载ini文件配置
-    #创建section及选项
-    # c.add_section('cc')
-    # c.set('cc','a','aa')
-    # c.set('cc','b','bb')
-    # c.set('cc','c','cc')
-    for s in c.sections():#返回一个空间列表
-        print('[{0}]'.format(s))
-        for v in c.options(s):#打印列表下所有选项
-            print('{0}={1}'.format(v,c.get(s,v)))
-    #修改ini中的选项
-    c.set('cc','a','ccc')#修改最后一组参数就会修改ini文件中对应的选项值
-    #再次读取
-    c.get('cc','a')
-    #保存文件
-    # ini = open(ini_file, mode='w', encoding='utf-8')
-    # c.write(ini)
-    # ini.close
-    with open(ini_file, mode='w', encoding='utf-8') as ini:
-        c.write(ini)
-if __name__ == '__main__':
-    main()
-
-</code></pre>
-     <ul>
-      <li>
-       configparser 还有一些其它方法，可以参考：
-      </li>
-      <li>
-       <a href="http://python.usyiyi.cn/translate/python_352/library/configparser.html">
-        官方文档configparser
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/ini">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/ini">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python open()函数文件打开、读、写操作总结
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-05 13:36:55
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       在编程和计算机的使用中，与文件打交道是必不可少的，每天都要打开读取写入很多的文件，所以了解Python的文件打开、读、写操作是非常有必要的。
-      </em>
-     </p>
-     <h2>
-      为什么是with open()?
-     </h2>
-     <p>
-      一般的文件打开方法：
-     </p>
-     <pre><code class="python">f = open(os.path.join(os.path.dirname(__file__),'17python.txt'))
-s = f.readline();# 一次读取一行内容
-print(s)
-f.close() #关闭流，如果是写入文件，不关闭流，可能会造成写入失败或是内容丢失。
-</code></pre>
-     <p>
-      使用with open() as f :
-     </p>
-     <pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt')) as f :
-    s = f.readline()
-    print(s)
-</code></pre>
-     <p>
-      with open的好处是，不用再使用close()方法，避免因忘记close()方法产生的错误。
-     </p>
-     <p>
-      open方法中的常用参数,open函数有很多的参数，常用的是file，mode和encoding，name就不解释了，文件名字符串，encoding='utf-8'，用来指定打开或写入文件的编码。
-    open(name[,mode[,buffering]])
-其中mode 指定文件打开方式。
-     </p>
-     <p>
-      读写模式的类型有：
-     </p>
-     <ul>
-      <li>
-       rU 或 Ua 以读方式打开, 同时提供通用换行符支持 (PEP 278)
-      </li>
-      <li>
-       w     以写方式打开，
-      </li>
-      <li>
-       a     以追加模式打开 (从 EOF 开始, 必要时创建新文件)
-      </li>
-      <li>
-       r+     以读写模式打开
-      </li>
-      <li>
-       w+     以读写模式打开 (参见 w )
-      </li>
-      <li>
-       a+     以读写模式打开 (参见 a )
-      </li>
-      <li>
-       rb     以二进制读模式打开
-      </li>
-      <li>
-       wb     以二进制写模式打开 (参见 w )
-      </li>
-      <li>
-       ab     以二进制追加模式打开 (参见 a )
-      </li>
-      <li>
-       rb+    以二进制读写模式打开 (参见 r+ )
-      </li>
-      <li>
-       wb+    以二进制读写模式打开 (参见 w+ )
-      </li>
-      <li>
-       ab+    以二进制读写模式打开 (参见 a+ )
-      </li>
-     </ul>
-     <h2>
-      读取及写入文件
-     </h2>
-     <ul>
-      <li>
-       read()方法用来读取文件
-      </li>
-      <li>
-       write()方法用来写入文件
-      </li>
-     </ul>
-     <h2>
-      关于Python读取大文件内容丢失
-     </h2>
-     <p>
-      数据保存 一般保存没有什么大问题，主要是读取。 如果保存后是字符串,之前是list 或是 元组（Tuples）保存后就是字符串了，再读取就需要转换成对应的容器，这里用eval(s)函数方法，效果还是比较不错的。 还有就是大文本在读取的时候如果一次用python read()全部读取的时候会出现莫明的无反应及读取内容不全的情况 ，这里采用分段读取比较好些：
-     </p>
-     <pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt'), mode='r',encoding='utf-8') as f:
-    s = ''
-    while True:  
-        temp = f.read(100)#分段读取，可以解决读取大文件时无法读取的奇怪问题
-        if temp == '':  
-            break
-        s += temp
-    print(s)
-    f.close() 
-</code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.jb51.net/article/58002.htm">
-        Python open()文件处理使用介绍
-       </a>
-      </li>
-      <li>
-       <a href="http://python.usyiyi.cn/documents/python_352/library/io.html">
-        官方文档 io - 使用流的核心工具
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python os.path模块中一些常用方法的整理总结
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-04 14:37:17
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法
-      </em>
-     </p>
-     <h2>
-      os.path 模块
-     </h2>
-     <p>
-      首先，导入一些必须的模块
-     </p>
-     <pre><code>import os
+<hgroup>
+    <h2>Python生成器yield应用实例——监控日志</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-22 09:19:40</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><code>Python</code>生成器<code>yield</code>是编写基于处理管道，流或数据流程序的一种极其强大的方式，在《Python参考手册》中有一则实例非常简单实用，略加修改，分享一下给大家。</p>
+<h2>需要分析</h2>
+<p>假设服务器有一个日志文件，每隔一秒都会更新日志的内容，日志每行中都有一组类似：<code>2017-12-21 14:07:26.471691 99123</code>数据被写入日志。
+<strong>我们的目的是分析日志中的数字如果大于5000就要打印出来。</strong>
+这样来看，我们需要一个程序负责模拟日志写入，另一个程序负责分析日志打印数据。</p>
+<h2>模拟日志写入</h2>
+<p><code>server_log.py:</code></p>
+<pre><code>import random
+from datetime import *
+import os
 import time
+
+
+def server_log():
+    # 生成模拟的日志数据
+    server_int = random.randint(1,99999)#生成需要的随机数
+    server_date = datetime.now()#获取当前系统时间
+    return str(server_date) + ' ' + str(server_int)#拼装日志字符串
+
+
+while True:
+    #模拟系统写入日志
+    #打开日志文件并写入日志
+    with open(os.path.join(os.path.dirname(__file__),'server_log.log'),'at') as f :
+        s = server_log()
+        print(s)
+        f.write(s + '\n')
+    time.sleep(1)
 </code></pre>
-     <h2>
-      路径操作的常用方法：
-     </h2>
-     <pre><code class="python">print(__file__) #当前文件的完整地址
-print(os.path.abspath('ospathtest.py'))#当前文件的完整地址
-print(os.path.dirname(__file__)) #当前目录所属地址
-print(os.path.isdir(os.path.dirname(__file__)))# 判断是否为路径
-print(os.path.isfile(os.path.dirname(__file__)))# 判断是否为文件
+<p>上边的代码我已经添加了相关的注释，这样我们就有了一个日志文件，每秒会有一第记录插入到日志中。</p>
+<h2>利用生成器yield解析日志</h2>
+<p>生成器可以返回一个迭代的流式的对象，我们可以通过这种方式便捷的获得相关数据，而且代码也更清晰易懂</p>
+<p><code>tail.py</code> 代码如下：</p>
+<pre><code>import time
+
+def tail(f):
+    f.seek(0,2)#移动到文件尾部。
+    while True:
+        line = f.readline()
+        if not line :
+            time.sleep(1)
+            continue
+        yield line
+
+def grep(lines):
+    for l in lines:
+        k = int(l.split()[2])
+        if k &gt;50000:
+            yield l
+
+serverlog = tail(open('server_log.log'))
+lines = grep(serverlog)
+
+for line in lines:
+    print(line)
 </code></pre>
-     <h2>
-      组装及创建目录
-     </h2>
-     <pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
-os.mkdir(p) # 创建目录
-time.sleep(3)# 暂停3秒，这样就可以在左侧目录中看到新建的'aaa'目录了
-os.rmdir(p)
-print(p)# 组装目录
-print(os.path.split(__file__))# 分割路径与文件名
+<p>我们运行两个文件看下效果：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/12/QQ20171222-090710-HD1.gif" /></p>
+<p>代码虽然简单，但值得细细品味，感受python的简约与强大吧。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/deftest">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/deftest">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>这是一个快速学习JavaScript的学习笔记1</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-21 10:54:19</small> 标签:
+        
+        
+        <mark>JavaScript</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>JavaScript的代码写在哪里？</h2>
+<p><code>JavaScript</code>变量名区分大小写。</p>
+<p><code>;</code>用来分隔语句，如果语句是一行的情况下，可以省略（有些情况下是不行的）。</p>
+<p><code>HTML</code>代码中嵌入 <code>&lt;script&gt;  &lt;/script&gt;</code></p>
+<p>外部引用：<code>&lt;script src="./js/main.js"&gt;&lt;/script&gt;</code>，放在<code>&lt;head&gt;</code>或<code>&lt;body&gt;</code>标签内。</p>
+<h2><p id='m1'>语法结构</p></h2>
+<h3>注释</h3>
+<p>```JavaScript
+// 单行注释</p>
+<p>/<em>
+</em>这是一段注释
+*/</p>
+<p>/<em> 这也是一段注释 </em>/
+```</p>
+<h3>数据类型</h3>
+<p>包括数值，字符串，布尔和对象(object)，还有两个特殊类型如下：</p>
+<p>```JavaScript</p>
+<p>null //空
+undefined //未定义变量</p>
+<p>```</p>
+<p>JavaScript变量是无类型的，可以被赋予任何类型的值。</p>
+<h3>数字</h3>
+<p>```
+11
+10090</p>
+<p>0Xff//十六进制</p>
+<p>3.14
+1.11e23</p>
+<p>```</p>
+<h3>算术运算</h3>
+<p>```</p>
+<p>1+2
+8-4
+2*5
+7/4
+9%2 //取余数</p>
+<p>i++
+j--</p>
+<p>```</p>
+<h3>文本字符串</h3>
+<p>```
+JavaScript是一种面向对象的语言\ //（\）可以换行
+// 也可以用 \n 换行。</p>
+<p>var s = "hello world"+"你好 世界"
+s.length //字符串长度
+```</p>
+<p>字符串可以用""或'',当在HTML中编写JavaScript的时候，可以使用其中的一种来确认引号的风格。用<code>\</code>来转义一些特殊字符。</p>
+<h3>布尔值</h3>
+<p><code>true flase</code></p>
+<h3><p id='m2'>声明变量、常量</p></h3>
+<p>```
+var a;
+var b ,c;
+var d=1,f=77,g='abc';
+var kk;//如果变量没有指定初始值，它的初始值就是undefined</p>
+<p>var glo = 44; //全局变量不可删除
+glo1 = 22; //可以删除的全局变量。
+delete glo1;//删除</p>
+<p>//见 test.html test.js
+const NB998 = 'nb998';
+document.querySelector('.aa').textContent = NB998;</p>
+<p>```</p>
+<h3>eval()</h3>
+<p>出于JavaScript安全，不建议使用<code>eval()</code></p>
+<p>```
+eval("4+8") // 12</p>
+<p>```</p>
+<h3>三元运算符</h3>
+<p>?左边是布尔条件，右边是可选择的结果,用<code>:</code>分隔开。</p>
+<p>```
+var x = -8;
+alert(x &gt; 0 ? x : -x) //求x的绝对值 结果为8</p>
+<p>```</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>这是一个快速学习JavaScript的学习笔记0</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-12-20 10:53:19</small> 标签:
+        
+        
+        <mark>JavaScript</mark>
+        
+    </h3>
+</hgroup>
+<p><h2><span id="m1">JavaScript 是脚本语言</span></h2>
+<p>JavaScript 是一种轻量级的编程语言.
+JavaScript 是可插入 HTML 页面的编程代码。
+JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。
+JavaScript 很容易学习。</p>
+<h2><span id="m2">JavaScript开发环境</span></h2>
+<p>以前我在网上看到一些初级编程的教程，经常有人写到：新手敲代码要用记事本手打，这样学习印象深刻！
+用记事本敲代码真的能是人印象深刻？但是我想愉快的学习不可以吗？答案当然是True了。
+个人目前认为最好用的JavaScript IDE 就是：Visual Studio Code，简称VS code</p>
+<p><img alt="" src="assets/images/Snip20191207_2.png" /></p>
+<h2><span id="m3">推荐一些VS code的JS相关插件</span></h2>
+<p><img alt="" src="assets/images/Snip20191207_3.png" /></p>
+<p>插件的一些功能基本为：代码美化，HTML JavaScript代码片段及提示
+其中Live Server 是一个实时简易web服务器，用来预览HTML和JS很方便了，浏览器推荐Firefox'</p>
+<p><img alt="" src="assets/images/Snip20191207_4.png" /></p>
+<p>好了，有了这些好工具，我们可以开始愉快的学习JavaScript了！'</p></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>听说存储数据Python与SQLite3更配哦！</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-11-16 17:34:15</small> 标签:
+        
+        
+        <mark>数据库</mark>
+        
+    </h3>
+</hgroup>
+<p><p>曾经以为数据库自己一定需要大的，好的，功能多的，处理数据快的，迸发牛的，现在想想就象上小学时时常想：以后考大学是北大还是清华呢？后来才发现自己真特么多虑了。
+如果你只是个人或是小型的应用，我这里隆重的推荐给你SQLite这个迷你型的数据库。</p>
+<h2>SQLite</h2>
+<p>SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite 是在世界上最广泛部署的 SQL 数据库引擎。SQLite 源代码不受版权限制。
+是不是很兴奋？没有其它数据库的安装配置繁琐步骤，没有占用你吃紧的内存，最重要的是功能一样大而全而且免费不要钱。</p>
+<h2>SQLite安装</h2>
+<p>几乎所有版本的 Linux 操作系统都附带 SQLite，所以win党们请自行在官网上下载安装即可。</p>
+<pre><code>➜  ~ sqlite3 
+SQLite version 3.8.10.2 2015-05-20 18:17:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite&gt;
 </code></pre>
-     <h2>
-      os.path中的一些is get方法
-     </h2>
-     <pre><code class="python">path = __file__
-print(os.path.getatime(path))  #返回最后一次进入此path的时间。
-print(os.path.getmtime(path))  #返回在此path下最后一次修改的时间。
-print(os.path.getctime(path))  #返回path的大小
-print(os.path.getsize(path))  #返回文件大小，如果文件不存在就返回错误
-print(os.path.isabs(path))  #判断是否为绝对路径
-print(os.path.isfile(path))  #判断路径是否为文件
-print(os.path.isdir(path))  #判断路径是否为目录
-print(os.path.islink(path))  #判断路径是否为链接
-print(os.path.ismount(path))  #判断路径是否为挂载点（）
+<p>通过终端输入sqlite3即可验证数据库是否安装成功！</p>
+<h2>python中使用sqlite3</h2>
+<p>通过Python结合sqlite3实现一个简单的个人备忘录，简单了解一下在Python中是如何操作数据库的。
+在Python中操作sqlite很简单，引入sqlite3模块，就可以开始进行数据库的编程之旅了。</p>
+<h2>创建数据库</h2>
+<pre><code>import sqlite3#引入模块
+import os
+from datetime import *
+print(os.path.join(os.path.dirname(__file__), 'memorandum.db'))
+conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'memorandum.db'))#在当目录下创建数据库
+print('备忘录数据库创建成功！')
 </code></pre>
-     <h2>
-      相关参考
-     </h2>
-     <p>
-      <a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">
-       os.path — 路径操作
-      </a>
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_11.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        12 / 15
-       </button>
-       <a href="list_13.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
+<h2>创建表及字段</h2>
+<p>cursor()将创建一个cursor对象，将在Python数据库编程中用到。
+cursor.execute()将处理操作与数据库相关的几乎所有命令。</p>
+<pre><code>c = conn.cursor()#创建一个cursor对象
+# 创建表
+c.execute('''create table tab(
+    id integer not null primary key autoincrement,
+    title char(50),
+    content text not null,
+    c_date text);''')
+print('数据表创建成功！')
+conn.commit()#提交事务
+conn.close()#关闭连接
+</code></pre>
+<p>通过以上代码就可以在数据库中创建一个表了，如果你不太习惯在代码中创建表，你可以使用DBeaver,操作简单方便人性化，是编写数据库命令，查看数据库表结构，备份数据之良品。
+有了数据表，我们就可以对表进行增删改查了。
+sqlite中的sql语句和大部分数据库操作语名是相同的，如果你有过其它数据库操作的基础，那么使用sqlite就会非常简单了</p>
+<h2>插入数据</h2>
+<pre><code>title = '测试标题'
+content = '插入数据测试。'
+format = "%Y-%m-%d %H:%M:%S"
+now = datetime.now().strftime(format)#创建当前时间字符串
+sql = "insert into tab (id,title, content, c_date) values (NULL,'{0}','{1}','{2}')".format(title,content,now)
+print(sql)
+c.execute(sql)
+conn.commit()
+conn.close()#关闭连接
+</code></pre>
+<h2>批量插入数据</h2>
+<p>python往sqlite3插入数据的sql语句支持'?'占位符，这样我们很方便的可以批量插入数据。</p>
+<pre><code># 准备10000条数据插入
+for i in range(10000):
+    format = "%Y-%m-%d %H:%M:%S"
+    now = datetime.now().strftime(format)#创建当前时间字符串
+    c.execute('insert into tab (id,title, content, c_date) values(?,?,?,?)',(None,str(i),str(i),now))
+conn.commit()#提交事务
+conn.close()
+</code></pre>
+<h2>删除数据</h2>
+<pre><code>sql = "delete from tab where id = 2"#拼装sql语句
+c.execute(sql)#执行删除
+conn.commit()
+conn.close()
+</code></pre>
+<p>执行上边的代码，发现id为2的数据已经被删除。
+<img alt="输入图片说明" src="assets/images/media/upload/2017/11/Snip20171116_11.png" /></p>
+<h2>更新数据</h2>
+<pre><code>sql = "update tab set title='Boy' where id = 20004"
+c.execute(sql)
+conn.commit()
+conn.close()
+</code></pre>
+<h2>查询数据</h2>
+<pre><code>sql = "select * from tab"
+l = c.execute(sql)
+for s in l :
+    print(s)
+conn.close
+</code></pre>
+<p>运行代码后可以看到终端输出：
+<img alt="输入图片说明" src="assets/images/media/upload/2017/11/Snip20171116_12.png" /></p>
+<p>其它查询只是sql语句的不同，这里暂时不再测试了，有兴趣的可以查阅sql编程相关资料。
+综合来说，<code>python</code>与<code>sqlite3</code>联合使用真是很方便，是数据采集入库处理查询必备哇。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/sqlite3">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/sqlite3">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>如何快速的复习学习过的Python</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-11-07 16:19:22</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p>最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的<code>python</code>呢？</p>
+<h2>语法/变量/表达式</h2>
+<p>也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。</p>
+<h2>九九乘法表</h2>
+<p>快速复习<code>for</code>及<code>print format</code>等函数的用法。</p>
+<pre><code>for i in range(1,10):
+    for j in range(1,i+1):
+        print("{}X{}={}".format(i,j,i*j), end=' ')
+    print()
+</code></pre>
+
+<h2>一摞<code>Python</code>风格的纸牌</h2>
+<p>在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
+Python3 扑克牌
+<code>collections.namedtuple</code>这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色</p>
+<pre><code>import collections
+from random import choice
+Card = collections.namedtuple('Card',['rank','suit'])
+#创建一副扑克牌的类
+class Cards:
+    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
+    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
+
+    def __init__(self):
+        '''创建一副扑克牌'''
+        self._cards = [Card(rank,suit) for suit in self.suits
+                                       for rank in self.ranks] + ['King','Queen']
+    def __len__(self):
+        return len(self._cards)
+    def __getitem__(self,position):
+        return self._cards[position]
+
+deck = Cards()#创建一副扑克牌
+print(len(deck))#打印有多少张
+#打印所有纸牌
+for i in range(len(deck)):
+    print(deck[i])
+print(choice(deck))#随机抽取一张纸牌
+</code></pre>
+
+<p>我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子</p>
+<h2>简单的复利计算</h2>
+<pre><code>p = 10000 #初始金额
+rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
+days = 100
+
+day = 1
+while day <= days :
+    p = p * (1+rate)#复利，余额宝是每天的利滚利
+    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
+    day += 1
+</code></pre>
+
+<p>通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_11.html" role="button" class="outline">Prev</a></li>
+    <li><small>12 / 23</small></li>
+    <li><a href="list_13.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1072,39 +561,7 @@ print(os.path.ismount(path))  #判断路径是否为挂载点（）
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

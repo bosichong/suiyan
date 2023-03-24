@@ -1,1792 +1,477 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第13页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>python中导入不同目录中的自定义模块/class/函数/方法</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-27 10:37:17</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p>前几天在封装<code>PY_RPG</code>框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。</p>
+<h2>包和模块导入的需求</h2>
+<p>假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。</p>
+<pre><code>M_TEST = 888
+def print_text():
+    print('这a.py下的一个打印文字函数')
+</code></pre>
+<p>现在我们引入测试</p>
+<pre><code>import a.a
+a.print_text()
+</code></pre>
+<p>ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
+如果是在同一目录，我们直接<code>import a</code>就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到<code>sys.path.append()</code></p>
+<pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
+</code></pre>
+<p>打印后，我们会发现很多目录，<code>python</code>加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
+那么我们如何把自己的文件加到上边的目录里？有几种方法：</p>
+<ul>
+<li>通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。</li>
+<li>复制文件到上边的目录中，有些不方便，不推荐</li>
+<li><code>sys.path.append()</code>把目录加进索引，方便python搜索，推荐</li>
+</ul>
+<p>那么我们来试试吧</p>
+<h2>如何优雅的获得目录地址？</h2>
+<p>如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
+这时我想到了<code>Django</code>配置文件中有一段代码</p>
+<pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+</code></pre>
+<p>我们理解一下这段代码，<code>__file__</code>表示当前.py文件，<code>os.path.abspath(__file__)</code> 表示当前.py文件的绝对地址，<code>dirname</code>获得上一层目录地址，
+那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试</p>
+<pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
+/Users/mac/PycharmProjects/PythonStudy/b
+/Users/mac/PycharmProjects/PythonStudy
+</code></pre>
+<p>可以看到根目录地址已经得到了，然后通过<code>os.path.join()</code> 就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。</p>
+<pre><code>import os 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
+T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
+print(T_DIR)
+sys.path.append(T_DIR)
+import a
+print(a.M_TEST)
+a.print_text()
+</code></pre>
+<h2>本文源码下载： a b 两个目录下为相关源文件</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>基于Python、Tk构建的可视化目录文件同步助手</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-26 15:04:15</small> 标签:
+        
+        
+        <mark>站长源创</mark>
+        
+    </h3>
+</hgroup>
+<p><p>之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png" /></p>
+<h2>功能需求</h2>
+<p>之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
+之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
+并且能把比较后的结果复制到备份目录中进行备份。</p>
+<h2>需求分析</h2>
+<p>从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
+技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。</p>
+<h2>逻辑分析</h2>
+<p>通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
+为此，我创建了一个目录比较类，专门负责比较目录与文件。
+此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
+其实本程序中，目录与文件的分析是重要部分：</p>
+<ul>
+<li>先判断根目录中不相同的目录与文件，然后分别记录。</li>
+<li>如果有相同的目录，使用递归比较这二个相同的目录。</li>
+<li>最后分别创建目录，复制文件到目标目录中。</li>
+</ul>
+<h2>Tk Button传参方法</h2>
+<p>在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda</p>
+<pre><code>command=lambda: def(参数1, 参数2)
+</code></pre>
+<p>这样即可达到函数传参的实现。</p>
+<h2>目录与文件的操作</h2>
+<p>通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。</p>
+<h2>本文源码下载</h2>
+<ul>
+<li><a href="https://github.com/bosichong/PyDirectoryComparison">github</a></li>
+<li><a href="https://gitee.com/J_Sky/PyDirectoryComparison">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-23 15:51:11</small> 标签:
+        
+        
+        <mark>pygame</mark>
+        
+    </h3>
+</hgroup>
+<p><p>游戏中绘制圆及圆形的轨迹需求还是不少的，而且很多地方都需要用到圆及弧度的理论，如果想做些游戏的话，必须熟练掌握这些基本知识。</p>
+<h2>一些知识点</h2>
+<ul>
+<li>radius 圆的半径</li>
+<li>diameter 圆的直径</li>
+<li>angle 角度</li>
+<li>一个圆的完整的弧度 PI*2=6.28</li>
+<li>1弧度的角度值为 360/6.28=57.3248</li>
+<li>1度的弧度值为 6.28/360=0.0174</li>
+<li>math.degrees(x)将角度x从弧度转换为度。</li>
+<li>math.radians(x)将角度x从度转换为弧度。</li>
+<li>math.sin(x)返回x弧度的正弦值。</li>
+<li>math.cos(x)返回x弧度的余弦值。</li>
+</ul>
+<h2>圆周上点的坐标</h2>
+<pre><code>x = math.cos(math.radians(angle)) * (radius)
+y = math.sin(math.radians(angle)) * (radius）
+</code></pre>
+<p>如果不想深入了解的话，只需要记住，我们需要角度，即可求得圆周上的坐标值，对就上边的函数解释应该可以理解上边的python语句的含意。</p>
+<h2>实例</h2>
+<p>没有比绘制一个表盘更贴近实际需求的例子了，通过pythondatetime函数，我们可以很方便的获得时间，然后转换成相关数据。</p>
+<p>以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171023_1.png" /></p>
+<h2>本文源码下载</h2>
+<p>请git clone 下所有代码，以免造成游戏跑不起来的情况。本例源文件pygame05.py</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame写游戏（4）一个python问答游戏</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-22 09:50:35</small> 标签:
+        
+        
+        <mark>pygame</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_7.png" />
+<img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_8.png" />
+<img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_9.png" /></p>
+<p>好开心，买的书终于到手了，极力推荐《Python游戏编程入门》！非常不错的一本书，另千万别买《Python和Pygame游戏开发指南》，好了，不要问什么，请叫我雷锋！</p>
+<h2>游戏流程</h2>
+<p>我觉得新手编写游戏的时候最大的难点是先把游戏构思的太细致了，以至于真正上手编程的时候完全不知道从哪里开始，平时构思设计游戏时，脑子里那闪耀的光芒，就觉得只要拿起键盘，一个旷世神作的游戏就要蛋生了！
+实际呢？两眼瞪着电脑，我特么从哪开始写呢？，所以你需要一个流程，你可以拿纸笔画，或是找个流程图画一下。可以参考下图：</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_5.png" /></p>
+<p>有游戏流程后，先不要急于实现游戏的细节功能，先把流程走一下，先搭建游戏骨架<code>pygame.init()</code>，嗯，这个你应该很熟了。
+然后我们通过面向对象的方法来进行这个小游戏的编写：</p>
+<pre><code>pyqa.game_Start()
+pyqa.show_qt()
+pyqa.game_Over()
+</code></pre>
+<p>这样在循环中你应该很明白游戏的流程，虽然他们都在循环中，但我们可以控制他们在游戏中渲染的逻辑，这样我们就可以考虑好游戏中类的属性了。
+这是一个问答游戏，需要有基本的题库数据，我们通过python的流读入数据，因为python可以很方便的读行，这样我们可以定义一些规律，把每一题的问题、选择项，答案都分别占一行。
+这样导入数据后可以返回一个list，方便操作。</p>
+<p>好了，我们定义一下当前答题类<code>class Pyqa</code>的一些属性，首先他需要三个开关，分别代表游戏开始画面，答题画面，游戏结束画面，当然游戏一开始就是开始画面，我们可以设置他为<code>True</code>，
+这样游戏一旦开始，即可直接进入游戏开始画面，当然我们还需要定义三个函数，分别渲染三个场景，通过<code>if self.gameStart</code>判断当前是否要渲染这段场景。
+好了，流程说到这里应该了解了吧？如果还是很头疼，建议先打代码试试，游戏内容可以不用填加，就试过场。</p>
+<h2>游戏中的事件</h2>
+<p>当我们运行游戏的时候，我们发现游戏只停止在游戏开始画面上，并没有继续进和到问答画面，因为我们没有加入游戏的控制，我们通过玩家来按键获取当前的游戏按键事件，
+<code>pygame</code>中的游戏事件轮询获取相应的事件来响应用户的操作。</p>
+<pre><code>while True:
+    for event in pygame.event.get():
+</code></pre>
+<p>当我们通过<code>event.key == K_RETURN:</code>在游戏开始画面处获得了回车键的事件，就可以把游戏中的<code>self.showQuestion</code>设置<code>True</code>，然后开始游戏了，其它响应也是如此，
+比如获取游戏中的答案数字，也是通过相应的键值获取，具体可以查看代码了解。</p>
+<h2>答题场景编写</h2>
+<p>本游戏的核心就是回答问题，导入题库后，通过<code>def show_qt()</code>方法来渲染问题及选项。我在游戏中定义了一个函数<code>def print_text</code>是专门用来打印游戏中的文字的。
+当我们在游戏中选择答案按下数字键1-4的时候，我们会通过<code>pyqa.handle_input(int)</code>方法来处理当前游戏中的一些数据，比如回答是否正确，提示正确答案，记录回答正确数等，
+当我们再次按下回车键，<code>def next_question</code>方法会更新问题题库的索引指针，告诉<code>def show_qt()</code>我得渲染下一道题了！</p>
+<h2>游戏结束</h2>
+<p>当<code>def next_question</code>通过<code>self.current &gt;= len(self.data)</code>发现已经到达题库最后边了，游戏就要结束了，设置游戏开关相关参数为false，设置游戏结束标识<code>gameOver</code>为<code>true</code>
+进入游戏结束画面，展示游戏数据统计，最后当然还可以让你有重来的机会，具体实现请看代码吧，无非就是一些按键事件触发。</p>
+<h2>写在最后</h2>
+<p>无论是整个游戏还是中间的答题系统，我们发现在这个游戏中我们必须细致入微的进行设计判断每一步的操作，这就是游戏设计的精髓及乐趣，至少我们可以按着自己的需要来进行设计，当你把游戏设计成功，代码编写运行无错时，希望你能体会到这其中的乐趣！如果你有时间，可否帮忙丰富一下题？谢啦，记得提git提交给我哦，谢谢了。</p>
+<h2>本文源码下载</h2>
+<p>请git clone 下所有代码，以免造成游戏跑不起来的情况。</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>“编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-10-20 16:00:52</small> 标签:
+        
+        
+        <mark>pygame</mark>
+        
+    </h3>
+</hgroup>
+<p><p>上次的代码中，除了绘制基本图形与图片外，中间还插入了一个小小动画，就是头像在不停的移动，这个移动确实简单了些，游戏中的的角色肯定不是简单的移动几像素那么简单了。</p>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2017/10/QQ20171020-145146-HD111.gif" /></p>
+<h2>屡屡顺序</h2>
+<p>我觉得刚开始做游戏写代码的时候，总是弄不清游戏的顺序，你可以这样想象一下，比如是拍电影，大家都了解电影是一段一段拍，最后合成在一起然后电影可以播放了。
+游戏呢和这个差不多，也是一段一段做，只不过游戏需要一些条件判断，True了，我就播放第三段，这个属性值达到了我就播放第五段，游戏over了，我就播放结尾。
+好吧，那么我们规划一下现在这个小游戏（应该算不上是一个游戏）场景及角色。</p>
+<h2>游戏内容</h2>
+<p>建一个 640X480的黑色背景的游戏场景，场景中随机生成一些大小一样的小球，他们随机属性值，有一个绿色，有一组红色，如果绿色碰到红色他们就会反转滚动，这些小球如果碰到边界也会反转滚动。
+注意：这里碰撞的检测之后的动作，只是简单的，并不是真的物理运动哦，当然如果你很懂物理学，做一组力学物理运动应该也不是很难的。</p>
+<h2>游戏场景</h2>
+<ul>
+<li>游戏场景的搭建和之前基本上差不多，这里不在介绍了，如果不了解可以翻看之前或是本节的代码参考。</li>
+</ul>
+<h2>游戏中的角色</h2>
+<p>之前我们在场景中是直接绘制的图形，这次我们通过面向对象的方式来管理场景中的角色，pygame中提供了一个<code>Sprite</code>类，这个类专门为游戏中的角色精灵准备的。
+框架中还提供了一个<code>pygame.sprite.Group()</code>容器，他可以把sprite加进去，通过group来管理，group这个容器，通过查看源代码，他只能处理图片类型的sprite。
+如果创建的Rect对象是不行的，这种加到组里后，通过draw是无法绘制出来的，<code>group.draw()</code>这个方法中的画笔使用了<code>blit()</code>，而不是<code>draw()</code></p>
+<h2>游戏中的逻辑判断</h2>
+<p>这个我们直接在游戏中的循环当中直接判断，我是这么把游戏分成各种对象的：</p>
+<ul>
+<li>游戏场景对象，他只负责绘制场景中的任何角色及精灵</li>
+<li>游戏逻辑判断对象，他只负责判断游戏场景中的碰撞，时间检测，然后修改他们的属性。</li>
+<li>精灵group，他们只负责创建，删除。</li>
+</ul>
+<h2>开始制作</h2>
+<p>理论课结束，我们来实践一下，<code>main()</code>函数中创建一个游戏运行函数<code>rungame()</code>，这个函数中运行着当前游戏的所有数据，及各种事件触发的检测。
+为什么需要<code>rungame()</code>?你可以把他这个函数看成一个电影片段，当前你还可以有<code>gamestart() gameover()</code>函数，这样游戏运行到哪个部位时就让哪个函数运行即可。</p>
+<h2>Sprite 精灵</h2>
+<p>说说<code>class MyImgSprite(pygame.sprite.Sprite</code>，这是当前游戏中的精灵，我们为他创建了几个属性，其中比较重要的有：</p>
+<pre><code>self.image = pygame.image.load('./images/a.png') #导入图片
+self.rect = self.image.get_rect() #返回一个rect对象
+self.rect.topleft = (random.randint(40,590),random.randint(40,430))#设置他的坐标  
+self.last_update = pygame.time.get_ticks()#获取当前游戏动行的时间，这是一个整数，不明白可以打印看看
+#移动速度
+self.speed_x = random.randint(1,10)
+self.speed_y = random.randint(1,10)
+</code></pre>
+<p>有了速度，我们就可以通过<code>update()</code>方法来更新自己的坐标</p>
+<pre><code>now = pygame.time.get_ticks()
+if now - self.last_update &gt;1:#通过这个时间差来做一些动画       
+    #self.rect.topleft = (random.randint(0,600),random.randint(0,440))#随机变化位置
+    self.rect.x += self.speed_x
+    self.rect.y += self.speed_y
+    self.last_update = now
+</code></pre>
+<p>如果你不在<code>update()</code>方法更新任何值，那么 这个精灵就是不会动弹的。
+那么问题来了，为什么不直接在游戏循环中更新？
+上节的代码中有段小小的移动是在循环中更新的，因为那只有一段动画，如果以后有很多个对象的话，在循环中更新会很麻烦，这里更新更符合面向对象的的编程方式。</p>
+<h2>绘制及更新</h2>
+<p>在rungame函数中创建个绿球，一组红球，然后就可以直接在场景里绘制了，绘制方法：</p>
+<pre><code>drawbackground()#绘制场景背景颜色
+DISPLAYSURF.blit(m.image,m.rect)#绘制绿球
+myimgs.draw(DISPLAYSURF)#绘制一组红球
+</code></pre>
+<p>场景中的绘制顺序应该是：</p>
+<ol>
+<li>绘制精灵</li>
+<li>逻辑判断</li>
+<li>udpate()更新数据</li>
+</ol>
+<p>以此为循环，这样反复循环即可生成画面。</p>
+<h2>逻辑判断</h2>
+<p>说到逻辑判断，这次场景中包括的判断有二种：边界碰撞及球体之间的碰撞。
+边界碰撞，我自个写了个边界碰撞检测器<code>BorderCrossing.py</code>，因为我在pygame中没找到边界碰撞检测的方法，大家在运行代码的时候，记得git clone一下整个项目。
+这个边界碰撞检测器，我就不多说了，不然这又一篇博客了，有兴趣可以自己看看源码。</p>
+<p>球体之间的碰撞检测直接套用的pygame中的碰撞检测，具体可以参考官方文档</p>
+<p><a href="http://pygame.org/docs/ref/sprite.html#pygame.sprite.spritecollide">碰撞检测官方文档</a></p>
+<h2>更新游戏数据</h2>
+<p>在逻辑判断中根据自己的需要进行速度等数据修改，最后记得用方法更新一下精灵们的坐标。
+说的不是很好，具体大家跑跑程序，改改数值就明白了，如果有什么不懂的，可以直接留言或是邮件给我。欢迎各位大佬指正！</p>
+<h2>本文源码下载</h2>
+<p>请git clone 下所有代码，以免造成游戏跑不起来的情况。</p>
+<ul>
+<li><a href="https://github.com/bosichong/My_pygame/">github</a></li>
+<li><a href="https://gitee.com/J_Sky/My_pygame/">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_12.html" role="button" class="outline">Prev</a></li>
+    <li><small>13 / 23</small></li>
+    <li><a href="list_14.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       Python 采集数据三步曲之[Requests + re.py模块进行数据采集]
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-02 12:41:30
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。
-      </em>
-     </p>
-     <h2>
-      数据采集第一步，加载数据源。
-     </h2>
-     <p>
-      这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。
-     </p>
-     <pre><code class="python">import re, requests # 加载所需模块
-r = requests.get('http://hq.sinajs.cn/list=s_sh000001') #互联网上市公司股票价格
-r.encoding = 'gbk'# 设置编码 解决乱码问题
-print(r.text) #返回html代码（数据）
-</code></pre>
-     <p>
-      通过上边的代码运行之后我们会得到一组数据：
-     </p>
-     <pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
-</code></pre>
-     <p>
-      数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；
-     </p>
-     <p>
-      这样我们只要提示自己需要的
-      <code>
-       上证指数,3367.1194,6.3091,0.19,2824975,31372209
-      </code>
-      这段数据后，就可以把它转换成自己需要的对象，然后处理打印。
-     </p>
-     <h2>
-      数据采集第二步，解析数据，提取我们自己需要的。
-     </h2>
-     <pre><code class="python">s = r.text # 获取数据
-p = r'"(.+)"' #设置正则表达式
-r = re.search(p, s).group(1) #匹配并获取结果字符串
-print(r)
-ls = r.split(',')
-print(ls)
-</code></pre>
-     <h2>
-      数据采集第三步，处理最后的打印
-     </h2>
-     <pre><code class="python">print('''{}:{}
-当前价格:{}
-涨跌率:{}
-成交量（手）:{}
-成交额（万元）:{}'''.format(ls[0],ls[1],ls[2],ls[3],ls[4],ls[5])
-)
 
-#最后输出：
-#上证指数:3367.1194
-#当前价格:6.3091
-#涨跌率:0.19
-#成交量（手）:2824975
-#成交额（万元）:31372209
-</code></pre>
-     <p>
-      得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/re">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python 采集数据三步曲之[Requests开源协议的HTTP 库]
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-02 09:01:48
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <blockquote>
-      <p>
-       Requests 是以 PEP 20 的箴言为中心开发的
-      </p>
-     </blockquote>
-     <ul>
-      <li>
-       Beautiful is better than ugly.(美丽优于丑陋)
-      </li>
-      <li>
-       Explicit is better than implicit.(直白优于含蓄)
-      </li>
-      <li>
-       Simple is better than complex.(简单优于复杂)
-      </li>
-      <li>
-       Complex is better than complicated.(复杂优于繁琐)
-      </li>
-      <li>
-       Readability counts.(可读性很重要)
-      </li>
-      <li>
-       对于 Requests 所有的贡献都应牢记这些重要的准则。
-       <img src="http://cn.python-requests.org/zh_CN/latest/_static/requests-sidebar.png" style="width:50%; height:50%;"/>
-      </li>
-     </ul>
-     <h2>
-      Requests install
-     </h2>
-     <pre><code>pip3 install requests
-</code></pre>
-     <p>
-      下载安装
-     </p>
-     <pre><code>git clone git://github.com/kennethreitz/requests.git
-cd requests
-python setup.py install
-</code></pre>
-     <h2>
-      一分钟上手
-     </h2>
-     <pre><code class="python">import requests
-r = requests.get('http://www.baidu.com')
-print(r.status_code)# 返回状态码
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
-</code></pre>
-     <p>
-      如果不算import及打印状态码，三行搞定网页html代码的解析下载，简单不？只要会了这个，采集数据解析html就易如翻掌：）
-     </p>
-     <h2>
-      带参数的请求
-     </h2>
-     <pre><code class="python">r = requests.get('http://dict.baidu.com/s', params={'wd':'python'})
-r.encoding = 'utf-8'# 设置编码
-print(r.text) #返回html代码
-</code></pre>
-     <blockquote>
-      <ul>
-       <li>
-        r.status_code #响应状态码
-       </li>
-       <li>
-        r.raw #返回原始响应体，也就是 urllib 的 response 对象，使用 r.raw.read() 读取
-       </li>
-       <li>
-        r.content #字节方式的响应体，会自动为你解码 gzip 和 deflate 压缩
-       </li>
-       <li>
-        r.text #字符串方式的响应体，会自动根据响应头部的字符编码进行解码
-       </li>
-       <li>
-        r.headers #以字典对象存储服务器响应头，但是这个字典比较特殊，字典键不区分大小写，若键不存在则返回None
-       </li>
-       <li>
-        r.json() #Requests中内置的JSON解码器
-       </li>
-       <li>
-        r.raise_for_status() #失败请求(非200响应)抛出异常
-       </li>
-      </ul>
-     </blockquote>
-     <h2>
-      这只是一个简单的入门引导
-     </h2>
-     <p>
-      Requests 是一个简单强大的
-      <code>
-       HTTP
-      </code>
-      库，是我用过的最简单实用的
-      <code>
-       python
-      </code>
-      库，喜欢上她不会有任何理由，绝对是数据采集，响应分析，
-      <code>
-       pythoner
-      </code>
-      居家旅游必备之良品。
-     </p>
-     <p>
-      一些Requests的参考
-     </p>
-     <ul>
-      <li>
-       <a href="http://cn.python-requests.org/zh_CN/latest/index.html">
-        Requests: 让 HTTP 服务人类 官方文档
-       </a>
-      </li>
-      <li>
-       <a href="http://blog.csdn.net/shanzhizi/article/details/50903748">
-        Python-第三方库requests详解
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/re">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python 采集数据三步曲之[正则表达式 re.py]
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-09-01 13:09:49
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       越来越多的朋友开始注意并喜欢上python，有时做为一个新手或是一个从其它编程语言转投过来的新人可能会稍稍有些迷茫，Python的学习应该从哪里开始呢？虽然雄心壮志万丈目标宏伟，但我们是否应该先订一个小小的目标呢？比如说先码一个简单的Python采集器
-      </em>
-     </p>
-     <h2>
-      如何用
-      <code>
-       Python
-      </code>
-      开始一个简单的正则表达式？
-     </h2>
-     <p>
-      其实很简单，从
-     </p>
-     <pre><code>import re
-</code></pre>
-     <p>
-      引入
-      <code>
-       Python
-      </code>
-      的正则表达式支持模块开始。
-     </p>
-     <h2>
-      开始使用
-      <code>
-       re
-      </code>
-      模块
-     </h2>
-     <pre><code class="python">#codeing=utf-8
-import re
-p = re.compile(r'17python')#创建Pattern对象
-m = p.match('17python.com')
-if m :
-    print(m.group())
-# 输出结果为：17python
-</code></pre>
-     <p>
-      另一种方式：
-     </p>
-     <pre><code class="python">#使用re模块方法代替实例方法
-print(re.match('17python', '17python.com').group())
-# 输出结果为：17python
-</code></pre>
-     <h2>
-      re模块及正则实例常用方法演示
-     </h2>
-     <pre><code class="python">p = re.compile(r'17python')
-s1 = '17python.com'
-s2 = 'www.17python.com'
-s3 = '17python.com17python.com'
-s4 = 'abc.com'
-p4 = re.compile('abc')
-print(p.match(s1).group())
-print(p.search(s2).group())
-print(p.findall(s3))
-print(p4.sub('17python', s4))
-</code></pre>
-     <p>
-      以上只是
-      <code>
-       Python
-      </code>
-      re模块中最常用的方法，这些后边采集数据的时候都会用到。更多方法的详细介绍可以参考
-      <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
-       <code>
-        Python
-       </code>
-       文档 re模块详解
-      </a>
-     </p>
-     <h2>
-      元字符 （参见 python 模块 re 文档）
-     </h2>
-     <ul>
-      <li>
-       .                    匹配任意字符（不包括换行符）
-      </li>
-      <li>
-       ^                    匹配开始位置，多行模式下匹配每一行的开始
-      </li>
-      <li>
-       $                    匹配结束位置，多行模式下匹配每一行的结束
-      </li>
-      <li>
-       *                    匹配前一个元字符0到多次
-      </li>
-      <li>
-       +                    匹配前一个元字符1到多次
-      </li>
-      <li>
-       ?                    匹配前一个元字符0到1次
-      </li>
-      <li>
-       {m,n}                匹配前一个元字符m到n次
-      </li>
-      <li>
-       \                   转义字符，跟在其后的字符将失去作为特殊元字符的含义，例如\.只能匹配.，不能再匹配任意字符
-      </li>
-      <li>
-       []                   字符集，一个字符的集合，可匹配其中任意一个字符
-      </li>
-      <li>
-       |                    逻辑表达式 或 ，比如 a|b 代表可匹配 a 或者 b
-      </li>
-      <li>
-       (...)                分组，默认为捕获，即被分组的内容可以被单独取出，默认每个分组有个索引，从 1 开始，按照"("的顺序决定索引值
-      </li>
-      <li>
-       (?iLmsux)            分组中可以设置模式，iLmsux之中的每个字符代表一个模式,用法参见 模式 I
-      </li>
-      <li>
-       (?:...)              分组的不捕获模式，计算索引时会跳过这个分组
-      </li>
-      <li>
-       (?P
-       <name>
-        ...)        分组的命名模式，取此分组中的内容时可以使用索引也可以使用name
-       </name>
-      </li>
-      <li>
-       (?P=name)            分组的引用模式，可在同一个正则表达式用引用前面命名过的正则
-      </li>
-      <li>
-       (?#...)              注释，不影响正则表达式其它部分,用法参见 模式 I
-      </li>
-      <li>
-       (?=...)              顺序肯定环视，表示所在位置右侧能够匹配括号内正则
-      </li>
-      <li>
-       (?!...)              顺序否定环视，表示所在位置右侧不能匹配括号内正则
-      </li>
-      <li>
-       (?&lt;=...)             逆序肯定环视，表示所在位置左侧能够匹配括号内正则
-      </li>
-      <li>
-       (?&lt;!...)             逆序否定环视，表示所在位置左侧不能匹配括号内正则
-      </li>
-      <li>
-       (?(id/name)yes|no)   若前面指定id或name的分区匹配成功则执行yes处的正则，否则执行no处的正则
-      </li>
-      <li>
-       \number              匹配和前面索引为number的分组捕获到的内容一样的字符串
-      </li>
-      <li>
-       \A                   匹配字符串开始位置，忽略多行模式
-      </li>
-      <li>
-       \Z                   匹配字符串结束位置，忽略多行模式
-      </li>
-      <li>
-       \b                   匹配位于单词开始或结束位置的空字符串
-      </li>
-      <li>
-       \B                   匹配不位于单词开始或结束位置的空字符串
-      </li>
-      <li>
-       \d                   匹配一个数字， 相当于 [0-9]
-      </li>
-      <li>
-       \D                   匹配非数字,相当于 [^0-9]
-      </li>
-      <li>
-       \s                   匹配任意空白字符， 相当于 [ \t\n\r\f\v]
-      </li>
-      <li>
-       \S                   匹配非空白字符，相当于 [^ \t\n\r\f\v]
-      </li>
-      <li>
-       \w                   匹配数字、字母、下划线中任意一个字符， 相当于 [a-zA-Z0-9_]
-      </li>
-      <li>
-       \W                   匹配非数字、字母、下划线中的任意字符，相当于 [^a-zA-Z0-9_]
-      </li>
-     </ul>
-     <h2>
-      更详细的
-      <code>
-       Python
-      </code>
-      re正则表达式教程
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
-        Python正则表达式指南
-       </a>
-      </li>
-      <li>
-       <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
-        python正则表达式详解
-       </a>
-      </li>
-      <li>
-       <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
-        Python文档 re模块详解
-       </a>
-      </li>
-     </ul>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/tree/master/re">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/tree/master/re">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       Python学习资料教程汇总
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-31 13:29:13
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      我们为什么用Python编程？
-     </h2>
-     <p>
-      曾经有一段时间一直在考虑一件事，就是想好好学习一下编程，然后靠着一台电脑和海量搜索结果的百度（或是google）精通一门或几门编程语言，然后成为一个黑客，随便都能开发出一个牛逼的软件或网站，然后马上就打开浏览器，搜：XXX语言精通、入门、速成。怀着一份热忱和充满美好希望的决心在互联网上寻找着答案。。。。。。
-     </p>
-     <p>
-      。。。。。。
-     </p>
-     <p>
-      十分钟之后。。去特么蛋的。。。还是打会游戏吧。。。。
-     </p>
-     <h2>
-      好吧 我们继续
-     </h2>
-     <p>
-      经历过痛苦与折磨后，终于明白了编程的意义，那就是先做点正常人做的事吧！说到
-      <code>
-       Python
-      </code>
-      的相关资料教程很多了，整理一下，排名不分前后，评价均人个人观点，不代表教程本身的好坏。
-     </p>
-     <p>
-      其实本想写写基础
-      <code>
-       Python
-      </code>
-      教程，但是网上太多了，不乏众多优秀的教程，就不重复造轮子了，分享出来大家共同学习进步。
-     </p>
-     <h2>
-      Python 基础教程
-     </h2>
-     <p>
-      首先推荐廖雪峰老师的
-      <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">
-       中文，免费，零起点，完整示例，基于最新的Python 3版本教程
-      </a>
-      ，这篇教程无论是学习Python还是了解编程基础来说，都是一篇不错的教程。另外还有
-      <a href="http://vdisk.weibo.com/s/BE2Z8B94-5w97">
-       python简明教程中文.pdf
-      </a>
-     </p>
-     <p>
-      有过编程基础的可以看看这二个：
-     </p>
-     <ul>
-      <li>
-       <a href="http://www.code123.cc/1049.html">
-        分分钟学会一门语言之Python篇
-       </a>
-      </li>
-      <li>
-       <a href="http://www.jianshu.com/p/36ae91c38279">
-        十五分钟让你了解Python套路
-       </a>
-      </li>
-     </ul>
-     <p>
-      当然 还有
-      <a href="http://python.usyiyi.cn/translate/python_352/index.html">
-       <code>
-        Python
-       </code>
-       官方文档--中文汉化版
-      </a>
-      ，算是最全面的教材了！
-     </p>
-     <p>
-      <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
-       Python正则表达式指南
-      </a>
-      ，个人认为是不一篇不错的python正则教程。
-     </p>
-     <h2>
-      基础学习（本站原创）
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.17python.com/blog/12">
-        Python os.path模块中一些常用方法的整理总结
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/13">
-        Python open()函数文件打开、读、写操作总结
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/14">
-        PythonINI配置文件读写的简单方法
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/15">
-        python3函数学习笔记简单总结
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/16">
-        Python3 datetime模块的时间操作
-       </a>
-      </li>
-      <li>
-       <p>
-        <a href="http://www.17python.com/blog/30">
-         Python面向对象编程（OOP）初探
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
         </a>
-       </p>
-      </li>
-      <li>
-       <p>
-        <a href="http://www.17python.com/blog/74">
-         妙用IPython学习Python--IPython快速上手
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
         </a>
-       </p>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/68">
-        Python生成器yield应用实例——监控日志
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/55">
-        听说存储数据Python与SQLite3更配哦！
-       </a>
-      </li>
-     </ul>
-     <h2>
-      Python GUI tk tkinter 编程（本站原创）
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.17python.com/blog/21">
-        Python TK和Tkinter的GUI编程(1)窗口、标签Label、按钮Button
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/22">
-        Python TK和Tkinter的GUI编程(2)菜单Menu
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/23">
-        Python TK和Tkinter的GUI编程(3) 列表框 Listbox
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/24">
-        Python TK和Tkinter的GUI编程(4) Entry Text 文本框控件
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/25">
-        Python TK和Tkinter的GUI编程(5) messagebox tk的弹出对话框
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/26">
-        Python TK和Tkinter的GUI编程(6) Checkbutton Radiobutton
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/27">
-        Python TK和Tkinter的GUI编程(7) Scrollbar的使用
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/28">
-        Python TK和Tkinter的GUI编程(8) Scalet和Spinbox的简单使用
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/29">
-        Python TK和Tkinter的GUI编程(9) Event 键盘鼠标事件
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/49">
-        基于Python、Tk构建的可视化目录文件同步助手
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/69">
-        Python TK和Tkinter的GUI编程(10) filedialog 文件目录选择对话框
-       </a>
-      </li>
-     </ul>
-     <h2>
-      扩展学习
-     </h2>
-     <p>
-      学习了
-      <code>
-       Python
-      </code>
-      教程后，就可以继续深入学习了，根据自己学习方向可以选择很多，比如：机器学人工智能，web全栈，系统运维等，本人学习主要方向是web，所以目前只能推荐一些WEB相关的教程
-     </p>
-     <h2>
-      有关正则表达式
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">
-        Python正则表达式指南
-       </a>
-      </li>
-      <li>
-       <a href="http://www.cnblogs.com/dyfblog/p/5880728.html">
-        python正则表达式详解
-       </a>
-      </li>
-      <li>
-       <a href="http://python.usyiyi.cn/translate/python_352/library/re.html#module-re">
-        <code>
-         Python
-        </code>
-        文档 re模块详解
-       </a>
-      </li>
-     </ul>
-     <h2>
-      WEB框架
-     </h2>
-     <ul>
-      <li>
-       Django
-      </li>
-     </ul>
-     <p>
-      本站原创教程：
-     </p>
-     <ul>
-      <li>
-       <a href="http://www.17python.com/blog/52">
-        实战：利用Django开发部署自己的个人博客（1）创建项目
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/53">
-        实战：利用Django开发部署自己的个人博客（2）视图/路由
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/54">
-        实战：利用Django开发部署自己的个人博客（3）Template: Django模板
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/56">
-        实战：利用Django开发部署自己的个人博客（4）Models 数据模型
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/57">
-        实战：利用Django开发部署自己的个人博客（5）Django admin后台管理
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/58">
-        实战：利用Django开发部署自己的个人博客（6）Django整合前端框架Amaze UI
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/59">
-        实战：利用Django开发部署自己的个人博客（7）扩展User表及完善blog数据库表。
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/60">
-        实战：利用Django开发部署自己的个人博客（8）构建Blog首页
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/61">
-        实战：利用Django开发部署自己的个人博客（9）Django模板的继承
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/62">
-        实战：利用Django开发部署自己的个人博客（10）Django上下文Context解决全站通用数据
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/63">
-        实战：利用Django开发部署自己的个人博客（11）博客分类页及搜索页的实现
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/64">
-        实战：利用Django开发部署自己的个人博客（12）实现博客文章的分页
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/65">
-        实战：利用Django开发部署自己的个人博客（13）Markdown模块解析Markdown代码
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/66">
-        实战：利用Django开发部署自己的个人博客（14）Django实现图片的上传和引用
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/67">
-        实战：利用Django开发部署自己的个人博客（15）Ubuntu+apache部署Django
-       </a>
-      </li>
-     </ul>
-     <p>
-      自强学堂，是我认为网上中文比较不错的
-      <code>
-       Django
-      </code>
-      教程，本站就是通过这篇教程学习后设计制作的。
-      <a href="http://code.ziqiangxuetang.com/django/django-tutorial.html">
-       Django 基础教程
-      </a>
-     </p>
-     <p>
-      <a href="http://djangobook.py3k.cn/2.0/">
-       Django book 2.0 的中文翻译。
-      </a>
-      这个是比较详细的
-      <code>
-       Django
-      </code>
-      教程了，看了都说好。
-     </p>
-     <p>
-      然后就是
-      <code>
-       Django
-      </code>
-      <a href="https://docs.djangoproject.com/en/1.11/">
-       官方文档
-      </a>
-      ，这个不用解释了吧？
-     </p>
-     <h2>
-      “编学编玩”用Pygame写游戏
-     </h2>
-     <ul>
-      <li>
-       <a href="http://www.17python.com/blog/44">
-        “编学编玩”用Pygame写游戏（1）初识pygame
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/45">
-        “编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/46">
-        “编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/47">
-        “编学编玩”用Pygame写游戏（4）一个python问答游戏
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/48">
-        “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/70">
-        “编学编玩”用Pygame编写游戏（6）PY_RPG 一个pygame的简单封装。
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/71">
-        “编学编玩”用Pygame编写游戏（7）Pingball弹球小游戏
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/73">
-        “编学编玩”用Pygame编写游戏（8）GreedSnake贪食蛇小游戏
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/76">
-        “编学编玩”用Pygame编写游戏（9）Tetromino俄罗斯方块游戏
-       </a>
-      </li>
-      <li>
-       <a href="http://www.17python.com/blog/77">
-        “编学编玩”用Pygame编写游戏（10）pygame实现一个黑客帝国矩阵(Matrix)
-       </a>
-      </li>
-     </ul>
-     <p>
-      <strong>
-       本文会不定期更新作者推荐的好教程及连接
-      </strong>
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       Mac OS X gitk窗口打不开及Git的升级方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-26 16:36:30
-      </span>
-      <span class="tag">
-       Git
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       今天随手在终端中敲了一下
-       <code>
-        Gitk
-       </code>
-       ，就是想试试
-       <code>
-        Git GUI
-       </code>
-       ，结果窗口一闪而过，然后看了一下版本，老掉牙的版本了，所以决定要升级一下
-       <code>
-        Git
-       </code>
-      </em>
-     </p>
-     <h2>
-      下载Mac os X Git
-     </h2>
-     <ul>
-      <li>
-       Mac osx
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-     </ul>
-     <h2>
-      安装
-     </h2>
-     <p>
-      安装很简单了，直接下一步，然后安装完毕。
-     </p>
-     <h2>
-      使用新版Git
-     </h2>
-     <p>
-      终端输入
-      <code>
-       git --version
-      </code>
-      ，发现还是原来的版本哇？
-      <code>
-       what?
-      </code>
-      ，
-终端输入：
-     </p>
-     <pre><code>which git
-/usr/bin/git</code></pre>
-     <p>
-      发现
-      <code>
-       Git
-      </code>
-      还是以前目录里的，并不是新安装目录下的
-      <code>
-       /usr/local/bin/git
-      </code>
-     </p>
-     <h2>
-      解决方法
-     </h2>
-     <p>
-      很明显这是环境变量的问题.
-     </p>
-     <pre><code>cd ~
-vi .bash_profile</code></pre>
-     <p>
-      把
-      <code>
-       /usr/local/bin:
-      </code>
-      这个环境变量放到
-      <code>
-       /usr/bin/
-      </code>
-      前边
-     </p>
-     <p>
-      我的环境变量最后输出如下：
-      <code>
-       export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:$PATH
-      </code>
-     </p>
-     <p>
-      然后执行
-      <code>
-       source ~/.bash_profile
-      </code>
-      刷新一下环境变量。
-     </p>
-     <p>
-      再次测试
-      <code>
-       git --version
-      </code>
-      或
-      <code>
-       gitk
-      </code>
-      一切正常。
-     </p>
-     <h2>
-      总结
-     </h2>
-     <p>
-      <code>
-       Mac osX
-      </code>
-      安装完新版
-      <code>
-       Git
-      </code>
-      后，需要修改一下环境变量，使之指向新版的
-      <code>
-       Git
-      </code>
-      即可。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       Git 版本控制常用命令 简明指南教程
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-26 13:03:59
-      </span>
-      <span class="tag">
-       Git
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <em>
-       最近使用
-       <code>
-        Django
-       </code>
-       设计自己的个人blog，免不了要对程序的版本进行备份，所以用到了
-       <code>
-        Git
-       </code>
-       。
-       <code>
-        Git
-       </code>
-       确实是程序员居家旅游，编程备份之良药哇，本文旨在对
-       <code>
-        Git
-       </code>
-       日常使用中，使用频率较高的命令进行了一个简单的总结
-      </em>
-     </p>
-     <h2>
-      运行环境
-     </h2>
-     <ul>
-      <li>
-       MacBookPro
-      </li>
-      <li>
-       OS X 10.11.6
-      </li>
-     </ul>
-     <p>
-      如果您使用windows操作系统，终端下的命令可能会与我提供的有些不同，但git命令是一样的。
-     </p>
-     <h2>
-      安装新版Git
-     </h2>
-     <ul>
-      <li>
-       Mac osx
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-      <li>
-       Windows
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-      <li>
-       Linux
-       <a href="http://git-scm.com/download/mac">
-        点此下载
-       </a>
-      </li>
-     </ul>
-     <h2>
-      开始Git之旅
-     </h2>
-     <p>
-      我们可以从一个简单的
-      <code>
-       git
-      </code>
-      命令行开始,在终端下输入如下命令
-     </p>
-     <pre><code>mkdir gittest
-cd gittest/
-gittest git init 
-Initialized empty Git repository in /Users/mac/gittest/.git/
-</code></pre>
-     <h2>
-      取消目录的git版本控制
-     </h2>
-     <p>
-      当然 如果我们想取消当前目录的git版本控制，可以进入当前目录后，使用
-      <code>
-       rm -rf .git
-      </code>
-      来删除git版本控制的文件取消当前目录的版本控制。
-     </p>
-     <h2>
-      clone 项目
-     </h2>
-     <p>
-      终端中输入代码，下载一个项目和它的整个代码历史。
-     </p>
-     <pre><code>mkdir gittest
-git clone 项目地址
-</code></pre>
-     <p>
-      <strong>
-       git四大域：工作目录，暂存区，仓库，远程仓库。
-      </strong>
-     </p>
-     <h2>
-      配置Git
-     </h2>
-     <p>
-      查看Git配置项
-     </p>
-     <pre><code>git config --list
-</code></pre>
-     <p>
-      设置提交代码时的用户信息，--global表示设置为全局。
-     </p>
-     <pre><code>git config [--global] user.name "[name]"
-git config [--global] user.email "[email address]"
-</code></pre>
-     <h2>
-      添加删除
-     </h2>
-     <p>
-      添加文件、目录、当前所有文件及目录到暂存区。
-     </p>
-     <pre><code>git add [filename]
-git add [dir]
-git add .
-</code></pre>
-     <h2>
-      删除暂存区的文件及目录
-     </h2>
-     <p>
-      删除工作区文件，并且将这次删除放入暂存区
-     </p>
-     <pre><code>git rm [file1] [file2] ...
-git rm --cached [file] #删除缓存
-</code></pre>
-     <h2>
-      提交
-     </h2>
-     <p>
-      提交暂存区内容到本地仓库
-     </p>
-     <pre><code>git commit -m '修改提交消息'
-</code></pre>
-     <p>
-      提交到远程仓库，先绑定远程仓库，然后推送。
-     </p>
-     <pre><code>git remote add origin &lt;server&gt;
-git push origin master
-</code></pre>
-     <h2>
-      分支
-     </h2>
-     <p>
-      避免错误，可以在其它分支上进行开发修改。
-     </p>
-     <pre><code>git branch [branch-name] #新建分支
-git checkout -b [branch] #新建并切换到新分支
-git checkout [branch-name] #切换到指定分支
-git branch -d [branch-name] # 删除分支
-</code></pre>
-     <h2>
-      更新与合并
-     </h2>
-     <pre><code>git cherry-pick [commit] # 选择一个commit，合并进当前分支
-git pull #要更新你的本地仓库至最新改动
-git merge &lt;branch&gt; #全并分支到当前分支
-</code></pre>
-     <h2>
-      标签
-     </h2>
-     <pre><code>git tag 1.0.0 7b8a9d199
-</code></pre>
-     <h2>
-      查询
-     </h2>
-     <pre><code>git log
-</code></pre>
-     <h2>
-      git提交到多个远程仓库
-     </h2>
-     <pre><code>git remote add github git@https://github.com/bosichong/17python.com.git
-git remote add gitee git@https://gitee.com/J_Sky/17python.com.git
-</code></pre>
-     <p>
-      这样就保存了两个远程仓库，然后分别提交
-     </p>
-     <pre><code>git push github master
-git push gitee master
-</code></pre>
-     <h2>
-      新建git远程仓库上传出错
-     </h2>
-     <p>
-      在gitee仓库新建库的时候总有一些其它文件一起创建了，这样我们push的时候是传不上去的，需要先把没有的文件pull下来。
-     </p>
-     <pre><code>git pull
-</code></pre>
-     <p>
-      然后报错
-     </p>
-     <pre><code> * branch            master     -&gt; FETCH_HEAD
-fatal: refusing to merge unrelated histories
-</code></pre>
-     <p>
-      解决方法：
-     </p>
-     <pre><code>git pull osc master --allow-unrelated-histories
-</code></pre>
-     <p>
-      <strong>
-       osc 换成你自己的别名哦。
-      </strong>
-     </p>
-     <h2>
-      相关参考文档及教程
-     </h2>
-     <p>
-      <a href="http://www.liuyunfei.cn/blog/detail/172">
-       常用 Git 命令清单
-      </a>
-      相对比较完整的常用命令
-     </p>
-     <p>
-      <a href="http://rogerdudler.github.io/git-guide/index.zh.html">
-       git - 简明指南
-      </a>
-      初学者推荐，简单实用
-     </p>
-     <p>
-      <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">
-       史上最浅显易懂的Git教程！
-      </a>
-      廖雪峰老师的Git教程。
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       Markdown 语法学习总结
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-25 08:55:15
-      </span>
-      <span class="tag">
-       网站运维
-      </span>
-     </div>
-     <p>
-     </p>
-     <blockquote>
-      <p>
-       Markdown 的目标是实现「易读易写」。
-      </p>
-     </blockquote>
-     <h2>
-      需求
-     </h2>
-     <p>
-      因为以后更新博客就需要和
-      <code>
-       Markdown
-      </code>
-      语法一直打交道了，所以有必要总结一下常用的Markdown语法，就当笔记记录一下，如有需要的时候翻查回忆一下。
-     </p>
-     <h2>
-      解决方案
-     </h2>
-     <p>
-      <code>
-       Markdown
-      </code>
-      语法的相关文档及教程在网上一搜一大把，这篇并不是
-      <code>
-       Markdown
-      </code>
-      的详细教程，只是笔者对以后博文更新常用的
-      <code>
-       Markdown
-      </code>
-      语法的一次学习及总结。
-     </p>
-     <h1>
-      语法说明
-     </h1>
-     <p>
-      ### 标题
-     </p>
-     <pre><code>### 标题哈  
-## 标题哈  
-# 标题哈
-</code></pre>
-     <h3>
-      标题哈
-     </h3>
-     <h2>
-      标题哈
-     </h2>
-     <h1>
-      标题哈
-     </h1>
-     <p>
-      官方文档中的另一种标题写法
-     </p>
-     <pre><code>This is an H1
-=============
-
-This is an H2
--------------
-</code></pre>
-     <h1>
-      这是标题 H1
-     </h1>
-     <h2>
-      是标题 H2
-     </h2>
-     <h3>
-      引用
-     </h3>
-     <pre><code class="markdown">&gt; Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式</code></pre>
-     <blockquote>
-      <p>
-       Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式
-      </p>
-     </blockquote>
-     <h3>
-      序列
-     </h3>
-     <p>
-      序列是文章中经常用到的，有几种写法如下：
-     </p>
-     <pre><code>* Python
-+ Django
-- Java
-1. Python
-2. Django
-3. Java
-</code></pre>
-     <ul>
-      <li>
-       Python
-      </li>
-      <li>
-       Django
-      </li>
-      <li>
-       Java
-      </li>
-      <li>
-       Python
-      </li>
-      <li>
-       Django
-      </li>
-      <li>
-       Java
-      </li>
-     </ul>
-     <h3>
-      Markdown 代码块
-     </h3>
-     <p>
-      比较常用的有三种方式，最简单的就是下边这种方式，一般都是用来显示一些编程语言名称提示比如
-      <code>
-       Python Django
-      </code>
-     </p>
-     <pre><code class="markdown">\`这里是一小段代码哦\`</code></pre>
-     <p>
-      <code>
-       这里是一小段代码哦
-      </code>
-     </p>
-     <p>
-      要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，显示一行或简单几行的代码时可以用这种方法
-     </p>
-     <pre><code>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以
-</code></pre>
-     <p>
-      pre 和 code 可以直接上代码段，如果是大代码段推荐使用这种方法，如果引用了第三方的code样式，可以加上 class="你的编程语言"，这样会更友好的显示。
-     </p>
-     <pre><code class="markdown">
-&lt;pre&gt;&lt;code class="markdown"&gt;这里是一小段代码哦&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
-     <pre><code class="markdown">这里是一小段代码哦</code></pre>
-     <h3>
-      超链接
-     </h3>
-     <pre><code class="markdown">\[17python]()
-\[百度](http://www.baidu.com)
-</code></pre>
-     <p>
-      <a href="http://www.17python.com">
-       17python
-      </a>
-     </p>
-     <p>
-      <a href="http://www.baidu.com">
-       百度
-      </a>
-     </p>
-     <h3>
-      强调
-     </h3>
-     <pre><code class="markdown">*Python*
-
-_Django_
-
-**Java**
-
-__Spring Boot__
-</code></pre>
-     <p>
-      <em>
-       Python
-      </em>
-     </p>
-     <p>
-      <em>
-       Django
-      </em>
-     </p>
-     <p>
-      <strong>
-       Java
-      </strong>
-     </p>
-     <p>
-      <strong>
-       Spring Boot
-      </strong>
-     </p>
-     <h3>
-      插入图片
-     </h3>
-     <pre><code class="markdown">![其实这不是站长的本人的照片](/media/upload/2017/08/avatar.jpg)
-
-![17python 微信公众号，欢迎关注哦！](/media/upload/2017/08/wx.jpg "www.17python.com")</code></pre>
-     <p>
-      <img alt="其实这不是站长的本人的照片" src="assets/images/media/upload/2017/08/avatar.jpg"/>
-     </p>
-     <p>
-      <img alt="17python 微信公众号，欢迎关注哦！" src="assets/images/media/upload/2017/08/wx.jpg" title="www.17python.com"/>
-     </p>
-     <p>
-      如果需要控制图片大小的话，直接插入
-      <code>
-       html img
-      </code>
-      标签控制图片大小即可。
-      <em>
-       markdown 中是可以兼容html代码的哦！！！！
-      </em>
-     </p>
-     <h3>
-      最后
-     </h3>
-     <p>
-      <code>
-       &lt;font color=red&gt;Markdown 支持内嵌 HTML 标签。&lt;/font&gt;
-      </code>
-      <font color="red">
-       Markdown 支持内嵌 HTML 标签。
-      </font>
-     </p>
-     <p>
-      参考：
-      <a href="http://www.appinn.com/markdown/basic.html">
-       Markdown: Basics （快速入门）
-      </a>
-     </p>
-     <div class="blog-article">
-      <h1 class="title">
-       17python.com网站已经部署上线及后期更新记录
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-08-25 01:09:49
-      </span>
-      <span class="tag">
-       站长吐槽
-      </span>
-     </div>
-     <p>
-     </p>
-     <h2>
-      今天是个好日子
-     </h2>
-     <p>
-      折腾了一个晚上，终于把网站上线了，明天要把这几天的折腾记下来，不然用不了几天就会忘掉。这阵子自学
-      <code>
-       Python Django
-      </code>
-      感触很多，中间也是遇到了无数的坑，还好自己都挺过来了，以后学习
-      <code>
-       Python
-      </code>
-      的日子还长，学习还是要继续的，给自己打气加油！
-     </p>
-     <h2>
-      耐心等待备案下来
-     </h2>
-     <p>
-      希望这次备案能顺利一些，前一阵子提交备案相关信息还是挺顺利的了，就差管局审批了！等待的这些天先总结一下这次
-      <code>
-       blog
-      </code>
-      搭建的经验。
-     </p>
-     <h2>
-      更新在2017-09-04
-     </h2>
-     <p>
-      公安备案也搞定了，相对来说，公安的备案要快些，辽宁通信管理局的审核大约是10工作日+，公安备案审核我这次是二个工作日就搞定了，备案完毕，接下来就是坚持写作更新blog了，继续深入学习Python。
-     </p>
-     <h2>
-      腾讯公益404
-     </h2>
-     <ul>
-      <li>
-       本站演示地址
-       <a href="http://www.17python.com/404">
-        404Not-Found
-       </a>
-       <blockquote>
-        <p>
-         不解释，希望更多的站长加入吧
-         <a href="http://www.qq.com/404/">
-          传送门请点这里
-         </a>
-         希望走失的宝宝将来都能找到自己的亲人。
-        </p>
-       </blockquote>
-      </li>
-     </ul>
-     <h2>
-      2017-10-06更新博客功能
-     </h2>
-     <p>
-      为博客添加了标签云，日志归档功能。
-     </p>
-     <h2>
-      2017-12-22
-     </h2>
-     <p>
-      添加原创及转载标识，添加站点统计、热门文章功能。
-     </p>
-     <h2>
-      2020-01-07
-     </h2>
-     <p>
-      把原来由
-      <code>
-       Django
-      </code>
-      构建的博客换成了自己的新开发的
-      <code>
-       碎言静态博客
-      </code>
-      <a href="https://gitee.com/J_Sky/suiyan">
-       下载地址
-      </a>
-     </p>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_12.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        13 / 15
-       </button>
-       <a href="list_14.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1801,39 +486,7 @@ __Spring Boot__
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

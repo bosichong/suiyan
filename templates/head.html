@@ -1,0 +1,15 @@
+<header class="container">
+    <hgroup>
+        <img class="avatar" src="{{ config.profile_image }}"/>
+        <div>{{ config.blog_description_en }}</div>
+        <ul class="sns-ul">
+            {% for sns in config.blog_sns %}
+            <li class="sns-li">
+                <a href="{{ sns.url }}" target="_blank">
+                    <i class="fa fa-{{ sns.ico }} "></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </hgroup>
+</header>

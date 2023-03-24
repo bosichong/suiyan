@@ -1,1336 +1,595 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <!-- Meta -->
-  <meta charset="utf-8"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   碎言博客
-  </title>
-  <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords"/>
-  <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description"/>
-  <meta content="J.sky" name="author"/>
-  <link href="./assets/images/favicon.ico" rel="shortcut icon"/>
-  <!-- CSS -->
-  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="./assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="./assets/css/theme-dark-1.css" id="blogcss" rel="stylesheet" type="text/css"/>
-  <!-- highlight.js Markdown代码美化 -->
-  <link href="./assets/plugins/highlight/styles/atom-one-dark.css" id="highlight" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header text-center">
-   <h1 class="blog-name pt-lg-4 mb-0 hide">
-    <a href="index.html">
-     碎言博客
-    </a>
-   </h1>
-   <nav class="navbar navbar-expand-lg navbar-dark" id="blog-nav">
-    <button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navigation" data-toggle="collapse" type="button">
-     <i aria-hidden="true" class="fa fa-bars fa-lg">
-     </i>
-    </button>
-    <div class="collapse navbar-collapse flex-column" id="navigation">
-     <div class="profile-section pt-3 pt-lg-0">
-      <img class="profile-image mb-3 rounded-circle mx-auto hide" height="160px" src="./assets/images/touxiang.jpg" width="160px"/>
-      <div class="blog-description mb-3 hide">
-       You see see you , This one day day di.
-      </div>
-      <!--//sns-->
-      <ul class="social-list list-inline py-3 mx-auto">
-       <li>
-        <a class="hide" href="https://github.com/bosichong/suiyan" target="blank_blank">
-         <i class="fa fa-github fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://gitee.com/J_Sky/suiyan" target="blank_blank">
-         <i class="fa fa-git fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://weibo.com/qq285911" target="blank_blank">
-         <i class="fa fa-weibo fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://user.qzone.qq.com/285911/" target="blank_blank">
-         <i class="fa fa-qq fa-lg">
-         </i>
-        </a>
-       </li>
-       <li>
-        <a class="hide" href="https://www.zhihu.com/people/J_sky/activities" target="blank_blank">
-         <i class="fa fa-book fa-lg">
-         </i>
-        </a>
-       </li>
-      </ul>
-      <!--//social-list-->
-      <hr/>
-     </div>
-     <!--//profile-section-->
-     <ul class="blog-nav navbar-nav flex-column text-left">
-      <li class="nav-item hide">
-       <a class="nav-link" href="./index.html">
-        <span>
-         <i class="fa fa-home fa-lg">
-         </i>
-         Blog Home
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./archives.html">
-        <span>
-         <i class="fa fa-archive fa-lg">
-         </i>
-         Blog Archive
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./tags.html">
-        <span>
-         <i class="fa fa-tags fa-lg">
-         </i>
-         Blog Tag
-        </span>
-       </a>
-      </li>
-      <li class="nav-item hide">
-       <a class="nav-link" href="./aboutme.html">
-        <span>
-         <i class="fa fa-user fa-lg">
-         </i>
-         About Me
-        </span>
-       </a>
-      </li>
-     </ul>
-     <form class="sform hide">
-      <div class="form-row">
-       <div class="form-group col-md-8">
-        <input class="form-control" id="skey" placeholder="JavaScript" type="text"/>
-       </div>
-       <div class="form-group col-md-3">
-        <button class="search btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" type="button">
-         Search
-        </button>
-       </div>
-      </div>
-     </form>
-    </div>
-   </nav>
-  </header>
-  <div class="main-wrapper">
-   <section class="blog-list px-3 py-5 p-md-5">
-    <div class="data-list list-group">
-     <div class="blog-article">
-      <h1 class="title">
-       如何快速的复习学习过的Python
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-11-07 16:19:22
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      最近老妈骨折住院，在医院护理了有8天，终于回出院回家了。回到家第一件事就是想到之前学习了python，如何快速的复习一下曾经学过的
-      <code>
-       python
-      </code>
-      呢？
-     </p>
-     <h2>
-      语法/变量/表达式
-     </h2>
-     <p>
-      也许我们能找到一个小小例子来快速的复习一下基本语法，那么这种例子有很多，比如：打印九九乘法表/斐波那契数列/排序法等等。
-     </p>
-     <h2>
-      九九乘法表
-     </h2>
-     <p>
-      快速复习
-      <code>
-       for
-      </code>
-      及
-      <code>
-       print format
-      </code>
-      等函数的用法。
-     </p>
-     <pre><code>for i in range(1,10):
-    for j in range(1,i+1):
-        print("{}X{}={}".format(i,j,i*j), end=' ')
-    print()
-</code></pre>
-     <h2>
-      一摞
-      <code>
-       Python
-      </code>
-      风格的纸牌
-     </h2>
-     <p>
-      在看《流畅Python》那本书的时候，第一章第一个小例子非常吸引人，具体代码如下
-Python3 扑克牌
-      <code>
-       collections.namedtuple
-      </code>
-      这个函数可以快速创建一个只有属性的类，我们通过这个方法来创建一张扑克牌的类，rank 和 suit 分别代表牌面数值和花色
-     </p>
-     <pre><code>import collections
-from random import choice
-Card = collections.namedtuple('Card',['rank','suit'])
-#创建一副扑克牌的类
-class Cards:
-    ranks = [str(n) for n in range(2,11)] + list('JQKA')#从2-10的数字
-    suits = 'spades clubs diamonds clubs'.split()# 黑桃 方块 草花 红桃
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第8页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
 
-    def __init__(self):
-        '''创建一副扑克牌'''
-        self._cards = [Card(rank,suit) for suit in self.suits
-                                       for rank in self.ranks] + ['King','Queen']
-    def __len__(self):
-        return len(self._cards)
-    def __getitem__(self,position):
-        return self._cards[position]
 
-deck = Cards()#创建一副扑克牌
-print(len(deck))#打印有多少张
-#打印所有纸牌
-for i in range(len(deck)):
-    print(deck[i])
-print(choice(deck))#随机抽取一张纸牌
-</code></pre>
-     <p>
-      我觉得这个纸牌的小例子很有意思，复习了类及列表推导等一些小概念。当然快速复习的小例子还有很多的，比如下边的例子
-     </p>
-     <h2>
-      简单的复利计算
-     </h2>
-     <pre><code>p = 10000 #初始金额
-rate = 0.04/365 #利率 例如余额宝的年化收益为4%，那么每天的这里计算每天的收益
-days = 100
 
-day = 1
-while day &lt;= days :
-    p = p * (1+rate)#复利，余额宝是每天的利滚利
-    print('%s天：%2.2f' % (day,p)) #打印当前年份及金额
-    day += 1
+<hgroup>
+    <h2>wxPython编程学习笔记(05)单选及多选按钮</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-23 18:49:39</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181223_1.png" /></p>
+<h2>wxPython单选及多选按钮</h2>
+<p>单选及多选按钮也是程序中经常使用到的互动小部件，使用频率也是很高的，对于选择按钮，我们重点需要了解的就是触发事件，
+通常，单选我们需要得到一组按钮中的选择项值或是键值，多选，我们只要知道每一项返回的布尔值即可。</p>
+<h2>多选按钮wx.CheckBox</h2>
+<p>创建及绑定事件</p>
+<pre><code>cb1=wx.CheckBox(pnl, label='hello', )
+self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
 </code></pre>
-     <p>
-      通过以上三个小例子，是不是又引起了你对Python的兴趣？温故而知新，大家加油哦！
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/blob/master/ReviewPython.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/blob/master/ReviewPython.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       python中导入不同目录中的自定义模块/class/函数/方法
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-27 10:37:17
-      </span>
-      <span class="tag">
-       Python基础
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      前几天在封装
-      <code>
-       PY_RPG
-      </code>
-      框架时，需要导入一些自定义的类、函数、常量的时候，发现始终找不到相关模块，后来参考书籍及网络上的一些经验终于解决了这个问题。
-     </p>
-     <h2>
-      包和模块导入的需求
-     </h2>
-     <p>
-      假设有一个项目，有a/a.py（此为工具类提供一些简单的方法和常量），b/b.py（需要调用a/a.py）项目文件，我们先在a.py中定义一些函数及常量一会引入使用。
-     </p>
-     <pre><code>M_TEST = 888
-def print_text():
-    print('这a.py下的一个打印文字函数')
+<p>这里的<code>self.Bind</code>是指绑定了当前窗口中所有的多选按钮，如果需要单独绑定，则需要为每一个多选按钮做单独的事件绑定。</p>
+<h2>单选按钮组wx.RadioBox</h2>
+<p>这里我直接介绍<code>wx.RadioBox</code>，因为单选按钮基本上是一组呈现的，所以直接使用单选按钮组即可，还方便。</p>
+<p>创建及绑定</p>
+<pre><code>self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                              style=wx.RA_SPECIFY_ROWS)
+self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
 </code></pre>
-     <p>
-      现在我们引入测试
-     </p>
-     <pre><code>import a.a
-a.print_text()
+<p>代码很直观，<code>majorDimension</code>表示单选钮的排列方式：0横向，1竖向。</p>
+<p>好了，完整的代码在下边，可以跑跑看。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        pnl = wx.Panel(self)
+
+
+        hbox3 = wx.StaticBoxSizer(wx.StaticBox(pnl, label='多选及单选测试',), wx.VERTICAL)
+        cb1=wx.CheckBox(pnl, label='hello', )
+        cb2=wx.CheckBox(pnl, label='world', )
+        self.Bind(wx.EVT_CHECKBOX,self.onCheckBox)
+        self.radio_box_1 = wx.RadioBox(pnl, wx.ID_ANY, u"请选择", choices=["aaa", "bbb", "ccccc", "ddddd"], majorDimension=1,
+                                  style=wx.RA_SPECIFY_ROWS)
+        self.radio_box_1.Bind(wx.EVT_RADIOBOX,self.onRadiobox)
+
+        hbox3.AddMany([(cb1),(cb2),(self.radio_box_1, 0, wx.EXPAND|wx.TOP, 10)])
+
+        btn = wx.Button(pnl, label='Ok', pos=(90, 185), size=(60, -1))
+
+        btn.Bind(wx.EVT_BUTTON, self.OnClose)
+
+        pnl.SetSizer(hbox3)
+
+
+    def onRadiobox(self,e):
+        rb = e.GetEventObject()
+        print(rb.GetSelection(),rb.GetStringSelection())#打印当前单选按钮的选项
+
+    def onCheckBox(self,e):
+        cb = e.GetEventObject()
+        if cb.GetValue():
+            print(cb.GetLabel())
+
+    def OnClose(self, e):
+        self.Close(True)
+
+
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
 </code></pre>
-     <p>
-      ModuleNotFoundError: No module named 'a'  很显然这样是找不到正确目录的，那么问题来了，
-如果是在同一目录，我们直接
-      <code>
-       import a
-      </code>
-      就搞定了，但实际工作中我们不可能把所有文件都放在一个目录中，如果需要导入其它目录的中.py文件，这时我们就需要用到
-      <code>
-       sys.path.append()
-      </code>
-     </p>
-     <pre><code>['/Users/mac/PycharmProjects/PythonStudy/b', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Users/mac/Library/Python/3.6/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/beautifulsoup4-4.6.0-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/PyMySQL-0.7.11-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/xadmin-0.6.1-py3.6.egg', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django_formtools-2.0-py3.6.egg']
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy05.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy05.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(04)wx.Butoon的应用</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-22 20:26:29</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181222_8.png" /></p>
+<h2>wx.Butoon</h2>
+<p>按钮是在GUI中使用率最高的一种组件了，点击按钮触发事件可以说是非常普遍的事了。<code>wx.Button</code>使用起来操作简单。
+wx中开关按钮<code>ToggleButton</code>，类似于电灯开关，绑定事件后可以通过</p>
+<pre><code>obj = e.GetEventObject()
+isPressed = obj.GetValue()
 </code></pre>
-     <p>
-      打印后，我们会发现很多目录，
-      <code>
-       python
-      </code>
-      加载包模块的目录就都在上边了，他会从这些目录中搜索需要加载内容的名称，如果有就加载进来。
-那么我们如何把自己的文件加到上边的目录里？有几种方法：
-     </p>
-     <ul>
-      <li>
-       通过修改环境变量，这个不环保，而且文件多了，不可能都去修改。
-      </li>
-      <li>
-       复制文件到上边的目录中，有些不方便，不推荐
-      </li>
-      <li>
-       <code>
-        sys.path.append()
-       </code>
-       把目录加进索引，方便python搜索，推荐
-      </li>
-     </ul>
-     <p>
-      那么我们来试试吧
-     </p>
-     <h2>
-      如何优雅的获得目录地址？
-     </h2>
-     <p>
-      如果需要把目录加进到索引中，我们只需要一个绝对地址即可，但是这种方法如果我们复制工程到其它目录后，我们还需要修改这个索引，很不方便不科学。
-这时我想到了
-      <code>
-       Django
-      </code>
-      配置文件中有一段代码
-     </p>
-     <pre><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+<p>来获取对象的属性，这样就可以知道开关按钮的状态了。</p>
+<h2>Button的创建与使用</h2>
+<p>创建</p>
+<pre><code>bt = wx.Button(self,label="关闭窗口",)
 </code></pre>
-     <p>
-      我们理解一下这段代码，
-      <code>
-       __file__
-      </code>
-      表示当前.py文件，
-      <code>
-       os.path.abspath(__file__)
-      </code>
-      表示当前.py文件的绝对地址，
-      <code>
-       dirname
-      </code>
-      获得上一层目录地址，
-那么如果我们当前的文件在根目录下的一个目录下边，那么上条语句正好获得了根目录的地址。我们来打印试试
-     </p>
-     <pre><code>/Users/mac/PycharmProjects/PythonStudy/b/b.py
-/Users/mac/PycharmProjects/PythonStudy/b
-/Users/mac/PycharmProjects/PythonStudy
+<p>绑定事件</p>
+<pre><code>bt.Bind(wx.EVT_BUTTON, self.onCloseWindow)
 </code></pre>
-     <p>
-      可以看到根目录地址已经得到了，然后通过
-      <code>
-       os.path.join()
-      </code>
-      就可以拼装到工具类目录地址了，到这里我们的所有功能基本上可以实现了，具体实现请看下边的代码。
-     </p>
-     <pre><code>import os 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#获取根目录
-print(os.path.abspath(__file__))
-print(os.path.dirname(os.path.abspath(__file__)))
-print(BASE_DIR)
-T_DIR = os.path.join(BASE_DIR,'a')#拼装工具类地址
-print(T_DIR)
-sys.path.append(T_DIR)
-import a
-print(a.M_TEST)
-a.print_text()
+<p>然后编写绑定事件的函数方法，这样就可以调用此方法了。</p>
+<p>具体代码如下，希望这些短小的代码，能给您带来帮助。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+        box = wx.BoxSizer(wx.VERTICAL)
+        bt1 = wx.Button(self,label="关闭窗口",)
+        bt1.Bind(wx.EVT_BUTTON, self.onCloseWindow)
+
+
+        self.bt2 = wx.ToggleButton(self,label='开关')
+        self.bt2.Bind(wx.EVT_TOGGLEBUTTON,self.showFlash)
+        st = wx.TextCtrl(self,value='helloworld',)
+
+
+        box.AddMany([(bt1,0, wx.ALL | wx.EXPAND, 0),(self.bt2,0, wx.ALL | wx.EXPAND, 0),(st,0, wx.ALL | wx.EXPAND | wx.SHAPED, 0)])
+
+
+        self.SetSizer(box)
+
+
+    def onCloseWindow(self,e):
+        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        ret = dl.ShowModal()
+
+        if ret == wx.ID_YES:
+            self.Destroy()
+        else:
+            pass
+
+    def showFlash(self,e):
+        obj = e.GetEventObject()
+        isPressed = obj.GetValue()
+
+        if isPressed:
+            self.bt2.SetLabel("关闭")
+        else:
+            self.bt2.SetLabel("打开")
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython Button',)
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+        main()
 </code></pre>
-     <h2>
-      本文源码下载： a b 两个目录下为相关源文件
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/17python.com/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/17python.com/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       基于Python、Tk构建的可视化目录文件同步助手
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-26 15:04:15
-      </span>
-      <span class="tag">
-       站长源创
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      之前用java GUI写过一个简单的目录同步助手，前几天在WIN10下边想用的时候，发现竟然无法使用了，正好最近在学习python，所以用python重写了一简单的目录文件同步助手。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2018/01/Snip20180109_24.png"/>
-     </p>
-     <h2>
-      功能需求
-     </h2>
-     <p>
-      之前有些喜欢拍照，但设备和场景比较多，所以每次照相回来，都为每台设备创建目录，然后在目录下边创建以时间为名的目录进行照片备份。
-之后这个备份了几年，后来目录越来越多，经常发现无法准确的判断哪些照片是否备份过，因为实在太多了，所以，需要一个实际目录与备份目录比较，
-并且能把比较后的结果复制到备份目录中进行备份。
-     </p>
-     <h2>
-      需求分析
-     </h2>
-     <p>
-      从需求上分析：参数需要给定两个目录，然后有比较和复制两个功能，GUI构建上只需要两个目录选择和两个按钮，使用Tk即可实现。
-技术上实现采用python的 filecmp shutil os 进行一些目录及文件的比较及复制来实现需求。
-     </p>
-     <h2>
-      逻辑分析
-     </h2>
-     <p>
-      通过目录选择框获得了两个字符串，然后进行比较，分析出不同的目录与文件，然后复制到目标目录中。
-为此，我创建了一个目录比较类，专门负责比较目录与文件。
-此类中的比较方法中使用到了递归，Python中的递归记得最大是1000次，我觉得这个目录层次应该是够了吧？
-其实本程序中，目录与文件的分析是重要部分：
-     </p>
-     <ul>
-      <li>
-       先判断根目录中不相同的目录与文件，然后分别记录。
-      </li>
-      <li>
-       如果有相同的目录，使用递归比较这二个相同的目录。
-      </li>
-      <li>
-       最后分别创建目录，复制文件到目标目录中。
-      </li>
-     </ul>
-     <h2>
-      Tk Button传参方法
-     </h2>
-     <p>
-      在构建GUI的时候，点击按钮激活的函数需要传参数进去，但Python并没有在Button中提供传参的方法，后来查到可以使用lambda
-     </p>
-     <pre><code>command=lambda: def(参数1, 参数2)
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy04.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy04.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(03)wxPython中的事件</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-21 19:11:40</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181221_2.png" /></p>
+<h2>wxPython中的事件</h2>
+<p>和大多数GUI程序一样，wxPython也有许多的事件可以绑定，这样才会有点击按钮发生行为事件的可能。</p>
+<p>wxPython中的事件绑定很简单：</p>
+<pre><code>self.Bind(wx.EVT_MOVE,self.onMove)
 </code></pre>
-     <p>
-      这样即可达到函数传参的实现。
-     </p>
-     <h2>
-      目录与文件的操作
-     </h2>
-     <p>
-      通过这个小软件的制作，达到了对python目录及文件的分析及创建复制的模块功能的复制，功能上还可以继续扩展，后续有需要再继续添加。
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/PyDirectoryComparison">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/PyDirectoryComparison">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame编写游戏（5）pygame绘制一个钟表
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-23 15:51:11
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      游戏中绘制圆及圆形的轨迹需求还是不少的，而且很多地方都需要用到圆及弧度的理论，如果想做些游戏的话，必须熟练掌握这些基本知识。
-     </p>
-     <h2>
-      一些知识点
-     </h2>
-     <ul>
-      <li>
-       radius 圆的半径
-      </li>
-      <li>
-       diameter 圆的直径
-      </li>
-      <li>
-       angle 角度
-      </li>
-      <li>
-       一个圆的完整的弧度 PI*2=6.28
-      </li>
-      <li>
-       1弧度的角度值为 360/6.28=57.3248
-      </li>
-      <li>
-       1度的弧度值为 6.28/360=0.0174
-      </li>
-      <li>
-       math.degrees(x)将角度x从弧度转换为度。
-      </li>
-      <li>
-       math.radians(x)将角度x从度转换为弧度。
-      </li>
-      <li>
-       math.sin(x)返回x弧度的正弦值。
-      </li>
-      <li>
-       math.cos(x)返回x弧度的余弦值。
-      </li>
-     </ul>
-     <h2>
-      圆周上点的坐标
-     </h2>
-     <pre><code>x = math.cos(math.radians(angle)) * (radius)
-y = math.sin(math.radians(angle)) * (radius）
+<p>上边一行代码就完成了一个事件的绑定，当窗口移动时的事件，<code>self.onMove</code>就是这个事件处发时要执行的方法函数。
+我们只要在<code>class</code>中定义<code>self.onMove</code>方法的代码，然后当事件触发时，就可以执行<code>onMove</code>方法了。</p>
+<p><code>wx.EVT_XXXXX</code>这种类似的常量定义大量的事件，我们可以通过官方的文档进行查询，根据自己的需求选择所要发生的事件。</p>
+<p>好了，wxPython中的事件处理是不是很简单？至少我认为比Tk中的事件绑定更直观简单一些。</p>
+<pre><code>import wx
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+
+
+        #创建一组文本用来显示数值
+        wx.StaticText(self,label="x:",pos=(10,10))
+        wx.StaticText(self, label="y:", pos=(10, 30))
+
+        self.st1 = wx.StaticText(self, label='', pos=(30, 10))
+        self.st2 = wx.StaticText(self, label='', pos=(30, 30))
+        #绑定窗口移动事件
+        self.Bind(wx.EVT_MOVE,self.onMove)
+        #绑定窗口关闭事件
+        self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
+
+    def onMove(self,e):
+        x,y = e.GetPosition()
+        self.st1.SetLabel(str(x))
+        self.st2.SetLabel(str(y))
+
+    def onCloseWindow(self,e):
+        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        ret = dl.ShowModal()
+
+        if ret == wx.ID_YES:
+            self.Destroy()
+        else:
+            pass
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
 </code></pre>
-     <p>
-      如果不想深入了解的话，只需要记住，我们需要角度，即可求得圆周上的坐标值，对就上边的函数解释应该可以理解上边的python语句的含意。
-     </p>
-     <h2>
-      实例
-     </h2>
-     <p>
-      没有比绘制一个表盘更贴近实际需求的例子了，通过pythondatetime函数，我们可以很方便的获得时间，然后转换成相关数据。
-     </p>
-     <p>
-      以下为游戏效果图，建议下载相关代码跑一下，有问题可以留言给我。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171023_1.png"/>
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone 下所有代码，以免造成游戏跑不起来的情况。本例源文件pygame05.py
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame写游戏（4）一个python问答游戏
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-22 09:50:35
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_7.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_8.png"/>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_9.png"/>
-     </p>
-     <p>
-      好开心，买的书终于到手了，极力推荐《Python游戏编程入门》！非常不错的一本书，另千万别买《Python和Pygame游戏开发指南》，好了，不要问什么，请叫我雷锋！
-     </p>
-     <h2>
-      游戏流程
-     </h2>
-     <p>
-      我觉得新手编写游戏的时候最大的难点是先把游戏构思的太细致了，以至于真正上手编程的时候完全不知道从哪里开始，平时构思设计游戏时，脑子里那闪耀的光芒，就觉得只要拿起键盘，一个旷世神作的游戏就要蛋生了！
-实际呢？两眼瞪着电脑，我特么从哪开始写呢？，所以你需要一个流程，你可以拿纸笔画，或是找个流程图画一下。可以参考下图：
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171022_5.png"/>
-     </p>
-     <p>
-      有游戏流程后，先不要急于实现游戏的细节功能，先把流程走一下，先搭建游戏骨架
-      <code>
-       pygame.init()
-      </code>
-      ，嗯，这个你应该很熟了。
-然后我们通过面向对象的方法来进行这个小游戏的编写：
-     </p>
-     <pre><code>pyqa.game_Start()
-pyqa.show_qt()
-pyqa.game_Over()
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy03.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy03.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(02)wxPython的布局</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-19 20:22:01</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181219_1.png" /></p>
+<h2>wxPython的布局</h2>
+<p>窗口程序中会用到很多的小部件，有序的排列这些小部件可以让应用更直观，</p>
+<p>我们可以选择下列sizers：</p>
+<p>1.wx.BoxSizer</p>
+<p>2.wx.StaticBoxSizer</p>
+<p>3.wx.GridSizer</p>
+<p>4.wx.FlexGridSizer</p>
+<p>5.wx.GridBagSizer</p>
+<p>这里我介绍一下<code>wx.BoxSizer</code>，灵活应用它基本上可以满足大部分窗口中的布局。</p>
+<h2>wx.BoxSizer</h2>
+<p><code>wx.BoxSizer</code>有<code>wx.VERTICAL</code>或<code>wx.HORIZONTAL</code>两种方向属性，而且可以嵌套，这样复杂的窗口布局也可以迎刃解决。</p>
+<p>如果我们使用wx.EXPAND标志，我们的部件将使用所有已分配给它的空间。</p>
+<p>列举一些属性：</p>
+<p>1.wx.LEFT</p>
+<p>2.wx.RIGHT</p>
+<p>3.wx.BOTTOM</p>
+<p>4.wx.TOP</p>
+<p>5.wx.ALL</p>
+<p>以上属性用来控制小部件在布局管理器中的位置，wx.All 可以用来控制边距，例如：</p>
+<pre><code>vbox.Add(midPan, 1, wx.EXPAND | wx.ALL, 20)
 </code></pre>
-     <p>
-      这样在循环中你应该很明白游戏的流程，虽然他们都在循环中，但我们可以控制他们在游戏中渲染的逻辑，这样我们就可以考虑好游戏中类的属性了。
-这是一个问答游戏，需要有基本的题库数据，我们通过python的流读入数据，因为python可以很方便的读行，这样我们可以定义一些规律，把每一题的问题、选择项，答案都分别占一行。
-这样导入数据后可以返回一个list，方便操作。
-     </p>
-     <p>
-      好了，我们定义一下当前答题类
-      <code>
-       class Pyqa
-      </code>
-      的一些属性，首先他需要三个开关，分别代表游戏开始画面，答题画面，游戏结束画面，当然游戏一开始就是开始画面，我们可以设置他为
-      <code>
-       True
-      </code>
-      ，
-这样游戏一旦开始，即可直接进入游戏开始画面，当然我们还需要定义三个函数，分别渲染三个场景，通过
-      <code>
-       if self.gameStart
-      </code>
-      判断当前是否要渲染这段场景。
-好了，流程说到这里应该了解了吧？如果还是很头疼，建议先打代码试试，游戏内容可以不用填加，就试过场。
-     </p>
-     <h2>
-      游戏中的事件
-     </h2>
-     <p>
-      当我们运行游戏的时候，我们发现游戏只停止在游戏开始画面上，并没有继续进和到问答画面，因为我们没有加入游戏的控制，我们通过玩家来按键获取当前的游戏按键事件，
-      <code>
-       pygame
-      </code>
-      中的游戏事件轮询获取相应的事件来响应用户的操作。
-     </p>
-     <pre><code>while True:
-    for event in pygame.event.get():
+<p>我们还可以通过以下属性定义我们的部件对齐：：</p>
+<p>1.wx.ALIGN_LEFT
+2.wx.ALIGN_RIGHT
+3.wx.ALIGN_TOP
+4.wx.ALIGN_BOTTOM
+5.wx.ALIGN_CENTER_VERTICAL
+6.wx.ALIGN_CENTER_HORIZONTAL
+7.wx.ALIGN_CENTER</p>
+<p>好了，下边列举了一下小例子：</p>
+<pre><code>import wx
+
+
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        # 调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        # 创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
+
+        st = wx.TextCtrl(pl)
+        hbox1.Add(st, proportion=1, )
+
+        bt1 = wx.Button(pl, label="hello world")
+        hbox1.Add(bt1, )
+
+        vbox.Add(hbox1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        hbox2 = wx.BoxSizer(wx.HORIZONTAL)  # 第二行组件
+
+        bt2 = wx.Button(pl, label="hello world")
+        bt3 = wx.Button(pl, label="hello world")
+        bt4 = wx.Button(pl, label="hello world")
+        hbox2.Add(bt2, wx.EXPAND)
+        hbox2.Add(bt3, )
+        hbox2.Add(bt4, wx.EXPAND)
+        vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
+
+        sb = wx.StaticBox(pl, label="test")
+        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
+        bt5 = wx.Button(pl, label="yes")
+        bt6 = wx.Button(pl, label="no")
+        hbox3.Add(bt5, )
+        hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
+        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
+
+        pl.SetSizer(vbox)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='wxPython 布局练习')
+    frm.Show()  # 显示窗口
+    app.MainLoop()  # 持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
 </code></pre>
-     <p>
-      当我们通过
-      <code>
-       event.key == K_RETURN:
-      </code>
-      在游戏开始画面处获得了回车键的事件，就可以把游戏中的
-      <code>
-       self.showQuestion
-      </code>
-      设置
-      <code>
-       True
-      </code>
-      ，然后开始游戏了，其它响应也是如此，
-比如获取游戏中的答案数字，也是通过相应的键值获取，具体可以查看代码了解。
-     </p>
-     <h2>
-      答题场景编写
-     </h2>
-     <p>
-      本游戏的核心就是回答问题，导入题库后，通过
-      <code>
-       def show_qt()
-      </code>
-      方法来渲染问题及选项。我在游戏中定义了一个函数
-      <code>
-       def print_text
-      </code>
-      是专门用来打印游戏中的文字的。
-当我们在游戏中选择答案按下数字键1-4的时候，我们会通过
-      <code>
-       pyqa.handle_input(int)
-      </code>
-      方法来处理当前游戏中的一些数据，比如回答是否正确，提示正确答案，记录回答正确数等，
-当我们再次按下回车键，
-      <code>
-       def next_question
-      </code>
-      方法会更新问题题库的索引指针，告诉
-      <code>
-       def show_qt()
-      </code>
-      我得渲染下一道题了！
-     </p>
-     <h2>
-      游戏结束
-     </h2>
-     <p>
-      当
-      <code>
-       def next_question
-      </code>
-      通过
-      <code>
-       self.current &gt;= len(self.data)
-      </code>
-      发现已经到达题库最后边了，游戏就要结束了，设置游戏开关相关参数为false，设置游戏结束标识
-      <code>
-       gameOver
-      </code>
-      为
-      <code>
-       true
-      </code>
-      进入游戏结束画面，展示游戏数据统计，最后当然还可以让你有重来的机会，具体实现请看代码吧，无非就是一些按键事件触发。
-     </p>
-     <h2>
-      写在最后
-     </h2>
-     <p>
-      无论是整个游戏还是中间的答题系统，我们发现在这个游戏中我们必须细致入微的进行设计判断每一步的操作，这就是游戏设计的精髓及乐趣，至少我们可以按着自己的需要来进行设计，当你把游戏设计成功，代码编写运行无错时，希望你能体会到这其中的乐趣！如果你有时间，可否帮忙丰富一下题？谢啦，记得提git提交给我哦，谢谢了。
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone 下所有代码，以免造成游戏跑不起来的情况。
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame写游戏（3）让角色动起来及碰撞检测
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-20 16:00:52
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      上次的代码中，除了绘制基本图形与图片外，中间还插入了一个小小动画，就是头像在不停的移动，这个移动确实简单了些，游戏中的的角色肯定不是简单的移动几像素那么简单了。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/QQ20171020-145146-HD111.gif"/>
-     </p>
-     <h2>
-      屡屡顺序
-     </h2>
-     <p>
-      我觉得刚开始做游戏写代码的时候，总是弄不清游戏的顺序，你可以这样想象一下，比如是拍电影，大家都了解电影是一段一段拍，最后合成在一起然后电影可以播放了。
-游戏呢和这个差不多，也是一段一段做，只不过游戏需要一些条件判断，True了，我就播放第三段，这个属性值达到了我就播放第五段，游戏over了，我就播放结尾。
-好吧，那么我们规划一下现在这个小游戏（应该算不上是一个游戏）场景及角色。
-     </p>
-     <h2>
-      游戏内容
-     </h2>
-     <p>
-      建一个 640X480的黑色背景的游戏场景，场景中随机生成一些大小一样的小球，他们随机属性值，有一个绿色，有一组红色，如果绿色碰到红色他们就会反转滚动，这些小球如果碰到边界也会反转滚动。
-注意：这里碰撞的检测之后的动作，只是简单的，并不是真的物理运动哦，当然如果你很懂物理学，做一组力学物理运动应该也不是很难的。
-     </p>
-     <h2>
-      游戏场景
-     </h2>
-     <ul>
-      <li>
-       游戏场景的搭建和之前基本上差不多，这里不在介绍了，如果不了解可以翻看之前或是本节的代码参考。
-      </li>
-     </ul>
-     <h2>
-      游戏中的角色
-     </h2>
-     <p>
-      之前我们在场景中是直接绘制的图形，这次我们通过面向对象的方式来管理场景中的角色，pygame中提供了一个
-      <code>
-       Sprite
-      </code>
-      类，这个类专门为游戏中的角色精灵准备的。
-框架中还提供了一个
-      <code>
-       pygame.sprite.Group()
-      </code>
-      容器，他可以把sprite加进去，通过group来管理，group这个容器，通过查看源代码，他只能处理图片类型的sprite。
-如果创建的Rect对象是不行的，这种加到组里后，通过draw是无法绘制出来的，
-      <code>
-       group.draw()
-      </code>
-      这个方法中的画笔使用了
-      <code>
-       blit()
-      </code>
-      ，而不是
-      <code>
-       draw()
-      </code>
-     </p>
-     <h2>
-      游戏中的逻辑判断
-     </h2>
-     <p>
-      这个我们直接在游戏中的循环当中直接判断，我是这么把游戏分成各种对象的：
-     </p>
-     <ul>
-      <li>
-       游戏场景对象，他只负责绘制场景中的任何角色及精灵
-      </li>
-      <li>
-       游戏逻辑判断对象，他只负责判断游戏场景中的碰撞，时间检测，然后修改他们的属性。
-      </li>
-      <li>
-       精灵group，他们只负责创建，删除。
-      </li>
-     </ul>
-     <h2>
-      开始制作
-     </h2>
-     <p>
-      理论课结束，我们来实践一下，
-      <code>
-       main()
-      </code>
-      函数中创建一个游戏运行函数
-      <code>
-       rungame()
-      </code>
-      ，这个函数中运行着当前游戏的所有数据，及各种事件触发的检测。
-为什么需要
-      <code>
-       rungame()
-      </code>
-      ?你可以把他这个函数看成一个电影片段，当前你还可以有
-      <code>
-       gamestart() gameover()
-      </code>
-      函数，这样游戏运行到哪个部位时就让哪个函数运行即可。
-     </p>
-     <h2>
-      Sprite 精灵
-     </h2>
-     <p>
-      说说
-      <code>
-       class MyImgSprite(pygame.sprite.Sprite
-      </code>
-      ，这是当前游戏中的精灵，我们为他创建了几个属性，其中比较重要的有：
-     </p>
-     <pre><code>self.image = pygame.image.load('./images/a.png') #导入图片
-self.rect = self.image.get_rect() #返回一个rect对象
-self.rect.topleft = (random.randint(40,590),random.randint(40,430))#设置他的坐标  
-self.last_update = pygame.time.get_ticks()#获取当前游戏动行的时间，这是一个整数，不明白可以打印看看
-#移动速度
-self.speed_x = random.randint(1,10)
-self.speed_y = random.randint(1,10)
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy02.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy02.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>wxPython编程学习笔记(01)Frame程序的窗口</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2018-12-18 19:42:47</small> 标签:
+        
+        
+        <mark>Python GUI</mark>
+        
+    </h3>
+</hgroup>
+<p><h2>简介</h2>
+<p>之前的一些小应用都是用的<code>python tk</code>来写的，后来发现tk的组件确实有些简单，满足不了程序越来越复杂的界面需求，所以决定学习一下<code>wxPython</code>
+<code>wxPython</code>是一个<code>Python</code>包装<code>wxWidgets</code>（这是用 C++ 编写），一个流行的跨平台GUI工具包。由Robin Dunn以及Harri Pasanen开发，
+<code>wxPython</code>是作为一个<code>Python</code>扩展模块。</p>
+<h2>wxPython的安装</h2>
+<pre><code>pip3 install wxPython
 </code></pre>
-     <p>
-      有了速度，我们就可以通过
-      <code>
-       update()
-      </code>
-      方法来更新自己的坐标
-     </p>
-     <pre><code>now = pygame.time.get_ticks()
-if now - self.last_update &gt;1:#通过这个时间差来做一些动画       
-    #self.rect.topleft = (random.randint(0,600),random.randint(0,440))#随机变化位置
-    self.rect.x += self.speed_x
-    self.rect.y += self.speed_y
-    self.last_update = now
+<p>如果网络不太好，可以到官网下载进行安装，官方网址：<code>https://wxpython.org/</code></p>
+<h2>Frame 窗口</h2>
+<p><img alt="输入图片说明" src="assets/images/media/upload/2018/12/Snip20181218_12.png" /></p>
+<p>如果我们开始构建一个桌面程序，不妨从一个窗口开始，比如先创建一个<code>Frame</code>.</p>
+<p><code>Wx.Frame (parent, id, title, pos, size, style, name)</code></p>
+<p>其中的参数含意如下：</p>
+<p>Parent 窗口的父类。如果“None”被选择的对象是在顶层窗口。如果“None”未被选择时，所述框显示在父窗口的顶层
+id 窗口标识。通常-1为了让标识符自动生成
+Title 标题出现在标题栏
+Pos 帧(frame)的开始位置。如果没有给出，wxDefaultPosition是由操作系统决定
+Size 窗口的尺寸。 wxDefaultSize 是由操作系统决定
+style 窗口的外观按样式风格常数控制
+name 对象的内部名称</p>
+<h2>wxPython hello world</h2>
+<p>我们通过继承wx.Frame来创建自己的主窗口，然后再构建方法<code>__init__</code>中创建窗口中的部件。
+<code>main()</code>方法中，我们创建一个app，创建一个我们构建的窗口类，就可以展示出来一个窗口了。</p>
+<p>怎么样，很简单吧？</p>
+<pre><code>import wx
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
+        #创建一个面板窗口，panel 是用来放置各种小部件的面板，通常内置于Frame内部
+        pl = wx.Panel(self)
+        #创建一个静态文本
+        st = wx.StaticText(pl,label= "Hello world!!", pos=(20,20))
+        font = st.GetFont()
+        font.PointSize += 20
+        font = font.Bold()
+        st.SetFont(font)
+
+
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Hello World wxPython 窗口练习')
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
+    main()
 </code></pre>
-     <p>
-      如果你不在
-      <code>
-       update()
-      </code>
-      方法更新任何值，那么 这个精灵就是不会动弹的。
-那么问题来了，为什么不直接在游戏循环中更新？
-上节的代码中有段小小的移动是在循环中更新的，因为那只有一段动画，如果以后有很多个对象的话，在循环中更新会很麻烦，这里更新更符合面向对象的的编程方式。
-     </p>
-     <h2>
-      绘制及更新
-     </h2>
-     <p>
-      在rungame函数中创建个绿球，一组红球，然后就可以直接在场景里绘制了，绘制方法：
-     </p>
-     <pre><code>drawbackground()#绘制场景背景颜色
-DISPLAYSURF.blit(m.image,m.rect)#绘制绿球
-myimgs.draw(DISPLAYSURF)#绘制一组红球
-</code></pre>
-     <p>
-      场景中的绘制顺序应该是：
-     </p>
-     <ol>
-      <li>
-       绘制精灵
-      </li>
-      <li>
-       逻辑判断
-      </li>
-      <li>
-       udpate()更新数据
-      </li>
-     </ol>
-     <p>
-      以此为循环，这样反复循环即可生成画面。
-     </p>
-     <h2>
-      逻辑判断
-     </h2>
-     <p>
-      说到逻辑判断，这次场景中包括的判断有二种：边界碰撞及球体之间的碰撞。
-边界碰撞，我自个写了个边界碰撞检测器
-      <code>
-       BorderCrossing.py
-      </code>
-      ，因为我在pygame中没找到边界碰撞检测的方法，大家在运行代码的时候，记得git clone一下整个项目。
-这个边界碰撞检测器，我就不多说了，不然这又一篇博客了，有兴趣可以自己看看源码。
-     </p>
-     <p>
-      球体之间的碰撞检测直接套用的pygame中的碰撞检测，具体可以参考官方文档
-     </p>
-     <p>
-      <a href="http://pygame.org/docs/ref/sprite.html#pygame.sprite.spritecollide">
-       碰撞检测官方文档
-      </a>
-     </p>
-     <h2>
-      更新游戏数据
-     </h2>
-     <p>
-      在逻辑判断中根据自己的需要进行速度等数据修改，最后记得用方法更新一下精灵们的坐标。
-说的不是很好，具体大家跑跑程序，改改数值就明白了，如果有什么不懂的，可以直接留言或是邮件给我。欢迎各位大佬指正！
-     </p>
-     <h2>
-      本文源码下载
-     </h2>
-     <p>
-      请git clone 下所有代码，以免造成游戏跑不起来的情况。
-     </p>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame写游戏（2）在场景中绘制图形与动画
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-19 14:03:46
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <code>
-       pygame
-      </code>
-      的框架使用起来很简单，但这个框架功能也还算可以的，虽然网上对
-      <code>
-       pygame
-      </code>
-      评价褒贬不一，但对于其的存在必有其的存在意义，功能上虽然不能说是十分的完美，但对于新手来说，在使用和学习中还是很有价值的。
-     </p>
-     <h2>
-      <code>
-       pygame
-      </code>
-      图形绘制
-     </h2>
-     <p>
-      rect    绘制矩形
-polygon 绘制多边形（三个及三个以上的边）
-circle  绘制圆
-ellipse 绘制椭圆
-arc 绘制圆弧
-line    绘制线
-lines   绘制一系列的线
-aaline  绘制一根平滑的线
-aalines 绘制一系列平滑的线
-     </p>
-     <p>
-      上边列举了一些图形绘制的方法，第一结中的代码我们只是给出pygame中最简约的实现代码，我们在上节代码的基础之上继续添加一下，试试画出各种图形。
-     </p>
-     <pre><code>pygame.draw.polygon(screen, RED, ((146,0),(290,100),(36,277),(55,200),(0,106)),2)
-pygame.draw.line(screen, BLUE, (11,33), (55,300), 1)
-pygame.draw.circle(screen, GREEN, (300,50), 100, 0)
-pygame.draw.ellipse(screen, RED, (300,250,180,80), 1)
-pygame.draw.rect(screen, RED, (200,150,100,100), 1)
-</code></pre>
-     <p>
-      以上为各种图形绘制的方法演示，关于这些方法的参数，我们可以参考官方的文档，其实都是挺简单的。
-     </p>
-     <h2>
-      在场景中绘制图片
-     </h2>
-     <p>
-      游戏中的角色不可能只是一些简单的图形，大多数时应该都是一张张图片，我们看下图片的绘制方法
-     </p>
-     <pre><code>bosiImg = pygame.image.load('./images/bosi.png')
-screen.blit(bosiImg,(bosix,bosiy))
-</code></pre>
-     <p>
-      通过
-      <code>
-       pygame.image.load()
-      </code>
-      加载图片后，在场景中使用
-      <code>
-       screen.blit
-      </code>
-      绘制，两个参数：图片对象和一个坐标元组。
-     </p>
-     <h2>
-      在场景中写字
-     </h2>
-     <p>
-      pygame中的文字绘制稍稍有一点麻烦，我们看代码：
-     </p>
-     <pre><code>fobj = pygame.font.Font('./font/3.ttf', 40)
-textobj = fobj.render('Hello World', True, GREEN,)
-text = textobj.get_rect()
-text.center = (400, 400)
-screen.blit(textobj, text)#文字显示
-</code></pre>
-     <p>
-      看代码行数是五步：
-     </p>
-     <ol>
-      <li>
-       通过
-       <code>
-        pygame.font.Font()
-       </code>
-       加载字体，创建一个font对象，设置文字的大小
-      </li>
-      <li>
-       通过
-       <code>
-        render('Hello World', True, GREEN,)
-       </code>
-       设置文字的内容，颜色。
-      </li>
-      <li>
-       <code>
-        get_rect()
-       </code>
-       或得一个rect对象，之后就有些象绘制图象了。
-      </li>
-      <li>
-       设置绘制图像的坐标
-      </li>
-      <li>
-       <code>
-        blit()
-       </code>
-       方法绘制文字到场景
-      </li>
-     </ol>
-     <h2>
-      让图片动起来
-     </h2>
-     <p>
-      如何在场景中绘制动画？动画其实就是角色坐标值的修改，
-     </p>
-     <pre><code>bosix = 100
-bosiy = 100
-</code></pre>
-     <p>
-      在代码中我定义了二个变量，然后我在游戏场景的循环输出中，不断的修改角色的坐标值即可达到需要的动画效果了。
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_3.png"/>
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="blog-article">
-      <h1 class="title">
-       “编学编玩”用Pygame写游戏（1）初识pygame
-      </h1>
-      <span class="author">
-       J.sky
-      </span>
-      <span class="time">
-       2017-10-19 11:00:31
-      </span>
-      <span class="tag">
-       pygame
-      </span>
-     </div>
-     <p>
-     </p>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/timg.jpeg"/>
-     </p>
-     <h2>
-      啰嗦几句
-     </h2>
-     <p>
-      这阵子一直在看有关
-      <code>
-       Python
-      </code>
-      相关的书，
-      <code>
-       Python
-      </code>
-      上手确实很简单，但这并不意味着
-      <code>
-       Python
-      </code>
-      是一门浅显的编程语言，语法简练确实让我们节省了大量的时间。不过当你深入的学习
-      <code>
-       Python
-      </code>
-      的时候，比如：装饰器，推导，多线程及多进程，协程，高阶函数，元编程等等等等很多，你会发现，
-      <code>
-       Python
-      </code>
-      的深入学习并不是很简单。会写代
-      <code>
-       Python
-      </code>
-      和会优雅的编写
-      <code>
-       Python
-      </code>
-      代码是两回事，出来混的，坑迟早还是要挖的，这不前几天协程的深入学习，搞的我很不爽，到现在还是一头雾水。
-     </p>
-     <p>
-      为了让自己换换心情，前几天想到用
-      <code>
-       python
-      </code>
-      写写小游戏玩玩吧，想到自己以前用
-      <code>
-       java
-      </code>
-      还编写了一个小小的2D游戏引擎半路就放弃了（java就是不爽），这次来试试用
-      <code>
-       Python
-      </code>
-      写些小游戏试试。其实写游戏练习编程确实是一个比较好的方法，几百行的工程量也不算大，游戏设计的逻辑比较紧密，比较适合新手养成编程思维，不过如果是刚刚学习编程，可能还是会觉得游戏中大段的代码，摸不清逻辑，所以通过阅读代码了解游戏的设计意图也算是对编程能力很好的锻炼。
-     </p>
-     <p>
-      好了，啰嗦了半天，我们开始pygame的学习之旅吧。
-     </p>
-     <h2>
-      pygame 安装
-     </h2>
-     <pre><code>pip3 install pygame
-</code></pre>
-     <p>
-      就是这么简单，然后我们可以在python3的终端环境下测试一下
-     </p>
-     <pre><code>import pygame
-</code></pre>
-     <p>
-      如果没有报错，那么恭喜你安装成功了。
-     </p>
-     <h2>
-      pygame的 Hello World
-     </h2>
-     <p>
-      导入pygame模块及常用变量，如果还需要其它模块，可以一并导入，比如sys,os,time random等。
-     </p>
-     <pre><code>import pygame
-from pygame.locals import *
-</code></pre>
-     <p>
-      这里是一个游戏初始化的设置，他应该在游戏代码编写的最前边，不要忘记哦。
-     </p>
-     <pre><code>pygame.init()
-</code></pre>
-     <p>
-      SCREEN 定义了一个游戏的屏幕，我觉得管它叫做画布更形象些，因为后续游戏场景中的游戏对象，都要在这个screen上绘制。
-     </p>
-     <pre><code>SCREEN = pygame.display.set_mode((640, 480))
-</code></pre>
-     <p>
-      设置当前游戏窗口的标题
-     </p>
-     <pre><code>pygame.display.set_caption("Hello World!")
-</code></pre>
-     <p>
-      这里有个死循环，这是游戏的主要逻辑处理及场景渲染器，for循环是处理游戏中的事件触发，其中QUIT表示触发了游戏离开件事，然后调用
-      <code>
-       pygame.quit()
-      </code>
-      函数。
-      <code>
-       pygame.display.updae()
-      </code>
-      这个函数表示更新当前screen的画面。
-     </p>
-     <pre><code>while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-    pygame.display.update()
-</code></pre>
-     <h2>
-      效果如图：
-     </h2>
-     <p>
-      <img alt="输入图片说明" src="assets/images/media/upload/2017/10/Snip20171019_2.png"/>
-     </p>
-     <h2>
-      本文源码下载：
-     </h2>
-     <ul>
-      <li>
-       <a href="https://github.com/bosichong/My_pygame/blob/master/pygame00.py">
-        github
-       </a>
-      </li>
-      <li>
-       <a href="https://gitee.com/J_Sky/My_pygame/blob/master/pygame00.py">
-        开源中国码云镜像gitee
-       </a>
-      </li>
-     </ul>
-     <div class="spage">
-      <div aria-label="Basic example" class="pagination pagination4 btn-group" id="suiyanpage" role="group">
-       <a href="list_7.html">
-        <button class="prev btn btn-primary" type="button">
-         Previous
-        </button>
-       </a>
-       <button class="page btn btn-primary" type="button">
-        8 / 15
-       </button>
-       <a href="list_9.html">
-        <button class="next btn btn-primary" type="button">
-         Next
-        </button>
-       </a>
-      </div>
-     </div>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/wxPythonTest/blob/master/wxpy01.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/wxPythonTest/blob/master/wxpy01.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_7.html" role="button" class="outline">Prev</a></li>
+    <li><small>8 / 23</small></li>
+    <li><a href="list_9.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
     </div>
-   </section>
-   <script src="./assets/plugins/jquery-3.3.1.min.js">
-   </script>
-   <!-- Javascript -->
-   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js">
-   </script>
-   <footer class="footer text-center py-2 theme-bg-dark">
-    <div class="card text-center">
-     <div class="card-body">
-      <p>
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="border-width:0"/>
-       </a>
-      </p>
-      <p class="am-text-sm am-text-center">
-       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">
-        本站采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。
-       </a>
-      </p>
-      <p>
-       Powered by
-       <a href="https://github.com/Jsky2020/suiyan">
-        SuiYan
-       </a>
-       | J.sky
-       <small>
-        Copyright
-        <i aria-hidden="true" class="fa fa-copyright">
-        </i>
-        2017-2020 碎言博客
-       </small>
-      </p>
-     </div>
-    </div>
-    <!-- Scroll to Top button selector -->
-    <a class="to-top">
-     <i aria-hidden="true" class="fa fa-chevron-up fa-3">
-     </i>
-    </a>
-    <script src="./assets/plugins/jquery.toTop.min.js">
-    </script>
-    <script>
-     jQuery(function($){
+
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
             // Plugin activation (basic - with all default values)
             // $('.to-top').toTop();
 
@@ -1345,39 +604,7 @@ from pygame.locals import *
                 bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
             });
         });
-    </script>
-    <!-- 搜索模态对话框。 -->
-    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
-     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-         搜索结果
-        </h5>
-        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-         <span aria-hidden="true">
-          ×
-         </span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <ul class="search-list car-list navbar-nav">
-        </ul>
-       </div>
-      </div>
-     </div>
-    </div>
-    <!-- 站点自定义JS -->
-    <script src="./assets/js/build/index.js">
-    </script>
-    <!-- highlight.js Markdown代码美化 -->
-    <script src="./assets/plugins/highlight/highlight.pack.js">
-    </script>
-    <script>
-     hljs.initHighlightingOnLoad();
-    </script>
-   </footer>
-  </div>
-  <!--//main-wrapper-->
- </body>
+
+</script>
+</body>
 </html>

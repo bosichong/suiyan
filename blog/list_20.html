@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Python,Django,JavaScript,程序员,人生苦短,我用Python" name="keywords">
+    <meta content=" Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。" name="description">
+    <meta content="J.sky" name="author">
+    <title>SuiYan 碎言博客 List Pages 第20页</title>
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/pico.min.css">
+    <!-- 引入 pico.css -->
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- 引入 站点样式 -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    
+</head>
+<body>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid"><ul>
+    <li><a href="#" class="contrast" onclick="event.preventDefault()">SuiYan</a></li>
+</ul>
+<ul>
+    <li>
+        <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+            <ul role="listbox">
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+            </ul>
+        </details>
+    </li>
+</ul></nav>
+    <head><header class="container">
+    <hgroup>
+        <img class="avatar" src="./assets/images/touxiang.jpg"/>
+        <div>You see see you , This one day day di.</div>
+        <ul class="sns-ul">
+            
+            <li class="sns-li">
+                <a href="https://github.com/bosichong/suiyan" target="_blank">
+                    <i class="fa fa-github "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://gitee.com/J_Sky/suiyan" target="_blank">
+                    <i class="fa fa-git "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://weibo.com/qq285911" target="_blank">
+                    <i class="fa fa-weibo "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://user.qzone.qq.com/285911/" target="_blank">
+                    <i class="fa fa-qq "></i>
+                </a>
+            </li>
+            
+            <li class="sns-li">
+                <a href="https://www.zhihu.com/people/J_sky/activities" target="_blank">
+                    <i class="fa fa-book "></i>
+                </a>
+            </li>
+            
+        </ul>
+    </hgroup>
+</header></head>
+</div>
+<main class="container">
+    <div class="grid">
+        <section>
+
+
+
+<hgroup>
+    <h2>python3函数学习笔记简单总结</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-09 09:27:49</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><em>python3的函数是简单简约的，但有很有个性，而且有一些很多意思的语法糖，了解并理解这些函数语法，是python学习中必经之路</em></p>
+<h2>函数的定义，Python 定义函数使用 def 关键字</h2>
+<pre><code class="python">def hello():
+    '''定义一个hello打印的函数'''
+    return 'hello world'
+
+## 使用函数
+
+print(hello())
+</code></pre>
+
+<h2>有参数并有返回值的函数</h2>
+<pre><code class="python">def add(x, y):
+    return x+y
+print(add(2,5))
+</code></pre>
+
+<h2>任意参数有返回值 <em>为tuple </em>*为list</h2>
+<pre><code class="python">def rst_a(*k, **s):
+    rst = 0
+    for v in k :
+        rst += v
+    return rst,s
+print(rst_a(1,2,3,4,aa='aa',bb='bb'))
+</code></pre>
+
+<h2>有意思的lambda</h2>
+<pre><code>l = lambda x, y : x + y
+print(l(2,8))
+</code></pre>
+<h2>装饰器语法糖</h2>
+<p>在Python中可以使用”@”语法糖来精简装饰器的代码,函数可以支持(<em>args, </em>*kwargs)可变参数。</p>
+<pre><code class="python">import time
+
+def t(func):
+    '''定义一个程序运行时间计算函数'''
+    def wrapper(*args, **kwargs):
+        start = time.time()#起始时间
+        func(*args, **kwargs)#要执行的函数
+        end = time.time()#结束时间
+        print('程序运行时间:{:.2f}ms'.format((end-start)*1000))
+    return wrapper
+
+def log(func):
+    '''一个打印函数运行日志的方法'''
+    def wrapper(*args, **kwargs):
+        print('函数开始运行')
+        func(*args, **kwargs)
+        print('函数运行结束')
+    return wrapper
+
+@log #打印日志
+@t  #统计程序运行时间
+def myfunc(x,y):
+    '''打印从x到y的数值'''
+    for i in range(x,y):
+        print(i)
+
+myfunc(3,6)
+
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143167832686474803d3d2b7d4d6499cfd093dc47efcd000">Python 函数</a></li>
+<li><a href="http://python.jobbole.com/82344/">Python 装饰器</a></li>
+<li><a href="http://www.cnblogs.com/jinjiangongzuoshi/p/5634553.html">理解Python中的装饰器</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/deftest/lambda.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/deftest/lambda.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>PythonINI配置文件读写的简单方法</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-06 10:19:07</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><em>.ini 文件是Initialization File的缩写，即初始化文件，是windows的系统配置文件所采用的存储格式，统管windows的各项配置，一般用户就用windows提供的各项图形化管理界面就可实现相同的配置了。但在某些情况，还是要直接编辑ini才方便，一般只有很熟悉windows才能去直接编辑。</em></p>
+<p>我们来看下python3中如何读取和保存ini文件:</p>
+<h2>引入模块</h2>
+<pre><code>import os
+from configparser import ConfigParser
+</code></pre>
+<p>os模块不解释，读取和保存文件及文件目录操作必须。ConfigParser 是操作ini文件的必须模块。</p>
+<h2>返回一个ini文件对象</h2>
+<pre><code class="python">def readINI(file_path):
+    """ ini文件读取，返回一个INI配置对象 """
+    cfg = ConfigParser()
+    cfg.read(file_path, encoding='utf-8')
+    return cfg
+</code></pre>
+
+<p>我们读取一个ini文件的内容，创建一个ConfigParser对象来进行对其操作。</p>
+<pre><code class="python">def main():
+    ini_file=os.path.join(os.path.dirname(__file__),'config.ini')#拼装配置文件目录
+    c = readINI(ini_file)#读取加载ini文件配置
+    #创建section及选项
+    # c.add_section('cc')
+    # c.set('cc','a','aa')
+    # c.set('cc','b','bb')
+    # c.set('cc','c','cc')
+    for s in c.sections():#返回一个空间列表
+        print('[{0}]'.format(s))
+        for v in c.options(s):#打印列表下所有选项
+            print('{0}={1}'.format(v,c.get(s,v)))
+    #修改ini中的选项
+    c.set('cc','a','ccc')#修改最后一组参数就会修改ini文件中对应的选项值
+    #再次读取
+    c.get('cc','a')
+    #保存文件
+    # ini = open(ini_file, mode='w', encoding='utf-8')
+    # c.write(ini)
+    # ini.close
+    with open(ini_file, mode='w', encoding='utf-8') as ini:
+        c.write(ini)
+if __name__ == '__main__':
+    main()
+
+</code></pre>
+
+<ul>
+<li>configparser 还有一些其它方法，可以参考：</li>
+<li><a href="http://python.usyiyi.cn/translate/python_352/library/configparser.html">官方文档configparser</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/ini">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/ini">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python open()函数文件打开、读、写操作总结</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-05 13:36:55</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><em>在编程和计算机的使用中，与文件打交道是必不可少的，每天都要打开读取写入很多的文件，所以了解Python的文件打开、读、写操作是非常有必要的。</em></p>
+<h2>为什么是with open()?</h2>
+<p>一般的文件打开方法：</p>
+<pre><code class="python">f = open(os.path.join(os.path.dirname(__file__),'17python.txt'))
+s = f.readline();# 一次读取一行内容
+print(s)
+f.close() #关闭流，如果是写入文件，不关闭流，可能会造成写入失败或是内容丢失。
+</code></pre>
+
+<p>使用with open() as f :</p>
+<pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt')) as f :
+    s = f.readline()
+    print(s)
+</code></pre>
+
+<p>with open的好处是，不用再使用close()方法，避免因忘记close()方法产生的错误。</p>
+<p>open方法中的常用参数,open函数有很多的参数，常用的是file，mode和encoding，name就不解释了，文件名字符串，encoding='utf-8'，用来指定打开或写入文件的编码。
+    open(name[,mode[,buffering]])
+其中mode 指定文件打开方式。</p>
+<p>读写模式的类型有：</p>
+<ul>
+<li>rU 或 Ua 以读方式打开, 同时提供通用换行符支持 (PEP 278)</li>
+<li>w     以写方式打开，</li>
+<li>a     以追加模式打开 (从 EOF 开始, 必要时创建新文件)</li>
+<li>r+     以读写模式打开</li>
+<li>w+     以读写模式打开 (参见 w )</li>
+<li>a+     以读写模式打开 (参见 a )</li>
+<li>rb     以二进制读模式打开</li>
+<li>wb     以二进制写模式打开 (参见 w )</li>
+<li>ab     以二进制追加模式打开 (参见 a )</li>
+<li>rb+    以二进制读写模式打开 (参见 r+ )</li>
+<li>wb+    以二进制读写模式打开 (参见 w+ )</li>
+<li>ab+    以二进制读写模式打开 (参见 a+ )</li>
+</ul>
+<h2>读取及写入文件</h2>
+<ul>
+<li>read()方法用来读取文件</li>
+<li>write()方法用来写入文件</li>
+</ul>
+<h2>关于Python读取大文件内容丢失</h2>
+<p>数据保存 一般保存没有什么大问题，主要是读取。 如果保存后是字符串,之前是list 或是 元组（Tuples）保存后就是字符串了，再读取就需要转换成对应的容器，这里用eval(s)函数方法，效果还是比较不错的。 还有就是大文本在读取的时候如果一次用python read()全部读取的时候会出现莫明的无反应及读取内容不全的情况 ，这里采用分段读取比较好些：</p>
+<pre><code class="python">with open(os.path.join(os.path.dirname(__file__),'17python.txt'), mode='r',encoding='utf-8') as f:
+    s = ''
+    while True:  
+        temp = f.read(100)#分段读取，可以解决读取大文件时无法读取的奇怪问题
+        if temp == '':  
+            break
+        s += temp
+    print(s)
+    f.close() 
+</code></pre>
+
+<h2>相关参考</h2>
+<ul>
+<li><a href="http://www.jb51.net/article/58002.htm">Python open()文件处理使用介绍</a></li>
+<li><a href="http://python.usyiyi.cn/documents/python_352/library/io.html">官方文档 io - 使用流的核心工具</a></li>
+</ul>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/io/fileopentest.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python os.path模块中一些常用方法的整理总结</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-04 14:37:17</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><em>跟计算机打交道，和目录与文件接触应该是最多的了，所以，掌握Python中的目录与文件操作是非常重要的，本节主要介绍os.path模块的一些常用方法</em></p>
+<h2>os.path 模块</h2>
+<p>首先，导入一些必须的模块</p>
+<pre><code>import os
+import time
+</code></pre>
+<h2>路径操作的常用方法：</h2>
+<pre><code class="python">print(__file__) #当前文件的完整地址
+print(os.path.abspath('ospathtest.py'))#当前文件的完整地址
+print(os.path.dirname(__file__)) #当前目录所属地址
+print(os.path.isdir(os.path.dirname(__file__)))# 判断是否为路径
+print(os.path.isfile(os.path.dirname(__file__)))# 判断是否为文件
+</code></pre>
+
+<h2>组装及创建目录</h2>
+<pre><code class="python">p = os.path.join(os.path.dirname(__file__), 'aaa')
+os.mkdir(p) # 创建目录
+time.sleep(3)# 暂停3秒，这样就可以在左侧目录中看到新建的'aaa'目录了
+os.rmdir(p)
+print(p)# 组装目录
+print(os.path.split(__file__))# 分割路径与文件名
+</code></pre>
+
+<h2>os.path中的一些is get方法</h2>
+<pre><code class="python">path = __file__
+print(os.path.getatime(path))  #返回最后一次进入此path的时间。
+print(os.path.getmtime(path))  #返回在此path下最后一次修改的时间。
+print(os.path.getctime(path))  #返回path的大小
+print(os.path.getsize(path))  #返回文件大小，如果文件不存在就返回错误
+print(os.path.isabs(path))  #判断是否为绝对路径
+print(os.path.isfile(path))  #判断路径是否为文件
+print(os.path.isdir(path))  #判断路径是否为目录
+print(os.path.islink(path))  #判断路径是否为链接
+print(os.path.ismount(path))  #判断路径是否为挂载点（）
+</code></pre>
+
+<h2>相关参考</h2>
+<p><a href="http://python.usyiyi.cn/translate/python_352/library/os.path.html">os.path — 路径操作</a></p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/blob/master/io/ospathtest.py">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/blob/master/io/ospathtest.py">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+<hgroup>
+    <h2>Python 采集数据三步曲之[Requests + re.py模块进行数据采集]</h2>
+    <h3> 作者:<a href="#">J.sky</a> <small>发布时间:2017-09-02 12:41:30</small> 标签:
+        
+        
+        <mark>Python基础</mark>
+        
+    </h3>
+</hgroup>
+<p><p><em>当我们熟悉了re和Requests两个模块，就可以开始愉快的数据采集之旅了，我们先为自己找一些需要采集的数据，比如股票价格数据、新闻或是美女图片等，只要你喜欢。</em></p>
+<h2>数据采集第一步，加载数据源。</h2>
+<p>这里我假设自己一个工作繁忙兼职炒股股市老手，工作的同时经常需要查看股市行情，但是又不能总盯着炒股软件，这个时候为自己做一个简单的股票数据采集器是个不错的选择。</p>
+<pre><code class="python">import re, requests # 加载所需模块
+r = requests.get('http://hq.sinajs.cn/list=s_sh000001') #互联网上市公司股票价格
+r.encoding = 'gbk'# 设置编码 解决乱码问题
+print(r.text) #返回html代码（数据）
+</code></pre>
+
+<p>通过上边的代码运行之后我们会得到一组数据：</p>
+<pre><code>var hq_str_s_sh000001="上证指数,3367.1194,6.3091,0.19,2824975,31372209";
+</code></pre>
+<p>数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；</p>
+<p>这样我们只要提示自己需要的<code>上证指数,3367.1194,6.3091,0.19,2824975,31372209</code>这段数据后，就可以把它转换成自己需要的对象，然后处理打印。</p>
+<h2>数据采集第二步，解析数据，提取我们自己需要的。</h2>
+<pre><code class="python">s = r.text # 获取数据
+p = r'"(.+)"' #设置正则表达式
+r = re.search(p, s).group(1) #匹配并获取结果字符串
+print(r)
+ls = r.split(',')
+print(ls)
+</code></pre>
+
+<h2>数据采集第三步，处理最后的打印</h2>
+<pre><code class="python">print('''{}:{}
+当前价格:{}
+涨跌率:{}
+成交量（手）:{}
+成交额（万元）:{}'''.format(ls[0],ls[1],ls[2],ls[3],ls[4],ls[5])
+)
+
+#最后输出：
+#上证指数:3367.1194
+#当前价格:6.3091
+#涨跌率:0.19
+#成交量（手）:2824975
+#成交额（万元）:31372209
+</code></pre>
+
+<p>得到以上结果之后，我们就可以通过很多方法来通知自己查看大盘点数（发邮件，直接通过一个网址查看或是短信），了解股市行情了。具体实现这里暂时不做讲解，因为超出当前教程的范围。</p>
+<h2>本文源码下载：</h2>
+<ul>
+<li><a href="https://github.com/bosichong/17python.com/tree/master/re">github</a></li>
+<li><a href="https://gitee.com/J_Sky/17python.com/tree/master/re">开源中国码云镜像gitee</a></li>
+</ul></p>
+
+
+<hr>
+<br>
+
+
+
+<nav>
+    <li><a href="list_19.html" role="button" class="outline">Prev</a></li>
+    <li><small>20 / 23</small></li>
+    <li><a href="list_21.html" role="button" class="outline">Next</a></li>
+</nav>
+
+</section>
+        <aside>
+
+<nav>
+    <ul>
+        
+        <li>
+            <a href="./index.html">
+                <i class="fa fa-home"></i>
+                Blog Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="./archives.html">
+                <i class="fa fa-archive"></i>
+                Blog Archive
+            </a>
+        </li>
+        
+        <li>
+            <a href="./tags.html">
+                <i class="fa fa-tags"></i>
+                Blog Tag
+            </a>
+        </li>
+        
+        <li>
+            <a href="./aboutme.html">
+                <i class="fa fa-user"></i>
+                About Me
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+</aside>
+    </div>
+
+</main>
+<section><div class="container">
+    <article>
+        <hgroup>
+            <h2>Search</h2>
+            <h3>Search This SuiYan blog</h3>
+        </hgroup>
+
+            <!-- Search -->
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button>Search</button>
+
+    </article>
+</div></section>
+<footer><div class="container">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <p><small>
+        Powered by
+    </small>
+        <a href="https://github.com/Jsky2020/suiyan">
+            SuiYan
+        </a>
+       <small> | </small><a href="https://github.com/bosichong">
+            J.sky
+        </a>
+        <small>
+            Copyright
+            <i aria-hidden="true" class="fa fa-copyright">
+            </i>
+            2017-2023
+        </small>
+    </p>
+</div></footer>
+<!-- Minimal theme switcher -->
+<script src="./assets/js/minimal-theme-switcher.js"></script>
+<!-- Scroll to Top button selector -->
+<a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
+<script src="./assets/js/jquery.toTop.min.js"></script>
+<script>
+        jQuery(function($){
+            // Plugin activation (basic - with all default values)
+            // $('.to-top').toTop();
+
+            // Plugin activation with options
+            $('.to-top').toTop({
+                //options with default values
+                autohide: true,  //boolean 'true' or 'false'
+                offset: 420,     //numeric value (as pixels) for scrolling length from top to hide automatically
+                speed: 500,      //numeric value (as mili-seconds) for duration
+                position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+                right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+                bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+            });
+        });
+
+</script>
+</body>
+</html>

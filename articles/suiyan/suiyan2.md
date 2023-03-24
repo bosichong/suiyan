@@ -1,9 +1,10 @@
-<div class="blog-article">
-<h1 class="title">这是一个快速学习JavaScript的学习笔记2</h1>
-<span class="author">J.sky</span>
-<span class="time">2019-12-22 10:55:19</span>
-<span class="tag">JavaScript</span>
-</div>
+---
+title:这是一个快速学习JavaScript的学习笔记2
+author:J.sky
+time:2019-12-22 10:55:19
+tag:JavaScript
+---
+
 
 ## JavaScript语句
 
