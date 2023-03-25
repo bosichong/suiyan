@@ -14,6 +14,7 @@
 import os
 import json
 import datetime
+import shutil
 
 
 def loadcode(path):
@@ -28,27 +29,30 @@ def loadcode(path):
 
 
 def load_configjson(jsonpath):
-    '''载入blog配置文件config.json'''
+    """载入blog配置文件config.json"""
     config_code = loadcode(jsonpath)
     config = json.loads(config_code)
     return config
 
 
 def load_blogdatajson(jsonpath):
-    '''载入blog数据blog_data.json'''
+    """
+    载入blog数据blog_data.json
+    return dict
+    """
     blogdata = loadcode(jsonpath)
     blog = json.loads(blogdata)
     return blog
 
 
 def create_blog_data_Json(adir):
-    '''
+    """
     递归获得当前目录及其子目录中所有的.md文件列表。
     并创建blog的data索引JSON
     :param adir: 文章日志所在目录
     :param bdir: 站点根目录
     :return: json字符串
-    '''
+    """
     data_json = []
     # 当前目录下所有的文件、子目录、子目录下的文件。
     for root, dirs, files in os.walk(adir):
@@ -70,12 +74,12 @@ def create_blog_data_Json(adir):
 
 
 def create_data_json(articles_path, file_path):
-    '''
+    """
     创建blog索引.json
     @param articles_path md文档目录地址
     @param file_path 索引保存的地址
     @return:
-    '''
+    """
     json_str = create_blog_data_Json(articles_path)
     with open(file_path, mode='w', encoding='utf-8') as f:
         f.write(json_str)
@@ -229,6 +233,7 @@ def create_blog_url_jsfile(path, str):
     with open(path, mode='w', encoding='utf-8') as f:
         f.write(str)
 
+
 def copy_file(src_file, dst_file):
     """
     读取一个文件的全部内容，保存到另一个目录，如果文件存在则覆盖
@@ -242,11 +247,37 @@ def copy_file(src_file, dst_file):
     print(f"文件{src_file}已复制到{dst_file}")
 
 
-
-
 def get_current_year():
+    """
+    返回当年的年份字符串
+    """
     return str(datetime.datetime.now().year)
-    
+
+
+def copy_dir(src_dir, dst_dir):
+    """
+    遍历源目录，提取子目录和文件，复制目标目录，先创建目录和子目录，如果不存在则创建，在复制文件到目标目录的对应目录下，文件存在则覆盖。
+    @param src_dir: 源目录路径
+    @param dst_dir: 目标目录路径
+    """
+    if not os.path.exists(dst_dir):
+        os.makedirs(dst_dir)
+    for root, dirs, files in os.walk(src_dir):
+        for dir in dirs:
+            src_path = os.path.join(root, dir)
+            dst_path = os.path.join(dst_dir, os.path.relpath(src_path, src_dir))
+            if not os.path.exists(dst_path):
+                os.makedirs(dst_path)
+        for file in files:
+            src_path = os.path.join(root, file)
+            dst_path = os.path.join(dst_dir, os.path.relpath(src_path, src_dir))
+            shutil.copy2(src_path, dst_path)
+            print(f"文件{src_path}已复制到{dst_path}")
+
+
+
+
+
 
 if __name__ == "__main__":
     pass

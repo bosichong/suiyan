@@ -66,7 +66,7 @@ def create_context():
         "config":   config,
         "title":    "Home",
         "site_url": config["site_url"],
-        "site_bg": config["site_bg"]
+        "site_bg":  config["site_bg"]
     }
     return context
 
@@ -285,15 +285,51 @@ def create_all():
     """
     一键生成所有静态文件。
     """
-    copy_file(os.path.join(BASE_DIR,"config.json"),CONFIGJSON)
-    create_blog_jsfile(DEV)
-    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
-    create_sitemap()
-    delete_html_files(BLOGPAGES)
+    before_create()
+    created()
+
+
+def created():
+    """
+    创建所有静态资源
+    """
     create_index_html()
     create_archives_html()
     create_tags_html()
     create_allblog()
+    create_sitemap()
+
+
+def before_create():
+    """
+    这里是所有静态资源生成前的一些处理
+    """
+    create_blog_dir(BLOGPAGES)
+    # 复制配置文件到blog
+    copy_file(os.path.join(BASE_DIR, "config.json"), CONFIGJSON)
+    copy_css_js()
+    create_blog_jsfile(DEV)
+    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
+    delete_html_files(BLOGPAGES)
+    create_context()
+
+
+def copy_css_js():
+    """
+    复制模板下的css、js文件到blog/assets
+    编辑模板的样式生成静态文件前拷贝过去，方便保存模板样式。
+    """
+    config = load_configjson(CONFIGJSON)
+    tmp = os.path.join(BASE_DIR, config["theme"])  # 模板目录
+    # 拼装目录
+    tmp_css_path = os.path.join(tmp, "assets","css")
+    tmp_js_path = os.path.join(tmp, "assets","js")
+    blog_css_path = os.path.join(BLOGPAGES, "assets","css")
+    blog_js_path = os.path.join(BLOGPAGES, "assets","js")
+    print(tmp_css_path,tmp_js_path,blog_css_path,blog_js_path)
+    # 复制模板下的js css到blog下
+    copy_dir(tmp_css_path, blog_css_path)
+    copy_dir(tmp_js_path, blog_js_path)
 
 
 def main():
