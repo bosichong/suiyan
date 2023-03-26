@@ -6,11 +6,11 @@
 
 演示(github)： [碎言博客](http:/suiyan.cc/)
 
-![](blog/assets/images/2023/fba.png)
+![](img/fba.png)
 
 一键切换主题，自动主题。
 
-![](blog/assets/images/2023/fbb.png)
+![](img/fbb.png)
 
 ### 软件架构
 
@@ -35,13 +35,13 @@
 
     python3 w.py
 
-![](blog/assets/images/bloggui.png)
+![](img/bloggui.png)
 
 终端启动命令：
 
     python s.py
 
-![](blog/assets/images/zhongduan1.png)
+![](img/zhongduan1.png)
 
 可以根据自己的喜好进行选择。
 
