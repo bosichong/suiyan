@@ -4,7 +4,7 @@
 碎言这个名称取自与"碎言片语"，码兄累了吗？累了就休息一下，为未来的自己留下一些碎言片语吧。
 
 
-演示(github)： [碎言博客](https://bosichong.github.io/)
+演示(github)： [碎言博客](http:/suiyan.cc/)
 
 ![](blog/assets/images/2023/fba.png)
 
