@@ -62,4 +62,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-blog/
+blog
