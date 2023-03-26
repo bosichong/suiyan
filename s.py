@@ -307,29 +307,32 @@ def before_create():
     create_blog_dir(BLOGPAGES)
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), CONFIGJSON)
-    copy_css_js()
+    copy_assets()
     create_blog_jsfile(DEV)
     create_data_json(ARTICLES_DIR, BLOGDATAJSON)
     delete_html_files(BLOGPAGES)
     create_context()
 
 
-def copy_css_js():
+def copy_assets():
     """
-    复制模板下的css、js文件到blog/assets
+    复制模板下的assets文件到blog/assets
     编辑模板的样式生成静态文件前拷贝过去，方便保存模板样式。
     """
     config = load_configjson(CONFIGJSON)
     tmp = os.path.join(BASE_DIR, config["theme"])  # 模板目录
     # 拼装目录
-    tmp_css_path = os.path.join(tmp, "assets","css")
-    tmp_js_path = os.path.join(tmp, "assets","js")
-    blog_css_path = os.path.join(BLOGPAGES, "assets","css")
-    blog_js_path = os.path.join(BLOGPAGES, "assets","js")
-    print(tmp_css_path,tmp_js_path,blog_css_path,blog_js_path)
+    # tmp_css_path = os.path.join(tmp, "assets","css")
+    # tmp_js_path = os.path.join(tmp, "assets","js")
+    # blog_css_path = os.path.join(BLOGPAGES, "assets","css")
+    # blog_js_path = os.path.join(BLOGPAGES, "assets","js")
+
+    tmp_assets_path = os.path.join(tmp, "assets")
+    blog_assets_path = os.path.join(BLOGPAGES, "assets")
+
     # 复制模板下的js css到blog下
-    copy_dir(tmp_css_path, blog_css_path)
-    copy_dir(tmp_js_path, blog_js_path)
+    copy_dir(tmp_assets_path,blog_assets_path)
+
 
 
 def main():
