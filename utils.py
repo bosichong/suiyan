@@ -171,9 +171,7 @@ def formatdata(blogdata):
         tmpdate = item["time"][:7]
         # print(tmpdate)
         if len(tmplist) == 0:
-            tmpobj = {}
-            tmpobj["date"] = tmpdate
-            tmpobj["data"] = []
+            tmpobj = {"date": tmpdate, "data": []}
             tmpobj["data"].append(item)
             tmplist.append(tmpobj)
 
@@ -182,9 +180,7 @@ def formatdata(blogdata):
             if tmplist[-1]["date"] == tmpdate:
                 tmplist[-1]["data"].append(item)
             else:
-                tmpobj = {}
-                tmpobj["date"] = tmpdate
-                tmpobj["data"] = []
+                tmpobj = {"date": tmpdate, "data": []}
                 tmpobj["data"].append(item)
                 tmplist.append(tmpobj)
     return tmplist
@@ -196,9 +192,7 @@ def tagsdata(blogdata):
     for item in blogdata:
         tmptag = item["tag"]
         if len(tmplist) == 0:
-            tmpobj = {}
-            tmpobj["tag"] = tmptag
-            tmpobj["data"] = []
+            tmpobj = {"tag": tmptag, "data": []}
             tmpobj["data"].append(item)
             tmplist.append(tmpobj)
 
@@ -210,9 +204,7 @@ def tagsdata(blogdata):
                     isok = False
                     break
             if isok:
-                tmpobj = {}
-                tmpobj["tag"] = tmptag
-                tmpobj["data"] = []
+                tmpobj = {"tag": tmptag, "data": []}
                 tmpobj["data"].append(item)
                 tmplist.append(tmpobj)
     # print(tmplist)
@@ -230,6 +222,9 @@ def create_dir(blogurl):
 
 
 def create_blog_url_jsfile(path, str):
+    """
+    创建rul.js文件，这个文件主要是用来定义站内搜索使用的.json文件的地址。
+    """
     with open(path, mode='w', encoding='utf-8') as f:
         f.write(str)
 
@@ -260,23 +255,7 @@ def copy_dir(src_dir, dst_dir):
     @param src_dir: 源目录路径
     @param dst_dir: 目标目录路径
     """
-    if not os.path.exists(dst_dir):
-        os.makedirs(dst_dir)
-    for root, dirs, files in os.walk(src_dir):
-        for dir in dirs:
-            src_path = os.path.join(root, dir)
-            dst_path = os.path.join(dst_dir, os.path.relpath(src_path, src_dir))
-            if not os.path.exists(dst_path):
-                os.makedirs(dst_path)
-        for file in files:
-            src_path = os.path.join(root, file)
-            dst_path = os.path.join(dst_dir, os.path.relpath(src_path, src_dir))
-            shutil.copy2(src_path, dst_path)
-            print(f"文件{src_path}已复制到{dst_path}")
-
-
-
-
+    shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
 
 
 if __name__ == "__main__":

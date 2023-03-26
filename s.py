@@ -321,15 +321,8 @@ def copy_assets():
     """
     config = load_configjson(CONFIGJSON)
     tmp = os.path.join(BASE_DIR, config["theme"])  # 模板目录
-    # 拼装目录
-    # tmp_css_path = os.path.join(tmp, "assets","css")
-    # tmp_js_path = os.path.join(tmp, "assets","js")
-    # blog_css_path = os.path.join(BLOGPAGES, "assets","css")
-    # blog_js_path = os.path.join(BLOGPAGES, "assets","js")
-
     tmp_assets_path = os.path.join(tmp, "assets")
     blog_assets_path = os.path.join(BLOGPAGES, "assets")
-
     # 复制模板下的js css到blog下
     copy_dir(tmp_assets_path,blog_assets_path)
 
