@@ -2,6 +2,8 @@
 import s
 import tkinter as tk
 
+from utils import get_current_year
+
 
 def upall():
     s.create_all()
@@ -13,7 +15,7 @@ def upindex():
 
 
 def newmd():
-    s.create_blog(title='请填写博客标题！')
+    s.create_blog(title='请填写博客标题！',filedir=get_current_year())
 
 
 def main():

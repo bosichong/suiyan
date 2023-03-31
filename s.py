@@ -244,7 +244,8 @@ def create_blog(title='', author='', tag='', filedir='', pagename=''):
         author = config['blog_author']
     blogfile = os.path.join(ARTICLES_DIR, os.path.join(filedir, pagename + '.md'))
     create_dir(blogfile)  # 如果有不存在的目录则创建
-    bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\ntime:' + create_time + '\ntag:' + tag + '\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
+    # bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\ntime:' + create_time + '\ntag:' + tag + '\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
+    bloghtml = f'---\ntitle: {title}\nauthor: {author}\ntime: {create_time}\ntag: {tag}\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
 
     if os.path.isfile(blogfile):
         print('文件存在相同名称，创建失败。')
