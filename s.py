@@ -8,6 +8,7 @@
 @time     :2023/03/21
 
 """
+import os
 import random
 # 导入相关模块
 from jinja2 import FileSystemLoader, Environment
@@ -18,19 +19,35 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
+CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
+
 # DEV = 1 确定为本地开发环境，会调用config.json中site_test_url，方便本地调用。
 # DEV = 0 确定为线上生产模式，要把最终的网址换成线上的。
 # 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
-DEV = 0
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
-BLOGPAGES = os.path.join(BASE_DIR, "blog")  # 所有静态资源存放目录
-ARTICLES_DIR = os.path.join(BASE_DIR, "articles")  # 博文目录
+DEV = CONFIG["dev"] # 重配置文件读取是否为本地测试环境。
+BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
+ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
+THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 # 匹配文章数据的正则
 
 SUIYANVERSION = "3.0.0"  # 程序版本
+
+
+def create_context():
+    """
+    创建模板的上下文
+    """
+    config = load_configjson(CONFIGJSON)
+    context = {
+        "config":   config,
+        "title":    "Home",
+        "site_url": config["site_url"],
+        "site_bg":  config["site_bg"]
+    }
+    return context
 
 
 def create_sitemap():
@@ -55,20 +72,6 @@ def create_sitemap():
     with open(os.path.join(BLOGPAGES, 'sitemap.xml'), mode='w', encoding='utf-8') as f:
         f.write(xml_str)
     print("sitemap.xml更新完毕！")
-
-
-def create_context():
-    """
-    创建模板的上下文
-    """
-    config = load_configjson(CONFIGJSON)
-    context = {
-        "config":   config,
-        "title":    "Home",
-        "site_url": config["site_url"],
-        "site_bg":  config["site_bg"]
-    }
-    return context
 
 
 def create_index_html():
@@ -97,7 +100,7 @@ async def create_list_html(i, ps):
     blog_data = load_blogdatajson(BLOGDATAJSON)
     config = load_configjson(CONFIGJSON)
     # 设置jinja模板
-    env = Environment(loader=FileSystemLoader('./templates'))
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
     tmp = env.get_template("index.html")  # 模板
     index_html_path = os.path.join(BLOGPAGES, 'index.html')  # 首页HTML
@@ -141,8 +144,9 @@ async def create_list_html(i, ps):
 def create_archives_html():
     """生成archives.html"""
     blog_data = load_blogdatajson(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
-    env = Environment(loader=FileSystemLoader('./templates'))
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
     tmp = env.get_template("archives.html")  # 模板
     archives_html_path = os.path.join(BLOGPAGES, 'archives.html')  # 首页HTML
@@ -162,8 +166,9 @@ def create_archives_html():
 def create_tags_html():
     """生成archives.html"""
     blog_data = load_blogdatajson(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
-    env = Environment(loader=FileSystemLoader('./templates'))
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
     tmp = env.get_template("tags.html")  # 模板
     tags_html_path = os.path.join(BLOGPAGES, 'tags.html')  # 首页HTML
@@ -202,8 +207,9 @@ async def create_blog_html(blog):
     """
     创建blog页面
     """
+    config = load_configjson(CONFIGJSON)
     # 设置jinja模板
-    env = Environment(loader=FileSystemLoader('./templates'))
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     tmp = env.get_template("blog.html")  # 模板
     blog_path = os.path.join(BLOGPAGES, blog["url"] + '.html')  # 首页HTML
     create_dir(blog_path)
@@ -320,12 +326,10 @@ def copy_assets():
     编辑模板的样式生成静态文件前拷贝过去，方便保存模板样式。
     """
     config = load_configjson(CONFIGJSON)
-    tmp = os.path.join(BASE_DIR, config["theme"])  # 模板目录
-    tmp_assets_path = os.path.join(tmp, "assets")
+    tmp_assets_path = os.path.join(THEME, config["theme"], "assets")
     blog_assets_path = os.path.join(BLOGPAGES, "assets")
     # 复制模板下的js css到blog下
-    copy_dir(tmp_assets_path,blog_assets_path)
-
+    copy_dir(tmp_assets_path, blog_assets_path)
 
 
 def main():
