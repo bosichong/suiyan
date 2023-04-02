@@ -294,6 +294,7 @@ def create_all():
     """
     before_create()
     created()
+    copy_seo()
 
 
 def created():
@@ -332,6 +333,14 @@ def copy_assets():
     # 复制模板下的js css到blog下
     copy_dir(tmp_assets_path, blog_assets_path)
 
+
+def copy_seo():
+    """
+    复制SEO相关的文件到根目录，例如站点验证、robots.txt 等
+    """
+    seo_dir = os.path.join(BASE_DIR,"seo")
+    if os.path.isdir(seo_dir):
+        copy_all_files(seo_dir,BLOGPAGES)
 
 def main():
     parser = argparse.ArgumentParser()

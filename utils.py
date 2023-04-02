@@ -258,5 +258,19 @@ def copy_dir(src_dir, dst_dir):
     shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
 
 
+def copy_all_files(src_dir, dst_dir):
+    """
+    复制源目录根目录下所有文件到指定目录
+    @param src_dir: 源目录路径
+    @param dst_dir: 目标目录路径
+    """
+    for file in os.listdir(src_dir):
+        src_file = os.path.join(src_dir, file)
+        dst_file = os.path.join(dst_dir, file)
+        if os.path.isfile(src_file):
+            copy_file(src_file,dst_file)
+
+
+
 if __name__ == "__main__":
     pass
