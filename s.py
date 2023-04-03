@@ -174,6 +174,7 @@ def create_tags_html():
         item["sum"] = len(item["data"])
     context["tags"] = data
     context["title"] = "Tags"
+    context["tag_num"] = len(data)
 
     with open(tags_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
