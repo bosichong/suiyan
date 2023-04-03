@@ -8,7 +8,6 @@
 @time     :2023/03/21
 
 """
-import os
 import random
 # 导入相关模块
 from jinja2 import FileSystemLoader, Environment
@@ -21,18 +20,15 @@ from utils import *
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
-
 # DEV = 1 确定为本地开发环境，会调用config.json中site_test_url，方便本地调用。
 # DEV = 0 确定为线上生产模式，要把最终的网址换成线上的。
 # 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
-DEV = CONFIG["dev"] # 重配置文件读取是否为本地测试环境。
+DEV = CONFIG["dev"]  # 重配置文件读取是否为本地测试环境。
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
 THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
-# 匹配文章数据的正则
-
 SUIYANVERSION = "3.0.0"  # 程序版本
 
 
@@ -152,8 +148,8 @@ def create_archives_html():
     archives_html_path = os.path.join(BLOGPAGES, 'archives.html')  # 首页HTML
     # 组装archives页面的上下文数据。
     data = formatdata(blog_data)
-    for l in data:
-        l["num"] = len(l["data"])
+    for k in data:
+        k["num"] = len(k["data"])
     context["pages_num"] = len(blog_data)
     context["update"] = blog_data[0]["time"]
     context["archives"] = data
@@ -262,10 +258,10 @@ def create_blog_jsfile(dev):
     """
     config = load_configjson(CONFIGJSON)
     if dev:
-        str = "var suiyan = { url : '" + config["site_test_url"] + "'}"
+        js_code = "var suiyan = { url : '" + config["site_test_url"] + "'}"
     else:
-        str = "var suiyan = { url : '" + config["site_url"] + "'}"
-    create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), str)
+        js_code = "var suiyan = { url : '" + config["site_url"] + "'}"
+    create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), js_code)
     print("url.js创建成功！")
 
 
@@ -276,14 +272,14 @@ def create_test(con):
     :param con: 需要生成的文章数。
     :return: void
     """
-    dir = "suiyantest"
+    test_dir = "suiyantest"
     for i in range(con):
         # 随机生成一些文章数据填充，用来测试
         title = random.choice(
             ("打法撒发射点发斯蒂芬", "斯蒂芬阿斯蒂芬斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬阿斯蒂芬", "斯蒂芬斯蒂芬阿斯蒂芬3",))
         tag = random.choice(("Java", "JavaScript", "Python", "C++", "程序员",))
         pagename = str(random.randint(99999, 99999999))
-        create_blog(title=title, tag=tag, filedir=dir,
+        create_blog(title=title, tag=tag, filedir=test_dir,
                     author='', pagename=pagename)
     print("测试文件创建完毕！")
 
@@ -338,9 +334,10 @@ def copy_seo():
     """
     复制SEO相关的文件到根目录，例如站点验证、robots.txt 等
     """
-    seo_dir = os.path.join(BASE_DIR,"seo")
+    seo_dir = os.path.join(BASE_DIR, "seo")
     if os.path.isdir(seo_dir):
-        copy_all_files(seo_dir,BLOGPAGES)
+        copy_all_files(seo_dir, BLOGPAGES)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -365,7 +362,7 @@ def main():
         create_blog(title=args.newblog, author=args.author,
                     tag=args.tag, filedir=args.filedir, pagename=args.pagename, )
     elif args.suiyantest:
-        create_test()
+        create_test(200)
     elif args.index:
         create_all()
     elif args.sitemap:
