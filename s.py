@@ -9,6 +9,8 @@
 
 """
 import random
+import sys
+
 # 导入相关模块
 from jinja2 import FileSystemLoader, Environment
 import argparse
@@ -17,6 +19,8 @@ import aiofiles
 # 导入markdown模块
 from markdown import markdown
 from utils import *
+
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
@@ -29,7 +33,9 @@ ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
 THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
 CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
-SUIYANVERSION = "3.0.0"  # 程序版本
+SUIYANVERSION = "3.1.0"  # 程序版本
+
+
 
 
 def create_context():
@@ -54,8 +60,7 @@ def create_sitemap():
     context["sitemap_data"] = blog_data
     with open(sitemap_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        print('生成rss.xml成功！')
-    print("sitemap.xml更新完毕！")
+    logger.info("sitemap.xml更新完毕！")
 
 
 def create_rss():
@@ -76,7 +81,7 @@ def create_rss():
     context["rss_data"] = rss_data
     with open(rss_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        print('生成rss.xml成功！')
+        logger.info('生成rss.xml成功！')
 
 
 def create_index_html():
@@ -134,16 +139,16 @@ async def create_list_html(i, ps):
         if i == 0:
             async with aiofiles.open(index_html_path, mode='w', encoding='utf-8') as f:
                 await f.write(tmp.render(**context))
-                print('生成index.html成功！')
+                logger.debug('生成index.html成功！')
             # 同时生成一个列表页的第一页
             async with aiofiles.open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
                 await f.write(tmp.render(**context))
-                print('生成list_' + str(i) + '.html 成功！')
+                logger.debug('生成list_' + str(i) + '.html 成功！')
         else:
             context["title"] = "List Pages" + " 第" + str(i) + "页"
             async with aiofiles.open(os.path.join(BLOGPAGES, 'list_' + str(i) + '.html'), mode='w', encoding='utf-8') as f:
                 await f.write(tmp.render(**context))
-                print('生成list_' + str(i) + '.html 成功！')
+                logger.debug('生成list_' + str(i) + '.html 成功！')
 
 
 def create_archives_html():
@@ -165,7 +170,7 @@ def create_archives_html():
     context["title"] = "Archives"
     with open(archives_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        print('生成archives.html成功！')
+        logger.info('生成archives.html成功！')
 
 
 def create_tags_html():
@@ -179,6 +184,7 @@ def create_tags_html():
     tags_html_path = os.path.join(BLOGPAGES, 'tags.html')  # 首页HTML
     # 组装archives页面的上下文数据。
     data = tagsdata(blog_data)
+    # logger.debug(data)
     for item in data:
         item["sum"] = len(item["data"])
     context["tags"] = data
@@ -187,7 +193,7 @@ def create_tags_html():
 
     with open(tags_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        print('生成tags.html成功！')
+        logger.info('生成tags.html成功！')
 
 
 def create_allblog():
@@ -224,7 +230,7 @@ async def create_blog_html(blog):
     context["data"] = markdown(read_file_without_header(os.path.join(ARTICLES_DIR, blog["url"] + ".md")))
     async with aiofiles.open(blog_path, mode='w', encoding='utf-8') as f:
         await f.write(tmp.render(**context))
-        print('生成' + blog["title"] + '博文成功！')
+        logger.debug('生成' + blog["title"] + '博文成功！')
 
 
 def create_blog(title='', author='', tag='', filedir='', pagename=''):
@@ -254,11 +260,11 @@ def create_blog(title='', author='', tag='', filedir='', pagename=''):
     bloghtml = f'---\ntitle: {title}\nauthor: {author}\ntime: {create_time}\ntag: {tag}\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
 
     if os.path.isfile(blogfile):
-        print('文件存在相同名称，创建失败。')
+        logger.error('文件存在相同名称，创建失败。')
     else:
         with open(blogfile, mode='w', encoding='utf-8') as f:
             f.write(bloghtml)
-        print('blog文章.md创建成功！')
+        logger.info('blog文章.md创建成功！')
         os.system('code ' + blogfile)  # 使用VS Code打开文件
 
 
@@ -272,7 +278,7 @@ def create_blog_jsfile(dev):
     else:
         js_code = "var suiyan = { url : '" + config["blog_url"] + "'}"
     create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), js_code)
-    print("url.js创建成功！")
+    logger.debug("url.js创建成功！")
 
 
 def create_test(con):
@@ -291,7 +297,7 @@ def create_test(con):
         pagename = str(random.randint(99999, 99999999))
         create_blog(title=title, tag=tag, filedir=test_dir,
                     author='', pagename=pagename)
-    print("测试文件创建完毕！")
+    logger.info("测试文件创建完毕！")
 
 
 def create_all():
@@ -301,6 +307,7 @@ def create_all():
     before_create()
     created()
     copy_seo()
+    logger.info("所有静态资源创建更新完毕！")
 
 
 def created():
@@ -368,7 +375,7 @@ def main():
 
     args = parser.parse_args()
     if args.version:
-        print(SUIYANVERSION)
+        logger.info(SUIYANVERSION)
     elif args.newblog:
         create_blog(title=args.newblog, author=args.author,
                     tag=args.tag, filedir=args.filedir, pagename=args.pagename, )
@@ -385,3 +392,5 @@ def main():
 if __name__ == "__main__":
     create_blog_dir(BLOGPAGES)  # 创建blog目录
     main()
+
+
