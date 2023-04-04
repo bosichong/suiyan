@@ -15,7 +15,14 @@ import os
 import json
 import datetime
 import shutil
+import sys
+from loguru import logger
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
+LOG_LEVEL = "INFO"
+logger.remove()  # 删去import logger之后自动产生的handler，不删除的话会出现重复输出的现象
+logger.add(os.path.join(BASE_DIR, "logs/logger.log"), level=LOG_LEVEL)
+handler_id = logger.add(sys.stderr, level=LOG_LEVEL)
 
 def loadcode(path):
     """载入文件中的代码"""
@@ -23,7 +30,7 @@ def loadcode(path):
         with open(os.path.join(path), encoding='utf-8') as f:
             code = f.read()
     except FileNotFoundError:
-        print(f"文件{path}不存在")
+        logger.error(f"文件{path}不存在")
         code = ''
     return code
 
@@ -64,12 +71,10 @@ def create_blog_data_Json(adir):
                 furl = os.path.join(root, name)  # 当前文件的绝对目录
                 f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
                 f_data["url"] = url
-                # print(f_data)
                 data_json.append(f_data)  # 添加到需要返回的数据数组中
 
     data_json.sort(key=lambda x: x["time"], reverse=True)  # 对数组进行降序排序
     data_json_str = json.dumps(data_json, ensure_ascii=False)  # 转化为json字符串
-    # print(data_json_str)
     return data_json_str
 
 
@@ -83,7 +88,7 @@ def create_data_json(articles_path, file_path):
     json_str = create_blog_data_Json(articles_path)
     with open(file_path, mode='w', encoding='utf-8') as f:
         f.write(json_str)
-    print("blog数据索引更新完毕！")
+    logger.info("blog数据索引更新完毕！")
 
 
 def extract_md_header(file_path):
@@ -103,7 +108,7 @@ def extract_md_header(file_path):
                 key = key.strip()
                 value = value.strip()
             except ValueError:
-                print(f"错误：{item} 无法分割成键值对")
+                logger.error(f"错误：{item} 无法分割成键值对")
                 continue
             header_dict[key] = value
         return header_dict
@@ -116,7 +121,7 @@ def create_blog_dir(dir_path):
     """
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
-        print(f"目录 {dir_path} 创建成功")
+        logger.info(f"目录 {dir_path} 创建成功")
 
 
 def xurl(url):
@@ -137,7 +142,7 @@ def delete_html_files(dir_path):
         for file in files:
             if file.endswith('.html'):
                 os.remove(os.path.join(root, file))
-                print(f".html文件 {file} 删除成功")
+                logger.debug(f".html文件 {file} 删除成功")
 
 
 def calculate_page_num(cs, num):
@@ -169,46 +174,26 @@ def formatdata(blogdata):
     tmplist = []
     for item in blogdata:
         tmpdate = item["time"][:7]
-        # print(tmpdate)
-        if len(tmplist) == 0:
+        if not tmplist or tmplist[-1]["date"] != tmpdate:
             tmpobj = {"date": tmpdate, "data": []}
-            tmpobj["data"].append(item)
             tmplist.append(tmpobj)
-
-        else:
-            # print(tmplist[-1]["date"])
-            if tmplist[-1]["date"] == tmpdate:
-                tmplist[-1]["data"].append(item)
-            else:
-                tmpobj = {"date": tmpdate, "data": []}
-                tmpobj["data"].append(item)
-                tmplist.append(tmpobj)
+        tmplist[-1]["data"].append(item)
     return tmplist
 
 
 def tagsdata(blogdata):
-    '''tag归档排序后的数据'''
-    tmplist = []
+    '''
+    tag归档排序后的数据
+    支持多标签，用","号分隔。
+    '''
+    tag_dict = {}
     for item in blogdata:
-        tmptag = item["tag"]
-        if len(tmplist) == 0:
-            tmpobj = {"tag": tmptag, "data": []}
-            tmpobj["data"].append(item)
-            tmplist.append(tmpobj)
-
-        else:
-            isok = True
-            for i in tmplist:
-                if i["tag"] == tmptag:
-                    i["data"].append(item)
-                    isok = False
-                    break
-            if isok:
-                tmpobj = {"tag": tmptag, "data": []}
-                tmpobj["data"].append(item)
-                tmplist.append(tmpobj)
-    # print(tmplist)
-    return tmplist
+        tmptags = item["tag"].split(",")
+        for tag in tmptags:
+            if tag not in tag_dict:
+                tag_dict[tag] = {"tag": tag, "data": []}
+            tag_dict[tag]["data"].append(item)
+    return list(tag_dict.values())
 
 
 def create_dir(blogurl):
@@ -239,7 +224,7 @@ def copy_file(src_file, dst_file):
         content = f.read()
         with open(dst_file, 'wb') as f2:
             f2.write(content)
-    print(f"文件{src_file}已复制到{dst_file}")
+    logger.info(f"文件{src_file}已复制到{dst_file}")
 
 
 def get_current_year():
