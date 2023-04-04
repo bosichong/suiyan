@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}{{ config.blog_name }} {{ title }}{% endblock %}
+{% block title %}{{ blog_name }} {{ title }}{% endblock %}
 {% block article %}
 
     <header class="entry-header">
@@ -8,7 +8,7 @@
      </h1>
         <div class="archives-meta">
       <span class="meta">
-       共有标签:{{ tag_num }}个。
+       共有标签:{{ tag_num }}。
       </span>
         </div>
     </header>

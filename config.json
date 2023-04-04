@@ -7,13 +7,13 @@
     "meta_description": " Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。",
     "meta_keywords":"Python,Django,JavaScript,程序员,人生苦短,我用Python",
     "profile_image":"assets/images/touxiang.jpg",
-    "site_bg": "assets/pexels-masha-raymers-3068711.jpg",
+    "blog_bg": "assets/pexels-masha-raymers-3068711.jpg",
     "theme": "default_theme",
     "build": "blog",
     "md_dir": "articles",
     "blog_page_num":4,
-    "site_test_url":"http://127.0.0.1:5500/blog/",
-    "site_url":"https://suiyan.cc/",
+    "blog_test_url":"http://127.0.0.1:5500/blog/",
+    "blog_url":"https://suiyan.cc/",
     "github":"https://github.com/Jsky2020/suiyan/blob/suiyan/articles/",
     "blog_sns": [
         {
@@ -35,6 +35,10 @@
         {
             "ico": "book",
             "url": "https://www.zhihu.com/people/J_sky/activities"
+        },
+        {
+            "ico": "rss",
+            "url": "https://suiyan.cc/rss.xml"
         }
     ],
     "nav": [

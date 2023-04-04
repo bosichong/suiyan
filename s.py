@@ -20,7 +20,7 @@ from utils import *
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
-# DEV = 1 确定为本地开发环境，会调用config.json中site_test_url，方便本地调用。
+# DEV = 1 确定为本地开发环境，会调用config.json中blog_test_url，方便本地调用。
 # DEV = 0 确定为线上生产模式，要把最终的网址换成线上的。
 # 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
 DEV = CONFIG["dev"]  # 重配置文件读取是否为本地测试环境。
@@ -36,38 +36,47 @@ def create_context():
     """
     创建模板的上下文
     """
-    config = load_configjson(CONFIGJSON)
-    context = {
-        "config":   config,
-        "title":    "Home",
-        "site_url": config["site_url"],
-        "site_bg":  config["site_bg"]
-    }
+    context = load_configjson(CONFIGJSON)
+    # 如果有自定义的上下文，可以在这里添加
+    context["title"] = "Home"
     return context
 
 
 def create_sitemap():
     """创建网站地图"""
     config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
-    siteurl = config["site_url"]
-    tmpstr = ""
-    blogdata = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
-    for ar in blogdata:
-        if os.sep in ar["url"]:
-            ar["url"] = xurl(ar["url"])
-
-        tmpstr += '<url>\
-        <loc>' + siteurl + ar["url"] + '.html</loc>\
-        <lastmod>' + ar["time"] + '</lastmod>\
-        <changefreq>daily</changefreq>\
-        <priority>0.8</priority></url>'
-
-    xml_str = '<?xml version="1.0" encoding="utf-8"?>\
-    <urlset>' + tmpstr + '</urlset>'
-    # print(xml_str)
-    with open(os.path.join(BLOGPAGES, 'sitemap.xml'), mode='w', encoding='utf-8') as f:
-        f.write(xml_str)
+    blog_data = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
+    context = create_context()
+    tmp = env.get_template("sitemap.xml")  # 模板
+    sitemap_path = os.path.join(BLOGPAGES, 'sitemap.xml')  # 网站地图
+    context["sitemap_data"] = blog_data
+    with open(sitemap_path, mode='w', encoding='utf-8') as f:
+        f.write(tmp.render(**context))
+        print('生成rss.xml成功！')
     print("sitemap.xml更新完毕！")
+
+
+def create_rss():
+    """
+    创建站点的rss
+    """
+    config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
+    blog_data = load_blogdatajson(BLOGDATAJSON)
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
+    context = create_context()
+    tmp = env.get_template("rss.xml")  # 模板
+    rss_path = os.path.join(BLOGPAGES, 'rss.xml')  # rss
+    # 取最近的博文10篇
+    rss_data = []
+    for i in range(10):
+        rss_data.append(blog_data[i])
+    context["rss_data"] = rss_data
+    with open(rss_path, mode='w', encoding='utf-8') as f:
+        f.write(tmp.render(**context))
+        print('生成rss.xml成功！')
 
 
 def create_index_html():
@@ -259,9 +268,9 @@ def create_blog_jsfile(dev):
     """
     config = load_configjson(CONFIGJSON)
     if dev:
-        js_code = "var suiyan = { url : '" + config["site_test_url"] + "'}"
+        js_code = "var suiyan = { url : '" + config["blog_test_url"] + "'}"
     else:
-        js_code = "var suiyan = { url : '" + config["site_url"] + "'}"
+        js_code = "var suiyan = { url : '" + config["blog_url"] + "'}"
     create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), js_code)
     print("url.js创建成功！")
 
@@ -303,6 +312,7 @@ def created():
     create_tags_html()
     create_allblog()
     create_sitemap()
+    create_rss()
 
 
 def before_create():

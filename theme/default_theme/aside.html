@@ -27,18 +27,18 @@
             </div>
         </article>
     </dialog>
-    <script src="{{ site_url }}assets/js/url.js"></script>
-    <script src="{{ site_url }}assets/js/main.js"></script>
-    <script src="{{ site_url }}assets/js/modal.js"></script>
+    <script src="{{ blog_url }}assets/js/url.js"></script>
+    <script src="{{ blog_url }}assets/js/main.js"></script>
+    <script src="{{ blog_url }}assets/js/modal.js"></script>
 
 </section>
 
 
 <nav>
     <ul>
-        {% for nav in config.nav %}
+        {% for nav in nav %}
         <li>
-            <a href="{{ site_url }}{{ nav.url }}">
+            <a href="{{ blog_url }}{{ nav.url }}">
                 <i class="fa fa-{{ nav.ico }}"></i>
                 {{ nav.text }}
             </a>
