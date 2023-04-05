@@ -55,12 +55,12 @@ def create_sitemap():
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
-    tmp = env.get_template("sitemap.xml")  # 模板
-    sitemap_path = os.path.join(BLOGPAGES, 'sitemap.xml')  # 网站地图
+    tmp = env.get_template("sitemap.XML")  # 模板
+    sitemap_path = os.path.join(BLOGPAGES, 'sitemap.XML')  # 网站地图
     context["sitemap_data"] = blog_data
     with open(sitemap_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-    logger.info("sitemap.xml更新完毕！")
+    logger.info("sitemap.XML更新完毕！")
 
 
 def create_rss():
@@ -72,8 +72,8 @@ def create_rss():
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
-    tmp = env.get_template("rss.xml")  # 模板
-    rss_path = os.path.join(BLOGPAGES, 'rss.xml')  # rss
+    tmp = env.get_template("rss.XML")  # 模板
+    rss_path = os.path.join(BLOGPAGES, 'rss.XML')  # rss
     # 取最近的博文10篇
     rss_data = []
     for i in range(10):
@@ -81,7 +81,7 @@ def create_rss():
     context["rss_data"] = rss_data
     with open(rss_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        logger.info('生成rss.xml成功！')
+        logger.info('生成rss.XML成功！')
 
 
 def create_index_html():
