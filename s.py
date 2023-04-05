@@ -362,15 +362,13 @@ def main():
     parser.add_argument("-v", "--version", help="查询程序版本", action="store_true")
     parser.add_argument(
         "-i", "--index", help="一键更新索引blog数据json及全站的静态资源", action="store_true")
-    parser.add_argument("-s", "--sitemap",
-                        help="更新sitemap.mxl", action="store_true")
     parser.add_argument("-n", "--newblog", help="创建新日志，请输入标题（必填）。", )
     parser.add_argument("-t", "--tag", help="请输入blog的标签TAG", default='')
     parser.add_argument("-a", "--author", help="请输入文章作者，默认调用站长昵称", default='')
     parser.add_argument("-p", "--pagename", help="请输入文章地址页面名称", default='')
     parser.add_argument("-d", "--filedir", help="请输入文章地址所属目录", default=get_current_year())
 
-    parser.add_argument("-tt", "--suiyantest",
+    parser.add_argument("-test", "--suiyantest",
                         help="生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。", type=int, )
 
     args = parser.parse_args()
@@ -383,8 +381,6 @@ def main():
         create_test(200)
     elif args.index:
         create_all()
-    elif args.sitemap:
-        create_sitemap()
     else:
         print(parser.print_help())  # 默认打印帮助
 

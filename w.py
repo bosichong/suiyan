@@ -32,7 +32,7 @@ def main():
 
     bt1 = tk.Button(mighty, width=50, text="新建一篇博客.md",
                     command=newmd).pack(fill=tk.X)
-    bt2 = tk.Button(mighty, text="更新博客索引", command=upindex).pack(fill=tk.X)
+    # bt2 = tk.Button(mighty, text="更新博客索引", command=upindex).pack(fill=tk.X)
     bt3 = tk.Button(mighty, text="更新生成所有静态页面", command=upall).pack(fill=tk.X)
 
     root.mainloop()
