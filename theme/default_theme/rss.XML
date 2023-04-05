@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
-
     <channel>
         <title>{{ blog_name_en }} {{ blog_name }}</title>
         <link>{{ blog_url }}</link>
         <description>{{ blog_name_en }} {{ blog_name }} 最近更新的10篇博文。</description>
         <pubDate>{{ rss_data[0].time }}</pubDate>
-
         {% for r in rss_data %}
         <item>
             <title>{{ r.title }}</title>
@@ -15,7 +13,5 @@
             <pubDate>{{ r.time }}</pubDate>
         </item>
         {% endfor %}
-
     </channel>
-
 </rss>
