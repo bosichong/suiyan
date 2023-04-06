@@ -2,13 +2,13 @@
 <rss version="2.0">
     <channel>
         <title>{{ blog_name_en }} {{ blog_name }}</title>
-        <link>{{ blog_url }}</link>
+        <link>{{ site_url }}</link>
         <description>{{ blog_name_en }} {{ blog_name }} 最近更新的10篇博文。</description>
         <pubDate>{{ rss_data[0].time }}</pubDate>
         {% for r in rss_data %}
         <item>
             <title>{{ r.title }}</title>
-            <link>{{ blog_url }}{{ r.url }}.html</link>
+            <link>{{ site_url }}{{ r.url }}.html</link>
             <author>{{ r.author }}</author>
             <pubDate>{{ r.time }}</pubDate>
         </item>

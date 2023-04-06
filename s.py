@@ -20,18 +20,13 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
-
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
-# DEV = 1 确定为本地开发环境，会调用config.json中blog_test_url，方便本地调用。
-# DEV = 0 确定为线上生产模式，要把最终的网址换成线上的。
-# 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
-DEV = CONFIG["dev"]  # 重配置文件读取是否为本地测试环境。
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
 THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
 CONFIGJSON = os.path.join(BASE_DIR, 'config.json')
+BLOGCONFIG = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 SUIYANVERSION = "3.1.0"  # 程序版本
 
@@ -45,6 +40,14 @@ def create_context():
     context = load_configjson(CONFIGJSON)
     # 如果有自定义的上下文，可以在这里添加
     context["title"] = "Home"
+    # dev = 1 确定为本地开发环境，会调用config.json中blog_test_url，方便本地调用。
+    # dev = 0 确定为线上生产模式，要把最终的网址换成线上的。
+    # 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
+
+    if context["dev"]:
+        context["site_url"] = context["blog_test_url"]
+    else:
+        context["site_url"] = context["blog_url"]
     return context
 
 
@@ -331,11 +334,12 @@ def before_create():
     """
     这里是所有静态资源生成前的一些处理
     """
+    config = load_configjson(CONFIGJSON)
     create_dir(BLOGPAGES)
     # 复制配置文件到blog
-    copy_file(os.path.join(BASE_DIR, "config.json"), CONFIGJSON)
+    copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
     copy_assets()
-    create_blog_jsfile(DEV)
+    create_blog_jsfile(config["dev"])
     create_data_json(ARTICLES_DIR, BLOGDATAJSON)
     delete_html_files(BLOGPAGES)
     create_context()

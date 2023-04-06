@@ -9,16 +9,16 @@
     <meta content="{{ blog_author }}" name="author">
     <title>{{ blog_name_en }} {{ blog_name }} {% block title %}{% endblock %}</title>
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="{{ blog_url }}assets/css/pico.min.css">
+    <link rel="stylesheet" href="{{ site_url }}assets/css/pico.min.css">
     <!-- 引入 pico.css -->
-    <link rel="stylesheet" href="{{ blog_url }}assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ site_url }}assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- 引入 站点样式 -->
-    <link rel="stylesheet" href="{{ blog_url }}assets/css/custom.css">
-    <script src="{{ blog_url }}assets/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="{{ site_url }}assets/css/custom.css">
+    <script src="{{ site_url }}assets/js/jquery-3.3.1.min.js"></script>
     {% endblock %}
 </head>
 <body>
-<div class="hero" data-theme="dark" style="background-image: url('{{ blog_url }}{{ blog_bg }}');">
+<div class="hero" data-theme="dark" style="background-image: url('{{ site_url }}{{ blog_bg }}');">
     <nav class="container-fluid">{% include 'nav.html' %}</nav>
     <head>{% include 'head.html' %}</head>
 </div>
@@ -32,10 +32,10 @@
 <section>{% include 'section.html' %}</section>
 <footer>{% include 'footer.html' %}</footer>
 <!-- Minimal theme switcher -->
-<script src="{{ blog_url }}assets/js/minimal-theme-switcher.js"></script>
+<script src="{{ site_url }}assets/js/minimal-theme-switcher.js"></script>
 <!-- Scroll to Top button selector -->
 <a class="to-top"><i class="fa fa-chevron-up fa-3" aria-hidden="true"></i></a>
-<script src="{{ blog_url }}assets/js/jquery.toTop.min.js"></script>
+<script src="{{ site_url }}assets/js/jquery.toTop.min.js"></script>
 <script>
         jQuery(function($){
             // Plugin activation (basic - with all default values)
