@@ -114,7 +114,7 @@ def extract_md_header(file_path):
         return header_dict
 
 
-def create_blog_dir(dir_path):
+def create_dir(dir_path):
     """
     判断目录是否存在，不存在则创建
     @param dir_path: 目录路径
@@ -122,6 +122,7 @@ def create_blog_dir(dir_path):
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
         logger.info(f"目录 {dir_path} 创建成功")
+
 
 
 def xurl(url):
@@ -196,7 +197,7 @@ def tagsdata(blogdata):
     return list(tag_dict.values())
 
 
-def create_dir(blogurl):
+def create_file_dir(blogurl):
     '''
     将文件路径从一个文件地址中分割出来
     判断文件路径是否存在，如果不存在，则创建，此处是创建多级目录

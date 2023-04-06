@@ -39,5 +39,4 @@ def main():
 
 
 if __name__ == "__main__":
-    s.create_blog_dir(s.BLOGPAGES)  # 创建blog目录
     main()

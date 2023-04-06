@@ -31,7 +31,7 @@ DEV = CONFIG["dev"]  # 重配置文件读取是否为本地测试环境。
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
 THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
-CONFIGJSON = os.path.join(BLOGPAGES, 'config.json')
+CONFIGJSON = os.path.join(BASE_DIR, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 SUIYANVERSION = "3.1.0"  # 程序版本
 
@@ -76,7 +76,11 @@ def create_rss():
     rss_path = os.path.join(BLOGPAGES, 'rss.xml')  # rss
     # 取最近的博文10篇
     rss_data = []
-    for i in range(10):
+    # 如果blog的文章数小于10个，就取文章数。
+    con = 10
+    if len(blog_data) < 10:
+        con = len(blog_data)
+    for i in range(con):
         rss_data.append(blog_data[i])
     context["rss_data"] = rss_data
     with open(rss_path, mode='w', encoding='utf-8') as f:
@@ -224,7 +228,7 @@ async def create_blog_html(blog):
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     tmp = env.get_template("blog.html")  # 模板
     blog_path = os.path.join(BLOGPAGES, blog["url"] + '.html')  # 首页HTML
-    create_dir(blog_path)
+    create_file_dir(blog_path)
     context = create_context()
     context["blog"] = blog
     context["data"] = markdown(read_file_without_header(os.path.join(ARTICLES_DIR, blog["url"] + ".md")))
@@ -233,7 +237,7 @@ async def create_blog_html(blog):
         logger.debug('生成' + blog["title"] + '博文成功！')
 
 
-def create_blog(title='', author='', tag='', filedir='', pagename=''):
+def create_blog(title='', author='', tag='', filedir='', pagename='',vscode= True):
     """
     创建一篇空白的新blog
     :param title: blog标题
@@ -255,7 +259,7 @@ def create_blog(title='', author='', tag='', filedir='', pagename=''):
         config = load_configjson(CONFIGJSON)
         author = config['blog_author']
     blogfile = os.path.join(ARTICLES_DIR, os.path.join(filedir, pagename + '.md'))
-    create_dir(blogfile)  # 如果有不存在的目录则创建
+    create_file_dir(blogfile)  # 如果有不存在的目录则创建
     # bloghtml = '---' + '\ntitle:' + title + '\nauthor:' + author + '\ntime:' + create_time + '\ntag:' + tag + '\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
     bloghtml = f'---\ntitle: {title}\nauthor: {author}\ntime: {create_time}\ntag: {tag}\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
 
@@ -265,7 +269,8 @@ def create_blog(title='', author='', tag='', filedir='', pagename=''):
         with open(blogfile, mode='w', encoding='utf-8') as f:
             f.write(bloghtml)
         logger.info('blog文章.md创建成功！')
-        os.system('code ' + blogfile)  # 使用VS Code打开文件
+        if vscode:
+            os.system('code ' + blogfile)  # 使用VS Code打开文件
 
 
 def create_blog_jsfile(dev):
@@ -296,7 +301,7 @@ def create_test(con):
         tag = random.choice(("Java", "JavaScript", "Python", "C++", "程序员",))
         pagename = str(random.randint(99999, 99999999))
         create_blog(title=title, tag=tag, filedir=test_dir,
-                    author='', pagename=pagename)
+                    author='', pagename=pagename,vscode=False)
     logger.info("测试文件创建完毕！")
 
 
@@ -326,7 +331,7 @@ def before_create():
     """
     这里是所有静态资源生成前的一些处理
     """
-    create_blog_dir(BLOGPAGES)
+    create_dir(BLOGPAGES)
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), CONFIGJSON)
     copy_assets()
@@ -378,7 +383,7 @@ def main():
         create_blog(title=args.newblog, author=args.author,
                     tag=args.tag, filedir=args.filedir, pagename=args.pagename, )
     elif args.suiyantest:
-        create_test(200)
+        create_test(con=args.suiyantest)
     elif args.index:
         create_all()
     else:
@@ -386,7 +391,6 @@ def main():
 
 
 if __name__ == "__main__":
-    create_blog_dir(BLOGPAGES)  # 创建blog目录
     main()
 
 

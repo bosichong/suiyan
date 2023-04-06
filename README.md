@@ -30,6 +30,23 @@
 
 如果新建blog文章无法在vscode中打开，请在命令面板中搜索shell，在PATH 中安装code命令。
 
+
+### 安装教程
+
+首先克隆下载碎言静态博客，
+* [Gitee](https://gitee.com/J_Sky/suiyan)
+* [GitHub](https://github.com/Jsky2020/suiyan)
+
+终端运行:
+
+    pip install -r requirements.txt
+
+如果速度太慢请使用镜像：
+
+    pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/
+
+安装相关依赖。
+
 博客的管理支持终端和图形界面：
 
 图形界面：
@@ -46,30 +63,112 @@
 
 可以根据自己的喜好进行选择。
 
+### 目录结构
+
+下边是一个完整的项目结构，有些目录需要创建md文件和生成静态文件后才会显示。
+
+    ├── LICENSE 开源协议
+    ├── README.md 说明文档
+    ├── articles md文件存放目录（名称可以自定义）
+    ├── blog 静态文件存放目录（名称可以自定义）
+    ├── config.json 站点配置文件
+    ├── logs 日志存放目录
+    ├── requirements.txt 依赖文件
+    ├── s.py 主程序和终端操作命令行
+    ├── seo 这里存放着一些SEO文件，比如验证，robots.txt
+    ├── theme 主题目录，下边的每一个目录对应一个主题，可以在配置文件里修改主题
+    ├── utils.py 程序依赖的方法
+    └── w.py 窗口操作的程序
 
 
+### 首次运行
 
-### 安装教程
+首次运行建议先修改根目录下的配置文件`config.json`这里简单介绍一下配置项:
 
-首先克隆下载碎言静态博客，
-* [Gitee](https://gitee.com/J_Sky/suiyan)
-* [GitHub](https://github.com/Jsky2020/suiyan)
+    {
+        "dev": 0,  # 调试模式，如果改为1，则使用"blog_test_url"来添加静态资源地址前缀，方便本地调试。
+        "blog_name": "碎言博客",   # 站点名称
+        "blog_name_en": "SuiYan", # 站点英文名称
+        "blog_author": "J.sky", # 站长昵称
+        "blog_description_en": "You see see you , This one day day di.",  # 站长简介
+        ## 下边是网页中的meta
+        "meta_description": " Python Django JavaScript 学习讨论,我们是一群热爱Python的程序员，人生苦短，我用JavaScript！一个不会JavaScript的Python开发者不是一个好网管。",
+        "meta_keywords":"Python,Django,JavaScript,程序员,人生苦短,我用Python",
+        "profile_image":"assets/images/touxiang.jpg",  # 头像地址
+        "blog_bg": "assets/pexels-masha-raymers-3068711.jpg", #当前站点背景图片地址
+        "theme": "default_theme", # 当前使用的主题目录名称
+        "build": "blog", # 静态文件的目录名称
+        "md_dir": "articles", #md文件目录
+        "blog_page_num":4,# 静态站点首页的数据分页数值
+        "blog_test_url":"http://127.0.0.1:5500/blog/", #本地调试是的测试地址前缀
+        "blog_url":"https://suiyan.cc/", # 你的域名，生产模式使用
+        "github":"", # 这个是你的仓库地址前缀，暂时无用。
+        # sns 图标 和地址，图标的选择，后边会说。
+        "blog_sns": [
+            {
+                "ico": "github",
+                "url": "https://github.com/bosichong/suiyan"
+            },
+            {
+                "ico": "git",
+                "url": "https://gitee.com/J_Sky/suiyan"
+            },
+            {
+                "ico": "weibo",
+                "url": "https://weibo.com/qq285911"
+            },
+            {
+                "ico": "qq",
+                "url": "https://user.qzone.qq.com/285911/"
+            },
+            {
+                "ico": "book",
+                "url": "https://www.zhihu.com/people/J_sky/activities"
+            },
+            {
+                "ico": "rss",
+                "url": "https://suiyan.cc/rss.xml"
+            }
+        ],
+        # 站点的导航
+        "nav": [
+            {
+                "ico": "home",
+                "text": "Blog Home",
+                "url": "index.html"
+            },
+            {
+                "ico": "archive",
+                "text": "Blog Archive",
+                "url": "archives.html"
+            },
+            {
+                "ico": "tags",
+                "text": "Blog Tag",
+                "url": "tags.html"
+            },
+            {
+                "ico": "user",
+                "text": "About Me",
+                "url": "aboutme.html"
+            }
+        ]
+    
+    }
 
-终端运行:
+配置文件可以根据自己的需要添加删除，在jinja2 模板中使用`{{ 属性名称 }}`来调用。
 
-    pip install -r requirements.txt
-
-安装相关依赖
-
-安装完成。
+修改完毕后就可以穿件文章了。
 
 ### 创建文章
 
 
     python z.py -n 此处写文章标题
 
+注意！文章标题为必填！
 
 这个时候就会在`articles`目录下创建一篇文章,并且使用`vscode`直接打开。
+如果你没有安装`vscode`的命令行，需要安装后才会打开，但是文件会被创建
 
 
 ### 修改博客及站长资料
@@ -80,10 +179,13 @@
 ### 运行站点
 
 本地主题开发编写，推荐使用`Live Server`这个vscode得插件，非常方便。
+在配置文件里修改：
+"dev": 1,  # 调试模式，如果改为1，则使用"blog_test_url"来添加静态资源地址前缀，方便本地调试。
 
 ### 修改站点样式
 
 采用jinja2模板引擎，在主题或是模板目录修改样式，一键生成页面，直接同步页面。
+在jinja2 模板中使用`{{ 属性名称 }}`来调用。
 
 ### 部署
 
@@ -91,10 +193,9 @@
 
 提交`blog`目录下所有文件到git仓库即可，`blog`就是所有博客的全部文件！
 
-#### 参与贡献
+### github pages
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+如何部署GitHub pages 搭建自己的博客，这里就不在详细介绍了，请参考下文。
+
+[GitHub Pages 快速入门](https://docs.github.com/zh/pages/quickstart)
 
