@@ -339,7 +339,7 @@ def before_create():
     """
     config = load_configjson(CONFIGJSON)
     create_dir(BLOGPAGES)
-    clear_build(BLOGPAGES,config["build"])
+    clear_build(BLOGPAGES)
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
     copy_assets()

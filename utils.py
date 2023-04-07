@@ -134,26 +134,17 @@ def xurl(url):
     return os.path.basename(url)
 
 
-def clear_build(dir_path, f_path):
+def clear_build(dir_path):
     """
-    递归删除目录和子目录下所有的文件,。
-    @param dir_path: 目录路径
-    """
+        递归删除目录和子目录下所有的.html文件。
+        @param dir_path: 目录路径
+        """
     for root, dirs, files in os.walk(dir_path):
         for file in files:
-            if not f_path + "/assets/images" in root:
+            if file.endswith('.html'):
                 os.remove(os.path.join(root, file))
-                logger.debug(f"文件 {file} 删除成功")
-        for dir in dirs:
-            if dir == "assets":
-                pass
-            else:
-                if not f_path + "/assets/images" in os.path.join(root, dir):
-                    shutil.rmtree(os.path.join(root, dir))
-                    logger.debug(os.path.join(root, dir) + "已删除！")
-                else:
-                    logger.debug(os.path.join(root, dir)+"未被删除！")
-    logger.info("清理所有静态文件（不包括assets/images目录）成功！")
+                logger.debug(f".html文件 {file} 删除成功")
+    logger.info("清理所有静态html成功！")
 
 
 def calculate_page_num(cs, num):
