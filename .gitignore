@@ -65,3 +65,6 @@ coverage
 blog
 articles
 seo
+/theme/free_blog/
+test_blog
+/config_.json

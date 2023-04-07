@@ -24,6 +24,7 @@ logger.remove()  # 删去import logger之后自动产生的handler，不删除�
 logger.add(os.path.join(BASE_DIR, "logs/logger.log"), level=LOG_LEVEL)
 handler_id = logger.add(sys.stderr, level=LOG_LEVEL)
 
+
 def loadcode(path):
     """载入文件中的代码"""
     try:
@@ -124,7 +125,6 @@ def create_dir(dir_path):
         logger.info(f"目录 {dir_path} 创建成功")
 
 
-
 def xurl(url):
     """
     去掉目录直接取文件名
@@ -134,16 +134,26 @@ def xurl(url):
     return os.path.basename(url)
 
 
-def delete_html_files(dir_path):
+def clear_build(dir_path, f_path):
     """
-    递归删除目录和子目录下所有的.html文件。
+    递归删除目录和子目录下所有的文件,。
     @param dir_path: 目录路径
     """
     for root, dirs, files in os.walk(dir_path):
         for file in files:
-            if file.endswith('.html'):
+            if not f_path + "/assets/images" in root:
                 os.remove(os.path.join(root, file))
-                logger.debug(f".html文件 {file} 删除成功")
+                logger.debug(f"文件 {file} 删除成功")
+        for dir in dirs:
+            if dir == "assets":
+                pass
+            else:
+                if not f_path + "/assets/images" in os.path.join(root, dir):
+                    shutil.rmtree(os.path.join(root, dir))
+                    logger.debug(os.path.join(root, dir) + "已删除！")
+                else:
+                    logger.debug(os.path.join(root, dir)+"未被删除！")
+    logger.info("清理所有静态文件（不包括assets/images目录）成功！")
 
 
 def calculate_page_num(cs, num):
@@ -254,8 +264,7 @@ def copy_all_files(src_dir, dst_dir):
         src_file = os.path.join(src_dir, file)
         dst_file = os.path.join(dst_dir, file)
         if os.path.isfile(src_file):
-            copy_file(src_file,dst_file)
-
+            copy_file(src_file, dst_file)
 
 
 if __name__ == "__main__":

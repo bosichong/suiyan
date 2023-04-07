@@ -20,12 +20,13 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
+APP_CONFIG ="config.json"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
-CONFIG = load_configjson(os.path.join(BASE_DIR, "config.json"))  # 获取当前配置
+CONFIG = load_configjson(os.path.join(BASE_DIR, APP_CONFIG))  # 获取当前配置
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
 ARTICLES_DIR = os.path.join(BASE_DIR, CONFIG["md_dir"])  # 博文目录
 THEME = os.path.join(BASE_DIR, "theme")  # 主题目录
-CONFIGJSON = os.path.join(BASE_DIR, 'config.json')
+CONFIGJSON = os.path.join(BASE_DIR, APP_CONFIG)
 BLOGCONFIG = os.path.join(BLOGPAGES, 'config.json')
 BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 SUIYANVERSION = "3.1.0"  # 程序版本
@@ -88,7 +89,7 @@ def create_rss():
     context["rss_data"] = rss_data
     with open(rss_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        logger.info('生成rss.xml成功！')
+    logger.info('生成rss.xml成功！')
 
 
 def create_index_html():
@@ -105,6 +106,7 @@ def create_index_html():
     ct = [create_list_html(i, ps) for i in range(ps)]  # 列表生成式
     loop = asyncio.get_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
+    logger.info('生成首页、列表页成功！')
 
 
 async def create_list_html(i, ps):
@@ -177,7 +179,7 @@ def create_archives_html():
     context["title"] = "Archives"
     with open(archives_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        logger.info('生成archives.html成功！')
+    logger.info('生成archives.html成功！')
 
 
 def create_tags_html():
@@ -200,7 +202,7 @@ def create_tags_html():
 
     with open(tags_html_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-        logger.info('生成tags.html成功！')
+    logger.info('生成tags.html成功！')
 
 
 def create_allblog():
@@ -220,6 +222,7 @@ def create_allblog():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
     # loop.close()
+    logger.info('生成所有文章页成功！')
 
 
 async def create_blog_html(blog):
@@ -336,12 +339,12 @@ def before_create():
     """
     config = load_configjson(CONFIGJSON)
     create_dir(BLOGPAGES)
+    clear_build(BLOGPAGES,config["build"])
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
     copy_assets()
     create_blog_jsfile(config["dev"])
     create_data_json(ARTICLES_DIR, BLOGDATAJSON)
-    delete_html_files(BLOGPAGES)
     create_context()
 
 
@@ -353,6 +356,7 @@ def copy_assets():
     config = load_configjson(CONFIGJSON)
     tmp_assets_path = os.path.join(THEME, config["theme"], "assets")
     blog_assets_path = os.path.join(BLOGPAGES, "assets")
+    create_dir(tmp_assets_path)
     # 复制模板下的js css到blog下
     copy_dir(tmp_assets_path, blog_assets_path)
 
@@ -396,5 +400,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
