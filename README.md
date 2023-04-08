@@ -37,6 +37,8 @@
 * [Gitee](https://gitee.com/J_Sky/suiyan)
 * [GitHub](https://github.com/Jsky2020/suiyan)
 
+
+
 终端运行:
 
     pip install -r requirements.txt
@@ -45,7 +47,7 @@
 
     pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/
 
-安装相关依赖。
+安装相关依赖。需要Python版本3.8+之后的版本
 
 博客的管理支持终端和图形界面：
 
@@ -158,7 +160,7 @@
 
 配置文件可以根据自己的需要添加删除，在jinja2 模板中使用`{{ 属性名称 }}`来调用。
 
-修改完毕后就可以穿件文章了。
+修改完毕后就可以创建新文章了。
 
 ### 创建文章
 
@@ -186,6 +188,9 @@
 
 采用jinja2模板引擎，在主题或是模板目录修改样式，一键生成页面，直接同步页面。
 在jinja2 模板中使用`{{ 属性名称 }}`来调用。
+
+使用其他主题，将主题复制到`theme`目录中，修改配置文件中的"theme": "主题目录",即可启用。
+
 站点图标：
 [FontAwesome 4.7.0 中完整的675个图标样式CSS参考](https://9iphp.com/fa-icons)
 
@@ -200,4 +205,6 @@
 如何部署GitHub pages 搭建自己的博客，这里就不在详细介绍了，请参考下文。
 
 [GitHub Pages 快速入门](https://docs.github.com/zh/pages/quickstart)
+
+除了部署GitHub，也可以将静态文件部署到虚拟主机云服务器上，复制静态文件目录下的所有文件到你的站点目录下即可。
 
