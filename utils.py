@@ -64,14 +64,15 @@ def create_blog_data_Json(adir):
     data_json = []
     # 当前目录下所有的文件、子目录、子目录下的文件。
     for root, dirs, files in os.walk(adir):
-        for name in files:
+        for file in files:
             # 值读取.md
-            if name.endswith('.md'):
-                url = os.path.join(root, name).replace(
+            if file.endswith('.md'):
+                url = os.path.join(root, file).replace(
                     adir + os.sep, '').replace('.md', '')  # 最后需要组装的相对目录
-                furl = os.path.join(root, name)  # 当前文件的绝对目录
+                furl = os.path.join(root, file)  # 当前文件的绝对目录
                 f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
                 f_data["url"] = url
+                f_data["uptime"] = get_file_modification_time(os.path.join(root, file))
                 data_json.append(f_data)  # 添加到需要返回的数据数组中
 
     data_json.sort(key=lambda x: x["time"], reverse=True)  # 对数组进行降序排序
@@ -257,6 +258,20 @@ def copy_all_files(src_dir, dst_dir):
         if os.path.isfile(src_file):
             copy_file(src_file, dst_file)
 
+
+def get_file_modification_time(file_path):
+    """
+    获取文件的更新时间
+    @param file_path: 文件路径
+    @return: 更新时间
+    """
+    return datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+
+
+if __name__ == "__main__":
+    pass
 
 if __name__ == "__main__":
     pass

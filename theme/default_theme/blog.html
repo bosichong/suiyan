@@ -6,7 +6,7 @@
 
 <hgroup>
     <h2>{{ blog.title }}</h2>
-    <h3> 作者:<a href="#">{{ blog.author }}</a> <small>发布时间:{{ blog.time }}</small> Tag:
+    <h3> 作者:<a href="#">{{ blog.author }}</a> | <small>发表于:{{ blog.time }}</small> | <small>更新于:{{ blog.uptime }}</small> | Tag:
         {% set tags = blog.tag.split(",") %}
         {% for tag in tags %}
         <small>{{ tag }}</small>
