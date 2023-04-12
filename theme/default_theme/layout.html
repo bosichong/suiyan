@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    {% block head %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="{{ meta_keywords }}" name="keywords">
-    <meta content="{{ meta_description }}" name="description">
+    <meta content="{% block keywords %}{% endblock %}" name="keywords">
+    <meta content="{% block description %}{% endblock %}" name="description">
     <meta content="{{ blog_author }}" name="author">
-    <title>{{ blog_name_en }} {{ blog_name }} {% block title %}{% endblock %}</title>
+    <title>{{ blog_name_en }}-{{ blog_name }}{% block title %}{% endblock %}</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="{{ site_url }}assets/css/pico.min.css">
     <!-- 引入 图标CDN -->
@@ -15,7 +14,6 @@
     <!-- 引入 站点样式 -->
     <link rel="stylesheet" href="{{ site_url }}assets/css/custom.css">
     <script src="{{ site_url }}assets/js/jquery-3.3.1.min.js"></script>
-    {% endblock %}
 </head>
 <body>
 <div class="hero" data-theme="dark" style="background-image: url('{{ site_url }}{{ blog_bg }}');">

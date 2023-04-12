@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}{{ blog.title }}{% endblock %}
+{% block keywords %}
+{% set tags = blog.tag.split(",") %}
+        {% for tag in tags %}
+        {{ tag }}
+        {% endfor %}
+{% endblock %}
+{% block description %}{{ blog.title }}{% endblock %}
 {% block article %}
 
 

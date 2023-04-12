@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
-{% block title %}{{ blog_name }} {{ title }}{% endblock %}
+{% block title %}-{{ title }}{% endblock %}
+{% block keywords %} {{ meta_keywords }}{% endblock %}
+{% block description %}{{ blog_name }}-文章归档{% endblock %}
 {% block article %}
 
     <header class="entry-header">
