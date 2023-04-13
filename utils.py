@@ -110,7 +110,7 @@ def extract_md_header(file_path):
                 key = key.strip()
                 value = value.strip()
             except ValueError:
-                logger.error(f"错误：{item} 无法分割成键值对")
+                logger.error(f"错误：{header_list} 无法分割成键值对")
                 continue
             header_dict[key] = value
         return header_dict
