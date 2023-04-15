@@ -58,17 +58,17 @@
     "nav": [
         {
             "ico": "home",
-            "text": "Blog Home",
+            "text": "Home",
             "url": "index.html"
         },
         {
             "ico": "archive",
-            "text": "Blog Archive",
+            "text": "Archive",
             "url": "archives.html"
         },
         {
             "ico": "tags",
-            "text": "Blog Tag",
+            "text": "Tags",
             "url": "tags.html"
         },
         {
