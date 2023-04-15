@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="{% block keywords %}{% endblock %}" name="keywords">
     <meta content="{% block description %}{% endblock %}" name="description">
     <meta content="{{ blog_author }}" name="author">
+    <link rel="icon" type="image/png" href="{{ site_url }}assets/images/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ site_url }}assets/images/favicon/favicon-16x16.png" sizes="16x16" />
     <title>{{ blog_name_en }}-{{ blog_name }}{% block title %}{% endblock %}</title>
     <!-- 引入 pico.css -->
     <link rel="stylesheet" href="{{ site_url }}assets/css/pico.min.css">
