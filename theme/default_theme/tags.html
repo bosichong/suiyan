@@ -21,7 +21,7 @@
   <ul>
       {% for blog in tag.data %}
       <li>
-          <a href="{{ blog.url }}.html" target="_blank">
+          <a href="{{ site_url }}{{ blog.url }}.html" target="_blank">
          {{ blog.title }}
         </a>
           <span>

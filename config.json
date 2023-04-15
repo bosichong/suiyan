@@ -25,7 +25,7 @@
     "theme": "default_theme",
     "build": "blog",
     "md_dir": "articles",
-    "blog_page_num":4,
+    "blog_page_num":8,
     "blog_test_url":"http://127.0.0.1:5500/",
     "blog_url":"https://suiyan.cc/",
     "github":"https://github.com/Jsky2020/suiyan/blob/suiyan/articles/",
