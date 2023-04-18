@@ -3,7 +3,7 @@
     "blog_name": "碎言博客",
     "blog_name_en": "SuiYan",
     "blog_author": "J.sky",
-    "blog_description_en": "You see see you , This one day day di.",
+    "blog_description_en": "不要害怕犯错，犯错也是学习过程中的一环。知识的价值，是不能用金钱简单衡量的。—— 原神:提纳里",
     "blog_typed": [
         "Life is short, you need Python",
         "人生苦短，我用Python.",
@@ -37,10 +37,6 @@
         {
             "ico": "git",
             "url": "https://gitee.com/J_Sky/suiyan"
-        },
-        {
-            "ico": "weibo",
-            "url": "https://weibo.com/qq285911"
         },
         {
             "ico": "qq",

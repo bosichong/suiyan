@@ -1,1 +1,0 @@
-var suiyan = { url : 'https://bosichong.github.io/'}

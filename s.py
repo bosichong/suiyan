@@ -41,6 +41,12 @@ def create_context():
     context = load_configjson(CONFIGJSON)
     # 如果有自定义的上下文，可以在这里添加
     context["title"] = "Home"
+    blog_data = load_blogdata_json(BLOGDATAJSON)
+    tags = create_tagsdata(blog_data)
+    tag_count = len(tags) #标签数量
+    blog_count = len(blog_data) #博文数量
+    context["tag_count"] = tag_count
+    context["blog_count"] = blog_count
     # dev = 1 确定为本地开发环境，会调用config.json中blog_test_url，方便本地调用。
     # dev = 0 确定为线上生产模式，要把最终的网址换成线上的。
     # 这样做主要方便本地调试，因为本地调试静态网页使用的服务器不一，所以产生的地址也会不同。
@@ -55,7 +61,7 @@ def create_context():
 def create_sitemap():
     """创建网站地图"""
     config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
-    blog_data = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
+    blog_data = load_blogdata_json(BLOGDATAJSON)  # 获得blog的博文数据
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
@@ -72,7 +78,7 @@ def create_rss():
     创建站点的rss
     """
     config = load_configjson(CONFIGJSON)  # 得到blog的配置Python字典
-    blog_data = load_blogdatajson(BLOGDATAJSON)
+    blog_data = load_blogdata_json(BLOGDATAJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
@@ -96,7 +102,7 @@ def create_index_html():
     """
     批量生成首页和列表页
     """
-    blog_data = load_blogdatajson(BLOGDATAJSON)
+    blog_data = load_blogdata_json(BLOGDATAJSON)
     # 根据博文数量推导列表页数
     config = load_configjson(CONFIGJSON)
     ps = calculate_page_num(config["blog_page_num"], len(blog_data))
@@ -116,7 +122,7 @@ async def create_list_html(i, ps):
     @ps 总页数
     """
     articles = []
-    blog_data = load_blogdatajson(BLOGDATAJSON)
+    blog_data = load_blogdata_json(BLOGDATAJSON)
     config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
@@ -127,7 +133,7 @@ async def create_list_html(i, ps):
     if i < ps:
         maxp = cs * i + cs  # 末尾文章数。
         # 若是最后一页，且文章有剩余，则添加余下的博文到最后一页
-        if i == ps - 1 and len(load_blogdatajson(BLOGDATAJSON)) % cs > 0:
+        if i == ps - 1 and len(load_blogdata_json(BLOGDATAJSON)) % cs > 0:
             maxp = cs * i + (len(blog_data) % cs)
         for p in range(cs * i, maxp):
             article = blog_data[p]
@@ -162,7 +168,7 @@ async def create_list_html(i, ps):
 
 def create_archives_html():
     """生成archives.html"""
-    blog_data = load_blogdatajson(BLOGDATAJSON)
+    blog_data = load_blogdata_json(BLOGDATAJSON)
     config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
@@ -184,7 +190,7 @@ def create_archives_html():
 
 def create_tags_html():
     """生成archives.html"""
-    blog_data = load_blogdatajson(BLOGDATAJSON)
+    blog_data = load_blogdata_json(BLOGDATAJSON)
     config = load_configjson(CONFIGJSON)
     # 设置jinja模板
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
@@ -192,7 +198,7 @@ def create_tags_html():
     tmp = env.get_template("tags.html")  # 模板
     tags_html_path = os.path.join(BLOGPAGES, 'tags.html')  # 首页HTML
     # 组装archives页面的上下文数据。
-    data = tagsdata(blog_data)
+    data = create_tagsdata(blog_data)
     # logger.debug(data)
     for item in data:
         item["sum"] = len(item["data"])
@@ -207,7 +213,7 @@ def create_tags_html():
 
 def create_allblog():
     """创建所有blog静态页面"""
-    blogdata = load_blogdatajson(BLOGDATAJSON)  # 获得blog的博文数据
+    blogdata = load_blogdata_json(BLOGDATAJSON)  # 获得blog的博文数据
 
     # #单线程创建blogHTML
     # for blog in blogdata:
@@ -336,15 +342,15 @@ def before_create():
     """
     这里是所有静态资源生成前的一些处理
     """
-    config = load_configjson(CONFIGJSON)
-    create_dir(BLOGPAGES)
-    clear_build(BLOGPAGES)
+    config = load_configjson(CONFIGJSON) #加载最新的文件
+    create_dir(BLOGPAGES) # 创建静态文件目录
+    clear_build(BLOGPAGES)# 清理静态文件目录下的HTML
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
-    copy_assets()
-    create_blog_jsfile(config["dev"])
-    create_data_json(ARTICLES_DIR, BLOGDATAJSON)
-    create_context()
+    copy_assets() # 复制其他静态文件
+    create_blog_jsfile(config["dev"]) #创建blog的搜索数据连接前缀。
+    create_data_json(ARTICLES_DIR, BLOGDATAJSON) #创建blog的索引数据
+    create_context()# 创建blog的上下文。
 
 
 def copy_assets():
