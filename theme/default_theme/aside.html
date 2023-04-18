@@ -1,19 +1,38 @@
 <section>
-    <hgroup>
-        <h2>Search</h2>
-        <h3>Search This SuiYan blog</h3>
+    <hgroup class="hd">
+        <img class="avatar" src="{{ site_url }}{{ profile_image }}"/>
+        <h3>{{ blog_author }}</h3>
+        <div><small>{{ blog_description_en }}</small></div>
+        <div class="blog-state">
+            <div class="state-item">
+                <small>{{ blog_count }}</small>
+                <small>日志</small>
+            </div>
+            <div class="state-item">
+                <small>{{ tag_count }}</small>
+                <small>标签</small>
+            </div>
+        </div>
+        <ul class="sns-ul">
+            {% for sns in blog_sns %}
+            <li class="sns-li">
+                <a href="{{ sns.url }}" target="_blank">
+                    <i class="fa fa-{{ sns.ico }} "></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
     </hgroup>
 
     <!-- Search -->
     <div id="blog-search">
         <input type="text" id="search-input" name="search" placeholder="JavaScript">
         <button id="search-btn" class="contrast"
-            data-target="modal-example"
-            onClick="toggleModal(event)">Search
+                data-target="modal-example"
+                onClick="toggleModal(event)">Search
         </button>
 
     </div>
-
 
 
     <!-- Modal -->

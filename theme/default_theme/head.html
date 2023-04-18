@@ -1,18 +1,6 @@
 <header class="container">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <hgroup class="hd">
-        <img class="avatar" src="{{ site_url }}{{ profile_image }}"/>
-        <div><span id="typed"></span></div>
-        <ul class="sns-ul">
-            {% for sns in blog_sns %}
-            <li class="sns-li">
-                <a href="{{ sns.url }}" target="_blank">
-                    <i class="fa fa-{{ sns.ico }} "></i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    </hgroup>
+    <div class="hd"><span id="typed"></span></div>
     <script>
         const typed = new Typed('#typed', {
           strings: [
@@ -26,5 +14,6 @@
           startDelay: 1000,
           loop:true
     });
-  </script>
+
+    </script>
 </header>

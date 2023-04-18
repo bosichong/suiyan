@@ -43,7 +43,7 @@ def load_configjson(jsonpath):
     return config
 
 
-def load_blogdatajson(jsonpath):
+def load_blogdata_json(jsonpath):
     """
     载入blog数据blog_data.json
     return dict
@@ -53,7 +53,7 @@ def load_blogdatajson(jsonpath):
     return blog
 
 
-def create_blog_data_Json(adir):
+def create_blogdata_json(adir):
     """
     递归获得当前目录及其子目录中所有的.md文件列表。
     并创建blog的data索引JSON
@@ -87,7 +87,7 @@ def create_data_json(articles_path, file_path):
     @param file_path 索引保存的地址
     @return:
     """
-    json_str = create_blog_data_Json(articles_path)
+    json_str = create_blogdata_json(articles_path)
     with open(file_path, mode='w', encoding='utf-8') as f:
         f.write(json_str)
     logger.info("blog数据索引更新完毕！")
@@ -184,7 +184,7 @@ def formatdata(blogdata):
     return tmplist
 
 
-def tagsdata(blogdata):
+def create_tagsdata(blogdata):
     '''
     tag归档排序后的数据
     支持多标签，用","号分隔。
@@ -267,11 +267,6 @@ def get_file_modification_time(file_path):
     """
     return datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime('%Y-%m-%d %H:%M:%S')
 
-
-
-
-if __name__ == "__main__":
-    pass
 
 if __name__ == "__main__":
     pass
