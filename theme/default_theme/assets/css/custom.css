@@ -99,6 +99,7 @@ footer,
 
 .blog-state {
   display: flex;
+  padding:20px;
 }
 
 .state-item {
