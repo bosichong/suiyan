@@ -107,6 +107,3 @@ footer,
   display: flex;
   flex-direction: column;
 }
-.state-item > small{
-  color: azure;
-}
