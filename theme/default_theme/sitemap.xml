@@ -4,8 +4,6 @@
     <url>
         <loc>{{ site_url }}{{ s.url }}.html</loc>
         <lastmod>{{ s.time }}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
     </url>
     {% endfor %}
 </urlset>

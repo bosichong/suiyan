@@ -20,7 +20,7 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
-APP_CONFIG ="config.json"
+APP_CONFIG = "config.json"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, APP_CONFIG))  # 获取当前配置
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
@@ -32,8 +32,6 @@ BLOGDATAJSON = os.path.join(BLOGPAGES, 'blog_data.json')
 SUIYANVERSION = "3.1.0"  # 程序版本
 
 
-
-
 def create_context():
     """
     创建模板的上下文
@@ -43,8 +41,8 @@ def create_context():
     context["title"] = "Home"
     blog_data = load_blogdata_json(BLOGDATAJSON)
     tags = create_tagsdata(blog_data)
-    tag_count = len(tags) #标签数量
-    blog_count = len(blog_data) #博文数量
+    tag_count = len(tags)  # 标签数量
+    blog_count = len(blog_data)  # 博文数量
     context["tag_count"] = tag_count
     context["blog_count"] = blog_count
     # dev = 1 确定为本地开发环境，会调用config.json中blog_test_url，方便本地调用。
@@ -70,7 +68,15 @@ def create_sitemap():
     context["sitemap_data"] = blog_data
     with open(sitemap_path, mode='w', encoding='utf-8') as f:
         f.write(tmp.render(**context))
-    logger.info("sitemap.xml更新完毕！")
+    # 创建文本站点地图
+    sitemap_text_path = os.path.join(BLOGPAGES, 'sitemap.txt')  # 网站地图
+    site_map_url = []
+    for blog in blog_data:
+        site_map_url.append(context["site_url"] + blog["url"] + ".html")
+    site_map_text = "\n".join(site_map_url)
+    with open(sitemap_text_path, mode="w", encoding="utf-8") as f:
+        f.write(site_map_text)
+    logger.info("sitemap.xml、sitemap.txt更新完毕！")
 
 
 def create_rss():
@@ -249,7 +255,7 @@ async def create_blog_html(blog):
         logger.debug('生成' + blog["title"] + '博文成功！')
 
 
-def create_blog(title='', author='', tag='', filedir='', pagename='',vscode= True):
+def create_blog(title='', author='', tag='', filedir='', pagename='', vscode=True):
     """
     创建一篇空白的新blog
     :param title: blog标题
@@ -312,7 +318,7 @@ def create_test(con):
         tag = random.choice(("Java", "JavaScript", "Python", "C++", "程序员",))
         pagename = str(random.randint(99999, 99999999))
         create_blog(title=title, tag=tag, filedir=test_dir,
-                    author='', pagename=pagename,vscode=False)
+                    author='', pagename=pagename, vscode=False)
     logger.info("测试文件创建完毕！")
 
 
@@ -342,15 +348,15 @@ def before_create():
     """
     这里是所有静态资源生成前的一些处理
     """
-    config = load_configjson(CONFIGJSON) #加载最新的文件
-    create_dir(BLOGPAGES) # 创建静态文件目录
-    clear_build(BLOGPAGES)# 清理静态文件目录下的HTML
+    config = load_configjson(CONFIGJSON)  # 加载最新的文件
+    create_dir(BLOGPAGES)  # 创建静态文件目录
+    clear_build(BLOGPAGES)  # 清理静态文件目录下的HTML
     # 复制配置文件到blog
     copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
-    copy_assets() # 复制其他静态文件
-    create_blog_jsfile(config["dev"]) #创建blog的搜索数据连接前缀。
-    create_data_json(ARTICLES_DIR, BLOGDATAJSON) #创建blog的索引数据
-    create_context()# 创建blog的上下文。
+    copy_assets()  # 复制其他静态文件
+    create_blog_jsfile(config["dev"])  # 创建blog的搜索数据连接前缀。
+    create_data_json(ARTICLES_DIR, BLOGDATAJSON)  # 创建blog的索引数据
+    create_context()  # 创建blog的上下文。
 
 
 def copy_assets():
@@ -405,4 +411,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
