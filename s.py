@@ -20,7 +20,7 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
-APP_CONFIG = "config.json"
+APP_CONFIG = "config_my.json"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, APP_CONFIG))  # 获取当前配置
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
@@ -352,7 +352,7 @@ def before_create():
     create_dir(BLOGPAGES)  # 创建静态文件目录
     clear_build(BLOGPAGES)  # 清理静态文件目录下的HTML
     # 复制配置文件到blog
-    copy_file(os.path.join(BASE_DIR, "config.json"), BLOGCONFIG)
+    copy_file(os.path.join(BASE_DIR, APP_CONFIG), BLOGCONFIG)
     copy_assets()  # 复制其他静态文件
     create_blog_jsfile(config["dev"])  # 创建blog的搜索数据连接前缀。
     create_data_json(ARTICLES_DIR, BLOGDATAJSON)  # 创建blog的索引数据
