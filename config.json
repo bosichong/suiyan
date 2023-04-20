@@ -1,9 +1,9 @@
 {
     "dev": 0,
-    "blog_name": "碎言博客",
-    "blog_name_en": "SuiYan",
-    "blog_author": "J.sky",
-    "blog_description_en": "不要害怕犯错，犯错也是学习过程中的一环。知识的价值，是不能用金钱简单衡量的。—— 原神:提纳里",
+    "blog_name": "博客名称",
+    "blog_name_en": "博客英文名称",
+    "blog_author": "你的大名",
+    "blog_description_en": "博客简介",
     "blog_typed": [
         "Life is short, you need Python",
         "人生苦短，我用Python.",

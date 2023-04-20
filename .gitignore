@@ -66,5 +66,8 @@ blog
 articles
 seo
 /theme/free_blog/
+/theme/simple_blog/
 test_blog
 /config_.json
+/config_my.json
+
