@@ -8,9 +8,33 @@
 
 ![](img/fba.png)
 
-一键切换主题，自动主题。
+在线一键切换明暗色调。
 
 ![](img/fbb.png)
+
+### 博客主题
+
+除了上边的默认主题，还有其他额外出题。
+
+#### free_blog 
+
+大道至简，返璞归之，这是一款侧重与内容的博客主题 本项目为碎言静态博客主题。 主题支持亮色和黑暗主题在线切换。
+
+[free_blog主题下载地址](https://github.com/bosichong/suiyan_free_blog)
+
+![](img/free_blog.png)
+
+#### simple_blog 
+
+simple_blog是一款侧重与内容的博客主题并适配移动端。 本项目为碎言静态博客主题。 主题支持亮色和黑暗主题在线切换。
+
+[simple_blog主题下载地址](https://github.com/bosichong/simple_blog)
+
+![](img/simple.jpg)
+
+
+使用其他主题，将主题复制到`theme`目录中，修改配置文件中的"theme": "主题目录",即可启用。
+
 
 ### 软件架构
 
@@ -45,7 +69,7 @@
 
 如果速度太慢请使用镜像：
 
-    pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/
+    pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 安装相关依赖。需要Python版本3.8+之后的版本
 
@@ -85,7 +109,7 @@
 
 ### 首次运行
 
-首次运行建议先修改根目录下的配置文件`config.json`这里简单介绍一下配置项:
+首次运行建议先修改根目录下的配置文件`config.json`,这里简单介绍一下配置项:
 
     {
         "dev": 0,  # 调试模式，如果改为1，则使用"blog_test_url"来添加静态资源地址前缀，方便本地调试。

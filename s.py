@@ -116,7 +116,8 @@ def create_index_html():
 
     # 异步
     ct = [create_list_html(i, ps) for i in range(ps)]  # 列表生成式
-    loop = asyncio.get_event_loop()
+    # loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
     logger.info('生成首页、列表页成功！')
 
@@ -231,7 +232,8 @@ def create_allblog():
     #         ex.submit(create_blog_html, mainhtml, blog)
 
     ct = [create_blog_html(blog) for blog in blogdata]  # 列表生成式
-    loop = asyncio.get_event_loop()
+    # loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
     # loop.close()
     logger.info('生成所有文章页成功！')
