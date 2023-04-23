@@ -20,7 +20,7 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
-APP_CONFIG = "config.json"
+APP_CONFIG = "config_my.json"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, APP_CONFIG))  # 获取当前配置
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
