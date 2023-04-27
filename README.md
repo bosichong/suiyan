@@ -33,6 +33,14 @@ simple_blog是一款侧重与内容的博客主题并适配移动端。 本项�
 ![](img/simple.jpg)
 
 
+#### coding_blog 
+
+这是一款适合程序员的简约blog主题，使用了Bootstrap 5.3 等框架，模板设计移动优先。
+[simple_blog主题下载地址](https://github.com/bosichong/coding_blog)
+
+![](img/coding-blog.png)
+
+
 使用其他主题，将主题复制到`theme`目录中，修改配置文件中的"theme": "主题目录",即可启用。
 
 
