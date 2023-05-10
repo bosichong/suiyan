@@ -112,29 +112,26 @@ def create_index_html():
     # 根据博文数量推导列表页数
     config = load_configjson(CONFIGJSON)
     ps = calculate_page_num(config["blog_page_num"], len(blog_data))
-    # 获取上下文
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
+    tmp = env.get_template("index.html")  # 模板
 
     # 异步
-    ct = [create_list_html(i, ps) for i in range(ps)]  # 列表生成式
+    ct = [create_list_html(config, blog_data, tmp, i, ps) for i in range(ps)]  # 列表生成式
     # loop = asyncio.get_event_loop()
     loop = asyncio.new_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
     logger.info('生成首页、列表页成功！')
 
 
-async def create_list_html(i, ps):
+async def create_list_html(config, blog_data, tmp, i, ps):
     """
     批量生成首页和列表页的详细方法
     @i 当前页
     @ps 总页数
     """
     articles = []
-    blog_data = load_blogdata_json(BLOGDATAJSON)
-    config = load_configjson(CONFIGJSON)
-    # 设置jinja模板
-    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
     context = create_context()
-    tmp = env.get_template("index.html")  # 模板
     index_html_path = os.path.join(BLOGPAGES, 'index.html')  # 首页HTML
     cs = config["blog_page_num"]  # 每页博文数量
     if i < ps:
@@ -221,6 +218,7 @@ def create_tags_html():
 def create_allblog():
     """创建所有blog静态页面"""
     blogdata = load_blogdata_json(BLOGDATAJSON)  # 获得blog的博文数据
+    tagsdata = create_tagsdata(blogdata)
 
     # #单线程创建blogHTML
     # for blog in blogdata:
@@ -231,7 +229,12 @@ def create_allblog():
     #     for blog in blogdata:
     #         ex.submit(create_blog_html, mainhtml, blog)
 
-    ct = [create_blog_html(blog) for blog in blogdata]  # 列表生成式
+    config = load_configjson(CONFIGJSON)
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
+    tmp = env.get_template("blog.html")  # 模板
+
+    ct = [create_blog_html(blogdata, tagsdata, tmp, blog) for blog in blogdata]  # 列表生成式
     # loop = asyncio.get_event_loop()
     loop = asyncio.new_event_loop()
     loop.run_until_complete(asyncio.wait(ct))
@@ -239,17 +242,16 @@ def create_allblog():
     logger.info('生成所有文章页成功！')
 
 
-async def create_blog_html(blog):
+async def create_blog_html(blogdata, tagsdata, tmp, blog):
     """
     创建blog页面
     """
-    config = load_configjson(CONFIGJSON)
-    # 设置jinja模板
-    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
-    tmp = env.get_template("blog.html")  # 模板
+
     blog_path = os.path.join(BLOGPAGES, blog["url"] + '.html')  # 首页HTML
     create_file_dir(blog_path)
     context = create_context()
+    context["pn"] = get_prev_next(blog["title"], blogdata)  # 前后页面
+    context["related"] = get_related(blog["tag"], tagsdata, blog)  # 相关页面
     context["blog"] = blog
     context["data"] = markdown(read_file_without_header(os.path.join(ARTICLES_DIR, blog["url"] + ".md")))
     async with aiofiles.open(blog_path, mode='w', encoding='utf-8') as f:
@@ -413,3 +415,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    # blog_data = load_blogdata_json(BLOGDATAJSON)
+    # tagdata = create_tagsdata(blog_data)
+    # ts = "前端框架,HTML".split(",")
+    # kk = get_related(ts, tagdata,
+    #                   {'title':       '2023重学前端:HTML CSS JavaScript基础复习', 'author': 'J.sky', 'time': '2023-04-13 09:59:13',
+    #                    'tag':         '前端框架,HTML',
+    #                    'description': '最近写了一些前端的项目使用了一些框架例，但是突然发现自己的前端基础是如此的渣，渣的自己好尴尬，遂决定重新学习并复习一下前端的HTML CSS JavaScript基础。',
+    #                    'url':         '2023/20230413095913', 'uptime': '2023-04-16 18:03:47'})
+    # print(kk)
