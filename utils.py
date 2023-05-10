@@ -268,5 +268,48 @@ def get_file_modification_time(file_path):
     return datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime('%Y-%m-%d %H:%M:%S')
 
 
+def get_prev_next(title, blog_data):
+    """
+    返回博文的上一篇和下一篇文章
+    Args:
+        blog_data (_type_): _description_
+    return dict
+    """
+    pn = {}
+    for i in range(len(blog_data)):
+        if blog_data[i]["title"] == title:
+            if i > 0:
+                pn["prev"] = blog_data[i - 1]
+            else:
+                pn["prev"] = None
+            if i < len(blog_data)-1:
+                pn["next"] = blog_data[i + 1]
+            else:
+                pn["next"] = None
+            break
+    return pn
+
+
+def get_related(tstr, tags, blog):
+    """
+    返回一个列表，包含了当前文章的相关文章。
+    """
+    # logger.debug(tags)
+    # logger.debug(blog)
+    tl = tstr.split(",")
+    arr = []
+    for t in tl:
+        for i in range(len(tags)):
+            # logger.debug(t,tags[i]["tag"])
+            if t == tags[i]["tag"]:
+                arr += tags[i]["data"]
+    arr1 = []
+    for j in arr:
+        if i not in arr1:
+            if j != blog:
+                arr1.append(j)
+    return arr1
+
+
 if __name__ == "__main__":
     pass
