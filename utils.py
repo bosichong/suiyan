@@ -307,7 +307,9 @@ def get_related(tstr, tags, blog):
     for j in arr:
         if i not in arr1:
             if j != blog:
-                arr1.append(j)
+                if len(arr1) < 10: # 只保留最多10个相关文章。
+                    arr1.append(j)
+
     return arr1
 
 
