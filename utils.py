@@ -300,17 +300,28 @@ def get_related(tstr, tags, blog):
     arr = []
     for t in tl:
         for i in range(len(tags)):
-            # logger.debug(t,tags[i]["tag"])
-            if t == tags[i]["tag"]:
+            # 如果文章标签相同，但相关文章的列表中部存在则添加。
+            if t == tags[i]["tag"] and tags[i] not in arr:
                 arr += tags[i]["data"]
-    arr1 = []
-    for j in arr:
-        if i not in arr1:
-            if j != blog:
-                if len(arr1) < 10: # 只保留最多10个相关文章。
-                    arr1.append(j)
+    arr1 = remove_duplicates(arr)
+    arr2 = []
+    for j in arr1:
+        if j != blog:
+            if len(arr2) < 10: # 只保留最多10个相关文章。
+                arr2.append(j)
 
-    return arr1
+    return arr2
+
+
+def remove_duplicates(l):
+    """
+    list去重
+    """
+    new_list = []
+    for i in l:
+        if i not in new_list:
+            new_list.append(i)
+    return new_list
 
 
 if __name__ == "__main__":
