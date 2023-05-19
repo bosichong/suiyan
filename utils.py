@@ -99,7 +99,7 @@ def extract_md_header(file_path):
     @param file_path: 文件路径
     @return: header_dict
     """
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
         header_str = content.split('---')[1].strip()
         header_list = header_str.split('\n')
@@ -167,7 +167,7 @@ def read_file_without_header(file_path):
     @param file_path: 文件路径
     @return: 文件内容
     """
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
         return content.split('---')[2].strip()
 
