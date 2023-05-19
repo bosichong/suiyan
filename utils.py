@@ -68,7 +68,7 @@ def create_blogdata_json(adir):
             # 值读取.md
             if file.endswith('.md'):
                 url = os.path.join(root, file).replace(
-                    adir + os.sep, '').replace('.md', '')  # 最后需要组装的相对目录
+                    adir + os.sep, '').replace('.md', '').replace('\\', '/')  # 最后需要组装的相对目录
                 furl = os.path.join(root, file)  # 当前文件的绝对目录
                 f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
                 f_data["url"] = url
@@ -282,7 +282,7 @@ def get_prev_next(title, blog_data):
                 pn["prev"] = blog_data[i - 1]
             else:
                 pn["prev"] = None
-            if i < len(blog_data)-1:
+            if i < len(blog_data) - 1:
                 pn["next"] = blog_data[i + 1]
             else:
                 pn["next"] = None
@@ -307,7 +307,7 @@ def get_related(tstr, tags, blog):
     arr2 = []
     for j in arr1:
         if j != blog:
-            if len(arr2) < 10: # 只保留最多10个相关文章。
+            if len(arr2) < 10:  # 只保留最多10个相关文章。
                 arr2.append(j)
 
     return arr2
