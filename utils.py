@@ -16,6 +16,8 @@ import json
 import datetime
 import shutil
 import sys
+import time
+import subprocess
 from loguru import logger
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
@@ -23,6 +25,41 @@ LOG_LEVEL = "INFO"
 logger.remove()  # 删去import logger之后自动产生的handler，不删除的话会出现重复输出的现象
 logger.add(os.path.join(BASE_DIR, "logs/logger.log"), level=LOG_LEVEL)
 handler_id = logger.add(sys.stderr, level=LOG_LEVEL)
+
+
+
+
+
+
+def sync_to_remote_repo(path):
+    # 切换到指定目录
+    os.chdir(path)
+
+    while True:
+        # 1. 添加所有更新进入git的本地仓库
+        subprocess.run(["git", "add", "."])
+
+        # 添加更新信息
+        subprocess.run(["git", "commit", "-m", "更新博客"])
+
+        # 2. 同步到远程仓库
+        while True:
+            result = subprocess.run(["git", "push", "github", "master"])
+            if result.returncode == 0:
+                # 如果成功同步到远程仓库，退出内部循环
+                break
+            else:
+                # 如果同步失败，等待一段时间后继续重试
+                time.sleep(100)
+
+        # 检查上一步操作的返回值
+        if subprocess.run(["git", "rev-parse", "--quiet", "--verify", "HEAD"]).returncode == 0:
+            # 如果成功同步到远程仓库，退出外部循环
+            break
+        else:
+            # 如果同步失败，等待一段时间后继续重试
+            time.sleep(100)
+
 
 
 def loadcode(path):
@@ -278,12 +315,12 @@ def get_prev_next(title, blog_data):
     pn = {}
     for i in range(len(blog_data)):
         if blog_data[i]["title"] == title:
-            if i > 0:
-                pn["prev"] = blog_data[i - 1]
+            if i < len(blog_data) - 1:
+                pn["prev"] = blog_data[i + 1]
             else:
                 pn["prev"] = None
-            if i < len(blog_data) - 1:
-                pn["next"] = blog_data[i + 1]
+            if i > 0 :
+                pn["next"] = blog_data[i - 1]
             else:
                 pn["next"] = None
             break
