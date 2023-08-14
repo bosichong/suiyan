@@ -20,7 +20,7 @@ import aiofiles
 from markdown import markdown
 from utils import *
 
-APP_CONFIG = "config.json"
+APP_CONFIG = "config_new.json"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
 CONFIG = load_configjson(os.path.join(BASE_DIR, APP_CONFIG))  # 获取当前配置
 BLOGPAGES = os.path.join(BASE_DIR, CONFIG["build"])  # 所有静态资源存放目录
@@ -192,8 +192,24 @@ def create_archives_html():
     logger.info('生成archives.html成功！')
 
 
+
+def create_search_html():
+    """生成search.html"""
+    blog_data = load_blogdata_json(BLOGDATAJSON)
+    config = load_configjson(CONFIGJSON)
+    # 设置jinja模板
+    env = Environment(loader=FileSystemLoader(os.path.join(THEME, config["theme"])))
+    context = create_context()
+    tmp = env.get_template("search.html")  # 模板
+    search_html_path = os.path.join(BLOGPAGES, 'search.html')  # 首页HTML
+    # 组装search页面的上下文数据。
+    with open(search_html_path, mode='w', encoding='utf-8') as f:
+        f.write(tmp.render(**context))
+    logger.info('生成search.html成功！')
+
+
 def create_tags_html():
-    """生成archives.html"""
+    """tags.html"""
     blog_data = load_blogdata_json(BLOGDATAJSON)
     config = load_configjson(CONFIGJSON)
     # 设置jinja模板
@@ -201,7 +217,7 @@ def create_tags_html():
     context = create_context()
     tmp = env.get_template("tags.html")  # 模板
     tags_html_path = os.path.join(BLOGPAGES, 'tags.html')  # 首页HTML
-    # 组装archives页面的上下文数据。
+    # 组装tags页面的上下文数据。
     data = create_tagsdata(blog_data)
     # logger.debug(data)
     for item in data:
@@ -270,7 +286,8 @@ def create_blog(title='', author='', tag='', filedir='', pagename='', vscode=Tru
     :return:
     """
     # 文章创建时间
-    create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    create_time = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
     if pagename == '':
         pagename = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -282,7 +299,7 @@ def create_blog(title='', author='', tag='', filedir='', pagename='', vscode=Tru
         author = config['blog_author']
     blogfile = os.path.join(ARTICLES_DIR, os.path.join(filedir, pagename + '.md'))
     create_file_dir(blogfile)  # 如果有不存在的目录则创建
-    bloghtml = f'---\ntitle: {title}\nauthor: {author}\ntime: {create_time}\ntag: {tag}\ndescription:\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
+    bloghtml = f"---\ntitle: '{title}'\nauthor: '{author}'\ntime: '{create_time}'\ntag: '{tag}'\ndescription: '博文的简介'\n---\n\n\n### 可以开始写blog啦(*￣︶￣)"
 
     if os.path.isfile(blogfile):
         logger.error('文件存在相同名称，创建失败。')
@@ -303,8 +320,8 @@ def create_blog_jsfile(dev):
         js_code = "var suiyan = { url : '" + config["blog_test_url"] + "'}"
     else:
         js_code = "var suiyan = { url : '" + config["blog_url"] + "'}"
-    create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets/js/url.js"), js_code)
-    logger.debug("url.js创建成功！")
+    create_blog_url_jsfile(os.path.join(BLOGPAGES, "assets","js","url.js"), js_code)
+    logger.info("url.js创建成功！")
 
 
 def create_test(con):
@@ -343,6 +360,7 @@ def created():
     create_index_html()
     create_archives_html()
     create_tags_html()
+    create_search_html()
     create_allblog()
     create_sitemap()
     create_rss()
@@ -385,6 +403,10 @@ def copy_seo():
         copy_all_files(seo_dir, BLOGPAGES)
 
 
+
+
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "--version", help="查询程序版本", action="store_true")
@@ -395,6 +417,7 @@ def main():
     parser.add_argument("-a", "--author", help="请输入文章作者，默认调用站长昵称", default='')
     parser.add_argument("-p", "--pagename", help="请输入文章地址页面名称", default='')
     parser.add_argument("-d", "--filedir", help="请输入文章地址所属目录", default=get_current_year())
+    parser.add_argument("-g", "--git", help="更新文件到Github仓库", action="store_true")
 
     parser.add_argument("-test", "--suiyantest",
                         help="生成测试blog,填写需要生成的数目，测试文章放在目录suiyantest下。", type=int, )
@@ -409,6 +432,8 @@ def main():
         create_test(con=args.suiyantest)
     elif args.index:
         create_all()
+    elif args.git:
+        sync_to_remote_repo(BLOGPAGES)
     else:
         print(parser.print_help())  # 默认打印帮助
 

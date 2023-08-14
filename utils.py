@@ -16,6 +16,8 @@ import json
 import datetime
 import shutil
 import sys
+import time
+import subprocess
 from loguru import logger
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 当前目录地址
@@ -23,6 +25,41 @@ LOG_LEVEL = "INFO"
 logger.remove()  # 删去import logger之后自动产生的handler，不删除的话会出现重复输出的现象
 logger.add(os.path.join(BASE_DIR, "logs/logger.log"), level=LOG_LEVEL)
 handler_id = logger.add(sys.stderr, level=LOG_LEVEL)
+
+
+
+
+
+
+def sync_to_remote_repo(path):
+    # 切换到指定目录
+    os.chdir(path)
+
+    while True:
+        # 1. 添加所有更新进入git的本地仓库
+        subprocess.run(["git", "add", "."])
+
+        # 添加更新信息
+        subprocess.run(["git", "commit", "-m", "更新博客"])
+
+        # 2. 同步到远程仓库
+        while True:
+            result = subprocess.run(["git", "push", "github", "master"])
+            if result.returncode == 0:
+                # 如果成功同步到远程仓库，退出内部循环
+                break
+            else:
+                # 如果同步失败，等待一段时间后继续重试
+                time.sleep(100)
+
+        # 检查上一步操作的返回值
+        if subprocess.run(["git", "rev-parse", "--quiet", "--verify", "HEAD"]).returncode == 0:
+            # 如果成功同步到远程仓库，退出外部循环
+            break
+        else:
+            # 如果同步失败，等待一段时间后继续重试
+            time.sleep(100)
+
 
 
 def loadcode(path):
@@ -72,7 +109,8 @@ def create_blogdata_json(adir):
                 furl = os.path.join(root, file)  # 当前文件的绝对目录
                 f_data = extract_md_header(furl)  # 获取.md的文章信息转成字典
                 f_data["url"] = url
-                f_data["uptime"] = get_file_modification_time(os.path.join(root, file))
+                # f_data["uptime"] = get_file_modification_time(os.path.join(root, file))
+                f_data["uptime"] = convert_to_iso8601(os.path.join(root, file))
                 data_json.append(f_data)  # 添加到需要返回的数据数组中
 
     data_json.sort(key=lambda x: x["time"], reverse=True)  # 对数组进行降序排序
@@ -93,6 +131,7 @@ def create_data_json(articles_path, file_path):
     logger.info("blog数据索引更新完毕！")
 
 
+import frontmatter
 def extract_md_header(file_path):
     """
     把每个md文档头部的信息转换成字典
@@ -100,19 +139,9 @@ def extract_md_header(file_path):
     @return: header_dict
     """
     with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-        header_str = content.split('---')[1].strip()
-        header_list = header_str.split('\n')
-        header_dict = {}
-        for item in header_list:
-            try:
-                key, value = item.split(':', 1)
-                key = key.strip()
-                value = value.strip()
-            except ValueError:
-                logger.error(f"错误：{header_list} 无法分割成键值对")
-                continue
-            header_dict[key] = value
+        # print(file_path)
+        post = frontmatter.load(f)
+        header_dict = post.metadata
         return header_dict
 
 
@@ -278,12 +307,12 @@ def get_prev_next(title, blog_data):
     pn = {}
     for i in range(len(blog_data)):
         if blog_data[i]["title"] == title:
-            if i > 0:
-                pn["prev"] = blog_data[i - 1]
+            if i < len(blog_data) - 1:
+                pn["prev"] = blog_data[i + 1]
             else:
                 pn["prev"] = None
-            if i < len(blog_data) - 1:
-                pn["next"] = blog_data[i + 1]
+            if i > 0 :
+                pn["next"] = blog_data[i - 1]
             else:
                 pn["next"] = None
             break
@@ -323,6 +352,15 @@ def remove_duplicates(l):
             new_list.append(i)
     return new_list
 
+
+def convert_to_iso8601(file_path):
+    # 获取文件修改时间
+    modification_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+
+    # 格式化为ISO 8601格式
+    iso_8601_format = modification_time.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
+    return iso_8601_format
 
 if __name__ == "__main__":
     pass
