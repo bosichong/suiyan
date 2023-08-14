@@ -1,0 +1,64 @@
+{
+    "dev": 0,
+    "blog_name": "碎言",
+    "blog_name_en": "SuiYan",
+    "blog_author": "J.sky",
+    "blog_description_en": "You see see you , This one day day di.",
+    "blog_typed": [
+        "积硅步以致千里",
+        "积怠惰以致深渊",
+        "只比你努力一点的人",
+        "其实已经甩你很远了！"
+    ],
+    "meta_description": "记录并分享个人学习Python、JavaScript的过程和笔记。Life is short, You need JavaScript and Python！",
+    "meta_keywords":"Python,JavaScript,程序员,人生苦短,我用Python",
+    "profile_image":"assets/images/avatar.jpg",
+    "blog_bg": "assets/images/bg.jpg",
+    "theme": "tailwind_HyperUI",
+    "build": "blog",
+    "md_dir": "articles",
+    "blog_page_num":12,
+    "blog_test_url":"http://192.168.0.88:5500/",
+    "blog_url":"https://suiyan.cc/",
+    "blog_sns": [
+        {
+            "ico": "github",
+            "url": "https://github.com/bosichong/suiyan"
+        },
+        {
+            "ico": "gitee",
+            "url": "https://gitee.com/J_Sky/suiyan"
+        },
+        {
+            "ico": "mail",
+            "url": "mailto:285911@gmail.com"
+        },
+        {
+            "ico": "rss",
+            "url": "https://suiyan.cc/rss.xml"
+        }
+    ],
+    "nav": [
+        {
+            "ico": "archive",
+            "text": "归档",
+            "url": "archives.html"
+        },
+        {
+            "ico": "tags",
+            "text": "标签",
+            "url": "tags.html"
+        },
+        {
+            "ico": "user-md",
+            "text": "关于",
+            "url": "before-2022/1.html"
+        },
+        {
+            "ico": "link",
+            "text": "链接",
+            "url": "links.html"
+        }
+    ]
+
+}
