@@ -286,7 +286,8 @@ def create_blog(title='', author='', tag='', filedir='', pagename='', vscode=Tru
     :return:
     """
     # 文章创建时间
-    create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    create_time = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
     if pagename == '':
         pagename = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -298,7 +299,7 @@ def create_blog(title='', author='', tag='', filedir='', pagename='', vscode=Tru
         author = config['blog_author']
     blogfile = os.path.join(ARTICLES_DIR, os.path.join(filedir, pagename + '.md'))
     create_file_dir(blogfile)  # 如果有不存在的目录则创建
-    bloghtml = f'---\ntitle: {title}\nauthor: {author}\ntime: {create_time}\ntag: {tag}\ndescription:\n---\n\n\n### 可以开始写blog啦(*￣︶￣)'
+    bloghtml = f"---\ntitle: '{title}'\nauthor: '{author}'\ntime: '{create_time}'\ntag: '{tag}'\ndescription: '博文的简介'\n---\n\n\n### 可以开始写blog啦(*￣︶￣)"
 
     if os.path.isfile(blogfile):
         logger.error('文件存在相同名称，创建失败。')
